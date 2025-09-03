@@ -4,6 +4,9 @@ Need read all files and. [https://github.com/rafaelmeloreisnovo/relativity-livin
 ](https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/c028527ce30d34cb52bf0424e57b2cdbec72eac2/README_snippet.md)
 # 🌌 Relativity Living Light — Hipótese da Superposição Fotônica
 
+all files at root dir.
+
+
 ## Português
 A luz não viaja: ela já é estado estendido. A hipótese aqui propõe que energia escura pode ser efeito estatístico das superposições fotônicas.  
 Equação:  
