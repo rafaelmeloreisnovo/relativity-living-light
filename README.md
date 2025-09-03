@@ -1,7 +1,7 @@
 # README.md
 
-Need read all files and. https://github.com/rafaelmeloreisnovo/relativity-living-light/README_snippet.md
-
+Need read all files and. [https://github.com/rafaelmeloreisnovo/relativity-living-light/README_snippet.md
+](https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/c028527ce30d34cb52bf0424e57b2cdbec72eac2/README_snippet.md)
 # 🌌 Relativity Living Light — Hipótese da Superposição Fotônica
 
 ## Português
