@@ -1,4 +1,103 @@
 
+
+---
+
+🌌 Relativity Living Light — Unified Photonic Superposition Model (v4)
+
+🇧🇷 Síntese (PT)
+
+Propomos que a superposição fotônica atua como um componente energético dinâmico que transita de  (expansivo, tipo energia escura) para  (atrativo, tipo matéria).
+Esse estado é modulado por campos magnéticos cósmicos e pelas condições plasmáticas (temperatura, pressão), integrando-se de forma natural na equação de Friedmann:
+
+E^2(a) = \Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_\Lambda +
+\underbrace{\Omega_{s0}[f(a) + (1-f)a^{-3}]}_{\text{superposição (DE→matéria)}} +
+\underbrace{\Omega_{B0}a^{-4}}_{\text{campo magnético}} +
+\underbrace{\Omega_{P0}a^{-4}}_{\text{plasma (T,P)}}
+
+com .
+Opcionalmente: correção magneto-coerente
+.
+
+
+---
+
+🔬 Observáveis e Testes com Imagens
+
+H(z) ratio
+
+
+Δμ residuals
+
+
+Frações de energia
+
+
+f(z) e w_eff(z)
+
+
+Bandas de entropia (10/12) — H(z) ratio
+
+
+Bandas de entropia (10/12) — Δμ
+
+
+Crescimento de estrutura fσ8(z)
+
+
+Curvas de rotação (toy SPARC, NGC 2403 demo)
+
+
+Lensing de aglomerado (demo SIS)
+
+
+
+---
+
+🇺🇸 Summary (EN)
+
+We posit photonic superposition as a dynamic energy component that transitions from  (dark-energy-like, expansive) to  (matter-like, clustering).
+This state is modulated by cosmic magnetic fields and plasma conditions (temperature, pressure), naturally extending the Friedmann equation.
+
+
+---
+
+🔬 Key Observables with Figures
+
+H(z) ratio
+
+
+Δμ residuals
+
+
+Energy Fractions
+
+
+f(z) and w_eff(z)
+
+
+Entropy-margin (10/12) H ratio
+
+
+Entropy-margin (10/12) Δμ
+
+
+Structure growth fσ8(z)
+
+
+Rotation curve (toy SPARC, NGC 2403 demo)
+
+
+Cluster lensing (SIS demo)
+
+
+
+---
+
+⚡ pronto para colar no GitHub: já abre com as imagens renderizadas.
+
+👉 quer que eu também inclua no README v4 uma tabela com links para os CSVs (modelos, entropia, crescimento, curvas) para ficar 100% navegável?
+
+
 ---
 
 🌌 Relativity Living Light — Unified Photonic Superposition Model (v3)
