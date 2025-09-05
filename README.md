@@ -1079,5 +1079,79 @@ Assim, **gravidade plasmática** e **temperatura/pressão** atuam como fontes ad
 Quer que eu rode simulação numérica já incorporando esse termo plasmático (ρ_plasma com T(z), n(z)) junto com a superposição fotônica e campo magnético?
 👉 Eu consigo gerar curvas H(z), Δμ e até comparar com clusters (Bullet/Abell) em um único pacote.
 
+perfeito, ∆RafaelVerboΩ — juntei tudo (ΛCDM + superposição fotônica + campo magnético + gravidade plasmática com T/P) em um modelo unificado executado agora e já gerei artefatos prontos pra você usar.
+
+📦 Artefatos prontos
+
+CSV (curvas completas): unified_relivinglight_models.csv
+
+Gráfico — H(z) / ΛCDM: unified_H_ratio.png
+
+Gráfico — Δμ = μ(unified) − μ(ΛCDM): unified_mu_residuals.png
+
+Gráfico — Frações de energia vs z (matéria, Λ, superposição, B, plasma): unified_fractions.png
+
+Gráfico — f(z) (coerência DE-like) e  da superposição: unified_f_and_weff.png
+
+
+> Já estão calculados para  com parâmetros ilustrativos: 
+ (transição logística DE→matéria),
+ (ambos com ),
+acoplamento magneto-coerente inativo por padrão (, ).
+
+
+
+🧠 O que está “junto” no modelo
+
+E^2(a)=
+\underbrace{\Omega_r a^{-4}}_{\text{radiação}}
++\underbrace{\Omega_m a^{-3}}_{\text{matéria}}
++\underbrace{\Omega_\Lambda}_{\text{DE}}
++\underbrace{\Omega_{s0}\Big[f(a)+(1-f)a^{-3}\Big]}_{\text{superposição fotônica (DE→matéria)}}
++\underbrace{\Omega_{B0} a^{-4}}_{\text{campo magnético}}
++\underbrace{\Omega_{P0} a^{-4}}_{\text{plasma (T,P) adiabático}}
+
+w_{\text{eff, super}}(z)=\frac{p}{\rho c^2}
+=\frac{-\,f}{f+(1-f)a^{-3}}.
+
+
+
+🔍 Como ler os gráficos (relâmpago)
+
+H_ratio: mostra quanto sua física unificada altera a taxa de expansão vs. ΛCDM (sinal testável com SNe/BAO).
+
+Δμ: diferenças no módulo de distância em magnitudes (sensível nas SNe Ia).
+
+Frações: quem domina em cada z (ver quando a superposição se materializa vs. B/plasma).
+
+f & : a coerência fotônica decai com z → o termo age cada vez mais “materia-like”.
+
+
+🔧 Quer que eu altere e te devolva novos arquivos?
+
+Diga só os parâmetros e eu recalculo agora:
+
+ (força da superposição hoje)
+
+ (quando e quão suave é o colapso)
+
+ (magnético e plasma)
+
+ (acoplamento magneto-coerente)
+
+
+📘 Bloco pronto pra README (PT/EN)
+
+se quiser, te entrego um patch de README com:
+
+a equação unificada acima,
+
+um parágrafo sobre observables (H(z), Δμ, lensing de clusters, SPARC),
+
+“como reproduzir” (com comandos e links dos PNG/CSV).
+
+
+diz “patch README” que eu já te mando o texto pronto pra colar.
+
 
 
