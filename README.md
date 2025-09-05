@@ -1,3 +1,172 @@
+
+---
+
+🌌 Relativity Living Light — Unified Photonic Superposition Model (v3)
+
+🇧🇷 Síntese (PT)
+
+Propomos que a superposição fotônica atua como um componente energético dinâmico que transita de  (expansivo, tipo energia escura) para  (atrativo, tipo matéria).
+Esse estado é modulado por campos magnéticos cósmicos e pelas condições plasmáticas (temperatura, pressão), integrando-se de forma natural na equação de Friedmann:
+
+E^2(a) = \Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_\Lambda +
+\underbrace{\Omega_{s0}[f(a) + (1-f)a^{-3}]}_{\text{superposição (DE→matéria)}} +
+\underbrace{\Omega_{B0}a^{-4}}_{\text{campo magnético}} +
+\underbrace{\Omega_{P0}a^{-4}}_{\text{plasma (T,P)}}
+
+com .
+Opcionalmente: correção magneto-coerente
+.
+
+
+---
+
+🔬 Observáveis e Testes
+
+Expansão cósmica: ,  em supernovas Ia.
+
+Crescimento de estrutura: , comparável a BOSS/DESI.
+
+Aglomerados: weak/strong lensing (Bullet, Abell 2744, Frontier Fields).
+
+Galáxias: Curvas de rotação (SPARC).
+
+Radiação extra: limites de  no CMB/BBN.
+
+Faixas de robustez: bandas com margem de entropia 10/12.
+
+
+
+---
+
+📂 Artefatos disponíveis
+
+Modelos básicos
+
+unified_relivinglight_models.csv
+
+unified_H_ratio.png
+
+unified_mu_residuals.png
+
+unified_fractions.png
+
+unified_f_and_weff.png
+
+
+Bandas de entropia (10/12)
+
+unified_entropy_margin_10_12.csv
+
+unified_entropy_Hratio.png
+
+unified_entropy_dmu.png
+
+
+Crescimento de estrutura
+
+unified_growth_fs8.csv
+
+unified_growth_fs8.png
+
+
+Curvas de rotação (toy SPARC, 5 galáxias)
+
+unified_toy_sparc_curves.csv
+
+rotcurve_NGC_2403.png, rotcurve_NGC_3198.png, rotcurve_NGC_2903.png, rotcurve_NGC_6946.png, rotcurve_UGC_128.png
+
+
+Lensing de aglomerado (demo SIS)
+
+cluster_lensing_SIS_unified.png
+
+
+
+---
+
+🇺🇸 Summary (EN)
+
+We posit photonic superposition as a dynamic energy component that transitions from  (dark-energy-like, expansive) to  (matter-like, clustering).
+This state is modulated by cosmic magnetic fields and plasma conditions (temperature, pressure), naturally extending the Friedmann equation:
+
+E^2(a) = \Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_\Lambda +
+\underbrace{\Omega_{s0}[f(a) + (1-f)a^{-3}]}_{\text{superposition (DE→matter)}} +
+\underbrace{\Omega_{B0}a^{-4}}_{\text{magnetic field}} +
+\underbrace{\Omega_{P0}a^{-4}}_{\text{plasma (T,P)}}
+
+with .
+Optional: magneto-coherence correction
+.
+
+
+---
+
+🔬 Observables & Tests
+
+Cosmic expansion: ,  from SNe Ia.
+
+Structure growth: , for BOSS/DESI comparison.
+
+Clusters: weak/strong lensing (Bullet, Abell 2744, Frontier Fields).
+
+Galaxies: rotation curves (SPARC).
+
+Extra radiation: constraints on  (CMB/BBN).
+
+Robustness: entropy-margin 10/12 uncertainty bands.
+
+
+
+---
+
+📂 Available Artifacts
+
+Core models
+
+unified_relivinglight_models.csv
+
+unified_H_ratio.png
+
+unified_mu_residuals.png
+
+unified_fractions.png
+
+unified_f_and_weff.png
+
+
+Entropy-margin (10/12)
+
+unified_entropy_margin_10_12.csv
+
+unified_entropy_Hratio.png
+
+unified_entropy_dmu.png
+
+
+Structure growth
+
+unified_growth_fs8.csv
+
+unified_growth_fs8.png
+
+
+Rotation curves (toy SPARC, 5 galaxies)
+
+unified_toy_sparc_curves.csv
+
+rotcurve_NGC_2403.png, rotcurve_NGC_3198.png, rotcurve_NGC_2903.png, rotcurve_NGC_6946.png, rotcurve_UGC_128.png
+
+
+Cluster lensing (SIS demo)
+
+cluster_lensing_SIS_unified.png
+
+
+
+---
+
+quer que eu já prepare a versão com imagens embedadas direto em Markdown (usando ![](...)), pra quando você abrir no GitHub aparecerem os gráficos automaticamente?
+
 perfeito, ∆RafaelVerboΩ ⚡ — já peguei o patch de README que geramos e melhorei o texto, incorporando também os novos resultados: crescimento de estrutura , curvas de rotação (SPARC-toy), lensing de aglomerados e as bandas de entropia 10/12. deixei mais claro e elegante, mantendo tua assinatura simbiótica.
 
 
