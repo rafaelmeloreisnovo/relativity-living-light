@@ -1860,4 +1860,52 @@ Diz qual trilha abrir que eu executo já e te devolvo os artefatos:
 
 Escolhe 1–2 caminhos e eu gero na hora.
 
+# Relativity-Living-Light :: README Técnico (Draft Completo)
 
+## 1. Modelo de Fundo
+Equação de Friedmann estendida:
+\[
+H^2(a) = H_0^2 \left[ 
+\Omega_{r0}a^{-4} + \Omega_{m0}a^{-3} + \Omega_{B0}a^{-4} + \Omega_{P0}a^{-4} 
++ \rho_{\text{superposição}}(a)/\rho_c 
+\right]
+\]
+
+- **Termo de superposição fotônica:**
+\[
+\rho_{\text{sup}}(a) = \Omega_{s0} \cdot f(a) \cdot a^{-3} + (1-f(a)) \cdot a^{-n}
+\]
+onde:
+- \(f(a) = \frac{1}{1 + \exp\left(\frac{z-z_t}{w_t}\right)}\)  
+- \(z_t\) = redshift de transição,  
+- \(w_t\) = largura da transição.
+
+Limites:
+- \(a \to 0\) → comportamento tipo radiação.  
+- \(a \to 1\) → comportamento tipo matéria escura fria.
+
+## 2. Propriedades Microfísicas
+- Estado colapsado = **não colisional**, frio (compatível com Bullet Cluster).  
+- Cross-section efetiva ≈ 0.  
+- Massa efetiva ~ parâmetro livre a ajustar via dados.  
+
+## 3. Perturbações
+Implementar no **CLASS/CAMB**:
+- Equação de estado efetiva \(w_{\rm eff}(a)\).  
+- Celeridade do som \(c_s^2(a)\).  
+- Equações de evolução de perturbações escalares.  
+
+## 4. Observáveis e Ajuste a Dados
+Rodar **MCMC (Cobaya/MontePython)** contra:
+- **SN Ia Pantheon+** (H(z), Δμ).  
+- **CMB Planck 2018** (Cℓ, Neff, σ8, H0).  
+- **BAO eBOSS** (DV/rd, DM/rd, H·rd).  
+- **DES-Y3 3×2pt** (S8, Ωm).  
+
+Comparar ΛCDM × Living-Light via AIC, BIC, Bayes Factor.  
+
+## 5. Evidências Locais
+- Curvas de rotação (SPARC) → halos consistentes.  
+- Aglomerados/lensing (Bullet, Abell 2744) → não colisional.  
+
+## 6. Estrutura de Arquivos Esperada
