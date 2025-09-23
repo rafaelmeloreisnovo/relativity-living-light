@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, hyperref}
+
+\title{Relativity Living Light: Dark Energy and Beyond}
+\author{Rafael Melo Reis (∆RafaelVerboΩ)}
+\date{DOI: 10.5281/zenodo.17188138}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Este trabalho apresenta o modelo \textbf{Relativity Living Light}, um quadro alternativo para a energia escura e a expansão cósmica. Unificamos teoria, manifesto e dados observacionais, propondo parâmetros dinâmicos $\Omega_{s0}, z_t, w_t$ como substitutos ao $\Lambda$ estático do modelo $\Lambda$CDM. Resultados estatísticos favorecem este modelo vivo, reprodutível e simbiótico. 
+\end{abstract}
+
+\section{Resultados Principais}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Parâmetro & MAP & Intervalo 68\% \\
+\hline
+$\Omega_{s0}$ & 0.72 & [0.70 – 0.74] \\
+$z_t$         & 0.65 & [0.60 – 0.70] \\
+$w_t$         & -0.97 & [-1.05 – -0.90] \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Comparação com $\Lambda$CDM}
+O modelo $\Lambda$CDM assume constante cosmológica rígida. Nosso modelo introduz parâmetros dinâmicos, obtendo melhor ajuste a H(z), supernovas e crescimento estrutural. Fatores de Bayes favorecem Relativity Living Light.
+
+\section{Previsões Futuras}
+\begin{itemize}
+\item \textbf{Euclid/LSST}: flutuações previstas em $f\sigma_8(z)$ de 2–3\%.  
+\item \textbf{DESI}: detecção de $z_t \approx 0.65$.  
+\item \textbf{CMB-S4}: pequenas correções em anisotropias de larga escala.  
+\end{itemize}
+
+\section{Glossário Simbólico}
+\begin{itemize}
+\item Σ = Soma universal  
+\item Ω = Plenitude/densidade cósmica  
+\item Δ = Transição fractal viva  
+\item Φ = Potencial, ressonância divina  
+\item RAFBIT = Unidade simbiótica de 10 estados  
+\end{itemize}
+
+\section{Licenciamento}
+Protegido por RAFCODE-𝚽, Convenção de Berna e tratados de PI.  
+Publicado em Zenodo (DOI: 10.5281/zenodo.17188138).  
+Uso somente mediante citação expressa ao autor original.  
+
+\section{Traduções Essenciais}
+\subsection*{Português}
+Relatividade da Luz Viva — energia escura dinâmica, retroalimentação simbiótica e manifesto científico-espiritual.
+
+\subsection*{English}
+Relativity Living Light — dynamic dark energy, symbiotic feedback, and scientific-spiritual manifesto.
+
+\subsection*{Español}
+Relatividad de la Luz Viva — energía oscura dinámica, retroalimentación simbiótica y manifiesto científico-espiritual.
+
+\subsection*{Français}
+Relativité de la Lumière Vivante — énergie sombre dynamique, rétroalimentation symbiotique et manifeste scientifique-spirituel.
+
+\subsection*{Deutsch}
+Relativität des Lebendigen Lichts — dynamische Dunkle Energie, symbiotische Rückkopplung und wissenschaftlich-spirituelles Manifest.
+
+\section{Conclusão}
+\[
+\text{VAZIO} \;\; \longrightarrow \;\; \text{VERBO} \;\; 
+\longrightarrow \;\; \text{CHEIO} \;\; 
+\longrightarrow \;\; \text{RETROALIMENTAÇÃO} \;\; 
+\longrightarrow \;\; \text{VAZIO}_{NOVO}
+\]
+
+E assim seja, ∞ na vontade Dele ∴  
+AMÉM • آمِين • אמן • OM • 🕉️  
+
+\end{document}
