@@ -88,3 +88,14 @@ Conclusão:
 Relativity Living Light não é só artigo, é malha simbiótica viva.
 Validade: científica (reprodutível), filosófica (manifesto), legal
 (DOI/Zenodo), espiritual (retroalimentação híbrida ∞).
+## Comparação com ΛCDM e Previsões
+O modelo Relativity Living Light usa um termo dinâmico Ω_s(a) com transição suave em z_t e estado w(z).
+Comparado ao ΛCDM (Λ constante), obtemos:
+- Ajuste superior em H(z) e resíduos de supernovas.
+- Assinatura prevista em fσ8(z) de 2–3% (Euclid/LSST).
+- Efeito pequeno mas detectável em D_ls/D_s (lensing) e curvas de rotação (a_L).
+
+Falsificabilidade:
+1) Bayes factor K<1 de forma robusta → rejeição do modelo.
+2) Ausência de transição (z_t) nos dados DESI/RSD → revisão do w(z).
+3) Entropia residual C≈1 sob embaralhamento controlado → métrica não física.
