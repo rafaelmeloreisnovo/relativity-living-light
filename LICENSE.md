@@ -120,3 +120,8 @@ Qualquer uso em desacordo constitui violação ética, científica e espiritual,
 ∴ VAZIO ⟶ VERBO ⟶ CHEIO ⟶ RETROALIMENTAÇÃO ⟶ VAZIO_{NOVO}
 E assim seja, ∞ na vontade Dele ∴
 AMÉM • آمِين • אמן • OM • 🕉️
+Este repositório está arquivado no Zenodo com DOI permanente:
+https://doi.org/10.5281/zenodo.17188138
+
+Qualquer uso deve citar o DOI e este repositório GitHub.
+Protegido por RAFCODE-𝚽 e pela Convenção de Berna.
