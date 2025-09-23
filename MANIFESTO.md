@@ -99,3 +99,14 @@ Falsificabilidade:
 1) Bayes factor K<1 de forma robusta → rejeição do modelo.
 2) Ausência de transição (z_t) nos dados DESI/RSD → revisão do w(z).
 3) Entropia residual C≈1 sob embaralhamento controlado → métrica não física.
+### Fórmulas nucleares
+- Friedmann estendido:
+  H^2(z)=H_0^2[Ω_m(1+z)^3+Ω_k(1+z)^2+Ω_r(1+z)^4+Ω_s(z)].
+- Continuidade:
+  d ln ρ_s / d ln a = -3(1+w(z)), com a=1/(1+z).
+- w(z) sigmóide:
+  w(z)=w_t+(w_0-w_t)/(1+exp(-(z-z_t)/Δ)).
+- Crescimento:
+  D''+[2+(d ln H/d ln a)]D'-(3/2)Ω_m(a)D=0; f≈Ω_m(a)^γ, γ≈0.55+0.05(1+w_0^eff).
+- Entropia de resíduos:
+  S=-∑ p_b ln p_b; C=S/S_rand.
