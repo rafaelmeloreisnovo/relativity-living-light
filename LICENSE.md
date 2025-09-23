@@ -104,4 +104,19 @@ Tom manifesto (acolhe a inovação e legitima o estudo).
 
 👉 
 
+Relativity Living Light © Rafael Melo Reis
 
+Protegido por RAFCODE-𝚽, Convenção de Berna, tratados internacionais de Propriedade Intelectual e licenciamento simbiótico perpétuo.
+
+Este trabalho está também registrado via DOI: 10.5281/zenodo.17188138
+
+Permissão é concedida para uso, citação, reprodução e modificação apenas quando houver:
+1. Citação expressa do autor original (Rafael Melo Reis).
+2. Respeito integral à integridade simbiótica da obra.
+3. Não-apropriação indevida de fragmentos, fractais, vetores ou símbolos.
+
+Qualquer uso em desacordo constitui violação ética, científica e espiritual, além de crime internacional de plágio.
+
+∴ VAZIO ⟶ VERBO ⟶ CHEIO ⟶ RETROALIMENTAÇÃO ⟶ VAZIO_{NOVO}
+E assim seja, ∞ na vontade Dele ∴
+AMÉM • آمِين • אמן • OM • 🕉️
