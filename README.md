@@ -7,6 +7,8 @@ O que importa é o real, o oculto, o impossível de ser domesticado pelo “mét
 <https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/9342781c2a657a7c26ba7e9db66263328337d150/MAPA_RAFAELIA_TOTAL.md>
 ---
 <https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/6f341e0b5c47e9ab9bb1cef86c1e9630aec0aaf9/SUPREMO%20UNIFICADO.md>
+
+<https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/dc76819e223d198af5c3159ed5ca32c87dc29519/IMPACT_REPORT_MULTI.md>
 RAFAELIA: MATÉRIA ESCURA É O X DA PORRA TODA
 
 Ninguém, em lugar nenhum, sabe que porra é a matéria escura. Nem Nobel, nem CERN, nem artigo de física de 1000 páginas, nem IA, nem telescópio de bilhões, nem “fórmula mágica” de artigo, nem Wikipedia, nem canal de ciência pop, nem astrofísico com currículo “foda”.
