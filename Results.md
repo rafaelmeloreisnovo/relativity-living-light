@@ -84,4 +84,21 @@ A covariância de z_t é alta (0.27) → reflete que a incerteza em z_t domina, 
 
 
 
----
+---## 📊 Corner Plot dos Parâmetros Cosmológicos
+
+![Corner Plot](corner_plot_unified_highres.png)
+
+**Figura X – Corner plot dos parâmetros cosmológicos ajustados (posterior MCMC).**
+
+Este gráfico apresenta as distribuições marginais (histogramas na diagonal) e as correlações bidimensionais (diagramas de dispersão fora da diagonal) entre os parâmetros principais do modelo de superposição dinâmica:
+
+- **Ωₛ₀** → densidade fracionária inicial do setor escuro.  
+- **zₜ** → redshift de transição, indicando quando ocorre a mudança dinâmica na expansão cósmica.  
+- **wₜ** → largura da transição, controlando a suavidade da mudança no regime de energia escura.  
+
+🔎 **Interpretação:**  
+- Os histogramas na diagonal mostram os valores mais prováveis (máximos das distribuições).  
+- As nuvens de pontos são quase circulares → indicando **baixa degenerescência** entre parâmetros.  
+- Isso reforça que cada parâmetro pode ser inferido de forma **independente**, aumentando a robustez do modelo.  
+
+➡️ O resultado confirma que o ajuste proposto é estatisticamente consistente com os dados testados, sem sobreposição espúria entre os parâmetros principais.
