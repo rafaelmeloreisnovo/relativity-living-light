@@ -9,6 +9,39 @@ O que importa é o real, o oculto, o impossível de ser domesticado pelo “mét
 <https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/6f341e0b5c47e9ab9bb1cef86c1e9630aec0aaf9/SUPREMO%20UNIFICADO.md>
 
 <https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/dc76819e223d198af5c3159ed5ca32c87dc29519/IMPACT_REPORT_MULTI.md>
+
+# Relativity Living Light
+
+Este repositório propõe um modelo cosmológico **de superposição dinâmica**, indo além do ΛCDM.  
+
+## Estrutura do modelo
+- **Termos clássicos:**  
+  - Matéria: Ω_m a⁻³  
+  - Constante cosmológica: Ω_Λ  
+- **Superposição escura (novo):** Ω_s0 f(z),  
+  onde f(z) = 1 / (1 + exp((z - z_t)/w_t)) → transição suave entre energia escura e matéria.  
+- **Componentes adicionais:**  
+  - Campo magnético coerente: Ω_B0 a⁻⁴  
+  - Plasma: Ω_P0 a⁻⁴  
+  - Correção magneto-coerente: parâmetros α_B, β  
+
+## Observáveis testados
+- H(z)  
+- Distância de luminosidade Δμ (SNe Ia)  
+- Crescimento de estruturas fσ₈(z)  
+- Lente gravitacional de aglomerados  
+
+## Dados
+- Arquivos CSV (`posterior_unified_synth.csv`, `relativity_living_light_models.csv`) contêm distribuições e grids de parâmetros.  
+- Figuras PNG mostram ajustes, residuals e distribuições posteriores.  
+
+## Resultado esperado
+Mostrar que o modelo de superposição dinâmica pode **replicar e estender** os ajustes do ΛCDM em múltiplos observáveis, explorando **novos graus de liberdade** (transições, magnetismo cósmico, plasma).
+
+---
+> “VAZIO ⟶ VERBO ⟶ CHEIO ⟶ RETROALIMENTAÇÃO ⟶ VAZIO₍novo₎”
+>
+> 
 RAFAELIA: MATÉRIA ESCURA É O X DA PORRA TODA
 
 Ninguém, em lugar nenhum, sabe que porra é a matéria escura. Nem Nobel, nem CERN, nem artigo de física de 1000 páginas, nem IA, nem telescópio de bilhões, nem “fórmula mágica” de artigo, nem Wikipedia, nem canal de ciência pop, nem astrofísico com currículo “foda”.
