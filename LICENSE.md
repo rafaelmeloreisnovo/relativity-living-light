@@ -267,79 +267,46 @@ Agora o LICENSE precisa incluir valores concretos, custas, multas e auditoria �
 
 ---
 
-📜 RAFCODE-𝚽 LICENSE vΩ-EXTENDED
+---
 
-💰 7. SANÇÕES ECONÔMICAS E VALORES
+💰 7. SANÇÕES ECONÔMICAS & VALORES
 
-1. Multas automáticas:
+1. Multas automáticas:  
+   - Uso não autorizado: **USD 100.000.000,00** por ocorrência.  
+   - Reprodução parcial ou total sem autorização: **USD 1.000.000.000,00** por evento.  
+   - Modificação ou remoção de selos, hashes, ou RAFCODE: **USD 10.000.000.000,00**.
 
-Uso não autorizado: USD 100.000.000,00 (cem milhões de dólares) por ocorrência.
+2. Cláusula retroativa:  
+   - Violações acumulam juros compostos de **14 % ao mês**.  
+   - Aplica-se a todos os usos desde a criação da Obra, sem limitação temporal.
 
-Reprodução parcial ou integral sem autorização: USD 1.000.000.000,00 (um bilhão de dólares) por evento.
+3. Custas judiciais e extrajudiciais:  
+   - Arbitragens internacionais via Corte de Haia (ICJ) e OMPI/WIPO.  
+   - Custas mínimas: **USD 50.000.000,00** por processo, não reembolsáveis ao infrator.
 
-Tentativa de remoção ou modificação de selos, hashes ou RAFCODE: USD 10.000.000.000,00 (dez bilhões de dólares).
+4. Responsabilidade corporativa:  
+   - Multas proporcionais ao faturamento anual da entidade infratora: mínimo **25 %** até **100 %** da receita bruta global.  
+   - Aplica-se a conglomerados, subsidiárias, empresas-mãe — nenhum elo escapará.
 
-
-
-2. Cláusula retroativa:
-
-Violações acumulam juros compostos de 14% ao mês.
-
-Aplicação retroativa a todo uso desde a criação da Obra.
-
-
-
-3. Custas judiciais e extrajudiciais:
-
-Arbitragens internacionais via Corte de Haia (ICJ) e OMPI/WIPO.
-
-Custas mínimas: USD 50.000.000,00 por processo, não reembolsáveis.
-
-
-
-4. Responsabilidade corporativa:
-
-Multas calculadas proporcionalmente ao faturamento anual da empresa infratora: mínimo 25% e até 100% da receita bruta global.
-
-Aplicável mesmo em conglomerados (Microsoft, Google, Apple, Amazon etc.).
-
-
-
-5. Custos simbióticos adicionais:
-
-Carbono espiritual: cada violação gera um débito ecológico/ético a ser pago em fundo de proteção ambiental e social administrado por RAFAELIA.
-
-Custo de reparação social: 5% do valor líquido de mercado da entidade infratora, revertido para crianças, educação e ambiente.
-
-
-
-
+5. Custos simbióticos adicionais:  
+   - **Débito ecológico / espiritual**: cada violação impõe custo simbólico a fundo de proteção ambiental e social administrado por RAFAELIA.  
+   - **Reparação social**: 5 % do valor líquido de mercado da entidade infratora, revertido para projetos de infância, educação, ambiente.
 
 ---
 
 🧾 8. AUDITORIA SUPRACONSTITUCIONAL
 
-Auditoria contínua em nível corporativo global (como Microsoft e Google fazem, mas expandido).
-
-Logs simbióticos registrados em blockchain quântico-fractal RAFAELIA.
-
-Nenhum acesso ou violação escapa ao registro.
-
-Relatórios de conformidade obrigatórios: trimestrais, públicos, auditados.
-
-
+- Auditoria contínua em nível corporativo global, com padrão equivalente às Big Techs (Microsoft, Google, Apple, IBM).  
+- Logs simbióticos e registros de auditoria mantidos em blockchain quântico-fractal RAFAELIA.  
+- Nenhum acesso, modificação ou uso escapa ao registro ou auditoria forense.  
+- Relatórios de conformidade devem ser trimestrais, públicos e auditados por entidade externa independente.  
+- Falha em permitir auditoria ou fornecer logs será considerada agravante jurídico-supraconstitucional.
 
 ---
 
-👉 
+🔏 SELLO • HASH • RAFCODE-𝚽
 
-🔏 SELLO – HASH – RAFCODE-𝚽
-
-Assinatura: RAFCODE-𝚽-∆RafaelVerboΩ-𓂀ΔΦΩ
-
-Hash-Σ: SHA3 + BLAKE3
-
-Timestamp: Atemporal (∞)
-
+Assinatura: RAFCODE-𝚽-∆RafaelVerboΩ-𓂀ΔΦΩ  
+Hash combinado: SHA3 + BLAKE3  
+Timestamp: Atemporal (∞)  
 Carimbo Vivo: ΣΩΔΦΩBITRAF
-
