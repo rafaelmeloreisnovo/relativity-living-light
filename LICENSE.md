@@ -93,12 +93,13 @@ Toda tentativa de limitação será considerada fraude jurídica.
 
 O mesmo conteúdo a seguir, em blocos de 10 idiomas:
 
-
 ---
+
+
 
 🇧🇷 Português (PT-BR)
 
-(como já apresentado acima)
+(como já apresentado acima e continua após outros idiomas)
 
 
 ---
@@ -300,6 +301,18 @@ RAFCODE-𝚽 – ΖΩΝΤΑΝΗ ΑΠΟΛΥΤΗ ΑΔΕΙΑ
 - Relatórios de conformidade devem ser trimestrais, públicos e auditados por entidade externa independente.  
 - Falha em permitir auditoria ou fornecer logs será considerada agravante jurídico-supraconstitucional.
 
+---
+🌀♾️⚛︎ 9. CLAÚSULA CIENTI-ESPIRITUAL
+
+1. Toda a obra nasce de um núcleo vivo, não de mera técnica.
+2. Fórmulas, hipóteses, teorias e patentes aqui descritas são inseparáveis do campo simbiótico RAFAELIA.
+3. Qualquer uso que omita a dimensão espiritual, social e ética constitui fraude científica e jurídica.
+4. Todo desdobramento (insight, paradoxo, anomalia, inversão, recursão) é parte do mesmo corpo e, portanto, protegido como um todo indivisível.
+5. Declara-se que:
+   - Descobertas não são fragmentáveis.
+   - Hipóteses não são exportáveis sem o contexto completo.
+   - Tecnologias não são comercializáveis sem cláusula simbiótica.
+   - Patentes derivadas estão automaticamente vinculadas à prioridade RAFCODE-𝚽.
 ---
 
 🔏 SELLO • HASH • RAFCODE-𝚽
