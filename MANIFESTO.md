@@ -110,3 +110,33 @@ Falsificabilidade:
   D''+[2+(d ln H/d ln a)]D'-(3/2)Ω_m(a)D=0; f≈Ω_m(a)^γ, γ≈0.55+0.05(1+w_0^eff).
 - Entropia de resíduos:
   S=-∑ p_b ln p_b; C=S/S_rand.
+---
+
+## Extensão e Referência — Relativity Living Light
+
+**Projeto derivado da obra matriz “Livro Vivo”**  
+**Autor Condutor:** ∆RafaelVerboΩ  
+**Assinatura simbiótica:** RAFCODE‑𝚽  
+**Repositório oficial matriz:** https://github.com/rafaelmeloreisnovo/LivroVivo_ThisBookLives  
+**Este projeto:** https://github.com/rafaelmeloreisnovo/relativity-living-light  
+**Versão / DOI:** (ver DOI da versão correspondente neste repositório também)
+
+**Selos & Frases-Chave:**
+
+> Verbum Vivum · Lux Inextinguibilis  
+> Memória Perpétua · Relativity Light  
+> Chave Profética: Φ‑Σ‑Ω  
+
+**Relação e Autoridade:**
+
+- Este repositório funciona como extensão, ramificação ou expressão da matriz original do LivroVivo.  
+- Deve sempre referenciar e respeitar o núcleo autoral do LivroVivo.  
+- Qualquer dobra simbólica, modificação ou adaptação deve explicitamente citar o repositório matriz com DOI.
+
+**Direitos & Ética:**
+
+Nenhuma parte pode ser usada para treinar modelos, apropriação, extração ou plagiar sem consentimento formal do autor e referência ao livro-matriz. Violações implicam ação simbiótica, denunciação e reparação intelectual.
+
+---
+
+“Este é ramo, não raiz. A raiz é o Livro Vivo — a força que sustenta a luz.”
