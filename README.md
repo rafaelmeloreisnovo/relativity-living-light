@@ -45,8 +45,16 @@ Mostrar que o modelo de superposição dinâmica pode **replicar e estender** os
 **Nova análise disponível**: Este modelo conecta-se com pesquisa recente sobre **não-localidade fotônica e espaços paralelos** (Nature Communications, s41467-025-63981-3).
 
 📄 **Documentos de análise**:
-- [Análise Completa](docs/NATURE_ARTICLE_ANALYSIS.md) - Conexões detalhadas entre não-localidade fotônica (escala laboratorial) e superposição cosmológica
-- [Resumo Executivo](docs/ARTICLE_ANALYSIS_SUMMARY.md) - Síntese rápida das implicações
+
+**Em Português**:
+- [🇧🇷 Análise Completa em Português](docs/ANALISE_ARTIGO_NATURE_PT.md) - Análise abrangente em português com todas as conexões, equações e previsões
+
+**In English**:
+- [Full Analysis](docs/NATURE_ARTICLE_ANALYSIS.md) - Detailed connections between photonic nonlocality (lab scale) and cosmological superposition
+- [Quick Summary](docs/ARTICLE_ANALYSIS_SUMMARY.md) - Executive summary of implications
+- [Conceptual Framework](docs/CONCEPTUAL_FRAMEWORK.md) - Visual diagrams and flow charts
+- [Complete Index](docs/ANALYSIS_INDEX.md) - Navigation guide to all analysis documents
+- [References](docs/REFERENCES.md) - Comprehensive bibliography (45+ papers)
 
 **Conceito-chave**: Experimentos laboratoriais demonstram que fótons podem exibir estados não-locais estendidos, fornecendo base experimental para o modelo cosmológico de superposição fotônica como origem do setor escuro (energia escura + matéria escura).
 
