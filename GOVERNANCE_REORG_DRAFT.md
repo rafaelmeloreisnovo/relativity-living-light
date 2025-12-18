@@ -106,14 +106,16 @@ message: "If you use this work, please cite it as below."
 authors:
   - family-names: "Melo Reis"
     given-names: "Rafael"
-    orcid: "0000-0002-XXXX-YYYY"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
 doi: 10.5281/zenodo.17187966
-license: CC-BY-4.0
+license: CC-BY-SA-4.0
 version: "v4.0"
 date-released: 2025-09-24
 repository-code: "https://github.com/instituto-Rafael/relativity-living-light"
 ```
 </details>
+
+_Note: license set to CC-BY-SA-4.0 to mirror current `data/CITATION.cff`; adjust if the project adopts a different canonical doc/figure license (e.g., CC-BY-4.0). ORCID should use the canonical format `0000-0000-0000-0000` (or `https://orcid.org/0000-0000-0000-0000`)._
 
 <details>
 <summary>NOTICE.md</summary>
@@ -157,10 +159,12 @@ Relativity Living Light — NOTICE
 ```
 </details>
 
+_Guidance: replace `<fill>` with SHA256 values via `sha256sum <path>` (e.g., `sha256sum data/posterior_unified_synth.csv`) or Python (`python -c "import hashlib, pathlib; print(hashlib.sha256(pathlib.Path('data/posterior_unified_synth.csv').read_bytes()).hexdigest())"`), and revise license/provenance fields once a final governance decision is made._
+
 ## E. Reproducibility Plan
 - **Data labeling**: Mark `posterior_unified_synth*.csv`, `synthetic_posterior_summary.json`, bundle posterior outputs as synthetic; distinguish any future observational references in `data/metadata/`.
 - **Configs**: Add `configs/default.yaml` with seeds, data paths, model parameters (`Omega_s0`, `z_t`, `w_t`, `Omega_B0`, `Omega_P0`), and paths to CSVs/figures.
-- **Environment**: Pin `requirements.txt` to exact versions and provide `python -m venv .venv && pip install -r requirements.txt`; optionally export `requirements-lock.txt`.
+- **Environment**: Pin `requirements.txt` to exact versions (switch current `>=` to `==`) and provide `python -m venv .venv && pip install -r requirements.txt`; optionally generate a lock via `pip freeze > requirements-lock.txt` or use pip-tools (`pip install pip-tools && pip-compile requirements.in`).
 - **Pipelines (skeleton)**:
   1. `make prepare` → create `.venv`, install deps.
   2. `make reproduce` → run notebooks headlessly (papermill) to regenerate CSVs/figures from synthetic data.
@@ -186,7 +190,7 @@ Relativity Living Light — NOTICE
 - [ ] Add configs/default.yaml with seeds/paths; pin requirements.
 - [ ] Validate notebooks headlessly (optional) or record skipped reason.
 
-**Testing:** Not run (pytest unavailable in environment; repository currently notebook/data-only).
+**Testing:** Not run (pytest unavailable/not listed). Suggested checks for this repo: headless notebook execution (papermill), data/manifest checksum validation, and simple integrity asserts on CSVs.
 
 ## G. Commit Plan (ordered, future work)
 1. `docs: add governance audit and restructure plan (draft)` — add this plan file and summarize inventory/gaps.
