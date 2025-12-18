@@ -1,3 +1,4 @@
+governanca e goverbanca
 # Repository Audit & Governance Draft Plan (DRAFT)
 _Scope: non-destructive reorganization, governance cleanup, and reproducibility scaffolding. No files were moved or altered._
 
