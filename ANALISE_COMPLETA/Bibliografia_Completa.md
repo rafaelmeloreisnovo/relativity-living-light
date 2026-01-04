@@ -416,6 +416,7 @@ Oxford University Press. ISBN: 978-0199209163
 | Metodologia de Pesquisa | 4 | 9.5% |
 | Gestão de Dados | 2 | 4.8% |
 | Outros (Segurança, Comunicação, etc.) | 10 | 23.8% |
+| **Total** | **42** | **100.0%** |
 
 ---
 

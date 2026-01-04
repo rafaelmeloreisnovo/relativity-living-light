@@ -321,7 +321,7 @@ A escala TRL (Technology Readiness Level) varia de 1 a 9:
 
 ## 10. Conclusão: Nota Geral Conservadora
 
-| Dimensão | Score (0-10) | Peso | Score Ponderado |
+| Área | Score (0-10) | Peso | Score Ponderado |
 |----------|--------------|------|-----------------|
 | Maturidade Científica (TRL) | 4 | 25% | 1.00 |
 | Reprodutibilidade | 7 | 20% | 1.40 |
@@ -335,10 +335,10 @@ A escala TRL (Technology Readiness Level) varia de 1 a 9:
 
 **5.71/10 = 57.1%** → **Categoria: Promissor, mas Preliminar**
 
-- **Acima de 7/10:** Maduro, pronto para aplicação/publicação
-- **5-7/10:** Promissor, requer desenvolvimento adicional ← **Aqui**
-- **3-5/10:** Inicial, conceito demonstrado mas não validado
-- **Abaixo de 3/10:** Muito preliminar
+- **Acima de 7.0/10:** Maduro, pronto para aplicação/publicação
+- **5.0-7.0/10:** Promissor, requer desenvolvimento adicional ← **Aqui**
+- **3.0-5.0/10:** Inicial, conceito demonstrado mas não validado
+- **Abaixo de 3.0/10:** Muito preliminar
 
 ### Mensagem-Chave
 

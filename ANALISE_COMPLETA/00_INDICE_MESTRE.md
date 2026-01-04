@@ -177,7 +177,7 @@ Este documento consolidado contém análise completa de todas as 14 áreas:
 - [Voltar ao README principal](../README.md)
 - [Ver estatísticas detalhadas](./Metricas_Conservadoras.md)
 - [Explorar bibliografia](./Bibliografia_Completa.md)
-- [Entender aplicações](./Aplicacoes_Mercado.md)
+- [Entender hierarquia de 7 níveis](./Hierarquia_7_Niveis.md)
 
 ---
 

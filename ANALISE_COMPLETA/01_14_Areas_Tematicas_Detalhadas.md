@@ -922,9 +922,9 @@ Reflexões sobre **novas teorias, paradigmas emergentes** e caminhos além do mo
 | 12. Estatística | 4 | 3.6% | 4-5 | Estatísticos |
 | 13. Divulgação | 8 | 7.2% | N/A | Público geral |
 | 14. Inovação | 3 | 2.7% | 1 | Empreendedores |
-| **TOTAL** | **137*** | **122.3%** | - | - |
+| **TOTAL** | **137*** | **122.7%** | - | - |
 
-*Alguns arquivos aparecem em múltiplas áreas
+*Nota: Alguns arquivos aparecem em múltiplas áreas, por isso o total de arquivos (137) é maior que o total físico de arquivos no repositório (111). O percentual também ultrapassa 100% devido a esta sobreposição intencional, refletindo a natureza multidisciplinar do conteúdo.
 
 ---
 
