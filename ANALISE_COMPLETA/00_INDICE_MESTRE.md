@@ -11,7 +11,7 @@
 
 ## Visão Geral
 
-Este diretório contém uma análise exaustiva, profissional e academicamente referenciada de todos os 111 arquivos do repositório `relativity-living-light`. A estrutura foi organizada em 14 áreas temáticas principais, com 7 níveis hierárquicos de informação, métricas conservadoras e mais de 22 referências bibliográficas externas para validação acadêmica.
+Este diretório contém uma análise exaustiva, profissional e academicamente referenciada de todos os 111 arquivos do repositório `relativity-living-light`. A estrutura foi organizada em 14 áreas temáticas principais, com 7 níveis hierárquicos de informação, métricas conservadoras e 42 referências bibliográficas externas para validação acadêmica.
 
 ---
 

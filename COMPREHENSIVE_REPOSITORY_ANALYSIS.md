@@ -446,7 +446,7 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 15. Wilkinson et al. (2016) - Princípios FAIR
 16. Saltzer & Schroeder (1975) - Segurança da informação
 17. Gelman et al. (2013) - Análise bayesiana
-18. Treise & Weigold (2002) - Comunicação científica
+18. Trumbo & Weigold (2002) - Comunicação científica
 19. Lakatos (1970) - Programas de pesquisa
 
 ### 5.2 Referências Adicionais Recomendadas

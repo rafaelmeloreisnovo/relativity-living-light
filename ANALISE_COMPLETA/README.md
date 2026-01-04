@@ -41,9 +41,9 @@ Main index with complete navigation
 | **Total de Arquivos Analisados** | 111 |
 | **Áreas Temáticas** | 14 |
 | **Níveis Hierárquicos** | 7 |
-| **Referências Bibliográficas** | 42+ |
-| **Páginas de Documentação** | 80+ |
-| **Palavras** | 50,000+ |
+| **Referências Bibliográficas** | 42 |
+| **Páginas de Documentação** | 110+ |
+| **Palavras** | 80,000+ |
 
 ---
 

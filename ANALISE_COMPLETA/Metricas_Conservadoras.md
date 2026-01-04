@@ -329,7 +329,9 @@ A escala TRL (Technology Readiness Level) varia de 1 a 9:
 | Qualidade de Código/Dados | 6.5 | 15% | 0.975 |
 | Impacto Acadêmico Potencial | 5 | 15% | 0.75 |
 | Impacto de Mercado Potencial | 3 | 10% | 0.30 |
-| **TOTAL** | **-** | **100%** | **5.70/10** |
+| **TOTAL** | **5.70** | **100%** | **5.70/10** |
+
+*Nota: O score total (5.70) é a soma dos scores ponderados: 1.00 + 1.40 + 1.28 + 0.975 + 0.75 + 0.30 = 5.70*
 
 ### Interpretação da Nota
 

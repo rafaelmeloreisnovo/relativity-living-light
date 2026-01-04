@@ -924,9 +924,9 @@ Reflexões sobre **novas teorias, paradigmas emergentes** e caminhos além do mo
 | 12. Estatística | 4 | 3.6% | 4-5 | Estatísticos |
 | 13. Divulgação | 8 | 7.2% | N/A | Público geral |
 | 14. Inovação | 3 | 2.7% | 1 | Empreendedores |
-| **TOTAL (atribuições)** | **137*** | **122.7%** | - | - |
+| **TOTAL (arquivos únicos)** | **111** | **100%** | - | - |
 
-*\*137 atribuições de arquivo distribuídas entre 111 arquivos físicos únicos no repositório.*
+*Nota: A soma da coluna "Nº Arquivos" resulta em 137 aparições ao longo das áreas, pois um mesmo arquivo pode ser classificado em múltiplas áreas temáticas. Assim, o total de aparições (137) é maior que o total físico de arquivos no repositório (111). Conceitualmente, a soma dos percentuais também ultrapassaria 100% devido a essa sobreposição intencional, refletindo a natureza multidisciplinar do conteúdo, mas o total de arquivos únicos permanece 111 (100%).*
 
 ---
 
