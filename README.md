@@ -24,7 +24,7 @@ Este repositório propõe um modelo cosmológico **de superposição dinâmica**
 
 A análise inclui:
 - ✅ **14 áreas temáticas** detalhadas (Cosmologia, Física Quântica, Computação, etc.)
-- ✅ **42+ referências acadêmicas externas** com DOIs e ISBNs
+- ✅ **42 referências acadêmicas externas** com DOIs e ISBNs
 - ✅ **Hierarquia de 7 níveis** de informação (do conceitual ao infraestrutura)
 - ✅ **Métricas conservadoras** e avaliação TRL
 - ✅ **Mapeamento completo** de sinergias e aplicações

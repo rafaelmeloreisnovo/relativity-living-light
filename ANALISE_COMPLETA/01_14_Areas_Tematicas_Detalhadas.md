@@ -822,7 +822,7 @@ Material destinado a **tornar a ciência acessível** a públicos não-especiali
 ### Contexto de Comunicação Científica
 
 **Referências:**
-- Treise & Weigold (2002): Comunicação científica
+- Trumbo & Weigold (2002): Comunicação científica
 - Práticas de science communication
 
 **Canais:**
@@ -906,6 +906,8 @@ Reflexões sobre **novas teorias, paradigmas emergentes** e caminhos além do mo
 
 ## Resumo Estatístico das 14 Áreas
 
+**Nota sobre Contagem:** Os arquivos podem aparecer em múltiplas áreas temáticas devido à natureza multidisciplinar do conteúdo. Por isso, o total de "atribuições" (137) excede o número físico de arquivos (111), e os percentuais somam mais de 100%.
+
 | Área | Nº Arquivos | % do Total | TRL Médio | Público Principal |
 |------|-------------|-----------|-----------|-------------------|
 | 1. Cosmologia | 20 | 18.0% | 3-4 | Físicos, astrônomos |
@@ -922,9 +924,9 @@ Reflexões sobre **novas teorias, paradigmas emergentes** e caminhos além do mo
 | 12. Estatística | 4 | 3.6% | 4-5 | Estatísticos |
 | 13. Divulgação | 8 | 7.2% | N/A | Público geral |
 | 14. Inovação | 3 | 2.7% | 1 | Empreendedores |
-| **TOTAL** | **137*** | **122.7%** | - | - |
+| **TOTAL (atribuições)** | **137*** | **122.7%** | - | - |
 
-*Nota: Alguns arquivos aparecem em múltiplas áreas, por isso o total de arquivos (137) é maior que o total físico de arquivos no repositório (111). O percentual também ultrapassa 100% devido a esta sobreposição intencional, refletindo a natureza multidisciplinar do conteúdo.
+*\*137 atribuições de arquivo distribuídas entre 111 arquivos físicos únicos no repositório.*
 
 ---
 

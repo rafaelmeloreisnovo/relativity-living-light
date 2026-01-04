@@ -9,7 +9,7 @@
 
 ## Introdução
 
-Este documento apresenta uma bibliografia abrangente de **22 referências primárias** e **15 referências secundárias**, totalizando **37 fontes acadêmicas** que contextualizam e validam o trabalho apresentado no repositório `relativity-living-light`. As referências estão organizadas por área temática e incluem artigos peer-reviewed, livros acadêmicos e padrões internacionais.
+Este documento apresenta uma bibliografia abrangente de **27 referências primárias** e **15 referências secundárias**, totalizando **42 fontes acadêmicas** que contextualizam e validam o trabalho apresentado no repositório `relativity-living-light`. As referências estão organizadas por área temática e incluem artigos peer-reviewed, livros acadêmicos e padrões internacionais.
 
 ---
 
@@ -275,7 +275,7 @@ DOI: [10.1109/PROC.1975.9939](https://doi.org/10.1109/PROC.1975.9939)
 
 ## 9. Comunicação Científica
 
-**[26] Treise, D., & Weigold, M. F. (2002)**  
+**[26] Trumbo, C. W., & Weigold, M. F. (2002)**  
 "Advancing Science Communication: A Survey of Science Communicators"  
 *Science Communication*, 23(3), 310-322.  
 DOI: [10.1177/107554700202300306](https://doi.org/10.1177/107554700202300306)

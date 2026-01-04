@@ -326,14 +326,14 @@ A escala TRL (Technology Readiness Level) varia de 1 a 9:
 | Maturidade Científica (TRL) | 4 | 25% | 1.00 |
 | Reprodutibilidade | 7 | 20% | 1.40 |
 | FAIR Compliance | 8.5 | 15% | 1.28 |
-| Qualidade de Código/Dados | 6.5 | 15% | 0.98 |
+| Qualidade de Código/Dados | 6.5 | 15% | 0.975 |
 | Impacto Acadêmico Potencial | 5 | 15% | 0.75 |
 | Impacto de Mercado Potencial | 3 | 10% | 0.30 |
-| **TOTAL** | **-** | **100%** | **5.71/10** |
+| **TOTAL** | **-** | **100%** | **5.70/10** |
 
 ### Interpretação da Nota
 
-**5.71/10 = 57.1%** → **Categoria: Promissor, mas Preliminar**
+**5.70/10 = 57.0%** → **Categoria: Promissor, mas Preliminar**
 
 - **Acima de 7.0/10:** Maduro, pronto para aplicação/publicação
 - **5.0-7.0/10:** Promissor, requer desenvolvimento adicional ← **Aqui**

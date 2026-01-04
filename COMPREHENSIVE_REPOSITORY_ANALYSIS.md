@@ -3,9 +3,11 @@
 ## Dissertação Acadêmica e Contextualização Estrutural
 
 **Versão:** 1.0  
-**Data:** Janeiro 2026  
+**Data:** 4 de Janeiro de 2026  
 **Instituição:** Instituto Rafael  
 **DOI de Referência:** 10.5281/zenodo.17188137
+
+> **Nota:** Este arquivo é uma versão consolidada de toda a análise em um único documento. Para a versão estruturada e organizada por tópicos, consulte o diretório [ANALISE_COMPLETA/](./ANALISE_COMPLETA/).
 
 ---
 
@@ -240,7 +242,7 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 - `docs/NewWays.md`
 
 **Referências acadêmicas:**
-18. Treise, D., & Weigold, M. F. (2002). "Advancing Science Communication: A Survey of Science Communicators." *Science Communication*, 23(3), 310-322. DOI: 10.1177/107554700202300306
+18. Trumbo, C. W., & Weigold, M. F. (2002). "Advancing Science Communication: A Survey of Science Communicators." *Science Communication*, 23(3), 310-322. DOI: 10.1177/107554700202300306
 
 **Aplicações:** Educação pública, engajamento com stakeholders, advocacy.
 
