@@ -27,7 +27,7 @@ Main index with complete navigation
 - **[Catalogo_Completo_Arquivos.md](./Catalogo_Completo_Arquivos.md)** - Catálogo arquivo por arquivo / File-by-file catalog (29k+ words)
 
 ### 3. Validação Acadêmica / Academic Validation
-- **[Bibliografia_Completa.md](./Bibliografia_Completa.md)** - 42+ referências externas / 42+ external references
+- **[Bibliografia_Completa.md](./Bibliografia_Completa.md)** - 42 referências externas / 42 external references
 
 ### 4. Avaliação Quantitativa / Quantitative Assessment
 - **[Metricas_Conservadoras.md](./Metricas_Conservadoras.md)** - Métricas e TRL / Metrics and TRL assessment
@@ -94,7 +94,7 @@ Instituto Rafael. (2026). *Análise Completa do Repositório Relativity Living L
 - ✅ **Multilinguismo**: Conteúdo em 5 idiomas
 - ✅ **Conformidade FAIR**: 8.5/10 em princípios FAIR
 - ✅ **Reprodutibilidade**: Código, dados e notebooks disponíveis
-- ✅ **Validação Externa**: 42+ referências peer-reviewed
+- ✅ **Validação Externa**: 42 referências peer-reviewed
 
 ### Áreas de Oportunidade / Opportunities
 - ⚠️ **Validação Observacional**: Comparações com dados reais (SNe Ia, CMB)

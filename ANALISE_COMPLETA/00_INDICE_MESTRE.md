@@ -53,7 +53,7 @@ Descrição individual completa de cada arquivo no repositório, incluindo:
 
 - **[Hierarquia_7_Niveis.md](./Hierarquia_7_Niveis.md)** - Estrutura hierárquica completa com 7 níveis
 - **[Metricas_Conservadoras.md](./Metricas_Conservadoras.md)** - Avaliações quantitativas e TRL
-- **[Bibliografia_Completa.md](./Bibliografia_Completa.md)** - Todas as 42+ referências externas com DOIs
+- **[Bibliografia_Completa.md](./Bibliografia_Completa.md)** - Todas as 42 referências externas com DOIs
 - **[README.md](./README.md)** - Guia de navegação bilíngue (PT/EN)
 
 ---
