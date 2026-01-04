@@ -24,6 +24,7 @@ Main index with complete navigation
 
 ### 2. Análise Temática / Thematic Analysis
 - **[01_14_Areas_Tematicas_Detalhadas.md](./01_14_Areas_Tematicas_Detalhadas.md)** - 14 áreas temáticas detalhadas / 14 detailed thematic areas (30k+ words)
+- **[Catalogo_Completo_Arquivos.md](./Catalogo_Completo_Arquivos.md)** - Catálogo arquivo por arquivo / File-by-file catalog (29k+ words)
 
 ### 3. Validação Acadêmica / Academic Validation
 - **[Bibliografia_Completa.md](./Bibliografia_Completa.md)** - 42+ referências externas / 42+ external references

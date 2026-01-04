@@ -38,6 +38,17 @@ Este documento consolidado contém análise completa de todas as 14 áreas:
 13. Divulgação Científica e Comunicação
 14. Evolução e Inovação Científica
 
+### Catálogo Arquivo por Arquivo
+
+**[Catalogo_Completo_Arquivos.md](./Catalogo_Completo_Arquivos.md)** - Catálogo Detalhado de Todos os 111 Arquivos
+
+Descrição individual completa de cada arquivo no repositório, incluindo:
+- Tipo, tamanho e formato
+- Descrição detalhada do conteúdo
+- Área temática e nível hierárquico
+- Uso recomendado
+- Navegação por diretórios (root, data/, docs/, figs/)
+
 ### Documentos Transversais
 
 - **[Hierarquia_7_Niveis.md](./Hierarquia_7_Niveis.md)** - Estrutura hierárquica completa com 7 níveis
