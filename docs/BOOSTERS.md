@@ -188,7 +188,7 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 - Desvios de ~3-5% para z > 1
 - Testável com SNe Ia (Pantheon+), BAO (DESI)
 
-**Arquivo**: `unified_H_ratio.png`
+**Arquivo**: [`unified_H_ratio.png`](../figs/unified_H_ratio.png)
 
 ---
 
@@ -200,7 +200,7 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 - Δμ ≈ 0.01-0.05 mag para z ≈ 0.5-1.5
 - Dentro da precisão de Pantheon+ e futuros surveys
 
-**Arquivo**: `unified_mu_residuals.png`
+**Arquivo**: [`unified_mu_residuals.png`](../figs/unified_mu_residuals.png)
 
 ---
 
@@ -213,7 +213,7 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 - Em z médio: Transição da superposição (DE → matéria)
 - Em z = 0: Λ domina, superposição parcialmente colapsada
 
-**Arquivo**: `unified_fractions.png`
+**Arquivo**: [`unified_fractions.png`](../figs/unified_fractions.png)
 
 ---
 
@@ -225,7 +225,7 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 - Diferenças sutis (1-2%) comparado ao ΛCDM
 - Testável com BOSS, DESI, Euclid
 
-**Arquivo**: `unified_growth_fs8.png`
+**Arquivo**: [`unified_growth_fs8.png`](../figs/unified_growth_fs8.png)
 
 ---
 
@@ -237,7 +237,7 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 - Modelo pode reproduzir curvas planas
 - Componente "materializada" (colapso de superposição) age como halo de matéria escura
 
-**Arquivos**: `rotcurve_NGC_2403.png`, `rotcurve_NGC_3198.png`, etc.
+**Arquivos**: [`rotcurve_NGC_2403.png`](../figs/rotcurve_NGC_2403.png) (exemplo disponível, outras galáxias em desenvolvimento)
 
 ---
 
@@ -249,7 +249,7 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 - Compatível com mapas de massa (Bullet Cluster, Abell 2744)
 - Componente "materializada" deve ser quase não-colisional
 
-**Arquivo**: `cluster_lensing_SIS_unified.png`
+**Arquivo**: [`cluster_lensing_SIS_unified.png`](../figs/cluster_lensing_SIS_unified.png)
 
 ---
 
@@ -261,7 +261,7 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 - H(z): Banda de ±2-3% mantém consistência observacional
 - Δμ: Banda de ±0.02 mag compatível com dados
 
-**Arquivos**: `unified_entropy_Hratio.png`, `unified_entropy_dmu.png`
+**Arquivos**: [`unified_entropy_Hratio.png`](../figs/unified_entropy_Hratio.png), [`unified_entropy_dmu.png`](../figs/unified_entropy_dmu.png)
 
 ---
 
@@ -366,10 +366,21 @@ Onde `E(a) = H(a)/H₀` é a função de Hubble normalizada.
 
 ### Arquivos de Dados
 
-- `unified_relivinglight_models.csv` - Modelos completos
-- `unified_entropy_margin_10_12.csv` - Bandas de entropia
-- `unified_growth_fs8.csv` - Crescimento de estruturas
-- `unified_toy_sparc_curves.csv` - Curvas de rotação toy
+- [`relativity_living_light_models.csv`](../data/relativity_living_light_models.csv) - Modelos completos
+- [`unified_entropy_margin_10_12.csv`](../data/unified_entropy_margin_10_12.csv) - Bandas de entropia
+- [`posterior_unified_synth.csv`](../data/posterior_unified_synth.csv) - Distribuições posteriores
+
+### Figuras Disponíveis
+
+- [`unified_H_ratio.png`](../figs/unified_H_ratio.png) - Razão H(z)/H_ΛCDM
+- [`unified_mu_residuals.png`](../figs/unified_mu_residuals.png) - Resíduos Δμ
+- [`unified_fractions.png`](../figs/unified_fractions.png) - Frações de energia
+- [`unified_f_and_weff.png`](../figs/unified_f_and_weff.png) - Função f(z) e w_eff
+- [`unified_entropy_Hratio.png`](../figs/unified_entropy_Hratio.png) - Bandas de entropia H(z)
+- [`unified_entropy_dmu.png`](../figs/unified_entropy_dmu.png) - Bandas de entropia Δμ
+- [`unified_growth_fs8.png`](../figs/unified_growth_fs8.png) - Crescimento fσ₈(z)
+- [`rotcurve_NGC_2403.png`](../figs/rotcurve_NGC_2403.png) - Curva de rotação NGC 2403
+- [`cluster_lensing_SIS_unified.png`](../figs/cluster_lensing_SIS_unified.png) - Lensing de aglomerado
 
 ### Documentação Relacionada
 
@@ -591,7 +602,7 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 - Deviations of ~3-5% for z > 1
 - Testable with SNe Ia (Pantheon+), BAO (DESI)
 
-**File**: `unified_H_ratio.png`
+**File**: [`unified_H_ratio.png`](../figs/unified_H_ratio.png)
 
 ---
 
@@ -603,7 +614,7 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 - Δμ ≈ 0.01-0.05 mag for z ≈ 0.5-1.5
 - Within Pantheon+ precision and future surveys
 
-**File**: `unified_mu_residuals.png`
+**File**: [`unified_mu_residuals.png`](../figs/unified_mu_residuals.png)
 
 ---
 
@@ -616,7 +627,7 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 - At mid z: Superposition transition (DE → matter)
 - At z = 0: Λ dominates, superposition partially collapsed
 
-**File**: `unified_fractions.png`
+**File**: [`unified_fractions.png`](../figs/unified_fractions.png)
 
 ---
 
@@ -628,7 +639,7 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 - Subtle differences (1-2%) compared to ΛCDM
 - Testable with BOSS, DESI, Euclid
 
-**File**: `unified_growth_fs8.png`
+**File**: [`unified_growth_fs8.png`](../figs/unified_growth_fs8.png)
 
 ---
 
@@ -640,7 +651,7 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 - Model can reproduce flat curves
 - "Materialized" component (superposition collapse) acts as dark matter halo
 
-**Files**: `rotcurve_NGC_2403.png`, `rotcurve_NGC_3198.png`, etc.
+**Files**: [`rotcurve_NGC_2403.png`](../figs/rotcurve_NGC_2403.png) (example available, other galaxies in development)
 
 ---
 
@@ -652,7 +663,7 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 - Compatible with mass maps (Bullet Cluster, Abell 2744)
 - "Materialized" component must be nearly collisionless
 
-**File**: `cluster_lensing_SIS_unified.png`
+**File**: [`cluster_lensing_SIS_unified.png`](../figs/cluster_lensing_SIS_unified.png)
 
 ---
 
@@ -664,7 +675,7 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 - H(z): Band of ±2-3% maintains observational consistency
 - Δμ: Band of ±0.02 mag compatible with data
 
-**Files**: `unified_entropy_Hratio.png`, `unified_entropy_dmu.png`
+**Files**: [`unified_entropy_Hratio.png`](../figs/unified_entropy_Hratio.png), [`unified_entropy_dmu.png`](../figs/unified_entropy_dmu.png)
 
 ---
 
@@ -769,10 +780,21 @@ Where `E(a) = H(a)/H₀` is the normalized Hubble function.
 
 ### Data Files
 
-- `unified_relivinglight_models.csv` - Complete models
-- `unified_entropy_margin_10_12.csv` - Entropy bands
-- `unified_growth_fs8.csv` - Structure growth
-- `unified_toy_sparc_curves.csv` - Toy rotation curves
+- [`relativity_living_light_models.csv`](../data/relativity_living_light_models.csv) - Complete models
+- [`unified_entropy_margin_10_12.csv`](../data/unified_entropy_margin_10_12.csv) - Entropy bands
+- [`posterior_unified_synth.csv`](../data/posterior_unified_synth.csv) - Posterior distributions
+
+### Available Figures
+
+- [`unified_H_ratio.png`](../figs/unified_H_ratio.png) - H(z)/H_ΛCDM ratio
+- [`unified_mu_residuals.png`](../figs/unified_mu_residuals.png) - Δμ residuals
+- [`unified_fractions.png`](../figs/unified_fractions.png) - Energy fractions
+- [`unified_f_and_weff.png`](../figs/unified_f_and_weff.png) - f(z) and w_eff functions
+- [`unified_entropy_Hratio.png`](../figs/unified_entropy_Hratio.png) - H(z) entropy bands
+- [`unified_entropy_dmu.png`](../figs/unified_entropy_dmu.png) - Δμ entropy bands
+- [`unified_growth_fs8.png`](../figs/unified_growth_fs8.png) - fσ₈(z) growth
+- [`rotcurve_NGC_2403.png`](../figs/rotcurve_NGC_2403.png) - NGC 2403 rotation curve
+- [`cluster_lensing_SIS_unified.png`](../figs/cluster_lensing_SIS_unified.png) - Cluster lensing
 
 ### Related Documentation
 
