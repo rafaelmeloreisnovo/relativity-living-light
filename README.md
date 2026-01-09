@@ -32,6 +32,22 @@ A análise inclui:
 
 ---  
 
+## 🚀 Documentação dos Boosters do Modelo
+
+**NOVO:** Documentação detalhada dos três boosters principais do modelo, com tipos, parâmetros e benchmarks completos.
+
+→ **[📖 Acesse a Documentação Completa dos Boosters](docs/BOOSTERS.md)** ←
+
+A documentação inclui:
+- 🌟 **Booster de Superposição Fotônica (Ω_s0)**: Transição DE→DM
+- 🧲 **Booster de Campo Magnético (Ω_B0)**: Contribuição eletromagnética
+- 🔥 **Booster de Plasma Gravitacional (Ω_P0)**: Efeitos termodinâmicos
+- 📊 **7 Benchmarks detalhados**: Comparações com observações
+- 🔬 **Classificação por tipos**: Comportamento, escala e mecanismo físico
+- 📈 **Validação científica**: Dados observacionais e métodos de teste
+
+---
+
 ## Estrutura do modelo
 - **Termos clássicos:**  
   - Matéria: Ω_m a⁻³  
