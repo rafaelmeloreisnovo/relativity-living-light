@@ -24,10 +24,13 @@ A **superposição fotônica** representa um componente energético dinâmico qu
 ```
 
 Onde:
+- `a = 1/(1+z)` - Fator de escala (a=1 hoje, a→0 no Big Bang)
 - `f(z) = 1 / (1 + exp((z - z_t)/w_t))` - Função de transição logística
 - `z_t` - Redshift de transição (tipicamente z_t ≈ 0.5-1.0)
 - `w_t` - Largura da transição (tipicamente w_t ≈ 0.1-0.3)
 - `Ω_s0` - Densidade de superposição hoje (tipicamente Ω_s0 ≈ 0.03-0.07)
+
+**Nota**: f(z) pode ser escrito como f(a) usando a = 1/(1+z), ou seja, z = (1-a)/a.
 
 #### Interpretação Física
 
@@ -49,11 +52,15 @@ Onde:
 
 #### Equação de Estado Efetiva
 
+Para o componente de superposição, a equação de estado efetiva é:
+
 ```
-w_eff(z) = -f(z) / [f(z) + (1-f(z)) · a⁻³]
+w_eff,sup(z) = p_sup / (ρ_sup · c²) = -f(z)
 ```
 
-Esta equação mostra como o comportamento do booster evolui com o redshift.
+Esta é a equação de estado do componente puro de superposição. Quando f(z) → 1 (alto z), temos w → -1 (energia escura). Quando f(z) → 0 (baixo z), o comportamento é dominado pelo termo a⁻³ (matéria).
+
+**Nota técnica**: A fórmula original w_eff = -f/(f + (1-f)a⁻³) representa uma tentativa de normalização mas é fisicamente inconsistente. A equação correta para o componente de superposição é simplesmente w_eff,sup = -f(z), pois este componente tem densidade ρ_sup = Ω_s0 ρ_c0 [f(a) + (1-f)a⁻³] e pressão p_sup = -f(a) · Ω_s0 ρ_c0 · c².
 
 ---
 
@@ -438,10 +445,13 @@ The **photonic superposition** represents a dynamic energy component that transi
 ```
 
 Where:
+- `a = 1/(1+z)` - Scale factor (a=1 today, a→0 at Big Bang)
 - `f(z) = 1 / (1 + exp((z - z_t)/w_t))` - Logistic transition function
 - `z_t` - Transition redshift (typically z_t ≈ 0.5-1.0)
 - `w_t` - Transition width (typically w_t ≈ 0.1-0.3)
 - `Ω_s0` - Superposition density today (typically Ω_s0 ≈ 0.03-0.07)
+
+**Note**: f(z) can be written as f(a) using a = 1/(1+z), i.e., z = (1-a)/a.
 
 #### Physical Interpretation
 
@@ -463,11 +473,15 @@ Where:
 
 #### Effective Equation of State
 
+For the superposition component, the effective equation of state is:
+
 ```
-w_eff(z) = -f(z) / [f(z) + (1-f(z)) · a⁻³]
+w_eff,sup(z) = p_sup / (ρ_sup · c²) = -f(z)
 ```
 
-This equation shows how the booster behavior evolves with redshift.
+This is the equation of state of the pure superposition component. When f(z) → 1 (high z), we have w → -1 (dark energy). When f(z) → 0 (low z), the behavior is dominated by the a⁻³ term (matter).
+
+**Technical note**: The original formula w_eff = -f/(f + (1-f)a⁻³) represents a normalization attempt but is physically inconsistent. The correct equation for the superposition component is simply w_eff,sup = -f(z), since this component has density ρ_sup = Ω_s0 ρ_c0 [f(a) + (1-f)a⁻³] and pressure p_sup = -f(a) · Ω_s0 ρ_c0 · c².
 
 ---
 
