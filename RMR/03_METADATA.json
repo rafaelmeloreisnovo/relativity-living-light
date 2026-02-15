@@ -1,0 +1,337 @@
+{
+  "repository": "relativity-living-light",
+  "author": "Rafael Verbo Omega",
+  "date_created": "2025-02-21",
+  "last_updated": "2026-01-15",
+  "description": "Complete metadata for all CSV files in Relativity Living Light",
+  
+  "files": {
+    
+    "reference_models/unified_fiducial_grid.csv": {
+      "description": "Grid of fiducial cosmological parameters and outputs",
+      "n_rows": 1024,
+      "n_columns": 17,
+      "generated_by": "01_friedmann_solver.py",
+      "columns": {
+        "Omega_s0": {
+          "description": "Superposition density parameter today",
+          "units": "dimensionless",
+          "range": [0.01, 0.25],
+          "type": "float"
+        },
+        "z_t": {
+          "description": "Transition redshift (DE to DM)",
+          "units": "dimensionless",
+          "range": [0.1, 3.0],
+          "type": "float"
+        },
+        "w_t": {
+          "description": "Transition width (smoothness parameter)",
+          "units": "dimensionless",
+          "range": [0.1, 1.0],
+          "type": "float"
+        },
+        "Omega_B0": {
+          "description": "Magnetic field density today",
+          "units": "dimensionless",
+          "range": [1e-6, 1e-5],
+          "type": "float"
+        },
+        "Omega_P0": {
+          "description": "Plasma density today",
+          "units": "dimensionless",
+          "range": [1e-6, 1e-5],
+          "type": "float"
+        },
+        "H_0": {
+          "description": "Hubble parameter today",
+          "units": "km/s/Mpc",
+          "range": [65, 75],
+          "type": "float"
+        },
+        "H_z_0.5": {
+          "description": "Hubble parameter at z=0.5",
+          "units": "km/s/Mpc",
+          "type": "float"
+        },
+        "H_z_1.0": {
+          "description": "Hubble parameter at z=1.0",
+          "units": "km/s/Mpc",
+          "type": "float"
+        },
+        "mu_z_0.5": {
+          "description": "Distance modulus at z=0.5",
+          "units": "magnitude",
+          "type": "float"
+        },
+        "mu_z_1.0": {
+          "description": "Distance modulus at z=1.0",
+          "units": "magnitude",
+          "type": "float"
+        },
+        "f_z_0.5": {
+          "description": "Coherence fraction at z=0.5",
+          "units": "dimensionless",
+          "range": [0.0, 1.0],
+          "type": "float"
+        },
+        "f_z_1.0": {
+          "description": "Coherence fraction at z=1.0",
+          "units": "dimensionless",
+          "range": [0.0, 1.0],
+          "type": "float"
+        },
+        "w_eff_z_0.5": {
+          "description": "Effective equation of state at z=0.5",
+          "units": "dimensionless",
+          "range": [-1.0, 0.33],
+          "type": "float"
+        },
+        "w_eff_z_1.0": {
+          "description": "Effective equation of state at z=1.0",
+          "units": "dimensionless",
+          "range": [-1.0, 0.33],
+          "type": "float"
+        },
+        "chi2_SNe": {
+          "description": "χ² against Pantheon+ SNe Ia",
+          "units": "dimensionless",
+          "type": "float"
+        },
+        "chi2_BAO": {
+          "description": "χ² against eBOSS BAO",
+          "units": "dimensionless",
+          "type": "float"
+        },
+        "chi2_total": {
+          "description": "Combined χ² (SNe + BAO + CMB)",
+          "units": "dimensionless",
+          "type": "float"
+        }
+      },
+      "usage": "Reference grid for parameter space exploration",
+      "how_to_load": "pd.read_csv('unified_fiducial_grid.csv')"
+    },
+
+    "reference_models/entropy_bands_10_12.csv": {
+      "description": "Uncertainty bands with 10% and 12% entropy margins",
+      "n_rows": 401,
+      "n_columns": 8,
+      "generated_by": "05_plotting_suite.py",
+      "columns": {
+        "z": {
+          "description": "Redshift",
+          "units": "dimensionless",
+          "range": [0.0, 4.0],
+          "n_steps": 400
+        },
+        "H_mean": {
+          "description": "Mean Hubble parameter",
+          "units": "km/s/Mpc",
+          "type": "float"
+        },
+        "H_lower_10": {
+          "description": "Lower bound (10% entropy margin)",
+          "units": "km/s/Mpc",
+          "type": "float"
+        },
+        "H_upper_10": {
+          "description": "Upper bound (10% entropy margin)",
+          "units": "km/s/Mpc",
+          "type": "float"
+        },
+        "mu_mean": {
+          "description": "Mean distance modulus",
+          "units": "magnitude",
+          "type": "float"
+        },
+        "mu_lower_12": {
+          "description": "Lower bound (12% entropy margin)",
+          "units": "magnitude",
+          "type": "float"
+        },
+        "mu_upper_12": {
+          "description": "Upper bound (12% entropy margin)",
+          "units": "magnitude",
+          "type": "float"
+        }
+      },
+      "interpretation": "Bands show uncertainty in predictions accounting for parameter degeneracies",
+      "usage": "Plot with error bands"
+    },
+
+    "reference_models/growth_fs8.csv": {
+      "description": "Linear growth rate and matter density amplitude",
+      "n_rows": 401,
+      "n_columns": 4,
+      "generated_by": "03_observable_functions.py",
+      "columns": {
+        "z": {
+          "description": "Redshift",
+          "units": "dimensionless",
+          "range": [0.0, 4.0]
+        },
+        "f": {
+          "description": "Growth rate d ln D+ / d ln a",
+          "units": "dimensionless",
+          "range": [0.3, 1.0],
+          "note": "f=1 in matter domination, f→0 in DE domination"
+        },
+        "sigma8": {
+          "description": "RMS density fluctuation in 8 h^-1 Mpc",
+          "units": "dimensionless",
+          "range": [0.5, 1.2],
+          "type": "float"
+        },
+        "f_sigma8": {
+          "description": "Observable combination f×σ8 (redshift-space distortions)",
+          "units": "dimensionless",
+          "range": [0.2, 0.6],
+          "testable": true,
+          "survey": ["BOSS", "DESI", "2dFGRS"]
+        }
+      },
+      "usage": "Compare with BAO growth measurements",
+      "reference": "BOSS, DESI redshift-space distortions"
+    },
+
+    "reference_models/sparc_toy_sample.csv": {
+      "description": "Toy SPARC sample: 5 galaxies with rotation curves",
+      "n_rows": 250,
+      "n_columns": 6,
+      "note": "Simplified demo; full SPARC has 175 galaxies",
+      "columns": {
+        "galaxy": {
+          "description": "Galaxy name",
+          "units": "string",
+          "values": ["NGC_2403", "NGC_3198", "NGC_2903", "NGC_6946", "UGC_128"]
+        },
+        "r_kpc": {
+          "description": "Radius",
+          "units": "kiloparsecs",
+          "range": [0.1, 40]
+        },
+        "v_obs_km_s": {
+          "description": "Observed rotation velocity",
+          "units": "km/s",
+          "range": [50, 250]
+        },
+        "v_baryonic_km_s": {
+          "description": "Predicted velocity from baryons alone",
+          "units": "km/s",
+          "range": [20, 150]
+        },
+        "v_halo_km_s": {
+          "description": "Dark matter halo velocity (fit parameter)",
+          "units": "km/s",
+          "range": [0, 200]
+        },
+        "residual_percent": {
+          "description": "Fit residual (v_model - v_obs)/v_obs",
+          "units": "percent",
+          "type": "float"
+        }
+      },
+      "how_to_use": "Ajustar v_halo para minimizar residual_percent",
+      "comparison": "Rafael vs. NFW vs. Core-cusp"
+    },
+
+    "mcmc_chains/pantheon_chains.csv": {
+      "description": "MCMC posterior samples from Pantheon+ SNe Ia fit",
+      "n_rows": 50000,
+      "n_columns": 5,
+      "generated_by": "04_mcmc_runner.py --data pantheon_plus",
+      "mcmc_sampler": "emcee",
+      "n_walkers": 100,
+      "n_steps": 5000,
+      "burn_in": 1000,
+      "columns": {
+        "Omega_s0": {
+          "description": "Superposition density",
+          "mean": 0.087,
+          "std": 0.015,
+          "credible_interval": [0.060, 0.115]
+        },
+        "z_t": {
+          "description": "Transition redshift",
+          "mean": 0.95,
+          "std": 0.35,
+          "credible_interval": [0.40, 1.60]
+        },
+        "w_t": {
+          "description": "Transition width",
+          "mean": 0.28,
+          "std": 0.12,
+          "credible_interval": [0.10, 0.52]
+        },
+        "alpha_B": {
+          "description": "Magnetic coupling strength",
+          "mean": 0.42,
+          "std": 0.25,
+          "credible_interval": [0.05, 0.90]
+        },
+        "log_likelihood": {
+          "description": "Log-posterior for each sample",
+          "units": "dimensionless",
+          "type": "float"
+        }
+      },
+      "convergence_diagnostics": {
+        "autocorr_time": "< 50 (well-mixed)",
+        "gelman_rubin_R": "< 1.01 (converged)"
+      }
+    },
+
+    "mcmc_chains/eboss_chains.csv": {
+      "description": "MCMC posterior samples from eBOSS BAO fit",
+      "n_rows": 50000,
+      "n_columns": 5,
+      "generated_by": "04_mcmc_runner.py --data eboss_bao",
+      "notes": "Structure identical to pantheon_chains.csv"
+    },
+
+    "mcmc_chains/planck_chains.csv": {
+      "description": "MCMC posterior samples from Planck 2018 CMB",
+      "n_rows": 50000,
+      "n_columns": 5,
+      "generated_by": "04_mcmc_runner.py --data planck_2018",
+      "extra_columns": [
+        "N_eff: Effective number of relativistic species"
+      ]
+    },
+
+    "mcmc_chains/joint_constraints.csv": {
+      "description": "Joint MCMC fit: Pantheon+ + eBOSS + Planck",
+      "n_rows": 50000,
+      "n_columns": 5,
+      "generated_by": "04_mcmc_runner.py --data pantheon_eboss_planck",
+      "note": "Most stringent constraints",
+      "chi2_total": {
+        "value": 890.5,
+        "dof": 1234,
+        "reduced_chi2": 0.722
+      }
+    }
+  },
+
+  "conventions": {
+    "redshift": "z = 1/a - 1 (standard cosmology)",
+    "scale_factor": "a = 1/(1+z)",
+    "hubble_units": "km/s/Mpc",
+    "magnitude": "AB magnitude (standard)",
+    "missing_values": "NaN represented as 'nan' or empty",
+    "comment_rows": "Lines starting with '#' are comments"
+  },
+
+  "quality_assurance": {
+    "data_check": "All values verified for physical reasonableness",
+    "range_check": "All observables within expected bounds",
+    "unit_consistency": "All units SI-compatible",
+    "NaN_count": "< 0.1% of data"
+  },
+
+  "how_to_cite": {
+    "dataset": "Rafael (2025), Relativity Living Light, Zenodo DOI:10.5281/zenodo.17188137",
+    "code": "FriedmannSolver class in 02_CODIGO_NUMERICO/"
+  }
+}
