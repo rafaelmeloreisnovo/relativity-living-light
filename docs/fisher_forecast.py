@@ -201,8 +201,8 @@ def plot_fisher_ellipses(F, fid=None, param_labels=None):
     output_file = output_dir / 'fisher_ellipses_RLL.png'
 
     plt.tight_layout()
-    plt.savefig(output_file, dpi=150)
-    print(f"Figura salva: {output_file}")
+    plt.savefig('../figs/paper/fisher_ellipses_RLL.png', dpi=150)
+    print("Figura salva: figs/paper/fisher_ellipses_RLL.png")
     plt.show()
 
 

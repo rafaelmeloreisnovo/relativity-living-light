@@ -159,3 +159,22 @@ Recomendação: converter em ponteiros canônicos (com link e contexto) ou remov
 - Checklist técnico de integridade: [`docs/DATA_INTEGRITY_CHECKLIST.md`](DATA_INTEGRITY_CHECKLIST.md)
 
 Esses artefatos reduzem risco de perda percebida, mantendo recuperação textual e auditoria objetiva por hash/tamanho.
+
+## 11) Convenção de figuras (`figs/`)
+
+### 11.1 Estrutura oficial
+- `figs/paper/` → figuras ativas de artigos, preprints, LaTeX principal (`main.tex`) e documentação científica em uso.
+- `figs/archive/` → screenshots, snapshots históricos, variações duplicadas (`(1)`, `(2)`, etc.) e material legado para rastreabilidade.
+
+### 11.2 Convenção de nomenclatura
+- Use nomes descritivos, minúsculos e estáveis para material de paper, por exemplo:
+  - `unified_H_ratio.png`
+  - `cluster_lensing_SIS_unified.png`
+  - `fig_pipeline.png`
+- Evitar novos nomes com sufixos automáticos de cópia (`(1)`, `(2)`, ...). Quando existirem, manter em `figs/archive/`.
+
+### 11.3 Regra de destino
+1. Figura nova para manuscrito, paper ou doc científico ativo: salvar em `figs/paper/`.
+2. Screenshot de execução, imagem provisória, backup visual ou versão antiga: salvar em `figs/archive/`.
+3. Ao substituir figura de paper, mover versão anterior para `figs/archive/` para preservar histórico.
+

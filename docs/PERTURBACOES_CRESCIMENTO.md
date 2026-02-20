@@ -195,7 +195,7 @@ if __name__ == '__main__':
     plt.legend(fontsize=11)
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig('../figs/fs8_comparison.png', dpi=150)
+    plt.savefig('../figs/paper/fs8_comparison.png', dpi=150)
     plt.show()
     
     # Desvio percentual

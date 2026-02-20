@@ -331,13 +331,13 @@ If validated, this unified framework would:
 
 The repository contains extensive computational validation:
 
-- **H(z) ratio analysis**: `figs/unified_H_ratio.png`
-- **Distance modulus residuals**: `figs/unified_mu_residuals.png`
-- **Energy fraction evolution**: `figs/unified_fractions.png`
-- **Effective equation of state**: `figs/unified_f_and_weff.png`
-- **Structure growth**: `figs/unified_growth_fs8.png`
-- **Rotation curves**: `figs/rotcurve_NGC_2403.png`
-- **Cluster lensing**: `figs/cluster_lensing_SIS_unified.png`
+- **H(z) ratio analysis**: `figs/paper/unified_H_ratio.png`
+- **Distance modulus residuals**: `figs/paper/unified_mu_residuals.png`
+- **Energy fraction evolution**: `figs/paper/unified_fractions.png`
+- **Effective equation of state**: `figs/paper/unified_f_and_weff.png`
+- **Structure growth**: `figs/paper/unified_growth_fs8.png`
+- **Rotation curves**: `figs/paper/rotcurve_NGC_2403.png`
+- **Cluster lensing**: `figs/paper/cluster_lensing_SIS_unified.png`
 - **Model parameters**: `data/relativity_living_light_models.csv`
 - **Entropy margins**: `data/unified_entropy_margin_10_12.csv`
 

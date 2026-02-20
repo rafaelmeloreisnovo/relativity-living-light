@@ -177,8 +177,8 @@ if __name__ == '__main__':
     output_file = output_dir / 'fs8_comparison_RLL_vs_LCDM.png'
 
     plt.tight_layout()
-    plt.savefig(output_file, dpi=150)
-    print(f"Figura salva: {output_file}")
+    plt.savefig('../figs/paper/fs8_comparison_RLL_vs_LCDM.png', dpi=150)
+    print("Figura salva: figs/paper/fs8_comparison_RLL_vs_LCDM.png")
     plt.show()
 
     # ── Desvios nos pontos de dados ─────────────────────────────────────────

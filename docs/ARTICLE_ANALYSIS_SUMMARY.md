@@ -146,4 +146,4 @@ This connection strengthens the theoretical foundation and suggests **laboratory
 
 **For full analysis**: See `NATURE_ARTICLE_ANALYSIS.md`  
 **For model details**: See `README_patch_unified_PT_EN_v4.md`  
-**For computational results**: See `data/` and `figs/` directories
+**For computational results**: See `data/` and `figs/paper/` directories

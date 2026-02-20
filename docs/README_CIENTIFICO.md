@@ -115,7 +115,7 @@ relativity-living-light/
 │   ├── crescimento_estrutural.py     ← Solver D''(a)
 │   ├── fisher_forecast.py            ← Matriz de Fisher DESI/Euclid
 │   └── panteon_likelihood.py         ← Template para dados reais
-├── figs/                             ← Figuras geradas
+├── figs/paper/                             ← Figuras geradas
 └── ROADMAP_VALIDACAO.md              ← Próximos passos priorizados
 ```
 

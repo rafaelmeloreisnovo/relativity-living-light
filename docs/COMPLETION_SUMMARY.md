@@ -109,7 +109,7 @@ docs/
 
 **Quick Path** (30 min):
 1. ARTICLE_ANALYSIS_SUMMARY.md
-2. View figures in figs/
+2. View figures in figs/paper/
 
 **Technical Path** (2 hours):
 1. ARTICLE_ANALYSIS_SUMMARY.md
