@@ -1,0 +1,4 @@
+Model,H0,Om,OL,Os0,zt,wt,Ob_h2,chi2,AIC,BIC,N_obs,k,chi2_dof,verdict
+LCDM,72.148,0.271,0.5917,-,-,-,0.026,123.681,131.681,138.908,45,4,3.017,-
+RLL,72.185,0.2706,0.5911,0.0001,2.854,0.062,0.026,123.679,137.679,150.326,45,7,3.255,ΛCDM preferido moderadamente ⚠️
+DELTA_RLL_minus_LCDM,-,-,-,-,-,-,-,-0.002,5.998,11.418,45,3,-,ΛCDM preferido moderadamente ⚠️
