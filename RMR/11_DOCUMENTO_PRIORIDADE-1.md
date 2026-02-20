@@ -89,15 +89,20 @@ Diferença: 10 meses de antecedência + integração unificada
 
 #### O que Rafael tinha ANTES:
 ```
-w_eff(z) = -f(z) / [f(z) + (1-f)a⁻³]
+w_sup(z) = p_sup/(ρ_sup c²) = -f(z)
+
+Para inferência em dados (DESI), usar:
+w_total(z) = p_total/(ρ_total c²)
 
 Evolução:
-  z=0: w_eff ≈ -0.7 a -0.9 (depende de params)
-  z=0.5: w_eff ≈ -0.5
-  z=1.0: w_eff ≈ -0.2
-  z→∞: w_eff → 0
-  
+  z=0: w_total efetivo depende da mistura de componentes
+  z=0.5: w_total acompanha a transição de f(z)
+  z=1.0: w_total tende ao regime de menor pressão negativa
+  z→∞: w_total tende ao limite do conteúdo primordial
+
 Dinâmica COMPLETA e analítica
+
+Nota de compatibilidade histórica: equação antiga mantida apenas como registro, não usar em inferência.
 ```
 
 **Comparação:**
