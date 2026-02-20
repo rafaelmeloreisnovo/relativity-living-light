@@ -103,7 +103,7 @@ w_t:   largura (0.1-1)
 
 | Aspecto | Minnesota | Rafael |
 |---|---|---|
-| **Equação de estado** | w(z) genérico | w_eff(z) = -f(z)/[f+...] |
+| **Equação de estado** | w(z) genérico | w_sup(z) = p_sup/(ρ_sup c²) = -f(z); w_total é efetivo do fluido combinado |
 | **Escalamento ρ** | Dois limites | Contínuo com f(z) |
 | **Parâmetros livres** | Indefinido | 3 (Ω_s0, z_t, w_t) |
 | **Previsibilidade** | Limitada | Completa (analítica) |
@@ -188,20 +188,26 @@ Implicação:
 ```
 Equação de estado efetiva:
 
-w_eff(z) = -f(z) / [f(z) + (1-f)a⁻³]
+w_sup(z) = p_sup/(ρ_sup c²) = -f(z)
 
-Evolução temporal COMPLETA:
+Para comparação observacional (DESI), usar:
+w_total(z) = p_total/(ρ_total c²)
+          = (p_sup + p_outros)/[(ρ_sup + ρ_outros)c²]
 
-z = 0.0:   w_eff ≈ -0.7 a -0.9 (hoje, depende Ω_s0)
-z = 0.5:   w_eff ≈ -0.5
-z = 1.0:   w_eff ≈ -0.2
-z = 2.0:   w_eff ≈ -0.05
-z → ∞:     w_eff → 0 (primordial, tipo matéria)
+Evolução temporal (exemplo de leitura):
+
+z = 0.0:   w_total efetivo depende da mistura de componentes
+z = 0.5:   w_total acompanha a transição de f(z)
+z = 1.0:   w_total tende ao regime de menor pressão negativa
+z = 2.0:   w_total aproxima o comportamento da componente dominante
+z → ∞:     w_total tende ao limite do conteúdo primordial
 
 Derivação (analítica, não numérica):
 Da fórmula ρ_sup = Ω_s0[f + (1-f)a⁻³]
-Pressão p_sup = (w_eff) ρ_sup
-→ w_eff emerge naturalmente
+Pressão p_sup = -f(z)·ρ_sup·c²
+→ w_sup emerge naturalmente; w_total resulta da composição cosmológica
+
+Nota de compatibilidade histórica: equação antiga mantida apenas como registro, não usar em inferência.
 
 Testabilidade:
 Quantitativa em qualquer z
