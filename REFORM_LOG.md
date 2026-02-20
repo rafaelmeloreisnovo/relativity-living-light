@@ -125,8 +125,6 @@ corner_plot_unified_highres.png → figs/last_corner_plot_unified_highres.png (r
 #### CSVs
 ```
 posterior_unified_synth.csv
-posterior_unified_synth (1).csv
-posterior_unified_synth (2).csv
 relativity_living_light_models.csv
 unified_entropy_margin_10_12.csv
 ```

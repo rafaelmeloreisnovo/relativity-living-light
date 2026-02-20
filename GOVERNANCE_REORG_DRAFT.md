@@ -7,9 +7,9 @@ _Scope: non-destructive reorganization, governance cleanup, and reproducibility 
 - **Docs (`/docs`)**: mixture of scientific (e.g., `Conclusion.md`, `Structure.md`, `RelativityLivingLight_arXiv.tex/.pdf`, `ARTICLE_ANALYSIS_SUMMARY.md`, `ANALISE_ARTIGO_NATURE_PT.md`) and symbolic/manifesto content (`MANIFESTO.md`, `MAPA_RAFAELIA_TOTAL.md`, `SUPREMO UNIFICADO.md`, `IMPACT_REPORT_MULTI.md`, `New theory and beyond.md`, numeric series in `/docs/numeros_rafaelianos`). Patches and snippets (`README_patch_unified_PT_EN_v3/v4.md`, `README_snippet.md`, etc.) mix scientific explanation and narrative.
 - **Data (`/data`)**:
   - Notebooks: `Hz_superposicao.ipynb`, `ciencia_Hz_superposicao*.ipynb`, `density_decomp.ipynb`, `rotation_model.ipynb`.
-  - CSV/JSON: `posterior_unified_synth*.csv` (synthetic posterior), `relativity_living_light_models.csv`, `unified_entropy_margin_10_12.csv`, `zenodo.json`, `CITATION.cff` (CC-BY-SA-4.0, v4.0, author Rafael Melo Reis).
+  - CSV/JSON: `posterior_unified_synth.csv` (synthetic posterior canônico), `relativity_living_light_models.csv`, `unified_entropy_margin_10_12.csv`, `zenodo.json`, `CITATION.cff` (CC-BY-SA-4.0, v4.0, author Rafael Melo Reis).
   - Bundles: `RelativityLivingLight_v4_bundle.zip` and `relativity_bundle_results.zip` (both contain README_patch_v4, unified_* plots, posterior CSV, mock fits, posteriors, synthetic_posterior_summary.json).
-  - Mock/derived data: `posterior_unified_synth (1|2).csv`, `posterior_unified_synth.csv` appear synthetic; no observational provenance documented.
+  - Mock/derived data: `posterior_unified_synth.csv` appears synthetic; no observational provenance documented.
 - **Figures (`/figs`)**: scientific plots (unified_* plots, post_* posterior grids, rotation/lensing demos), mock fits (`mock_H_fit*.png`, `mock_SN_fit*.png`), screenshots/photos (`IMG_*`, `Screenshot_*`), science visuals (`ciencia_hz_superposicao*.png`, `density_evolution_sup*.png`).
 - **Governance files**: only `LICENSE.md` (custom), `SECURITY_SUMMARY.md`; `CITATION.cff` lives under `/data`; no NOTICE/manifest; no OSI/CC split licensing.
 - **Placeholders/empty**: none found; all files non-empty based on listings.
@@ -17,7 +17,7 @@ _Scope: non-destructive reorganization, governance cleanup, and reproducibility 
 ## B. Gaps & Risks
 - **Licensing ambiguity**: Custom RAFCODE-𝚽 license is non-OSI and asserts supra-constitutional terms; `data/CITATION.cff` lists CC-BY-SA-4.0, conflicting/unclear for code vs text vs data. No standard code license or CC license for docs; no NOTICE.
 - **Governance coverage**: Missing root `CITATION.cff`, `NOTICE`, and a manifest of artifacts/hashes; zenodo.json exists but is not referenced; requirements lack pinning.
-- **Reproducibility**: No runbook, seeds, or config files; notebooks have docstrings but no environment lockfile; synthetic/mock datasets (`posterior_unified_synth*`, bundle contents) are not labeled as synthetic in-file; no separation of observational vs synthetic.
+- **Reproducibility**: No runbook, seeds, or config files; notebooks have docstrings but no environment lockfile; synthetic/mock datasets (`posterior_unified_synth.csv`, bundle contents) are not labeled as synthetic in-file; no separation of observational vs synthetic.
 - **Mixed scopes**: Scientific notebooks/data co-located with symbolic/manifesto texts; screenshots mixed with scientific plots; zip bundles duplicate files without checksums.
 - **Ethical/attribution risk**: Third-party plots or images (screenshots, photos) not attributed; license terms for figures unspecified.
 - **Latent/underdocumented**: `requirements.txt` minimal but not referenced in docs; bundles include `synthetic_posterior_summary.json` not surfaced in docs.
@@ -39,7 +39,7 @@ _Scope: non-destructive reorganization, governance cleanup, and reproducibility 
 │   ├── logs_summaries/       # REFORM_LOG.md, RESUMO_REFORMA.md, SECURITY_SUMMARY.md
 │   └── references/           # REFERENCES.md, More.md, Others*, RESULTS/IMPACT
 ├── data/
-│   ├── synthetic/            # posterior_unified_synth*.csv, synthetic_posterior_summary.json
+│   ├── synthetic/            # posterior_unified_synth.csv, synthetic_posterior_summary.json
 │   ├── derived/              # relativity_living_light_models.csv, unified_entropy_margin_10_12.csv
 │   ├── bundles/              # RelativityLivingLight_v4_bundle.zip, relativity_bundle_results.zip
 │   ├── notebooks/            # *.ipynb
@@ -128,7 +128,7 @@ Relativity Living Light — NOTICE
 - Code/notebooks: MIT License (see LICENSE_CODE_MIT.md).
 - Text and figures: CC BY 4.0 unless a file states otherwise.
 - Third-party assets: cite sources for screenshots/photos if external; mark internal captures as project-owned.
-- Data: synthetic/model outputs (`posterior_unified_synth*.csv`, bundle contents) — not observational data.
+- Data: synthetic/model outputs (`posterior_unified_synth.csv`, bundle contents) — not observational data.
 ```
 </details>
 
@@ -154,7 +154,7 @@ Relativity Living Light — NOTICE
   },
   "provenance": {
     "datasets": [],
-    "synthetic": ["posterior_unified_synth*.csv", "bundle posterior files"]
+    "synthetic": ["posterior_unified_synth.csv", "bundle posterior files"]
   }
 }
 ```
@@ -163,7 +163,7 @@ Relativity Living Light — NOTICE
 _Guidance: replace `<fill>` with SHA256 values via `sha256sum <path>` (e.g., `sha256sum data/posterior_unified_synth.csv`) or Python (`python -c "import hashlib, pathlib; print(hashlib.sha256(pathlib.Path('data/posterior_unified_synth.csv').read_bytes()).hexdigest())"`), and revise license/provenance fields once a final governance decision is made._
 
 ## E. Reproducibility Plan
-- **Data labeling**: Mark `posterior_unified_synth*.csv`, `synthetic_posterior_summary.json`, bundle posterior outputs as synthetic; distinguish any future observational references in `data/metadata/`.
+- **Data labeling**: Mark `posterior_unified_synth.csv`, `synthetic_posterior_summary.json`, bundle posterior outputs as synthetic; distinguish any future observational references in `data/metadata/`.
 - **Configs**: Add `configs/default.yaml` with seeds, data paths, model parameters (`Omega_s0`, `z_t`, `w_t`, `Omega_B0`, `Omega_P0`), and paths to CSVs/figures.
 - **Environment**: Pin `requirements.txt` to exact versions (switch current `>=` to `==`) and provide `python -m venv .venv && pip install -r requirements.txt`; optionally generate a lock via `pip freeze > requirements-lock.txt` or use pip-tools (`pip install pip-tools && pip-compile requirements.in`).
 - **Pipelines (skeleton)**:
