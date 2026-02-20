@@ -9,14 +9,24 @@
 
 ---
 
+## Status dos Dados
+
+- **Sintético:** resultados derivados de simulações e posterior sintético.
+- **Parcial real:** execução parcial com dados observacionais reais em integração.
+- **Real validado:** validação final concluída com dados reais e auditoria estatística.
+
+**Nível atual deste documento:** `Sintético`.
+
+---
+
 ## Parâmetros Posteriores (dados sintéticos)
 
-| Parâmetro | Mediana | 16% | 84% | MAP |
-|-----------|---------|-----|-----|-----|
-| Ω_s0 | 0.0589 | 0.0481 | 0.0707 | 0.0606 |
-| z_t | 1.164 | 0.882 | 1.430 | 1.215 |
-| w_t | 0.405 | 0.271 | 0.534 | 0.351 |
-| χ² (MAP) | — | — | — | 56.84 |
+| Parâmetro | Mediana | 16% | 84% | MAP | Selo de origem |
+|-----------|---------|-----|-----|-----|----------------|
+| Ω_s0 | 0.0589 | 0.0481 | 0.0707 | 0.0606 | `mock` |
+| z_t | 1.164 | 0.882 | 1.430 | 1.215 | `mock` |
+| w_t | 0.405 | 0.271 | 0.534 | 0.351 | `mock` |
+| χ² (MAP) | — | — | — | 56.84 | `mock` |
 
 **N amostras:** 25.000  
 **N_eff (importância):** ≈ 2.321 (9.3% das amostras carregam peso efetivo)
@@ -48,10 +58,10 @@ A correlação positiva entre z_t e w_t (r ≈ +0.55) é esperada: transições 
 
 ## Comparação com ΛCDM (dados sintéticos)
 
-| Modelo | χ²_MAP | ΔAIC | ΔBIC |
-|--------|--------|------|------|
-| ΛCDM (Ω_s0 = 0) | 162.15 | 0 (ref) | 0 (ref) |
-| Relativity Living Light | 56.84 | −99.3 | −92.0 |
+| Modelo | χ²_MAP | ΔAIC | ΔBIC | Selo de origem |
+|--------|--------|------|------|----------------|
+| ΛCDM (Ω_s0 = 0) | 162.15 | 0 (ref) | 0 (ref) | `mock` |
+| Relativity Living Light | 56.84 | −99.3 | −92.0 | `mock` |
 
 > **Atenção:** Estes valores de ΔAIC e ΔBIC são obtidos em dados sintéticos gerados com os parâmetros do próprio modelo. A preferência forte pelo modelo é trivial nesse contexto — o MCMC recupera os valores com os quais os dados foram construídos. Este resultado valida apenas a maquinaria computacional, não a física.
 
