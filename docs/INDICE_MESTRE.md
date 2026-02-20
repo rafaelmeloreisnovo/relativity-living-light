@@ -6,6 +6,15 @@
 
 ---
 
+## Governança de atualização e organização (novo)
+
+- Histórico cronológico de updates/releases (com links, datas e mudanças):
+  - [`docs/RELEASE_NOTES_HISTORY.md`](RELEASE_NOTES_HISTORY.md)
+- Organização integral de documentos, arquivos soltos e bundles `.zip`:
+  - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
+
+---
+
 ## Estrutura do Pacote
 
 ```
