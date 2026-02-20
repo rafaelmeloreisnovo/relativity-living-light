@@ -151,3 +151,11 @@ Arquivos Markdown vazios (ou praticamente vazios) detectados:
 - `RMR/1.md`
 
 Recomendação: converter em ponteiros canônicos (com link e contexto) ou remover em revisão futura para reduzir ruído estrutural.
+
+## 10) Salvaguarda de conteúdo histórico (anti-perda)
+
+Arquivo preservado integralmente para garantir continuidade do acervo e evitar descarte de informação:
+
+- `docs/README_HISTORICO_INTEGRAL_47d054c.md` (snapshot completo do README legado, 2351 linhas)
+
+Diretriz: quando houver refatoração estrutural de documento principal, manter snapshot histórico íntegro versionado.

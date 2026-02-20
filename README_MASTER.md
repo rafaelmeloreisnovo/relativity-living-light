@@ -191,6 +191,7 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 - [unified_entropy_margin_10_12.csv](data/unified_entropy_margin_10_12.csv) — Bandas de entropia
 
 ### Governança de Atualizações e Inventário Total
+- [README histórico integral preservado](docs/README_HISTORICO_INTEGRAL_47d054c.md)
 - [Release Notes Históricas](docs/RELEASE_NOTES_HISTORY.md)
 - [Organização Integral da Documentação](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
 - [Inventário Completo (.md + .zip)](docs/DOCUMENTATION_FULL_INVENTORY.md)

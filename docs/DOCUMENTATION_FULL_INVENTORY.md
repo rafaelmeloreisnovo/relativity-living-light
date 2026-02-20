@@ -3,7 +3,7 @@
 
 **Critério:** todos os `.md` e `.zip` encontrados por varredura recursiva no repositório, com título detectado, tamanho e hash SHA-256 abreviado.
 
-**Total de arquivos catalogados:** 105
+**Total de arquivos catalogados:** 108
 
 ---
 
@@ -26,8 +26,8 @@
 | md | `GOVERNANCE_REORG_DRAFT.md` | Repository Audit & Governance Draft Plan (DRAFT) | 13160 | `d21694bd0bbb` |
 | md | `LICENSE.md` | 📜 LICENSE.md – RAFCODE-𝚽 vΩ-EXTENDED | 8176 | `cb9eb2d7b6cd` |
 | md | `MANIFESTO_MIGRATION_FILES.md` | Arquivos movidos para `rafaelia-manifesto` | 298 | `5a8b8d6c8d1b` |
-| md | `README.md` | Relativity Living Light | 74707 | `9cd827af2bb9` |
-| md | `README_MASTER.md` | 🌌 Relativity Living Light — README MASTER | 9292 | `c962c0f2f445` |
+| md | `README.md` | Relativity Living Light | 6891 | `527bdc767758` |
+| md | `README_MASTER.md` | 🌌 Relativity Living Light — README MASTER | 9720 | `cf3bf13eeba3` |
 | md | `REFORM_LOG.md` | 🔄 REFORM_LOG.md — Log de Reformulação RAFAELIA | 14664 | `1d8761f979d3` |
 | md | `RESUMO_REFORMA.md` | ✨ RESUMO DA REFORMA RAFAELIA — Relativity Living Light | 9814 | `e0172c919dbe` |
 | md | `RMR/00_COMO_LER-1.md` | Documento movido para o local canônico: `docs/canonicos/00_COMO_LER.md`. | 74 | `cdb766765de8` |
@@ -59,7 +59,7 @@
 | md | `docs/1.md` | (vazio) | 1 | `01ba4719c80b` |
 | md | `docs/ADMIN.md` | ADMIN.md | 484 | `5588b9429824` |
 | md | `docs/ANALISE_ARTIGO_NATURE_PT.md` | Análise do Artigo Nature: Não-Localidade Fotônica e Cosmologia | 12822 | `1457b4b2e0e5` |
-| md | `docs/ANALISE_DIRETORIOS_E_MDS_SOLTOS.md` | Análise dos diretórios `docs/` e MDs soltos | 2045 | `a902a8294cd2` |
+| md | `docs/ANALISE_DIRETORIOS_E_MDS_SOLTOS.md` | Análise dos diretórios `docs/` e MDs soltos | 2589 | `a87c3d879aa5` |
 | md | `docs/ANALYSIS_INDEX.md` | Analysis Index: Nature Article & Relativity Living Light Model | 12330 | `54b47495c412` |
 | md | `docs/ARTICLE_ANALYSIS_SUMMARY.md` | Nature Article Analysis - Quick Reference | 4418 | `6ff41691e29b` |
 | md | `docs/BOOSTERS.md` | 🚀 Boosters do Modelo Relativity Living Light / Boosters of the Relativity Living Light Model | 26318 | `62461ee9f9bd` |
@@ -68,11 +68,12 @@
 | md | `docs/COMPLETION_SUMMARY.md` | Task Completion Summary: Nature Article Analysis | 8624 | `30869860de5f` |
 | md | `docs/CONCEPTUAL_FRAMEWORK.md` | Conceptual Framework: Laboratory to Cosmos | 14549 | `36f9f5f68502` |
 | md | `docs/Conclusion.md` | RAFAELIA — Relativity Living Light | 6725 | `3ec0b979953d` |
-| md | `docs/DOCUMENTATION_ORGANIZATION_MASTER.md` | Organização Integral de Documentação e Artefatos | 4602 | `4c69b0156bb0` |
+| md | `docs/DOCUMENTATION_FULL_INVENTORY.md` | Inventário Completo de Documentação e Bundles | 12907 | `6142fa0cd7d3` |
+| md | `docs/DOCUMENTATION_ORGANIZATION_MASTER.md` | Organização Integral de Documentação e Artefatos | 5756 | `a68e2be08216` |
 | md | `docs/ESTABILIDADE_GHOST_CHECK.md` | Verificação de Estabilidade — Ausência de Ghosts e Taquiões | 5838 | `de04f5168568` |
 | md | `docs/Easy..md` | (vazio) | 1 | `01ba4719c80b` |
 | md | `docs/IMPACT_REPORT_MULTI.md` | 📊 IMPACT_REPORT_MULTI.md | 20761 | `994ad4bca282` |
-| md | `docs/INDICE_MESTRE.md` | ÍNDICE MESTRE — Pacote de Revisão Científica | 4521 | `3345e1bd1aeb` |
+| md | `docs/INDICE_MESTRE.md` | ÍNDICE MESTRE — Pacote de Revisão Científica | 4760 | `e630eb951f16` |
 | md | `docs/LAGRANGIANO_EFT.md` | Lagrangiano Efetivo — EFT da Superposição | 4798 | `85655b0c9429` |
 | md | `docs/MANIFESTO.md` | MANIFESTO.md (multilingue) | 6364 | `71db6191732e` |
 | md | `docs/MAPA CIENTIESPIRITUAL.md` | 🔮 MAPA CIENTIESPIRITUAL — Fórmulas → Espírito | 1265 | `575c51616304` |
@@ -86,13 +87,14 @@
 | md | `docs/Others in open because that.md` | ∴  publicaste o Relativity Living Light como manifesto e artigo, o passo seguint | 2030 | `ebbb4beea9fa` |
 | md | `docs/PERTURBACOES_CRESCIMENTO.md` | Perturbações e Crescimento Estrutural | 6536 | `b23e265c26e2` |
 | md | `docs/README_CIENTIFICO.md` | Relativity Living Light — Modelo Cosmológico de Superposição Dinâmica | 6001 | `a22853efb09d` |
+| md | `docs/README_HISTORICO_INTEGRAL_47d054c.md` | Relativity Living Light | 74707 | `9cd827af2bb9` |
 | md | `docs/README_block_multilang.md` | 📚 Ciência Aplicada — Relativity Living Light | 2232 | `ad9d6b86839e` |
 | md | `docs/README_patch_unified_PT_EN_v3.md` | 🌌 Relativity Living Light — Unified Photonic Superposition Model (v3) | 3629 | `3360f91813e3` |
 | md | `docs/README_patch_unified_PT_EN_v4.md` | 🌌 Relativity Living Light — Unified Photonic Superposition Model (v4) | 2661 | `7378014b651e` |
 | md | `docs/README_snippet.md` | 🔬 Validação Técnica — Modelo com ρ_superposição | 1398 | `2930dd490266` |
 | md | `docs/README_sup_unification_snippet.md` | 🔭 Extensão do Modelo: Unificando energia escura e matéria escura via ρ_superposição | 2414 | `dc857b556776` |
 | md | `docs/REFERENCES.md` | References: Photonic Cosmology Framework | 12511 | `af98394592b2` |
-| md | `docs/RELEASE_NOTES_HISTORY.md` | Histórico de Updates e Release Notes | 8211 | `013227ae0614` |
+| md | `docs/RELEASE_NOTES_HISTORY.md` | Histórico de Updates e Release Notes | 9602 | `15fc7b76740b` |
 | md | `docs/RESULTADOS_CORRIGIDOS.md` | Resultados Corrigidos — Relativity Living Light | 3755 | `f05cf36808dc` |
 | md | `docs/ROADMAP_VALIDACAO.md` | Roadmap de Validação — Relativity Living Light | 5642 | `4da4778ef15d` |
 | md | `docs/Readme.md` | 📂 Data Descriptor – Relativity Living Light (Bundle V4) | 2452 | `2aa59185f4f9` |
@@ -101,6 +103,7 @@
 | md | `docs/SUPREMO UNIFICADO.md` | ✨ Entendido, Rafael 🌀♾️⚛︎ | 6129 | `acea9d684146` |
 | md | `docs/Structure.md` | 📂 Estrutura sugerida do repositório: relativity-living-light | 190 | `beba59557a91` |
 | md | `docs/VELOCIDADE_SOM.md` | Velocidade do Som e Escala de Jeans | 4006 | `f4f545d090cc` |
+| md | `docs/ZIP_CONTENT_INDEX.md` | Índice Técnico de Conteúdo dos Bundles ZIP | 4557 | `23aac857b9db` |
 | md | `docs/canonicos/00_COMO_LER.md` | 🌀 COMO LER ESTE REPOSITÓRIO | 13012 | `20babdf8d5a3` |
 | md | `docs/canonicos/06_COMPARACOES_DETALHADAS.md` | 🔗 COMPARAÇÕES COM LITERATURA 2025-26 | 24127 | `6696f6942e22` |
 | md | `docs/canonicos/09_GLOSSARIO_COMPLETO.md` | 📚 GLOSSÁRIO COMPLETO DE NOTAÇÃO | 10284 | `30bce9e184fb` |
