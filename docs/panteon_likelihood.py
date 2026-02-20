@@ -15,12 +15,14 @@ Uso:
 import numpy as np
 from scipy.integrate import quad
 from scipy.linalg import solve
-import os
+from pathlib import Path
 
 
 # ─── Constantes ───────────────────────────────────────────────────────────────
 C_KMS = 299792.458   # velocidade da luz km/s
 H0    = 70.0         # H₀ fiducial km/s/Mpc
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 # ─── Modelo RLL ───────────────────────────────────────────────────────────────
@@ -60,47 +62,53 @@ def mu_model(z_vals, Om0, OL, Os0, zt, wt, M_abs=-19.3):
 
 # ─── Carregamento de dados Pantheon+ ─────────────────────────────────────────
 
-def load_pantheon(data_dir='data/pantheon'):
+
+def load_pantheon(data_dir=None):
     """
     Carrega dados Pantheon+.
-    
+
     Retorna
     -------
     z_hel : array de redshifts heliocêntricos
     mu_obs : array de módulos de distância observados
     C_inv  : matriz de covariância inversa
     """
-    lc_file  = os.path.join(data_dir, 'lcparam_full_long_zhel.txt')
-    sys_file = os.path.join(data_dir, 'sys_full_long.txt')
-    
-    if not os.path.exists(lc_file):
+    if data_dir is None:
+        data_dir = REPO_ROOT / 'data' / 'pantheon'
+    else:
+        data_dir = Path(data_dir)
+
+    lc_file = data_dir / 'lcparam_full_long_zhel.txt'
+    sys_file = data_dir / 'sys_full_long.txt'
+
+    if not lc_file.exists():
         raise FileNotFoundError(
             f"Arquivo não encontrado: {lc_file}\n"
             "Baixe os dados Pantheon+ de:\n"
             "https://github.com/PantheonPlusSH0ES/DataRelease"
         )
-    
+
     # Carregar parâmetros das supernovas
     data = np.genfromtxt(lc_file, names=True, skip_header=0)
     z_hel  = data['zcmb']    # ou 'zhel' dependendo da versão
     mu_obs = data['mb']      # módulo de distância observado
     mu_err = data['dmb']     # erro estatístico
-    
+
     N = len(z_hel)
-    
+
     # Matriz de covariância estatística
     C_stat = np.diag(mu_err**2)
-    
+
     # Matriz sistemática (se disponível)
-    if os.path.exists(sys_file):
+    if sys_file.exists():
         C_sys = np.loadtxt(sys_file).reshape(N, N)
         C_total = C_stat + C_sys
     else:
         C_total = C_stat
         print("⚠️  Matriz sistemática não encontrada, usando apenas covariância estatística.")
-    
+
     C_inv = np.linalg.inv(C_total)
-    
+
     return z_hel, mu_obs, C_inv
 
 
@@ -226,14 +234,18 @@ if __name__ == '__main__':
         
         samples, log_prob, sampler = run_mcmc(z_hel, mu_obs, C_inv)
         summarize_posterior(samples)
-        
+
         # Salvar resultados
-        np.savetxt('data/posterior_real_pantheon.csv',
+        output_dir = REPO_ROOT / 'data'
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_file = output_dir / 'posterior_real_pantheon.csv'
+
+        np.savetxt(output_file,
                    np.column_stack([samples, log_prob]),
                    delimiter=',',
                    header='Om0,Os0,zt,wt,M_abs,log_prob',
                    comments='')
-        print("\nPosterior salvo em: data/posterior_real_pantheon.csv")
+        print(f"\nPosterior salvo em: {output_file}")
         
     except FileNotFoundError as e:
         print(f"\n{e}")
