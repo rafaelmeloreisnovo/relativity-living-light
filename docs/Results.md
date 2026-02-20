@@ -2,13 +2,18 @@
 
 ## Referência principal (posterior unificado sintético)
 
-Valores derivados de `data/posterior_unified_synth.csv`:
+Parâmetros derivados de `data/posterior_unified_synth.csv` usando estatística **ponderada** pela coluna `weight`.
 
-| Parâmetro | Média | Desvio padrão | Intervalo 16%–84% |
-|---|---:|---:|---:|
-| Ω_s0 | 0.0500 | 0.0289 | [0.0159, 0.0838] |
-| z_t | 1.1032 | 0.5192 | [0.4896, 1.7114] |
-| w_t | 0.3505 | 0.1439 | [0.1808, 0.5197] |
+| Parâmetro | Média ponderada | Desvio padrão ponderado | Mediana ponderada | Intervalo 16%–84% |
+|---|---:|---:|---:|---:|
+| Ω_s0 | 0.0592 | 0.0113 | 0.0589 | [0.0481, 0.0707] |
+| z_t | 1.1478 | 0.2915 | 1.1642 | [0.8824, 1.4300] |
+| w_t | 0.3999 | 0.1180 | 0.4048 | [0.2710, 0.5337] |
+
+### Diagnóstico de amostragem (posterior)
+
+- N total de amostras: `25000`
+- N efetivo (`N_eff = 1/Σw²`): `2320.75`
 
 ## Bloco legacy/exploratório
 
@@ -22,3 +27,4 @@ Valores derivados de `data/posterior_unified_synth.csv`:
 - Arquivo-fonte: `data/posterior_unified_synth.csv`
 - Commit (última atualização do arquivo): `8d49cba562a5b2b8a993de0e94d0b8b057e539fb`
 - Data do commit: `Sun Oct 19 15:21:22 2025 +0000`
+- Geração desta tabela: estatísticas calculadas diretamente do CSV local nesta revisão.
