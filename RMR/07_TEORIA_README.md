@@ -2,7 +2,17 @@
 
 ## ∆RafaelVerboΩ — Relativity Living Light
 
-Extensões teóricas, análises rigorosas e próximos passos.
+## ⚖️ ESTADO ATUAL vs ESTADO ALVO
+
+> **Estado atual (repositório):** este documento é um **blueprint teórico (arquitetura-alvo)** e pode referenciar arquivos/rotas ainda não materializados.
+>
+> **Estado alvo (planejado):** consolidar a pasta `07_TEORIA_ESTENDIDA` com os cinco documentos técnicos e validações indicadas.
+>
+> Referência de governança e status global: [`docs/INDICE_MESTRE.md`](../docs/INDICE_MESTRE.md).
+
+---
+
+Blueprint de extensões teóricas, análises rigorosas e próximos passos (estado alvo).
 
 ```
 07_TEORIA_ESTENDIDA/
@@ -32,7 +42,7 @@ w_t(θ,φ) = w_t0 + δw_t × cos(θ) + ...
 Efeito: Cria dipolo cósmico preferencial
 Teste: Compara Böhme observado vs. Rafael predito
 
-Status: Pronta para implementação numérica
+Status: Planejado para implementação numérica
 ```
 
 ### **Analise_Perturbacoes.md**
@@ -79,7 +89,7 @@ Acoplamentos:
 ├─ φ ↔ B-field: novo termo magneto-coerente
 └─ φ ↔ plasma: interação térmica
 
-Status: Desenvolvimento em andamento
+Status: Planejado (desenvolvimento alvo)
 ```
 
 ### **Estabilidade_sem_Ghosts.md**
@@ -93,7 +103,7 @@ Critérios:
 └─ Sem big bang/crunch singularidades espúrias
 
 Teste: Verificar para vários (Ω_s0, z_t, w_t)
-Status: Númérico (precisa implementar verificações)
+Status: Planejado (precisa implementar verificações numéricas)
 ```
 
 ---
@@ -114,7 +124,7 @@ Status: Númérico (precisa implementar verificações)
 
 ---
 
-## 🔧 PRÓXIMOS PASSOS (ABERTOS)
+## 🔧 PRÓXIMOS PASSOS (ABERTOS / PLANEJADOS)
 
 ```
 CURTO PRAZO (semanas):

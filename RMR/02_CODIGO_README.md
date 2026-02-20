@@ -4,9 +4,19 @@
 
 ---
 
+## ⚖️ ESTADO ATUAL vs ESTADO ALVO
+
+> **Estado atual (repositório):** este documento descreve **arquitetura-alvo / blueprint**; os scripts e comandos abaixo podem não existir ou não estar operacionais nesta árvore atual.
+>
+> **Estado alvo (planejado):** materializar a estrutura `02_CODIGO_NUMERICO` com solvers, notebooks, testes e fluxo completo conforme especificação.
+>
+> Referência de governança e status global: [`docs/INDICE_MESTRE.md`](../docs/INDICE_MESTRE.md).
+
+---
+
 ## 📖 O QUE ESTÁ AQUI
 
-Código Python completo para integrar numericamente o modelo unificado de Rafael.
+Blueprint de arquitetura-alvo para um conjunto de código Python que integrará numericamente o modelo unificado de Rafael.
 
 ```
 ├─ 01_friedmann_solver.py      [Core: Friedmann integrada]
@@ -24,9 +34,11 @@ Código Python completo para integrar numericamente o modelo unificado de Rafael
 
 ---
 
-## 🚀 SETUP RÁPIDO
+## 🚀 SETUP (PLANEJADO — NÃO DISPONÍVEL AINDA)
 
-### **1. Instalar dependências**
+### **1. Instalar dependências (planejado)**
+
+**Status:** comandos abaixo são **planejados** no blueprint e não devem ser interpretados como disponibilidade imediata nesta árvore atual.
 
 ```bash
 pip install -r requirements.txt
@@ -40,13 +52,13 @@ pip install -r requirements.txt
 
 ---
 
-### **2. Teste rápido (30 seg)**
+### **2. Teste rápido (planejado, 30 seg)**
 
 ```bash
 python 01_friedmann_solver.py --quick
 ```
 
-**Output esperado:**
+**Output planejado (exemplo):**
 ```
 H(z=0): 70.0 km/s/Mpc
 H(z=0.5): 88.4 km/s/Mpc
@@ -56,7 +68,7 @@ H(z=1.0): 117.2 km/s/Mpc
 
 ---
 
-### **3. Rodar modelo completo**
+### **3. Rodar modelo completo (planejado)**
 
 ```bash
 python 01_friedmann_solver.py \
@@ -66,11 +78,11 @@ python 01_friedmann_solver.py \
   --output ../03_DADOS/my_model.csv
 ```
 
-**Output:** CSV com H(z), μ(z), f(z), w_eff(z) para z ∈ [0, 4]
+**Output planejado:** CSV com H(z), μ(z), f(z), w_eff(z) para z ∈ [0, 4]
 
 ---
 
-## 📊 FLUXO DE USO
+## 📊 FLUXO DE USO (ALVO / PLANEJADO)
 
 ```
 [Parâmetros] 
@@ -88,7 +100,7 @@ python 01_friedmann_solver.py \
 
 ---
 
-## 📝 DESCRIÇÃO DE CADA SCRIPT
+## 📝 DESCRIÇÃO DE CADA SCRIPT (ARQUITETURA-ALVO)
 
 ### **01_friedmann_solver.py**
 
@@ -131,7 +143,7 @@ python 01_friedmann_solver.py \
 }
 ```
 
-**Uso:**
+**Uso (planejado):**
 ```python
 from friedmann_solver import FriedmannSolver
 
@@ -158,7 +170,7 @@ Entrada: H(z), ρ_components do 01_friedmann_solver
 Saída: w_eff(z), derivadas dw/dz
 ```
 
-**Uso:**
+**Uso (planejado):**
 ```python
 from weff_calculator import WeeffCalculator
 
@@ -191,7 +203,7 @@ plt.ylabel('w_eff(z)')
 | `f_sigma8(z)` | f×σ8 | RSD standard |
 | `convergence(theta, z)` | κ | lensing convergence |
 
-**Uso:**
+**Uso (planejado):**
 ```python
 from observable_functions import Observables
 
@@ -214,7 +226,7 @@ kappa = obs.convergence(theta=0.1, z=1.0)  # lensing
 - Planck 2018 (CMB): priors em H0, Ωm
 - DES-Y3: S8 fraco lensing
 
-**Uso:**
+**Uso (planejado):**
 ```bash
 # Ajuste SNe + BAO + CMB
 python 04_mcmc_runner.py \
@@ -226,7 +238,7 @@ python 04_mcmc_runner.py \
 # Resultado: corner plots, χ², contours
 ```
 
-**Output:**
+**Output planejado:**
 ```
 ../03_DADOS/mcmc_chains/
 ├─ posterior_samples.csv      [todas as amostras)
@@ -241,7 +253,7 @@ python 04_mcmc_runner.py \
 
 **O que faz:** Gera todos os gráficos para 04_FIGURAS/
 
-**Gráficos gerados:**
+**Gráficos gerados (planejado):**
 
 ```bash
 python 05_plotting_suite.py --output ../04_FIGURAS/
@@ -290,7 +302,7 @@ plotter.save_all('../04_FIGURAS/')
 
 ---
 
-## 📓 NOTEBOOKS JUPYTER
+## 📓 NOTEBOOKS JUPYTER (PLANEJADO)
 
 ### **01_Quick_Start.ipynb** — Tutorial 5 minutos
 
@@ -404,7 +416,7 @@ class FriedmannSolver:
 
 ---
 
-## 🧪 TESTES UNITÁRIOS
+## 🧪 TESTES UNITÁRIOS (PLANEJADO)
 
 ```bash
 python -m pytest tests/ -v
@@ -419,14 +431,14 @@ Testes incluem:
 
 ---
 
-## 📊 EXEMPLOS DE SAÍDA
+## 📊 EXEMPLOS DE SAÍDA (ALVO / ILUSTRATIVO)
 
 ### **Modelo Rápido**
 ```bash
 python 01_friedmann_solver.py --quick > output.txt
 ```
 
-Output:
+Output planejado:
 ```
 z         H(z)      E(z)      ρ_sup(z)   w_eff(z)
 0.0       70.0      1.000     0.100      -0.80
@@ -450,7 +462,7 @@ MCMC Best Fit:
 
 ---
 
-## 🐛 TROUBLESHOOTING
+## 🐛 TROUBLESHOOTING (PLANEJADO)
 
 ### **Erro: "ImportError: No module named 'emcee'"**
 ```bash
@@ -482,7 +494,7 @@ if params['z_max'] <= 0:
 
 ---
 
-## 🎓 PARA CONTRIBUIR
+## 🎓 PARA CONTRIBUIR (QUANDO A ESTRUTURA-ALVO ESTIVER MATERIALIZADA)
 
 Se quer estender o código:
 
@@ -509,7 +521,9 @@ Se quer estender o código:
 
 ## 📞 SUPORTE
 
-Dúvidas? Abra Issue no GitHub ou veja 10_FAQ_COMPLETO.md
+Dúvidas? Abra Issue no GitHub ou veja 10_FAQ_COMPLETO.md.
+
+> Observação: este README é um **blueprint de arquitetura-alvo**.
 
 ---
 
