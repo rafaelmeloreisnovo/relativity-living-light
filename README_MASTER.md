@@ -190,6 +190,12 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 - [posterior_unified_synth.csv](data/posterior_unified_synth.csv) — Distribuições posteriores
 - [unified_entropy_margin_10_12.csv](data/unified_entropy_margin_10_12.csv) — Bandas de entropia
 
+### Governança de Atualizações e Inventário Total
+- [Release Notes Históricas](docs/RELEASE_NOTES_HISTORY.md)
+- [Organização Integral da Documentação](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
+- [Inventário Completo (.md + .zip)](docs/DOCUMENTATION_FULL_INVENTORY.md)
+- [Índice Interno dos Bundles ZIP](docs/ZIP_CONTENT_INDEX.md)
+
 ---
 
 ## 🎯 Resultado Esperado

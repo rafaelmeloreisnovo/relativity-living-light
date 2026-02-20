@@ -11,6 +11,7 @@
 
 | Data | Marco | Evidência | O que mudou (síntese técnica) |
 |---|---|---|---|
+| 2026-02-20 (atual) | **Varredura integral de documentação e bundles** | [docs/RELEASE_NOTES_HISTORY.md](RELEASE_NOTES_HISTORY.md) · [docs/DOCUMENTATION_FULL_INVENTORY.md](DOCUMENTATION_FULL_INVENTORY.md) · [docs/ZIP_CONTENT_INDEX.md](ZIP_CONTENT_INDEX.md) | Inventário completo de `.md` e `.zip`, índice interno de bundles e reforço de governança com rastreabilidade total. |
 | 2025-09-02 → 2025-09-25 | Fundação documental e primeira consolidação de conteúdo | [Commits iniciais](https://github.com/instituto-Rafael/relativity-living-light/commits/main/?since=2025-09-01&until=2025-09-26) | Estrutura base, README iterativo, criação de documentos temáticos e primeiros artefatos científicos. |
 | 2025-10-19 | **Reorganização estrutural RAFAELIA** | [PR #1](https://github.com/instituto-Rafael/relativity-living-light/pull/1) · [8d49cba](https://github.com/instituto-Rafael/relativity-living-light/commit/8d49cba) | Migração para organização por domínios (`docs/`, `data/`, `figs/`), com inventário e documentação de reforma. |
 | 2025-11-04 | **Pacote de análise Nature + integração conceitual** | [PR #2](https://github.com/instituto-Rafael/relativity-living-light/pull/2) · [5c9e74f](https://github.com/instituto-Rafael/relativity-living-light/commit/5c9e74f) | Inclusão de análise aprofundada do artigo Nature, novos índices de leitura e trilha técnico-conceitual multilíngue. |
@@ -72,6 +73,15 @@
   - [335dbb4](https://github.com/instituto-Rafael/relativity-living-light/commit/335dbb4) — scientific-core scope + split simbólico-jurídico
   - [39d5693](https://github.com/instituto-Rafael/relativity-living-light/commit/39d5693) — consolidação de documentos canônicos
 - **Impacto:** redução de duplicidade, governança de escopo e melhoria de integridade documental.
+
+
+### Release 2026.02b — Varredura integral de documentação e artefatos
+- **Data de referência:** 2026-02-20
+- **Entregas-chave:**
+  - `docs/DOCUMENTATION_FULL_INVENTORY.md` — catálogo de todos os `.md` e `.zip`
+  - `docs/ZIP_CONTENT_INDEX.md` — listagem interna de cada bundle
+  - Integração aos índices mestres e governança documental
+- **Impacto:** cobertura integral do acervo, redução de lacunas de leitura e base objetiva para manutenção contínua.
 
 ---
 

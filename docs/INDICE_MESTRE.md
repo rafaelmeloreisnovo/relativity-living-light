@@ -12,6 +12,10 @@
   - [`docs/RELEASE_NOTES_HISTORY.md`](RELEASE_NOTES_HISTORY.md)
 - Organização integral de documentos, arquivos soltos e bundles `.zip`:
   - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
+- Inventário completo (todos os `.md` e `.zip` catalogados):
+  - [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
+- Índice interno dos bundles compactados:
+  - [`docs/ZIP_CONTENT_INDEX.md`](ZIP_CONTENT_INDEX.md)
 
 ---
 

@@ -131,3 +131,23 @@ A raiz contém documentos válidos, porém heterogêneos em função (científic
 - Histórico de updates/release notes com links e datas estabelecido.
 - Mapa organizacional único para documentação e zips estabelecido.
 - Critérios formais de continuidade e manutenção documental definidos.
+
+---
+
+## 8) Artefatos de varredura integral (controle total do acervo)
+
+- Inventário total de documentação e bundles: [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
+- Índice interno de conteúdo dos arquivos compactados: [`docs/ZIP_CONTENT_INDEX.md`](ZIP_CONTENT_INDEX.md)
+
+Esses dois arquivos são a base objetiva para revisão integral, pois listam **todos** os `.md` e `.zip` detectados no repositório, com metadados de rastreabilidade.
+
+
+## 9) Pendências identificadas na varredura completa
+
+Arquivos Markdown vazios (ou praticamente vazios) detectados:
+
+- `docs/1.md`
+- `docs/Easy..md`
+- `RMR/1.md`
+
+Recomendação: converter em ponteiros canônicos (com link e contexto) ou remover em revisão futura para reduzir ruído estrutural.
