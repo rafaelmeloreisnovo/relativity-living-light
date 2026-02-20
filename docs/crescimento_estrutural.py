@@ -14,6 +14,10 @@ Dependências:
 import numpy as np
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 # ─── Modelo RLL ───────────────────────────────────────────────────────────────
@@ -167,6 +171,10 @@ if __name__ == '__main__':
     ax2.set_ylabel(r'$\Delta(f\sigma_8)$ [%]', fontsize=12)
     ax2.set_xlim(0, 1.8)
     ax2.grid(alpha=0.3)
+
+    output_dir = REPO_ROOT / 'figs'
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_file = output_dir / 'fs8_comparison_RLL_vs_LCDM.png'
 
     plt.tight_layout()
     plt.savefig('../figs/paper/fs8_comparison_RLL_vs_LCDM.png', dpi=150)

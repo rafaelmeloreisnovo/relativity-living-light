@@ -16,10 +16,12 @@ import numpy as np
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from pathlib import Path
 
 C_KMS = 299792.458
 H0    = 70.0
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # ─── Modelo fiducial ─────────────────────────────────────────────────────────
 
@@ -194,6 +196,10 @@ def plot_fisher_ellipses(F, fid=None, param_labels=None):
     plt.suptitle('Forecast Fisher — DESI BAO + Euclid RSD\n'
                  'Elipses 1σ e 2σ para parâmetros RLL',
                  fontsize=13)
+    output_dir = REPO_ROOT / 'figs'
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_file = output_dir / 'fisher_ellipses_RLL.png'
+
     plt.tight_layout()
     plt.savefig('../figs/paper/fisher_ellipses_RLL.png', dpi=150)
     print("Figura salva: figs/paper/fisher_ellipses_RLL.png")

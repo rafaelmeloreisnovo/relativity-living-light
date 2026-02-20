@@ -167,23 +167,7 @@
 - **Nível Hierárquico:** 4 (Empírico/Observacional)
 - **Uso Recomendado:** Análise estatística, inferência bayesiana
 
-### 2.8 posterior_unified_synth (1).csv
-- **Tipo:** CSV (ASCII)
-- **Descrição:** Variante das distribuições posteriores
-- **Conteúdo:** Similar ao anterior, possivelmente com diferentes priors
-- **Área Temática:** Dados Observacionais (Área 4)
-- **Nível Hierárquico:** 4 (Empírico/Observacional)
-- **Uso Recomendado:** Comparação de diferentes análises MCMC
-
-### 2.9 posterior_unified_synth (2).csv
-- **Tipo:** CSV (ASCII)
-- **Descrição:** Outra variante das distribuições posteriores
-- **Conteúdo:** Terceira versão da análise posterior
-- **Área Temática:** Dados Observacionais (Área 4)
-- **Nível Hierárquico:** 4 (Empírico/Observacional)
-- **Uso Recomendado:** Testes de robustez com diferentes configurações
-
-### 2.10 relativity_living_light_models.csv
+### 2.8 relativity_living_light_models.csv
 - **Tipo:** CSV (ASCII)
 - **Descrição:** Grid de modelos cosmológicos
 - **Conteúdo:** Tabela com z, H_model, H_LCDM, H_ratio, dmu, DL
@@ -191,7 +175,7 @@
 - **Nível Hierárquico:** 4 (Empírico/Observacional)
 - **Uso Recomendado:** Comparação quantitativa com ΛCDM
 
-### 2.11 unified_entropy_margin_10_12.csv
+### 2.9 unified_entropy_margin_10_12.csv
 - **Tipo:** CSV (ASCII)
 - **Descrição:** Bandas de entropia com margem 10/12
 - **Conteúdo:** Intervalos de incerteza para H(z) e Δμ
@@ -199,7 +183,7 @@
 - **Nível Hierárquico:** 4 (Empírico/Observacional)
 - **Uso Recomendado:** Quantificação de incertezas, intervalos de confiança
 
-### 2.12 RelativityLivingLight_v4_bundle.zip
+### 2.10 RelativityLivingLight_v4_bundle.zip
 - **Tipo:** Arquivo comprimido (Zip)
 - **Descrição:** Pacote de resultados versão 4
 - **Conteúdo:** Bundle com múltiplos arquivos (dados, figuras, notebooks)
@@ -207,7 +191,7 @@
 - **Nível Hierárquico:** 4 (Empírico/Observacional)
 - **Uso Recomendado:** Download completo de resultados para replicação
 
-### 2.13 relativity_bundle_results.zip
+### 2.11 relativity_bundle_results.zip
 - **Tipo:** Arquivo comprimido (Zip)
 - **Descrição:** Pacote geral de resultados
 - **Conteúdo:** Outro bundle com artefatos do projeto
@@ -215,7 +199,7 @@
 - **Nível Hierárquico:** 4 (Empírico/Observacional)
 - **Uso Recomendado:** Distribuição facilitada de múltiplos arquivos
 
-### 2.14 zenodo.json
+### 2.12 zenodo.json
 - **Tipo:** JSON (ASCII)
 - **Descrição:** Metadados para integração com Zenodo
 - **Conteúdo:** Título, autores, descrição, palavras-chave, DOI

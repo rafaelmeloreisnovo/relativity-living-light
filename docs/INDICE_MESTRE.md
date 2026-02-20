@@ -20,6 +20,9 @@
   - [`docs/README_ROOT_LEGACY_ARCHIVE.md`](README_ROOT_LEGACY_ARCHIVE.md)
 - Auditoria rápida de integridade de dados/documentos:
   - [`docs/DATA_INTEGRITY_CHECKLIST.md`](DATA_INTEGRITY_CHECKLIST.md)
+- Referência operacional:
+  - Pipeline oficial de prova observacional (Pantheon+ RLL vs ΛCDM, validações e formato canônico de saídas):
+    - [`docs/ROADMAP_VALIDACAO.md`](ROADMAP_VALIDACAO.md)
 
 ---
 
