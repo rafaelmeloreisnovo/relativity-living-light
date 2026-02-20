@@ -11,6 +11,8 @@ Fluxo:
 
 import json
 import os
+import hashlib
+import subprocess
 from datetime import datetime, timezone
 
 import numpy as np
@@ -20,10 +22,29 @@ from scipy.optimize import minimize
 
 C_KMS = 299792.458
 H0 = 70.0
+SCRIPT_VERSION = 'v1.1.0'
 
 
 def ensure_dir(path):
     os.makedirs(path, exist_ok=True)
+
+
+def hash_file_sha256(path, chunk_size=1024 * 1024):
+    digest = hashlib.sha256()
+    with open(path, 'rb') as f:
+        while True:
+            block = f.read(chunk_size)
+            if not block:
+                break
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def get_git_commit():
+    try:
+        return subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+    except Exception:
+        return None
 
 
 def _resolve_column_name(dtype_names, accepted_names, label):
@@ -94,7 +115,8 @@ def load_pantheon(data_dir='data/pantheon'):
     n_obs = len(z_hel)
     c_stat = np.diag(mu_err ** 2)
 
-    if os.path.exists(sys_file):
+    has_systematics = os.path.exists(sys_file)
+    if has_systematics:
         c_sys_raw = np.loadtxt(sys_file)
         if c_sys_raw.size != n_obs * n_obs:
             raise ValueError(
@@ -108,7 +130,12 @@ def load_pantheon(data_dir='data/pantheon'):
         c_total = c_stat
 
     c_inv = np.linalg.inv(c_total)
-    return z_hel, mu_obs, c_inv
+    input_meta = {
+        'lc_file': lc_file,
+        'sys_file': sys_file,
+        'has_systematics': has_systematics,
+    }
+    return z_hel, mu_obs, c_inv, input_meta
 
 
 def chi2_rll(theta, z_hel, mu_obs, c_inv):
@@ -268,6 +295,40 @@ def export_results(results, out_dir='data/results'):
     return csv_path, json_path
 
 
+def export_run_manifest(input_meta, out_dir='data/results'):
+    ensure_dir(out_dir)
+
+    lc_path = input_meta['lc_file']
+    sys_path = input_meta['sys_file']
+    lc_exists = os.path.exists(lc_path)
+    sys_exists = os.path.exists(sys_path)
+
+    manifest = {
+        'timestamp_utc': datetime.now(timezone.utc).isoformat(),
+        'script_path': os.path.abspath(__file__),
+        'script_version': SCRIPT_VERSION,
+        'git_commit': get_git_commit(),
+        'inputs': {
+            'lcparam_full_long_zhel.txt': {
+                'path': lc_path,
+                'exists': lc_exists,
+                'sha256': hash_file_sha256(lc_path) if lc_exists else None,
+            },
+            'sys_full_long.txt': {
+                'path': sys_path,
+                'exists': sys_exists,
+                'sha256': hash_file_sha256(sys_path) if sys_exists else None,
+            },
+        },
+    }
+
+    manifest_path = os.path.join(out_dir, 'pantheon_run_manifest.json')
+    with open(manifest_path, 'w', encoding='utf-8') as f:
+        json.dump(manifest, f, ensure_ascii=False, indent=2)
+
+    return manifest_path
+
+
 def maybe_export_figure(z_hel, mu_obs, results, fig_dir='figs/paper'):
     try:
         import matplotlib.pyplot as plt
@@ -301,11 +362,12 @@ def maybe_export_figure(z_hel, mu_obs, results, fig_dir='figs/paper'):
 
 def main():
     print('Relativity Living Light — pipeline Pantheon+ (RLL vs ΛCDM)')
-    z_hel, mu_obs, c_inv = load_pantheon()
+    z_hel, mu_obs, c_inv, input_meta = load_pantheon()
     print(f'Dados carregados: {len(z_hel)} supernovas')
 
     results = fit_models(z_hel, mu_obs, c_inv)
     csv_path, json_path = export_results(results)
+    manifest_path = export_run_manifest(input_meta)
     fig_path = maybe_export_figure(z_hel, mu_obs, results)
 
     print('\n=== Resultado de ajuste ===')
@@ -317,6 +379,7 @@ def main():
     print('\nArquivos exportados:')
     print(f'- {csv_path}')
     print(f'- {json_path}')
+    print(f'- {manifest_path}')
     if fig_path:
         print(f'- {fig_path}')
 
