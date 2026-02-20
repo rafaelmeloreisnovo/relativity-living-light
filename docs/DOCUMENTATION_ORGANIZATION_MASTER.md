@@ -152,10 +152,10 @@ Arquivos Markdown vazios (ou praticamente vazios) detectados:
 
 Recomendação: converter em ponteiros canônicos (com link e contexto) ou remover em revisão futura para reduzir ruído estrutural.
 
-## 10) Salvaguarda de conteúdo histórico (anti-perda)
 
-Arquivo preservado integralmente para garantir continuidade do acervo e evitar descarte de informação:
+## 10) Salvaguarda explícita de conteúdo legado
 
-- `docs/README_HISTORICO_INTEGRAL_47d054c.md` (snapshot completo do README legado, 2351 linhas)
+- Arquivo de preservação integral do README raiz anterior: [`docs/README_ROOT_LEGACY_ARCHIVE.md`](README_ROOT_LEGACY_ARCHIVE.md)
+- Checklist técnico de integridade: [`docs/DATA_INTEGRITY_CHECKLIST.md`](DATA_INTEGRITY_CHECKLIST.md)
 
-Diretriz: quando houver refatoração estrutural de documento principal, manter snapshot histórico íntegro versionado.
+Esses artefatos reduzem risco de perda percebida, mantendo recuperação textual e auditoria objetiva por hash/tamanho.

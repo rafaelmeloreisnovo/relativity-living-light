@@ -11,7 +11,7 @@
 
 | Data | Marco | Evidência | O que mudou (síntese técnica) |
 |---|---|---|---|
-| 2026-02-20 (preservação) | **Preservação integral do README histórico** | [docs/README_HISTORICO_INTEGRAL_47d054c.md](README_HISTORICO_INTEGRAL_47d054c.md) | Garantia explícita de não perda: conteúdo integral legado arquivado e versionado. |
+| 2026-02-20 (hotfix) | **Salvaguarda de conteúdo legado + checklist de integridade** | [docs/README_ROOT_LEGACY_ARCHIVE.md](README_ROOT_LEGACY_ARCHIVE.md) · [docs/DATA_INTEGRITY_CHECKLIST.md](DATA_INTEGRITY_CHECKLIST.md) | Arquivamento do README anterior completo e criação de checklist de integridade para reduzir risco de perda de dados. |
 | 2026-02-20 (atual) | **Varredura integral de documentação e bundles** | [docs/RELEASE_NOTES_HISTORY.md](RELEASE_NOTES_HISTORY.md) · [docs/DOCUMENTATION_FULL_INVENTORY.md](DOCUMENTATION_FULL_INVENTORY.md) · [docs/ZIP_CONTENT_INDEX.md](ZIP_CONTENT_INDEX.md) | Inventário completo de `.md` e `.zip`, índice interno de bundles e reforço de governança com rastreabilidade total. |
 | 2025-09-02 → 2025-09-25 | Fundação documental e primeira consolidação de conteúdo | [Commits iniciais](https://github.com/instituto-Rafael/relativity-living-light/commits/main/?since=2025-09-01&until=2025-09-26) | Estrutura base, README iterativo, criação de documentos temáticos e primeiros artefatos científicos. |
 | 2025-10-19 | **Reorganização estrutural RAFAELIA** | [PR #1](https://github.com/instituto-Rafael/relativity-living-light/pull/1) · [8d49cba](https://github.com/instituto-Rafael/relativity-living-light/commit/8d49cba) | Migração para organização por domínios (`docs/`, `data/`, `figs/`), com inventário e documentação de reforma. |
@@ -84,10 +84,13 @@
   - Integração aos índices mestres e governança documental
 - **Impacto:** cobertura integral do acervo, redução de lacunas de leitura e base objetiva para manutenção contínua.
 
-### Release 2026.02c — Salvaguarda de conteúdo histórico
+
+### Release 2026.02c — Salvaguarda de conteúdo legado e integridade
 - **Data de referência:** 2026-02-20
-- **Entrega-chave:** `docs/README_HISTORICO_INTEGRAL_47d054c.md`
-- **Impacto:** preservação integral do README legado com rastreabilidade por commit, sem descarte informacional.
+- **Entregas-chave:**
+  - `docs/README_ROOT_LEGACY_ARCHIVE.md` — preservação integral do README anterior
+  - `docs/DATA_INTEGRITY_CHECKLIST.md` — auditoria por presença/tamanho/hash
+- **Impacto:** proteção explícita contra perda de conteúdo e validação rápida do acervo crítico.
 
 ---
 

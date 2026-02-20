@@ -72,3 +72,12 @@ Para garantir leitura/organização total do acervo (incluindo arquivos soltos e
 - `docs/ZIP_CONTENT_INDEX.md` — listagem interna de conteúdo dos bundles `.zip`.
 
 Com isso, a governança documental deixa de ser apenas orientativa e passa a ser verificável por catálogo completo.
+
+## Salvaguarda contra perda de conteúdo (adendo)
+
+Para evitar qualquer percepção de descarte de informação:
+
+- README raiz anterior preservado integralmente em `docs/README_ROOT_LEGACY_ARCHIVE.md`.
+- Checklist objetivo de integridade em `docs/DATA_INTEGRITY_CHECKLIST.md`.
+
+Isso garante trilha de recuperação textual + verificação por metadados (tamanho/hash).

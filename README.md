@@ -6,13 +6,20 @@ Repositório principal do modelo **Relativity Living Light (RLL)**, com foco em 
 
 ---
 
-## Preservação integral (sem perda de conteúdo)
 
-Nenhum conteúdo anterior foi descartado: a versão completa histórica do README (2351 linhas, commit `47d054c`) está preservada em:
+## 0) Preservação integral de conteúdo (sem perda)
 
-- [docs/README_HISTORICO_INTEGRAL_47d054c.md](docs/README_HISTORICO_INTEGRAL_47d054c.md)
+Para eliminar risco de perda textual, o conteúdo histórico completo do `README.md` anterior foi preservado em:
 
-Este arquivo principal foi organizado para navegação técnica; o histórico autoral integral permanece acessível e versionado.
+- [docs/README_ROOT_LEGACY_ARCHIVE.md](docs/README_ROOT_LEGACY_ARCHIVE.md)
+
+Validação de integridade (histórico Git):
+
+```bash
+git show 64a12a3:README.md
+```
+
+Este `README.md` atual é uma camada de organização técnica; o acervo narrativo/autoral foi mantido e rastreável.
 
 ---
 
