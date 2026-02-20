@@ -1,0 +1,148 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, hyperref, booktabs, graphicx}
+\usepackage[margin=2.5cm]{geometry}
+
+\title{\textbf{Relativity Living Light: A Dynamic Dark Sector\\via Photonic Superposition}}
+\author{Rafael Melo Reis ($\Delta$RafaelVerbo$\Omega$)\\
+\small DOI: 10.5281/zenodo.17188138}
+\date{February 2026 — Version 2.0 (Corrected)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present the \textbf{Relativity Living Light} (RLL) model, an extension of the standard $\Lambda$CDM cosmology that introduces a dynamic dark sector component $\Omega_{s0}$ governed by a logistic transition function $f(z)$. This component interpolates smoothly between dark-energy-like ($w\approx -1$) and dark-matter-like ($w\approx 0$) behavior across cosmic time, parametrized by a transition redshift $z_t$ and transition width $w_t$. The extended Friedmann equation is tested against simulated observables (H(z), SNe~Ia, growth of structure). Current results are based on synthetic data; validation against Pantheon+, DESI BAO, and BOSS fσ₈ data constitutes the immediate next step.
+\end{abstract}
+
+\section{Theoretical Framework}
+
+\subsection{Extended Friedmann Equation}
+
+The RLL model replaces the static cosmological constant $\Lambda$ with a dynamic component $\Omega_s(z)$:
+
+\begin{equation}
+H^2(z) = H_0^2\left[\Omega_m(1+z)^3 + \Omega_r(1+z)^4 + \Omega_\Lambda 
+         + \Omega_{s0}\left[f(z) + (1-f(z))(1+z)^3\right]
+         + \Omega_{B0}(1+z)^4 + \Omega_{P0}(1+z)^4 \right]
+\label{eq:friedmann}
+\end{equation}
+
+\noindent where $\Omega_{B0}$ and $\Omega_{P0}$ denote magnetic field and plasma contributions, both scaling as radiation ($\propto a^{-4}$).
+
+\subsection{Transition Function}
+
+The logistic transition function governing the dark sector dynamics is:
+
+\begin{equation}
+f(z) = \frac{1}{1 + \exp\!\left(\dfrac{z - z_t}{w_t}\right)}
+\label{eq:fz}
+\end{equation}
+
+\noindent \textbf{Asymptotic limits:}
+\begin{itemize}
+  \item $z \gg z_t$: $f \to 1$, component scales as radiation ($\rho \propto a^{-4}$, hot)
+  \item $z \approx z_t$: smooth transition parametrized by $w_t$
+  \item $z \ll z_t$: $f \to 0$, component scales as matter ($\rho \propto a^{-3}$, cold)
+\end{itemize}
+
+\subsection{Effective Equation of State}
+
+For the superposition component alone:
+\begin{equation}
+w_{\rm eff,sup}(z) = -f(z)
+\label{eq:weff}
+\end{equation}
+
+This gives $w_{\rm eff} \in [-1, 0]$, spanning continuously from dark energy to pressureless matter behavior.
+
+\subsection{Growth of Structure}
+
+The matter perturbation equation is modified through $\Omega_m(a)$:
+\begin{equation}
+D'' + \left[2 + \frac{d\ln H}{d\ln a}\right]D' - \frac{3}{2}\Omega_m(a)\,D = 0
+\label{eq:growth}
+\end{equation}
+
+\noindent where primes denote $d/d\ln a$ and $\Omega_m(a) = \Omega_{m0}a^{-3}H_0^2/H^2(a)$.
+The growth rate observable is $f\sigma_8(z) = \sigma_8(z) \cdot \Omega_m(z)^\gamma$, with $\gamma \approx 0.55$.
+
+\subsection{Anisotropic Extension}
+
+A directional generalization of the transition function can address the Böhme et al. (2025) 5.4$\sigma$ CMB dipole anomaly:
+
+\begin{equation}
+f(z,\theta,\varphi) = \frac{1}{1 + \exp\!\left(\dfrac{z - z_t(\theta,\varphi)}{w_t(\theta,\varphi)}\right)}
+\label{eq:fzang}
+\end{equation}
+
+\noindent where $z_t(\theta,\varphi) = z_{t0} + \delta z_t\cos\theta + \ldots$ (spherical harmonic expansion). Implementation and testing are in progress.
+
+\section{Results — Synthetic Data MCMC}
+
+\subsection{Posterior Parameters}
+
+Results are derived from \texttt{data/posterior\_unified\_synth.csv} (25{,}000 samples, $N_{\rm eff} \approx 2{,}321$):
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Parameter & Median & 16\% & 84\% \\
+\midrule
+$\Omega_{s0}$ & 0.059 & 0.048 & 0.071 \\
+$z_t$         & 1.164 & 0.882 & 1.430 \\
+$w_t$         & 0.405 & 0.271 & 0.534 \\
+\bottomrule
+\end{tabular}
+\caption{Posterior credible intervals from synthetic MCMC. MAP $\chi^2 = 56.84$.}
+\label{tab:posterior}
+\end{table}
+
+\noindent\textbf{Important disclaimer:} All results presented use synthetic data generated from within the model itself. These results validate the statistical machinery (likelihood, MCMC sampler, model comparison framework) but do not constitute observational evidence. Validation against real data is the essential next step.
+
+\subsection{Model Comparison (Synthetic)}
+
+Comparison against $\Lambda$CDM with $\Omega_{s0}=0$ on the same synthetic dataset:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Model & $\chi^2_{\rm MAP}$ & $\Delta$AIC \\
+\midrule
+$\Lambda$CDM & 162.15 & 0 (ref.) \\
+RLL model    & 56.84  & $-99.3$ \\
+\bottomrule
+\end{tabular}
+\caption{AIC comparison on synthetic data. The preference is trivial since data were generated with the RLL model parameters.}
+\end{table}
+
+\section{Connection to Recent Literature}
+
+\textbf{DESI DR2 (2025):} Evidence for dynamic dark energy at 2.8–4.2$\sigma$ in combined BAO+CMB+SNe analysis is qualitatively consistent with the RLL framework, where $w_{\rm eff}(z)$ evolves from $\approx -1$ at low-$z$ toward 0 at high-$z$.
+
+\textbf{Okada et al., PRL 136 (2026):} The Minnesota study of hot-to-cold dark matter transition is analytically reproduced by the asymptotic behavior of $f(z)$: $\rho_{\rm sup} \propto a^{-4}$ (hot, $z\gg z_t$) and $\rho_{\rm sup} \propto a^{-3}$ (cold, $z\ll z_t$).
+
+\section{Roadmap to Publication}
+
+\begin{enumerate}
+  \item Replace synthetic data with Pantheon+ (1701 SNe Ia) and DESI DR2 BAO
+  \item Implement growth equation (Eq.~\ref{eq:growth}) and compare with BOSS DR12 $f\sigma_8$
+  \item Test anisotropic extension (Eq.~\ref{eq:fzang}) against Böhme dipole
+  \item Verify ghost-free stability: $c_s^2 > 0$ across full parameter space
+  \item Compute formal Bayes Factor via Nested Sampling
+  \item Submit to arXiv (astro-ph.CO) and JCAP
+\end{enumerate}
+
+\section*{License and Citation}
+Code: MIT. Data: CC BY 4.0.
+All uses must cite: \texttt{DOI: 10.5281/zenodo.17188138}
+
+\begin{thebibliography}{9}
+\bibitem{desi2025} DESI Collaboration. \textit{Evidence for Dynamic Dark Energy from Large-Scale Structure}. Nature Astronomy, 2025.
+\bibitem{okada2026} Okada et al. \textit{Dark Matter Can Be Born Hot and Cool Down}. PRL 136, 2026.
+\bibitem{bohme2025} Böhme et al. \textit{5.4σ dipole anomaly in CMB}. 2025.
+\bibitem{pantheon} Brout et al. \textit{Pantheon+ Analysis: Cosmological Constraints}. ApJ, 2022.
+\end{thebibliography}
+
+\end{document}
