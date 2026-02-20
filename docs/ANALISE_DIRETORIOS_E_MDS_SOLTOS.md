@@ -63,3 +63,12 @@ Arquivos de manifesto e narrativa autoral:
   - **Trilha científica (core)**
   - **Trilha conceitual/autoral (extended)**
 - Garantir que resultados numéricos canônicos apontem sempre para `data/posterior_unified_synth.csv`.
+
+## Atualização de cobertura integral (varredura completa)
+
+Para garantir leitura/organização total do acervo (incluindo arquivos soltos e compactados), a revisão foi ampliada com dois artefatos técnicos complementares:
+
+- `docs/DOCUMENTATION_FULL_INVENTORY.md` — inventário de **todos** os arquivos `.md` e `.zip` do repositório.
+- `docs/ZIP_CONTENT_INDEX.md` — listagem interna de conteúdo dos bundles `.zip`.
+
+Com isso, a governança documental deixa de ser apenas orientativa e passa a ser verificável por catálogo completo.
