@@ -23,6 +23,8 @@
 - Referência operacional:
   - Pipeline oficial de prova observacional (Pantheon+ RLL vs ΛCDM, validações e formato canônico de saídas):
     - [`docs/ROADMAP_VALIDACAO.md`](ROADMAP_VALIDACAO.md)
+- Diagnóstico de lacunas para padrão pós-PhD formal/profissional:
+  - [`docs/POST_PHD_FORMAL_GAP_ANALYSIS.md`](POST_PHD_FORMAL_GAP_ANALYSIS.md)
 
 ---
 
