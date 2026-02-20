@@ -6,6 +6,23 @@
 
 ---
 
+## Governança de atualização e organização (novo)
+
+- Histórico cronológico de updates/releases (com links, datas e mudanças):
+  - [`docs/RELEASE_NOTES_HISTORY.md`](RELEASE_NOTES_HISTORY.md)
+- Organização integral de documentos, arquivos soltos e bundles `.zip`:
+  - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
+- Inventário completo (todos os `.md` e `.zip` catalogados):
+  - [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
+- Índice interno dos bundles compactados:
+  - [`docs/ZIP_CONTENT_INDEX.md`](ZIP_CONTENT_INDEX.md)
+- Preservação integral do README histórico (arquivo legado completo):
+  - [`docs/README_ROOT_LEGACY_ARCHIVE.md`](README_ROOT_LEGACY_ARCHIVE.md)
+- Auditoria rápida de integridade de dados/documentos:
+  - [`docs/DATA_INTEGRITY_CHECKLIST.md`](DATA_INTEGRITY_CHECKLIST.md)
+
+---
+
 ## Estrutura do Pacote
 
 ```
