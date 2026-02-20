@@ -1,144 +1,113 @@
-# Roadmap de Validação — Relativity Living Light
-## Da prova de conceito à publicação científica
+# ROADMAP_VALIDACAO — Pipeline oficial de prova observacional
 
-**Versão:** 2.0 | **Data:** Fevereiro 2026  
-**TRL atual:** 3 (dados sintéticos) → **TRL alvo:** 6 (validação com dados reais)
+Este guia operacional define o fluxo executável para validação observacional com Pantheon+, comparação RLL vs ΛCDM e exportação padronizada de resultados.
 
----
+## 1) Obtenção dos arquivos Pantheon+
 
-## Prioridade 1 — Consistência interna (1–2 semanas)
+Fonte oficial:
+- https://github.com/PantheonPlusSH0ES/DataRelease
 
-**Objetivo:** Eliminar inconsistências documentais que prejudicam credibilidade imediata.
+Arquivos mínimos exigidos:
+- `lcparam_full_long_zhel.txt`
+- `sys_full_long.txt` (opcional, porém recomendado)
 
-**Ações:**
-- Atualizar todos os documentos que citam Ω_s0 ≈ 0.72, z_t ≈ 0.65, w_t ≈ −0.97 para os valores reais do CSV (Ω_s0 = 0.059, z_t = 1.164, w_t = 0.405)
-- Remover do README e do preprint LaTeX a tabela de parâmetros com valores inconsistentes
-- Adicionar disclaimer explícito de "dados sintéticos" em todos os resultados quantitativos
-- Separar o repositório em branch `scientific` (técnico) e manter o conteúdo simbólico em `manifesto`
+Exemplo de preparação local:
 
-**Entregável:** README_CIENTIFICO.md + PAPER_CORRIGIDO.tex (já gerados neste pacote)
-
----
-
-## Prioridade 2 — Validação parcial com dados reais (2–4 semanas)
-
-**Objetivo:** Primeiro teste do modelo contra dados observacionais públicos.
-
-**Dataset:** BOSS DR12 fσ₈(z) — 6 pontos com erros, público em `github.com/sdss/boss`
-
-**Ações:**
-1. Implementar `codigo/crescimento_estrutural.py` (já incluído neste pacote)
-2. Resolver a equação D''(a) com os parâmetros centrais do modelo
-3. Comparar fσ₈(z) do RLL com dados BOSS e com ΛCDM
-4. Reportar ΔAIC/ΔBIC (mesmo que com χ² parcial, é o primeiro resultado com dados reais)
-
-**Previsão quantitativa:** Desvio RLL vs ΛCDM em fσ₈ de −2% a −4% em z ∈ [0.3, 0.8], marginal para BOSS mas detectável por DESI
-
-**Entregável:** Figura `fs8_comparison.png` + tabela de χ² parcial
-
----
-
-## Prioridade 3 — Dados reais de supernovas (4–8 semanas)
-
-**Objetivo:** Substituição total dos dados sintéticos por Pantheon+.
-
-**Dataset:** Pantheon+ — 1701 SNe Ia, completo com matriz de covariância  
-**URL:** `github.com/PantheonPlusSH0ES/DataRelease`
-
-**Ações:**
-1. Adaptar `codigo/panteon_likelihood.py` para carregar CSV Pantheon+
-2. Definir likelihood de módulo de distância com covariância completa:  
-   `χ² = (μ_obs − μ_model)^T · C^{−1} · (μ_obs − μ_model)`
-3. Rodar MCMC (emcee ou dynesty) com prior flat nos parâmetros
-4. Reportar posterior real, ΔAIC e ΔBIC vs. ΛCDM
-
-**Critério de sucesso:** ΔAIC > 0 (modelo favorecido), ou rejeição honesta se ΔAIC < 0
-
-**Entregável:** Novo `posterior_real_pantheon.csv` + corner plot + atualização do paper
-
----
-
-## Prioridade 4 — Adição de BAO — DESI DR2 (8–12 semanas)
-
-**Objetivo:** Análise combinada SNe Ia + BAO, o conjunto mais poderoso para w(z).
-
-**Dataset:** DESI DR2 BAO — H(z)·r_d, D_M(z)/r_d, público  
-**URL:** `data.desi.lbl.gov`
-
-**Ações:**
-1. Implementar likelihood de BAO com covariância DESI
-2. Calcular distância de co-mover D_M(z) e H(z) do modelo RLL
-3. Constraint conjunta: Pantheon+ + DESI BAO no mesmo MCMC
-4. Comparar resultado com ΛCDM e com CPL (w₀wₐCDM)
-
-**Nota:** A parametrização CPL é o benchmark padrão do DESI. O modelo RLL deve ser comparado explicitamente com ela para ser avaliado pela comunidade.
-
----
-
-## Prioridade 5 — Extensão anisotrópica (paralelo, 1–3 meses)
-
-**Objetivo:** Testar f(z,θ,φ) contra anomalia de dipolo de Böhme et al. (2025).
-
-**Ações:**
-1. Implementar grid HEALPix com f(z,θ,φ) usando código em `teoria/EXTENSAO_ANISOTROPICA.md`
-2. Extrair direção preferencial de Böhme et al.
-3. Ajustar (A_z, A_w) para reproduzir amplitude de 5.4σ
-4. Verificar consistência com mapa de CMB Planck
-
-**Por que prioritário:** Este é o teste mais original do modelo — não existem outros trabalhos que parametrizem o dipolo CMB via transição DE↔DM direcional. Resultado positivo seria publicável em Physical Review Letters.
-
----
-
-## Prioridade 6 — Verificação de estabilidade (paralelo, 2 semanas)
-
-**Objetivo:** Confirmar ausência de ghosts e taquiões.
-
-**Ações:**
-1. Executar `check_stability()` de `teoria/ESTABILIDADE_GHOST_CHECK.md` para todo o posterior
-2. Verificar cs² > 0 com prescrição física cs² = f(z)
-3. Confirmar w_eff ≥ −1 (sem phantom crossing) para 95% do espaço de parâmetros
-
----
-
-## Prioridade 7 — Preprint arXiv (após Prioridades 2–4)
-
-**Objetivo:** Publicação científica reconhecida com dados reais.
-
-**Estrutura do paper:**
-1. Abstract com resultado principal (ΔAIC vs ΛCDM com dados reais)
-2. Modelo (Eq. Friedmann, f(z), w_eff)
-3. Dados: Pantheon+ + DESI BAO + BOSS fσ₈
-4. Resultados: posterior, comparação modelos, figura H_ratio e fσ₈
-5. Conexão com DESI dinâmico e Minnesota PRL 2026
-6. Extensão anisotrópica (se Prioridade 5 concluída)
-7. Conclusão com roadmap Euclid/CMB-S4
-
-**Destino:** arXiv astro-ph.CO → submissão JCAP ou Universe
-
----
-
-## Cronograma Resumido
-
-```
-Semanas 1-2:   Prioridade 1 (consistência documental)       [já parcialmente feito]
-Semanas 2-4:   Prioridade 2 (BOSS fσ₈ com dados reais)
-Semanas 4-8:   Prioridade 3 (Pantheon+)
-Paralelo:      Prioridade 6 (estabilidade)
-Meses 2-3:     Prioridade 4 (DESI BAO)
-Paralelo:      Prioridade 5 (extensão anisotrópica)
-Mês 3-4:       Prioridade 7 (preprint arXiv)
+```bash
+mkdir -p data/pantheon
+# baixar manualmente os dois arquivos do DataRelease
+# e copiar para data/pantheon/
 ```
 
+## 2) Estrutura esperada em `data/pantheon/`
+
+Estrutura canônica:
+
+```text
+data/
+└── pantheon/
+    ├── lcparam_full_long_zhel.txt
+    └── sys_full_long.txt
+```
+
+Regras:
+- `lcparam_full_long_zhel.txt` deve conter cabeçalho com nomes de colunas.
+- `sys_full_long.txt`, quando presente, deve ter exatamente `N×N` elementos, onde `N` é o número de SNe de `lcparam_full_long_zhel.txt`.
+
+## 3) Colunas aceitas (entrada Pantheon+)
+
+O pipeline aceita aliases para robustez de versão:
+
+- Redshift (obrigatória): `zhel` **ou** `zcmb`
+- Módulo de distância observado (obrigatória): `mb` **ou** `mu` **ou** `m_b_corr`
+- Erro do módulo (obrigatória): `dmb` **ou** `dmu` **ou** `mb_err`
+
+Se nenhuma coluna de um grupo for encontrada, a execução falha com mensagem explícita.
+
+## 4) Validações executáveis
+
+Validações implementadas em `docs/panteon_likelihood.py`:
+
+1. Arquivo principal existe (`lcparam_full_long_zhel.txt`).
+2. Colunas obrigatórias resolvidas pelos nomes aceitos.
+3. `z`, `mu_obs`, `mu_err` sem NaN/inf.
+4. `mu_err > 0` para todos os pontos.
+5. Se `sys_full_long.txt` existir, tamanho compatível com `N×N`.
+6. Inversão da covariância total (`C_stat + C_sys`) sem erro.
+
+## 5) Execução oficial do pipeline
+
+Com os arquivos no lugar:
+
+```bash
+python docs/panteon_likelihood.py
+```
+
+Saídas esperadas:
+- ajuste de melhor valor para RLL e ΛCDM
+- χ², AIC, BIC
+- deltas comparativos RLL-ΛCDM
+- artefatos canônicos em `data/results/`
+- figura comparativa em `figs/paper/` (se `matplotlib` estiver disponível)
+
+## 6) Formato canônico de saída
+
+### 6.1 Resultados numéricos (`data/results/`)
+
+`data/results/pantheon_comparativo_rll_vs_lcdm.csv`
+- colunas:
+  - `modelo`
+  - `chi2`
+  - `AIC`
+  - `BIC`
+  - `delta_AIC_vs_LCDM`
+  - `delta_BIC_vs_LCDM`
+
+`data/results/pantheon_fit_summary.json`
+- campos principais:
+  - `pipeline`
+  - `timestamp_utc`
+  - `n_obs`
+  - `rll.best_fit` + `rll.chi2` + `rll.AIC` + `rll.BIC`
+  - `lcdm.best_fit` + `lcdm.chi2` + `lcdm.AIC` + `lcdm.BIC`
+  - `comparativo` (tabela equivalente ao CSV)
+
+### 6.2 Figuras de paper (`figs/paper/`)
+
+Figura padrão desta etapa:
+- `figs/paper/pantheon_rll_vs_lcdm_delta_mu.png`
+
+Regra de nomenclatura sugerida:
+- `<dataset>_<comparacao>_<observavel>.png`
+
+## 7) Checklist de término
+
+- [ ] `data/pantheon/` contém os arquivos exigidos
+- [ ] execução sem erro do comando principal
+- [ ] CSV e JSON presentes em `data/results/`
+- [ ] figura presente em `figs/paper/` (ou anotação de ausência de `matplotlib`)
+- [ ] valores de χ²/AIC/BIC registrados no relatório técnico/paper
+
 ---
 
-## Recursos Necessários
-
-**Computação:** MCMC com Pantheon+ (1701 pontos) + DESI BAO (~50 pontos) converge em 4–8h em CPU padrão com emcee (200 walkers × 5000 steps). Sem necessidade de GPU ou cluster.
-
-**Dependências Python:**
-```
-numpy, scipy, emcee (ou dynesty), astropy,
-matplotlib, corner, healpy (para anisotropia)
-```
-
-**Dados públicos:** Todos os datasets necessários são de acesso livre.
+Este documento é a referência operacional para a etapa de prova observacional no repositório.
