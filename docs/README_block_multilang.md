@@ -18,9 +18,9 @@ See figures and notebooks under `/ciencia_aplicada/`.
 \(\rho_{\text{sup}} = \rho_{\text{ext}} + \rho_{\text{col}}\), mit \(w_{\text{ext}}\approx -1\) und \(w_{\text{col}}\approx 0\).
 
 ## Arquivos
-- `figs/hz_superposicao.png` — comparação H(z) (ΛCDM vs. modelo com ρ_sup).
-- `figs/density_evolution_sup.png` — evolução das densidades (DE-like × DM-like).
-- `figs/rotation_curves_sup.png` — curvas de rotação com halo pseudo-isotérmico (proxy para ρ_col).
+- `figs/paper/hz_superposicao.png` — comparação H(z) (ΛCDM vs. modelo com ρ_sup).
+- `figs/paper/density_evolution_sup.png` — evolução das densidades (DE-like × DM-like).
+- `figs/paper/rotation_curves_sup.png` — curvas de rotação com halo pseudo-isotérmico (proxy para ρ_col).
 - `notebooks/Hz_superposicao.ipynb` — reprodutibilidade de H(z).
 - `notebooks/density_decomp.ipynb` — variação de \(f_{\text{ext}}, n_{\text{ext}}, n_{\text{col}}\).
 - `notebooks/rotation_model.ipynb` — toy de curvas de rotação.

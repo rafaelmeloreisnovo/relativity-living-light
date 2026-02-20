@@ -195,8 +195,8 @@ def plot_fisher_ellipses(F, fid=None, param_labels=None):
                  'Elipses 1σ e 2σ para parâmetros RLL',
                  fontsize=13)
     plt.tight_layout()
-    plt.savefig('../figs/fisher_ellipses_RLL.png', dpi=150)
-    print("Figura salva: figs/fisher_ellipses_RLL.png")
+    plt.savefig('../figs/paper/fisher_ellipses_RLL.png', dpi=150)
+    print("Figura salva: figs/paper/fisher_ellipses_RLL.png")
     plt.show()
 
 

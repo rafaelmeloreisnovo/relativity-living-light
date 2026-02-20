@@ -24,9 +24,9 @@ H(z)^2 = H_0^2 \left[ \Omega_m(1+z)^3 + \Omega_r(1+z)^4 + \Omega_\Lambda + \Omeg
 - Galaxy rotation toy using a pseudo-isothermal halo as a proxy for \(\rho_{\text{col}}\).
 
 ## 4. Results (Figures)
-- figs/hz_superposicao.png
-- figs/density_evolution_sup.png
-- figs/rotation_curves_sup.png
+- figs/paper/hz_superposicao.png
+- figs/paper/density_evolution_sup.png
+- figs/paper/rotation_curves_sup.png
 
 ## 5. Discussion
 - Degeneracies with Λ and with modified gravity.

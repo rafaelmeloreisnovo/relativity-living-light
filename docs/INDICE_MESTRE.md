@@ -77,7 +77,7 @@ Os seguintes arquivos do repositório original não necessitam de revisão e dev
 
 - `data/posterior_unified_synth.csv` — dados brutos corretos
 - `data/relativity_living_light_models.csv` — grid de modelos
-- `figs/*.png` — figuras geradas dos dados sintéticos
+- `figs/paper/*.png` — figuras geradas dos dados sintéticos
 - `data/Hz_superposicao.ipynb` — notebook de análise H(z)
 - `docs/BOOSTERS.md` — documentação técnica dos boosters (contém autocorrição valiosa)
 
@@ -102,4 +102,4 @@ cd codigo/
 python crescimento_estrutural.py
 ```
 
-A figura gerada (`figs/fs8_comparison_RLL_vs_LCDM.png`) pode ser incluída imediatamente no preprint revisado.
+A figura gerada (`figs/paper/fs8_comparison_RLL_vs_LCDM.png`) pode ser incluída imediatamente no preprint revisado.

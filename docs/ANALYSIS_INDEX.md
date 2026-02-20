@@ -45,7 +45,7 @@ This index helps you navigate the comprehensive analysis connecting the Nature C
 | **README_patch_unified_PT_EN_v4.md** | Technical model details | `docs/` |
 | **README.md** | Repository overview | Root |
 | **Computational notebooks** | Data analysis | `data/*.ipynb` |
-| **Figures** | Visual results | `figs/*.png` |
+| **Figures** | Visual results | `figs/paper/*.png` |
 
 ---
 
@@ -151,11 +151,11 @@ E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ
 | **Faraday rotation** | Radio telescopes | Magnetic fields |
 
 **Figures Available**:
-- `figs/unified_H_ratio.png` - H(z) predictions
-- `figs/unified_mu_residuals.png` - Distance modulus
-- `figs/unified_growth_fs8.png` - Structure growth
-- `figs/rotcurve_NGC_2403.png` - Galaxy rotation
-- `figs/cluster_lensing_SIS_unified.png` - Cluster lensing
+- `figs/paper/unified_H_ratio.png` - H(z) predictions
+- `figs/paper/unified_mu_residuals.png` - Distance modulus
+- `figs/paper/unified_growth_fs8.png` - Structure growth
+- `figs/paper/rotcurve_NGC_2403.png` - Galaxy rotation
+- `figs/paper/cluster_lensing_SIS_unified.png` - Cluster lensing
 
 ---
 
@@ -257,7 +257,7 @@ E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ
 
 1. Read [Quick Summary](ARTICLE_ANALYSIS_SUMMARY.md)
 2. Skim [Conceptual Framework - Scale Hierarchy](CONCEPTUAL_FRAMEWORK.md#scale-hierarchy)
-3. Look at figures in `figs/unified_*.png`
+3. Look at figures in `figs/paper/unified_*.png`
 
 **Outcome**: Understand basic connections and key predictions
 
@@ -268,7 +268,7 @@ E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ
 1. Read [Quick Summary](ARTICLE_ANALYSIS_SUMMARY.md) completely
 2. Study [Conceptual Framework](CONCEPTUAL_FRAMEWORK.md) with diagrams
 3. Review [Mathematical Framework](CONCEPTUAL_FRAMEWORK.md#mathematical-framework)
-4. Examine computational results in `data/` and `figs/`
+4. Examine computational results in `data/` and `figs/paper/`
 
 **Outcome**: Understand technical details and can discuss model
 

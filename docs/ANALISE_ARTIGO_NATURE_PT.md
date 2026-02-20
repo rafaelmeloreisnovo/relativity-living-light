@@ -87,7 +87,7 @@ Energia Escura ←→ Matéria Escura
 
 **Previsão**: Desvios específicos do ΛCDM em z > 0.5
 
-**Figura disponível**: `figs/unified_H_ratio.png`
+**Figura disponível**: `figs/paper/unified_H_ratio.png`
 
 ### 2. Distância de Luminosidade
 
@@ -97,7 +97,7 @@ Energia Escura ←→ Matéria Escura
 
 **Previsão**: Variações de centésimos de magnitude
 
-**Figura disponível**: `figs/unified_mu_residuals.png`
+**Figura disponível**: `figs/paper/unified_mu_residuals.png`
 
 ### 3. Crescimento de Estrutura
 
@@ -107,7 +107,7 @@ Energia Escura ←→ Matéria Escura
 
 **Previsão**: Evolução modificada devido à "materialização" fotônica
 
-**Figura disponível**: `figs/unified_growth_fs8.png`
+**Figura disponível**: `figs/paper/unified_growth_fs8.png`
 
 ### 4. Curvas de Rotação Galáticas
 
@@ -117,7 +117,7 @@ Energia Escura ←→ Matéria Escura
 
 **Previsão**: Halo fotônico contribui para velocidades planas
 
-**Figura disponível**: `figs/rotcurve_NGC_2403.png`
+**Figura disponível**: `figs/paper/rotcurve_NGC_2403.png`
 
 ### 5. Lente Gravitacional de Aglomerados
 
@@ -127,7 +127,7 @@ Energia Escura ←→ Matéria Escura
 
 **Previsão**: Componente fotônica "colapsada" age como matéria não-colisional
 
-**Figura disponível**: `figs/cluster_lensing_SIS_unified.png`
+**Figura disponível**: `figs/paper/cluster_lensing_SIS_unified.png`
 
 ---
 
@@ -276,13 +276,13 @@ Estados de superposição fundamentalmente estendidos
 - `data/posterior_unified_synth.csv` - Distribuições de parâmetros
 
 **Figuras**:
-- `figs/unified_H_ratio.png` - Razão H(z)/H_ΛCDM
-- `figs/unified_mu_residuals.png` - Resíduos Δμ
-- `figs/unified_fractions.png` - Frações de energia
-- `figs/unified_f_and_weff.png` - f(z) e w_eff(z)
-- `figs/unified_growth_fs8.png` - Crescimento fσ₈(z)
-- `figs/rotcurve_NGC_2403.png` - Curva de rotação NGC 2403
-- `figs/cluster_lensing_SIS_unified.png` - Lente de aglomerado
+- `figs/paper/unified_H_ratio.png` - Razão H(z)/H_ΛCDM
+- `figs/paper/unified_mu_residuals.png` - Resíduos Δμ
+- `figs/paper/unified_fractions.png` - Frações de energia
+- `figs/paper/unified_f_and_weff.png` - f(z) e w_eff(z)
+- `figs/paper/unified_growth_fs8.png` - Crescimento fσ₈(z)
+- `figs/paper/rotcurve_NGC_2403.png` - Curva de rotação NGC 2403
+- `figs/paper/cluster_lensing_SIS_unified.png` - Lente de aglomerado
 
 **Notebooks**:
 - `data/Hz_superposicao.ipynb` - Modelagem H(z)
@@ -297,7 +297,7 @@ Estados de superposição fundamentalmente estendidos
 ### Caminho Rápido (30 minutos)
 
 1. Leia este documento (ANALISE_ARTIGO_NATURE_PT.md)
-2. Veja as figuras em `figs/unified_*.png`
+2. Veja as figuras em `figs/paper/unified_*.png`
 3. Leia o [Resumo Executivo](ARTICLE_ANALYSIS_SUMMARY.md) em inglês
 
 **Resultado**: Compreensão básica das conexões e previsões
@@ -307,7 +307,7 @@ Estados de superposição fundamentalmente estendidos
 1. Leia este documento completamente
 2. Estude [CONCEPTUAL_FRAMEWORK.md](CONCEPTUAL_FRAMEWORK.md) com diagramas
 3. Revise detalhes técnicos em [README_patch_unified_PT_EN_v4.md](README_patch_unified_PT_EN_v4.md)
-4. Examine resultados computacionais em `data/` e `figs/`
+4. Examine resultados computacionais em `data/` e `figs/paper/`
 
 **Resultado**: Compreensão técnica detalhada
 

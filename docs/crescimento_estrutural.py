@@ -169,8 +169,8 @@ if __name__ == '__main__':
     ax2.grid(alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('../figs/fs8_comparison_RLL_vs_LCDM.png', dpi=150)
-    print("Figura salva: figs/fs8_comparison_RLL_vs_LCDM.png")
+    plt.savefig('../figs/paper/fs8_comparison_RLL_vs_LCDM.png', dpi=150)
+    print("Figura salva: figs/paper/fs8_comparison_RLL_vs_LCDM.png")
     plt.show()
 
     # ── Desvios nos pontos de dados ─────────────────────────────────────────
