@@ -88,54 +88,147 @@ def mu_from_e2(z_vals, e2_func, *params, M_abs=-19.3):
 def load_pantheon(data_dir='data/pantheon'):
     lc_file = os.path.join(data_dir, 'lcparam_full_long_zhel.txt')
     sys_file = os.path.join(data_dir, 'sys_full_long.txt')
-
-    if not os.path.exists(lc_file):
-        raise FileNotFoundError(
-            f"Arquivo não encontrado: {lc_file}\n"
-            "Baixe Pantheon+ em: https://github.com/PantheonPlusSH0ES/DataRelease"
-        )
-
-    data = np.genfromtxt(lc_file, names=True, dtype=None, encoding=None)
-    if data.ndim == 0:
-        data = np.array([data], dtype=data.dtype)
-
-    z_col = _resolve_column_name(data.dtype.names, ['zhel', 'zcmb'], 'redshift')
-    mu_col = _resolve_column_name(data.dtype.names, ['mb', 'mu', 'm_b_corr'], 'modulo_distancia')
-    err_col = _resolve_column_name(data.dtype.names, ['dmb', 'dmu', 'mb_err'], 'erro_modulo')
-
-    z_hel = np.asarray(data[z_col], dtype=float)
-    mu_obs = np.asarray(data[mu_col], dtype=float)
-    mu_err = np.asarray(data[err_col], dtype=float)
-
-    if np.any(~np.isfinite(z_hel)) or np.any(~np.isfinite(mu_obs)) or np.any(~np.isfinite(mu_err)):
-        raise ValueError('Dados contêm NaN/inf em redshift, módulo de distância ou erro.')
-    if np.any(mu_err <= 0):
-        raise ValueError('Todos os erros de módulo de distância devem ser positivos.')
-
-    n_obs = len(z_hel)
-    c_stat = np.diag(mu_err ** 2)
-
-    has_systematics = os.path.exists(sys_file)
-    if has_systematics:
-        c_sys_raw = np.loadtxt(sys_file)
-        if c_sys_raw.size != n_obs * n_obs:
-            raise ValueError(
-                f"sys_full_long.txt incompatível: esperado {n_obs*n_obs} elementos, "
-                f"recebido {c_sys_raw.size}."
-            )
-        c_sys = c_sys_raw.reshape(n_obs, n_obs)
-        c_total = c_stat + c_sys
-    else:
-        print('⚠️ Matriz sistemática ausente; usando apenas covariância estatística.')
-        c_total = c_stat
-
-    c_inv = np.linalg.inv(c_total)
+    sanity_checks = []
     input_meta = {
         'lc_file': lc_file,
         'sys_file': sys_file,
-        'has_systematics': has_systematics,
+        'has_systematics': False,
+        'sanity_checks': sanity_checks,
     }
-    return z_hel, mu_obs, c_inv, input_meta
+
+    try:
+        if not os.path.exists(lc_file):
+            raise FileNotFoundError(
+                f"Arquivo não encontrado: {lc_file}\n"
+                "Baixe Pantheon+ em: https://github.com/PantheonPlusSH0ES/DataRelease"
+            )
+
+        data = np.genfromtxt(lc_file, names=True, dtype=None, encoding=None)
+        if data.ndim == 0:
+            data = np.array([data], dtype=data.dtype)
+
+        z_col = _resolve_column_name(data.dtype.names, ['zhel', 'zcmb'], 'redshift')
+        mu_col = _resolve_column_name(data.dtype.names, ['mb', 'mu', 'm_b_corr'], 'modulo_distancia')
+        err_col = _resolve_column_name(data.dtype.names, ['dmb', 'dmu', 'mb_err'], 'erro_modulo')
+        sanity_checks.append({
+            'name': 'required_columns_resolution',
+            'passed': True,
+            'details': {
+                'resolved_columns': {
+                    'redshift': z_col,
+                    'modulo_distancia': mu_col,
+                    'erro_modulo': err_col,
+                }
+            },
+        })
+
+        z_hel = np.asarray(data[z_col], dtype=float)
+        mu_obs = np.asarray(data[mu_col], dtype=float)
+        mu_err = np.asarray(data[err_col], dtype=float)
+        n_obs = len(z_hel)
+
+        finite_ok = bool(
+            np.all(np.isfinite(z_hel))
+            and np.all(np.isfinite(mu_obs))
+            and np.all(np.isfinite(mu_err))
+        )
+        sanity_checks.append({
+            'name': 'finite_values_validation',
+            'passed': finite_ok,
+            'details': {
+                'n_obs': int(n_obs),
+                'finite': finite_ok,
+            },
+        })
+        if not finite_ok:
+            raise ValueError('Dados contêm NaN/inf em redshift, módulo de distância ou erro.')
+
+        mu_err_positive = bool(np.all(mu_err > 0))
+        sanity_checks.append({
+            'name': 'mu_err_positive_validation',
+            'passed': mu_err_positive,
+            'details': {
+                'n_obs': int(n_obs),
+                'min_mu_err': float(np.min(mu_err)) if n_obs else None,
+            },
+        })
+        if not mu_err_positive:
+            raise ValueError('Todos os erros de módulo de distância devem ser positivos.')
+
+        c_stat = np.diag(mu_err ** 2)
+
+        has_systematics = os.path.exists(sys_file)
+        input_meta['has_systematics'] = has_systematics
+        if has_systematics:
+            c_sys_raw = np.loadtxt(sys_file)
+            sys_shape_ok = bool(c_sys_raw.size == n_obs * n_obs)
+            sanity_checks.append({
+                'name': 'sys_full_long_dimensional_compatibility',
+                'passed': sys_shape_ok,
+                'details': {
+                    'has_systematics': True,
+                    'n_obs': int(n_obs),
+                    'expected_elements': int(n_obs * n_obs),
+                    'received_elements': int(c_sys_raw.size),
+                },
+            })
+            if not sys_shape_ok:
+                raise ValueError(
+                    f"sys_full_long.txt incompatível: esperado {n_obs*n_obs} elementos, "
+                    f"recebido {c_sys_raw.size}."
+                )
+            c_sys = c_sys_raw.reshape(n_obs, n_obs)
+            c_total = c_stat + c_sys
+        else:
+            print('⚠️ Matriz sistemática ausente; usando apenas covariância estatística.')
+            sanity_checks.append({
+                'name': 'sys_full_long_dimensional_compatibility',
+                'passed': True,
+                'details': {
+                    'has_systematics': False,
+                    'n_obs': int(n_obs),
+                    'expected_elements': int(n_obs * n_obs),
+                    'received_elements': None,
+                },
+            })
+            c_total = c_stat
+
+        c_inv = np.linalg.inv(c_total)
+        sanity_checks.append({
+            'name': 'covariance_inversion',
+            'passed': True,
+            'details': {
+                'n_obs': int(n_obs),
+                'has_systematics': has_systematics,
+            },
+        })
+
+        return z_hel, mu_obs, c_inv, input_meta
+    except Exception as exc:
+        if not sanity_checks:
+            sanity_checks.append({
+                'name': 'required_columns_resolution',
+                'passed': False,
+                'details': {
+                    'resolved_columns': None,
+                    'error': str(exc),
+                },
+            })
+        elif sanity_checks[-1]['passed']:
+            sanity_checks.append({
+                'name': sanity_checks[-1]['name'],
+                'passed': False,
+                'details': {
+                    'error': str(exc),
+                },
+            })
+
+        input_meta['load_error'] = {
+            'last_check': sanity_checks[-1]['name'] if sanity_checks else None,
+            'message': str(exc),
+        }
+        setattr(exc, 'input_meta', input_meta)
+        raise
 
 
 def chi2_rll(theta, z_hel, mu_obs, c_inv):
@@ -320,6 +413,8 @@ def export_run_manifest(input_meta, out_dir='data/results'):
                 'sha256': hash_file_sha256(sys_path) if sys_exists else None,
             },
         },
+        'sanity_checks': input_meta.get('sanity_checks', []),
+        'load_error': input_meta.get('load_error'),
     }
 
     manifest_path = os.path.join(out_dir, 'pantheon_run_manifest.json')
@@ -388,5 +483,12 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as exc:
+        input_meta = getattr(exc, 'input_meta', None)
+        if input_meta is not None:
+            try:
+                manifest_path = export_run_manifest(input_meta)
+                print(f'Manifesto de erro exportado: {manifest_path}')
+            except Exception as manifest_exc:
+                print(f'Falha ao exportar manifesto de erro: {manifest_exc}')
         print(f'Erro no pipeline Pantheon+: {exc}')
         raise
