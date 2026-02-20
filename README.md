@@ -202,3 +202,7 @@ Inventário interno dos bundles: [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_IN
 ## 8) Nota de organização documental
 
 Este `README.md` passa a atuar como **entrada principal organizada** do repositório. Conteúdo narrativo/autoral expandido permanece nos documentos dedicados da trilha conceitual para evitar mistura de escopos em leitura técnica.
+
+
+
+O DIRETORIO news/ tem documento soltos e devem ser integrados e movidos
