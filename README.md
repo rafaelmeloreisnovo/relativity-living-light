@@ -1,11 +1,23 @@
 # Relativity Living Light
 
+**Resumo de validação observacional:** validação ainda em estágio **Sintético**, com integração **Parcial real** em preparação e sem etapa **Real validado** concluída.
+
 [![DOI](https://zenodo.org/badge/1046495816.svg)](https://doi.org/10.5281/zenodo.17188137)
 
 Repositório principal do modelo **Relativity Living Light (RLL)**, com foco em cosmologia de superposição dinâmica, documentação técnico-científica, trilhas de validação observacional e acervo autoral RAFAELIA (∆RafaelVerboΩ).
 
 ---
 
+
+## Status dos Dados
+
+- **Sintético:** simulações internas, mocks e diagnósticos computacionais sem inferência observacional final.
+- **Parcial real:** uso de dados observacionais reais em parte do pipeline, ainda sem validação cruzada completa.
+- **Real validado:** resultados reproduzíveis com dados reais, checagens estatísticas e documentação de validação concluídas.
+
+**Nível atual deste README:** `Sintético` (com trilha `Parcial real` em andamento).
+
+---
 
 ## 0) Preservação integral de conteúdo (sem perda)
 
@@ -77,27 +89,27 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 
 ## 3) Gráficos, infográficos e imagens
 
-### 3.1 Figura de referência solicitada
+### 3.1 Figura de referência solicitada (`híbrido`)
 
 ![Crescimento Estrutural: RLL vs ΛCDM vs Dados BOSS](https://github.com/instituto-Rafael/relativity-living-light/file_00000000bf0c71f59bb294eeaca6995f.png)
 
 ### 3.2 Painel de resultados principais
 
-| Tema | Figura |
-|---|---|
-| Expansão cósmica H(z) | ![H ratio](figs/unified_H_ratio.png) |
-| Distância de luminosidade (Δμ) | ![mu residuals](figs/unified_mu_residuals.png) |
-| Frações de energia | ![fractions](figs/unified_fractions.png) |
-| Dinâmica f(z) e w_eff | ![f and weff](figs/unified_f_and_weff.png) |
+| Tema | Selo de origem | Figura |
+|---|---|---|
+| Expansão cósmica H(z) | `mock` | ![H ratio](figs/unified_H_ratio.png) |
+| Distância de luminosidade (Δμ) | `mock` | ![mu residuals](figs/unified_mu_residuals.png) |
+| Frações de energia | `mock` | ![fractions](figs/unified_fractions.png) |
+| Dinâmica f(z) e w_eff | `mock` | ![f and weff](figs/unified_f_and_weff.png) |
 
 ### 3.3 Painel observacional complementar
 
-| Tema | Figura |
-|---|---|
-| Crescimento de estrutura fσ₈(z) | ![growth](figs/unified_growth_fs8.png) |
-| Lente em aglomerados | ![cluster lensing](figs/cluster_lensing_SIS_unified.png) |
-| Curva de rotação (SPARC) | ![rotation](figs/rotcurve_NGC_2403.png) |
-| Ajuste H mock | ![mock H](figs/mock_H_fit.png) |
+| Tema | Selo de origem | Figura |
+|---|---|---|
+| Crescimento de estrutura fσ₈(z) | `híbrido` | ![growth](figs/unified_growth_fs8.png) |
+| Lente em aglomerados | `híbrido` | ![cluster lensing](figs/cluster_lensing_SIS_unified.png) |
+| Curva de rotação (SPARC) | `híbrido` | ![rotation](figs/rotcurve_NGC_2403.png) |
+| Ajuste H mock | `mock` | ![mock H](figs/mock_H_fit.png) |
 
 ---
 

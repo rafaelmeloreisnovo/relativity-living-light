@@ -8,6 +8,16 @@
 
 ## Resumo
 
+## Status dos Dados
+
+- **Sintético:** simulações internas e testes de consistência metodológica.
+- **Parcial real:** integração de subconjuntos observacionais reais para validação incremental.
+- **Real validado:** validação observacional completa com reprodutibilidade documentada.
+
+**Nível atual deste documento:** `Sintético` (com próximos passos em `Parcial real`).
+
+---
+
 Este repositório propõe um modelo cosmológico alternativo ao ΛCDM baseado em uma componente de **superposição dinâmica** (Living Light) que interpola suavemente entre comportamento de energia escura (w ≈ −1) e matéria escura (w ≈ 0) ao longo do redshift. O modelo introduz três parâmetros adicionais — Ω_s0, z_t, w_t — e é testável em múltiplos observáveis: H(z), distâncias de supernovas Ia, crescimento estrutural fσ₈(z) e lentes gravitacionais.
 
 **Status atual:** Os resultados do MCMC presentes neste repositório utilizam dados sintéticos. A validação contra dados reais (Pantheon+, DESI BAO) constitui o próximo passo essencial.
@@ -46,13 +56,13 @@ w_eff,sup(z) = −f(z)
 
 ## Parâmetros Livres
 
-| Parâmetro | Descrição | Faixa de interesse |
-|-----------|-----------|-------------------|
-| Ω_s0 | Densidade da componente de superposição (z=0) | 0.01 – 0.10 |
-| z_t | Redshift de transição | 0.3 – 2.0 |
-| w_t | Largura da transição | 0.05 – 0.6 |
-| Ω_B0 | Contribuição do campo magnético cósmico | < 0.01 |
-| Ω_P0 | Contribuição do plasma gravitacional | < 0.01 |
+| Parâmetro | Descrição | Faixa de interesse | Selo de origem |
+|-----------|-----------|-------------------|----------------|
+| Ω_s0 | Densidade da componente de superposição (z=0) | 0.01 – 0.10 | `híbrido` |
+| z_t | Redshift de transição | 0.3 – 2.0 | `híbrido` |
+| w_t | Largura da transição | 0.05 – 0.6 | `híbrido` |
+| Ω_B0 | Contribuição do campo magnético cósmico | < 0.01 | `híbrido` |
+| Ω_P0 | Contribuição do plasma gravitacional | < 0.01 | `híbrido` |
 
 ---
 
@@ -60,12 +70,12 @@ w_eff,sup(z) = −f(z)
 
 Os valores abaixo são obtidos do arquivo `data/posterior_unified_synth.csv` (25.000 amostras, N_eff ≈ 2.321):
 
-| Parâmetro | Mediana | 16% | 84% |
-|-----------|---------|-----|-----|
-| Ω_s0 | 0.0589 | 0.0481 | 0.0707 |
-| z_t | 1.164 | 0.882 | 1.430 |
-| w_t | 0.405 | 0.271 | 0.534 |
-| χ² (MAP) | 56.84 | — | — |
+| Parâmetro | Mediana | 16% | 84% | Selo de origem |
+|-----------|---------|-----|-----|----------------|
+| Ω_s0 | 0.0589 | 0.0481 | 0.0707 | `mock` |
+| z_t | 1.164 | 0.882 | 1.430 | `mock` |
+| w_t | 0.405 | 0.271 | 0.534 | `mock` |
+| χ² (MAP) | 56.84 | — | — | `mock` |
 
 > ⚠️ **Atenção:** Estes resultados são derivados de dados simulados. Os parâmetros recuperam os valores "verdadeiros" da simulação, validando a maquinaria estatística, mas não constituem evidência observacional.
 
@@ -73,8 +83,8 @@ Os valores abaixo são obtidos do arquivo `data/posterior_unified_synth.csv` (25
 
 ## Observáveis Testados (dados sintéticos)
 
-- **H(z):** ajuste satisfatório até z ≈ 2, com transição visível em z_t ≈ 1.16
-- **Supernovas Ia — Δμ:** resíduos consistentes, sem tendência sistemática
+- **H(z):** ajuste preliminar em dados sintéticos até z ≈ 2, com transição visível em z_t ≈ 1.16
+- **Supernovas Ia — Δμ:** resíduos consistentes no cenário sintético, sem tendência sistemática
 - **Crescimento estrutural fσ₈(z):** implementação em andamento (ver `teoria/PERTURBACOES_CRESCIMENTO.md`)
 - **Lentes gravitacionais SIS:** curva unificada consistente com parâmetros observacionais típicos
 - **Curvas de rotação (NGC 2403):** acoplamento fraco testado preliminarmente
@@ -83,12 +93,12 @@ Os valores abaixo são obtidos do arquivo `data/posterior_unified_synth.csv` (25
 
 ## Comparação com Resultados Acadêmicos Recentes
 
-| Estudo | Descoberta | Conexão com este modelo | Status |
-|--------|-----------|------------------------|--------|
-| DESI DR2 (Nat. Astronomy, 2025) | w(z) dinâmico, 2.8–4.2σ | w_eff(z) analítico desta formulação | ✅ Consistente |
-| Okada et al. — Minnesota (PRL, Jan 2026) | Matéria escura quente→fria | f(z) interpola exatamente esse comportamento | ✅ Consistente |
-| Böhme et al. (2025) — Dipolo 5.4σ | Assimetria direcional no CMB | Extensão f(z,θ,φ) em desenvolvimento | ⚠️ A testar |
-| Nature Comms. s41467-025-63981-3 | Não-localidade fotônica em lab | Base para hipótese de superposição fotônica | 🔍 Especulativo |
+| Estudo | Descoberta | Conexão com este modelo | Status | Selo de origem |
+|--------|-----------|------------------------|--------|----------------|
+| DESI DR2 (Nat. Astronomy, 2025) | w(z) dinâmico, 2.8–4.2σ | w_eff(z) analítico desta formulação | ✅ Compatível em hipótese | `real` |
+| Okada et al. — Minnesota (PRL, Jan 2026) | Matéria escura quente→fria | f(z) interpola exatamente esse comportamento | ✅ Compatível em hipótese | `real` |
+| Böhme et al. (2025) — Dipolo 5.4σ | Assimetria direcional no CMB | Extensão f(z,θ,φ) em desenvolvimento | ⚠️ Próximo passo | `real` |
+| Nature Comms. s41467-025-63981-3 | Não-localidade fotônica em lab | Base para hipótese de superposição fotônica | 🔍 Referência conceitual | `real` |
 
 ---
 

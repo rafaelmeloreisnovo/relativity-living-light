@@ -2,6 +2,16 @@
 
 Este guia operacional define o fluxo executável para validação observacional com Pantheon+, comparação RLL vs ΛCDM e exportação padronizada de resultados.
 
+## Status dos Dados
+
+- **Sintético:** ambiente de teste com arquivos simulados e validação de pipeline.
+- **Parcial real:** ingestão de dados reais em andamento com cobertura parcial dos observáveis.
+- **Real validado:** pipeline concluído com dados reais, artefatos finais e relatório validado.
+
+**Nível atual deste roadmap:** `Parcial real` (fase operacional de ingestão e validação).
+
+---
+
 ## 1) Obtenção dos arquivos Pantheon+
 
 Fonte oficial:
@@ -55,7 +65,7 @@ Validações implementadas em `docs/panteon_likelihood.py`:
 5. Se `sys_full_long.txt` existir, tamanho compatível com `N×N`.
 6. Inversão da covariância total (`C_stat + C_sys`) sem erro.
 
-## 5) Execução oficial do pipeline
+## 5) Execução do pipeline (etapa de validação)
 
 Com os arquivos no lugar:
 
@@ -63,7 +73,7 @@ Com os arquivos no lugar:
 python docs/panteon_likelihood.py
 ```
 
-Saídas esperadas:
+Saídas esperadas (quando a etapa `Real validado` for concluída):
 - ajuste de melhor valor para RLL e ΛCDM
 - χ², AIC, BIC
 - deltas comparativos RLL-ΛCDM
@@ -75,6 +85,7 @@ Saídas esperadas:
 ### 6.1 Resultados numéricos (`data/results/`)
 
 `data/results/pantheon_comparativo_rll_vs_lcdm.csv`
+- selo de origem esperado: `real`
 - colunas:
   - `modelo`
   - `chi2`
@@ -84,6 +95,7 @@ Saídas esperadas:
   - `delta_BIC_vs_LCDM`
 
 `data/results/pantheon_fit_summary.json`
+- selo de origem esperado: `real`
 - campos principais:
   - `pipeline`
   - `timestamp_utc`
@@ -94,7 +106,7 @@ Saídas esperadas:
 
 ### 6.2 Figuras de paper (`figs/paper/`)
 
-Figura padrão desta etapa:
+Figura padrão desta etapa (selo de origem esperado: `real`):
 - `figs/paper/pantheon_rll_vs_lcdm_delta_mu.png`
 
 Regra de nomenclatura sugerida:
