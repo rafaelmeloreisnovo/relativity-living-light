@@ -225,12 +225,10 @@ Esta área transforma teoria em **resultados computacionais concretos**. Os note
 
 Esta área contém os **artefatos empíricos**: dados tabulares com resultados de simulações, parâmetros ajustados e grids de modelos. São os "produtos finais" que podem ser comparados com observações reais.
 
-### Arquivos Mapeados (8 arquivos)
+### Arquivos Mapeados (6 arquivos)
 
 **Dados CSV:**
 - `data/posterior_unified_synth.csv` - Distribuições posteriores (MCMC)
-- `data/posterior_unified_synth (1).csv` - Variante
-- `data/posterior_unified_synth (2).csv` - Variante
 - `data/relativity_living_light_models.csv` - Grid de modelos
 - `data/unified_entropy_margin_10_12.csv` - Bandas de entropia
 

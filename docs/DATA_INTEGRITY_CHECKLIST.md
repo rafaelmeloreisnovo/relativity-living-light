@@ -14,6 +14,12 @@ Objetivo: confirmar que arquivos críticos permanecem presentes, com tamanho e h
 | `docs/DOCUMENTATION_FULL_INVENTORY.md` | sim | 12907 | `6142fa0cd7d3` |
 | `docs/ZIP_CONTENT_INDEX.md` | sim | 4557 | `23aac857b9db` |
 
+## Decisão canônica de posterior sintético
+
+- Arquivo canônico definido: `data/posterior_unified_synth.csv`.
+- Arquivos removidos por duplicidade nominal: `data/posterior_unified_synth (1).csv` e `data/posterior_unified_synth (2).csv`.
+- Todas as referências documentais devem apontar exclusivamente para o caminho canônico.
+
 ## Comandos rápidos de auditoria
 
 ```bash

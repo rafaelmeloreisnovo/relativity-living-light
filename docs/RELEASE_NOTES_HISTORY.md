@@ -13,6 +13,7 @@
 |---|---|---|---|
 | 2026-02-20 (hotfix) | **Salvaguarda de conteúdo legado + checklist de integridade** | [docs/README_ROOT_LEGACY_ARCHIVE.md](README_ROOT_LEGACY_ARCHIVE.md) · [docs/DATA_INTEGRITY_CHECKLIST.md](DATA_INTEGRITY_CHECKLIST.md) | Arquivamento do README anterior completo e criação de checklist de integridade para reduzir risco de perda de dados. |
 | 2026-02-20 (atual) | **Varredura integral de documentação e bundles** | [docs/RELEASE_NOTES_HISTORY.md](RELEASE_NOTES_HISTORY.md) · [docs/DOCUMENTATION_FULL_INVENTORY.md](DOCUMENTATION_FULL_INVENTORY.md) · [docs/ZIP_CONTENT_INDEX.md](ZIP_CONTENT_INDEX.md) | Inventário completo de `.md` e `.zip`, índice interno de bundles e reforço de governança com rastreabilidade total. |
+| 2026-02-20 (data-integrity) | **Canonização do posterior sintético e limpeza de duplicatas** | [docs/DATA_INTEGRITY_CHECKLIST.md](DATA_INTEGRITY_CHECKLIST.md) · [docs/RELEASE_NOTES_HISTORY.md](RELEASE_NOTES_HISTORY.md) | `data/posterior_unified_synth.csv` definido como arquivo canônico; remoção de `posterior_unified_synth (1|2).csv` e atualização de referências em docs. |
 | 2025-09-02 → 2025-09-25 | Fundação documental e primeira consolidação de conteúdo | [Commits iniciais](https://github.com/instituto-Rafael/relativity-living-light/commits/main/?since=2025-09-01&until=2025-09-26) | Estrutura base, README iterativo, criação de documentos temáticos e primeiros artefatos científicos. |
 | 2025-10-19 | **Reorganização estrutural RAFAELIA** | [PR #1](https://github.com/instituto-Rafael/relativity-living-light/pull/1) · [8d49cba](https://github.com/instituto-Rafael/relativity-living-light/commit/8d49cba) | Migração para organização por domínios (`docs/`, `data/`, `figs/`), com inventário e documentação de reforma. |
 | 2025-11-04 | **Pacote de análise Nature + integração conceitual** | [PR #2](https://github.com/instituto-Rafael/relativity-living-light/pull/2) · [5c9e74f](https://github.com/instituto-Rafael/relativity-living-light/commit/5c9e74f) | Inclusão de análise aprofundada do artigo Nature, novos índices de leitura e trilha técnico-conceitual multilíngue. |
@@ -84,6 +85,15 @@
   - Integração aos índices mestres e governança documental
 - **Impacto:** cobertura integral do acervo, redução de lacunas de leitura e base objetiva para manutenção contínua.
 
+
+
+### Release 2026.02d — Canonização de dataset e remoção de duplicatas nominais
+- **Data de referência:** 2026-02-20
+- **Entregas-chave:**
+  - `data/posterior_unified_synth.csv` mantido como fonte canônica de posterior sintético.
+  - Remoção de `data/posterior_unified_synth (1).csv` e `data/posterior_unified_synth (2).csv`.
+  - Atualização de referências documentais para uso exclusivo do caminho canônico.
+- **Impacto:** eliminação de ambiguidade de origem de dados, menor risco de deriva documental e rastreabilidade mais forte do pipeline analítico.
 
 ### Release 2026.02c — Salvaguarda de conteúdo legado e integridade
 - **Data de referência:** 2026-02-20
