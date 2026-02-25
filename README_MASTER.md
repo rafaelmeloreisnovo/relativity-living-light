@@ -122,6 +122,23 @@ onde:
 
 ---
 
+
+
+## 🔁 Fluxo Único de Execução Científica
+
+**Árvore canônica obrigatória:** `docs/` + `data/` + `results/`.
+
+1. **Entrada (definição científica):** `docs/`
+   - Política mestra: `docs/DOCUMENTATION_ORGANIZATION_MASTER.md`
+   - Módulos Structure D: `docs/modules/structure_d_equations.md`, `docs/modules/structure_d_agn_feedback_bridge.md`
+2. **Dados de entrada + execução:** `data/`
+   - Pipeline: `data/pipelines/structure_d/`
+   - Guia de inputs: `data/inputs/structure_d/README.md`
+3. **Saída:** `results/`
+   - Estrutura de saída canônica: `results/structure_d/README.md`
+
+`to_Add/` é reservado para histórico e auditoria, sem função operacional.
+
 ## 🔬 Observáveis Testados
 
 O modelo foi testado contra múltiplos observáveis cosmológicos:
