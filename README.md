@@ -77,6 +77,7 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 - [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
 - [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
 - [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md)
+- [docs/PLANO_AD_AGN_JWST.md](docs/PLANO_AD_AGN_JWST.md)
 
 ### Trilha autoral e conceitual (integridade de selo)
 
@@ -120,6 +121,14 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 - `data/posterior_unified_synth.csv`
 - `data/relativity_living_light_models.csv`
 - `data/unified_entropy_margin_10_12.csv`
+- `data/real/Hz_data_real.csv`
+- `data/real/BAO_data_real.csv`
+
+### Resultados e validação real
+
+- `results/RLL_chi2_results.csv`
+- `docs/rll_validation_real.py`
+- `figs/paper/RLL_validacao_real.png`
 
 ### Notebooks
 
@@ -205,4 +214,4 @@ Este `README.md` passa a atuar como **entrada principal organizada** do reposit�
 
 
 
-O DIRETORIO news/ tem documento soltos e devem ser integrados e movidos
+`news/` foi consolidado: os arquivos canônicos foram integrados aos diretórios `data/real/`, `docs/`, `figs/paper/` e `results/`, mantendo histórico em `news/archive_legacy/`.
