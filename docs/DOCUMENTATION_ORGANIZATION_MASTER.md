@@ -33,6 +33,7 @@ Documentos de referência:
 - `docs/REFERENCES.md`
 - `docs/ROADMAP_VALIDACAO.md`
 - `docs/COMPARACAO_DESI_2025.md`
+- `docs/PLANO_ABCD_JWST_AGN_SMBH.md`
 
 ### B. Trilha de governança e organização
 **Uso:** política de repositório, escopo, auditoria e evolução estrutural.
@@ -111,6 +112,9 @@ A raiz contém documentos válidos, porém heterogêneos em função (científic
 3. Para novos documentos técnicos:
    - inserir link no índice mestre (`docs/INDICE_MESTRE.md`);
    - classificar imediatamente em uma trilha (core, governança, autoral).
+4. Para ciclos orientados a paper (A→B→C→D):
+   - manter o plano em `docs/PLANO_ABCD_JWST_AGN_SMBH.md`;
+   - sincronizar nomes de dados e saídas (`data/Hz.csv`, `data/fsigma8.csv`, `results/model_comparison.csv`).
 
 ---
 
