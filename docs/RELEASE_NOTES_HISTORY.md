@@ -112,7 +112,7 @@
    - escopo e impacto verificável.
 2. **Cada release semântica documental** deve ter rótulo `YYYY.MM` (ex.: `2026.02`).
 3. **Mudanças canônicas** devem sempre apontar para documentos-fonte (evitar cópias divergentes).
-4. **Bundles `.zip`** devem manter nota de conteúdo e data de geração em índice documental único.
+4. **Bundles `.zip`** devem manter nota de conteúdo e data de geração em índice documental único, com checklist de aceitação concluído para promoção ao tronco principal (seção 5).
 
 ---
 
@@ -121,3 +121,21 @@
 - Índice de organização integral: [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
 - Índice mestre científico: [`docs/INDICE_MESTRE.md`](INDICE_MESTRE.md)
 - Log de reforma estrutural prévio: [`REFORM_LOG.md`](../REFORM_LOG.md)
+
+## 5) Checklist de aceitação para promoção de bundle ao tronco principal
+
+**Objetivo:** bloquear integração de bundles incompletos no fluxo de release documental/técnico.
+
+- [ ] **Links válidos:** README e documentos do bundle apontam apenas para caminhos existentes no repositório de destino.
+- [ ] **Sem duplicação de pipeline:** não introduz versões paralelas de scripts/datasets já canonizados sem justificativa e sem plano de migração.
+- [ ] **Caminhos canônicos definidos:** cada artefato crítico promovido possui caminho final único documentado em `docs/ZIP_CONTENT_INDEX.md`.
+- [ ] **Hash registrado:** SHA-256 do bundle registrado no índice técnico de conteúdo antes da promoção.
+- [ ] **Status de integração atualizado:** estado do bundle marcado como `não iniciado`, `em progresso` ou `concluído` no índice.
+
+### Vinculação com fluxo de releases
+
+Este checklist passa a ser **gate obrigatório** das releases que envolvem ingestão de bundles. Antes de fechar a release, a validação deve ser registrada em:
+
+1. `docs/ZIP_CONTENT_INDEX.md` (registro técnico do bundle e status de integração).
+2. `docs/RELEASE_NOTES_HISTORY.md` (entrada da release com escopo/impacto e referência ao bundle promovido).
+
