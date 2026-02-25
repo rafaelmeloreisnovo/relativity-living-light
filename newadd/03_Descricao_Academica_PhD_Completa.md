@@ -102,6 +102,34 @@ f(z) = 1 / {1 + exp[(z - zₜ)/wₜ]}   ,   z = a⁻¹ - 1
 
 **Vínculo de planura:** Ωr + Ωm + ΩΛ + Ωs₀ + ΩB₀ + ΩP₀ = 1 (para k=0)
 
+#### Radiação Cosmológica de Background (Ωr, N_eff, neutrinos)
+
+No formalismo mínimo, **Ωr** representa a soma dos componentes relativísticos primordiais:
+
+```
+Ωr = Ωγ + Ων,rel
+```
+
+com Ωγ associado aos fótons do CMB e Ων,rel aos neutrinos ainda relativísticos. A contribuição de neutrinos é parametrizada por **N_eff** (número efetivo de espécies relativísticas), tipicamente escrita como:
+
+```
+ρr = ργ · [1 + (7/8)·(4/11)^(4/3)·N_eff]
+```
+
+de modo que N_eff controla diretamente a fração radiativa em alto redshift e o ritmo de expansão pré-recombinação. Observacionalmente, a dependência principal aparece em:
+- **CMB** (posição/amortecimento dos picos acústicos, fase e altura relativa);
+- **BAO** (via escala de horizonte sonoro r_s e calibração da régua padrão).
+
+#### Radiação Astrofísica Local (feedback AGN/SMBH em SFR e aquecimento do gás)
+
+Este bloco corresponde a processos astrofísicos de pequena/média escala (halo-galáxia), em especial feedback de AGN/SMBH que regula formação estelar (**SFR**) e balanço térmico do gás (aquecimento ↔ resfriamento). No contexto RLL mínimo, tais efeitos entram como física bariônica efetiva sobre observáveis de estrutura:
+
+- modulação de eficiência de SFR em halos massivos;
+- injeção de energia térmica/cinética no meio circungaláctico;
+- alteração de perfis de gás e fração bariônica ligada.
+
+Esses termos **não reescrevem diretamente** a dinâmica FRW de fundo no modelo mínimo; atuam como correções de escala sub-horizonte sobre a conexão entre expansão de fundo e formação de estruturas.
+
 ### 2.2 Equação de Estado Efetiva
 
 A pressão e densidade do setor fotônico são:
@@ -190,6 +218,32 @@ Integração com:
 - Planck 2018 PR4 (CMB TT, TE, EE, lensing)
 - JWST (z > 6 AGN/SMBH — estrutura em formação)
 - SPARC galactic rotation curves (Lelli et al. 2016)
+
+#### Radiação Cosmológica de Background (Ωr, N_eff, neutrinos)
+
+No pipeline observacional, o bloco de radiação cosmológica fixa/ajusta a parte relativística de fundo por:
+
+```
+Ωr = Ωγ + Ων,rel(N_eff)
+```
+
+e pela parametrização:
+
+```
+ρr = ργ · [1 + (7/8)·(4/11)^(4/3)·N_eff]
+```
+
+Assim, N_eff entra como parâmetro de calibração da expansão em alto z e da escala acústica, sendo constrangido principalmente por combinações **CMB + BAO** no ajuste conjunto do modelo.
+
+#### Radiação Astrofísica Local (feedback AGN/SMBH em SFR e aquecimento do gás)
+
+Na etapa de validação, esse bloco é tratado separadamente como física astrofísica local (não-FRW de fundo), impactando observáveis de halo-galáxia:
+
+- SFR e eficiência de formação estelar;
+- aquecimento/resfriamento do gás bariônico;
+- assinaturas em massa SMBH, frações bariônicas e crescimento de estrutura em pequena escala.
+
+No RLL mínimo, tais termos permanecem como módulo complementar de inferência astrofísica e **não substituem** a equação de Friedmann base usada no ajuste cosmológico global.
 
 ### 3.2 Métricas de Seleção de Modelos
 
