@@ -64,8 +64,34 @@ H^2(z)=H_0^2\left[\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_f(z)\rig
 \]
 
 \[
+\Omega_{\mathrm{feedback}}(z)=\Omega_{\mathrm{rad,ativo}}(z)+\Omega_{\mathrm{MHD}}(z)+\Omega_{\mathrm{ion}}(z)
+\]
+
+com decomposição mínima:
+
+\[
+\Omega_{\mathrm{rad,ativo}}(z)=\beta_{\mathrm{rad}}\,\exp\left[-\frac{(z-z_{\mathrm{rad}})^2}{2w_{\mathrm{rad}}^2}\right],\qquad
+\Omega_{\mathrm{MHD}}(z)=\beta_{\mathrm{MHD}}\,\exp\left[-\frac{(z-z_{\mathrm{MHD}})^2}{2w_{\mathrm{MHD}}^2}\right],
+\]
+
+\[
+\Omega_{\mathrm{ion}}(z)=\beta_{\mathrm{ion}}\,\exp\left[-\frac{(z-z_{\mathrm{ion}})^2}{2w_{\mathrm{ion}}^2}\right]
+\]
+
+**Versão fenomenológica compacta (opcional, para comparação AIC/BIC):**
+
+\[
 \Omega_f(z)=\beta\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
+
+### B1.1 Mapeamento físico de parâmetros
+
+- \(\beta_{\mathrm{rad}},\beta_{\mathrm{MHD}},\beta_{\mathrm{ion}}\): amplitudes efetivas de cada canal de feedback no budget de energia cosmológica; \(\beta>0\) tende a **aquecimento/injeção** (supressão de SFR), enquanto \(\beta<0\) representa canal efetivo de **resfriamento/compensação** (potencial alívio de supressão).
+- \(z_{\mathrm{rad}},z_{\mathrm{MHD}},z_{\mathrm{ion}}\): redshift central de atuação dominante de cada processo (janela temporal de maior acoplamento físico).
+- \(w_{\mathrm{rad}},w_{\mathrm{MHD}},w_{\mathrm{ion}}\): largura da janela em redshift; valores maiores implicam efeito distribuído por intervalo mais amplo, valores menores concentram o impacto em episódio curto.
+- Na forma compacta, \((\beta,z_p,w)\) representam, respectivamente, amplitude líquida, época central e duração efetiva do feedback agregado.
+
+**Nota de consistência dimensional e normalização:** todas as contribuições \(\Omega_i(z)\) são definidas como frações de densidade normalizadas por \(\rho_{\mathrm{crit},0}=3H_0^2/(8\pi G)\), garantindo que cada termo no colchete de \(H^2(z)/H_0^2\) seja adimensional. Exigir \(H^2(z)>0\) em todo o intervalo analisado preserva a consistência física do fechamento.
 
 ### B2. Caminho 2 (modificação no crescimento; recomendado)
 
