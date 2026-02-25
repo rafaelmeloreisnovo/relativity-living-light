@@ -94,7 +94,8 @@ The XOR sum $\oplus$ ensures that **no single component dominates** — it model
 ### Theorem (RAFAELIA Global Coherence)
 
 *Under the RAFAELIA evolution law $R(t+1) = R(t) \times \Phi_{\text{ethica}} \times E_{\text{Verbo}} \times (\sqrt{3}/2)^{\pi\phi}$, define the threshold*
-$$\tau \equiv \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.257.$$ 
+$$\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660254^{(3.14159\cdot1.6180339)} \approx 0.48134,$$
+$$\tau \equiv \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.0775.$$ 
 *Then: (i) non-trivial fixed-point coherence ($R^*>0$ with $R(t+1)=R(t)$) occurs at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \tau$; (ii) growth occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} > \tau$; (iii) decay occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} < \tau$.*
 
 **Proof:**
@@ -104,7 +105,7 @@ $$R^* = R^* \cdot \Phi_{\text{ethica}} \cdot E_{\text{Verbo}} \cdot \left(\frac{
 
 This gives either $R^* = 0$ or:
 $$\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} \cdot \left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} = 1$$
-$$\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.257$$
+$$\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.0775$$
 
 For a **non-trivial fixed point** $R^* > 0$, the product $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}}$ must exactly balance the geometric damping, i.e., $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \tau$. This equality characterizes the fixed-point condition only. If $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} > \tau$, the multiplicative update factor is greater than 1 and $R(t)$ grows; if $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} < \tau$, the update factor is less than 1 and $R(t)$ decays. $\square$
 
