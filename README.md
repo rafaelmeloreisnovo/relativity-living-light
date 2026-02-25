@@ -115,6 +115,12 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 **Consistência de nomes (evitar duplicidade de entrada):**
 - `newadd/00_INDICE_ANALISE_PHD.md` é o índice canônico da trilha PhD para navegação no README raiz.
 - `newadd/00_INDEX.md` permanece como índice acadêmico geral do compêndio RAFAELIA (escopo amplo), sem substituir o índice PhD acima.
+**Relação com os domínios 01–07 (arcabouço RAFAELIA em `newadd/00_INDEX.md`):**
+- **[01] Matemática + [02] Física + [05] Estatística:** base quantitativa da análise em `01_RLL_DESI_CrossAnalysis_PhD.md`.
+- **[01] Matemática + [02] Física + [04] Geometria + [05] Estatística + [07] Síntese:** formalizações e provas em `02_Formulacoes_Latentes_RAFAELIA_RLL.md`.
+- **[01]–[07] (integração completa):** enquadramento acadêmico, metodologia e posicionamento em `03_Descricao_Academica_PhD_Completa.md`.
+
+**Consistência de nomes (evitar duplicidade):** usar `newadd/00_INDICE_ANALISE_PHD.md` como entrada canônica da trilha PhD em PT-BR; manter `newadd/00_INDEX.md` como índice técnico complementar (escopo acadêmico em inglês), sem cadastrar ambos como "índice principal".
 
 ---
 

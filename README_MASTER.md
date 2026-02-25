@@ -197,6 +197,25 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 - [Números](docs/numeros_rafaelianos/Numeros.md)
 - [Harmônica](docs/numeros_rafaelianos/harmonica.md)
 
+### Documentação complementar — Trilha de análise PhD (`newadd/`)
+- [Índice da análise PhD](newadd/00_INDICE_ANALISE_PHD.md)
+- [RLL × DESI — Cross Analysis (PhD)](newadd/01_RLL_DESI_CrossAnalysis_PhD.md)
+- [Formulações Latentes — RAFAELIA/RLL](newadd/02_Formulacoes_Latentes_RAFAELIA_RLL.md)
+- [Descrição Acadêmica PhD Completa](newadd/03_Descricao_Academica_PhD_Completa.md)
+
+**Ordem recomendada de leitura**
+1. `newadd/00_INDICE_ANALISE_PHD.md`
+2. `newadd/01_RLL_DESI_CrossAnalysis_PhD.md`
+3. `newadd/02_Formulacoes_Latentes_RAFAELIA_RLL.md`
+4. `newadd/03_Descricao_Academica_PhD_Completa.md`
+
+**Relação com os domínios 01–07 (RAFAELIA em `newadd/00_INDEX.md`)**
+- **[01] Matemática + [02] Física + [05] Estatística:** base quantitativa em `01_RLL_DESI_CrossAnalysis_PhD.md`.
+- **[01] Matemática + [02] Física + [04] Geometria + [05] Estatística + [07] Síntese:** formalizações e provas em `02_Formulacoes_Latentes_RAFAELIA_RLL.md`.
+- **[01]–[07] (integração completa):** enquadramento acadêmico e metodologia em `03_Descricao_Academica_PhD_Completa.md`.
+
+**Consistência de nomes (evitar duplicidade):** `newadd/00_INDICE_ANALISE_PHD.md` é a entrada canônica da trilha PhD em PT-BR; `newadd/00_INDEX.md` permanece como índice técnico complementar em inglês.
+
 ### Notebooks e Análises
 - [Hz_superposicao.ipynb](data/Hz_superposicao.ipynb) — Análise de H(z)
 - [density_decomp.ipynb](data/density_decomp.ipynb) — Decomposição de densidade
