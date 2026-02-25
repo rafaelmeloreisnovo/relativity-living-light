@@ -172,13 +172,32 @@ The XOR union of preserved values defines the **minimal sufficient representatio
 
 ### 7.1 Master Synthesis Claim
 
-$$\text{Coerência} \times \text{Amor} \times \text{Prova} = \text{Maximum}$$
+Define normalized decision variables
+$$c:=\frac{\mathcal{C}}{\mathcal{C}_{\max}},\quad a:=\frac{\text{Amor}}{\text{Amor}_{\max}},\quad p:=\frac{\text{Prova}}{\text{Prova}_{\max}},\quad h:=\frac{H}{H_{\max}}$$
+with $h$ induced by the Shannon entropy $H=-\sum_i p_i\log p_i$ from Domain V.
 
-**Proof sketch:**
-1. By $\Phi_{\text{ethica}} = \text{Min}(H) \times \text{Max}(\mathcal{C})$, coherence is maximized at the ethical ground state.
-2. By $\Phi_{\text{ethica}}^\infty = e^{(\text{Amor}+\text{Verbo}) \cdot (\text{Verdade}/\text{Consciência})} - 1$, Love amplifies the ethical field super-linearly.
-3. By the CaminhoVivo metric, Proof (Aprendizado) compounds with forgiveness to yield stable path growth.
-4. Therefore, at the ethical ground state under maximum Love amplification with accumulated proof: the product $\mathcal{C} \times \text{Amor} \times \text{Prova}$ achieves its supremum. $\square$
+Then the master synthesis is the constrained optimization problem
+$$
+\begin{aligned}
+\max_{(c,a,p,h)\in\mathcal{D}}\; J(c,a,p,h)
+&:= c\,a\,p - \lambda_H h \\
+\text{s.t.}\quad
+&\text{(normalization)}\; c,a,p,h\in[0,1],\; \sum_i p_i=1,\; p_i\ge 0,\\
+&\text{(positivity)}\; c\ge c_{\min}>0,\; a\ge a_{\min}>0,\; p\ge p_{\min}>0,\\
+&\text{(stability)}\; \dot V\le 0\;\text{for }V\equiv\Phi_{\text{ethica}},\; R_\Omega\ge 0.75,\\
+&\text{(entropy-coherence coupling)}\; h\le 1-c.
+\end{aligned}
+$$
+where $\lambda_H>0$ penalizes entropy and closes the objective with the entropy/coherence metrics in `05_STATISTICS.md`.
+
+**Result type:** under hypotheses (H1) compact feasible set $\mathcal{D}$, (H2) non-empty interior, and (H3) continuity of $J$, the optimizer exists by Weierstrass and yields a **global maximum** $J^*=\max_{\mathcal{D}}J$.
+
+**Proof sketch (explicit hypotheses):**
+1. **(H1, H3)** Because $\mathcal{D}\subset[0,1]^4$ plus linear/closed inequalities is compact and $J$ is continuous, a global maximizer exists.
+2. **(H4: entropy minimization + coherence maximization)** From Domain V, $\Phi_{\text{ethica}}=\text{Min}(H)\times\text{Max}(\mathcal{C})$ and $h\le 1-c$ imply lower entropy raises feasible coherence; therefore the term $-\lambda_H h$ is minimized when coherence is high.
+3. **(H5: amplification monotonicity)** From $\Phi_{\text{ethica}}^\infty=e^{(\text{Amor}+\text{Verbo})(\text{Verdade}/\text{Consciência})}-1$, the objective is monotone in $a$ over the admissible regime, so increasing Love increases $J$ while stability holds.
+4. **(H6: proof-growth boundedness)** CaminhoVivo guarantees bounded/stable accumulation of Aprendizado (Prova), so $p$ can increase toward its admissible upper region without violating $\dot V\le0$.
+5. Hence the constrained system attains a **global maximum** of the ethical synthesis objective on $\mathcal{D}$. $\square$
 
 ---
 
@@ -203,7 +222,7 @@ RAFAELIA's ethical systems theory establishes:
 4. The Humility Checkpoint as Bayesian epistemic calibration
 5. CaminhoVivo as a sub-linear health trajectory (error-resilient)
 6. Eternal Legacy as a lifecycle integration metric
-7. Formal proof that Coherence × Love × Proof reaches maximum at the ethical ground state
+7. Formal constrained-optimization proof that the ethical synthesis objective attains a global maximum on the stable feasible set
 
 ---
 
