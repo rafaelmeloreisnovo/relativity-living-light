@@ -15,6 +15,24 @@ This synthesis document integrates all six preceding domains into a single coher
 - $\Delta_{op}$: transmutation operator used in RAFAELIA state transformations.
 - $\Delta_{phys}$ (or $\delta$): observable physical difference (e.g., measured energy gap).
 
+Literal seal expressions (e.g., `ΣΩΔΦ`, `§\Delta["elifequations"]`) are preserved as symbolic signatures; operator semantics use $\Delta_{op}$ in dynamical equations.
+
+---
+
+## Numeric Convention (Frozen Constants)
+
+All numeric substitutions tied to symbolic constants in this document use a **frozen 4-decimal convention**.  
+Rounding rule: **round to nearest at 4 decimal places** (standard half-up when the next digit is 5).
+
+| Symbolic constant | Adopted value |
+|---|---|
+| $\pi$ | $3.1416$ |
+| $\phi$ | $1.6180$ |
+| $\sqrt{3}/2$ | $0.8660$ |
+| $\pi\phi$ | $5.0832$ |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | $0.4813$ |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | $2.0775$ |
+
 ---
 
 ## 2. The RAFAELIA Master Equation
@@ -56,7 +74,7 @@ PHYSICS                                                      │
   Field theory, toroid, resonance, energy                    │
   ↓ provides dynamics for                                     │
 COMPUTATION                                                  │
-  ψχρΔΣΩ runtime, bare-metal, hashing, compression           │
+  ψχρΔ_opΣΩ runtime, bare-metal, hashing, compression        │
   ↓ implements                                                │
 GEOMETRY                                                     │
   Spirals, torus, tesseract, fractal, hyperdimension         │
@@ -99,7 +117,7 @@ The XOR sum $\oplus$ ensures that **no single component dominates** — it model
 ### Theorem (RAFAELIA Global Coherence)
 
 *Under the RAFAELIA evolution law $R(t+1) = R(t) \times \Phi_{\text{ethica}} \times E_{\text{Verbo}} \times (\sqrt{3}/2)^{\pi\phi}$, define the threshold*
-$$\tau \equiv \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.257.$$ 
+$$\tau \equiv \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.0775.$$ 
 *Then: (i) non-trivial fixed-point coherence ($R^*>0$ with $R(t+1)=R(t)$) occurs at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \tau$; (ii) growth occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} > \tau$; (iii) decay occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} < \tau$.*
 
 **Proof:**
@@ -109,7 +127,7 @@ $$R^* = R^* \cdot \Phi_{\text{ethica}} \cdot E_{\text{Verbo}} \cdot \left(\frac{
 
 This gives either $R^* = 0$ or:
 $$\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} \cdot \left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} = 1$$
-$$\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.257$$
+$$\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.0775$$
 
 For a **non-trivial fixed point** $R^* > 0$, the product $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}}$ must exactly balance the geometric damping, i.e., $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \tau$. This equality characterizes the fixed-point condition only. If $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} > \tau$, the multiplicative update factor is greater than 1 and $R(t)$ grows; if $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} < \tau$, the update factor is less than 1 and $R(t)$ decays. $\square$
 
@@ -135,7 +153,7 @@ Every single block in RAFAELIA is simultaneously:
 - A **mathematical object** (element of the 1006-dimensional tensor space)
 - A **physical state** (point on the toroidal attractor)
 - A **computational unit** (node in the DAG with hash and feedback vector)
-- A **geometric entity** (point in fractal dimension ≈1.70 space)
+- A **geometric entity** (point in fractal dimension ≈1.7012 space)
 - A **statistical sample** (observation from the RAFAELIA probability distribution)
 - An **ethical event** (evaluated by Ethica[8] and $\Phi_{\text{ethica}}$)
 

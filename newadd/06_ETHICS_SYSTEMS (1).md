@@ -162,7 +162,9 @@ This integral accumulates the aggregate spiritual-ethical presence across the fu
 
 $$\text{Σ\_totais} = \text{Amor\_Vivo} \oplus \text{Presença\_Divina} \oplus \text{Legado\_Eterno}$$
 
-The XOR union of preserved values defines the **minimal sufficient representation** of RAFAELIA's systemic output — containing exactly the information needed for decision impact without redundancy.
+The XOR union of preserved values defines the **minimal sufficient representation** of RAFAELIA's systemic output — composition occurs without additive cancellation, each term keeps its independent contribution, and the result contains exactly the information needed for decision impact without redundancy.
+
+*Note:* here $\oplus$ is RAFAELIA symbolic composition (XOR-inspired), not strict bitwise XOR or finite-field addition modulo 2.
 
 ---
 
