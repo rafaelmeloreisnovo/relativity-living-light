@@ -37,6 +37,15 @@ f\sigma_8(z)=\Omega_m(z)^\gamma\sigma_{8,0}S(z),\quad S(z)=1-\alpha\exp\left[-\f
 - ganho estatístico vs ΛCDM (ΔAIC < 0 ou ΔBIC ~ 0);
 - pelo menos uma predição observável nova.
 
+### Parâmetros mínimos adicionais (priors curtos e escala de atuação)
+
+| Parâmetro | Definição explícita | Prior curto sugerido | Escala de atuação | Dataset de calibração/validação |
+| --- | --- | --- | --- | --- |
+| `N_eff` | número efetivo de espécies relativísticas no setor de radiação de fundo (normalização de neutrinos relativísticos em `Ωr`) | uniforme em `[2.5, 3.5]` (centrado no padrão cosmológico `~3.046`, margem conservadora) | `FRW global` | CMB (Planck) + BBN |
+| `Ωr` | densidade de radiação total hoje (fótons + neutrinos relativísticos), usada em `H^2(z)` no termo `(1+z)^4` | positivo e pequeno: log-uniforme em `[1e-6, 1e-3]` | `FRW global` | CMB (Planck), BAO e cronômetros cósmicos `H(z)` |
+| `ε_feedback` | eficiência efetiva de acoplamento do feedback AGN/SMBH ao gás (fração de energia que realmente acopla ao meio bariônico) | uniforme em `[0, 1]` (ou subintervalo físico, p.ex. `[0.01, 0.3]`, quando a corrida exigir maior regularização) | `halo-galáxia` | perfis CGM/IGM, supressão de SFR em vizinhança de quasares JWST |
+| `f_duty` | fração de duty cycle AGN/SMBH (fração temporal em fase ativa com injeção efetiva) | uniforme em `[0, 1]` | `halo-galáxia` | função de luminosidade AGN e fração de AGNs ativos por redshift (JWST + catálogos quasar) |
+
 ## C) Análise máxima (estado da arte)
 
 - **SMBH cedo demais:** avaliar super-Eddington e sementes pesadas/colapso direto.
@@ -55,4 +64,3 @@ f\sigma_8(z)=\Omega_m(z)^\gamma\sigma_{8,0}S(z),\quad S(z)=1-\alpha\exp\left[-\f
 2. Rodar o pipeline de validação real (`docs/rll_validation_real.py`).
 3. Publicar comparação final em `results/model_comparison.csv` (arquivo-alvo para versão de paper).
 4. Atualizar discussão e conclusão no manuscrito principal (`main.tex` e/ou `docs/PAPER_CORRIGIDO.tex`).
-
