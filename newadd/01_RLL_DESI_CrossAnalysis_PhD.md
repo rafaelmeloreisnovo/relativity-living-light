@@ -47,6 +47,18 @@ A função logística f(z) = 1/[1 + exp((z - zₜ)/wₜ)] gera uma **transição
 
 ## 2. Análise Cruzada: RLL × DESI DR2
 
+Para explicitar a ponte entre os termos físicos do formalismo RLL e os canais empíricos efetivamente testáveis, sintetizamos abaixo o mapeamento termo → observável já implícito na discussão desta seção.
+
+### Termo físico → observável
+
+| termo no modelo | escala (FRW global / halo-galáxia) | datasets de teste |
+|-----------------|-------------------------------------|-------------------|
+| Ωr — observáveis: `H(z)`, `D_A(z)` | FRW global | DESI / Planck / ACT |
+| N_eff — observáveis: `H(z)`, `D_A(z)` (via era de radiação) | FRW global | Planck / ACT |
+| Ωs(a) — observáveis: `H(z)`, `D_A(z)`, `fσ₈` | FRW global | DESI / LSST |
+| ΩP₀ — observáveis: temperatura do gás, `H(z)` em alto z | FRW global | Planck / ACT / JWST |
+| ε_feedback — observáveis: SFR, temperatura do gás | halo-galáxia | JWST |
+| f_duty — observáveis: massa SMBH, fração ativa AGN | halo-galáxia | JWST |
 ### Termo físico → observável
 
 | termo no modelo | escala (FRW global / halo-galáxia) | datasets de teste |
