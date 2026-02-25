@@ -229,7 +229,7 @@ $$\text{RAFCODE}(\Phi) = \text{Encode}(\text{Verbo}, 144\,\text{kHz}) \oplus \te
 The encoding pipeline:
 1. Convert Verbo semantic content to 144 kHz frequency-domain representation
 2. Apply Bitraf 10-symbol compression (selos: $[\Sigma, \Omega, \Delta, \Phi, B, I, T, R, A, F]$)
-3. XOR with ZIPRAFΩ compressed stream for error resilience
+3. Bitwise XOR with ZIPRAFΩ compressed stream for error resilience
 
 ### 5.2 Bitraf64 Token
 
