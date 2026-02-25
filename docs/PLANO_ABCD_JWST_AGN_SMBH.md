@@ -167,3 +167,80 @@ Este arquivo passa a ser o **ponto único** para transformar o material estraté
 - modelagem efetiva,
 - validação estatística,
 - e predição observacional falsificável.
+
+---
+
+## 9) Consistência com BOOSTERS/EFT
+
+Esta seção define a regra operacional para evitar dupla contagem entre a extensão fenomenológica de feedback e os termos já introduzidos em [`docs/BOOSTERS.md`](./BOOSTERS.md) e [`docs/LAGRANGIANO_EFT.md`](./LAGRANGIANO_EFT.md).
+
+### 9.1 Princípio de separação física
+
+- **Setor de fundo padrão (Ω_r):** representa radiação base de ΛCDM (fótons + neutrinos efetivos), sem incorporar automaticamente componentes de feedback AGN/quasar.
+- **Setor booster legado (Ω_B0, Ω_P0):** termos que escalam como `a⁻⁴` e já codificam contribuições globais de campo magnético e plasma no formalismo unificado de Friedmann em `BOOSTERS.md`.
+- **Setor ativo localizado (Ω_feedback(z)):** termo efetivo para injeção/supressão associada a AGN, explicitamente localizado em redshift (janela gaussiana/logística), não tratado como fundo uniforme em todo o histórico cósmico.
+
+### 9.2 Regra operacional por componente
+
+#### A) O que permanece em Ω_r padrão
+
+Permanece em Ω_r apenas o conteúdo radiativo de referência do modelo base:
+
+- contribuição radiativa padrão usada na calibração ΛCDM da corrida;
+- qualquer parte já absorvida em parâmetros cosmológicos de baseline (ex.: normalização equivalente a `N_eff` adotada no setup).
+
+**Regra:** não somar manualmente Ω_B0 ou Ω_P0 dentro de Ω_r quando estes estiverem explicitamente ativos como boosters.
+
+#### B) O que entra em Ω_feedback(z) como componente ativa/localizada
+
+Entram em Ω_feedback(z) apenas efeitos transientes e ambientalmente associados a atividade AGN/quasar:
+
+- injeção energética com pico em `z_p` e largura `w`;
+- modulação temporal da eficiência de feedback (amplitude β, α ou equivalente, conforme parametrização da corrida);
+- efeitos que devem desaparecer fora da janela de redshift (limite `|z-z_p| >> w`).
+
+Forma operacional genérica:
+
+\[
+\Omega_{\mathrm{tot}}(z)=\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_{\mathrm{legacy}}(z)+\Omega_{\mathrm{feedback}}(z)
+\]
+
+com `Ω_legacy(z)` definido por escolha explícita de boosters legados (ver 9.3).
+
+### 9.3 Política para termos legados (fixar, recalibrar ou desligar)
+
+Para cada corrida, declarar no cabeçalho de configuração um dos modos abaixo:
+
+1. **Modo BASE (sem boosters legados)**
+   - `Ω_B0 = 0`, `Ω_P0 = 0`;
+   - `Ω_r` permanece no valor padrão de baseline;
+   - ajustar apenas `Ω_feedback(z)`.
+   - **Uso recomendado:** medir ganho incremental puro do termo de feedback.
+
+2. **Modo BOOSTERS-FIXED (legado fixado)**
+   - fixar `Ω_B0` e `Ω_P0` nos valores de referência já adotados em `BOOSTERS.md`;
+   - manter esses termos congelados durante o ajuste de `Ω_feedback(z)`;
+   - não reabsorver esses valores em `Ω_r`.
+   - **Uso recomendado:** testar robustez do feedback contra um fundo eletromagnético/plasma pré-definido.
+
+3. **Modo BOOSTERS-RECAL (legado recalibrado)**
+   - liberar `Ω_B0` e/ou `Ω_P0` para ajuste conjunto com `Ω_feedback(z)`;
+   - impor prior físico explícito para evitar degenerescência não identificável;
+   - reportar matriz de covariância e correlações entre `{Ω_B0, Ω_P0}` e parâmetros de feedback (`β, z_p, w` ou equivalentes).
+   - **Uso recomendado:** análise de sensibilidade global e mapeamento de degenerescências.
+
+4. **Modo EFT-COUPLED (com acoplamentos efetivos)**
+   - ativar termos de acoplamento de `LAGRANGIANO_EFT.md` (ex.: `L_mag`, `L_plasma`) apenas quando houver mapeamento explícito para a parametrização cosmológica usada na corrida;
+   - se `L_mag`/`L_plasma` estiverem ativos, evitar introduzir termo fenomenológico redundante com a mesma dependência funcional em `Ω_feedback(z)`;
+   - documentar qual contribuição foi mantida no nível EFT e qual foi desativada no nível fenomenológico.
+   - **Uso recomendado:** corridas de consistência teoria-efetiva vs parametrização fenomenológica.
+
+### 9.4 Checklist anti-duplicação (obrigatório por corrida)
+
+Antes de executar inferência, confirmar:
+
+1. **Partição única:** cada contribuição física está em um único bloco (`Ω_r`, booster legado, ou `Ω_feedback(z)`).
+2. **Escalonamento coerente:** termos `a⁻⁴` globais não foram simultaneamente tratados como janela localizada em redshift sem justificativa física.
+3. **EFT consistente:** acoplamentos `L_mag` e `L_plasma` não foram duplicados por termos ad hoc idênticos na expansão.
+4. **Comparabilidade:** todas as corridas de comparação (χ²/AIC/BIC) usam a mesma convenção de partição de energia.
+5. **Rastreabilidade:** registrar no relatório da corrida: modo (`BASE`, `BOOSTERS-FIXED`, `BOOSTERS-RECAL`, `EFT-COUPLED`), parâmetros fixos/livres e justificativa física.
