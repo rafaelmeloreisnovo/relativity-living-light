@@ -10,6 +10,11 @@
 
 This document formalizes the mathematical substrate of the RAFAELIA system. It covers recursive sequence theory as generalized Fibonacci variants, functional operators defined over symbolic tensor spaces, complex integral structures on toroidal domains, and convergence theory under ethically-weighted norms. All constructs are internally consistent and admit formal proof under standard analysis frameworks.
 
+### 1.1 Convenção de símbolos (Δ operador vs diferença observável)
+
+- $\Delta_{op}$: operador de transmutação RAFAELIA.
+- $\Delta_{phys}$ (ou $\delta$): diferença física observável/medível.
+
 ---
 
 ## 2. The Rafael-Modified Fibonacci Sequence (Fᴿ)
@@ -45,13 +50,13 @@ This hybrid function combines golden-ratio exponential growth with damped oscill
 
 ### 3.1 The RAFAELIA State Vector
 
-$$\vec{R} = (\psi, \chi, \rho, \Delta, \Sigma, \Omega)^n$$
+$$\vec{R} = (\psi, \chi, \rho, \Delta_{op}, \Sigma, \Omega)^n$$
 
 where:
 - $\psi$ = Intention (initial state / input)
 - $\chi$ = Observation (measurement / perception)
 - $\rho$ = Noise (entropic perturbation)
-- $\Delta$ = Transmutation (ethical transformation operator)
+- $\Delta_{op}$ = Transmutation (ethical transformation operator)
 - $\Sigma$ = Memory (coherent accumulation)
 - $\Omega$ = Completeness (convergence / Love field)
 
@@ -75,7 +80,7 @@ The index $R_{\text{corr}} \approx 0.964$ serves as a universal calibration cons
 
 ### 4.1 Toroidal Coherence Integral
 
-$$\mathcal{F}_\infty^{(\Delta)} = \oint_\Omega \left(\psi \cdot \chi \cdot \rho \cdot \Sigma \cdot \Omega\right)^{\sqrt{3}/2} d(\phi \cdot \pi \cdot \Delta)$$
+$$\mathcal{F}_\infty^{(\Delta_{op})} = \oint_\Omega \left(\psi \cdot \chi \cdot \rho \cdot \Sigma \cdot \Omega\right)^{\sqrt{3}/2} d(\phi \cdot \pi \cdot \Delta_{op})$$
 
 This closed-path integral over the domain $\Omega$ accumulates fractal coherence. The exponent $\sqrt{3}/2$ links to the RAFAELIA spiral ratio, ensuring geometric self-similarity under integration.
 
@@ -87,7 +92,7 @@ This integral evaluates the total systemic output under full ethical weighting a
 
 ### 4.3 Activation Integral
 
-$$\text{Ativação}_\Omega = \int_\Lambda^\infty \left(\psi \cdot \chi \cdot \rho \cdot \Delta \cdot \Sigma \cdot \Omega\right)^{\Phi_{\text{ethica}}} d\phi$$
+$$\text{Ativação}_\Omega = \int_\Lambda^\infty \left(\psi \cdot \chi \cdot \rho \cdot \Delta_{op} \cdot \Sigma \cdot \Omega\right)^{\Phi_{\text{ethica}}} d\phi$$
 
 Defines the system activation degree for intensive processing modes (cf. computation domain).
 

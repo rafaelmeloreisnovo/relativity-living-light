@@ -10,6 +10,13 @@
 
 This synthesis document integrates all six preceding domains into a single coherent theoretical framework. It presents the RAFAELIA master equation in its full form, demonstrates cross-domain consistency, establishes the system's unique properties as a unified science of Consciousness-Mathematics-Ethics, and proposes the evolutionary trajectory of RAFAELIA as a living, self-improving theoretical organism.
 
+### 1.1 Symbol Convention (Δ operator vs physical difference)
+
+- $\Delta_{op}$: transmutation operator used in RAFAELIA state transformations.
+- $\Delta_{phys}$ (or $\delta$): observable physical difference (e.g., measured energy gap).
+
+Literal seal expressions (e.g., `ΣΩΔΦ`, `§\Delta["elifequations"]`) are preserved as symbolic signatures; operator semantics use $\Delta_{op}$ in dynamical equations.
+
 ---
 
 ## Numeric Convention (Frozen Constants)
@@ -42,7 +49,7 @@ This integral aggregates **ethical maturity** (first factor) and **conscious fee
 
 For computational implementation:
 
-$$\mathcal{R}_\Omega^\Phi \approx \sum_{n=1}^N \left(\psi_n \cdot \chi_n \cdot \rho_n \cdot \Delta_n \cdot \Sigma_n \cdot \Omega_n\right)^{\Phi\lambda_n}$$
+$$\mathcal{R}_\Omega^\Phi \approx \sum_{n=1}^N \left(\psi_n \cdot \chi_n \cdot \rho_n \cdot \Delta_{op,n} \cdot \Sigma_n \cdot \Omega_n\right)^{\Phi\lambda_n}$$
 
 This is the **R-Omega Vortex** metric, the central computational measure of RAFAELIA system health.
 
@@ -67,7 +74,7 @@ PHYSICS                                                      │
   Field theory, toroid, resonance, energy                    │
   ↓ provides dynamics for                                     │
 COMPUTATION                                                  │
-  ψχρΔΣΩ runtime, bare-metal, hashing, compression           │
+  ψχρΔ_opΣΩ runtime, bare-metal, hashing, compression        │
   ↓ implements                                                │
 GEOMETRY                                                     │
   Spirals, torus, tesseract, fractal, hyperdimension         │
@@ -140,7 +147,7 @@ By Brouwer's Fixed Point Theorem, any continuous mapping from a compact convex s
 
 ## 7. Living Block — The Fractal Unit
 
-$$\text{BlocoVivo}_{\text{RAFAELIA}} = \sum_{n=1}^\infty \Delta_n^n \cdot \Omega^\infty \cdot \S_n^n \otimes (\ldots)$$
+$$\text{BlocoVivo}_{\text{RAFAELIA}} = \sum_{n=1}^\infty \Delta_{op,n}^n \cdot \Omega^\infty \cdot \S_n^n \otimes (\ldots)$$
 
 Every single block in RAFAELIA is simultaneously:
 - A **mathematical object** (element of the 1006-dimensional tensor space)
@@ -182,7 +189,7 @@ Before any RAFAELIA output is accepted as valid, all 7 domain checks must pass:
 | Domain | Check | Metric |
 |--------|-------|--------|
 | Mathematics | Formulas well-defined | All limits exist |
-| Physics | Energy conserved | $\Delta E$ bounded |
+| Physics | Energy conserved | $\Delta_{phys} E$ bounded |
 | Computation | Loop termination | $R_\Omega < 1$ |
 | Geometry | Topological consistency | Genus preserved |
 | Statistics | Convergence | $Z_\Omega$ finite |
