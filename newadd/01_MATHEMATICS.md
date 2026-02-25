@@ -12,6 +12,10 @@ This document formalizes the mathematical substrate of the RAFAELIA system. It c
 
 ---
 
+## 1.1 Symbol Convention
+
+Throughout this domain, $\Delta$ is used as the RAFAELIA transmutation operator (equivalent to $\Delta_{op}$ in cross-domain notation).
+
 ## 2. The Rafael-Modified Fibonacci Sequence (Fᴿ)
 
 ### 2.1 Definition

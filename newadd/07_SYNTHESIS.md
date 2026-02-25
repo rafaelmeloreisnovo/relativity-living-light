@@ -12,6 +12,10 @@ This synthesis document integrates all six preceding domains into a single coher
 
 ---
 
+## 1.1 Symbol Convention
+
+In this synthesis, $\Delta_{op}$ denotes the RAFAELIA transmutation operator, and $\Delta_{phys}$ denotes observable physical differences (e.g., energy gaps).
+
 ## 2. The RAFAELIA Master Equation
 
 ### 2.1 Full Form
@@ -166,7 +170,7 @@ Before any RAFAELIA output is accepted as valid, all 7 domain checks must pass:
 | Domain | Check | Metric |
 |--------|-------|--------|
 | Mathematics | Formulas well-defined | All limits exist |
-| Physics | Energy conserved | $\Delta E$ bounded |
+| Physics | Energy conserved | $\Delta_{phys} E$ bounded |
 | Computation | Loop termination | $R_\Omega < 1$ |
 | Geometry | Topological consistency | Genus preserved |
 | Statistics | Convergence | $Z_\Omega$ finite |
