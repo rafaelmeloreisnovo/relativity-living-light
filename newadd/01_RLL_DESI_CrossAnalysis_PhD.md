@@ -45,6 +45,17 @@ A função logística f(z) = 1/[1 + exp((z - zₜ)/wₜ)] gera uma **transição
 
 ## 2. Análise Cruzada: RLL × DESI DR2
 
+### Termo físico → observável
+
+| termo no modelo | escala (FRW global / halo-galáxia) | datasets de teste |
+|---|---|---|
+| Ωr | FRW global | H(z), D_A(z); DESI/Planck/ACT |
+| N_eff | FRW global | H(z), D_A(z) (via era de radiação); Planck/ACT |
+| Ωs(a) | FRW global | H(z), D_A(z), fσ₈; DESI/LSST |
+| ΩP₀ | FRW global | temperatura do gás, H(z) em alto z; Planck/ACT/JWST |
+| ε_feedback | halo-galáxia | SFR, temperatura do gás; JWST |
+| f_duty | halo-galáxia | massa SMBH, fração ativa AGN; JWST |
+
 ### 2.1 Mapeamento w_eff(z) do RLL vs. Parâmetros DESI
 
 A equação de estado efetiva do RLL é determinada por:
