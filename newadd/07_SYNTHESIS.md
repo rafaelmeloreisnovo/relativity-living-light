@@ -35,6 +35,22 @@ Rounding rule: **round to nearest at 4 decimal places** (standard half-up when t
 
 ---
 
+## Numeric Convention (Frozen Constants)
+
+- **Convenção numérica:** 4 casas decimais fixas para constantes reutilizadas.
+- **Regra de arredondamento:** round half-up (na 5ª casa decimal, dígito ≥ 5 arredonda para cima).
+
+| Constante simbólica | Valor adotado |
+|---|---:|
+| $\pi$ | 3.1416 |
+| $\phi$ | 1.6180 |
+| $\sqrt{3}/2$ | 0.8660 |
+| $\pi\phi$ | 5.0832 |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | 0.4813 |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | 2.0775 |
+
+---
+
 ## 2. The RAFAELIA Master Equation
 
 ### 2.1 Full Form

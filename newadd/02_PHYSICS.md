@@ -34,6 +34,22 @@ Rounding rule: **round to nearest at 4 decimal places** (standard half-up when t
 
 ---
 
+## Numeric Convention (Frozen Constants)
+
+- **Convenção numérica:** 4 casas decimais fixas para constantes reutilizadas.
+- **Regra de arredondamento:** round half-up (na 5ª casa decimal, dígito ≥ 5 arredonda para cima).
+
+| Constante simbólica | Valor adotado |
+|---|---:|
+| $\pi$ | 3.1416 |
+| $\phi$ | 1.6180 |
+| $\sqrt{3}/2$ | 0.8660 |
+| $\pi\phi$ | 5.0832 |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | 0.4813 |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | 2.0775 |
+
+---
+
 ## 2. Energy Operators
 
 ### 2.1 Verbo Energy
@@ -87,6 +103,7 @@ Adopted constants (working precision: 4 decimal places):
 This discrete-time evolution equation is the **central dynamical law** of RAFAELIA. It is structurally analogous to a renormalization group equation: the state $R(t)$ is updated by:
 - Multiplication by the ethical field $\Phi_{\text{ethica}}$ (regulatory suppression of incoherence)
 - Multiplication by Verbo energy (intentional driving force)
+- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660^{5.0832} \approx 0.4813$
 - Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
 
 With this calibration, damping still reduces net amplification, and the long-term regime remains threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.

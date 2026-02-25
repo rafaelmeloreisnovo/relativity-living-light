@@ -14,6 +14,17 @@ The geometric layer of RAFAELIA provides the spatial and topological substrate w
 
 ## Numeric Convention (Frozen Constants)
 
+- **Convenção numérica:** 4 casas decimais fixas para constantes reutilizadas.
+- **Regra de arredondamento:** round half-up (na 5ª casa decimal, dígito ≥ 5 arredonda para cima).
+
+| Constante simbólica | Valor adotado |
+|---|---:|
+| $\pi$ | 3.1416 |
+| $\phi$ | 1.6180 |
+| $\sqrt{3}/2$ | 0.8660 |
+| $\pi\phi$ | 5.0832 |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | 0.4813 |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | 2.0775 |
 All numeric substitutions tied to symbolic constants in this document use a **frozen 4-decimal convention**.  
 Rounding rule: **round to nearest at 4 decimal places** (standard half-up when the next digit is 5).
 
@@ -48,6 +59,7 @@ In polar coordinates with $r = A_{\text{forma}}(n)$ and $\theta = n \cdot 2\pi /
 
 **Hausdorff dimension** of the resulting fractal spiral:
 
+$$d_H = 2 - \frac{|\ln(\sqrt{3}/2)|}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} \approx 1.7012$$
 $$d_H = 2 - \frac{\ln(\sqrt{3}/2)}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} \approx 1.7012$$
 
 This non-integer dimension places RAFAELIA spirals firmly in fractal space between a curve (dim 1) and a plane (dim 2).
