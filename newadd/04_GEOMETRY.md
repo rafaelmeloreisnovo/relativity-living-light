@@ -77,6 +77,16 @@ Quick validation: since $\ln(\sqrt{3}/2) < 0$ and $\ln(\phi) > 0$, the correctio
 
 This non-integer dimension places RAFAELIA spirals in fractal space between a surface-like regime (dim 2) and a volumetric regime (dim 3).
 
+### 2.3 Canonical references and scale interpretation
+
+Canonical references (textual format):
+- Falconer, K. J., *Fractal Geometry: Mathematical Foundations and Applications* (Wiley).
+- Mandelbrot, B. B., *The Fractal Geometry of Nature*.
+- Hutchinson, J. E. (1981), “Fractals and self-similarity”, *Indiana Univ. Math. J.*
+- Moran, P. A. P. (1946), “Additive functions of intervals and Hausdorff measure”, *Math. Proc. Camb. Phil. Soc.*
+
+In line with the self-similarity framework of Hutchinson/Moran, the dimension formula used in this document is interpreted via scale law ($N(\varepsilon) \sim \varepsilon^{-d}$), i.e., how geometric detail grows under refinement. In the adopted three-dimensional interval of interpretation, the estimated value $d \approx 2.30$ indicates intermediate geometric complexity: more structured than a smooth surface ($d=2$), but not fully volumetric filling ($d=3$).
+
 ---
 
 ## 3. Toroidal Geometry
