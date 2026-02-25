@@ -90,6 +90,38 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 - [docs/SUPREMO UNIFICADO.md](docs/SUPREMO UNIFICADO.md)
 - [docs/numeros_rafaelianos/Readme.md](docs/numeros_rafaelianos/Readme.md)
 
+### Documentação complementar — Trilha de análise PhD (`newadd/`)
+
+- [Índice da análise PhD](newadd/00_INDICE_ANALISE_PHD.md)
+- [RLL × DESI — Cross Analysis (PhD)](newadd/01_RLL_DESI_CrossAnalysis_PhD.md)
+- [Formulações Latentes — RAFAELIA/RLL](newadd/02_Formulacoes_Latentes_RAFAELIA_RLL.md)
+- [Descrição Acadêmica PhD Completa](newadd/03_Descricao_Academica_PhD_Completa.md)
+
+**Ordem recomendada de leitura (trilha PhD):**
+1. `newadd/00_INDICE_ANALISE_PHD.md`
+2. `newadd/01_RLL_DESI_CrossAnalysis_PhD.md`
+3. `newadd/02_Formulacoes_Latentes_RAFAELIA_RLL.md`
+4. `newadd/03_Descricao_Academica_PhD_Completa.md`
+
+**Relação com os domínios 01–07 (RAFAELIA):**
+- **Domínio 01 (Mathematics):** base formal em equações e isomorfismos apresentada em `01_` e aprofundada em `02_`.
+- **Domínio 02 (Physics):** núcleo cosmológico/fenomenológico tratado sobretudo em `01_` e `03_`.
+- **Domínio 03 (Computation):** metodologia de validação e integração com dados em `01_` e `03_`.
+- **Domínio 04 (Geometry):** estrutura geométrica/analítica de apoio nas formulações latentes de `02_`.
+- **Domínio 05 (Statistics):** critérios de ajuste, inferência e métricas (χ²/AIC/BIC/Bayes) em `01_` e `03_`.
+- **Domínio 06 (Ethics Systems):** critérios de consistência e governança metodológica, com ponte RAFAELIA↔RLL em `02_` e `03_`.
+- **Domínio 07 (Synthesis):** síntese integradora do programa PhD consolidada no índice (`00_`) e na descrição completa (`03_`).
+
+**Consistência de nomes (evitar duplicidade de entrada):**
+- `newadd/00_INDICE_ANALISE_PHD.md` é o índice canônico da trilha PhD para navegação no README raiz.
+- `newadd/00_INDEX.md` permanece como índice acadêmico geral do compêndio RAFAELIA (escopo amplo), sem substituir o índice PhD acima.
+**Relação com os domínios 01–07 (arcabouço RAFAELIA em `newadd/00_INDEX.md`):**
+- **[01] Matemática + [02] Física + [05] Estatística:** base quantitativa da análise em `01_RLL_DESI_CrossAnalysis_PhD.md`.
+- **[01] Matemática + [02] Física + [04] Geometria + [05] Estatística + [07] Síntese:** formalizações e provas em `02_Formulacoes_Latentes_RAFAELIA_RLL.md`.
+- **[01]–[07] (integração completa):** enquadramento acadêmico, metodologia e posicionamento em `03_Descricao_Academica_PhD_Completa.md`.
+
+**Consistência de nomes (evitar duplicidade):** usar `newadd/00_INDICE_ANALISE_PHD.md` como entrada canônica da trilha PhD em PT-BR; manter `newadd/00_INDEX.md` como índice técnico complementar (escopo acadêmico em inglês), sem cadastrar ambos como "índice principal".
+
 ---
 
 ## 3) Gráficos, infográficos e imagens
