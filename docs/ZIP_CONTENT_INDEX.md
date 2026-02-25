@@ -2,7 +2,53 @@
 
 **Objetivo:** registrar o conteúdo interno de cada `.zip` para rastreabilidade e organização documental.
 
-**Total de bundles:** 3
+**Total de bundles:** 4
+
+---
+
+## Registro de integração de bundles
+
+Campos obrigatórios por bundle: **nome do bundle**, **hash**, **data**, **origem**, **status de integração** (`não iniciado` / `em progresso` / `concluído`).
+
+| Bundle | Hash (SHA-256) | Data de registro | Origem | Status de integração |
+|---|---|---|---|---|
+| `to_Add/RAFAELIA_COSMO_STRUCTURE_D.zip` | `db3fa53131ab7922b47d5645e9bedb23f4110317fd5724ef97c84df55b744b92` | 2026-02-25 | `to_Add/` | não iniciado |
+
+---
+
+## `to_Add/RAFAELIA_COSMO_STRUCTURE_D.zip`
+
+- Tamanho do arquivo: **6968 bytes**
+- Total de entradas: **15**
+- Hash SHA-256: `db3fa53131ab7922b47d5645e9bedb23f4110317fd5724ef97c84df55b744b92`
+
+### Artefatos críticos
+
+- `RAFAELIA_COSMO_STRUCTURE_D/README.md`
+- `RAFAELIA_COSMO_STRUCTURE_D/core/equations.md`
+- `RAFAELIA_COSMO_STRUCTURE_D/core/agn_feedback_bridge.md`
+- `RAFAELIA_COSMO_STRUCTURE_D/code/run_all.py`
+- `RAFAELIA_COSMO_STRUCTURE_D/code/models.py`
+- `RAFAELIA_COSMO_STRUCTURE_D/code/likelihood.py`
+- `RAFAELIA_COSMO_STRUCTURE_D/paper/draft.md`
+
+| # | Entrada | Tamanho (bytes) | Data do zip |
+|---:|---|---:|---|
+| 1 | `RAFAELIA_COSMO_STRUCTURE_D/README.md` | 794 | 2026-02-21 18:07 |
+| 2 | `RAFAELIA_COSMO_STRUCTURE_D/requirements.txt` | 30 | 2026-02-21 18:07 |
+| 3 | `RAFAELIA_COSMO_STRUCTURE_D/core/equations.md` | 914 | 2026-02-21 18:07 |
+| 4 | `RAFAELIA_COSMO_STRUCTURE_D/core/agn_feedback_bridge.md` | 1151 | 2026-02-21 18:07 |
+| 5 | `RAFAELIA_COSMO_STRUCTURE_D/data/README.md` | 198 | 2026-02-21 18:07 |
+| 6 | `RAFAELIA_COSMO_STRUCTURE_D/code/__init__.py` | 0 | 2026-02-21 18:07 |
+| 7 | `RAFAELIA_COSMO_STRUCTURE_D/code/cosmo.py` | 618 | 2026-02-21 18:07 |
+| 8 | `RAFAELIA_COSMO_STRUCTURE_D/code/feedback_agn.py` | 580 | 2026-02-21 18:07 |
+| 9 | `RAFAELIA_COSMO_STRUCTURE_D/code/growth.py` | 554 | 2026-02-21 18:07 |
+| 10 | `RAFAELIA_COSMO_STRUCTURE_D/code/likelihood.py` | 602 | 2026-02-21 18:07 |
+| 11 | `RAFAELIA_COSMO_STRUCTURE_D/code/models.py` | 1385 | 2026-02-21 18:07 |
+| 12 | `RAFAELIA_COSMO_STRUCTURE_D/code/run_all.py` | 1777 | 2026-02-21 18:07 |
+| 13 | `RAFAELIA_COSMO_STRUCTURE_D/code/make_example_data.py` | 1002 | 2026-02-21 18:07 |
+| 14 | `RAFAELIA_COSMO_STRUCTURE_D/results/README.md` | 74 | 2026-02-21 18:07 |
+| 15 | `RAFAELIA_COSMO_STRUCTURE_D/paper/draft.md` | 477 | 2026-02-21 18:07 |
 
 ---
 
