@@ -200,6 +200,17 @@ onde τ_ph é o tempo de livre caminho médio dos fótons. Esta viscosidade supr
 
 ## 4. Formulações Comprobatórias — Validação Cruzada
 
+No princípio **O GAP É O SINAL — Ruído como Dimensão Não Mapeada**, tratamos o ruído residual não como erro descartável, mas como assinatura observável de um termo/dimensão ainda não modelado no RLL. Assim, a validação cruzada abaixo é construída para maximizar **falsificabilidade**: onde houver resíduo sistemático persistente, há um candidato físico explícito a ser confirmado ou refutado.
+
+| termo no modelo | escala (FRW global / halo-galáxia) | datasets de teste |
+|---|---|---|
+| `Ωr` | FRW global | DESI (`H(z)` e `D_A(z)`; resíduo BAO), Planck/ACT (`N_eff` degenerado e cauda de `H(z)`), LSST (`fσ₈` tomográfico; gap de crescimento) |
+| `N_eff` | FRW global | Planck/ACT (CMB damping tail; ruído residual em radiação efetiva), DESI (`H(z)` em alto-z), LSST (`fσ₈` para quebra de degenerescência) |
+| `Ωs(a)` | FRW global | DESI (`H(z)`/`D_A(z)` com assinatura de transição), Planck/ACT (consistência de fundo), LSST (`fσ₈`; gap entre expansão e crescimento) |
+| `ΩP₀` | FRW global + halo-galáxia | DESI (`H(z)` residual em alto-z), Planck/ACT (setor radiativo efetivo), JWST (excesso de SMBH), SPARC/LSST quando aplicável (acoplamento em ambiente de halo) |
+| `ε_feedback` | halo-galáxia | JWST (SFR e temperatura do gás; gap de feedback), LSST (histórias de formação estelar por ambiente), SPARC quando aplicável (consistência dinâmica bariônica) |
+| `f_duty` | halo-galáxia | JWST (fração ativa AGN e excesso de SMBH), LSST (variabilidade/população AGN), SPARC/LSST quando aplicável (vínculo com potencial de halo) |
+
 ### 4.1 Teste χ² Cruzado: RLL vs. DESI DR2 BAO
 
 Usando os dados tabelados DESI DR2 (Alam et al. 2025 estilo, z = 0.1 a 2.33):
