@@ -127,21 +127,21 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 1. **Expansão Cósmica**
    - H(z) — taxa de expansão de Hubble
    - Δμ — distância de luminosidade (SNe Ia)
-   - Gráficos: [unified_H_ratio.png](figs/unified_H_ratio.png), [unified_mu_residuals.png](figs/unified_mu_residuals.png)
+   - Gráficos: [unified_H_ratio.png](figs/paper/unified_H_ratio.png), [unified_mu_residuals.png](figs/paper/unified_mu_residuals.png)
 
 2. **Crescimento de Estruturas**
    - fσ₈(z) — crescimento de perturbações de densidade
    - Comparável a BOSS/DESI
-   - Gráfico: [unified_growth_fs8.png](figs/unified_growth_fs8.png)
+   - Gráfico: [unified_growth_fs8.png](figs/paper/unified_growth_fs8.png)
 
 3. **Lente Gravitacional**
    - Aglomerados (Bullet, Abell 2744, Frontier Fields)
    - Weak/strong lensing
-   - Gráfico: [cluster_lensing_SIS_unified.png](figs/cluster_lensing_SIS_unified.png)
+   - Gráfico: [cluster_lensing_SIS_unified.png](figs/paper/cluster_lensing_SIS_unified.png)
 
 4. **Galáxias**
    - Curvas de rotação (SPARC)
-   - Exemplo: [rotcurve_NGC_2403.png](figs/rotcurve_NGC_2403.png)
+   - Exemplo: [rotcurve_NGC_2403.png](figs/paper/rotcurve_NGC_2403.png)
 
 5. **Bandas de Robustez**
    - Margem de entropia 10/12
