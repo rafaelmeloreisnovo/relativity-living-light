@@ -64,8 +64,34 @@ H^2(z)=H_0^2\left[\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_f(z)\rig
 \]
 
 \[
+\Omega_{\mathrm{feedback}}(z)=\Omega_{\mathrm{rad,ativo}}(z)+\Omega_{\mathrm{MHD}}(z)+\Omega_{\mathrm{ion}}(z)
+\]
+
+com decomposição mínima:
+
+\[
+\Omega_{\mathrm{rad,ativo}}(z)=\beta_{\mathrm{rad}}\,\exp\left[-\frac{(z-z_{\mathrm{rad}})^2}{2w_{\mathrm{rad}}^2}\right],\qquad
+\Omega_{\mathrm{MHD}}(z)=\beta_{\mathrm{MHD}}\,\exp\left[-\frac{(z-z_{\mathrm{MHD}})^2}{2w_{\mathrm{MHD}}^2}\right],
+\]
+
+\[
+\Omega_{\mathrm{ion}}(z)=\beta_{\mathrm{ion}}\,\exp\left[-\frac{(z-z_{\mathrm{ion}})^2}{2w_{\mathrm{ion}}^2}\right]
+\]
+
+**Versão fenomenológica compacta (opcional, para comparação AIC/BIC):**
+
+\[
 \Omega_f(z)=\beta\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
+
+### B1.1 Mapeamento físico de parâmetros
+
+- \(\beta_{\mathrm{rad}},\beta_{\mathrm{MHD}},\beta_{\mathrm{ion}}\): amplitudes efetivas de cada canal de feedback no budget de energia cosmológica; \(\beta>0\) tende a **aquecimento/injeção** (supressão de SFR), enquanto \(\beta<0\) representa canal efetivo de **resfriamento/compensação** (potencial alívio de supressão).
+- \(z_{\mathrm{rad}},z_{\mathrm{MHD}},z_{\mathrm{ion}}\): redshift central de atuação dominante de cada processo (janela temporal de maior acoplamento físico).
+- \(w_{\mathrm{rad}},w_{\mathrm{MHD}},w_{\mathrm{ion}}\): largura da janela em redshift; valores maiores implicam efeito distribuído por intervalo mais amplo, valores menores concentram o impacto em episódio curto.
+- Na forma compacta, \((\beta,z_p,w)\) representam, respectivamente, amplitude líquida, época central e duração efetiva do feedback agregado.
+
+**Nota de consistência dimensional e normalização:** todas as contribuições \(\Omega_i(z)\) são definidas como frações de densidade normalizadas por \(\rho_{\mathrm{crit},0}=3H_0^2/(8\pi G)\), garantindo que cada termo no colchete de \(H^2(z)/H_0^2\) seja adimensional. Exigir \(H^2(z)>0\) em todo o intervalo analisado preserva a consistência física do fechamento.
 
 ### B2. Caminho 2 (modificação no crescimento; recomendado)
 
@@ -90,6 +116,15 @@ S(z)=1-\alpha\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
   - no Caminho 2, com \(S(z)=1-\alpha G(z)\), \(\alpha>0\) reduz \(S(z)\) e suprime crescimento/formação estelar efetiva, enquanto \(\alpha<0\) amplia \(S(z)\) e favorece crescimento.
 
 **Nota curta de consistência:** todos os \(\Omega_i(z)\) usados dentro de \(H^2(z)/H_0^2\) devem ser adimensionais; parâmetros de amplitude devem ser normalizados para manter \(H^2(z)/H_0^2\) adimensional; e a positividade de \(H^2(z)\) deve ser preservada no intervalo de redshift analisado.
+- **Amplitude \(\beta\) em \(\Omega_f(z)\):** controla a intensidade efetiva do canal físico de injeção energética no background cosmológico (quanto maior \(|\beta|\), maior a contribuição do canal).
+- **Amplitude \(\alpha\) em \(S(z)\):** controla a intensidade efetiva do canal físico de modulação do crescimento estrutural/formação estelar (quanto maior \(|\alpha|\), mais forte o efeito no observável de crescimento).
+- **Largura em redshift \(w\):** representa a extensão temporal (intervalo efetivo em redshift) da ação do canal; valores maiores de \(w\) implicam feedback distribuído por uma faixa mais ampla de épocas.
+- **Centro da janela \(z_p\):** define a época central do feedback, isto é, o redshift no qual o canal atinge efeito máximo em módulo.
+- **Convenção de sinal (modelo efetivo):**
+  - no caminho de expansão, \(\beta>0\) tende a aumentar \(H^2(z)\) (reforça a taxa de expansão efetiva local), enquanto \(\beta<0\) tende a reduzir \(H^2(z)\);
+  - no caminho de crescimento, com \(S(z)=1-\alpha G(z)\) e \(G(z)>0\), \(\alpha>0\) suprime crescimento/formação estelar efetiva (reduz \(f\sigma_8\)), enquanto \(\alpha<0\) amplifica crescimento efetivo (aumenta \(f\sigma_8\)).
+
+**Nota curta de consistência:** todos os \(\Omega_i(z)\) usados em \(H^2(z)/H_0^2\) devem ser adimensionais; parâmetros de amplitude devem ser normalizados para manter \(H^2(z)/H_0^2\) adimensional; e deve-se preservar a positividade de \(H^2(z)\) no intervalo de redshift analisado.
 
 ### B3. Critérios formais de fechamento
 
@@ -99,6 +134,34 @@ Um “modelo fechado” aqui deve satisfazer:
 - **Parcimônia:** idealmente \(k \leq 5\).
 - **Competitividade estatística:** ΔAIC < 0 (preferível) e ΔBIC não severamente penalizado.
 - **Predição discriminante:** pelo menos uma assinatura observável além do ajuste retrospectivo.
+
+### B4. Fechamento observacional do termo de feedback
+
+Para o fechamento observacional, adotar duas parametrizações concorrentes do termo de feedback e compará-las no mesmo pipeline estatístico.
+
+1. **Fenomenológica (gaussiana atual)**
+
+   Mantém a forma gaussiana já definida:
+
+   \[
+   S(z)=1-\alpha\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
+   \]
+
+   (ou equivalente em \(\Omega_f(z)\), conforme o caminho escolhido).
+
+2. **Semi-física com proxy de densidade de luminosidade AGN \(\rho_{L,AGN}(z)\)**
+
+   Substituir o termo puramente gaussiano por uma forma guiada por \(\rho_{L,AGN}(z)\), por exemplo:
+
+   \[
+   S(z)=1-\alpha_s\left[\frac{\rho_{L,AGN}(z)}{\rho_{L,AGN}(z_\star)}\right]^\eta
+   \]
+
+   com \(\alpha_s\), \(\eta\) e parâmetros auxiliares de normalização/escala definidos para manter estabilidade numérica e interpretação física no intervalo de redshift analisado.
+
+**Priors (forma semi-física):** declarar explicitamente que os parâmetros da parametrização semi-física usam priors informados por literatura, com intervalos amplos (fracos), para evitar super-restrição artificial.
+
+**Comparação entre parametrizações:** reportar \(\Delta\mathrm{AIC}\) e \(\Delta\mathrm{BIC}\) entre as formas fenomenológica e semi-física, além da comparação com \(\Lambda\)CDM, para decisão de parcimônia vs. ganho de ajuste.
 
 ---
 
@@ -153,6 +216,7 @@ Se houver supressão de formação estelar em vizinhas de quasares, esperar:
 1. validar formato de `Hz.csv` e `fsigma8.csv` (colunas, unidades, metadados de origem);
 2. executar pipeline de ajuste/inferência;
 3. exportar `model_comparison.csv` com χ², AIC, BIC e k por modelo;
+   - garantir uma linha para a parametrização **fenomenológica** e uma linha para a parametrização **semi-física**;
 4. preencher versão final do paper com números e tabelas;
 5. registrar release documental com hash/data dos artefatos.
 
