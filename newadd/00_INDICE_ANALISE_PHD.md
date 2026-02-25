@@ -5,6 +5,19 @@
 **Data:** 25 de Fevereiro de 2026  
 **DOI:** 10.5281/zenodo.17188137  
 
+
+## Convenção de Nomes e Símbolos
+
+Para uniformidade terminológica em todos os documentos desta análise, adota-se a forma canônica abaixo:
+
+- **Nome do modelo:** `Relativity Living Light (RLL)`
+- **Framework:** `RAFAELIA`
+- **Índice de correlação:** `R_corr`
+- **Parâmetros principais:** `Ωs₀`, `zₜ`, `wₜ`, `ΩB₀`, `ΩP₀`
+- **Limite padrão de referência:** `ΛCDM`
+
+**Regra de uso textual:** evitar variantes para os itens acima (por exemplo, `wₛ` ou formas sem subscrito padronizado) e manter a primeira ocorrência de cada símbolo com definição explícita no próprio documento ou com referência a esta seção.
+
 ---
 
 ## Estrutura da Análise

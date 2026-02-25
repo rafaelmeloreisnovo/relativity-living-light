@@ -9,6 +9,8 @@
 
 ---
 
+**Convenção adotada:** este documento segue `newadd/00_INDICE_ANALISE_PHD.md` na seção **Convenção de Nomes e Símbolos**. Notação canônica usada aqui: `Relativity Living Light (RLL)`, `RAFAELIA`, `R_corr`, `Ωs₀`, `zₜ`, `wₜ`, `ΩB₀`, `ΩP₀` e limite padrão `ΛCDM`.
+
 ## Abstract
 
 O modelo Relativity Living Light (RLL) propõe uma extensão da dinâmica cosmológica via componente de superposição fotônica com transição logística controlada, acoplada a termos magnéticos e plasmáticos. Este documento realiza a **análise cruzada sistemática** entre o formalismo RLL e os dados observacionais mais recentes — notadamente DESI DR2 (2025), Planck PR4, DES Year 5, e ACT — identificando zonas de convergência, tensões residuais e formulações latentes que emergem da interseção entre o framework RAFAELIA e a cosmologia observacional contemporânea.
@@ -180,7 +182,7 @@ cs²_RLL(z) = (∂P/∂X)/(∂ρ/∂X) = f(z)/[f(z) + (1-f(z))·(1+3wₘ)/3]
 **Implicação observacional:** A transição em cs² gera uma supressão do espectro de potências da matéria escura na escala de Jeans fotônica:
 
 ```
-k_J^RLL(z) = a · H(z) · [3cs²/(1+wₛ)]^(1/2)
+k_J^RLL(z) = a · H(z) · [3cs²/(1+w_ph)]^(1/2)
 ```
 
 Esta escala de Jeans fotônica é testável com dados de estrutura em larga escala (EUCLID, Vera Rubin LSST).
@@ -298,7 +300,7 @@ onde f_local(r) é a função logística avaliada com a densidade local em vez d
 
 ### 5.1 Tensão de Hubble no RLL
 
-O RLL **não resolve** a tensão de Hubble no regime minimal (acoplamento mínimo). O H₀ inferido do CMB no modelo RLL sofre da mesma degenerescência que w₀wₐCDM:
+O RLL **não resolve** a tensão de Hubble no regime mínimo (acoplamento mínimo). O H₀ inferido do CMB no modelo RLL sofre da mesma degenerescência que w₀wₐCDM:
 
 ```
 H₀^RLL = H₀^ΛCDM · [1 - δ(Ωs₀, zₜ)]
