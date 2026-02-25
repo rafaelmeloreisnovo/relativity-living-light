@@ -67,6 +67,14 @@ H^2(z)=H_0^2\left[\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_f(z)\rig
 \Omega_f(z)=\beta\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
 
+### B1.1 Versão compacta opcional
+
+\[
+Ω_feedback,compact(z) = β exp[-(z-z_p)^2/(2w^2)]
+\]
+
+Esta versão deve ser mantida apenas para comparação de parcimônia e seleção de modelo (AIC/BIC) contra a decomposição física mínima. Há um trade-off entre interpretabilidade física e número de parâmetros: a forma compacta tende a reduzir parâmetros, mas perde detalhamento interpretável.
+
 ### B2. Caminho 2 (modificação no crescimento; recomendado)
 
 Mantém H(z) de ΛCDM e altera diretamente o observável de crescimento:
