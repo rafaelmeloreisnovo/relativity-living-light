@@ -84,6 +84,13 @@ com decomposição mínima:
 \Omega_f(z)=\beta\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
 
+### B1.1 Versão compacta opcional
+
+\[
+Ω_feedback,compact(z) = β exp[-(z-z_p)^2/(2w^2)]
+\]
+
+Esta versão deve ser mantida apenas para comparação de parcimônia e seleção de modelo (AIC/BIC) contra a decomposição física mínima. Há um trade-off entre interpretabilidade física e número de parâmetros: a forma compacta tende a reduzir parâmetros, mas perde detalhamento interpretável.
 ### B1.1 Mapeamento físico de parâmetros
 
 - \(\beta_{\mathrm{rad}},\beta_{\mathrm{MHD}},\beta_{\mathrm{ion}}\): amplitudes efetivas de cada canal de feedback no budget de energia cosmológica; \(\beta>0\) tende a **aquecimento/injeção** (supressão de SFR), enquanto \(\beta<0\) representa canal efetivo de **resfriamento/compensação** (potencial alívio de supressão).
