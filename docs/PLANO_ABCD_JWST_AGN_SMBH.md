@@ -201,6 +201,19 @@ Se houver supressão de formação estelar em vizinhas de quasares, esperar:
 - separar feedback bariônico não linear de “nova física” em nível de background;
 - evitar confundir melhora estatística local com explicação causal robusta.
 
+<a id="teste-discriminante-primario"></a>
+### Teste discriminante primário (ponte C/D)
+
+- **Observável principal:** supressão de **fσ₈(z)** em janela coincidente com atividade AGN/quasar, com validação cruzada por **proxy ambiental** (fração de galáxias com SFR suprimida na vizinhança de quasares, em escala \\(
+  \sim 0.5{-}2\\,\mathrm{Mpc}
+  \\)).
+- **Faixa de redshift alvo:** \\(z \in [1.5, 4.0]\\), com foco operacional inicial em \\(z \in [2.0, 3.5]\\) para maximizar sobreposição entre traçadores de crescimento e amostras de quasares de alta atividade.
+- **Sinal esperado (modelo vs \(\Lambda\)CDM):** o modelo com feedback efetivo prevê **queda adicional** de amplitude em \\(f\sigma_8(z)\\) (sinal negativo relativo), além de correlação com ambiente quasar (maior supressão local de SFR), enquanto \(\Lambda\)CDM puro não requer essa assinatura ambiental acoplada.
+- **Critério numérico de aceitação/rejeição:**
+  - aceitar como evidência favorável se **\(\Delta\mathrm{AIC} \leq -4\)** contra \(\Lambda\)CDM no ajuste conjunto e houver **compatibilidade simultânea de sinal e amplitude** (diferença observada-modelo dentro de \\(1\sigma\\) na janela-alvo);
+  - classificar como indeterminado para \\(-4 < \Delta\mathrm{AIC} < 0\\);
+  - rejeitar ganho físico-discriminante se **\(\Delta\mathrm{AIC} \geq 0\)** ou se o sinal observado tiver sentido oposto ao previsto (mesmo com ajuste global marginalmente melhor).
+
 ---
 
 ## 5) Etapa D — Cenários de alcance

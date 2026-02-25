@@ -27,6 +27,7 @@
   - [`docs/POST_PHD_FORMAL_GAP_ANALYSIS.md`](POST_PHD_FORMAL_GAP_ANALYSIS.md)
 - Plano estratégico A→B→C→D (JWST/AGN/SMBH) com checklist operacional:
   - [`docs/PLANO_ABCD_JWST_AGN_SMBH.md`](PLANO_ABCD_JWST_AGN_SMBH.md)
+  - [Subseção “Teste discriminante primário” (âncora interna)](PLANO_ABCD_JWST_AGN_SMBH.md#teste-discriminante-primario)
 
 ---
 
