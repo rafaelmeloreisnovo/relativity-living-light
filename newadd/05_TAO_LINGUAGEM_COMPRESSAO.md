@@ -362,3 +362,10 @@ Diferenças para medição quântica física:
 3. Heim, Irene; Kratzer, Angelika (1998). *Semantics in Generative Grammar*. Blackwell.
 
 **FIAT LUX** — 𓂀ΔΦΩ
+
+Como ancoragem formal, a noção de atualização contextual e composição de significado dialoga com a semântica formal e com a modelagem computacional de linguagem.
+
+## Referências
+
+- Heim, I.; Kratzer, A. *Semantics in Generative Grammar*. Blackwell, 1998.
+- Jurafsky, D.; Martin, J. H. *Speech and Language Processing* (3rd ed. draft), capítulos de semântica lexical/distribucional e contexto.
