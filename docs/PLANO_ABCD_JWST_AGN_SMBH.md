@@ -180,10 +180,12 @@ Para o fechamento observacional, adotar duas parametrizações concorrentes do t
 
 ---
 
+
 ## Consistência com BOOSTERS/EFT
 
 Para garantir consistência entre a parametrização fenomenológica e a base física já definida, adotamos uma decomposição operacional em que `Ω_r` permanece como componente radiativa padrão de fundo, enquanto `Ω_feedback(z)` captura exclusivamente contribuição ativa e localizada em redshift associada a episódios AGN/quasar. Termos legados de BOOSTERS e operadores EFT com suporte funcional equivalente devem ser fixados, recalibrados ou desligados por corrida, de modo a impedir dupla contagem e preservar interpretabilidade estatística.
 
+Esta seção é vinculante para todas as corridas e deve ser aplicada em conjunto com `docs/BOOSTERS.md` (termos de plasma/magnetismo e superposição já definidos) e `docs/LAGRANGIANO_EFT.md` (acoplamentos efetivos e operadores do setor EFT).
 Referências normativas:
 
 - `docs/BOOSTERS.md` para os termos de plasma/magnetismo já definidos;
@@ -192,6 +194,32 @@ Referências normativas:
 ### 1) Partição de energia (baseline vs ativo)
 
 - `Ω_r` padrão permanece como baseline radiativo de referência (fótons + neutrinos efetivos do cenário base), sem incorporar automaticamente componentes de feedback localizado.
+- `Ω_feedback(z)` representa apenas contribuição ativa e localizada em redshift (janela gaussiana/logística ou equivalente), destinada a capturar injeção AGN/quasar em faixa `z` controlada por parâmetros de amplitude, centro e largura.
+- Regra de não sobreposição: qualquer termo com suporte temporal/local equivalente ao de `Ω_feedback(z)` não pode permanecer simultaneamente livre no baseline.
+
+### 2) Mapeamento com BOOSTERS
+
+- Termos de `Ω_B0` (magnético) e `Ω_P0` (plasma), formalizados em `docs/BOOSTERS.md`, devem ser tratados em exatamente uma das modalidades abaixo por corrida:
+  - **Modalidade Fundo (background):** contribuição contínua (ex.: escala radiativa `a^-4`) permanece no baseline, e `Ω_feedback(z)` modela apenas excesso transitório.
+  - **Modalidade Janela Ativa:** parte/total desses efeitos entra em `Ω_feedback(z)`, e o termo contínuo legado correspondente é congelado ou desligado para evitar duplicação.
+- O booster de superposição (`Ω_s0`) deve obedecer ao mesmo princípio de exclusão quando houver parametrização efetiva equivalente na janela ativa.
+
+### 3) Mapeamento com EFT
+
+Com base em `docs/LAGRANGIANO_EFT.md`, adotar as regras operacionais:
+
+- Acoplamentos EFT que geram correção suave e global do fundo permanecem no baseline (parâmetros fixos ou com prior estreito).
+- Acoplamentos EFT que induzem resposta transitória associada a AGN/quasar devem migrar para `Ω_feedback(z)` (ou termo equivalente único), desligando duplicatas fenomenológicas.
+- Exigência de rastreabilidade 1:1: cada operador/acoplamento EFT ativo deve mapear para um único bloco observável no pipeline (fundo **ou** feedback localizado).
+
+### 4) Matriz operacional por corrida (obrigatória)
+
+| Tipo de corrida | Ω_r padrão | Ω_feedback(z) | Termos legados (BOOSTERS/EFT) | Ação anti-duplicação |
+|---|---|---|---|---|
+| **Corrida A (ΛCDM baseline)** | Fixo padrão | `0` | Desligados | Manter apenas componentes de referência sem termos ativos equivalentes |
+| **Corrida B (feedback puro)** | Fixo padrão | Livre (amplitude/centro/largura) | Equivalentes desligados | Remover do baseline qualquer termo com kernel colinear à janela ativa |
+| **Corrida C (boosters físicos)** | Fixo padrão | `0` (ou restrito a residual) | Boosters físicos ligados no fundo; EFT duplicativo desligado | Preservar termos contínuos físicos e bloquear versões transitórias redundantes |
+| **Corrida D (híbrida controlada)** | Fixo padrão | Livre sob controle | Subset físico não redundante ativo; duplicativos fixados com prior estreito | Registrar justificativa explícita para cada termo mantido e cada termo desligado |
 - `Ω_feedback(z)` representa apenas a contribuição ativa e localizada em redshift (janela/gaussiana/logística), destinada a capturar injeção AGN/quasar em faixa `z` controlada por parâmetros de amplitude, centro e largura.
 - Regra de não sobreposição: qualquer termo com suporte temporal/local equivalente ao `Ω_feedback(z)` não pode permanecer simultaneamente livre no baseline.
 
@@ -222,6 +250,9 @@ Referências normativas:
 Antes de cada ajuste, aplicar obrigatoriamente:
 
 - [ ] **Fixar:** parâmetros de baseline bem estabelecidos (`Ω_r`, calibrações de referência) para evitar absorção indevida do sinal.
+- [ ] **Recalibrar:** somente termos que alteram a normalização global sem replicar a forma de janela em `z`.
+- [ ] **Desligar:** qualquer termo legado cujo kernel temporal/funcional seja colinear com `Ω_feedback(z)` na faixa analisada.
+- [ ] **Diagnóstico de degenerescência:** se houver correlação posterior alta entre amplitude de feedback e termo legado, desligar o legado ou impor prior informativo.
 - [ ] **Recalibrar:** somente termos que mudam a normalização global sem replicar a forma de janela em `z`.
 - [ ] **Desligar:** qualquer termo legado cujo kernel temporal/funcional seja colinear com `Ω_feedback(z)` na faixa analisada.
 - [ ] Validar com diagnóstico de degenerescência (ex.: correlação posterior alta entre amplitude de feedback e termo legado => desligar ou impor prior informativo).
