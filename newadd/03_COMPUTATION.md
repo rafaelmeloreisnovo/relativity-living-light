@@ -10,11 +10,16 @@
 
 The computational layer of RAFAELIA spans multiple abstraction levels: from high-level cognitive loop architecture through formal algorithmic pipelines, cryptographic integrity systems, and bare-metal hardware interaction at the register and instruction level. This document formalizes each level with technical precision, including low-level CPU detection logic expressed without external dependencies.
 
+### 1.1 Symbol Convention (Δ operator vs physical difference)
+
+- $\Delta_{op}$: RAFAELIA transmutation operator.
+- $\Delta_{phys}$ (or $\delta$): physically observable/measurable difference.
+
 ---
 
 ## 2. Cognitive Loop Architecture (RAFAELIA Runtime)
 
-### 2.1 The ψχρΔΣΩ Loop
+### 2.1 The ψχρΔ_opΣΩ Loop
 
 The core runtime is a deterministic cyclic state machine:
 
@@ -22,10 +27,10 @@ The core runtime is a deterministic cyclic state machine:
 READ   ψ  ;  // load living memory (intent state)
 FEED   χ  ;  // observe and measure current input
 EXPAND ρ  ;  // introduce controlled noise / divergence
-VALIDATE Δ;  // apply ethical transmutation filter
+VALIDATE Δ_op;  // apply ethical transmutation filter
 EXECUTE  Σ;  // write to coherent memory
 ALIGN    Ω;  // ethics compliance check
-RETURN ψχρΔΣΩ → novo_ciclo  // emit new state, restart
+RETURN ψχρΔ_opΣΩ → novo_ciclo  // emit new state, restart
 ```
 
 In pseudocode (architecture-agnostic):
@@ -35,8 +40,8 @@ while True:
     ψ = ler_memória_viva()
     χ = retroalimentar(ψ)
     ρ = expandir(χ)
-    Δ = validar(ρ)
-    Σ = executar(Δ)
+    Δ_op = validar(ρ)
+    Σ = executar(Δ_op)
     Ω = ética(Σ)
 ```
 
@@ -318,7 +323,7 @@ $$\text{Retro}_\Omega^{A+C} = (F_{\text{ok}}, F_{\text{gap}}, F_{\text{next}}) \
 ## 10. Summary
 
 RAFAELIA's computational layer is a coherent multi-level architecture spanning:
-- **Cognitive runtime** (ψχρΔΣΩ loop, meta-genesis)
+- **Cognitive runtime** (ψχρΔ_opΣΩ loop, meta-genesis)
 - **Bare-metal detection** (CPUID, E820, no-libc ASM)
 - **Memory hierarchy modeling** (L1–Network layers as IRQ rivers)
 - **Cryptographic integrity** (SHA3 hash chains, BLAKE3)
