@@ -203,6 +203,47 @@ Res_Ω^RLL / Res_Ω^ΛCDM = exp[∫₀^{z_max} (H_ΛCDM - H_RLL)/H₀ · C(z) ·
 
 Se H_RLL < H_ΛCDM em algum redshift, a ressonância acumulada do RLL é **menor** — o universo RLL é mais "coerente" (menos dissipativo) nessa época.
 
+### Formulação E-06: Setor Químico-Plasmático Efetivo
+
+Definimos o vetor de estado mínimo do meio bariônico acoplado ao setor fotônico como:
+
+```
+S_b(z) = {Y_H2(z), x_e(z), T_g(z), B_eff(z)}
+```
+
+onde:
+- `Y_H2(z)` é a fração molecular do hidrogênio,
+- `x_e(z)` é a fração de ionização livre,
+- `T_g(z)` é a temperatura efetiva do gás,
+- `B_eff(z)` é a amplitude magnética efetiva acoplada ao meio.
+
+A evolução térmica efetiva do gás é descrita por:
+
+```
+(3/2)·k_B·n_tot·dT_g/dt = -Λ_cool(T_g, Z, n_H, Y_H2) + Γ_ion(F_UV, x_e, n_H) + Γ_B(B_eff, n_H, v_A)
+```
+
+com:
+- `Λ_cool(T_g, Z, n_H, Y_H2)` representando o resfriamento radiativo/colisional,
+- `Γ_ion(F_UV, x_e, n_H)` representando aquecimento e ionização induzidos por campo UV,
+- `Γ_B(B_eff, n_H, v_A)` representando injeção dissipativa de energia via setor magnético-plasmático.
+
+A evolução de composição e ionização é escrita como:
+
+```
+dY_H2/dt = R_form - D_diss
+dx_e/dt = I_photo + I_coll - R_rec
+```
+
+Definimos explicitamente a taxa líquida efetiva de aquecimento:
+
+```
+q̇_eff = Γ_ion + Γ_B - Λ_cool
+dT_g/dt = (2/3k_B·n_tot)·q̇_eff - 2H·T_g
+```
+
+**Nota de observabilidade:** As trajetórias conjuntas de `Y_H2`, `T_g` e `x_e` projetam assinaturas em linhas [CII], CO e razões Balmer Hα/Hβ, fornecendo um canal direto de teste para o setor químico-plasmático efetivo sem alterar os blocos comprobatórios e preditivos subsequentes.
+
 ---
 
 ## BLOCO III — Formulações Comprobatórias (Provas e Testes)
