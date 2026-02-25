@@ -52,6 +52,16 @@ $$d_H = 2 - \frac{\ln(\sqrt{3}/2)}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} 
 
 This non-integer dimension places RAFAELIA spirals firmly in fractal space between a curve (dim 1) and a plane (dim 2).
 
+### 2.3 Canonical references and scale interpretation
+
+Canonical references (textual format):
+- Falconer, K. J., *Fractal Geometry: Mathematical Foundations and Applications* (Wiley).
+- Mandelbrot, B. B., *The Fractal Geometry of Nature*.
+- Hutchinson, J. E. (1981), “Fractals and self-similarity”, *Indiana Univ. Math. J.*
+- Moran, P. A. P. (1946), “Additive functions of intervals and Hausdorff measure”, *Math. Proc. Camb. Phil. Soc.*
+
+In line with the self-similarity framework of Hutchinson/Moran, the dimension formula used in this document is interpreted via scale law ($N(\varepsilon) \sim \varepsilon^{-d}$), i.e., how geometric detail grows under refinement. In the adopted three-dimensional interval of interpretation, the estimated value $d \approx 2.30$ indicates intermediate geometric complexity: more structured than a smooth surface ($d=2$), but not fully volumetric filling ($d=3$).
+
 ---
 
 ## 3. Toroidal Geometry
