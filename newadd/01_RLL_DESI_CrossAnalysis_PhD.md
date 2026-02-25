@@ -39,6 +39,8 @@ O RLL não é um modelo ad hoc, mas uma **extensão fenomenológica fisicamente 
 E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ + Ωs₀[f(a) + (1-f(a))a⁻³] + ΩB₀·a⁻⁴ + ΩP₀·a⁻⁴
 ```
 
+**Norma metodológica (regime mínimo):** No modelo mínimo, termos de feedback local (AGN/SMBH) não retroagem diretamente na equação FRW. Esses termos entram no bloco de baryons/chemistry e afetam apenas observáveis de formação de estrutura (SFR, termodinâmica do gás, crescimento em halo-galáxia). Por consistência formal com as equações deste documento, o regime mínimo não inclui `ε_feedback` ou `f_duty` somando em `E²(a)`.
+
 A função logística f(z) = 1/[1 + exp((z - zₜ)/wₜ)] gera uma **transição suave entre comportamento tipo energia escura (z alto) e tipo matéria (z baixo)**, que é precisamente o padrão que os dados DESI DR2 favorecem na "mirage class" (Lodha et al. 2025).
 
 ---
@@ -57,6 +59,16 @@ Para explicitar a ponte entre os termos físicos do formalismo RLL e os canais e
 | ΩP₀ — observáveis: temperatura do gás, `H(z)` em alto z | FRW global | Planck / ACT / JWST |
 | ε_feedback — observáveis: SFR, temperatura do gás | halo-galáxia | JWST |
 | f_duty — observáveis: massa SMBH, fração ativa AGN | halo-galáxia | JWST |
+### Termo físico → observável
+
+| termo no modelo | escala (FRW global / halo-galáxia) | datasets de teste |
+|---|---|---|
+| Ωr | FRW global | H(z), D_A(z); DESI/Planck/ACT |
+| N_eff | FRW global | H(z), D_A(z) (via era de radiação); Planck/ACT |
+| Ωs(a) | FRW global | H(z), D_A(z), fσ₈; DESI/LSST |
+| ΩP₀ | FRW global | temperatura do gás, H(z) em alto z; Planck/ACT/JWST |
+| ε_feedback | halo-galáxia | SFR, temperatura do gás; JWST |
+| f_duty | halo-galáxia | massa SMBH, fração ativa AGN; JWST |
 
 ### 2.1 Mapeamento w_eff(z) do RLL vs. Parâmetros DESI
 
@@ -212,6 +224,17 @@ onde τ_ph é o tempo de livre caminho médio dos fótons. Esta viscosidade supr
 ---
 
 ## 4. Formulações Comprobatórias — Validação Cruzada
+
+No enquadramento **O GAP É O SINAL — Ruído como Dimensão Não Mapeada**, o “ruído residual” deixa de ser erro instrumental puro e passa a operar como assinatura observável de dimensão/termo ausente na modelagem. Assim, a validação cruzada abaixo é construída para falsificar o RLL justamente onde o gap observacional persiste entre predição e dado, em FRW global e em halo-galáxia.
+
+| termo no modelo | escala (FRW global / halo-galáxia) | datasets de teste |
+| --- | --- | --- |
+| Ωr | FRW global | DESI (**resíduo BAO** em `H(z)` e `D_A(z)`), Planck/ACT (`H(z)` de alto-z), LSST (`fσ₈`) |
+| N_eff | FRW global | Planck/ACT (CMB damping tail e correlação com `H(z)` residual), DESI (`D_A(z)` + BAO), LSST (`fσ₈`) |
+| Ωs(a) | FRW global | DESI (`H(z)`/`D_A(z)` com gap de expansão), Planck/ACT (consistência de background), LSST (`fσ₈` em crescimento) |
+| ΩP₀ | FRW global | Planck/ACT (alto-z), DESI (desvio em `H(z)` reconstruído), LSST (`fσ₈` e estrutura em larga escala) |
+| ε_feedback | halo-galáxia | JWST (offset em SFR e temperatura do gás), SPARC/LSST quando aplicável (acoplamento com cinemática/barions) |
+| f_duty | halo-galáxia | JWST (**excesso de SMBH** em z alto), SPARC/LSST quando aplicável (discrepância de massa SMBH vs hospedeira) |
 
 ### 4.1 Teste χ² Cruzado: RLL vs. DESI DR2 BAO
 

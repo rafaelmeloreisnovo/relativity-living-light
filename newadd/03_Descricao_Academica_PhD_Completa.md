@@ -81,6 +81,8 @@ com fator de Hubble adimensional:
 E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ + Ωs(a) + ΩB₀·a⁻⁴ + ΩP₀·a⁻⁴
 ```
 
+**Norma metodológica (regime mínimo):** No modelo mínimo, termos de feedback local (AGN/SMBH) não retroagem diretamente na equação FRW. Esses termos entram no bloco de baryons/chemistry e afetam apenas observáveis de formação de estrutura (SFR, termodinâmica do gás, crescimento em halo-galáxia). Por consistência formal com as equações deste documento, o regime mínimo não inclui `ε_feedback` ou `f_duty` somando em `E²(a)`.
+
 onde o setor de superposição fotônica é:
 
 ```
