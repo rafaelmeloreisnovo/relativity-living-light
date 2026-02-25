@@ -298,6 +298,24 @@ Integração com:
 - JWST (z > 6 AGN/SMBH — estrutura em formação)
 - SPARC galactic rotation curves (Lelli et al. 2016)
 
+#### Mapeamento de outputs do módulo para observáveis
+
+| Output do módulo | Observável associado |
+|------------------|----------------------|
+| `f_H2(z,r)` | traçadores moleculares (CO(1-0), [CI]) e conversão `X_CO` |
+| `T_eff(z,r)` | largura/intensidade de linhas finas ([CII] 158μm, [OI]) e continuum FIR |
+| `SFR_supp(z,r) = 1 - SFR_model/SFR_ref` | deslocamento da main sequence e eficiência de formação estelar |
+| `A_line` (assinatura espectral composta) | razões de linhas (`[CII]/FIR`, `CO SLED`, `Hα/Hβ`) para diagnóstico térmico/ionização |
+
+Equações de ligação (forma curta):
+
+```
+SFR_model = ε_ff · M_gas / t_ff · f_supp(T_eff, x_e, B_eff)
+L_line = ∫ j_line(n, T_eff, x_e, Z) dV
+```
+
+Nota operacional: esses observáveis entram no nível de validação astrofísica local sem substituir ajuste cosmológico global.
+
 #### Radiação Cosmológica de Background (Ωr, N_eff, neutrinos)
 
 No pipeline observacional, o bloco de radiação cosmológica fixa/ajusta a parte relativística de fundo por:
