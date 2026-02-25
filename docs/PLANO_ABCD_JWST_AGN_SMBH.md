@@ -107,6 +107,15 @@ S(z)=1-\alpha\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 
 ### Mapeamento físico de parâmetros
 
+- **Amplitude \(\beta\)** (no Caminho 1): intensidade efetiva do canal físico que entra como termo extra em \(H^2(z)/H_0^2\).
+- **Amplitude \(\alpha\)** (no Caminho 2): intensidade efetiva do canal físico que modula diretamente o observável de crescimento \(f\sigma_8\).
+- **Largura em redshift \(w\)**: extensão temporal (em tempo cósmico mapeado por \(z\)) ou intervalo efetivo no qual o canal atua de forma relevante.
+- **Centro \(z_p\)**: época central do evento de feedback, onde o acoplamento fenomenológico atinge efeito máximo.
+- **Convenção de sinal (modelo efetivo):**
+  - no Caminho 1, \(\beta>0\) aumenta \(H^2\) (acelera expansão efetiva no intervalo de ação), enquanto \(\beta<0\) reduz \(H^2\);
+  - no Caminho 2, com \(S(z)=1-\alpha G(z)\), \(\alpha>0\) reduz \(S(z)\) e suprime crescimento/formação estelar efetiva, enquanto \(\alpha<0\) amplia \(S(z)\) e favorece crescimento.
+
+**Nota curta de consistência:** todos os \(\Omega_i(z)\) usados dentro de \(H^2(z)/H_0^2\) devem ser adimensionais; parâmetros de amplitude devem ser normalizados para manter \(H^2(z)/H_0^2\) adimensional; e a positividade de \(H^2(z)\) deve ser preservada no intervalo de redshift analisado.
 - **Amplitude \(\beta\) em \(\Omega_f(z)\):** controla a intensidade efetiva do canal físico de injeção energética no background cosmológico (quanto maior \(|\beta|\), maior a contribuição do canal).
 - **Amplitude \(\alpha\) em \(S(z)\):** controla a intensidade efetiva do canal físico de modulação do crescimento estrutural/formação estelar (quanto maior \(|\alpha|\), mais forte o efeito no observável de crescimento).
 - **Largura em redshift \(w\):** representa a extensão temporal (intervalo efetivo em redshift) da ação do canal; valores maiores de \(w\) implicam feedback distribuído por uma faixa mais ampla de épocas.
