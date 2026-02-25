@@ -114,6 +114,34 @@ Um “modelo fechado” aqui deve satisfazer:
 - **Competitividade estatística:** ΔAIC < 0 (preferível) e ΔBIC não severamente penalizado.
 - **Predição discriminante:** pelo menos uma assinatura observável além do ajuste retrospectivo.
 
+### B4. Fechamento observacional do termo de feedback
+
+Para o fechamento observacional, adotar duas parametrizações concorrentes do termo de feedback e compará-las no mesmo pipeline estatístico.
+
+1. **Fenomenológica (gaussiana atual)**
+
+   Mantém a forma gaussiana já definida:
+
+   \[
+   S(z)=1-\alpha\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
+   \]
+
+   (ou equivalente em \(\Omega_f(z)\), conforme o caminho escolhido).
+
+2. **Semi-física com proxy de densidade de luminosidade AGN \(\rho_{L,AGN}(z)\)**
+
+   Substituir o termo puramente gaussiano por uma forma guiada por \(\rho_{L,AGN}(z)\), por exemplo:
+
+   \[
+   S(z)=1-\alpha_s\left[\frac{\rho_{L,AGN}(z)}{\rho_{L,AGN}(z_\star)}\right]^\eta
+   \]
+
+   com \(\alpha_s\), \(\eta\) e parâmetros auxiliares de normalização/escala definidos para manter estabilidade numérica e interpretação física no intervalo de redshift analisado.
+
+**Priors (forma semi-física):** declarar explicitamente que os parâmetros da parametrização semi-física usam priors informados por literatura, com intervalos amplos (fracos), para evitar super-restrição artificial.
+
+**Comparação entre parametrizações:** reportar \(\Delta\mathrm{AIC}\) e \(\Delta\mathrm{BIC}\) entre as formas fenomenológica e semi-física, além da comparação com \(\Lambda\)CDM, para decisão de parcimônia vs. ganho de ajuste.
+
 ---
 
 ## 4) Etapa C — Análise máxima (estado da arte observacional)
@@ -167,6 +195,7 @@ Se houver supressão de formação estelar em vizinhas de quasares, esperar:
 1. validar formato de `Hz.csv` e `fsigma8.csv` (colunas, unidades, metadados de origem);
 2. executar pipeline de ajuste/inferência;
 3. exportar `model_comparison.csv` com χ², AIC, BIC e k por modelo;
+   - garantir uma linha para a parametrização **fenomenológica** e uma linha para a parametrização **semi-física**;
 4. preencher versão final do paper com números e tabelas;
 5. registrar release documental com hash/data dos artefatos.
 
