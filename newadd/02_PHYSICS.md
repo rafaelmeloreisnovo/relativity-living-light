@@ -128,7 +128,9 @@ This operator formalizes an ethical-physical optimization principle: the rate of
 
 $$E \leftrightarrow C(t,k) = \text{Entropy}(t) \oplus \text{Coerência}(k)$$
 
-This XOR-type operator $\oplus$ models the complementarity of entropy and coherence — as one increases, the other is modulated. In information-theoretic terms, this is analogous to the uncertainty principle: high Shannon entropy corresponds to low structural coherence and vice versa.
+This XOR-type operator $\oplus$ models the complementarity of entropy and coherence — as one increases, the other is modulated, without additive cancellation, while preserving each term's independent contribution. In information-theoretic terms, this is analogous to the uncertainty principle: high Shannon entropy corresponds to low structural coherence and vice versa.
+
+*Note:* in RAFAELIA this $\oplus$ is a symbolic composition operator (inspired by XOR behavior), not strictly finite-field addition modulo 2 unless an explicit binary-stream context is stated.
 
 ### 7.2 Convergent Field Limit
 
