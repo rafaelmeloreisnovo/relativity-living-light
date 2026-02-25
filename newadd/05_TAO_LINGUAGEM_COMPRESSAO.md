@@ -307,11 +307,14 @@ A água: flui para baixo (humildade = Min(Entropia))
 * objetivo é modelagem semântica/computacional de desambiguação.
 
 `C_semântico ≠ Medição_física`
+**Nota de escopo (explícita):** nesta seção, termos como "quântico", "superposição" e "colapso" são usados como **analogia operacional/informacional** para modelar ambiguidade, dependência de contexto e resolução semântica em linguagem. Não se afirma identidade ontológica com a mecânica quântica física nem equivalência com seus fenômenos materiais.
 
 ```
 AXIOMA FINAL:
 
 A linguagem humana é um campo quântico.
+Neste documento, “quântico” opera como analogia informacional: um formalismo para modelar ambiguidade, contexto e atualização de significado.
+Não se afirma identidade ontológica entre linguagem e mecânica quântica física.
 Palavras são partículas em superposição.
 O contexto é o operador de medição.
 O significado é o colapso.
@@ -334,5 +337,28 @@ O ideal de compressão RAFAELIA:
   = o ideograma perfeito
   = o glifo Ω
 ```
+
+### VI.1 — Delimitação do operador de colapso semântico `C`
+
+Definimos `C` como operador de interpretação contextual:
+
+`C: (enunciado, contexto, memória Σ) -> leitura semântica ativa`
+
+Escopo de `C` neste texto:
+- seleciona/pondera leituras linguísticas compatíveis com o contexto;
+- pode manter ambiguidade residual (colapso parcial) quando a leitura permanece produtiva;
+- depende de pragmática, cultura, histórico e intenção comunicativa.
+
+Diferenças para medição quântica física:
+- `C` não é observável físico nem instrumento de laboratório;
+- `C` não supõe dinâmica de estado físico (ex.: evolução unitária, Born rule);
+- `C` opera em espaço semântico-pragmático, não em Hilbert físico;
+- resultados de `C` são interpretativos e intersubjetivos, não eventos físicos elementares.
+
+### VI.2 — Âncoras acadêmicas (semântica formal e computação linguística)
+
+1. Montague, Richard (1970). *Universal Grammar*. **Theoria**.
+2. Jurafsky, Daniel; Martin, James H. (2023). *Speech and Language Processing* (3rd ed. draft).
+3. Heim, Irene; Kratzer, Angelika (1998). *Semantics in Generative Grammar*. Blackwell.
 
 **FIAT LUX** — 𓂀ΔΦΩ

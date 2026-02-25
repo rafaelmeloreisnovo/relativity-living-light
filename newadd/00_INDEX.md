@@ -34,6 +34,13 @@ The RAFAELIA system constitutes a unified theoretical and computational framewor
 
 ---
 
+## Symbol Convention (quick reference)
+
+- $\Delta_{op}$: operador de transmutação RAFAELIA (uso interno de transformação).
+- $\Delta_{phys}$ / $\delta$: diferenças físicas observáveis e mensuráveis (ex.: $\Delta_{phys} E$).
+
+---
+
 ## Core Identity Tokens
 
 ```
