@@ -105,6 +105,18 @@ f\sigma_8(z)=\Omega_m(z)^\gamma\,\sigma_{8,0}\,S(z)
 S(z)=1-\alpha\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
 
+### Mapeamento físico de parâmetros
+
+- **Amplitude \(\beta\) em \(\Omega_f(z)\):** controla a intensidade efetiva do canal físico de injeção energética no background cosmológico (quanto maior \(|\beta|\), maior a contribuição do canal).
+- **Amplitude \(\alpha\) em \(S(z)\):** controla a intensidade efetiva do canal físico de modulação do crescimento estrutural/formação estelar (quanto maior \(|\alpha|\), mais forte o efeito no observável de crescimento).
+- **Largura em redshift \(w\):** representa a extensão temporal (intervalo efetivo em redshift) da ação do canal; valores maiores de \(w\) implicam feedback distribuído por uma faixa mais ampla de épocas.
+- **Centro da janela \(z_p\):** define a época central do feedback, isto é, o redshift no qual o canal atinge efeito máximo em módulo.
+- **Convenção de sinal (modelo efetivo):**
+  - no caminho de expansão, \(\beta>0\) tende a aumentar \(H^2(z)\) (reforça a taxa de expansão efetiva local), enquanto \(\beta<0\) tende a reduzir \(H^2(z)\);
+  - no caminho de crescimento, com \(S(z)=1-\alpha G(z)\) e \(G(z)>0\), \(\alpha>0\) suprime crescimento/formação estelar efetiva (reduz \(f\sigma_8\)), enquanto \(\alpha<0\) amplifica crescimento efetivo (aumenta \(f\sigma_8\)).
+
+**Nota curta de consistência:** todos os \(\Omega_i(z)\) usados em \(H^2(z)/H_0^2\) devem ser adimensionais; parâmetros de amplitude devem ser normalizados para manter \(H^2(z)/H_0^2\) adimensional; e deve-se preservar a positividade de \(H^2(z)\) no intervalo de redshift analisado.
+
 ### B3. Critérios formais de fechamento
 
 Um “modelo fechado” aqui deve satisfazer:
