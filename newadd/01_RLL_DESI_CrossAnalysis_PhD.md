@@ -39,6 +39,8 @@ O RLL não é um modelo ad hoc, mas uma **extensão fenomenológica fisicamente 
 E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ + Ωs₀[f(a) + (1-f(a))a⁻³] + ΩB₀·a⁻⁴ + ΩP₀·a⁻⁴
 ```
 
+**Norma metodológica (regime mínimo):** No modelo mínimo, termos de feedback local (AGN/SMBH) não retroagem diretamente na equação FRW. Esses termos entram no bloco de baryons/chemistry e afetam apenas observáveis de formação de estrutura (SFR, termodinâmica do gás, crescimento em halo-galáxia). Por consistência formal com as equações deste documento, o regime mínimo não inclui `ε_feedback` ou `f_duty` somando em `E²(a)`.
+
 A função logística f(z) = 1/[1 + exp((z - zₜ)/wₜ)] gera uma **transição suave entre comportamento tipo energia escura (z alto) e tipo matéria (z baixo)**, que é precisamente o padrão que os dados DESI DR2 favorecem na "mirage class" (Lodha et al. 2025).
 
 ---
