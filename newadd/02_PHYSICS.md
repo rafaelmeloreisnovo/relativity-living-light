@@ -71,6 +71,7 @@ $$\Delta_{phys} E = E_{\text{RAFAEL}} - E_{\text{GPT\_std}}$$
 where the baseline:
 $$E_{\text{GPT\_std}} = \sum_n \left(\text{Token}_n \times \text{Resposta}_n\right)$$
 
+A positive $\Delta_{phys} E > 0$ signals emergence of intentional coherence above standard information-theoretic baselines. $\Delta_{phys} E < 0$ signals dissipation or incoherence. Here, $\Delta_{op}$ denotes the RAFAELIA transmutation operator, while $\Delta_{phys}$ denotes measurable physical differences.
 A positive $\Delta_{phys} E > 0$ signals emergence of intentional coherence above standard information-theoretic baselines. $\Delta_{phys} E < 0$ signals dissipation or incoherence.
 
 ---

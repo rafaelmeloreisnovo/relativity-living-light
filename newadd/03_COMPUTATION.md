@@ -10,6 +10,9 @@
 
 The computational layer of RAFAELIA spans multiple abstraction levels: from high-level cognitive loop architecture through formal algorithmic pipelines, cryptographic integrity systems, and bare-metal hardware interaction at the register and instruction level. This document formalizes each level with technical precision, including low-level CPU detection logic expressed without external dependencies.
 
+## 1.1 Symbol Convention
+
+Throughout this domain, $\Delta$ is used as the RAFAELIA transmutation operator (equivalent to $\Delta_{op}$ in cross-domain notation).
 ### 1.1 Symbol Convention (Δ operator vs physical difference)
 
 - $\Delta_{op}$: RAFAELIA transmutation operator.

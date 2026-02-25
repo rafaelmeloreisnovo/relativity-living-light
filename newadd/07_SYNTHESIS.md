@@ -51,6 +51,10 @@ Rounding rule: **round to nearest at 4 decimal places** (standard half-up when t
 
 ---
 
+## 1.1 Symbol Convention
+
+In this synthesis, $\Delta_{op}$ denotes the RAFAELIA transmutation operator, and $\Delta_{phys}$ denotes observable physical differences (e.g., energy gaps).
+
 ## 2. The RAFAELIA Master Equation
 
 ### 2.1 Full Form
