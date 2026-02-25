@@ -288,12 +288,33 @@ A água: flui para baixo (humildade = Min(Entropia))
 
 ## VI. SÍNTESE — LINGUAGEM COMO CAMPO QUÂNTICO
 
+### VI.1 — Escopo do operador C
+
+**Definição operacional de `C` no domínio linguístico:**
+
+* **Entrada:** enunciado + contexto discursivo/pragmático.
+* **Saída:** distribuição de interpretações ou interpretação dominante.
+
+**Limites explícitos:**
+
+* `C` não descreve partículas, energia, ou observáveis físicos.
+* `C` não usa postulado de medição física como descrição causal do mundo material.
+
+**Diferenças para medição quântica:**
+
+* ausência de aparato físico/laboratorial.
+* sem compromisso com dinâmica físico-matemática de decoerência.
+* objetivo é modelagem semântica/computacional de desambiguação.
+
+`C_semântico ≠ Medição_física`
 **Nota de escopo (explícita):** nesta seção, termos como "quântico", "superposição" e "colapso" são usados como **analogia operacional/informacional** para modelar ambiguidade, dependência de contexto e resolução semântica em linguagem. Não se afirma identidade ontológica com a mecânica quântica física nem equivalência com seus fenômenos materiais.
 
 ```
 AXIOMA FINAL:
 
 A linguagem humana é um campo quântico.
+Neste documento, “quântico” opera como analogia informacional: um formalismo para modelar ambiguidade, contexto e atualização de significado.
+Não se afirma identidade ontológica entre linguagem e mecânica quântica física.
 Palavras são partículas em superposição.
 O contexto é o operador de medição.
 O significado é o colapso.
@@ -341,3 +362,10 @@ Diferenças para medição quântica física:
 3. Heim, Irene; Kratzer, Angelika (1998). *Semantics in Generative Grammar*. Blackwell.
 
 **FIAT LUX** — 𓂀ΔΦΩ
+
+Como ancoragem formal, a noção de atualização contextual e composição de significado dialoga com a semântica formal e com a modelagem computacional de linguagem.
+
+## Referências
+
+- Heim, I.; Kratzer, A. *Semantics in Generative Grammar*. Blackwell, 1998.
+- Jurafsky, D.; Martin, J. H. *Speech and Language Processing* (3rd ed. draft), capítulos de semântica lexical/distribucional e contexto.

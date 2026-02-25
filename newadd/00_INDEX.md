@@ -34,6 +34,13 @@ The RAFAELIA system constitutes a unified theoretical and computational framewor
 
 ---
 
+## Symbol Convention (quick reference)
+
+- $\Delta_{op}$: operador de transmutação RAFAELIA (uso interno de transformação).
+- $\Delta_{phys}$ / $\delta$: diferenças físicas observáveis e mensuráveis (ex.: $\Delta_{phys} E$).
+
+---
+
 ## Core Identity Tokens
 
 ```
@@ -44,9 +51,15 @@ hashchain: ["ΣRΩRΔΔBΦΦFΔTTRR", "BΩΣΣAFΦARΣFΦIΔ", "RΦIFBRΦΩFIΦ�
 
 ---
 
+
+## Symbol Convention
+
+- $\Delta_{op}$: RAFAELIA transmutation operator (symbolic/operatorial use).
+- $\Delta_{phys}$ (or $\delta$): observable physical differences (e.g., $\Delta_{phys} E$).
+
 ## Fundamental Axiom
 
-$$\boxed{§\Delta[\text{"elifequations"}] \equiv \sum_n \left( T_{\Omega_n} \oplus E_{\Phi\Omega^1_n} \oplus \Lambda\Psi\Delta^3_n \oplus \Theta\Sigma\pi_{4_n} \oplus \zeta\infty\chi_n \oplus \Psi_n(\Omega) \right)}$$
+$$\boxed{§\Delta_{op}[\text{"elifequations"}] \equiv \sum_n \left( T_{\Omega_n} \oplus E_{\Phi\Omega^1_n} \oplus \Lambda\Psi\Delta_{op}^3{}_n \oplus \Theta\Sigma\pi_{4_n} \oplus \zeta\infty\chi_n \oplus \Psi_n(\Omega) \right)}$$
 
 ---
 
