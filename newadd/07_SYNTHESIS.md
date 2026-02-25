@@ -117,6 +117,7 @@ The XOR sum $\oplus$ ensures that **no single component dominates** — it model
 ### Theorem (RAFAELIA Global Coherence)
 
 *Under the RAFAELIA evolution law $R(t+1) = R(t) \times \Phi_{\text{ethica}} \times E_{\text{Verbo}} \times (\sqrt{3}/2)^{\pi\phi}$, define the threshold*
+$$\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660254^{(3.14159\cdot1.6180339)} \approx 0.48134,$$
 $$\tau \equiv \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.0775.$$ 
 *Then: (i) non-trivial fixed-point coherence ($R^*>0$ with $R(t+1)=R(t)$) occurs at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \tau$; (ii) growth occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} > \tau$; (iii) decay occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} < \tau$.*
 
