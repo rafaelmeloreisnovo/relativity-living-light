@@ -15,6 +15,7 @@ Este conjunto de documentos constitui a **análise externa cruzada de nível PhD
 - Formulações latentes emergentes (não presentes no repositório original)
 - Formulações comprobatórias com provas formais
 - Posicionamento acadêmico PhD completo com 42 referências
+- **Ponte Cosmologia → Ecossistema Galáctico → CMZ**
 
 ---
 
@@ -84,6 +85,9 @@ O índice RAFAELIA R_corr ≈ 0.964 corresponde quantitativamente (erro < 1%) à
 
 ### Roadmap TRL 3-4 → 5-6
 O modelo está em TRL 3-4. O caminho para TRL 5-6 (validação observacional completa) é claro e factível com infraestrutura computacional existente em 6-18 meses.
+
+### Ponte Cosmologia → Ecossistema Galáctico → CMZ
+Parâmetros cosmológicos efetivos (setor fotônico/bariônico) são propagados para a física do ISM e para condições de CMZ: temperatura, ionização, fração molecular e supressão de SFR.
 
 ---
 
