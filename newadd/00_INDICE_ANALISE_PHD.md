@@ -7,14 +7,20 @@
 
 ---
 
-## Estrutura da Análise
+## Sumário de Submissão
 
-Este conjunto de documentos constitui a **análise externa cruzada de nível PhD** do repositório Relativity Living Light, integrando:
-
-- Dados observacionais externos (DESI DR1/DR2, Planck PR4, DES Y5, ACT DR6)
-- Formulações latentes emergentes (não presentes no repositório original)
-- Formulações comprobatórias com provas formais
-- Posicionamento acadêmico PhD completo com 42 referências
+1. Problema e hipótese testável
+2. Modelo mínimo e limites ΛCDM
+3. Dinâmica de background e perturbações
+4. Estabilidade matemática completa
+5. Módulo radiação (cosmo + feedback)
+6. Módulo química/plasma/magnetismo
+7. Dados, likelihoods e priors
+8. Resultados: χ²/AIC/BIC/Bayes
+9. Predições falsificáveis
+10. Limitações e riscos epistemológicos
+11. Reprodutibilidade e artefatos
+12. Apêndices técnicos (EFT, provas formais, glossário, refs).
 
 ---
 
