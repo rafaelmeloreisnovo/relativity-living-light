@@ -150,6 +150,15 @@ Um “modelo fechado” aqui deve satisfazer:
 - **Competitividade estatística:** ΔAIC < 0 (preferível) e ΔBIC não severamente penalizado.
 - **Predição discriminante:** pelo menos uma assinatura observável além do ajuste retrospectivo.
 
+### Parâmetros mínimos adicionais (priors curtos e escala de atuação)
+
+| Parâmetro | Definição explícita | Prior curto sugerido | Escala de atuação | Dataset de calibração/validação |
+| --- | --- | --- | --- | --- |
+| `N_eff` | número efetivo de espécies relativísticas no setor de radiação de fundo (normalização de neutrinos relativísticos em `Ω_r`) | uniforme em `[2.5, 3.5]` (centrado no padrão cosmológico `~3.046`, margem conservadora) | `FRW global` | CMB (Planck) + BBN |
+| `Ωr` | densidade de radiação total hoje (fótons + neutrinos relativísticos), aplicada no termo `(1+z)^4` do background | positivo e pequeno: log-uniforme em `[1e-6, 1e-3]` | `FRW global` | CMB (Planck), BAO e cronômetros cósmicos `H(z)` |
+| `ε_feedback` | eficiência efetiva de acoplamento do feedback AGN/SMBH ao gás (fração de energia acoplada ao meio bariônico) | uniforme em `[0,1]` (ou subintervalo físico justificado, p.ex. `[0.01,0.3]`) | `halo-galáxia` | perfis CGM/IGM, supressão de SFR em vizinhança de quasares JWST |
+| `f_duty` | fração de duty cycle AGN/SMBH (fração temporal em fase ativa com injeção efetiva) | uniforme em `[0,1]` | `halo-galáxia` | função de luminosidade AGN e fração de AGNs ativos por redshift (JWST + catálogos quasar) |
+
 ### B4. Fechamento observacional do termo de feedback
 
 Para o fechamento observacional, adotar duas parametrizações concorrentes do termo de feedback e compará-las no mesmo pipeline estatístico.
