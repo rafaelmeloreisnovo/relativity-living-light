@@ -217,13 +217,24 @@ A teoria efetiva de campo do setor RLL é escrita como:
 S_RLL = ∫ d⁴x √(-g) · [M_Pl²/2 · R + P(X,φ) + L_B + L_P + L_m]
 ```
 
+e, no setor bariônico local efetivo:
+
+```
+L_bary,eff = L_cool + L_ion + L_B,eff
+```
+
 com:
 
 ```
 P(X,φ) = Ωs₀·ρ_c · {f(φ/M_Pl) · [2X/M_Pl⁴ - 1] + (1-f(φ/M_Pl)) · ρ_m₀/ρ_c·a⁻³}
 L_B = -F_μν·F^μν / (16π·μ₀) · ΩB₀·ρ_c·a⁻⁴
 L_P = n_e·k_B·T_e · ΩP₀·ρ_c/ρ_P · a⁻⁴
+L_cool = - n_H(a)² Λ(T_g, Z, Y_H2)
+L_ion = + n_H(a) Γ_rad(F_UV, x_e) - n_H(a) x_e E_ion α_rec(T_g)
+L_B,eff = - B_eff²/(8π) - η_A |J_⊥|² - η_O |J|²
 ```
+
+No escopo mínimo deste EFT, `L_bary,eff` atua apenas no setor de gás bariônico local (termodinâmica, ionização e dissipação magnetizada em escala sub-horizonte). Assim, por construção, esse sub-bloco não altera diretamente a dinâmica FRW de fundo em `E²(a)` no regime mínimo; ele entra como correção efetiva de microfísica bariônica compatível com as convenções já adotadas para `a`, `ρ_c` e termos efetivos (`L_B`, `L_P`).
 
 **Condições de viabilidade:**
 - Ghost freedom: ∂²P/∂X² > 0 → satisfeito para f > 0
