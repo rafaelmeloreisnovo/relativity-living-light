@@ -64,6 +64,23 @@ H^2(z)=H_0^2\left[\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_f(z)\rig
 \]
 
 \[
+\Omega_{\mathrm{feedback}}(z)=\Omega_{\mathrm{rad,ativo}}(z)+\Omega_{\mathrm{MHD}}(z)+\Omega_{\mathrm{ion}}(z)
+\]
+
+com decomposição mínima:
+
+\[
+\Omega_{\mathrm{rad,ativo}}(z)=\beta_{\mathrm{rad}}\,\exp\left[-\frac{(z-z_{\mathrm{rad}})^2}{2w_{\mathrm{rad}}^2}\right],\qquad
+\Omega_{\mathrm{MHD}}(z)=\beta_{\mathrm{MHD}}\,\exp\left[-\frac{(z-z_{\mathrm{MHD}})^2}{2w_{\mathrm{MHD}}^2}\right],
+\]
+
+\[
+\Omega_{\mathrm{ion}}(z)=\beta_{\mathrm{ion}}\,\exp\left[-\frac{(z-z_{\mathrm{ion}})^2}{2w_{\mathrm{ion}}^2}\right]
+\]
+
+**Versão fenomenológica compacta (opcional, para comparação AIC/BIC):**
+
+\[
 \Omega_f(z)=\beta\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
 
@@ -74,6 +91,14 @@ H^2(z)=H_0^2\left[\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_f(z)\rig
 \]
 
 Esta versão deve ser mantida apenas para comparação de parcimônia e seleção de modelo (AIC/BIC) contra a decomposição física mínima. Há um trade-off entre interpretabilidade física e número de parâmetros: a forma compacta tende a reduzir parâmetros, mas perde detalhamento interpretável.
+### B1.1 Mapeamento físico de parâmetros
+
+- \(\beta_{\mathrm{rad}},\beta_{\mathrm{MHD}},\beta_{\mathrm{ion}}\): amplitudes efetivas de cada canal de feedback no budget de energia cosmológica; \(\beta>0\) tende a **aquecimento/injeção** (supressão de SFR), enquanto \(\beta<0\) representa canal efetivo de **resfriamento/compensação** (potencial alívio de supressão).
+- \(z_{\mathrm{rad}},z_{\mathrm{MHD}},z_{\mathrm{ion}}\): redshift central de atuação dominante de cada processo (janela temporal de maior acoplamento físico).
+- \(w_{\mathrm{rad}},w_{\mathrm{MHD}},w_{\mathrm{ion}}\): largura da janela em redshift; valores maiores implicam efeito distribuído por intervalo mais amplo, valores menores concentram o impacto em episódio curto.
+- Na forma compacta, \((\beta,z_p,w)\) representam, respectivamente, amplitude líquida, época central e duração efetiva do feedback agregado.
+
+**Nota de consistência dimensional e normalização:** todas as contribuições \(\Omega_i(z)\) são definidas como frações de densidade normalizadas por \(\rho_{\mathrm{crit},0}=3H_0^2/(8\pi G)\), garantindo que cada termo no colchete de \(H^2(z)/H_0^2\) seja adimensional. Exigir \(H^2(z)>0\) em todo o intervalo analisado preserva a consistência física do fechamento.
 
 ### B2. Caminho 2 (modificação no crescimento; recomendado)
 
@@ -87,6 +112,27 @@ f\sigma_8(z)=\Omega_m(z)^\gamma\,\sigma_{8,0}\,S(z)
 S(z)=1-\alpha\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
 
+### Mapeamento físico de parâmetros
+
+- **Amplitude \(\beta\)** (no Caminho 1): intensidade efetiva do canal físico que entra como termo extra em \(H^2(z)/H_0^2\).
+- **Amplitude \(\alpha\)** (no Caminho 2): intensidade efetiva do canal físico que modula diretamente o observável de crescimento \(f\sigma_8\).
+- **Largura em redshift \(w\)**: extensão temporal (em tempo cósmico mapeado por \(z\)) ou intervalo efetivo no qual o canal atua de forma relevante.
+- **Centro \(z_p\)**: época central do evento de feedback, onde o acoplamento fenomenológico atinge efeito máximo.
+- **Convenção de sinal (modelo efetivo):**
+  - no Caminho 1, \(\beta>0\) aumenta \(H^2\) (acelera expansão efetiva no intervalo de ação), enquanto \(\beta<0\) reduz \(H^2\);
+  - no Caminho 2, com \(S(z)=1-\alpha G(z)\), \(\alpha>0\) reduz \(S(z)\) e suprime crescimento/formação estelar efetiva, enquanto \(\alpha<0\) amplia \(S(z)\) e favorece crescimento.
+
+**Nota curta de consistência:** todos os \(\Omega_i(z)\) usados dentro de \(H^2(z)/H_0^2\) devem ser adimensionais; parâmetros de amplitude devem ser normalizados para manter \(H^2(z)/H_0^2\) adimensional; e a positividade de \(H^2(z)\) deve ser preservada no intervalo de redshift analisado.
+- **Amplitude \(\beta\) em \(\Omega_f(z)\):** controla a intensidade efetiva do canal físico de injeção energética no background cosmológico (quanto maior \(|\beta|\), maior a contribuição do canal).
+- **Amplitude \(\alpha\) em \(S(z)\):** controla a intensidade efetiva do canal físico de modulação do crescimento estrutural/formação estelar (quanto maior \(|\alpha|\), mais forte o efeito no observável de crescimento).
+- **Largura em redshift \(w\):** representa a extensão temporal (intervalo efetivo em redshift) da ação do canal; valores maiores de \(w\) implicam feedback distribuído por uma faixa mais ampla de épocas.
+- **Centro da janela \(z_p\):** define a época central do feedback, isto é, o redshift no qual o canal atinge efeito máximo em módulo.
+- **Convenção de sinal (modelo efetivo):**
+  - no caminho de expansão, \(\beta>0\) tende a aumentar \(H^2(z)\) (reforça a taxa de expansão efetiva local), enquanto \(\beta<0\) tende a reduzir \(H^2(z)\);
+  - no caminho de crescimento, com \(S(z)=1-\alpha G(z)\) e \(G(z)>0\), \(\alpha>0\) suprime crescimento/formação estelar efetiva (reduz \(f\sigma_8\)), enquanto \(\alpha<0\) amplifica crescimento efetivo (aumenta \(f\sigma_8\)).
+
+**Nota curta de consistência:** todos os \(\Omega_i(z)\) usados em \(H^2(z)/H_0^2\) devem ser adimensionais; parâmetros de amplitude devem ser normalizados para manter \(H^2(z)/H_0^2\) adimensional; e deve-se preservar a positividade de \(H^2(z)\) no intervalo de redshift analisado.
+
 ### B3. Critérios formais de fechamento
 
 Um “modelo fechado” aqui deve satisfazer:
@@ -95,6 +141,34 @@ Um “modelo fechado” aqui deve satisfazer:
 - **Parcimônia:** idealmente \(k \leq 5\).
 - **Competitividade estatística:** ΔAIC < 0 (preferível) e ΔBIC não severamente penalizado.
 - **Predição discriminante:** pelo menos uma assinatura observável além do ajuste retrospectivo.
+
+### B4. Fechamento observacional do termo de feedback
+
+Para o fechamento observacional, adotar duas parametrizações concorrentes do termo de feedback e compará-las no mesmo pipeline estatístico.
+
+1. **Fenomenológica (gaussiana atual)**
+
+   Mantém a forma gaussiana já definida:
+
+   \[
+   S(z)=1-\alpha\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
+   \]
+
+   (ou equivalente em \(\Omega_f(z)\), conforme o caminho escolhido).
+
+2. **Semi-física com proxy de densidade de luminosidade AGN \(\rho_{L,AGN}(z)\)**
+
+   Substituir o termo puramente gaussiano por uma forma guiada por \(\rho_{L,AGN}(z)\), por exemplo:
+
+   \[
+   S(z)=1-\alpha_s\left[\frac{\rho_{L,AGN}(z)}{\rho_{L,AGN}(z_\star)}\right]^\eta
+   \]
+
+   com \(\alpha_s\), \(\eta\) e parâmetros auxiliares de normalização/escala definidos para manter estabilidade numérica e interpretação física no intervalo de redshift analisado.
+
+**Priors (forma semi-física):** declarar explicitamente que os parâmetros da parametrização semi-física usam priors informados por literatura, com intervalos amplos (fracos), para evitar super-restrição artificial.
+
+**Comparação entre parametrizações:** reportar \(\Delta\mathrm{AIC}\) e \(\Delta\mathrm{BIC}\) entre as formas fenomenológica e semi-física, além da comparação com \(\Lambda\)CDM, para decisão de parcimônia vs. ganho de ajuste.
 
 ---
 
@@ -149,6 +223,7 @@ Se houver supressão de formação estelar em vizinhas de quasares, esperar:
 1. validar formato de `Hz.csv` e `fsigma8.csv` (colunas, unidades, metadados de origem);
 2. executar pipeline de ajuste/inferência;
 3. exportar `model_comparison.csv` com χ², AIC, BIC e k por modelo;
+   - garantir uma linha para a parametrização **fenomenológica** e uma linha para a parametrização **semi-física**;
 4. preencher versão final do paper com números e tabelas;
 5. registrar release documental com hash/data dos artefatos.
 
@@ -175,3 +250,80 @@ Este arquivo passa a ser o **ponto único** para transformar o material estraté
 - modelagem efetiva,
 - validação estatística,
 - e predição observacional falsificável.
+
+---
+
+## 9) Consistência com BOOSTERS/EFT
+
+Esta seção define a regra operacional para evitar dupla contagem entre a extensão fenomenológica de feedback e os termos já introduzidos em [`docs/BOOSTERS.md`](./BOOSTERS.md) e [`docs/LAGRANGIANO_EFT.md`](./LAGRANGIANO_EFT.md).
+
+### 9.1 Princípio de separação física
+
+- **Setor de fundo padrão (Ω_r):** representa radiação base de ΛCDM (fótons + neutrinos efetivos), sem incorporar automaticamente componentes de feedback AGN/quasar.
+- **Setor booster legado (Ω_B0, Ω_P0):** termos que escalam como `a⁻⁴` e já codificam contribuições globais de campo magnético e plasma no formalismo unificado de Friedmann em `BOOSTERS.md`.
+- **Setor ativo localizado (Ω_feedback(z)):** termo efetivo para injeção/supressão associada a AGN, explicitamente localizado em redshift (janela gaussiana/logística), não tratado como fundo uniforme em todo o histórico cósmico.
+
+### 9.2 Regra operacional por componente
+
+#### A) O que permanece em Ω_r padrão
+
+Permanece em Ω_r apenas o conteúdo radiativo de referência do modelo base:
+
+- contribuição radiativa padrão usada na calibração ΛCDM da corrida;
+- qualquer parte já absorvida em parâmetros cosmológicos de baseline (ex.: normalização equivalente a `N_eff` adotada no setup).
+
+**Regra:** não somar manualmente Ω_B0 ou Ω_P0 dentro de Ω_r quando estes estiverem explicitamente ativos como boosters.
+
+#### B) O que entra em Ω_feedback(z) como componente ativa/localizada
+
+Entram em Ω_feedback(z) apenas efeitos transientes e ambientalmente associados a atividade AGN/quasar:
+
+- injeção energética com pico em `z_p` e largura `w`;
+- modulação temporal da eficiência de feedback (amplitude β, α ou equivalente, conforme parametrização da corrida);
+- efeitos que devem desaparecer fora da janela de redshift (limite `|z-z_p| >> w`).
+
+Forma operacional genérica:
+
+\[
+\Omega_{\mathrm{tot}}(z)=\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_{\mathrm{legacy}}(z)+\Omega_{\mathrm{feedback}}(z)
+\]
+
+com `Ω_legacy(z)` definido por escolha explícita de boosters legados (ver 9.3).
+
+### 9.3 Política para termos legados (fixar, recalibrar ou desligar)
+
+Para cada corrida, declarar no cabeçalho de configuração um dos modos abaixo:
+
+1. **Modo BASE (sem boosters legados)**
+   - `Ω_B0 = 0`, `Ω_P0 = 0`;
+   - `Ω_r` permanece no valor padrão de baseline;
+   - ajustar apenas `Ω_feedback(z)`.
+   - **Uso recomendado:** medir ganho incremental puro do termo de feedback.
+
+2. **Modo BOOSTERS-FIXED (legado fixado)**
+   - fixar `Ω_B0` e `Ω_P0` nos valores de referência já adotados em `BOOSTERS.md`;
+   - manter esses termos congelados durante o ajuste de `Ω_feedback(z)`;
+   - não reabsorver esses valores em `Ω_r`.
+   - **Uso recomendado:** testar robustez do feedback contra um fundo eletromagnético/plasma pré-definido.
+
+3. **Modo BOOSTERS-RECAL (legado recalibrado)**
+   - liberar `Ω_B0` e/ou `Ω_P0` para ajuste conjunto com `Ω_feedback(z)`;
+   - impor prior físico explícito para evitar degenerescência não identificável;
+   - reportar matriz de covariância e correlações entre `{Ω_B0, Ω_P0}` e parâmetros de feedback (`β, z_p, w` ou equivalentes).
+   - **Uso recomendado:** análise de sensibilidade global e mapeamento de degenerescências.
+
+4. **Modo EFT-COUPLED (com acoplamentos efetivos)**
+   - ativar termos de acoplamento de `LAGRANGIANO_EFT.md` (ex.: `L_mag`, `L_plasma`) apenas quando houver mapeamento explícito para a parametrização cosmológica usada na corrida;
+   - se `L_mag`/`L_plasma` estiverem ativos, evitar introduzir termo fenomenológico redundante com a mesma dependência funcional em `Ω_feedback(z)`;
+   - documentar qual contribuição foi mantida no nível EFT e qual foi desativada no nível fenomenológico.
+   - **Uso recomendado:** corridas de consistência teoria-efetiva vs parametrização fenomenológica.
+
+### 9.4 Checklist anti-duplicação (obrigatório por corrida)
+
+Antes de executar inferência, confirmar:
+
+1. **Partição única:** cada contribuição física está em um único bloco (`Ω_r`, booster legado, ou `Ω_feedback(z)`).
+2. **Escalonamento coerente:** termos `a⁻⁴` globais não foram simultaneamente tratados como janela localizada em redshift sem justificativa física.
+3. **EFT consistente:** acoplamentos `L_mag` e `L_plasma` não foram duplicados por termos ad hoc idênticos na expansão.
+4. **Comparabilidade:** todas as corridas de comparação (χ²/AIC/BIC) usam a mesma convenção de partição de energia.
+5. **Rastreabilidade:** registrar no relatório da corrida: modo (`BASE`, `BOOSTERS-FIXED`, `BOOSTERS-RECAL`, `EFT-COUPLED`), parâmetros fixos/livres e justificativa física.
