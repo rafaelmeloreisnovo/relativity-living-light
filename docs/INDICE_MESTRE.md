@@ -25,6 +25,8 @@
     - [`docs/ROADMAP_VALIDACAO.md`](ROADMAP_VALIDACAO.md)
 - Diagnóstico de lacunas para padrão pós-PhD formal/profissional:
   - [`docs/POST_PHD_FORMAL_GAP_ANALYSIS.md`](POST_PHD_FORMAL_GAP_ANALYSIS.md)
+- Plano estratégico A→B→C→D (JWST/AGN/SMBH) com checklist operacional:
+  - [`docs/PLANO_ABCD_JWST_AGN_SMBH.md`](PLANO_ABCD_JWST_AGN_SMBH.md)
 
 ---
 

@@ -69,6 +69,7 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 - [docs/COMPARACAO_DESI_2025.md](docs/COMPARACAO_DESI_2025.md)
 - [docs/ROADMAP_VALIDACAO.md](docs/ROADMAP_VALIDACAO.md)
 - [docs/REFERENCES.md](docs/REFERENCES.md)
+- [docs/PLANO_ABCD_JWST_AGN_SMBH.md](docs/PLANO_ABCD_JWST_AGN_SMBH.md)
 
 ### Governança e organização documental
 
