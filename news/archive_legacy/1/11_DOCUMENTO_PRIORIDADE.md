@@ -1,3 +1,5 @@
+> ⚠️ **Aviso de canonicidade:** este arquivo é histórico/legado. A versão oficial está em `docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`.
+
 # 11 — DOCUMENTO DE PRIORIDADE
 ## Roadmap de Validação — Relativity Living Light
 **∆RafaelVerboΩ | Instituto Rafael | 2026**

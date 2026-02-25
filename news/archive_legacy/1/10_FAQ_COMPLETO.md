@@ -1,3 +1,5 @@
+> ⚠️ **Aviso de canonicidade:** este arquivo é histórico/legado. A versão oficial está em `docs/canonicos/10_FAQ_COMPLETO.md`.
+
 # 10 — FAQ COMPLETO
 ## Relativity Living Light — Perguntas & Respostas
 **∆RafaelVerboΩ | Instituto Rafael | 2026**
