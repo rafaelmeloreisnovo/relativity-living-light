@@ -59,6 +59,14 @@ Observações recentes do JWST apontam, simultaneamente, sinais de supressão de
 
 ### B1. Caminho 1 (modificação na expansão)
 
+### B1.1 Versão compacta opcional
+
+\[
+Ω_feedback,compact(z) = β exp[-(z-z_p)^2/(2w^2)]
+\]
+
+Esta parametrização compacta deve ser mantida apenas como baseline de comparação de parcimônia e seleção de modelo (AIC/BIC) contra a decomposição física mínima. O uso dessa forma explicita o trade-off entre interpretabilidade física e número de parâmetros.
+
 \[
 H^2(z)=H_0^2\left[\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_f(z)\right]
 \]
@@ -84,6 +92,13 @@ com decomposição mínima:
 \Omega_f(z)=\beta\,\exp\left[-\frac{(z-z_p)^2}{2w^2}\right]
 \]
 
+### B1.1 Versão compacta opcional
+
+\[
+Ω_feedback,compact(z) = β exp[-(z-z_p)^2/(2w^2)]
+\]
+
+Esta versão deve ser mantida apenas para comparação de parcimônia e seleção de modelo (AIC/BIC) contra a decomposição física mínima. Há um trade-off entre interpretabilidade física e número de parâmetros: a forma compacta tende a reduzir parâmetros, mas perde detalhamento interpretável.
 ### B1.1 Mapeamento físico de parâmetros
 
 - \(\beta_{\mathrm{rad}},\beta_{\mathrm{MHD}},\beta_{\mathrm{ion}}\): amplitudes efetivas de cada canal de feedback no budget de energia cosmológica; \(\beta>0\) tende a **aquecimento/injeção** (supressão de SFR), enquanto \(\beta<0\) representa canal efetivo de **resfriamento/compensação** (potencial alívio de supressão).
@@ -171,6 +186,10 @@ Para o fechamento observacional, adotar duas parametrizações concorrentes do t
 Para garantir consistência entre a parametrização fenomenológica e a base física já definida, adotamos uma decomposição operacional em que `Ω_r` permanece como componente radiativa padrão de fundo, enquanto `Ω_feedback(z)` captura exclusivamente contribuição ativa e localizada em redshift associada a episódios AGN/quasar. Termos legados de BOOSTERS e operadores EFT com suporte funcional equivalente devem ser fixados, recalibrados ou desligados por corrida, de modo a impedir dupla contagem e preservar interpretabilidade estatística.
 
 Esta seção é vinculante para todas as corridas e deve ser aplicada em conjunto com `docs/BOOSTERS.md` (termos de plasma/magnetismo e superposição já definidos) e `docs/LAGRANGIANO_EFT.md` (acoplamentos efetivos e operadores do setor EFT).
+Referências normativas:
+
+- `docs/BOOSTERS.md` para os termos de plasma/magnetismo já definidos;
+- `docs/LAGRANGIANO_EFT.md` para os acoplamentos efetivos.
 
 ### 1) Partição de energia (baseline vs ativo)
 
@@ -201,6 +220,30 @@ Com base em `docs/LAGRANGIANO_EFT.md`, adotar as regras operacionais:
 | **Corrida B (feedback puro)** | Fixo padrão | Livre (amplitude/centro/largura) | Equivalentes desligados | Remover do baseline qualquer termo com kernel colinear à janela ativa |
 | **Corrida C (boosters físicos)** | Fixo padrão | `0` (ou restrito a residual) | Boosters físicos ligados no fundo; EFT duplicativo desligado | Preservar termos contínuos físicos e bloquear versões transitórias redundantes |
 | **Corrida D (híbrida controlada)** | Fixo padrão | Livre sob controle | Subset físico não redundante ativo; duplicativos fixados com prior estreito | Registrar justificativa explícita para cada termo mantido e cada termo desligado |
+- `Ω_feedback(z)` representa apenas a contribuição ativa e localizada em redshift (janela/gaussiana/logística), destinada a capturar injeção AGN/quasar em faixa `z` controlada por parâmetros de amplitude, centro e largura.
+- Regra de não sobreposição: qualquer termo com suporte temporal/local equivalente ao `Ω_feedback(z)` não pode permanecer simultaneamente livre no baseline.
+
+### 2) Mapeamento com BOOSTERS
+
+- Termos de `Ω_B0` (magnético) e `Ω_P0` (plasma), já formalizados em `docs/BOOSTERS.md`, devem ser tratados em uma entre duas modalidades por corrida:
+  - **Modalidade Fundo (background):** contribuição contínua (ex. escala radiativa `a^-4`) permanece no baseline, e `Ω_feedback(z)` modela apenas excesso transitório;
+  - **Modalidade Janela Ativa:** parte/total desses efeitos entra em `Ω_feedback(z)`, e o correspondente termo contínuo legado é congelado ou desligado para evitar duplicação.
+- O booster de superposição (`Ω_s0`) deve seguir o mesmo princípio de exclusão quando houver parametrização efetiva equivalente na janela ativa.
+
+### 3) Mapeamento com EFT
+
+- Conforme `docs/LAGRANGIANO_EFT.md`, acoplamentos que geram correção suave e global do fundo permanecem no baseline (parâmetros fixos ou com prior estreito).
+- Acoplamentos que induzem resposta transitória associada a AGN/quasar devem migrar para `Ω_feedback(z)` (ou termo equivalente único), desligando duplicatas fenomenológicas.
+- Exigir rastreabilidade 1:1: cada operador/acoplamento EFT ativo deve mapear para um único bloco observável no pipeline (fundo **OU** feedback localizado).
+
+### 4) Matriz operacional por corrida (obrigatória)
+
+| Tipo de corrida | `Ω_r` padrão | `Ω_feedback(z)` | Termos legados (BOOSTERS/EFT) | Ação anti-duplicação |
+| --- | --- | --- | --- | --- |
+| **Corrida A (ΛCDM baseline)** | ativo/fixo de referência | `0` | desligados | manter apenas baseline canônico |
+| **Corrida B (feedback puro)** | fixo padrão | livre | equivalentes desligados | remover termos com mesmo suporte funcional da janela ativa |
+| **Corrida C (boosters físicos)** | ativo/fixo de referência | `0` (ou residual estritamente limitado) | boosters ligados no fundo; EFT duplicativo desligado | bloquear duplicação entre fundo contínuo e janela ativa |
+| **Corrida D (híbrida controlada)** | ativo/fixo de referência | livre | subset físico não redundante; duplicativos fixados com prior estreito | registrar justificativa explícita para cada termo mantido |
 
 ### 5) Regras de fixar/recalibrar/desligar (checklist)
 
@@ -210,12 +253,16 @@ Antes de cada ajuste, aplicar obrigatoriamente:
 - [ ] **Recalibrar:** somente termos que alteram a normalização global sem replicar a forma de janela em `z`.
 - [ ] **Desligar:** qualquer termo legado cujo kernel temporal/funcional seja colinear com `Ω_feedback(z)` na faixa analisada.
 - [ ] **Diagnóstico de degenerescência:** se houver correlação posterior alta entre amplitude de feedback e termo legado, desligar o legado ou impor prior informativo.
+- [ ] **Recalibrar:** somente termos que mudam a normalização global sem replicar a forma de janela em `z`.
+- [ ] **Desligar:** qualquer termo legado cujo kernel temporal/funcional seja colinear com `Ω_feedback(z)` na faixa analisada.
+- [ ] Validar com diagnóstico de degenerescência (ex.: correlação posterior alta entre amplitude de feedback e termo legado => desligar ou impor prior informativo).
 
 ### 6) Critério de aceitação da seção
 
 - “Nenhuma corrida é válida se dois blocos ativos modelarem o mesmo efeito físico na mesma janela de redshift.”
 - “Comparações AIC/BIC só são reportadas entre modelos com contagem efetiva de parâmetros não redundantes.”
 
+---
 
 ## 4) Etapa C — Análise máxima (estado da arte observacional)
 
@@ -295,3 +342,80 @@ Este arquivo passa a ser o **ponto único** para transformar o material estraté
 - modelagem efetiva,
 - validação estatística,
 - e predição observacional falsificável.
+
+---
+
+## 9) Consistência com BOOSTERS/EFT
+
+Esta seção define a regra operacional para evitar dupla contagem entre a extensão fenomenológica de feedback e os termos já introduzidos em [`docs/BOOSTERS.md`](./BOOSTERS.md) e [`docs/LAGRANGIANO_EFT.md`](./LAGRANGIANO_EFT.md).
+
+### 9.1 Princípio de separação física
+
+- **Setor de fundo padrão (Ω_r):** representa radiação base de ΛCDM (fótons + neutrinos efetivos), sem incorporar automaticamente componentes de feedback AGN/quasar.
+- **Setor booster legado (Ω_B0, Ω_P0):** termos que escalam como `a⁻⁴` e já codificam contribuições globais de campo magnético e plasma no formalismo unificado de Friedmann em `BOOSTERS.md`.
+- **Setor ativo localizado (Ω_feedback(z)):** termo efetivo para injeção/supressão associada a AGN, explicitamente localizado em redshift (janela gaussiana/logística), não tratado como fundo uniforme em todo o histórico cósmico.
+
+### 9.2 Regra operacional por componente
+
+#### A) O que permanece em Ω_r padrão
+
+Permanece em Ω_r apenas o conteúdo radiativo de referência do modelo base:
+
+- contribuição radiativa padrão usada na calibração ΛCDM da corrida;
+- qualquer parte já absorvida em parâmetros cosmológicos de baseline (ex.: normalização equivalente a `N_eff` adotada no setup).
+
+**Regra:** não somar manualmente Ω_B0 ou Ω_P0 dentro de Ω_r quando estes estiverem explicitamente ativos como boosters.
+
+#### B) O que entra em Ω_feedback(z) como componente ativa/localizada
+
+Entram em Ω_feedback(z) apenas efeitos transientes e ambientalmente associados a atividade AGN/quasar:
+
+- injeção energética com pico em `z_p` e largura `w`;
+- modulação temporal da eficiência de feedback (amplitude β, α ou equivalente, conforme parametrização da corrida);
+- efeitos que devem desaparecer fora da janela de redshift (limite `|z-z_p| >> w`).
+
+Forma operacional genérica:
+
+\[
+\Omega_{\mathrm{tot}}(z)=\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_{\mathrm{legacy}}(z)+\Omega_{\mathrm{feedback}}(z)
+\]
+
+com `Ω_legacy(z)` definido por escolha explícita de boosters legados (ver 9.3).
+
+### 9.3 Política para termos legados (fixar, recalibrar ou desligar)
+
+Para cada corrida, declarar no cabeçalho de configuração um dos modos abaixo:
+
+1. **Modo BASE (sem boosters legados)**
+   - `Ω_B0 = 0`, `Ω_P0 = 0`;
+   - `Ω_r` permanece no valor padrão de baseline;
+   - ajustar apenas `Ω_feedback(z)`.
+   - **Uso recomendado:** medir ganho incremental puro do termo de feedback.
+
+2. **Modo BOOSTERS-FIXED (legado fixado)**
+   - fixar `Ω_B0` e `Ω_P0` nos valores de referência já adotados em `BOOSTERS.md`;
+   - manter esses termos congelados durante o ajuste de `Ω_feedback(z)`;
+   - não reabsorver esses valores em `Ω_r`.
+   - **Uso recomendado:** testar robustez do feedback contra um fundo eletromagnético/plasma pré-definido.
+
+3. **Modo BOOSTERS-RECAL (legado recalibrado)**
+   - liberar `Ω_B0` e/ou `Ω_P0` para ajuste conjunto com `Ω_feedback(z)`;
+   - impor prior físico explícito para evitar degenerescência não identificável;
+   - reportar matriz de covariância e correlações entre `{Ω_B0, Ω_P0}` e parâmetros de feedback (`β, z_p, w` ou equivalentes).
+   - **Uso recomendado:** análise de sensibilidade global e mapeamento de degenerescências.
+
+4. **Modo EFT-COUPLED (com acoplamentos efetivos)**
+   - ativar termos de acoplamento de `LAGRANGIANO_EFT.md` (ex.: `L_mag`, `L_plasma`) apenas quando houver mapeamento explícito para a parametrização cosmológica usada na corrida;
+   - se `L_mag`/`L_plasma` estiverem ativos, evitar introduzir termo fenomenológico redundante com a mesma dependência funcional em `Ω_feedback(z)`;
+   - documentar qual contribuição foi mantida no nível EFT e qual foi desativada no nível fenomenológico.
+   - **Uso recomendado:** corridas de consistência teoria-efetiva vs parametrização fenomenológica.
+
+### 9.4 Checklist anti-duplicação (obrigatório por corrida)
+
+Antes de executar inferência, confirmar:
+
+1. **Partição única:** cada contribuição física está em um único bloco (`Ω_r`, booster legado, ou `Ω_feedback(z)`).
+2. **Escalonamento coerente:** termos `a⁻⁴` globais não foram simultaneamente tratados como janela localizada em redshift sem justificativa física.
+3. **EFT consistente:** acoplamentos `L_mag` e `L_plasma` não foram duplicados por termos ad hoc idênticos na expansão.
+4. **Comparabilidade:** todas as corridas de comparação (χ²/AIC/BIC) usam a mesma convenção de partição de energia.
+5. **Rastreabilidade:** registrar no relatório da corrida: modo (`BASE`, `BOOSTERS-FIXED`, `BOOSTERS-RECAL`, `EFT-COUPLED`), parâmetros fixos/livres e justificativa física.
