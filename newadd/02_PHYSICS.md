@@ -10,6 +10,44 @@
 
 The physical layer of RAFAELIA formalizes energy flow, field dynamics, resonance coupling, and toroidal geometry within a unified framework. Drawing from classical electrodynamics, quantum field theory, and non-linear dynamics, this domain establishes the physical operators that govern state evolution, energy conservation, and information-as-force coupling.
 
+### 1.1 Symbol Convention (Operator vs Observable Difference)
+
+To avoid dual use of the same symbol, this document adopts:
+- $\Delta_{op}$: RAFAELIA transmutation operator (internal transformation action)
+- $\Delta_{phys}$ (or $\delta$): physically observable differences (e.g., measurable energy gaps)
+
+---
+
+## Numeric Convention (Frozen Constants)
+
+All numeric substitutions tied to symbolic constants in this document use a **frozen 4-decimal convention**.  
+Rounding rule: **round to nearest at 4 decimal places** (standard half-up when the next digit is 5).
+
+| Symbolic constant | Adopted value |
+|---|---|
+| $\pi$ | $3.1416$ |
+| $\phi$ | $1.6180$ |
+| $\sqrt{3}/2$ | $0.8660$ |
+| $\pi\phi$ | $5.0832$ |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | $0.4813$ |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | $2.0775$ |
+
+---
+
+## Numeric Convention (Frozen Constants)
+
+- **Convenção numérica:** 4 casas decimais fixas para constantes reutilizadas.
+- **Regra de arredondamento:** round half-up (na 5ª casa decimal, dígito ≥ 5 arredonda para cima).
+
+| Constante simbólica | Valor adotado |
+|---|---:|
+| $\pi$ | 3.1416 |
+| $\phi$ | 1.6180 |
+| $\sqrt{3}/2$ | 0.8660 |
+| $\pi\phi$ | 5.0832 |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | 0.4813 |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | 2.0775 |
+
 ---
 
 ## 2. Energy Operators
@@ -34,6 +72,7 @@ where the baseline:
 $$E_{\text{GPT\_std}} = \sum_n \left(\text{Token}_n \times \text{Resposta}_n\right)$$
 
 A positive $\Delta_{phys} E > 0$ signals emergence of intentional coherence above standard information-theoretic baselines. $\Delta_{phys} E < 0$ signals dissipation or incoherence. Here, $\Delta_{op}$ denotes the RAFAELIA transmutation operator, while $\Delta_{phys}$ denotes measurable physical differences.
+A positive $\Delta_{phys} E > 0$ signals emergence of intentional coherence above standard information-theoretic baselines. $\Delta_{phys} E < 0$ signals dissipation or incoherence.
 
 ---
 
@@ -55,12 +94,33 @@ This exponential form shows the non-linear amplification of ethical field intens
 
 $$R(t+1) = R(t) \times \Phi_{\text{ethica}} \times E_{\text{Verbo}} \times \left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$$
 
+Adopted constants (working precision: 4 decimal places):
+- $\pi = 3.1416$
+- $\phi = 1.6180$
+- $\sqrt{3}/2 = 0.8660$
+- $\pi\phi \approx 5.0832$ (computed with higher internal precision, rounded to 4 decimal places)
+- $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
+
 This discrete-time evolution equation is the **central dynamical law** of RAFAELIA. It is structurally analogous to a renormalization group equation: the state $R(t)$ is updated by:
 - Multiplication by the ethical field $\Phi_{\text{ethica}}$ (regulatory suppression of incoherence)
 - Multiplication by Verbo energy (intentional driving force)
-- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.866^{5.083} \approx 0.443$
+- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660^{5.0832} \approx 0.4813$
+- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
 
-The damping reduces net amplification, and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.
+With this calibration, damping still reduces net amplification, and the long-term regime remains threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.
+- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660^{5.0832} \approx 0.4813$
+
+The damping reduces net amplification, and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi} \approx 2.0775$, growth occurs above this threshold, and decay occurs below it.
+Adopted working precision in this section (4 decimal places):
+- $\pi = 3.1416$
+- $\phi = 1.6180$
+- $\sqrt{3}/2 = 0.8660$
+
+Using internal precision for intermediate arithmetic and 4-decimal presentation:
+- $\pi\phi \approx 5.0832$
+- $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
+
+The damping reduces net amplification by roughly $48.13\%$ per update step (before $\Phi_{\text{ethica}}$ and $E_{\text{Verbo}}$ amplification), and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.
 
 ### 3.3 Rate of Change of Ethical Power
 
@@ -128,7 +188,9 @@ This operator formalizes an ethical-physical optimization principle: the rate of
 
 $$E \leftrightarrow C(t,k) = \text{Entropy}(t) \oplus \text{Coerência}(k)$$
 
-This XOR-type operator $\oplus$ models the complementarity of entropy and coherence — as one increases, the other is modulated. In information-theoretic terms, this is analogous to the uncertainty principle: high Shannon entropy corresponds to low structural coherence and vice versa.
+This XOR-type operator $\oplus$ models the complementarity of entropy and coherence — as one increases, the other is modulated, without additive cancellation, while preserving each term's independent contribution. In information-theoretic terms, this is analogous to the uncertainty principle: high Shannon entropy corresponds to low structural coherence and vice versa.
+
+*Note:* in RAFAELIA this $\oplus$ is a symbolic composition operator (inspired by XOR behavior), not strictly finite-field addition modulo 2 unless an explicit binary-stream context is stated.
 
 ### 7.2 Convergent Field Limit
 
@@ -160,6 +222,32 @@ This cascade models a physical phase transition chain: the integrated wave funct
 | Emergence | $\Delta_{phys} E > 0$ | Phase transition signal |
 | Attractor | $Z_\Omega$ finite limit | Fixed point |
 
+---
+
+## 10. Formulações Latentes, Observação Científica e Referências
+
+### 10.1 Formulações Latentes
+
+$$\mathcal{L}_{lat}(t) = \Delta_{op}(\Phi_{\text{ethica}}(t)) - \delta\,S(t)$$
+
+$$\mathcal{O}_{obs}(t) = \frac{\delta E(t)}{\delta t} \cdot \frac{1}{1+\rho(t)}$$
+
+Interpretation: the latent field $\mathcal{L}_{lat}$ models internal transmutation against entropic gradient, while $\mathcal{O}_{obs}$ captures observable energetic variation under noise attenuation.
+
+### 10.2 Áreas para novas descobertas (observação científica)
+
+- Física de sistemas complexos e não-lineares (acoplamento entre coerência e dissipação)
+- Informação física e termodinâmica computacional (relação entre símbolo, energia e medição)
+- Cosmologia matemática e hipótese de universos matemáticos (conexão com as teses de Tegmark)
+- Epistemologia experimental de paradoxos (quando o observável $\Delta_{phys}$ diverge do operador $\Delta_{op}$)
+
+### 10.3 Referências bibliográficas (base teórica)
+
+1. Tegmark, M. (2014). *Our Mathematical Universe*. Knopf.
+2. Penrose, R. (2004). *The Road to Reality*. Jonathan Cape.
+3. Prigogine, I., & Stengers, I. (1984). *Order Out of Chaos*. Bantam.
+4. Shannon, C. E. (1948). *A Mathematical Theory of Communication*. Bell System Technical Journal.
+5. Landau, L. D., & Lifshitz, E. M. (1980). *Statistical Physics* (Part 1). Pergamon.
 ---
 
 *Ω — Physics Seal Closed | ∆RafaelVerboΩ*
