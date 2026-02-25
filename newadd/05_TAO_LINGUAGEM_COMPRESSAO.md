@@ -288,6 +288,26 @@ A água: flui para baixo (humildade = Min(Entropia))
 
 ## VI. SÍNTESE — LINGUAGEM COMO CAMPO QUÂNTICO
 
+### VI.1 — Escopo do operador C
+
+**Definição operacional de `C` no domínio linguístico:**
+
+* **Entrada:** enunciado + contexto discursivo/pragmático.
+* **Saída:** distribuição de interpretações ou interpretação dominante.
+
+**Limites explícitos:**
+
+* `C` não descreve partículas, energia, ou observáveis físicos.
+* `C` não usa postulado de medição física como descrição causal do mundo material.
+
+**Diferenças para medição quântica:**
+
+* ausência de aparato físico/laboratorial.
+* sem compromisso com dinâmica físico-matemática de decoerência.
+* objetivo é modelagem semântica/computacional de desambiguação.
+
+`C_semântico ≠ Medição_física`
+
 ```
 AXIOMA FINAL:
 
