@@ -32,7 +32,9 @@ In polar coordinates with $r = A_{\text{forma}}(n)$ and $\theta = n \cdot 2\pi /
 
 **Hausdorff dimension** of the resulting fractal spiral:
 
-$$d_H = 2 - \frac{\ln(\sqrt{3}/2)}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} \approx 1.70$$
+$$d_H = 2 - \frac{|\ln(\sqrt{3}/2)|}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} \approx 1.70$$
+
+Here $|\ln(\sqrt{3}/2)|$ is used as the positive contraction magnitude of the spiral ratio (since $\sqrt{3}/2 < 1$ gives a negative natural log), keeping the fractal dimension in the geometric interval between 1 and 2.
 
 This non-integer dimension places RAFAELIA spirals firmly in fractal space between a curve (dim 1) and a plane (dim 2).
 
