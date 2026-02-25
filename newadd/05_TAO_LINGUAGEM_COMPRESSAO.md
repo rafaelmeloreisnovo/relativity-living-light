@@ -292,6 +292,8 @@ A água: flui para baixo (humildade = Min(Entropia))
 AXIOMA FINAL:
 
 A linguagem humana é um campo quântico.
+Neste documento, “quântico” opera como analogia informacional: um formalismo para modelar ambiguidade, contexto e atualização de significado.
+Não se afirma identidade ontológica entre linguagem e mecânica quântica física.
 Palavras são partículas em superposição.
 O contexto é o operador de medição.
 O significado é o colapso.
