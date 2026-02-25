@@ -304,13 +304,68 @@ gerando um setor de neutrinos esterilizados efetivos que pode aumentar H₀^CMB.
 
 ### 5.2 Ghost e Instabilidades
 
-Para wₜ → 0 (transição abrupta), o setor fotônico pode gerar instabilidades de gradiente com cs² < 0 transitoriamente. A condição de estabilidade é:
+Substitui-se a descrição qualitativa por checklist matemático com critério binário de aprovação por regime de parâmetros.
+
+**Checklist de viabilidade (pass/fail):**
+
+1. **Ghost escalar:**
+
+   ```
+   Q_s > 0
+   ```
+
+2. **Estabilidade de gradiente escalar:**
+
+   ```
+   c_s² > 0
+   ```
+
+3. **Ghost tensorial:**
+
+   ```
+   Q_T > 0
+   ```
+
+4. **Propagação tensorial luminal (compatível com GW170817):**
+
+   ```
+   c_T² ≈ 1
+   ```
+
+5. **Bound de transição logística (evitar regime abrupto patológico):**
+
+   ```
+   wₜ > wₜ_crit = Ωs₀^(1/2) / (2π · H₀ · τ_Hubble)
+   ```
+
+6. **Condições de matching e normalização cosmológica:**
+
+   ```
+   H_RLL(z≈1100)=H_ref(z≈1100),
+   E(0)=1,
+   Ωs(0)=Ωs₀
+   ```
+
+**Matriz de decisão por regime:**
+
+| Regime de parâmetros | Critérios | Status |
+|---|---|---|
+| `Ωs₀ ≈ 0.02-0.08`, `wₜ ≈ 0.10-0.30`, acoplamentos fracos | `Q_s>0`, `c_s²>0`, `Q_T>0`, `c_T²≈1`, `wₜ>wₜ_crit` | **PASS** |
+| `Ωs₀ ≈ 0.02-0.08`, `wₜ ≈ 0.08-0.10` | sensível a `c_s²` próximo ao limite e a `wₜ≈wₜ_crit` | **PASS condicional** |
+| `wₜ ≤ wₜ_crit` (qualquer `Ωs₀`) | violação do bound de transição; risco de `c_s²<0` transitório | **FAIL** |
+| `Q_s≤0` ou `Q_T≤0` | presença de ghost escalar/tensorial | **FAIL** |
+| `c_T²` distante de 1 no redshift baixo | incompatível com propagação GW observada | **FAIL** |
+
+**Limite explícito de recuperação de ΛCDM (consistência):**
 
 ```
-wₜ > wₜ_crit = Ωs₀^(1/2) / (2π · H₀ · τ_Hubble)
+Ωs₀ → 0,
+ΩB₀ → 0,
+ΩP₀ → 0,
+acoplamentos → 0
 ```
 
-Para Ωs₀ = 0.05: wₜ_crit ≈ 0.08, compatível com os valores típicos usados (wₜ = 0.1-0.3).
+Nesse limite, todos os itens acima reduzem ao setor padrão (`Q_s,Q_T>0`, `c_s²>0`, `c_T²=1`) e o background converge para ΛCDM.
 
 ### 5.3 Status Observacional Real
 

@@ -169,6 +169,44 @@ f_grow(z) ≡ d ln δ_m / d ln a ≈ Ωm^γ(z)
 
 com índice de crescimento γ_RLL ≈ 0.55 + ξ_ph · Ωs₀, onde ξ_ph ≈ 0.1-0.3 dependendo do acoplamento.
 
+**Conjunto mínimo de estabilidade (escalares e tensores):**
+
+```
+Q_s > 0,
+c_s² > 0,
+Q_T > 0,
+c_T² ≈ 1
+```
+
+onde `Q_s` e `Q_T` são os coeficientes cinéticos efetivos dos setores escalar e tensorial, respectivamente.
+
+**Condições iniciais e matching cosmológico (regime de referência):**
+
+- **Alto redshift (z_ini ≫ 1100):** iniciar integração linear no regime dominado por radiação com adiabaticidade primordial,
+
+  ```
+  δ_γ = (4/3)δ_b = (4/3)δ_m,
+  θ_γ = θ_b = θ_m,
+  f(z_ini) → 1,
+  Ωs(z_ini) ≈ Ωs₀
+  ```
+
+- **Matching em recombinação (z_rec ≈ 1100):** impor continuidade de fundo e perturbações,
+
+  ```
+  H_RLL(z_rec) = H_ref(z_rec),
+  δ_m^RLL(z_rec) = δ_m^ref(z_rec),
+  δ̇_m^RLL(z_rec) = δ̇_m^ref(z_rec)
+  ```
+
+- **Matching hoje (z = 0):** normalização por observáveis tardios,
+
+  ```
+  E(0)=1,
+  Ωs(0)=Ωs₀,
+  fσ₈^{RLL}(0) compatível com catálogo observacional adotado
+  ```
+
 ### 2.4 Lagrangiano Efetivo de Campo (EFT)
 
 A teoria efetiva de campo do setor RLL é escrita como:
@@ -189,6 +227,32 @@ L_P = n_e·k_B·T_e · ΩP₀·ρ_c/ρ_P · a⁻⁴
 - Ghost freedom: ∂²P/∂X² > 0 → satisfeito para f > 0
 - Laplace stability: cs² = ∂P/∂X / ∂ρ/∂X > 0 → satisfeito em todo z
 - Luminal bound: cs² ≤ c² → satisfeito trivialmente
+
+**Condições EFT mínimas (forma verificável):**
+
+```
+Q_s = 2X·P_,XX + P_,X > 0
+c_s² = P_,X / (P_,X + 2X·P_,XX) > 0
+Q_T = M_*²/8 > 0
+c_T² ≈ 1
+```
+
+com `M_*²` a massa de Planck efetiva no setor tensorial.
+
+**Limite explícito de recuperação de ΛCDM:**
+
+```
+Ωs₀ → 0,
+ΩB₀ → 0,
+ΩP₀ → 0,
+acoplamentos fotônico-matéria/neutrino → 0
+```
+
+nesses limites, `Ωs(a)`, `L_B` e `L_P` desacoplam e a dinâmica retorna para:
+
+```
+E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ
+```
 
 ---
 
