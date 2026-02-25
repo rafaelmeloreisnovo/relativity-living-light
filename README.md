@@ -99,19 +99,19 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 
 | Tema | Selo de origem | Figura |
 |---|---|---|
-| Expansão cósmica H(z) | `mock` | ![H ratio](figs/unified_H_ratio.png) |
-| Distância de luminosidade (Δμ) | `mock` | ![mu residuals](figs/unified_mu_residuals.png) |
-| Frações de energia | `mock` | ![fractions](figs/unified_fractions.png) |
-| Dinâmica f(z) e w_eff | `mock` | ![f and weff](figs/unified_f_and_weff.png) |
+| Expansão cósmica H(z) | `mock` | ![H ratio](figs/paper/unified_H_ratio.png) |
+| Distância de luminosidade (Δμ) | `mock` | ![mu residuals](figs/paper/unified_mu_residuals.png) |
+| Frações de energia | `mock` | ![fractions](figs/paper/unified_fractions.png) |
+| Dinâmica f(z) e w_eff | `mock` | ![f and weff](figs/paper/unified_f_and_weff.png) |
 
 ### 3.3 Painel observacional complementar
 
 | Tema | Selo de origem | Figura |
 |---|---|---|
-| Crescimento de estrutura fσ₈(z) | `híbrido` | ![growth](figs/unified_growth_fs8.png) |
-| Lente em aglomerados | `híbrido` | ![cluster lensing](figs/cluster_lensing_SIS_unified.png) |
-| Curva de rotação (SPARC) | `híbrido` | ![rotation](figs/rotcurve_NGC_2403.png) |
-| Ajuste H mock | `mock` | ![mock H](figs/mock_H_fit.png) |
+| Crescimento de estrutura fσ₈(z) | `híbrido` | ![growth](figs/paper/unified_growth_fs8.png) |
+| Lente em aglomerados | `híbrido` | ![cluster lensing](figs/paper/cluster_lensing_SIS_unified.png) |
+| Curva de rotação (SPARC) | `híbrido` | ![rotation](figs/paper/rotcurve_NGC_2403.png) |
+| Ajuste H mock | `mock` | ![mock H](figs/paper/mock_H_fit.png) |
 
 ---
 
