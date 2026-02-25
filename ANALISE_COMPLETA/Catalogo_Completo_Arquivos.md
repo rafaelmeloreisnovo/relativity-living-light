@@ -708,7 +708,7 @@
 1. README.md - Porta de entrada
 2. docs/RelativityLivingLight_arXiv.pdf - Artigo formal
 3. data/relativity_living_light_models.csv - Dados principais
-4. figs/unified_H_ratio.png - Resultado chave
+4. figs/paper/unified_H_ratio.png - Resultado chave
 5. data/Hz_superposicao.ipynb - Simulação principal
 6. docs/ANALISE_ARTIGO_NATURE_PT.md - Validação externa
 7. ANALISE_COMPLETA/00_INDICE_MESTRE.md - Índice da análise

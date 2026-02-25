@@ -107,7 +107,7 @@ Screenshot_20250905-*.png (5 arquivos)
 ```
 density_evolution_sup.png → figs/ciencia_density_evolution_sup.png
 density_evolution_sup (1).png → figs/ciencia_density_evolution_sup (1).png
-hz_superposicao.png → figs/ciencia_hz_superposicao.png (renomeado - duplicado)
+hz_superposicao.png → figs/paper/ciencia_hz_superposicao.png (renomeado - duplicado)
 hz_superposicao (1).png → figs/ciencia_hz_superposicao (1).png
 rotation_curves_sup.png → figs/ciencia_rotation_curves_sup.png
 rotation_curves_sup (1).png → figs/ciencia_rotation_curves_sup (1).png

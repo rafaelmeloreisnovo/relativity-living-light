@@ -145,7 +145,7 @@ Relativity Living Light — NOTICE
     {"path": "data/unified_entropy_margin_10_12.csv", "type": "derived-band", "sha256": "<fill>", "source": "entropy margin"},
     {"path": "data/RelativityLivingLight_v4_bundle.zip", "type": "bundle", "sha256": "<fill>", "contents": ["unified_* plots", "posterior_unified_synth.csv", "synthetic_posterior_summary.json"]},
     {"path": "data/relativity_bundle_results.zip", "type": "bundle", "sha256": "<fill>", "contents": ["unified_* plots", "posterior_unified_synth.csv"]},
-    {"path": "figs/unified_H_ratio.png", "type": "figure", "sha256": "<fill>", "source": "model output"}
+    {"path": "figs/paper/unified_H_ratio.png", "type": "figure", "sha256": "<fill>", "source": "model output"}
   ],
   "licenses": {
     "code": "MIT",

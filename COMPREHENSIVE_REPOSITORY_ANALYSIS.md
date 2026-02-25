@@ -106,10 +106,10 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 **Descrição:** Figuras e gráficos representando resultados de simulações, ajustes de modelos, distribuições posteriores.
 
 **Arquivos principais:**
-- `figs/unified_H_ratio.png`
-- `figs/unified_mu_residuals.png`
-- `figs/corner_plot_unified_highres.png`
-- `figs/cluster_lensing_SIS_unified.png`
+- `figs/paper/unified_H_ratio.png`
+- `figs/paper/unified_mu_residuals.png`
+- `figs/paper/corner_plot_unified_highres.png`
+- `figs/paper/cluster_lensing_SIS_unified.png`
 
 **Referências acadêmicas:**
 9. Hunter, J. D. (2007). "Matplotlib: A 2D Graphics Environment." *Computing in Science & Engineering*, 9(3), 90-95. DOI: 10.1109/MCSE.2007.55
@@ -528,10 +528,10 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 - `data/unified_entropy_margin_10_12.csv` - Margens de entropia
 
 #### Visualizações Chave
-- `figs/unified_H_ratio.png` - Razão de Hubble
-- `figs/unified_mu_residuals.png` - Resíduos de módulo de distância
-- `figs/corner_plot_unified_highres.png` - Distribuições posteriores
-- `figs/cluster_lensing_SIS_unified.png` - Lente gravitacional
+- `figs/paper/unified_H_ratio.png` - Razão de Hubble
+- `figs/paper/unified_mu_residuals.png` - Resíduos de módulo de distância
+- `figs/paper/corner_plot_unified_highres.png` - Distribuições posteriores
+- `figs/paper/cluster_lensing_SIS_unified.png` - Lente gravitacional
 
 ### 7.2 Metadados do Repositório
 
