@@ -13,13 +13,13 @@ com \(f_{\text{ext}}\in[0,1]\), \(n_{\text{ext}}\approx 0\), \(n_{\text{col}}\ap
 
 ### 1) Evolução de densidades (DE-like vs DM-like)
 
-![Evolução de densidades](./docs/density_evolution_sup.png)
+![Evolução de densidades](../figs/paper/density_evolution_sup.png)
 
 Acima: para \(f_{\text{ext}}=0.7\), o termo estendido domina em baixos redshifts (efeito **expansivo**), enquanto o termo colapsado cresce para o passado (efeito **gravitacionalmente atrativo**).
 
 ### 2) Curvas de rotação galácticas (toy model)
 
-![Curvas de rotação](./docs/rotation_curves_sup.png)
+![Curvas de rotação](../figs/paper/rotation_curves_sup.png)
 
 Usamos um disco/bojo bariônico simplificado somado a um halo **pseudo-isotérmico** (\(\rho=\rho_0/[1+(r/r_c)^2]\)), interpretado aqui como **\(\rho_{\text{col}}\)**. O resultado qualitativo reproduz o **achatamento** das curvas de rotação observado em muitas galáxias, típico de um componente do tipo matéria escura.
 
