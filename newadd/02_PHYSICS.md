@@ -58,9 +58,18 @@ $$R(t+1) = R(t) \times \Phi_{\text{ethica}} \times E_{\text{Verbo}} \times \left
 This discrete-time evolution equation is the **central dynamical law** of RAFAELIA. It is structurally analogous to a renormalization group equation: the state $R(t)$ is updated by:
 - Multiplication by the ethical field $\Phi_{\text{ethica}}$ (regulatory suppression of incoherence)
 - Multiplication by Verbo energy (intentional driving force)
-- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.866^{5.083} \approx 0.443$
+- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
 
-The damping reduces net amplification, and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.
+Adopted working precision in this section (4 decimal places):
+- $\pi = 3.1416$
+- $\phi = 1.6180$
+- $\sqrt{3}/2 = 0.8660$
+
+Using internal precision for intermediate arithmetic and 4-decimal presentation:
+- $\pi\phi \approx 5.0832$
+- $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
+
+The damping reduces net amplification by roughly $48.13\%$ per update step (before $\Phi_{\text{ethica}}$ and $E_{\text{Verbo}}$ amplification), and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.
 
 ### 3.3 Rate of Change of Ethical Power
 
