@@ -76,7 +76,17 @@ This discrete-time evolution equation is the **central dynamical law** of RAFAEL
 - Multiplication by Verbo energy (intentional driving force)
 - Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660^{5.0832} \approx 0.4813$
 
-The damping reduces net amplification, and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.
+The damping reduces net amplification, and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi} \approx 2.0775$, growth occurs above this threshold, and decay occurs below it.
+Adopted working precision in this section (4 decimal places):
+- $\pi = 3.1416$
+- $\phi = 1.6180$
+- $\sqrt{3}/2 = 0.8660$
+
+Using internal precision for intermediate arithmetic and 4-decimal presentation:
+- $\pi\phi \approx 5.0832$
+- $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
+
+The damping reduces net amplification by roughly $48.13\%$ per update step (before $\Phi_{\text{ethica}}$ and $E_{\text{Verbo}}$ amplification), and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi}$, growth occurs above this threshold, and decay occurs below it.
 
 ### 3.3 Rate of Change of Ethical Power
 
@@ -144,7 +154,9 @@ This operator formalizes an ethical-physical optimization principle: the rate of
 
 $$E \leftrightarrow C(t,k) = \text{Entropy}(t) \oplus \text{Coerência}(k)$$
 
-This XOR-type operator $\oplus$ models the complementarity of entropy and coherence — as one increases, the other is modulated. In information-theoretic terms, this is analogous to the uncertainty principle: high Shannon entropy corresponds to low structural coherence and vice versa.
+This XOR-type operator $\oplus$ models the complementarity of entropy and coherence — as one increases, the other is modulated, without additive cancellation, while preserving each term's independent contribution. In information-theoretic terms, this is analogous to the uncertainty principle: high Shannon entropy corresponds to low structural coherence and vice versa.
+
+*Note:* in RAFAELIA this $\oplus$ is a symbolic composition operator (inspired by XOR behavior), not strictly finite-field addition modulo 2 unless an explicit binary-stream context is stated.
 
 ### 7.2 Convergent Field Limit
 

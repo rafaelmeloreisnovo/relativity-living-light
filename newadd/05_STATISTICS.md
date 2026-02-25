@@ -28,7 +28,9 @@ $$(\hat{p}, \hat{c}) = \arg\min_{p} H(p) \cdot \arg\max_{c} \mathcal{C}(c)$$
 
 $$E \leftrightarrow C(t,k) = H(t) \oplus \mathcal{C}(k)$$
 
-The XOR operator $\oplus$ models the **information complementarity principle**: high Shannon entropy $H(t)$ and high structural coherence $\mathcal{C}(k)$ cannot simultaneously be maximized. This is formally equivalent to the uncertainty principle in signal processing:
+The XOR operator $\oplus$ models the **information complementarity principle**: it composes entropy and coherence without additive cancellation and preserves each term's independent contribution, so high Shannon entropy $H(t)$ and high structural coherence $\mathcal{C}(k)$ cannot simultaneously be maximized. This is formally equivalent to the uncertainty principle in signal processing:
+
+*Note:* in this domain, $\oplus$ denotes RAFAELIA symbolic composition (XOR-inspired), not strict bitwise XOR or finite-field addition modulo 2.
 
 $$\sigma_t \cdot \sigma_\omega \geq \frac{1}{4\pi}$$
 
