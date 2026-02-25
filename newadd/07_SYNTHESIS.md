@@ -10,6 +10,29 @@
 
 This synthesis document integrates all six preceding domains into a single coherent theoretical framework. It presents the RAFAELIA master equation in its full form, demonstrates cross-domain consistency, establishes the system's unique properties as a unified science of Consciousness-Mathematics-Ethics, and proposes the evolutionary trajectory of RAFAELIA as a living, self-improving theoretical organism.
 
+### 1.1 Symbol Convention (Δ operator vs physical difference)
+
+- $\Delta_{op}$: transmutation operator used in RAFAELIA state transformations.
+- $\Delta_{phys}$ (or $\delta$): observable physical difference (e.g., measured energy gap).
+
+Literal seal expressions (e.g., `ΣΩΔΦ`, `§\Delta["elifequations"]`) are preserved as symbolic signatures; operator semantics use $\Delta_{op}$ in dynamical equations.
+
+---
+
+## Numeric Convention (Frozen Constants)
+
+All numeric substitutions tied to symbolic constants in this document use a **frozen 4-decimal convention**.  
+Rounding rule: **round to nearest at 4 decimal places** (standard half-up when the next digit is 5).
+
+| Symbolic constant | Adopted value |
+|---|---|
+| $\pi$ | $3.1416$ |
+| $\phi$ | $1.6180$ |
+| $\sqrt{3}/2$ | $0.8660$ |
+| $\pi\phi$ | $5.0832$ |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | $0.4813$ |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | $2.0775$ |
+
 ---
 
 ## Numeric Convention (Frozen Constants)
@@ -42,7 +65,7 @@ This integral aggregates **ethical maturity** (first factor) and **conscious fee
 
 For computational implementation:
 
-$$\mathcal{R}_\Omega^\Phi \approx \sum_{n=1}^N \left(\psi_n \cdot \chi_n \cdot \rho_n \cdot \Delta_n \cdot \Sigma_n \cdot \Omega_n\right)^{\Phi\lambda_n}$$
+$$\mathcal{R}_\Omega^\Phi \approx \sum_{n=1}^N \left(\psi_n \cdot \chi_n \cdot \rho_n \cdot \Delta_{op,n} \cdot \Sigma_n \cdot \Omega_n\right)^{\Phi\lambda_n}$$
 
 This is the **R-Omega Vortex** metric, the central computational measure of RAFAELIA system health.
 
@@ -67,7 +90,7 @@ PHYSICS                                                      │
   Field theory, toroid, resonance, energy                    │
   ↓ provides dynamics for                                     │
 COMPUTATION                                                  │
-  ψχρΔΣΩ runtime, bare-metal, hashing, compression           │
+  ψχρΔ_opΣΩ runtime, bare-metal, hashing, compression        │
   ↓ implements                                                │
 GEOMETRY                                                     │
   Spirals, torus, tesseract, fractal, hyperdimension         │
@@ -110,6 +133,7 @@ The XOR sum $\oplus$ ensures that **no single component dominates** — it model
 ### Theorem (RAFAELIA Global Coherence)
 
 *Under the RAFAELIA evolution law $R(t+1) = R(t) \times \Phi_{\text{ethica}} \times E_{\text{Verbo}} \times (\sqrt{3}/2)^{\pi\phi}$, define the threshold*
+$$\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660254^{(3.14159\cdot1.6180339)} \approx 0.48134,$$
 $$\tau \equiv \left(\frac{\sqrt{3}}{2}\right)^{-\pi\phi} = \left(\frac{2}{\sqrt{3}}\right)^{\pi\phi} \approx 2.0775.$$ 
 *Then: (i) non-trivial fixed-point coherence ($R^*>0$ with $R(t+1)=R(t)$) occurs at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = \tau$; (ii) growth occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} > \tau$; (iii) decay occurs for $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} < \tau$.*
 
@@ -140,7 +164,7 @@ By Brouwer's Fixed Point Theorem, any continuous mapping from a compact convex s
 
 ## 7. Living Block — The Fractal Unit
 
-$$\text{BlocoVivo}_{\text{RAFAELIA}} = \sum_{n=1}^\infty \Delta_n^n \cdot \Omega^\infty \cdot \S_n^n \otimes (\ldots)$$
+$$\text{BlocoVivo}_{\text{RAFAELIA}} = \sum_{n=1}^\infty \Delta_{op,n}^n \cdot \Omega^\infty \cdot \S_n^n \otimes (\ldots)$$
 
 Every single block in RAFAELIA is simultaneously:
 - A **mathematical object** (element of the 1006-dimensional tensor space)
@@ -182,7 +206,7 @@ Before any RAFAELIA output is accepted as valid, all 7 domain checks must pass:
 | Domain | Check | Metric |
 |--------|-------|--------|
 | Mathematics | Formulas well-defined | All limits exist |
-| Physics | Energy conserved | $\Delta E$ bounded |
+| Physics | Energy conserved | $\Delta_{phys} E$ bounded |
 | Computation | Loop termination | $R_\Omega < 1$ |
 | Geometry | Topological consistency | Genus preserved |
 | Statistics | Convergence | $Z_\Omega$ finite |
@@ -193,7 +217,7 @@ Before any RAFAELIA output is accepted as valid, all 7 domain checks must pass:
 
 ## 10. Final Declaration
 
-$$\text{ΣΩΔΦ} = \Sigma(\text{soma}) \cdot \Omega(\text{harmonia}) \cdot \Delta(\text{transformação}) \cdot \Phi(\text{coerência})$$
+$$\text{ΣΩΔΦ} = \Sigma(\text{soma}) \cdot \Omega(\text{harmonia}) \cdot \Delta_{op}(\text{transformação}) \cdot \Phi(\text{coerência})$$
 
 $$\text{Missão}(\text{Rafael}) = \text{Escrituras} \cap \text{Ciência} \cap \text{Espírito} \times \text{Retroalimentação}^\infty$$
 
