@@ -9,6 +9,8 @@
 
 ---
 
+**Convenção adotada:** este documento segue `newadd/00_INDICE_ANALISE_PHD.md` na seção **Convenção de Nomes e Símbolos**. Notação canônica usada aqui: `Relativity Living Light (RLL)`, `RAFAELIA`, `R_corr`, `Ωs₀`, `zₜ`, `wₜ`, `ΩB₀`, `ΩP₀` e limite padrão `ΛCDM`.
+
 ## Resumo Executivo PhD
 
 O modelo **Relativity Living Light (RLL)** é uma extensão fenomenológica da cosmologia padrão que incorpora um setor de superposição fotônica dinâmica à equação de Friedmann. O modelo pertence à classe de teorias de **energia escura emergente** com transição de fase controlada por função logística, análogo à "mirage class" de Lodha et al. (2025) e à classe de **Generalized Emergent Dark Energy (GEDE)** estudada por Li & Shafieloo (2019).
@@ -215,13 +217,24 @@ A teoria efetiva de campo do setor RLL é escrita como:
 S_RLL = ∫ d⁴x √(-g) · [M_Pl²/2 · R + P(X,φ) + L_B + L_P + L_m]
 ```
 
+e, no setor bariônico local efetivo:
+
+```
+L_bary,eff = L_cool + L_ion + L_B,eff
+```
+
 com:
 
 ```
 P(X,φ) = Ωs₀·ρ_c · {f(φ/M_Pl) · [2X/M_Pl⁴ - 1] + (1-f(φ/M_Pl)) · ρ_m₀/ρ_c·a⁻³}
 L_B = -F_μν·F^μν / (16π·μ₀) · ΩB₀·ρ_c·a⁻⁴
 L_P = n_e·k_B·T_e · ΩP₀·ρ_c/ρ_P · a⁻⁴
+L_cool = - n_H(a)² Λ(T_g, Z, Y_H2)
+L_ion = + n_H(a) Γ_rad(F_UV, x_e) - n_H(a) x_e E_ion α_rec(T_g)
+L_B,eff = - B_eff²/(8π) - η_A |J_⊥|² - η_O |J|²
 ```
+
+No escopo mínimo deste EFT, `L_bary,eff` atua apenas no setor de gás bariônico local (termodinâmica, ionização e dissipação magnetizada em escala sub-horizonte). Assim, por construção, esse sub-bloco não altera diretamente a dinâmica FRW de fundo em `E²(a)` no regime mínimo; ele entra como correção efetiva de microfísica bariônica compatível com as convenções já adotadas para `a`, `ρ_c` e termos efetivos (`L_B`, `L_P`).
 
 **Condições de viabilidade:**
 - Ghost freedom: ∂²P/∂X² > 0 → satisfeito para f > 0
@@ -284,6 +297,24 @@ Integração com:
 - Planck 2018 PR4 (CMB TT, TE, EE, lensing)
 - JWST (z > 6 AGN/SMBH — estrutura em formação)
 - SPARC galactic rotation curves (Lelli et al. 2016)
+
+#### Mapeamento de outputs do módulo para observáveis
+
+| Output do módulo | Observável associado |
+|------------------|----------------------|
+| `f_H2(z,r)` | traçadores moleculares (CO(1-0), [CI]) e conversão `X_CO` |
+| `T_eff(z,r)` | largura/intensidade de linhas finas ([CII] 158μm, [OI]) e continuum FIR |
+| `SFR_supp(z,r) = 1 - SFR_model/SFR_ref` | deslocamento da main sequence e eficiência de formação estelar |
+| `A_line` (assinatura espectral composta) | razões de linhas (`[CII]/FIR`, `CO SLED`, `Hα/Hβ`) para diagnóstico térmico/ionização |
+
+Equações de ligação (forma curta):
+
+```
+SFR_model = ε_ff · M_gas / t_ff · f_supp(T_eff, x_e, B_eff)
+L_line = ∫ j_line(n, T_eff, x_e, Z) dV
+```
+
+Nota operacional: esses observáveis entram no nível de validação astrofísica local sem substituir ajuste cosmológico global.
 
 #### Radiação Cosmológica de Background (Ωr, N_eff, neutrinos)
 
@@ -372,7 +403,7 @@ Calculável via Nested Sampling (MultiNest, Polychord) após implementação com
 
 ### 4.2 O que o RLL não Resolve (Honestidade Científica)
 
-- **Tensão de Hubble:** RLL minimal não modifica H₀^CMB suficientemente para fechar a tensão 5σ
+- **Tensão de Hubble:** RLL mínimo não modifica H₀^CMB suficientemente para fechar a tensão 5σ
 - **Problema da coincidência:** Por que Ωs₀ ~ Ωm hoje? O modelo não explica a escala Ωs₀
 - **Natureza quântica:** A extrapolação de não-localidade lab → cosmológica é uma hipótese, não uma derivação rigorosa da QED/QCD
 - **Matéria escura:** O setor fotônico contribui ≲ 5% nas curvas de rotação — não substitui matéria escura
