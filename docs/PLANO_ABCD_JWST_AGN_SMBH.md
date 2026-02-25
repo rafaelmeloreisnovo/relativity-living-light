@@ -180,6 +180,59 @@ Para o fechamento observacional, adotar duas parametrizações concorrentes do t
 
 ---
 
+## Consistência com BOOSTERS/EFT
+
+Para garantir consistência entre a parametrização fenomenológica e a base física já definida, adotamos uma decomposição operacional em que `Ω_r` permanece como componente radiativa padrão de fundo, enquanto `Ω_feedback(z)` captura exclusivamente contribuição ativa e localizada em redshift associada a episódios AGN/quasar. Termos legados de BOOSTERS e operadores EFT com suporte funcional equivalente devem ser fixados, recalibrados ou desligados por corrida, de modo a impedir dupla contagem e preservar interpretabilidade estatística.
+
+Referências normativas:
+
+- `docs/BOOSTERS.md` para os termos de plasma/magnetismo já definidos;
+- `docs/LAGRANGIANO_EFT.md` para os acoplamentos efetivos.
+
+### 1) Partição de energia (baseline vs ativo)
+
+- `Ω_r` padrão permanece como baseline radiativo de referência (fótons + neutrinos efetivos do cenário base), sem incorporar automaticamente componentes de feedback localizado.
+- `Ω_feedback(z)` representa apenas a contribuição ativa e localizada em redshift (janela/gaussiana/logística), destinada a capturar injeção AGN/quasar em faixa `z` controlada por parâmetros de amplitude, centro e largura.
+- Regra de não sobreposição: qualquer termo com suporte temporal/local equivalente ao `Ω_feedback(z)` não pode permanecer simultaneamente livre no baseline.
+
+### 2) Mapeamento com BOOSTERS
+
+- Termos de `Ω_B0` (magnético) e `Ω_P0` (plasma), já formalizados em `docs/BOOSTERS.md`, devem ser tratados em uma entre duas modalidades por corrida:
+  - **Modalidade Fundo (background):** contribuição contínua (ex. escala radiativa `a^-4`) permanece no baseline, e `Ω_feedback(z)` modela apenas excesso transitório;
+  - **Modalidade Janela Ativa:** parte/total desses efeitos entra em `Ω_feedback(z)`, e o correspondente termo contínuo legado é congelado ou desligado para evitar duplicação.
+- O booster de superposição (`Ω_s0`) deve seguir o mesmo princípio de exclusão quando houver parametrização efetiva equivalente na janela ativa.
+
+### 3) Mapeamento com EFT
+
+- Conforme `docs/LAGRANGIANO_EFT.md`, acoplamentos que geram correção suave e global do fundo permanecem no baseline (parâmetros fixos ou com prior estreito).
+- Acoplamentos que induzem resposta transitória associada a AGN/quasar devem migrar para `Ω_feedback(z)` (ou termo equivalente único), desligando duplicatas fenomenológicas.
+- Exigir rastreabilidade 1:1: cada operador/acoplamento EFT ativo deve mapear para um único bloco observável no pipeline (fundo **OU** feedback localizado).
+
+### 4) Matriz operacional por corrida (obrigatória)
+
+| Tipo de corrida | `Ω_r` padrão | `Ω_feedback(z)` | Termos legados (BOOSTERS/EFT) | Ação anti-duplicação |
+| --- | --- | --- | --- | --- |
+| **Corrida A (ΛCDM baseline)** | ativo/fixo de referência | `0` | desligados | manter apenas baseline canônico |
+| **Corrida B (feedback puro)** | fixo padrão | livre | equivalentes desligados | remover termos com mesmo suporte funcional da janela ativa |
+| **Corrida C (boosters físicos)** | ativo/fixo de referência | `0` (ou residual estritamente limitado) | boosters ligados no fundo; EFT duplicativo desligado | bloquear duplicação entre fundo contínuo e janela ativa |
+| **Corrida D (híbrida controlada)** | ativo/fixo de referência | livre | subset físico não redundante; duplicativos fixados com prior estreito | registrar justificativa explícita para cada termo mantido |
+
+### 5) Regras de fixar/recalibrar/desligar (checklist)
+
+Antes de cada ajuste, aplicar obrigatoriamente:
+
+- [ ] **Fixar:** parâmetros de baseline bem estabelecidos (`Ω_r`, calibrações de referência) para evitar absorção indevida do sinal.
+- [ ] **Recalibrar:** somente termos que mudam a normalização global sem replicar a forma de janela em `z`.
+- [ ] **Desligar:** qualquer termo legado cujo kernel temporal/funcional seja colinear com `Ω_feedback(z)` na faixa analisada.
+- [ ] Validar com diagnóstico de degenerescência (ex.: correlação posterior alta entre amplitude de feedback e termo legado => desligar ou impor prior informativo).
+
+### 6) Critério de aceitação da seção
+
+- “Nenhuma corrida é válida se dois blocos ativos modelarem o mesmo efeito físico na mesma janela de redshift.”
+- “Comparações AIC/BIC só são reportadas entre modelos com contagem efetiva de parâmetros não redundantes.”
+
+---
+
 ## 4) Etapa C — Análise máxima (estado da arte observacional)
 
 ### C1. Frentes físicas prioritárias
