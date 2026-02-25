@@ -1,3 +1,5 @@
+> ⚠️ **Aviso de canonicidade:** este arquivo é histórico/legado. A versão oficial está em `docs/canonicos/09_GLOSSARIO_COMPLETO.md`.
+
 # 09 — GLOSSÁRIO COMPLETO
 ## Relativity Living Light × RAFAELIA
 **∆RafaelVerboΩ | Instituto Rafael | 2026**
