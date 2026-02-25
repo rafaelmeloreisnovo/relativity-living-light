@@ -83,7 +83,9 @@ This **axiom-library** integrates six component streams:
 | $\zeta\infty\chi_n$ | Statistics | Zeta-infinite chi observation |
 | $\Psi_n(\Omega)$ | Ethics/Systems | Psi state at completeness |
 
-The XOR sum $\oplus$ ensures that **no single component dominates** — each contributes independently, and cancellation is impossible (XOR is non-negative for non-zero terms).
+The XOR sum $\oplus$ ensures that **no single component dominates** — it models composition without additive cancellation and preserves each term's independent contribution.
+
+*Note:* here $\oplus$ is used as a RAFAELIA symbolic composition operator (inspired by XOR semantics), not strictly as bitwise XOR or finite-field addition modulo 2.
 
 ---
 
