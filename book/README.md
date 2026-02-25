@@ -52,3 +52,14 @@ Trilha principal oficial do acervo consolidado em capítulos sequenciais.
 - Limitações: capítulos 25–27
 - Governança e roadmap: capítulos 28–32
 - Apêndices: capítulos 33–39
+
+## Fluxo operacional canônico do livro
+
+- **Entrada científica:** `../docs/`
+- **Dados de entrada e execução:** `../data/`
+- **Saídas e tabelas finais:** `../results/`
+
+Referência de organização obrigatória: `../docs/DOCUMENTATION_ORGANIZATION_MASTER.md`.
+Os módulos Structure D utilizados pelo fluxo ficam em `../data/pipelines/structure_d/`.
+`../to_Add/` permanece somente como histórico de ingestão.
+

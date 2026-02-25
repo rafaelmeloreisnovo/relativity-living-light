@@ -108,3 +108,37 @@ Recomendação contínua: manter checksum e data de geração para cadeia de cus
 - Índice de zip: [`docs/ZIP_CONTENT_INDEX.md`](ZIP_CONTENT_INDEX.md)
 - Fontes canônicas: [`docs/CANONICAL_SOURCES.md`](CANONICAL_SOURCES.md)
 
+---
+
+## 8) Decisão canônica única de execução científica
+
+A execução científica operacional deste repositório passa a usar **exclusivamente** a árvore:
+
+- `docs/` → definição conceitual, equações, critérios e governança;
+- `data/` → dados de entrada e módulos/scripts de execução;
+- `results/` → saídas geradas, tabelas e relatórios de comparação.
+
+Regra operacional: todo fluxo executável novo deve seguir `data/` → `results/`, com documentação em `docs/`.
+
+## 9) Mapeamento de equivalências do ZIP `to_Add/RAFAELIA_COSMO_STRUCTURE_D.zip`
+
+Extração realizada em pasta temporária para inspeção estática e migração seletiva.
+
+| Arquivo no ZIP | Equivalência no repositório | Decisão |
+|---|---|---|
+| `core/equations.md` | `docs/Relativity_Living_Light.md`, `book/04_formalismo_equacao_unificada.md` | **Migrado** para `docs/modules/structure_d_equations.md` |
+| `core/agn_feedback_bridge.md` | `docs/PLANO_ABCD_JWST_AGN_SMBH.md`, `book/22_validacao_jwst_agn_smbh.md` | **Migrado** para `docs/modules/structure_d_agn_feedback_bridge.md` |
+| `code/cosmo.py` + `models.py` | `docs/rll_two_radiation_model.py` (sobreposição parcial) | **Migrado** para `data/pipelines/structure_d/` |
+| `code/growth.py` | `docs/crescimento_estrutural.py` (sobreposição parcial) | **Migrado** para `data/pipelines/structure_d/` |
+| `code/likelihood.py` | `docs/panteon_likelihood.py` (escopo mais amplo) | **Migrado** para `data/pipelines/structure_d/` |
+| `code/run_all.py` | Sem equivalente direto modular no fluxo atual | **Migrado** para `data/pipelines/structure_d/run_all.py` |
+| `code/make_example_data.py` | Sem equivalente direto para geração toy local | **Migrado** para `data/pipelines/structure_d/make_example_data.py` |
+| `data/README.md` | documentação de inputs | **Migrado** para `data/inputs/structure_d/README.md` |
+| `results/README.md` | documentação de outputs | **Migrado** para `results/structure_d/README.md` |
+| `README.md`, `requirements.txt`, `paper/draft.md` (ZIP) | já cobertos por `README.md`, `requirements.txt`, acervo documental do repo | **Não migrado** (redundante) |
+
+## 10) Status de `to_Add/`
+
+`to_Add/` fica definido como **histórico de ingestão**. Não é diretório operacional do pipeline científico.
+Todo conteúdo com papel ativo deve ser promovido explicitamente para `docs/`, `data/` ou `results/`.
+

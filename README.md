@@ -150,6 +150,21 @@ Inventário interno dos bundles: [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_IN
 
 ---
 
+
+
+## Fluxo canônico único (entrada → dados de entrada → saída)
+
+- **Entrada (documentação e critérios):** `docs/`
+  - referência central: `docs/DOCUMENTATION_ORGANIZATION_MASTER.md`
+  - módulos migrados do Structure D: `docs/modules/structure_d_equations.md` e `docs/modules/structure_d_agn_feedback_bridge.md`
+- **Dados de entrada e execução:** `data/`
+  - pipeline modular: `data/pipelines/structure_d/`
+  - inputs de exemplo: `data/inputs/structure_d/README.md`
+- **Saída científica:** `results/`
+  - outputs do fluxo Structure D: `results/structure_d/`
+
+`to_Add/` permanece apenas como histórico de ingestão (sem papel operacional).
+
 ## 5) Bibliografia expandida (seleção essencial)
 
 > Referência bibliográfica completa e ampliada: [docs/REFERENCES.md](docs/REFERENCES.md)
