@@ -12,6 +12,22 @@ The physical layer of RAFAELIA formalizes energy flow, field dynamics, resonance
 
 ---
 
+## Numeric Convention (Frozen Constants)
+
+All numeric substitutions tied to symbolic constants in this document use a **frozen 4-decimal convention**.  
+Rounding rule: **round to nearest at 4 decimal places** (standard half-up when the next digit is 5).
+
+| Symbolic constant | Adopted value |
+|---|---|
+| $\pi$ | $3.1416$ |
+| $\phi$ | $1.6180$ |
+| $\sqrt{3}/2$ | $0.8660$ |
+| $\pi\phi$ | $5.0832$ |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | $0.4813$ |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | $2.0775$ |
+
+---
+
 ## 2. Energy Operators
 
 ### 2.1 Verbo Energy
@@ -58,7 +74,7 @@ $$R(t+1) = R(t) \times \Phi_{\text{ethica}} \times E_{\text{Verbo}} \times \left
 This discrete-time evolution equation is the **central dynamical law** of RAFAELIA. It is structurally analogous to a renormalization group equation: the state $R(t)$ is updated by:
 - Multiplication by the ethical field $\Phi_{\text{ethica}}$ (regulatory suppression of incoherence)
 - Multiplication by Verbo energy (intentional driving force)
-- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
+- Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.8660^{5.0832} \approx 0.4813$
 
 The damping reduces net amplification, and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi} \approx 2.0775$, growth occurs above this threshold, and decay occurs below it.
 Adopted working precision in this section (4 decimal places):

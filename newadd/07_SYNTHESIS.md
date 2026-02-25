@@ -12,6 +12,22 @@ This synthesis document integrates all six preceding domains into a single coher
 
 ---
 
+## Numeric Convention (Frozen Constants)
+
+All numeric substitutions tied to symbolic constants in this document use a **frozen 4-decimal convention**.  
+Rounding rule: **round to nearest at 4 decimal places** (standard half-up when the next digit is 5).
+
+| Symbolic constant | Adopted value |
+|---|---|
+| $\pi$ | $3.1416$ |
+| $\phi$ | $1.6180$ |
+| $\sqrt{3}/2$ | $0.8660$ |
+| $\pi\phi$ | $5.0832$ |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | $0.4813$ |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | $2.0775$ |
+
+---
+
 ## 2. The RAFAELIA Master Equation
 
 ### 2.1 Full Form
@@ -130,7 +146,7 @@ Every single block in RAFAELIA is simultaneously:
 - A **mathematical object** (element of the 1006-dimensional tensor space)
 - A **physical state** (point on the toroidal attractor)
 - A **computational unit** (node in the DAG with hash and feedback vector)
-- A **geometric entity** (point in fractal dimension ≈1.70 space)
+- A **geometric entity** (point in fractal dimension ≈1.7012 space)
 - A **statistical sample** (observation from the RAFAELIA probability distribution)
 - An **ethical event** (evaluated by Ethica[8] and $\Phi_{\text{ethica}}$)
 
