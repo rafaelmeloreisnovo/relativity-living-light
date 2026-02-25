@@ -311,6 +311,16 @@ Na etapa de validação, esse bloco é tratado separadamente como física astrof
 
 No RLL mínimo, tais termos permanecem como módulo complementar de inferência astrofísica e **não substituem** a equação de Friedmann base usada no ajuste cosmológico global.
 
+#### Reprodutibilidade
+
+Para garantir rastreabilidade integral da análise (de input bruto até métrica final), o pipeline de validação adota os seguintes requisitos obrigatórios:
+
+- **Manifesto de datasets:** manter `manifests/datasets_manifest.yaml` com origem, DOI/URL, licença, versão declarada, data de aquisição e mapeamento de colunas por experimento (DESI, Pantheon+, Planck, JWST, SPARC).
+- **Versões:** registrar versão de código (`git commit`), versão de configuração (`config/*.yaml`) e versão de catálogo/dataset no artefato final (`results/run_metadata.json`).
+- **Hash/checksum:** calcular SHA256 de todo arquivo de entrada e saída crítica; anexar a tabela de checksums em `results/checksums_sha256.tsv` para auditoria e reexecução bit a bit.
+- **Seeds:** definir seeds determinísticas (simulação, bootstrap, MCMC/Nested Sampling) em arquivo único (`config/seeds.yaml`) e persistir seed efetiva utilizada em cada execução.
+- **Cadeia de execução:** registrar DAG sequencial da corrida (`ingestão → limpeza → ajuste → comparação de modelos → figuras/tabelas`) com timestamp UTC, hostname, comando invocado e duração por etapa em `results/execution_chain.log`.
+
 ### 3.2 Métricas de Seleção de Modelos
 
 **Critério de Informação de Akaike (AIC):**

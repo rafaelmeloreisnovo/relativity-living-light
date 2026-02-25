@@ -394,6 +394,14 @@ Nesse limite, todos os itens acima reduzem ao setor padrão (`Q_s,Q_T>0`, `c_s²
 
 ## 6. Roadmap de Validação Científica Recomendado
 
+### 6.0 Matriz de Execução por Fase
+
+| Fase | Entrada | Script | Saída esperada | Critério de aceitação |
+|------|---------|--------|----------------|-----------------------|
+| Fase A (3-6 meses) | `data/real/Hz_data_real.csv`, `data/real/BAO_data_real.csv`, configurações `(Ωs₀, zₜ, wₜ)` | `docs/rll_validation_real.py` + rotina de grade cosmológica | `results/RLL_chi2_results.csv`, `figs/paper/RLL_validacao_real.png` | Pipeline reproduzível (mesmos χ² para mesma seed), e melhoria estatística frente a ΛCDM em ao menos um subconjunto BAO/SNe |
+| Fase B (6-18 meses) | posterior da Fase A + espectro inicial de perturbações + likelihoods CMB | módulo RLL acoplado a CLASS/CAMB + script de comparação Planck/ACT | `results/RLL_cls_cmb.fits`, `results/RLL_pk_linear.csv`, tabela comparativa de ajuste CMB/LSS | Estabilidade numérica (`cs²>0`, sem divergência em integração) e consistência dos resíduos CMB/LSS dentro de 1–2σ nas bandas principais |
+| Fase C (18-36 meses) | parâmetros calibrados (Fase A/B) + catálogos Euclid/LSST + previsões CMB-S4 | pipeline de forecast e validação cruzada multi-survey | `results/RLL_forecast_euclid_lsst.csv`, curvas de assinatura temporal, relatório consolidado | Predições prospectivas fechadas antes do unblinding e desempenho não degradado vs w0wa nos observáveis-alvo |
+
 ### Fase A (Curto prazo, 3-6 meses)
 1. Implementar RLL no código CLASS/CAMB via módulo Python externo
 2. Rodar fitting pipeline com dados DESI DR2 reais (publicados em março 2025)
@@ -411,6 +419,26 @@ Nesse limite, todos os itens acima reduzem ao setor padrão (`Q_s,Q_T>0`, `c_s²
 2. Previsões para Vera Rubin LSST (primeiros dados 2024+)
 3. Teste com CMB-S4 (futuro)
 4. Publicação consolidada
+
+### 6.4 Tabela de Comparação Obrigatória — `ΛCDM vs w0wa vs RLL`
+
+Toda execução principal deve incluir, no relatório final, a matriz comparativa abaixo com resultados no mesmo conjunto de dados e mesma máscara de seleção:
+
+| Modelo | χ²_total | ΔAIC (ref. ΛCDM) | ΔBIC (ref. ΛCDM) | lnB (ref. ΛCDM) |
+|--------|----------|------------------|------------------|-----------------|
+| ΛCDM | `χ²_ΛCDM` | 0.0 | 0.0 | 0.0 |
+| w0waCDM | `χ²_w0wa` | `AIC_w0wa - AIC_ΛCDM` | `BIC_w0wa - BIC_ΛCDM` | `ln(Z_w0wa/Z_ΛCDM)` |
+| RLL | `χ²_RLL` | `AIC_RLL - AIC_ΛCDM` | `BIC_RLL - BIC_ΛCDM` | `ln(Z_RLL/Z_ΛCDM)` |
+
+Requisito mínimo: publicar também incertezas/intervalos (68% e 95%) para cada estatística derivada quando aplicável.
+
+### 6.5 Falsificações Fortes
+
+Para evitar validação circular, o programa de testes do RLL deve incluir assinaturas **mensuráveis**, com janela temporal explícita por survey:
+
+1. **Assinatura de transição em `w_eff(z)` (DESI/Euclid, 2026-2029):** detectar (ou excluir) inflexão suave em `0.3 ≤ z ≤ 0.8` compatível com `(zₜ, wₜ)` do RLL. Ausência de inflexão com precisão sub-percentual em BAO+SNe nessa janela falsifica a versão mínima do modelo.
+2. **Supressão em crescimento `fσ₈`/`P(k)` na escala de Jeans fotônica (LSST/Euclid, 2027-2031):** procurar desvio de pequena escala coerente com `cs²_RLL(z)` sem quebrar CMB+BAO. Se não houver assinatura simultaneamente em tomografia de lente fraca e clustering, região principal de parâmetros é excluída.
+3. **Resíduo em polarização CMB de alta sensibilidade (CMB-S4, ~2029+):** testar modulação fraca em modos de polarização (especialmente banda multipolar intermediária). Limites compatíveis com ΛCDM estrito, sem espaço para contribuição fotônica dinâmica permitida por DESI/LSST, falsificam o cenário RLL acoplado mínimo.
 
 ---
 
