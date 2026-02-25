@@ -9,6 +9,8 @@
 
 ---
 
+**Convenção adotada:** este documento segue `newadd/00_INDICE_ANALISE_PHD.md` na seção **Convenção de Nomes e Símbolos**. Notação canônica usada aqui: `Relativity Living Light (RLL)`, `RAFAELIA`, `R_corr`, `Ωs₀`, `zₜ`, `wₜ`, `ΩB₀`, `ΩP₀` e limite padrão `ΛCDM`.
+
 ## Preâmbulo Epistemológico
 
 Este documento formaliza a **camada de síntese** entre o framework matemático RAFAELIA e o modelo cosmológico RLL. Não se trata de mistura de domínios: trata-se de reconhecer que operadores formais de coerência, retroalimentação e transformação ativo no ciclo ψχρΔΣΩ possuem **correspondentes físicos observáveis** na dinâmica cosmológica de superposição fotônica.

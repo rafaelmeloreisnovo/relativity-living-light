@@ -9,6 +9,8 @@
 
 ---
 
+**Convenção adotada:** este documento segue `newadd/00_INDICE_ANALISE_PHD.md` na seção **Convenção de Nomes e Símbolos**. Notação canônica usada aqui: `Relativity Living Light (RLL)`, `RAFAELIA`, `R_corr`, `Ωs₀`, `zₜ`, `wₜ`, `ΩB₀`, `ΩP₀` e limite padrão `ΛCDM`.
+
 ## Resumo Executivo PhD
 
 O modelo **Relativity Living Light (RLL)** é uma extensão fenomenológica da cosmologia padrão que incorpora um setor de superposição fotônica dinâmica à equação de Friedmann. O modelo pertence à classe de teorias de **energia escura emergente** com transição de fase controlada por função logística, análogo à "mirage class" de Lodha et al. (2025) e à classe de **Generalized Emergent Dark Energy (GEDE)** estudada por Li & Shafieloo (2019).
@@ -372,7 +374,7 @@ Calculável via Nested Sampling (MultiNest, Polychord) após implementação com
 
 ### 4.2 O que o RLL não Resolve (Honestidade Científica)
 
-- **Tensão de Hubble:** RLL minimal não modifica H₀^CMB suficientemente para fechar a tensão 5σ
+- **Tensão de Hubble:** RLL mínimo não modifica H₀^CMB suficientemente para fechar a tensão 5σ
 - **Problema da coincidência:** Por que Ωs₀ ~ Ωm hoje? O modelo não explica a escala Ωs₀
 - **Natureza quântica:** A extrapolação de não-localidade lab → cosmológica é uma hipótese, não uma derivação rigorosa da QED/QCD
 - **Matéria escura:** O setor fotônico contribui ≲ 5% nas curvas de rotação — não substitui matéria escura
