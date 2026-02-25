@@ -60,6 +60,7 @@ This discrete-time evolution equation is the **central dynamical law** of RAFAEL
 - Multiplication by Verbo energy (intentional driving force)
 - Geometric damping by the factor $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi} \approx 0.4813$
 
+The damping reduces net amplification, and the long-term regime is threshold-dependent: non-trivial fixed points occur at $\Phi_{\text{ethica}} \cdot E_{\text{Verbo}} = (\sqrt{3}/2)^{-\pi\phi} \approx 2.0775$, growth occurs above this threshold, and decay occurs below it.
 Adopted working precision in this section (4 decimal places):
 - $\pi = 3.1416$
 - $\phi = 1.6180$
