@@ -59,6 +59,14 @@ Observações recentes do JWST apontam, simultaneamente, sinais de supressão de
 
 ### B1. Caminho 1 (modificação na expansão)
 
+### B1.1 Versão compacta opcional
+
+\[
+Ω_feedback,compact(z) = β exp[-(z-z_p)^2/(2w^2)]
+\]
+
+Esta parametrização compacta deve ser mantida apenas como baseline de comparação de parcimônia e seleção de modelo (AIC/BIC) contra a decomposição física mínima. O uso dessa forma explicita o trade-off entre interpretabilidade física e número de parâmetros.
+
 \[
 H^2(z)=H_0^2\left[\Omega_m(1+z)^3+\Omega_r(1+z)^4+\Omega_\Lambda+\Omega_f(z)\right]
 \]
