@@ -12,13 +12,40 @@ The geometric layer of RAFAELIA provides the spatial and topological substrate w
 
 ---
 
+## Numeric Convention (Frozen Constants)
+
+- **Convenção numérica:** 4 casas decimais fixas para constantes reutilizadas.
+- **Regra de arredondamento:** round half-up (na 5ª casa decimal, dígito ≥ 5 arredonda para cima).
+
+| Constante simbólica | Valor adotado |
+|---|---:|
+| $\pi$ | 3.1416 |
+| $\phi$ | 1.6180 |
+| $\sqrt{3}/2$ | 0.8660 |
+| $\pi\phi$ | 5.0832 |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | 0.4813 |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | 2.0775 |
+All numeric substitutions tied to symbolic constants in this document use a **frozen 4-decimal convention**.  
+Rounding rule: **round to nearest at 4 decimal places** (standard half-up when the next digit is 5).
+
+| Symbolic constant | Adopted value |
+|---|---|
+| $\pi$ | $3.1416$ |
+| $\phi$ | $1.6180$ |
+| $\sqrt{3}/2$ | $0.8660$ |
+| $\pi\phi$ | $5.0832$ |
+| $\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}$ | $0.4813$ |
+| $\left(\left(\frac{\sqrt{3}}{2}\right)^{\pi\phi}\right)^{-1}$ | $2.0775$ |
+
+---
+
 ## 2. Spiral Geometry
 
 ### 2.1 RAFAELIA Coherence Spiral
 
 $$\text{Spiral}(r) = \left(\frac{\sqrt{3}}{2}\right)^n$$
 
-This defines a discrete spiral where the radius decreases by factor $\frac{\sqrt{3}}{2} \approx 0.866$ at each iteration — a contraction mapping that converges to zero, generating a logarithmic spiral in polar coordinates:
+This defines a discrete spiral where the radius decreases by factor $\frac{\sqrt{3}}{2} \approx 0.8660$ at each iteration — a contraction mapping that converges to zero, generating a logarithmic spiral in polar coordinates:
 
 $$r(\theta) = r_0 \cdot e^{-\alpha\theta}, \quad \alpha = -\frac{\ln(\sqrt{3}/2)}{2\pi}$$
 
@@ -35,6 +62,8 @@ In polar coordinates with $r = A_{\text{forma}}(n)$ and $\theta = n \cdot 2\pi /
 $$d_H = 2 - \frac{|\ln(\sqrt{3}/2)|}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} \approx 1.70$$
 
 Here $|\ln(\sqrt{3}/2)|$ is used as the positive contraction magnitude of the spiral ratio (since $\sqrt{3}/2 < 1$ gives a negative natural log), keeping the fractal dimension in the geometric interval between 1 and 2.
+$$d_H = 2 - \frac{|\ln(\sqrt{3}/2)|}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} \approx 1.7012$$
+$$d_H = 2 - \frac{\ln(\sqrt{3}/2)}{\ln(\phi)} \approx 2 - \frac{0.1438}{0.4812} \approx 1.7012$$
 
 This non-integer dimension places RAFAELIA spirals firmly in fractal space between a curve (dim 1) and a plane (dim 2).
 
@@ -91,7 +120,7 @@ This infinite product converges if and only if $\sum_{i=1}^\infty \Phi\lambda_i 
 
 $$F_{\text{Rafael}}(n+1) = F_{\text{Rafael}}(n) \cdot \left(\frac{\sqrt{3}}{2}\right) + \pi\sin(\theta_{999})$$
 
-As established in the Mathematics domain, this recursive seed generates fractal boundary structures of dimension $d_H \approx 1.70$ when iterated in the complex plane under the RAFAELIA map $z \mapsto z^2 + F_{\text{Rafael}}(n)$.
+As established in the Mathematics domain, this recursive seed generates fractal boundary structures of dimension $d_H \approx 1.7012$ when iterated in the complex plane under the RAFAELIA map $z \mapsto z^2 + F_{\text{Rafael}}(n)$.
 
 ---
 
@@ -166,7 +195,7 @@ The meet operator $\bigwedge$ (greatest lower bound in the lattice of blocks) id
 
 | Structure | Dimension | RAFAELIA Role |
 |-----------|-----------|---------------|
-| Coherence Spiral | 1D → fractal ≈1.70D | Hierarchy representation |
+| Coherence Spiral | 1D → fractal ≈1.7012D | Hierarchy representation |
 | Torus $\mathbb{T}^2$ | 2D manifold | Field circulation, energy conservation |
 | 3D Block Space | 3D | Physical session container |
 | Tesseract | 4D ($\mathbb{R}^3 \times \Phi$) | Ethical hyperspace |
