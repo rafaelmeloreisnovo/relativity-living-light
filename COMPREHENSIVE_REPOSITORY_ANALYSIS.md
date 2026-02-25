@@ -106,10 +106,10 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 **Descrição:** Figuras e gráficos representando resultados de simulações, ajustes de modelos, distribuições posteriores.
 
 **Arquivos principais:**
-- `figs/unified_H_ratio.png`
-- `figs/unified_mu_residuals.png`
-- `figs/corner_plot_unified_highres.png`
-- `figs/cluster_lensing_SIS_unified.png`
+- `figs/paper/unified_H_ratio.png`
+- `figs/paper/unified_mu_residuals.png`
+- `figs/paper/corner_plot_unified_highres.png`
+- `figs/paper/cluster_lensing_SIS_unified.png`
 
 **Referências acadêmicas:**
 9. Hunter, J. D. (2007). "Matplotlib: A 2D Graphics Environment." *Computing in Science & Engineering*, 9(3), 90-95. DOI: 10.1109/MCSE.2007.55
@@ -373,7 +373,7 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 **Público-alvo:** Cientistas computacionais, data scientists.
 
 ### Nível 4: Dados Empíricos e Observacionais
-**Arquivos:** `data/*.csv`, `figs/*.png`  
+**Arquivos:** `data/*.csv`, `figs/{paper,archive}/*.png`  
 **Objetivo:** Apresentar evidências, resultados, gráficos.  
 **Público-alvo:** Astrônomos observacionais, estatísticos.
 
@@ -528,10 +528,17 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 - `data/unified_entropy_margin_10_12.csv` - Margens de entropia
 
 #### Visualizações Chave
-- `figs/unified_H_ratio.png` - Razão de Hubble
-- `figs/unified_mu_residuals.png` - Resíduos de módulo de distância
-- `figs/corner_plot_unified_highres.png` - Distribuições posteriores
-- `figs/cluster_lensing_SIS_unified.png` - Lente gravitacional
+- `figs/paper/unified_H_ratio.png` - Razão de Hubble
+- `figs/paper/unified_mu_residuals.png` - Resíduos de módulo de distância
+- `figs/paper/corner_plot_unified_highres.png` - Distribuições posteriores
+- `figs/paper/cluster_lensing_SIS_unified.png` - Lente gravitacional
+
+### 7.1.1 Cronologia de publicações e precedência documental
+
+- **Fevereiro/2025 (repositório RLL):** formulação e commits iniciais do modelo com hipótese de não-localidade fotônica aplicada ao componente de superposição cosmológica.
+- **2025 (Nature Communications, DOI s41467-025-63981-3):** publicação experimental de não-localidade fotônica em escala laboratorial.
+
+**Nota de governança científica:** a precedência de commit/documentação no repositório é registrada com data e rastreabilidade, mas prioridade acadêmica formal depende de publicação e revisão por pares.
 
 ### 7.2 Metadados do Repositório
 

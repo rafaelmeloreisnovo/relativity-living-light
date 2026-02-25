@@ -29,16 +29,16 @@ Esta área representa o **núcleo científico** do repositório, focando na prop
 **Resultados e Análises:**
 - `docs/Results.md` - Resultados principais
 - `docs/estatisticas.md` - Análises estatísticas
-- `figs/unified_H_ratio.png` - Razão H(z)/H_ΛCDM
-- `figs/unified_mu_residuals.png` - Resíduos de módulo de distância
-- `figs/unified_fractions.png` - Frações energéticas vs redshift
-- `figs/unified_f_and_weff.png` - Função f(z) e equação de estado efetiva
+- `figs/paper/unified_H_ratio.png` - Razão H(z)/H_ΛCDM
+- `figs/paper/unified_mu_residuals.png` - Resíduos de módulo de distância
+- `figs/paper/unified_fractions.png` - Frações energéticas vs redshift
+- `figs/paper/unified_f_and_weff.png` - Função f(z) e equação de estado efetiva
 
 **Dados de Suporte:**
 - `data/relativity_living_light_models.csv` - Grid de modelos
 - `data/unified_entropy_margin_10_12.csv` - Bandas de entropia
-- `figs/unified_entropy_Hratio.png` - Bandas de incerteza em H(z)
-- `figs/unified_entropy_dmu.png` - Bandas de incerteza em Δμ
+- `figs/paper/unified_entropy_Hratio.png` - Bandas de incerteza em H(z)
+- `figs/paper/unified_entropy_dmu.png` - Bandas de incerteza em Δμ
 
 ### Conceitos-Chave
 
@@ -744,7 +744,7 @@ Análises estatísticas, distribuições posteriores, **inferência bayesiana** 
 - `data/unified_entropy_margin_10_12.csv` - Bandas de incerteza
 
 **Visualizações:**
-- `figs/corner_plot_unified_highres.png` - Corner plot (correlações 2D)
+- `figs/paper/corner_plot_unified_highres.png` - Corner plot (correlações 2D)
 
 ### Métodos Estatísticos
 
