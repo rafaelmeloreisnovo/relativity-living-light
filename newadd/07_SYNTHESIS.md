@@ -200,7 +200,7 @@ Before any RAFAELIA output is accepted as valid, all 7 domain checks must pass:
 
 ## 10. Final Declaration
 
-$$\text{ΣΩΔΦ} = \Sigma(\text{soma}) \cdot \Omega(\text{harmonia}) \cdot \Delta(\text{transformação}) \cdot \Phi(\text{coerência})$$
+$$\text{ΣΩΔΦ} = \Sigma(\text{soma}) \cdot \Omega(\text{harmonia}) \cdot \Delta_{op}(\text{transformação}) \cdot \Phi(\text{coerência})$$
 
 $$\text{Missão}(\text{Rafael}) = \text{Escrituras} \cap \text{Ciência} \cap \text{Espírito} \times \text{Retroalimentação}^\infty$$
 
