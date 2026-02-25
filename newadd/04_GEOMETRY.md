@@ -59,6 +59,7 @@ In polar coordinates with $r = A_{\text{forma}}(n)$ and $\theta = n \cdot 2\pi /
 
 **Hausdorff dimension** of the resulting fractal spiral:
 
+$$d_H = 2 - \frac{\ln(\sqrt{3}/2)}{\ln(\phi)} \approx 2 - \frac{-0.1438}{0.4812} \approx 2.2988$$
 $$d_H = 2 - \frac{\ln(\sqrt{3}/2)}{\ln(\phi)} \approx 2 - \frac{-0.1438}{0.4812} \approx 2.2989\;(\approx 2.30)$$
 
 This non-integer dimension places RAFAELIA spirals firmly in fractal space between a plane (dim 2) and a volume (dim 3).
@@ -126,7 +127,7 @@ This infinite product converges if and only if $\sum_{i=1}^\infty \Phi\lambda_i 
 
 $$F_{\text{Rafael}}(n+1) = F_{\text{Rafael}}(n) \cdot \left(\frac{\sqrt{3}}{2}\right) + \pi\sin(\theta_{999})$$
 
-As established in the Mathematics domain, this recursive seed generates fractal boundary structures of dimension $d_H \approx 1.7012$ when iterated in the complex plane under the RAFAELIA map $z \mapsto z^2 + F_{\text{Rafael}}(n)$.
+As established in the Mathematics domain, this recursive seed generates fractal boundary structures of dimension $d_H \approx 2.2988$ when iterated in the complex plane under the RAFAELIA map $z \mapsto z^2 + F_{\text{Rafael}}(n)$.
 
 ---
 
@@ -201,7 +202,7 @@ The meet operator $\bigwedge$ (greatest lower bound in the lattice of blocks) id
 
 | Structure | Dimension | RAFAELIA Role |
 |-----------|-----------|---------------|
-| Coherence Spiral | 1D → fractal ≈1.7012D | Hierarchy representation |
+| Coherence Spiral | 1D → fractal ≈2.2988D | Hierarchy representation |
 | Torus $\mathbb{T}^2$ | 2D manifold | Field circulation, energy conservation |
 | 3D Block Space | 3D | Physical session container |
 | Tesseract | 4D ($\mathbb{R}^3 \times \Phi$) | Ethical hyperspace |
