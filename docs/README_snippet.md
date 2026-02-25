@@ -17,7 +17,7 @@ onde:
 
 No gráfico abaixo, comparamos o modelo padrão ΛCDM (Ω_sup = 0) com um modelo que inclui **ρ_superposição** (\( \Omega_{\text{sup}}=0.1, n=2 \)):
 
-![Comparação H(z)](./docs/hz_superposicao.png)
+![Comparação H(z)](../figs/paper/hz_superposicao.png)
 
 ### Observações
 
@@ -25,4 +25,4 @@ No gráfico abaixo, comparamos o modelo padrão ΛCDM (Ω_sup = 0) com um modelo
 - O efeito é diferenciar a curva de expansão em relação ao ΛCDM, o que torna possível **testar observacionalmente** o modelo contra dados de SNe Ia, BAO e CMB.
 - Esse exercício mostra que a hipótese é **matematicamente incorporável** à estrutura padrão da cosmologia e produz **previsões concretas**.
 
-> Notebook reprodutível: [`notebooks/Hz_superposicao.ipynb`](./notebooks/Hz_superposicao.ipynb)
+> Notebook reprodutível: [`notebooks/Hz_superposicao.ipynb`](../data/Hz_superposicao.ipynb)

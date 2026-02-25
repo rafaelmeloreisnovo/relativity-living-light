@@ -174,7 +174,7 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 - [Conclusão](docs/Conclusion.md) — Conclusões do modelo
 - [Manifesto](docs/MANIFESTO.md) — Visão filosófica e simbiótica
 - [Mapa Rafaelia Total](docs/MAPA_RAFAELIA_TOTAL.md) — Estrutura conceitual completa
-- [Supremo Unificado](docs/SUPREMO%20UNIFICADO.md) — Unificação dos conceitos
+- [Supremo Unificado](docs/SUPREMO UNIFICADO.md) — Unificação dos conceitos
 - [Impact Report](docs/IMPACT_REPORT_MULTI.md) — Relatório de impacto
 - [Estrutura](docs/Structure.md) — Estrutura do modelo
 - [Resultados](docs/Results.md) — Resultados obtidos
@@ -186,9 +186,9 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 - [README Snippet](docs/README_snippet.md)
 
 ### Ciência Aplicada
-- [Relativity Living Light](docs/ciencia_Relativity_Living_Light.md)
-- [Blocos multilíngues](docs/ciencia_README_block_multilang.md)
-- [Unificação de superposição](docs/ciencia_README_sup_unification_snippet.md)
+- [Relativity Living Light](docs/Relativity_Living_Light.md)
+- [Blocos multilíngues](docs/README_block_multilang.md)
+- [Unificação de superposição](docs/README_sup_unification_snippet.md)
 
 ### Números Rafaelianos
 - [Índice](docs/numeros_rafaelianos/Readme.md)

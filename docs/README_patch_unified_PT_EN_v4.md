@@ -19,31 +19,31 @@ Opcionalmente: **correção magneto-coerente**
 ### 🔬 Observáveis e Testes com Imagens
 
 **H(z) ratio**  
-![H(z) ratio](unified_H_ratio.png)
+![H(z) ratio](../figs/paper/unified_H_ratio.png)
 
 **Δμ residuals**  
-![Δμ residuals](unified_mu_residuals.png)
+![Δμ residuals](../figs/paper/unified_mu_residuals.png)
 
 **Frações de energia**  
-![Frações](unified_fractions.png)
+![Frações](../figs/paper/unified_fractions.png)
 
 **f(z) e w_eff(z)**  
-![f(z) e w_eff(z)](unified_f_and_weff.png)
+![f(z) e w_eff(z)](../figs/paper/unified_f_and_weff.png)
 
 **Bandas de entropia (10/12) — H(z) ratio**  
-![Entropy margin H ratio](unified_entropy_Hratio.png)
+![Entropy margin H ratio](../figs/paper/unified_entropy_Hratio.png)
 
 **Bandas de entropia (10/12) — Δμ**  
-![Entropy margin Δμ](unified_entropy_dmu.png)
+![Entropy margin Δμ](../figs/paper/unified_entropy_dmu.png)
 
 **Crescimento de estrutura fσ8(z)**  
-![fσ8(z)](unified_growth_fs8.png)
+![fσ8(z)](../figs/paper/unified_growth_fs8.png)
 
 **Curvas de rotação (toy SPARC, NGC 2403 demo)**  
-![RotCurve NGC 2403](rotcurve_NGC_2403.png)
+![RotCurve NGC 2403](../figs/paper/rotcurve_NGC_2403.png)
 
 **Lensing de aglomerado (demo SIS)**  
-![Einstein Rings](cluster_lensing_SIS_unified.png)
+![Einstein Rings](../figs/paper/cluster_lensing_SIS_unified.png)
 
 ---
 
@@ -57,28 +57,28 @@ This state is **modulated** by **cosmic magnetic fields** and **plasma condition
 ### 🔬 Key Observables with Figures
 
 **H(z) ratio**  
-![H(z) ratio](unified_H_ratio.png)
+![H(z) ratio](../figs/paper/unified_H_ratio.png)
 
 **Δμ residuals**  
-![Δμ residuals](unified_mu_residuals.png)
+![Δμ residuals](../figs/paper/unified_mu_residuals.png)
 
 **Energy Fractions**  
-![Fractions](unified_fractions.png)
+![Fractions](../figs/paper/unified_fractions.png)
 
 **f(z) and w_eff(z)**  
-![f(z) and w_eff(z)](unified_f_and_weff.png)
+![f(z) and w_eff(z)](../figs/paper/unified_f_and_weff.png)
 
 **Entropy-margin (10/12) H ratio**  
-![Entropy margin H ratio](unified_entropy_Hratio.png)
+![Entropy margin H ratio](../figs/paper/unified_entropy_Hratio.png)
 
 **Entropy-margin (10/12) Δμ**  
-![Entropy margin Δμ](unified_entropy_dmu.png)
+![Entropy margin Δμ](../figs/paper/unified_entropy_dmu.png)
 
 **Structure growth fσ8(z)**  
-![fσ8(z)](unified_growth_fs8.png)
+![fσ8(z)](../figs/paper/unified_growth_fs8.png)
 
 **Rotation curve (toy SPARC, NGC 2403 demo)**  
-![RotCurve NGC 2403](rotcurve_NGC_2403.png)
+![RotCurve NGC 2403](../figs/paper/rotcurve_NGC_2403.png)
 
 **Cluster lensing (SIS demo)**  
-![Einstein Rings](cluster_lensing_SIS_unified.png)
+![Einstein Rings](../figs/paper/cluster_lensing_SIS_unified.png)

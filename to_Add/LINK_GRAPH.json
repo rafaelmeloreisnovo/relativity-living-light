@@ -1,354 +1,6 @@
 {
   "edges": [
     {
-      "src": "relativity-living-light-main/COMPREHENSIVE_REPOSITORY_ANALYSIS.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/book/README.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/Relativity_Living_Light.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/Results.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/BOOSTERS.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/COMPARACAO_DESI_2025.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/PLANO_ABCD_JWST_AGN_SMBH.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/INDICE_MESTRE.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/DOCUMENTATION_ORGANIZATION_MASTER.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/DOCUMENTATION_FULL_INVENTORY.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/ZIP_CONTENT_INDEX.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/PLANO_AD_AGN_JWST.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/MANIFESTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/MAPA_RAFAELIA_TOTAL.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/SUPREMO%20UNIFICADO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Readme.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_fractions.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_f_and_weff.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/figs/paper/mock_H_fit.png"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/ZIP_CONTENT_INDEX.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/ANALISE_ARTIGO_NATURE_PT.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/ESTABILIDADE_GHOST_CHECK.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/VELOCIDADE_SOM.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/COMPARACAO_DESI_2025.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/INDICE_MESTRE.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/Results.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/BOOSTERS.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/DOCUMENTATION_FULL_INVENTORY.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/LICENSE.md"
-    },
-    {
-      "src": "relativity-living-light-main/README.md",
-      "dst": "relativity-living-light-main/docs/ADMIN.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/book/README.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/data/unified_entropy_margin_10_12.csv"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/Conclusion.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/MANIFESTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/MAPA_RAFAELIA_TOTAL.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/SUPREMO%20UNIFICADO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/IMPACT_REPORT_MULTI.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/Structure.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/Results.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/estatisticas.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v3.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/README_snippet.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/ciencia_Relativity_Living_Light.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/ciencia_README_block_multilang.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/ciencia_README_sup_unification_snippet.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Readme.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/CientiEspiritual.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Constante.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Numeros.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/harmonica.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/data/Hz_superposicao.ipynb"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/data/density_decomp.ipynb"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/data/rotation_model.ipynb"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/data/relativity_living_light_models.csv"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/data/posterior_unified_synth.csv"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/data/unified_entropy_margin_10_12.csv"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/DOCUMENTATION_ORGANIZATION_MASTER.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/DOCUMENTATION_FULL_INVENTORY.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/ZIP_CONTENT_INDEX.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/DATA_INTEGRITY_CHECKLIST.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/README.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/MANIFESTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/Conclusion.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "dst": "relativity-living-light-main/docs/Structure.md"
-    },
-    {
       "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
       "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
     },
@@ -374,51 +26,7 @@
     },
     {
       "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Bibliografia_Completa.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Hierarquia_7_Niveis.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Metricas_Conservadoras.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Hierarquia_7_Niveis.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
       "dst": "relativity-living-light-main/README.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Metricas_Conservadoras.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Bibliografia_Completa.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Hierarquia_7_Niveis.md"
     },
     {
       "src": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md",
@@ -474,10 +82,6 @@
     },
     {
       "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
       "dst": "relativity-living-light-main/ANALISE_COMPLETA/Hierarquia_7_Niveis.md"
     },
     {
@@ -498,46 +102,298 @@
     },
     {
       "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Bibliografia_Completa.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Hierarquia_7_Niveis.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Metricas_Conservadoras.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Hierarquia_7_Niveis.md"
-    },
-    {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
       "dst": "relativity-living-light-main/README.md"
     },
     {
-      "src": "relativity-living-light-main/ANALISE_COMPLETA/README.md",
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/book/README.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/Relativity_Living_Light.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/Results.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/BOOSTERS.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/COMPARACAO_DESI_2025.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/REFERENCES.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/PLANO_ABCD_JWST_AGN_SMBH.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/ARQUITETURA_DUAS_RADIACOES_IMPLEMENTACAO.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/INDICE_MESTRE.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/DOCUMENTATION_ORGANIZATION_MASTER.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/DOCUMENTATION_FULL_INVENTORY.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/ZIP_CONTENT_INDEX.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/PLANO_AD_AGN_JWST.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/MANIFESTO.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/MAPA_RAFAELIA_TOTAL.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Readme.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_fractions.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_f_and_weff.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/figs/paper/mock_H_fit.png"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/ANALISE_ARTIGO_NATURE_PT.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/ESTABILIDADE_GHOST_CHECK.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/VELOCIDADE_SOM.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/LICENSE.md"
+    },
+    {
+      "src": "relativity-living-light-main/README.md",
+      "dst": "relativity-living-light-main/docs/ADMIN.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/book/README.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/data/unified_entropy_margin_10_12.csv"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/Conclusion.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/MANIFESTO.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/MAPA_RAFAELIA_TOTAL.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/IMPACT_REPORT_MULTI.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/Structure.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/Results.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/estatisticas.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v3.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/README_snippet.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/Relativity_Living_Light.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/README_block_multilang.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/README_sup_unification_snippet.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Readme.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/CientiEspiritual.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Constante.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/Numeros.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/numeros_rafaelianos/harmonica.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/data/Hz_superposicao.ipynb"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/data/density_decomp.ipynb"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/data/rotation_model.ipynb"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/data/relativity_living_light_models.csv"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/data/posterior_unified_synth.csv"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/DOCUMENTATION_ORGANIZATION_MASTER.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/DOCUMENTATION_FULL_INVENTORY.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/ZIP_CONTENT_INDEX.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
+      "dst": "relativity-living-light-main/docs/DATA_INTEGRITY_CHECKLIST.md"
+    },
+    {
+      "src": "relativity-living-light-main/README_MASTER.md",
       "dst": "relativity-living-light-main/README.md"
     },
     {
@@ -1185,134 +1041,6 @@
       "dst": "relativity-living-light-main/docs/REFERENCES.md"
     },
     {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/VELOCIDADE_SOM.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/VELOCIDADE_SOM.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/VELOCIDADE_SOM.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/PERTURBACOES_CRESCIMENTO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/VELOCIDADE_SOM.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ROADMAP_VALIDACAO.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ACADEMIC_TAXONOMY_INDEX.md",
-      "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
       "src": "relativity-living-light-main/docs/ANALISE_ARTIGO_NATURE_PT.md",
       "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
     },
@@ -1346,123 +1074,11 @@
     },
     {
       "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
       "dst": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md"
     },
     {
       "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
       "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ANALYSIS_INDEX.md",
-      "dst": "relativity-living-light-main/docs/NATURE_ARTICLE_ANALYSIS.md"
     },
     {
       "src": "relativity-living-light-main/docs/BOOSTERS.md",
@@ -1510,135 +1126,7 @@
     },
     {
       "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_fractions.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
       "dst": "relativity-living-light-main/figs/paper/unified_f_and_weff.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_entropy_Hratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_entropy_dmu.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/README.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/Metricas_Conservadoras.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/ANALISE_COMPLETA/00_INDICE_MESTRE.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_fractions.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_entropy_Hratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_entropy_dmu.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/data/relativity_living_light_models.csv"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/data/unified_entropy_margin_10_12.csv"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/data/posterior_unified_synth.csv"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_fractions.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_f_and_weff.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_entropy_Hratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_entropy_dmu.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/BOOSTERS.md",
-      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
     },
     {
       "src": "relativity-living-light-main/docs/BOOSTERS.md",
@@ -1699,6 +1187,10 @@
     {
       "src": "relativity-living-light-main/docs/INDICE_MESTRE.md",
       "dst": "relativity-living-light-main/docs/PLANO_ABCD_JWST_AGN_SMBH.md"
+    },
+    {
+      "src": "relativity-living-light-main/docs/INDICE_MESTRE.md",
+      "dst": "relativity-living-light-main/docs/ARQUITETURA_DUAS_RADIACOES_IMPLEMENTACAO.md"
     },
     {
       "src": "relativity-living-light-main/docs/INDICE_MESTRE.md",
@@ -1802,10 +1294,6 @@
     },
     {
       "src": "relativity-living-light-main/docs/INDICE_MESTRE.md",
-      "dst": "relativity-living-light-main/news/archive_legacy"
-    },
-    {
-      "src": "relativity-living-light-main/docs/INDICE_MESTRE.md",
       "dst": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md"
     },
     {
@@ -1817,156 +1305,56 @@
       "dst": "relativity-living-light-main/docs/LAGRANGIANO_EFT.md"
     },
     {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/ANALISE_COMPLETA/00_INDICE_MESTRE.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/docs/BOOSTERS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/docs/ANALISE_ARTIGO_NATURE_PT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/docs/ANALYSIS_INDEX.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
-      "dst": "relativity-living-light-main/docs/docs/REFERENCES.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/ANALISE_COMPLETA/00_INDICE_MESTRE.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/docs/BOOSTERS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/docs/ANALISE_ARTIGO_NATURE_PT.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/docs/NATURE_ARTICLE_ANALYSIS.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/docs/ARTICLE_ANALYSIS_SUMMARY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/docs/CONCEPTUAL_FRAMEWORK.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/docs/ANALYSIS_INDEX.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
-      "dst": "relativity-living-light-main/docs/docs/REFERENCES.md"
+      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
+      "dst": "relativity-living-light-main/figs/paper/unified_H_ratio.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_H_ratio.png"
+      "dst": "relativity-living-light-main/figs/paper/unified_mu_residuals.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_mu_residuals.png"
+      "dst": "relativity-living-light-main/figs/paper/unified_fractions.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_fractions.png"
+      "dst": "relativity-living-light-main/figs/paper/unified_f_and_weff.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_f_and_weff.png"
+      "dst": "relativity-living-light-main/figs/paper/unified_entropy_Hratio.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_entropy_Hratio.png"
+      "dst": "relativity-living-light-main/figs/paper/unified_entropy_dmu.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_entropy_dmu.png"
+      "dst": "relativity-living-light-main/figs/paper/unified_growth_fs8.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_growth_fs8.png"
+      "dst": "relativity-living-light-main/figs/paper/rotcurve_NGC_2403.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/cluster_lensing_SIS_unified.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_fractions.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_f_and_weff.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_entropy_Hratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_entropy_dmu.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "dst": "relativity-living-light-main/docs/cluster_lensing_SIS_unified.png"
+      "dst": "relativity-living-light-main/figs/paper/cluster_lensing_SIS_unified.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_snippet.md",
-      "dst": "relativity-living-light-main/docs/docs/hz_superposicao.png"
+      "dst": "relativity-living-light-main/figs/paper/hz_superposicao.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_snippet.md",
-      "dst": "relativity-living-light-main/docs/notebooks/Hz_superposicao.ipynb"
+      "dst": "relativity-living-light-main/data/Hz_superposicao.ipynb"
     },
     {
       "src": "relativity-living-light-main/docs/README_sup_unification_snippet.md",
-      "dst": "relativity-living-light-main/docs/docs/density_evolution_sup.png"
+      "dst": "relativity-living-light-main/figs/paper/density_evolution_sup.png"
     },
     {
       "src": "relativity-living-light-main/docs/README_sup_unification_snippet.md",
-      "dst": "relativity-living-light-main/docs/docs/rotation_curves_sup.png"
+      "dst": "relativity-living-light-main/figs/paper/rotation_curves_sup.png"
     },
     {
       "src": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md",
@@ -1990,14 +1378,6 @@
     },
     {
       "src": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md",
-      "dst": "relativity-living-light-main/docs/DATA_INTEGRITY_CHECKLIST.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md",
-      "dst": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md"
-    },
-    {
-      "src": "relativity-living-light-main/docs/RELEASE_NOTES_HISTORY.md",
       "dst": "relativity-living-light-main/docs/DOCUMENTATION_ORGANIZATION_MASTER.md"
     },
     {
@@ -2010,38 +1390,23 @@
     },
     {
       "src": "relativity-living-light-main/docs/ciencia_README_snippet.md",
-      "dst": "relativity-living-light-main/docs/docs/hz_superposicao.png"
+      "dst": "relativity-living-light-main/figs/paper/hz_superposicao.png"
     },
     {
       "src": "relativity-living-light-main/docs/ciencia_README_snippet.md",
-      "dst": "relativity-living-light-main/docs/notebooks/Hz_superposicao.ipynb"
+      "dst": "relativity-living-light-main/data/Hz_superposicao.ipynb"
     }
   ],
   "missing": [
     {
-      "src": "relativity-living-light-main/README.md",
-      "link": "docs/SUPREMO%20UNIFICADO.md",
-      "resolved": "relativity-living-light-main/docs/SUPREMO%20UNIFICADO.md"
+      "src": "relativity-living-light-main/COMPREHENSIVE_REPOSITORY_ANALYSIS.md",
+      "link": "./ANALISE_COMPLETA/",
+      "resolved": "relativity-living-light-main/ANALISE_COMPLETA"
     },
     {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "link": "docs/SUPREMO%20UNIFICADO.md",
-      "resolved": "relativity-living-light-main/docs/SUPREMO%20UNIFICADO.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "link": "docs/ciencia_Relativity_Living_Light.md",
-      "resolved": "relativity-living-light-main/docs/ciencia_Relativity_Living_Light.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "link": "docs/ciencia_README_block_multilang.md",
-      "resolved": "relativity-living-light-main/docs/ciencia_README_block_multilang.md"
-    },
-    {
-      "src": "relativity-living-light-main/README_MASTER.md",
-      "link": "docs/ciencia_README_sup_unification_snippet.md",
-      "resolved": "relativity-living-light-main/docs/ciencia_README_sup_unification_snippet.md"
+      "src": "relativity-living-light-main/docs/INDICE_MESTRE.md",
+      "link": "../news/archive_legacy/",
+      "resolved": "relativity-living-light-main/news/archive_legacy"
     },
     {
       "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
@@ -2084,6 +1449,11 @@
       "resolved": "relativity-living-light-main/docs/docs/REFERENCES.md"
     },
     {
+      "src": "relativity-living-light-main/docs/README_HISTORICO_INTEGRAL_47d054c.md",
+      "link": "...",
+      "resolved": "relativity-living-light-main/docs/..."
+    },
+    {
       "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
       "link": "ANALISE_COMPLETA/00_INDICE_MESTRE.md",
       "resolved": "relativity-living-light-main/docs/ANALISE_COMPLETA/00_INDICE_MESTRE.md"
@@ -2124,124 +1494,9 @@
       "resolved": "relativity-living-light-main/docs/docs/REFERENCES.md"
     },
     {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_H_ratio.png",
-      "resolved": "relativity-living-light-main/docs/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_mu_residuals.png",
-      "resolved": "relativity-living-light-main/docs/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_fractions.png",
-      "resolved": "relativity-living-light-main/docs/unified_fractions.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_f_and_weff.png",
-      "resolved": "relativity-living-light-main/docs/unified_f_and_weff.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_entropy_Hratio.png",
-      "resolved": "relativity-living-light-main/docs/unified_entropy_Hratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_entropy_dmu.png",
-      "resolved": "relativity-living-light-main/docs/unified_entropy_dmu.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_growth_fs8.png",
-      "resolved": "relativity-living-light-main/docs/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "rotcurve_NGC_2403.png",
-      "resolved": "relativity-living-light-main/docs/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "cluster_lensing_SIS_unified.png",
-      "resolved": "relativity-living-light-main/docs/cluster_lensing_SIS_unified.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_H_ratio.png",
-      "resolved": "relativity-living-light-main/docs/unified_H_ratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_mu_residuals.png",
-      "resolved": "relativity-living-light-main/docs/unified_mu_residuals.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_fractions.png",
-      "resolved": "relativity-living-light-main/docs/unified_fractions.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_f_and_weff.png",
-      "resolved": "relativity-living-light-main/docs/unified_f_and_weff.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_entropy_Hratio.png",
-      "resolved": "relativity-living-light-main/docs/unified_entropy_Hratio.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_entropy_dmu.png",
-      "resolved": "relativity-living-light-main/docs/unified_entropy_dmu.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "unified_growth_fs8.png",
-      "resolved": "relativity-living-light-main/docs/unified_growth_fs8.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "rotcurve_NGC_2403.png",
-      "resolved": "relativity-living-light-main/docs/rotcurve_NGC_2403.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_patch_unified_PT_EN_v4.md",
-      "link": "cluster_lensing_SIS_unified.png",
-      "resolved": "relativity-living-light-main/docs/cluster_lensing_SIS_unified.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_snippet.md",
-      "link": "./docs/hz_superposicao.png",
-      "resolved": "relativity-living-light-main/docs/docs/hz_superposicao.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_snippet.md",
-      "link": "./notebooks/Hz_superposicao.ipynb",
-      "resolved": "relativity-living-light-main/docs/notebooks/Hz_superposicao.ipynb"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_sup_unification_snippet.md",
-      "link": "./docs/density_evolution_sup.png",
-      "resolved": "relativity-living-light-main/docs/docs/density_evolution_sup.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/README_sup_unification_snippet.md",
-      "link": "./docs/rotation_curves_sup.png",
-      "resolved": "relativity-living-light-main/docs/docs/rotation_curves_sup.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ciencia_README_snippet.md",
-      "link": "./docs/hz_superposicao.png",
-      "resolved": "relativity-living-light-main/docs/docs/hz_superposicao.png"
-    },
-    {
-      "src": "relativity-living-light-main/docs/ciencia_README_snippet.md",
-      "link": "./notebooks/Hz_superposicao.ipynb",
-      "resolved": "relativity-living-light-main/docs/notebooks/Hz_superposicao.ipynb"
+      "src": "relativity-living-light-main/docs/README_ROOT_LEGACY_ARCHIVE.md",
+      "link": "...",
+      "resolved": "relativity-living-light-main/docs/..."
     }
   ]
 }

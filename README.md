@@ -87,7 +87,7 @@ f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 
 - [docs/MANIFESTO.md](docs/MANIFESTO.md)
 - [docs/MAPA_RAFAELIA_TOTAL.md](docs/MAPA_RAFAELIA_TOTAL.md)
-- [docs/SUPREMO UNIFICADO.md](docs/SUPREMO%20UNIFICADO.md)
+- [docs/SUPREMO UNIFICADO.md](docs/SUPREMO UNIFICADO.md)
 - [docs/numeros_rafaelianos/Readme.md](docs/numeros_rafaelianos/Readme.md)
 
 ---
