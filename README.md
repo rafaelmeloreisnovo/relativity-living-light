@@ -1,5 +1,7 @@
 # Relativity Living Light
 
+**📘 Trilha principal oficial do livro:** [book/README.md](book/README.md)
+
 **Resumo de validação observacional:** validação ainda em estágio **Sintético**, com integração **Parcial real** em preparação e sem etapa **Real validado** concluída.
 
 [![DOI](https://zenodo.org/badge/1046495816.svg)](https://doi.org/10.5281/zenodo.17188137)

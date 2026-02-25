@@ -1,5 +1,7 @@
 # 🌌 Relativity Living Light — README MASTER
 
+**📘 Trilha principal oficial do livro:** [book/README.md](book/README.md)
+
 [![DOI](https://zenodo.org/badge/1046495816.svg)](https://doi.org/10.5281/zenodo.17188137)
 
 ## Resumo do Projeto
