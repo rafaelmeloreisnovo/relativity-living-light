@@ -2,6 +2,12 @@ governanca e goverbanca
 # Repository Audit & Governance Draft Plan (DRAFT)
 _Scope: non-destructive reorganization, governance cleanup, and reproducibility scaffolding. No files were moved or altered._
 
+## A0. Cronologia de publicações e precedência documental
+- **Fevereiro/2025 (RLL no repositório):** formulação registrada com commits datados e documentação técnica associada.
+- **2025 (Nature Communications, DOI s41467-025-63981-3):** publicação experimental sobre não-localidade fotônica em escala laboratorial.
+
+**Critério de governança:** registrar com datas a precedência documental do repositório e distinguir isso de prioridade acadêmica formal (que depende de publicação peer-reviewed).
+
 ## A. Repository Audit (Inventory & Classification)
 - **Root**: `README.md` (manifesto/symbolic), `README_MASTER.md` (navigation), `REFORM_LOG.md`, `RESUMO_REFORMA.md`, `SECURITY_SUMMARY.md`, `LICENSE.md` (RAFCODE-𝚽, non-OSI), `requirements.txt`.
 - **Docs (`/docs`)**: mixture of scientific (e.g., `Conclusion.md`, `Structure.md`, `RelativityLivingLight_arXiv.tex/.pdf`, `ARTICLE_ANALYSIS_SUMMARY.md`, `ANALISE_ARTIGO_NATURE_PT.md`) and symbolic/manifesto content (`MANIFESTO.md`, `MAPA_RAFAELIA_TOTAL.md`, `SUPREMO UNIFICADO.md`, `IMPACT_REPORT_MULTI.md`, `New theory and beyond.md`, numeric series in `/docs/numeros_rafaelianos`). Patches and snippets (`README_patch_unified_PT_EN_v3/v4.md`, `README_snippet.md`, etc.) mix scientific explanation and narrative.

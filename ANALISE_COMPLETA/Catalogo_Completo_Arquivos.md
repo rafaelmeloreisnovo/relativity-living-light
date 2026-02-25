@@ -8,6 +8,8 @@
 
 ---
 
+> **Nota de datação (prioridade documental):** O repositório registra formulação do RLL em **Fevereiro/2025**; a publicação de não-localidade fotônica em **Nature Communications (2025, s41467-025-63981-3)** é posterior na linha do tempo documental. Isso indica precedência de registro no repositório, sem substituir prioridade acadêmica formal por peer review.
+
 ## Índice por Tipo de Arquivo
 
 1. [Arquivos na Raiz](#1-arquivos-na-raiz)
@@ -684,7 +686,7 @@
 → data/*.ipynb, data/*.csv, requirements.txt
 
 **Quero ver os gráficos:**
-→ figs/*.png (especialmente unified_*.png)
+→ figs/{paper,archive}/*.png (produção científica em `paper/`; histórico e capturas em `archive/`)
 
 **Quero entender a filosofia:**
 → docs/MANIFESTO.md, docs/SUPREMO UNIFICADO.md, docs/MAPA*.md
