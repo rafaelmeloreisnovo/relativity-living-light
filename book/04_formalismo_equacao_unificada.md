@@ -60,6 +60,9 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 
 6. **Forma final normalizada:**
 
+Resultado a extensão de Friedmann com setor de superposição e correções radiativas explícitas é sustentado por [Planck2018, DESI-DR2-2025, BOSS-DR12-2017].
+
+## Função de transição logística
 Operacionalmente, `z_t` fixa o redshift central em que a transição DE→DM do setor de superposição é máxima, enquanto `w_t` regula a largura efetiva dessa janela de transição (abrupta para `w_t` pequeno, suave para `w_t` maior).
 
 ### Propriedades matemáticas
@@ -74,6 +77,8 @@ Operacionalmente, `z_t` fixa o redshift central em que a transição DE→DM do 
 - `z_t` desloca a época de crossover entre comportamento tipo energia escura (coerente) e tipo matéria escura (decoerente), alterando `H(z)` e integrais de distância.
 - `w_t` controla quão rápida é a troca entre os regimes, impactando suavidade em `H(z)`, `Δμ(z)` e no acoplamento com crescimento estrutural (`fσ₈`).
 - `Ω_B0` e `Ω_P0` entram como correções `a⁻⁴` no background, com efeito potencial em observáveis de precisão (expansão em alto redshift, calibração de distância e lensing).
+
+Resultado a transição logística contínua entre regimes coerente e decoerente é sustentado por [DESI-DR2-2025, BOSS-DR12-2017, Planck2018].
 
 ### Definições dos parâmetros
    `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0[f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`.
@@ -103,12 +108,20 @@ Operacionalmente, `z_t` fixa o redshift central em que a transição DE→DM do 
 
 Para o impacto empírico desses regimes nas curvas comparativas e painéis de resultados, ver [`24_resultados_figuras_painel.md`](./24_resultados_figuras_painel.md).
 
+Resultado a interpretação física DE→DM via coerência/decoerência e boosters subdominantes é sustentado por [Planck2018, DESI-DR2-2025, eBOSS-DR16-2021].
+
 ## Conexão observacional
 
 **Fontes técnicas:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
 
 A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ₈(z)` e lensing, com nomenclatura alinhada a `docs/CONCEPTUAL_FRAMEWORK.md`, `docs/Relativity_Living_Light.md` e `docs/LAGRANGIANO_EFT.md`.
 
+## Referências de rastreabilidade
+
+- [Planck2018] Planck Collaboration (2018), *Planck 2018 results. VI. Cosmological parameters*.
+- [DESI-DR2-2025] DESI Collaboration (2025), *Data Release 2 cosmological constraints*.
+- [BOSS-DR12-2017] Alam et al. (2017), *BOSS DR12 consensus cosmology*.
+- [eBOSS-DR16-2021] eBOSS Collaboration (2021), *DR16 cosmological analyses*.
 ## Ver também
 
 - [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md)

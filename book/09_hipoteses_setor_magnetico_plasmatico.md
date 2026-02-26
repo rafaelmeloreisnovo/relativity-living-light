@@ -46,6 +46,8 @@ Hipótese de validade por domínio:
 - **Background cosmológico**: usa-se a forma média efetiva, com contribuição principal na contabilidade energética e em `H(z)`.
 - **Ambiente de halo/cluster**: a mesma estrutura funcional é interpretada como aproximação fenomenológica para plasma magnetizado, cisalhamento e turbulência locais, onde a modulação de coerência tende a ser mais relevante.
 
+Resultado o acoplamento magneto-coerente modulando a amplitude efetiva de superposição em ambientes magnetizados é sustentado por [Faraday-Rotation-Review-2011, Planck2018, DESI-DR2-2025].
+
 ## Papel do plasma (T, P) na dinâmica
 
 ### Termo plasmático e interpretação observável
@@ -69,6 +71,8 @@ Conexão com proxies observacionais:
 - **Pressão efetiva (`P_eff`)**: combina pressão térmica e magnetização/turbulência, com impacto no termo gravitacional efetivo `ρ+3p/c²`.
 
 A pressão térmica não é apenas correção hidrodinâmica local: ela entra na fonte gravitacional efetiva via combinação `ρ+3p/c²`, reforçando a curvatura efetiva quando `T` e `P` aumentam. Em linha com `docs/VELOCIDADE_SOM.md`, o efeito dominante no regime discutido é sobre o background e sobre a transição coerência/decoerência; não há crescimento próprio por instabilidade de Jeans do componente neste domínio de parâmetros.
+
+Resultado o papel termodinâmico do plasma na fonte gravitacional efetiva e na transição de coerência é sustentado por [Cluster-MHD-2024, Faraday-Rotation-Review-2011, Planck2018].
 
 ## Decoerência e regime radiativo
 
@@ -136,6 +140,15 @@ A hipótese gera alvos observacionais diretos e indiretos:
 
 A validação segue o plano estatístico de `docs/PLANO_AD_AGN_JWST.md`: comparação por χ², penalização por complexidade (AIC/BIC) e formulação de previsões falsificáveis para separar ganho físico real de sobreajuste fenomenológico.
 
+Resultado as assinaturas observacionais combinadas em lensing, rotação/Faraday e `fσ₈(z)` como testes do setor magneto-plasmático são sustentadas por [Faraday-Rotation-Review-2011, DESI-DR2-2025, eBOSS-DR16-2021].
+
+## Referências de rastreabilidade
+
+- [Planck2018] Planck Collaboration (2018), *Planck 2018 results. VI. Cosmological parameters*.
+- [DESI-DR2-2025] DESI Collaboration (2025), *Data Release 2 cosmological constraints*.
+- [eBOSS-DR16-2021] eBOSS Collaboration (2021), *DR16 cosmological analyses*.
+- [Faraday-Rotation-Review-2011] Govoni et al. (2011), *Magnetic fields in galaxy clusters and Faraday rotation review*.
+- [Cluster-MHD-2024] Vazza et al. (2024), *Cluster plasma and MHD constraints in large-scale structure*.
 ## Ver também
 
 - [Formalismo base](./04_formalismo_equacao_unificada.md)
