@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 from .data_access import load_active_datasets
-from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
+from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model, write_bayes_factor_interpretation
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
@@ -231,9 +231,13 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
     evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
 
+    bayes_factor_out = os.path.join(RESULTS, "bayes_factor_interpretation.csv")
+    write_bayes_factor_interpretation(bayes_factor_out)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+    print(f"Wrote: {bayes_factor_out}")
 
 
 if __name__ == "__main__":

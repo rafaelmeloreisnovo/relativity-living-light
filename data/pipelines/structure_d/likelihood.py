@@ -2,6 +2,52 @@ import numpy as np
 import pandas as pd
 
 
+BAYES_FACTOR_INTERPRETATION_ROWS = [
+    {
+        "lnB_min": -np.inf,
+        "lnB_max": -5.0,
+        "classification": "very_strong_against_model_1",
+        "notes": "Jeffreys/Trotta: evidence strongly favors model_0 over model_1.",
+    },
+    {
+        "lnB_min": -5.0,
+        "lnB_max": -2.5,
+        "classification": "moderate_against_model_1",
+        "notes": "Jeffreys/Trotta: moderate evidence against model_1.",
+    },
+    {
+        "lnB_min": -2.5,
+        "lnB_max": -1.0,
+        "classification": "weak_against_model_1",
+        "notes": "Jeffreys/Trotta: weak evidence against model_1.",
+    },
+    {
+        "lnB_min": -1.0,
+        "lnB_max": 1.0,
+        "classification": "inconclusive",
+        "notes": "Jeffreys/Trotta: inconclusive or not worth more than a bare mention.",
+    },
+    {
+        "lnB_min": 1.0,
+        "lnB_max": 2.5,
+        "classification": "weak_for_model_1",
+        "notes": "Jeffreys/Trotta: weak evidence supporting model_1.",
+    },
+    {
+        "lnB_min": 2.5,
+        "lnB_max": 5.0,
+        "classification": "moderate_for_model_1",
+        "notes": "Jeffreys/Trotta: moderate evidence supporting model_1.",
+    },
+    {
+        "lnB_min": 5.0,
+        "lnB_max": np.inf,
+        "classification": "very_strong_for_model_1",
+        "notes": "Jeffreys/Trotta: strong to very strong evidence supporting model_1.",
+    },
+]
+
+
 def _as_1d_finite_array(name, values):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -65,5 +111,11 @@ def load_csv(path, required_cols):
 
 def evaluate_model(results_rows, out_csv):
     df = pd.DataFrame(results_rows)
+    df.to_csv(out_csv, index=False)
+    return df
+
+
+def write_bayes_factor_interpretation(out_csv):
+    df = pd.DataFrame(BAYES_FACTOR_INTERPRETATION_ROWS)
     df.to_csv(out_csv, index=False)
     return df
