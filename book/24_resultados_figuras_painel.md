@@ -58,3 +58,13 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
+
+## Referências consolidadas (padrão único)
+
+1. Riess, A. G. et al. 2022. "A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km s−1 Mpc−1 Uncertainty from the Hubble Space Telescope and the SH0ES Team". ApJ, 934(1):L7. DOI:10.3847/2041-8213/ac5c5b.
+2. Brout, D. et al. (Pantheon+ Collaboration; primeiro autor: D. Brout). 2022. "The Pantheon+ Analysis: Cosmological Constraints". ApJ, 938(2):110. DOI:10.3847/1538-4357/ac8e04.
+3. Abbott, T. M. C. et al. (DES Collaboration; primeiro autor institucional). 2022. "Dark Energy Survey Year 3 results: Cosmological constraints from galaxy clustering and weak lensing". PRD, 105(2):023520. DOI:10.1103/PhysRevD.105.023520.
+4. Lelli, F.; McGaugh, S. S.; Schombert, J. M.; Pawlowski, M. S. (SPARC Collaboration). 2016. "One Law to Rule Them All: The Radial Acceleration Relation of Galaxies". ApJ, 836(2):152. DOI:10.3847/1538-4357/836/2/152.
+5. DESI Collaboration (Adame et al.; primeiro autor institucional). 2025. "DESI 2024 VI: Cosmological Constraints from the Measurements of Baryon Acoustic Oscillations". JCAP, 2025(02):021. DOI:10.1088/1475-7516/2025/02/021.
+
+---

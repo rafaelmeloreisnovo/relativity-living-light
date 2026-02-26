@@ -68,3 +68,13 @@ A hipótese gera alvos observacionais diretos e indiretos:
 A validação segue o plano estatístico de `docs/PLANO_AD_AGN_JWST.md`: comparação por χ², penalização por complexidade (AIC/BIC) e formulação de previsões falsificáveis para separar ganho físico real de sobreajuste fenomenológico.
 
 ---
+
+## Referências consolidadas (padrão único)
+
+1. Abbott, T. M. C. et al. (DES Collaboration; primeiro autor institucional). 2022. "Dark Energy Survey Year 3 results: Cosmological constraints from galaxy clustering and weak lensing". PRD, 105(2):023520. DOI:10.1103/PhysRevD.105.023520.
+2. Bellini, E.; Sawicki, I. 2014. "Maximal freedom at minimum cost: linear large-scale structure in general modifications of gravity". JCAP, 2014(07):050. DOI:10.1088/1475-7516/2014/07/050.
+3. Clifton, T.; Ferreira, P. G.; Padilla, A.; Skordis, C. 2012. "Modified Gravity and Cosmology". Physics Reports, 513(1-3):1-189. DOI:10.1016/j.physrep.2012.01.001.
+4. Lelli, F.; McGaugh, S. S.; Schombert, J. M.; Pawlowski, M. S. (SPARC Collaboration). 2016. "One Law to Rule Them All: The Radial Acceleration Relation of Galaxies". ApJ, 836(2):152. DOI:10.3847/1538-4357/836/2/152.
+5. Alam, S. et al. (BOSS Collaboration; primeiro autor: S. Alam). 2017. "The clustering of galaxies in the completed SDSS-III Baryon Oscillation Spectroscopic Survey". MNRAS, 470(3):2617-2652. DOI:10.1093/mnras/stx721.
+
+---
