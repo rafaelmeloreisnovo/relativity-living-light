@@ -1,16 +1,12 @@
-import json
+import argparse
 import os
 
 import numpy as np
-import pandas as pd
 
-from .inference import (
-    MODEL_PARAMETER_PRIORS,
-    run_mcmc_emcee,
-    run_nested_dynesty,
-)
-from .likelihood import aic, bic, chi2, evaluate_model, load_csv
-from .models import model_LCDM_Hz, model_LCDM_fs8, model_RLL_like_Hz, model_RLL_like_fs8
+from .data_access import load_active_datasets
+from .inference import run_lcdm_bayes, run_rll_like_agn_bayes
+from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
+from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
@@ -173,6 +169,22 @@ def _run_inference_for_model(model_name, hz, fs8):
 
     return metadata
 
+def covariance_usage_summary(block_reports, diagonal_fallback=True):
+    rows = []
+    for report in block_reports:
+        rows.append(
+            {
+                "block": report["block"],
+                "dataset_id": report["dataset_id"],
+                "covariance_mode": report["covariance_mode"],
+                "source": report["source"],
+                "covariance_path": report["covariance_path"],
+                "has_full_covariance": bool(report["has_full_covariance"]),
+                "has_diagonal_sigma": bool(report["has_diagonal_sigma"]),
+                "diagonal_fallback": bool(diagonal_fallback),
+            }
+        )
+    return rows
 
 
 def _chi2_from_entry(entry, model_values):
@@ -182,30 +194,46 @@ def _chi2_from_entry(entry, model_values):
 
 
 def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
-    observable = entry["observable"]
-    if observable == "Hz":
-        z_arr = entry["z"]
-        c2_l = _chi2_from_entry(entry, model_LCDM_Hz(z_arr, lcdm))
-        c2_r = _chi2_from_entry(entry, model_RLL_like_Hz(z_arr, rll))
-        return c2_l, c2_r, len(entry["values"])
-    if observable == "fs8":
-        z_arr = entry["z"]
-        c2_l = _chi2_from_entry(entry, model_LCDM_fs8(z_arr, lcdm))
-        c2_r = _chi2_from_entry(entry, model_RLL_like_fs8(z_arr, rll))
-        return c2_l, c2_r, len(entry["values"])
+    if entry.get("z") is None:
+        return 0.0, 0.0, 0
 
-    raise ValueError(
-        f"unsupported dataset for run_all: {dataset_id} (observable={observable}). "
-        "Supported observables in this runner: Hz, fs8"
-    )
+    if dataset_id in {"hz", "real_hz"} or str(entry.get("observable", "")).lower() == "hz":
+        model_lcdm = model_LCDM_Hz(entry["z"], lcdm)
+        model_rll = model_RLL_like_Hz(entry["z"], rll)
+    elif dataset_id == "fsigma8" or "fs" in str(entry.get("observable", "")).lower():
+        model_lcdm = model_LCDM_fs8(entry["z"], lcdm)
+        model_rll = model_RLL_like_fs8(entry["z"], rll)
+    else:
+        return 0.0, 0.0, 0
+
+    chi2_l = _chi2_from_entry(entry, model_lcdm)
+    chi2_r = _chi2_from_entry(entry, model_rll)
+    return chi2_l, chi2_r, len(entry["values"])
 
 
-def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE):
+def _save_bayes_results(datasets, seed, nwalkers, nsteps, nlive):
+    hz = datasets.get("hz") or datasets.get("real_hz")
+    fs8 = datasets.get("fsigma8")
+    if hz is None or fs8 is None:
+        raise ValueError("Bayes mode requires both hz and fsigma8 datasets active in profile")
+
+    lcdm_result = run_lcdm_bayes(hz, fs8, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive, output_dir=RESULTS)
+    rll_result = run_rll_like_agn_bayes(hz, fs8, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive, output_dir=RESULTS)
+
+    rows = [lcdm_result["row"], rll_result["row"]]
+    bayes_out = os.path.join(RESULTS, "bayes_model_comparison.csv")
+    evaluate_model(rows, bayes_out)
+    print(f"Wrote: {bayes_out}")
+
+
+def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None, run_bayes=False,
+         seed=42, nwalkers=32, nsteps=2000, nlive=400):
     os.makedirs(RESULTS, exist_ok=True)
     os.makedirs(INFERENCE_RESULTS, exist_ok=True)
     rows = []
 
-    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+    cfg, datasets = load_active_datasets(config_path, profile_name=profile_name)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -228,7 +256,7 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE):
     if total_observables <= 0:
         raise ValueError("no supported observables were evaluated; check profile active_datasets")
 
-    active_datasets = ",".join(cfg_meta["active_datasets"])
+    active_datasets = ",".join(cfg["active_datasets"])
 
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
@@ -243,26 +271,49 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE):
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
 
-    cov_rows = []
     expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
-    summary_df = covariance_usage_summary(block_reports, diagonal_fallback=True)
-    missing = [
-        {"block": b, "dataset_id": "", "covariance_mode": "not_used", "source": "fallback", "covariance_path": "",
-         "has_full_covariance": False, "has_diagonal_sigma": False, "diagonal_fallback": True}
-        for b in expected_blocks if b not in set(summary_df["block"].tolist())
-    ]
-    if missing:
-        summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
-    summary_df.insert(0, "covariance_policy", covariance_policy)
-    summary_df.insert(1, "active_blocks", ",".join(active_blocks))
-    cov_rows.append(summary_df)
+    summary_rows = covariance_usage_summary(block_reports, diagonal_fallback=True)
+    used_blocks = {row["block"] for row in summary_rows}
+    for block in expected_blocks:
+        if block not in used_blocks:
+            summary_rows.append(
+                {
+                    "block": block,
+                    "dataset_id": "",
+                    "covariance_mode": "not_used",
+                    "source": "fallback",
+                    "covariance_path": "",
+                    "has_full_covariance": False,
+                    "has_diagonal_sigma": False,
+                    "diagonal_fallback": True,
+                }
+            )
+    for row in summary_rows:
+        row["covariance_policy"] = covariance_policy
+        row["active_blocks"] = ",".join(active_blocks)
 
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
-    evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
+    evaluate_model(summary_rows, cov_out)
 
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+
+    if run_bayes:
+        _save_bayes_results(datasets, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive)
+
+
+def _parse_args():
+    parser = argparse.ArgumentParser(description="Run structure_d model comparison pipeline")
+    parser.add_argument("--config", default=DEFAULT_CONFIG)
+    parser.add_argument("--profile", default=DEFAULT_PROFILE)
+    parser.add_argument("--covariance-policy", default=None)
+    parser.add_argument("--bayes", action="store_true")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--nwalkers", type=int, default=32)
+    parser.add_argument("--nsteps", type=int, default=2000)
+    parser.add_argument("--nlive", type=int, default=400)
+    return parser.parse_args()
 
 
 
@@ -278,5 +329,16 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE):
 
 
 if __name__ == "__main__":
+    args = _parse_args()
     env_profile = os.environ.get("STRUCTURE_D_PROFILE")
-    main(profile_name=env_profile)
+    chosen_profile = args.profile if args.profile is not None else env_profile
+    main(
+        config_path=args.config,
+        profile_name=chosen_profile,
+        covariance_policy=args.covariance_policy,
+        run_bayes=args.bayes,
+        seed=args.seed,
+        nwalkers=args.nwalkers,
+        nsteps=args.nsteps,
+        nlive=args.nlive,
+    )
