@@ -60,8 +60,26 @@ def main(config_path=DEFAULT_CONFIG):
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
+
+    cov_rows = []
+    expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
+    for model_name, active_blocks in (("LCDM", blocks_lcdm_active), ("RLL_like+AGN", blocks_rll_active)):
+        summary_df = covariance_usage_summary(active_blocks, diagonal_fallback=True)
+        missing = [
+            {"block": b, "covariance_mode": "not_used", "has_full_covariance": False, "has_diagonal_sigma": False}
+            for b in expected_blocks if b not in set(summary_df["block"].tolist())
+        ]
+        if missing:
+            summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
+        summary_df.insert(0, "model", model_name)
+        cov_rows.append(summary_df)
+    cov_out = os.path.join(RESULTS, "covariance_usage.csv")
+    evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
+    print(f"Wrote: {cov_out}")
+
 
 
 if __name__ == "__main__":
