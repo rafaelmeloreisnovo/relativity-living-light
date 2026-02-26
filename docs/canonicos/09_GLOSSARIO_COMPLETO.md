@@ -57,6 +57,8 @@ As duas imagens de referência devem acompanhar esta distinção conceitual em a
 | **w** | Equação de estado genérica | p = w ρ c² | [-1, 1/3] | Definição termodinâmica padrão |
 | **w_sup(z)** | EoS da componente de superposição | p_sup/(ρ_sup c²) = -f(z) | [-1, 0] | Grandeza interna da componente Rafael |
 | **w_total(z)** | EoS do fluido cosmológico efetivo combinado | p_total/(ρ_total c²) | Varia com mistura | Grandeza oficial para inferência observacional |
+| **w** | Equação de estado | p = w ρ c² | [-1, 1/3] | DE: w=-1, matéria: w=0 |
+| **w_eff(z)** | Efetiva com z | Derivada de Friedmann | Varia | Rafael: transita DM→DE |
 | **γ** | Índice adiabático | p = (γ-1)ρu | [1, 5/3] | Gás monoatômico: γ=5/3 |
 
 ---
@@ -119,6 +121,12 @@ Limites corretos por grandeza:
 | **w_sup(z)** | Equação de estado interna da componente de superposição | `w_sup(z) = p_sup/(ρ_sup c²) = -f(z)` |
 | **w_total(z)** | Equação de estado efetiva do conteúdo cosmológico combinado | `w_total(z) = p_total/(ρ_total c²)` |
 | **w_legacy(z)** | Forma histórica usada em rascunhos antigos | `w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]` (**não usar**) |
+Limites:
+  z→∞ (f→0):   w_eff → 0   (DM-like)
+  z→0 (f→1):   w_eff → -1  (DE-like)
+```
+
+estes limites derivam diretamente da forma de `f(z)` adotada.
 
 ---
 
@@ -325,7 +333,12 @@ Limites canônicos:
   z→0: w_sup → 0;  w_total depende da mistura em z=0
 
 w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]  (não usar para inferência física atual)
+Limites:
+  z→∞ (f→0): w_eff → 0   (DM-like)
+  z→0 (f→1): w_eff → -1  (DE-like)
 ```
+
+estes limites derivam diretamente da forma de `f(z)` adotada.
 
 ---
 
