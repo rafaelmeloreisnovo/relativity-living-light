@@ -1,3 +1,7 @@
+"""Referência explícita de saídas textuais deste módulo/pipeline."""
+
+TEXTUAL_OUTPUTS = []
+
 import numpy as np
 
 def _validated_width(width):

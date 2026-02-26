@@ -28,3 +28,6 @@ AIC = \chi^2 + 2k
 \quad\quad
 BIC = \chi^2 + k\ln N
 \]
+
+## Índice canônico de fórmulas
+- Referência oficial: [`docs/FORMULAS_CANONICAS_INDEX.md`](../FORMULAS_CANONICAS_INDEX.md).
