@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from .likelihood import chi2_blocks, covariance_usage_summary, aic, bic, load_csv, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
+from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 DATA = os.path.join(BASE_DIR, "data", "inputs", "structure_d")
@@ -71,9 +72,19 @@ def main():
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
     evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
 
+    deg_df, deg_out = analyze_rll_degeneracy(hz, fs8, rll, RESULTS, fit_params=fit_params_rll)
+    deg_pairs = top_degenerate_pairs_by_bin(deg_df, top_n=3)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+    print(f"Wrote: {deg_out}")
+    if deg_pairs:
+        print("\nTop degeneracies by z-bin (RLL):")
+        for zbin in sorted(deg_pairs):
+            pairs_txt = "; ".join([f"{p['group']}:{p['pair']} (corr={p['corr']:.3f})" for p in deg_pairs[zbin]])
+            print(f"- {zbin}: {pairs_txt}")
+
 
 
 if __name__ == "__main__":
