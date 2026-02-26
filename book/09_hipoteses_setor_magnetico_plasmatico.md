@@ -68,3 +68,15 @@ A hipótese gera alvos observacionais diretos e indiretos:
 A validação segue o plano estatístico de `docs/PLANO_AD_AGN_JWST.md`: comparação por χ², penalização por complexidade (AIC/BIC) e formulação de previsões falsificáveis para separar ganho físico real de sobreajuste fenomenológico.
 
 ---
+
+### Quadro técnico — Dicionário Matemática → Observável
+
+| Operador/Função matemática | Definição no modelo | Variável observacional associada | Tipo de dado/sonda |
+|---|---|---|---|
+| `E(z)` ou `H(z)` | Background de expansão que conecta normalização `E(z)` e taxa física `H(z)`. | `H(z)` | BAO radial e cosmic chronometers. |
+| distância angular integrada | Distância geométrica integrada no cone de luz do modelo. | `D_A(z)` | BAO angular e lentes gravitacionais. |
+| função de crescimento efetiva | Resposta do crescimento de estrutura sob a expansão efetiva. | `fσ₈(z)` | RSD em levantamentos de galáxias. |
+| potencial/projeção de lente | Projeção da estrutura gravitacional na linha de visada. | `κ` | Weak lensing/cosmic shear. |
+
+> Versão curta. Para formulação completa e amarração de notação, ver o quadro técnico no Capítulo 04.
+

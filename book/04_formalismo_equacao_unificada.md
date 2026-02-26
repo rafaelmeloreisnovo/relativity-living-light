@@ -49,3 +49,15 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ₈(z)` e lensing, com nomenclatura alinhada a `docs/CONCEPTUAL_FRAMEWORK.md`, `docs/Relativity_Living_Light.md` e `docs/LAGRANGIANO_EFT.md`.
 
 ---
+
+### Quadro técnico — Dicionário Matemática → Observável
+
+| Operador/Função matemática | Definição no modelo | Variável observacional associada | Tipo de dado/sonda |
+|---|---|---|---|
+| `E(z)` ou `H(z)` | `E(z)=H(z)/H₀` e `H(z)=H₀E(z)` na equação de background. | `H(z)` | BAO radial e cosmic chronometers (idade diferencial). |
+| distância angular integrada | Distância angular obtida por integral de linha de visada no background (`D_A(z)` via integral de `1/H(z)`). | `D_A(z)` | BAO angular e lentes fortes/fracas (escala geométrica). |
+| função de crescimento efetiva | Crescimento linear efetivo da estrutura reportado como `fσ₈(z)`. | `fσ₈(z)` | RSD (redshift-space distortions) em levantamentos espectroscópicos. |
+| potencial/projeção de lente | Projeção do potencial gravitacional ao longo da linha de visada, observada como convergência. | `κ` | Weak lensing/cosmic shear e mapas de massa em clusters. |
+
+> Notação alinhada ao glossário: `E(z)`, `H(z)`, `D_A(z)`, `fσ₈(z)` e `κ` seguem convenção canônica do capítulo 33.
+
