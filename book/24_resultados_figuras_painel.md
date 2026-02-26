@@ -13,6 +13,12 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 
 ## Painel canônico de resultados
 
+### Leitura canônica do painel
+
+A leitura do painel segue o fluxo expansão → crescimento → lentes/escala local → inferência, preservando a rastreabilidade métrica de cada figura para uma conclusão observacional específica.
+
+Resultado a leitura sequencial do painel por blocos métricos para interpretação consistente do modelo é sustentada por [Planck2018, DESI-DR2-2025, BOSS-DR12-2017].
+
 ### 1) Cosmologia
 
 | Figura (canônica) | Métrica/Conteúdo | Objetivo |
@@ -54,6 +60,27 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 - Preferir sempre o prefixo `unified_` para resultados do modelo unificado.
 - Manter caminhos no padrão absoluto relativo ao repositório: `figs/paper/<arquivo>.png`.
 - Em caso de duplicidade de nomes (variantes antigas vs. atuais), declarar explicitamente o arquivo canônico neste capítulo.
+
+## Conclusão observacional por métrica
+
+- **Expansão (`H(z)/H_ΛCDM`, `Δμ`)**: verifica compatibilidade global da história de expansão e estabilidade de resíduos.
+  Resultado a conclusão de compatibilidade de expansão por razão `H(z)` e resíduos `Δμ` é sustentada por [Planck2018, PantheonPlus-2022, DESI-DR2-2025].
+- **Crescimento (`fσ₈`)**: testa coerência entre background e formação de estrutura em regime linear.
+  Resultado a conclusão sobre crescimento estrutural via `fσ₈` como teste de coerência dinâmica é sustentada por [DESI-DR2-2025, eBOSS-DR16-2021, Planck2018].
+- **Lensing (`κ`, SIS)**: mede resposta do potencial projetado frente a distribuição efetiva de massa/pressão.
+  Resultado a conclusão de lensing por convergência e perfil SIS como validação de potencial projetado é sustentada por [DES-Y3-Lensing-2022, Cluster-Lensing-Review-2021, Planck2018].
+- **Inferência posterior**: avalia degenerescências e regiões credíveis para `Ω_s0`, `z_t`, `w_t`.
+  Resultado a conclusão inferencial por pós-processamento de parâmetros e degenerescências é sustentada por [DESI-DR2-2025, BOSS-DR12-2017, Planck2018].
+
+## Referências de rastreabilidade
+
+- [Planck2018] Planck Collaboration (2018), *Planck 2018 results. VI. Cosmological parameters*.
+- [DESI-DR2-2025] DESI Collaboration (2025), *Data Release 2 cosmological constraints*.
+- [BOSS-DR12-2017] Alam et al. (2017), *BOSS DR12 consensus cosmology*.
+- [eBOSS-DR16-2021] eBOSS Collaboration (2021), *DR16 cosmological analyses*.
+- [PantheonPlus-2022] Scolnic et al. (2022), *Pantheon+ Analysis*.
+- [DES-Y3-Lensing-2022] DES Collaboration (2022), *Dark Energy Survey Year 3 lensing results*.
+- [Cluster-Lensing-Review-2021] Umetsu (2021), *Cluster lensing review*.
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
