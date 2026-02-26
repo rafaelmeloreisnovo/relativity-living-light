@@ -133,6 +133,114 @@ def covariance_usage_summary(blocks, diagonal_fallback=True):
     return pd.DataFrame(summary)
 
 
+def _theta_to_dict(theta, data):
+    if isinstance(theta, dict):
+        return theta
+    theta_arr = np.asarray(theta, dtype=float)
+    if theta_arr.ndim != 1:
+        raise ValueError("theta must be a dict or a 1D array")
+    param_names = data.get("param_names")
+    if param_names is None:
+        raise ValueError("data['param_names'] is required when theta is not a dict")
+    if len(param_names) != theta_arr.size:
+        raise ValueError("len(param_names) must match theta length")
+    return dict(zip(param_names, theta_arr))
+
+
+def is_physically_stable(theta, data=None):
+    data = data or {}
+    params = _theta_to_dict(theta, data)
+
+    base_constraints = (
+        ("H0", lambda v: np.isfinite(v) and v > 0.0),
+        ("Om", lambda v: np.isfinite(v) and 0.0 <= v <= 1.0),
+        ("Or", lambda v: np.isfinite(v) and 0.0 <= v <= 1.0),
+        ("Ol", lambda v: np.isfinite(v) and 0.0 <= v <= 2.0),
+        ("sigma8", lambda v: np.isfinite(v) and v > 0.0),
+        ("gamma", lambda v: np.isfinite(v) and 0.0 <= v <= 1.5),
+        ("alpha", lambda v: np.isfinite(v) and 0.0 <= v <= 1.0),
+        ("z_peak", lambda v: np.isfinite(v) and v >= 0.0),
+        ("width", lambda v: np.isfinite(v) and v > 0.0),
+        ("beta", lambda v: np.isfinite(v) and -2.0 <= v <= 2.0),
+    )
+
+    for name, predicate in base_constraints:
+        if name in params and not predicate(float(params[name])):
+            return False
+
+    om = float(params.get("Om", 0.0))
+    orad = float(params.get("Or", 0.0))
+    ol = float(params.get("Ol", 0.0))
+    if om + orad + ol <= 0.0:
+        return False
+
+    veto = data.get("is_physically_stable")
+    if veto is not None:
+        return bool(veto(params, data))
+    return True
+
+
+def log_prior(theta, data=None):
+    data = data or {}
+    params = _theta_to_dict(theta, data)
+
+    if not is_physically_stable(params, data=data):
+        return -np.inf
+
+    prior_bounds = data.get("prior_bounds", {})
+    for name, bounds in prior_bounds.items():
+        if name not in params:
+            continue
+        lo, hi = bounds
+        val = float(params[name])
+        if (lo is not None and val < lo) or (hi is not None and val > hi):
+            return -np.inf
+
+    return 0.0
+
+
+def _build_blocks(theta, data):
+    blocks_builder = data.get("build_blocks")
+    if blocks_builder is None:
+        raise ValueError("data['build_blocks'] callable is required")
+    blocks = blocks_builder(theta, data)
+    if blocks is None:
+        raise ValueError("build_blocks returned None")
+    return blocks
+
+
+def log_likelihood(theta, data):
+    params = _theta_to_dict(theta, data)
+
+    if not is_physically_stable(params, data=data):
+        return -np.inf
+
+    blocks = _build_blocks(params, data)
+    chi2_val, _ = chi2_blocks(blocks, diagonal_fallback=data.get("diagonal_fallback", True))
+    return -0.5 * chi2_val
+
+
+def evaluate_posterior(theta, data, diag_accumulator=None):
+    lp = log_prior(theta, data=data)
+    if not np.isfinite(lp):
+        if diag_accumulator is not None:
+            diag_accumulator["prior_veto"] = int(diag_accumulator.get("prior_veto", 0)) + 1
+        return -np.inf
+
+    ll = log_likelihood(theta, data=data)
+    if not np.isfinite(ll):
+        if diag_accumulator is not None:
+            diag_accumulator["physical_veto"] = int(diag_accumulator.get("physical_veto", 0)) + 1
+        return -np.inf
+
+    if diag_accumulator is not None:
+        diag_accumulator["accepted"] = int(diag_accumulator.get("accepted", 0)) + 1
+        diag_accumulator["last_log_prior"] = float(lp)
+        diag_accumulator["last_log_likelihood"] = float(ll)
+
+    return float(lp + ll)
+
+
 def aic(chi2_val, k):
     return float(chi2_val + 2 * k)
 
