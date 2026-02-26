@@ -78,6 +78,39 @@ Assim, distingue-se explicitamente:
 - efeito global cosmológico (termos médios escalando como `a⁻⁴`);
 - efeito local em estrutura (halos/aglomerados), onde magnetização, cisalhamento e turbulência modulam a coerência e a resposta gravitacional efetiva.
 
+## Geometria e estrutura de campo
+
+Esta seção adota, para o setor magneto-plasmático, a formulação geométrica de base documentada em [`newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md), em particular os elementos toroidais, integrais de circulação e vínculos topológicos usados para descrever coerência de campo.
+
+### Geometria toroidal e coordenadas
+
+O setor é representado em geometria toroidal com decomposição angular em coordenadas poloidal (`θ`) e toroidal (`φ`), além de um parâmetro radial efetivo (`r`) para cascas de fluxo magnetizado. No regime de halos e aglomerados, essa parametrização separa:
+
+- variação ao longo das linhas fechadas do toro (direção toroidal);
+- variação transversal de curvatura/encurvamento de linha de campo (direção poloidal);
+- estratificação radial de densidade de plasma, pressão e intensidade magnética.
+
+Com isso, `B(r,θ,φ)` e os campos termodinâmicos associados (`T`, `P`, `n`) entram no modelo de forma anisotrópica controlada, preservando a leitura física de circulação local e acoplamento com a coerência fotônica.
+
+### Integrais de coerência
+
+Para quantificar coerência de campo em domínio toroidal, introduzem-se integrais/funcionais de circulação e fluxo efetivo, inspirados na base geométrica (`∮`, `∫`) de `newadd/04_GEOMETRY.md`:
+
+- integral de circulação coerente ao longo de curva fechada de campo (`C`): `I_C = ∮_C ω`;
+- integral de fluxo em superfície seccional (`Σ`): `Φ_Σ = ∫_Σ dω`;
+- funcional escalar de coerência média `𝒞[z]`, usado para modular os termos efetivos do setor magneto-coerente.
+
+No modelo efetivo, essas quantidades entram como operadores de peso sobre o acoplamento `Ω_s0·[1+α_B(Ω_B0 a⁻⁴)^β]`, permitindo distinguir regiões com alta coerência geométrica (menor decoerência local) de regiões turbulentas (maior transferência para o ramo atrativo).
+
+### Simetria geométrica e termos observáveis
+
+Assume-se simetria axial/toroidal como caso de referência, com anisotropias permitidas como perturbações controladas por magnetização, cisalhamento e turbulência plasmática. Essa estrutura de simetria organiza a projeção para observáveis:
+
+- **lensing `κ`**: responde à redistribuição geométrica de densidade/pressão efetiva e à quebra local de isotropia no potencial projetado;
+- **crescimento `fσ₈`**: sensível ao histórico de coerência/decoerência e ao impacto indireto da geometria magneto-plasmática na taxa de expansão;
+- **`H(z)`**: recebe correções de background via normalização efetiva dos setores, com assinatura dependente de como as integrais de coerência pesam os termos magnetizados ao longo de `z`.
+
+Em termos práticos, a simetria define quais termos são permitidos no ansatz fenomenológico e quais padrões de anisotropia devem aparecer de forma correlacionada entre lensing, crescimento e expansão.
 ## Geometria efetiva do setor magneto-plasmático
 
 **Base formal:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
