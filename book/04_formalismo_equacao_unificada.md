@@ -24,6 +24,8 @@ Referência: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/F
 Documentos e artefatos relacionados incorporados nesta etapa:
 ## Equação de Friedmann estendida (forma normalizada)
 
+**Base formal:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
+
 `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0 [f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`, com `E(a)=H(a)/H₀` e `a=1/(1+z)`.
 
 ## Função de transição logística
@@ -45,6 +47,8 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 - `Ω_B0` e `Ω_P0` agem como correções subdominantes do background, relevantes em observáveis de precisão.
 
 ## Conexão observacional
+
+**Fontes técnicas:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
 
 A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ₈(z)` e lensing, com nomenclatura alinhada a `docs/CONCEPTUAL_FRAMEWORK.md`, `docs/Relativity_Living_Light.md` e `docs/LAGRANGIANO_EFT.md`.
 
