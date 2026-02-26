@@ -19,6 +19,19 @@ def load_run_config(config_path):
         return json.load(f)
 
 
+def _resolve_profile(cfg, profile_name=None):
+    if "profiles" not in cfg:
+        # backward-compatible path (legacy flat config)
+        active = cfg.get("active_datasets", [])
+        run_name = cfg.get("run_name", "legacy")
+        return {"run_name": run_name, "active_datasets": active}
+
+    selected = profile_name or cfg.get("default_profile")
+    if selected not in cfg["profiles"]:
+        raise ValueError(f"profile not found in config: {selected}")
+    return cfg["profiles"][selected]
+
+
 def _parse_csv_dataset(dataset_id, desc):
     df = pd.read_csv(_abs_path(desc["path"]))
     cols = desc["columns"]
@@ -79,15 +92,23 @@ def load_dataset_by_descriptor(dataset_id, desc):
     raise ValueError(f"unsupported dataset format for {dataset_id}: {fmt}")
 
 
-def load_active_datasets(config_path):
+def load_active_datasets(config_path, profile_name=None):
     cfg = load_run_config(config_path)
+    profile = _resolve_profile(cfg, profile_name=profile_name)
+
     datasets = {}
-    for dataset_id in cfg["active_datasets"]:
+    for dataset_id in profile["active_datasets"]:
         desc = cfg["datasets"].get(dataset_id)
         if desc is None:
             raise ValueError(f"active dataset not found in config: {dataset_id}")
         datasets[dataset_id] = load_dataset_by_descriptor(dataset_id, desc)
-    return cfg, datasets
+
+    meta = {
+        "run_name": profile.get("run_name", "unknown"),
+        "active_datasets": list(profile["active_datasets"]),
+        "profile_name": profile_name or cfg.get("default_profile", "legacy")
+    }
+    return meta, datasets
 
 
 def load_datasets_by_ids(config_path, dataset_ids):

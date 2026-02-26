@@ -20,14 +20,14 @@ from scipy.integrate import quad
 import os
 import warnings; warnings.filterwarnings('ignore')
 
-from data.pipelines.structure_d.data_access import load_datasets_by_ids
+from data.pipelines.structure_d.data_access import load_active_datasets
 
 c_kms = 299792.458
 z_CMB = 1089.92
 
 # ══ [A,B,C] Leitura estruturada de datasets reais ══
 real_cfg = os.path.join('data', 'pipelines', 'structure_d', 'datasets_config.json')
-_, real_datasets = load_datasets_by_ids(real_cfg, ['real_hz', 'real_bao', 'real_cmb_shift'])
+_, real_datasets = load_active_datasets(real_cfg, profile_name='structure_d_real_validation')
 
 hz_real = real_datasets['real_hz']
 bao_real = real_datasets['real_bao']
