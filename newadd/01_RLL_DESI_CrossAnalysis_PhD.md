@@ -1,4 +1,7 @@
 # Relativity Living Light (RLL): Análise Cruzada com Dados Observacionais Externos
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ## Formulações Latentes, Comprobatórias e Perspectivas Acadêmicas PhD
 
 **Autor Modelo:** ∆RafaelVerboΩ / Instituto Rafael  

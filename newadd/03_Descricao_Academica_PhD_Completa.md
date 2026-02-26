@@ -1,4 +1,7 @@
 # Relativity Living Light — Descrição Acadêmica PhD Completa
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ## Metodologia, Epistemologia e Posicionamento na Literatura
 
 **Categoria:** Cosmologia Teórica / Física Quântica Aplicada  

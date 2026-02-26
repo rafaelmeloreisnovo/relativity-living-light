@@ -139,3 +139,24 @@ Este checklist passa a ser **gate obrigatório** das releases que envolvem inges
 1. `docs/ZIP_CONTENT_INDEX.md` (registro técnico do bundle e status de integração).
 2. `docs/RELEASE_NOTES_HISTORY.md` (entrada da release com escopo/impacto e referência ao bundle promovido).
 
+
+## 6) Checklist editorial obrigatório (mudança de equação base)
+
+Quando houver alteração em equação base, convenção de sinais, definição de `f(z)`, `w_sup` ou `w_total`, executar obrigatoriamente:
+
+- [ ] Revisar `docs/canonicos/CONVENCOES_GLOBAIS_RLL.md`.
+- [ ] Revisar glossário canônico (`docs/canonicos/09_GLOSSARIO_COMPLETO.md`).
+- [ ] Revisar FAQ canônico (`docs/canonicos/10_FAQ_COMPLETO.md`).
+- [ ] Revisar README raiz (`README.md`).
+- [ ] Revisar trilha PhD (`newadd/*`, com prioridade para `00_INDICE_ANALISE_PHD.md`, `01_RLL_DESI_CrossAnalysis_PhD.md`, `03_Descricao_Academica_PhD_Completa.md`).
+- [ ] Revisar comparativos (`docs/canonicos/06_COMPARACOES_DETALHADAS.md`, `docs/COMPARACAO_DESI_2025.md`).
+
+### Gate automático simples (CI/documentação)
+
+Rodar o detector de padrões contraditórios antes de fechar release/PR:
+
+```bash
+scripts/check_convention_conflicts.sh
+```
+
+Critério de reprovação: presença de strings de risco (ex.: `1→DE, 0→DM`) no mesmo arquivo em que aparece a forma logística canônica, sem contextualização de legado/hipótese.

@@ -1,4 +1,7 @@
 # Formulações Latentes e Emergentes
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ## Interseção RAFAELIA × Cosmologia de Superposição Fotônica (RLL)
 
 **Framework:** RAFAELIA ψχρΔΣΩ  

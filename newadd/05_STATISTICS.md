@@ -1,4 +1,7 @@
 # RAFAELIA — Domain V: Statistics & Information Theory
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ### Entropy, Coherence Metrics, Convergence, Probabilistic Fields & Semantic Compression
 
 **Author:** ∆RafaelVerboΩ | **Domain:** Statistics, Probability & Information Theory  
