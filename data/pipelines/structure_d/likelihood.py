@@ -1,7 +1,14 @@
 import numpy as np
 import pandas as pd
 
+def _validated_sigma_array(sigma):
+    sigma_arr = np.asarray(sigma, dtype=float)
+    if np.any(~np.isfinite(sigma_arr)) or np.any(sigma_arr <= 0):
+        raise ValueError("sigma must contain only finite, strictly positive values")
+    return sigma_arr
+
 def chi2(obs, mod, sigma):
+    sigma = _validated_sigma_array(sigma)
     r = (obs - mod) / sigma
     return float(np.sum(r*r))
 

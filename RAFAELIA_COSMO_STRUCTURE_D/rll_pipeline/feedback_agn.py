@@ -1,6 +1,13 @@
 import numpy as np
 
+def _validated_width(width):
+    width_val = float(width)
+    if not np.isfinite(width_val) or width_val <= 0:
+        raise ValueError("width must be finite and strictly positive")
+    return width_val
+
 def gaussian_window(z, z_peak=2.0, width=1.0):
+    width = _validated_width(width)
     z = np.asarray(z, dtype=float)
     return np.exp(-0.5*((z - z_peak)/width)**2)
 

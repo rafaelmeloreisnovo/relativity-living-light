@@ -28,3 +28,8 @@ python -m rll_pipeline.run_all
 - `rll_pipeline/` : scripts (expansão, crescimento, feedback, likelihood)
 - `results/` : outputs (tabelas e plots)
 - `paper/` : rascunho de artigo (esqueleto)
+
+## Restrições de domínio dos parâmetros (pipeline)
+- `chi2(obs, mod, sigma)` em `rll_pipeline/likelihood.py` exige `sigma` finito e estritamente positivo (`sigma > 0`) em todos os elementos.
+- `gaussian_window(z, z_peak, width)` em `rll_pipeline/feedback_agn.py` exige `width` finito e estritamente positivo (`width > 0`).
+- Entradas fora dessas condições geram `ValueError` para bloquear combinações fisicamente/matematicamente inválidas.
