@@ -4,8 +4,8 @@ import os
 import numpy as np
 import pandas as pd
 
-from .data_access import load_active_datasets
-from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model, write_bayes_factor_interpretation
+from .data_access import load_active_datasets, load_run_config
+from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
@@ -163,59 +163,59 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def write_bayes_factor_summary(results_dir):
-    bayes_evidence_path = os.path.join(results_dir, "bayes_evidence.csv")
-    summary_path = os.path.join(results_dir, "bayes_factor_summary.csv")
+def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
+    if entry.get("z") is None:
+        raise ValueError(f"dataset {dataset_id} does not provide z values")
 
-    if not os.path.exists(bayes_evidence_path):
-        return None
+    z = np.asarray(entry["z"], dtype=float)
+    block_name = _dataset_block_name(dataset_id, entry)
 
-    evidence = pd.read_csv(bayes_evidence_path)
-    if "model" not in evidence.columns or "logZ" not in evidence.columns:
-        raise ValueError(
-            "bayes_evidence.csv must contain columns 'model' and 'logZ'"
-        )
+    if block_name == "Hz":
+        c2_l = _chi2_from_entry(entry, model_LCDM_Hz(z, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_Hz(z, rll))
+    elif block_name == "fσ8":
+        c2_l = _chi2_from_entry(entry, model_LCDM_fs8(z, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_fs8(z, rll))
+    else:
+        raise ValueError(f"unsupported dataset for current model set: {dataset_id} ({block_name})")
 
-    required_models = {"LCDM", "RLL_like+AGN"}
-    available_models = set(evidence["model"].astype(str).str.strip())
-    missing_models = sorted(required_models - available_models)
-    if missing_models:
-        raise ValueError(
-            "bayes_evidence.csv missing required model(s): " + ", ".join(missing_models)
-        )
-
-    logz_lcdm = float(
-        evidence.loc[evidence["model"].astype(str).str.strip() == "LCDM", "logZ"].iloc[0]
-    )
-    logz_rll = float(
-        evidence.loc[evidence["model"].astype(str).str.strip() == "RLL_like+AGN", "logZ"].iloc[0]
-    )
-
-    summary = pd.DataFrame(
-        [
-            {
-                "logZ_LCDM": logz_lcdm,
-                "logZ_RLL": logz_rll,
-                "lnB": logz_rll - logz_lcdm,
-            }
-        ],
-        columns=["logZ_LCDM", "logZ_RLL", "lnB"],
-    )
-    summary.to_csv(summary_path, index=False)
-    return summary_path
+    return float(c2_l), float(c2_r), int(len(entry["values"]))
 
 
-def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
+def _artifact_kind(file_path):
+    name = os.path.basename(file_path).lower()
+    bayes_tokens = ("bayes", "evidence", "posterior", "nested", "mcmc")
+    return "bayes" if any(token in name for token in bayes_tokens) else "classic"
+
+
+def _print_written_artifact(file_path, kind):
+    print(f"[{kind}] wrote: {os.path.abspath(file_path)}")
+
+
+def _print_all_result_artifacts(results_dir, bayes, skip_paths=None):
+    skip_paths = {os.path.abspath(path) for path in (skip_paths or [])}
+    bayes_count = 0
+    for name in sorted(os.listdir(results_dir)):
+        artifact = os.path.abspath(os.path.join(results_dir, name))
+        if artifact in skip_paths or not os.path.isfile(artifact):
+            continue
+        kind = _artifact_kind(artifact)
+        if kind == "bayes":
+            bayes_count += 1
+            if not bayes:
+                continue
+        _print_written_artifact(artifact, kind)
+    if bayes and bayes_count == 0:
+        print("[bayes] wrote: none")
+
+
+def main(config_path=DEFAULT_CONFIG, covariance_policy=None, profile_name=DEFAULT_PROFILE, bayes=False):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
+    full_cfg = load_run_config(config_path)
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
-
-    import json
-    with open(os.path.join(BASE_DIR, config_path), "r", encoding="utf-8") as f:
-        cfg = json.load(f)
-
-    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(full_cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -284,36 +284,12 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
 
-    rows.append(
-        dict(
-            model="LCDM",
-            chi2=chi2_lcdm,
-            AIC=aic(chi2_lcdm, k_lcdm),
-            BIC=bic(chi2_lcdm, k_lcdm, total_observables),
-            N=total_observables,
-            k=k_lcdm,
-            fit_params=",".join(fit_params_lcdm),
-            fixed_params=",".join(fixed_params_lcdm),
-            datasets_used=active_datasets,
-            run_name=cfg_meta.get("run_name", "unknown"),
-            covariance_policy=covariance_policy,
-        )
-    )
-    rows.append(
-        dict(
-            model="RLL_like+AGN",
-            chi2=chi2_rll,
-            AIC=aic(chi2_rll, k_rll),
-            BIC=bic(chi2_rll, k_rll, total_observables),
-            N=total_observables,
-            k=k_rll,
-            fit_params=",".join(fit_params_rll),
-            fixed_params=",".join(fixed_params_rll),
-            datasets_used=active_datasets,
-            run_name=cfg_meta.get("run_name", "unknown"),
-            covariance_policy=covariance_policy,
-        )
-    )
+    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
+                     N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
+    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
+                     N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
@@ -409,10 +385,18 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     write_bayes_factor_interpretation(bayes_factor_out)
 
     print(df.to_string(index=False))
-    print("\nPosterior convention: loglike = -0.5 * chi2_total; uniform prior -> logpost = loglike (up to additive constant).")
-    print(f"\nWrote: {out}")
-    print(f"Wrote: {cov_out}")
-    print(f"Wrote: {bayes_factor_out}")
+    _print_written_artifact(out, "classic")
+    _print_written_artifact(cov_out, "classic")
+    _print_all_result_artifacts(RESULTS, bayes=bayes, skip_paths=[out, cov_out])
+
+
+def _build_parser():
+    parser = argparse.ArgumentParser(description="Executa o pipeline structure_d")
+    parser.add_argument("--config", default=DEFAULT_CONFIG)
+    parser.add_argument("--profile", default=os.environ.get("STRUCTURE_D_PROFILE", DEFAULT_PROFILE))
+    parser.add_argument("--covariance-policy", default=None, choices=["prefer_full", "diagonal_only", "full_required"])
+    parser.add_argument("--bayes", action="store_true", help="Exibe também artefatos bayesianos gerados")
+    return parser
 
 
 if __name__ == "__main__":
