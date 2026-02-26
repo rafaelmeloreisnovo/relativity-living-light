@@ -1,0 +1,85 @@
+{
+  "run_name": "structure_d_default",
+  "active_datasets": ["hz", "fsigma8"],
+  "datasets": {
+    "hz": {
+      "format": "csv",
+      "path": "data/inputs/structure_d/Hz.csv",
+      "observable": "Hz",
+      "error_model": "errors",
+      "columns": {
+        "z": "z",
+        "value": "Hz",
+        "error": "sigma"
+      },
+      "metadata": {
+        "survey": "inputs_structure_d",
+        "redshift_range": "[0.0, 3.0]",
+        "reference": "local_input"
+      }
+    },
+    "fsigma8": {
+      "format": "csv",
+      "path": "data/inputs/structure_d/fsigma8.csv",
+      "observable": "fs8",
+      "error_model": "errors",
+      "columns": {
+        "z": "z",
+        "value": "fs8",
+        "error": "sigma"
+      },
+      "metadata": {
+        "survey": "inputs_structure_d",
+        "redshift_range": "[0.0, 3.0]",
+        "reference": "local_input"
+      }
+    },
+    "real_hz": {
+      "format": "csv",
+      "path": "data/real/Hz_data_real.csv",
+      "observable": "Hz",
+      "error_model": "errors",
+      "columns": {
+        "z": "z",
+        "value": "H_obs",
+        "error": "sigma_H"
+      },
+      "metadata": {
+        "survey": "CC+BAO_Lya",
+        "redshift_range": "[0.07, 2.34]",
+        "reference": "Moresco2022+BOSS"
+      }
+    },
+    "real_bao": {
+      "format": "csv",
+      "path": "data/real/BAO_data_real.csv",
+      "observable": "DV_over_rs",
+      "error_model": "errors",
+      "columns": {
+        "z": "z_eff",
+        "value": "DV_over_rs",
+        "error": "sigma"
+      },
+      "metadata": {
+        "survey": "BOSS_DR12+DESI2024",
+        "redshift_range": "[0.106, 2.33]",
+        "reference": "BOSS_DR12_DESI2024"
+      }
+    },
+    "real_cmb_shift": {
+      "format": "json_scalars",
+      "path": "data/real/CMB_shift_real.json",
+      "observable": "CMB_shift",
+      "error_model": "errors",
+      "keys": {
+        "values": ["R_obs", "la_obs"],
+        "errors": ["R_sig", "la_sig"]
+      },
+      "metadata": {
+        "survey": "Planck2018",
+        "redshift_range": "z=1089.92",
+        "reference": "Planck2018_VI"
+      }
+    }
+  }
+}

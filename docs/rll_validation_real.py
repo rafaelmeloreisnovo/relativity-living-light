@@ -20,38 +20,27 @@ from scipy.integrate import quad
 import os
 import warnings; warnings.filterwarnings('ignore')
 
+from data.pipelines.structure_d.data_access import load_datasets_by_ids
+
 c_kms = 299792.458
 z_CMB = 1089.92
 
-# ══ [A] H(z) Cosmic Chronometers + BAO Lyman-alpha ══
-Hz_data = np.array([
-    [0.070,  69.0, 19.6],[0.090,  69.0, 12.0],[0.120,  68.6, 26.2],
-    [0.170,  83.0,  8.0],[0.179,  75.0,  4.0],[0.199,  75.0,  5.0],
-    [0.200,  72.9, 29.6],[0.270,  77.0, 14.0],[0.280,  88.8, 36.6],
-    [0.352,  83.0, 14.0],[0.380,  83.0, 13.5],[0.400,  95.0, 17.0],
-    [0.440,  82.6,  7.8],[0.480,  97.0, 62.0],[0.510,  90.4,  1.9],
-    [0.570,  96.8,  3.4],[0.593, 104.0, 13.0],[0.600,  87.9,  6.1],
-    [0.610,  97.3,  2.1],[0.680,  92.0,  8.0],[0.730,  97.3,  7.0],
-    [0.781, 105.0, 12.0],[0.875, 125.0, 17.0],[0.880,  90.0, 40.0],
-    [0.900, 117.0, 23.0],[1.037, 154.0, 20.0],[1.300, 168.0, 17.0],
-    [1.363, 160.0, 33.6],[1.430, 177.0, 18.0],[1.530, 140.0, 14.0],
-    [1.750, 202.0, 40.0],[1.965, 186.5, 50.4],[2.340, 222.0,  7.0],
-])
-z_Hz = Hz_data[:,0]; H_obs = Hz_data[:,1]; sH = Hz_data[:,2]
+# ══ [A,B,C] Leitura estruturada de datasets reais ══
+real_cfg = os.path.join('data', 'pipelines', 'structure_d', 'datasets_config.json')
+_, real_datasets = load_datasets_by_ids(real_cfg, ['real_hz', 'real_bao', 'real_cmb_shift'])
 
-# ══ [B] BAO DV/rs ══
-BAO_data = np.array([
-    [0.106, 2.976, 0.133],[0.150, 4.466, 0.168],[0.320, 8.467, 0.167],
-    [0.570,13.773, 0.134],[0.510,13.36,  0.210],[0.706,16.85,  0.320],
-    [0.930,21.71,  0.280],[1.317,27.79,  0.690],[1.491,30.21,  0.790],
-    [2.330,36.31,  1.300],
-])
-z_BAO = BAO_data[:,0]; DV_obs = BAO_data[:,1]; sDV = BAO_data[:,2]
+hz_real = real_datasets['real_hz']
+bao_real = real_datasets['real_bao']
+cmb_real = real_datasets['real_cmb_shift']
 
-# ══ [C] CMB Planck 2018 ══
-R_obs=1.7502;  R_sig=0.0046
-la_obs=301.471; la_sig=0.090
-N_obs = len(z_Hz) + len(z_BAO) + 2
+z_Hz = hz_real['z']; H_obs = hz_real['values']; sH = hz_real['errors']
+z_BAO = bao_real['z']; DV_obs = bao_real['values']; sDV = bao_real['errors']
+R_obs, la_obs = cmb_real['values']
+R_sig, la_sig = cmb_real['errors']
+
+Hz_data = np.column_stack([z_Hz, H_obs, sH])
+BAO_data = np.column_stack([z_BAO, DV_obs, sDV])
+N_obs = len(z_Hz) + len(z_BAO) + len(cmb_real['values'])
 
 # ═══════════════════════════════════════════
 # FÍSICA
@@ -309,21 +298,20 @@ with open(CHI2_CSV_PATH,'w',newline='') as f:
 print(f"  ✅ CSV  → {CHI2_CSV_PATH}")
 
 # ═══ H(z) data CSV ═══
+hz_real_rows = np.genfromtxt(os.path.join(REPO_ROOT, 'data', 'real', 'Hz_data_real.csv'), delimiter=',', names=True, dtype=None, encoding='utf-8')
 with open(HZ_CSV_PATH,'w',newline='') as f:
     w=csv.writer(f)
     w.writerow(['z','H_obs','sigma_H','source'])
-    sources = ['CC']*17 + ['BOSS_DR12']*3 + ['CC']*9 + ['BOSS_Lya']
-    for i,(z,H,s) in enumerate(Hz_data):
-        src = 'CC+BAO_BOSS' if z in [0.380,0.510,0.570,0.610] else ('BAO_Lya' if z==2.340 else 'CC_Moresco2022')
-        w.writerow([z,H,s,src])
+    for row in hz_real_rows:
+        w.writerow([row['z'], row['H_obs'], row['sigma_H'], row['source']])
 print(f"  ✅ CSV  → {HZ_CSV_PATH}")
 
+bao_real_rows = np.genfromtxt(os.path.join(REPO_ROOT, 'data', 'real', 'BAO_data_real.csv'), delimiter=',', names=True, dtype=None, encoding='utf-8')
 with open(BAO_CSV_PATH,'w',newline='') as f:
     w=csv.writer(f)
     w.writerow(['z_eff','DV_over_rs','sigma','survey'])
-    surveys=['6dFGS','SDSS_MGS','BOSS_DR12_LOWZ','BOSS_DR12_CMASS','DESI2024_BGS','DESI2024_LRG1','DESI2024_LRG2','DESI2024_ELG','DESI2024_QSO','BOSS_Lya']
-    for i,(z,dv,s) in enumerate(BAO_data):
-        w.writerow([z,dv,s,surveys[i]])
+    for row in bao_real_rows:
+        w.writerow([row['z_eff'], row['DV_over_rs'], row['sigma'], row['survey']])
 print(f"  ✅ CSV  → {BAO_CSV_PATH}\n")
 
 print("="*62)
