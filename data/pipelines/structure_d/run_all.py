@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 
 from .data_access import load_active_datasets, load_run_config
-from .inference import run_nested_dynesty
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
@@ -149,38 +148,28 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
-    z_values = entry.get("z")
-    if z_values is None:
-        return 0.0, 0.0, 0
-
-    observable = str(entry.get("observable", dataset_id)).lower()
-    if "hz" in observable:
-        lcdm_model = model_LCDM_Hz(z_values, lcdm)
-        rll_model = model_RLL_like_Hz(z_values, rll)
-    elif "fs" in observable:
-        lcdm_model = model_LCDM_fs8(z_values, lcdm)
-        rll_model = model_RLL_like_fs8(z_values, rll)
-    else:
-        return 0.0, 0.0, 0
-
-    c2_lcdm = _chi2_from_entry(entry, lcdm_model)
-    c2_rll = _chi2_from_entry(entry, rll_model)
-    return c2_lcdm, c2_rll, len(entry["values"])
+def build_parser():
+    parser = argparse.ArgumentParser(description="Run Structure D model comparison pipeline")
+    parser.add_argument("--bayes", action="store_true")
+    parser.add_argument("--seed", type=int, default=None)
+    parser.add_argument("--nwalkers", type=int, default=None)
+    parser.add_argument("--nsteps", type=int, default=None)
+    parser.add_argument("--nlive", type=int, default=None)
+    return parser
 
 
-def _to_inference_frame(entry, value_name):
-    if entry.get("errors") is None:
-        return None
-    z_values = entry.get("z")
-    if z_values is None:
-        return None
-    return pd.DataFrame({"z": z_values, value_name: entry["values"], "sigma": entry["errors"]})
+def main(argv=None, config_path=DEFAULT_CONFIG, covariance_policy=None):
+    args = build_parser().parse_args(argv)
 
+    if args.bayes:
+        raise NotImplementedError("Bayesian mode is not implemented in this runner yet")
 
-def run_classic_metrics(cfg_meta, datasets, covariance_policy):
-    """# Bloco 1: Métrica clássica (χ²/AIC/BIC)."""
+    os.makedirs(RESULTS, exist_ok=True)
     rows = []
+
+    cfg = load_run_config(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -299,8 +288,4 @@ def _build_arg_parser():
 
 
 if __name__ == "__main__":
-    parser = _build_arg_parser()
-    args = parser.parse_args()
-    env_profile = os.environ.get("STRUCTURE_D_PROFILE")
-    selected_profile = args.profile if args.profile is not None else env_profile
-    main(config_path=args.config, profile_name=selected_profile, covariance_policy=args.covariance_policy, bayes=args.bayes)
+    main()
