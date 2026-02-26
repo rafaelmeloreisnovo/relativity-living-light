@@ -2,6 +2,8 @@
 **Versão:** 2026-02-26  
 **Status:** Canônico oficial
 
+> **Fonte de verdade:** este glossário canônico define a convenção oficial de `f(z)` e suas interpretações; os demais documentos devem seguir esta referência em caso de divergência.
+
 # 📚 GLOSSÁRIO COMPLETO DE NOTAÇÃO
 
 ## ∆RafaelVerboΩ — Relativity Living Light
@@ -73,8 +75,12 @@ As duas imagens de referência devem acompanhar esta distinção conceitual em a
 |---|---|---|---|---|
 | **ρ_s** | Densidade de superposição | Ω_s0 ρc [f(a) + (1-f)a⁻³] | kg/m³ | DE+DM em um termo |
 | **Ω_s0** | Amplitude hoje | densidade superposição/ρc | adimensional | Parâmetro livre: ~0.05-0.15 |
-| **f(a)** | Fração de coerência | 1/(1+exp((z-z_t)/w_t)) | [0,1] | 1→DE, 0→DM |
+| **f(a)** | Fração de coerência | 1/(1+exp((z-z_t)/w_t)) | [0,1] | f≈0 (alto z) corresponde ao ramo tipo matéria; f≈1 (baixo z) corresponde ao ramo tipo DE |
 | **f(z)** | Mesma (redshift) | Mesmo que f(a) | [0,1] | Conveniente para observações |
+
+Mapeamento canônico para w_t>0:
+- z >> z_t (alto redshift) → f≈0
+- z << z_t (baixo redshift) → f≈1
 
 ---
 
@@ -87,8 +93,8 @@ As duas imagens de referência devem acompanhar esta distinção conceitual em a
 
 **Interpretação física:**
 ```
-z_t baixo:   Transição DE→DM recente (hoje)
-z_t alto:    Transição primordial
+z_t baixo:   Ao longo do tempo cosmológico (z decresce), transição matéria→DE recente (hoje)
+z_t alto:    Transição primordial em redshift alto
 
 w_t pequeno: Transição abrupta
 w_t grande:  Transição suave
@@ -108,8 +114,8 @@ Definição oficial do fluido cosmológico combinado:
                /[(ρ_sup + ρ_r + ρ_m + ρ_Λ + ρ_k + ...)c²]
 
 Limites corretos por grandeza:
-  z→∞:   w_sup → -1;   w_total depende da componente dominante total
-  z→0:   w_sup → 0;    w_total depende da mistura cosmológica em z=0
+  z→∞:   w_sup → 0;    w_total tende ao comportamento de matéria se esse for o ramo dominante
+  z→0:   w_sup → -1;   w_total tende ao comportamento DE-like se esse for o ramo dominante
 ```
 Definição oficial da componente de superposição:
   w_sup(z) = p_sup/(ρ_sup c²) = -f(z)
@@ -147,10 +153,10 @@ Limites corretos por grandeza:
 | **w_sup(z)** | Equação de estado interna da componente de superposição | `w_sup(z) = p_sup/(ρ_sup c²) = -f(z)` |
 | **w_total(z)** | Equação de estado efetiva do conteúdo cosmológico combinado | `w_total(z) = p_total/(ρ_total c²)` |
 | **w_legacy(z)** | Forma histórica usada em rascunhos antigos | `w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]` (**não usar**) |
+
 Limites:
-  z→∞ (f→0):   w_eff → 0   (DM-like)
-  z→0 (f→1):   w_eff → -1  (DE-like)
-```
+  z→∞ (f→0):   comportamento de matéria (w_eff → 0)
+  z→0 (f→1):   comportamento DE-like (w_eff → -1)
 
 estes limites derivam diretamente da forma de `f(z)` adotada.
 
@@ -355,8 +361,8 @@ w_sup(z) = p_sup/(ρ_sup c²) = -f(z)
 w_total(z) = p_total/(ρ_total c²)
 
 Limites canônicos:
-  z→∞: w_sup → -1; w_total depende da mistura dominante
-  z→0: w_sup → 0;  w_total depende da mistura em z=0
+  z→∞: w_sup → 0;   w_total tende ao comportamento de matéria se esse for o ramo dominante
+  z→0: w_sup → -1;  w_total tende ao comportamento DE-like se esse for o ramo dominante
 
 w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]  (não usar para inferência física atual)
 
@@ -368,8 +374,8 @@ Limites canônicos:
 
 w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]  (não usar para inferência física atual)
 Limites:
-  z→∞ (f→0): w_eff → 0   (DM-like)
-  z→0 (f→1): w_eff → -1  (DE-like)
+  z→∞ (f→0): comportamento de matéria (w_eff → 0)
+  z→0 (f→1): comportamento DE-like (w_eff → -1)
 ```
 
 estes limites derivam diretamente da forma de `f(z)` adotada.
