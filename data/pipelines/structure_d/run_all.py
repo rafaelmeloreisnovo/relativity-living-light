@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 from .likelihood import chi2_blocks, covariance_usage_summary, aic, bic, load_csv, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
-from .sensitivity import sensitivity_table_by_redshift
+from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
@@ -377,10 +377,19 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     sens_out = os.path.join(RESULTS, "rll_sensitivity_derivatives.csv")
     sensitivity_table_by_redshift().to_csv(sens_out, index=False)
 
+    deg_df, deg_out = analyze_rll_degeneracy(hz, fs8, rll, RESULTS, fit_params=fit_params_rll)
+    deg_pairs = top_degenerate_pairs_by_bin(deg_df, top_n=3)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
-    print(f"Wrote: {sens_out}")
+    print(f"Wrote: {deg_out}")
+    if deg_pairs:
+        print("\nTop degeneracies by z-bin (RLL):")
+        for zbin in sorted(deg_pairs):
+            pairs_txt = "; ".join([f"{p['group']}:{p['pair']} (corr={p['corr']:.3f})" for p in deg_pairs[zbin]])
+            print(f"- {zbin}: {pairs_txt}")
+
 
 def _build_arg_parser():
     parser = argparse.ArgumentParser(description="Run Structure D model comparison pipeline")
