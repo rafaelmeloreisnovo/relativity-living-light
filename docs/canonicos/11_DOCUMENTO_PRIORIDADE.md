@@ -1,5 +1,5 @@
-<!-- VERSAO: 2026-02-20 | STATUS: CANONICO OFICIAL -->
-**Versão:** 2026-02-20  
+<!-- VERSAO: 2026-02-26 | STATUS: CANONICO OFICIAL -->
+**Versão:** 2026-02-26  
 **Status:** Canônico oficial
 
 # 🎯 DOCUMENTO DE PRIORIDADE TEMPORAL
@@ -11,6 +11,8 @@
 **Período:** Fevereiro 2025 → Janeiro 2026  
 **Status:** 8 estudos externos confirmam aspectos fragmentados da teoria unificada de Rafael
 
+> **Norma canônica para este documento:** usar `w_sup(z)` para a componente de superposição e `w_total(z)` para inferência do fluido cosmológico combinado; a forma `w_legacy(z)` é apenas histórica e não deve ser usada para inferência física atual.
+
 ---
 
 ## 📋 TABELA EXECUTIVA — QUEM FEZ ANTES
@@ -18,7 +20,7 @@
 | **Conceito** | **Rafael** | **Data** | **Externos** | **Data** | **Veredito** |
 |---|---|---|---|---|---|
 | **Unificação DE+DM em ρ_superposição** | ✅ Fórmula | ~21/02/2025 | ❌ Descobrem | NOV-JAN 2025-26 | 🎯 **RAFAEL PRIMEIRO** |
-| **w_eff(z) dinâmica** | ✅ Analítica | ~21/02/2025 | ✅ DESI observa | DEZ 2025 | 🎯 **RAFAEL PRIMEIRO** |
+| **Distinção canônica w_sup/w_total** | ✅ Analítica | ~21/02/2025 | ✅ DESI observa w(z) dinâmica | DEZ 2025 | 🎯 **RAFAEL PRIMEIRO** |
 | **Parametrização z_t, w_t** | ✅ Explícita | ~21/02/2025 | ❌ Minnesota descreve | JAN 2026 | 🎯 **RAFAEL PRIMEIRO** |
 | **Acoplamento magneto-coerente** | ✅ α_B, β | ~21/02/2025 | ✅ MeerKAT vê efeito | NOV 2025 | 🎯 **RAFAEL PRIMEIRO** |
 | **Gravidade plasmática em Friedmann** | ✅ Integrada | ~21/02/2025 | ✅ Nature confirma | NOV 2025 | 🎯 **RAFAEL PRIMEIRO** |
@@ -63,7 +65,7 @@ Transição parametrizada: z_t, w_t explícitos
 | Ideia | Conceitual | Fórmula completa |
 | Parametrização | Não especificada | z_t, w_t, Ω_s0 |
 | Integração cosmológica | Não feita | Friedmann estendida |
-| w_eff(z) | Implícito | Analítico |
+| w_sup(z) / w_total(z) | Implícito | Analítico (distinção formal) |
 | Testabilidade | Vaga | Precisa (H, Δμ, fσ8) |
 | Código | Nenhum | CSV + plots prontos |
 
@@ -106,7 +108,7 @@ Evolução:
 
 Dinâmica COMPLETA e analítica
 
-Nota de compatibilidade histórica: equação antiga mantida apenas como registro, não usar em inferência.
+Nota de compatibilidade histórica: equação antiga mantida apenas como registro, rotulada como “não usar para inferência física atual”.
 ```
 
 **Comparação:**
@@ -436,7 +438,7 @@ Em núcleos densos:
 ```
 ✅ Unificação matemática DE+DM em um campo único
 ✅ Parametrização dinâmica (z_t, w_t) explícita
-✅ w_eff(z) analítico e testável
+✅ Distinção canônica w_sup(z)/w_total(z) analítica e testável
 ✅ Acoplamento magneto-coerente (α_B, β)
 ✅ Gravidade plasmática integrada em Friedmann
 ✅ Estrutura fractal (Fibonacci) — único que menciona
@@ -449,7 +451,7 @@ Em núcleos densos:
 ### CONFIRMAÇÕES EXTERNAS (Fragmentadas)
 ```
 ✓ Minnesota (Jan 2026): Transição MD (Rafael tinha f(z))
-✓ DESI (Dez 2025): w(z) dinâmica (Rafael tinha w_eff(z))
+✓ DESI (Dez 2025): w(z) dinâmica (Rafael já tinha distinção w_sup/w_total)
 ✓ MeerKAT (Nov 2025): B-campo efeito (Rafael tinha α_B)
 ✓ Nature (Nov 2025): Pressão gravidade (Rafael tinha em Friedmann)
 ✓ Böhme (Out 2025): Dipolo 5.4σ (Rafael pode resolver com f(z,θ))
