@@ -1,10 +1,6 @@
 import numpy as np
 import pandas as pd
 
-try:
-    import emcee
-except Exception:  # pragma: no cover - optional dependency in some workflows
-    emcee = None
 
 def _validated_sigma_array(sigma):
     sigma_arr = _as_1d_finite_array("sigma", sigma)

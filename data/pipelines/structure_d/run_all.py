@@ -1,7 +1,4 @@
 import os
-import numpy as np
-import pandas as pd
-
 from .data_access import load_active_datasets
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
@@ -12,144 +9,37 @@ RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
 DEFAULT_PROFILE = None
 
-BLOCK_COVARIANCE_FILENAMES = {
-    "SNe": "cov_sne.csv",
-    "BAO": "cov_bao.csv",
-    "fσ8": "cov_fsigma8.csv",
-    "lenses": "cov_lenses.csv",
-}
-DATASET_BLOCK_ALIASES = {
-    "hz": "Hz",
-    "real_hz": "Hz",
-    "fsigma8": "fσ8",
-    "real_bao": "BAO",
-    "sne": "SNe",
-    "lenses": "lenses",
-}
+
+def _chi2_from_entry(entry, model_values):
+    if entry["errors"] is not None:
+        return chi2(entry["values"], model_values, entry["errors"])
+    return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def _dataset_block_name(dataset_id, entry):
-    if dataset_id in DATASET_BLOCK_ALIASES:
-        return DATASET_BLOCK_ALIASES[dataset_id]
-    observable = str(entry.get("observable", dataset_id)).lower()
-    if "bao" in observable:
-        return "BAO"
-    if "lens" in observable:
-        return "lenses"
-    if "sne" in observable or "supernova" in observable:
-        return "SNe"
-    if "fs" in observable:
-        return "fσ8"
-    return str(entry.get("observable", dataset_id))
+def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
+    observable = entry["observable"]
+    if observable == "Hz":
+        z_arr = entry["z"]
+        c2_l = _chi2_from_entry(entry, model_LCDM_Hz(z_arr, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_Hz(z_arr, rll))
+        return c2_l, c2_r, len(entry["values"])
+    if observable == "fs8":
+        z_arr = entry["z"]
+        c2_l = _chi2_from_entry(entry, model_LCDM_fs8(z_arr, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_fs8(z_arr, rll))
+        return c2_l, c2_r, len(entry["values"])
+
+    raise ValueError(
+        f"unsupported dataset for run_all: {dataset_id} (observable={observable}). "
+        "Supported observables in this runner: Hz, fs8"
+    )
 
 
-def _validate_covariance_shape(covariance, obs_size, dataset_id, cov_path):
-    cov = np.asarray(covariance, dtype=float)
-    if cov.ndim != 2 or cov.shape[0] != cov.shape[1]:
-        raise ValueError(f"covariance for {dataset_id} must be a square matrix: {cov_path}")
-    if cov.shape != (obs_size, obs_size):
-        raise ValueError(
-            f"covariance shape mismatch for {dataset_id}: expected {(obs_size, obs_size)}, got {cov.shape} ({cov_path})"
-        )
-    return cov
-
-
-def _resolve_covariance_file_path(dataset_desc, block_name):
-    candidate_paths = []
-    if dataset_desc.get("covariance_path"):
-        candidate_paths.append(os.path.join(BASE_DIR, dataset_desc["covariance_path"]))
-    dataset_path = os.path.join(BASE_DIR, dataset_desc["path"])
-    block_filename = BLOCK_COVARIANCE_FILENAMES.get(block_name)
-    if block_filename:
-        candidate_paths.append(os.path.join(os.path.dirname(dataset_path), block_filename))
-    for path in candidate_paths:
-        if os.path.exists(path):
-            return path
-    return candidate_paths[-1] if candidate_paths else None
-
-
-def _apply_covariance_policy(cfg, datasets, covariance_policy):
-    policy = covariance_policy or cfg.get("covariance_policy", "prefer_full")
-    if policy not in {"prefer_full", "diagonal_only", "full_required"}:
-        raise ValueError(f"unsupported covariance_policy: {policy}")
-
-    required_blocks = set(cfg.get("full_required_blocks", []))
-    if policy == "full_required" and not required_blocks:
-        required_blocks = {_dataset_block_name(dataset_id, entry) for dataset_id, entry in datasets.items()}
-
-    block_reports = []
-    active_blocks = []
-
-    for dataset_id, entry in datasets.items():
-        block_name = _dataset_block_name(dataset_id, entry)
-        active_blocks.append(block_name)
-
-        desc = cfg["datasets"][dataset_id]
-        obs_size = len(entry["values"])
-        cov_path = _resolve_covariance_file_path(desc, block_name)
-        has_cov_file = bool(cov_path and os.path.exists(cov_path))
-        has_sigma = entry.get("errors") is not None
-        has_cov_in_entry = entry.get("covariance") is not None
-
-        if policy == "diagonal_only":
-            if has_sigma:
-                entry["covariance"] = None
-                mode = "diagonal_sigma"
-                source = "fallback"
-            elif has_cov_in_entry:
-                sigma = np.sqrt(np.diag(np.asarray(entry["covariance"], dtype=float)))
-                if len(sigma) != obs_size:
-                    raise ValueError(f"covariance diagonal length mismatch for {dataset_id}")
-                entry["errors"] = sigma
-                entry["covariance"] = None
-                mode = "diagonal_from_covariance"
-                source = "fallback"
-            else:
-                raise ValueError(f"dataset {dataset_id} has neither sigma nor covariance to build diagonal-only likelihood")
-        else:
-            if has_cov_file:
-                cov = np.loadtxt(cov_path, delimiter=",")
-                cov = _validate_covariance_shape(cov, obs_size, dataset_id, cov_path)
-                entry["covariance"] = cov
-                entry["errors"] = None
-                mode = "full_covariance"
-                source = "file"
-            elif has_cov_in_entry and policy == "prefer_full":
-                cov = _validate_covariance_shape(entry["covariance"], obs_size, dataset_id, "config_entry")
-                entry["covariance"] = cov
-                entry["errors"] = None
-                mode = "full_covariance"
-                source = "file"
-            elif has_sigma:
-                entry["covariance"] = None
-                mode = "diagonal_sigma"
-                source = "fallback"
-            else:
-                message = f"covariance required but missing sigma fallback for dataset {dataset_id}"
-                if policy == "full_required" and block_name in required_blocks:
-                    raise ValueError(f"full_required policy failed: missing covariance for block {block_name} ({dataset_id})")
-                raise ValueError(message)
-
-
-def _h0_seed_from_prior(h0_prior):
-    distribution = h0_prior.get("distribution")
-    if distribution == "gaussian":
-        return float(h0_prior["mean"])
-    if distribution == "uniform":
-        return 0.5 * (float(h0_prior["min"]) + float(h0_prior["max"]))
-    raise ValueError(f"Unsupported H0 prior distribution: {distribution}")
-
-
-def main(h0_scenario="Planck_like"):
+def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    experiments = ("Hz", "fsigma8")
-    systematics_config = build_systematics_config(experiments, h0_scenario=h0_scenario)
-    h0_seed = _h0_seed_from_prior(systematics_config["h0"]["prior"])
-
-    hz = load_csv(os.path.join(DATA, "Hz.csv"), ["z", "Hz", "sigma"])
-    fs8 = load_csv(os.path.join(DATA, "fsigma8.csv"), ["z", "fs8", "sigma"])
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
 
     lcdm = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -177,18 +67,12 @@ def main(h0_scenario="Planck_like"):
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
 
-    traceability = systematics_config["traceability"]
-    base_row = dict(
-        h0_scenario=traceability["h0_scenario"],
-        h0_prior_reference=traceability["h0_prior_reference"],
-        systematics_Hz=",".join(systematics_config["by_experiment"]["Hz"]["active_systematics"]),
-        systematics_fsigma8=",".join(systematics_config["by_experiment"]["fsigma8"]["active_systematics"]),
-    )
-
-    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, N), N=N, k=k_lcdm,
-                     fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm), **base_row))
-    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, N), N=N, k=k_rll,
-                     fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll), **base_row))
+    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
+                     N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), profile_name=cfg_meta.get("profile_name", "unknown")))
+    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
+                     N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), profile_name=cfg_meta.get("profile_name", "unknown")))
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
@@ -213,6 +97,7 @@ def main(h0_scenario="Planck_like"):
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+
 
 
 
