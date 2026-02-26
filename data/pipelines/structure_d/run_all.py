@@ -5,15 +5,7 @@ import numpy as np
 import pandas as pd
 
 from .data_access import load_active_datasets
-from .likelihood import (
-    aic,
-    bic,
-    canonical_model_name,
-    chi2,
-    chi2_with_covariance,
-    estimate_log_evidence,
-    evaluate_model,
-)
+from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model, write_bayes_factor_interpretation
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
@@ -413,17 +405,14 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     bayes_out = os.path.join(RESULTS, "bayes_evidence.csv")
     bayes_df = evaluate_model(bayes_rows, bayes_out)
 
+    bayes_factor_out = os.path.join(RESULTS, "bayes_factor_interpretation.csv")
+    write_bayes_factor_interpretation(bayes_factor_out)
+
     print(df.to_string(index=False))
     print("\nPosterior convention: loglike = -0.5 * chi2_total; uniform prior -> logpost = loglike (up to additive constant).")
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
-    print(f"Wrote: {bayes_out}")
-    print("\nBayesian evidence summary")
-    print(bayes_df.to_string(index=False))
-
-    bayes_factor_out = write_bayes_factor_summary(RESULTS)
-    if bayes_factor_out:
-        print(f"Wrote: {bayes_factor_out}")
+    print(f"Wrote: {bayes_factor_out}")
 
 
 if __name__ == "__main__":

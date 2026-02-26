@@ -6,15 +6,50 @@ import numpy as np
 import pandas as pd
 
 
-MODEL_NAME_ALIASES = {
-    "RLL_like+AGN": "RLL_like_AGN",
-    "RLL_like_AGN": "RLL_like_AGN",
-    "LCDM": "LCDM",
-}
-
-
-def canonical_model_name(model_name):
-    return MODEL_NAME_ALIASES.get(str(model_name), str(model_name).replace("+", "_"))
+BAYES_FACTOR_INTERPRETATION_ROWS = [
+    {
+        "lnB_min": -np.inf,
+        "lnB_max": -5.0,
+        "classification": "very_strong_against_model_1",
+        "notes": "Jeffreys/Trotta: evidence strongly favors model_0 over model_1.",
+    },
+    {
+        "lnB_min": -5.0,
+        "lnB_max": -2.5,
+        "classification": "moderate_against_model_1",
+        "notes": "Jeffreys/Trotta: moderate evidence against model_1.",
+    },
+    {
+        "lnB_min": -2.5,
+        "lnB_max": -1.0,
+        "classification": "weak_against_model_1",
+        "notes": "Jeffreys/Trotta: weak evidence against model_1.",
+    },
+    {
+        "lnB_min": -1.0,
+        "lnB_max": 1.0,
+        "classification": "inconclusive",
+        "notes": "Jeffreys/Trotta: inconclusive or not worth more than a bare mention.",
+    },
+    {
+        "lnB_min": 1.0,
+        "lnB_max": 2.5,
+        "classification": "weak_for_model_1",
+        "notes": "Jeffreys/Trotta: weak evidence supporting model_1.",
+    },
+    {
+        "lnB_min": 2.5,
+        "lnB_max": 5.0,
+        "classification": "moderate_for_model_1",
+        "notes": "Jeffreys/Trotta: moderate evidence supporting model_1.",
+    },
+    {
+        "lnB_min": 5.0,
+        "lnB_max": np.inf,
+        "classification": "very_strong_for_model_1",
+        "notes": "Jeffreys/Trotta: strong to very strong evidence supporting model_1.",
+    },
+]
 
 
 def _as_1d_finite_array(name, values):
@@ -204,17 +239,7 @@ def evaluate_model(results_rows, out_csv):
     return df
 
 
-def save_posterior_csv(df, out_path):
-    required_cols = ["loglike", "logpost"]
-    missing = [col for col in required_cols if col not in df.columns]
-    if missing:
-        raise ValueError(f"posterior table missing mandatory columns: {missing}")
-    if df.empty:
-        raise ValueError("posterior table must contain at least one row")
-
-    finite_mask = np.isfinite(df[required_cols].to_numpy(dtype=float))
-    if not finite_mask.all():
-        raise ValueError("posterior table has non-finite values in loglike/logpost")
-
-    df.to_csv(out_path, index=False)
+def write_bayes_factor_interpretation(out_csv):
+    df = pd.DataFrame(BAYES_FACTOR_INTERPRETATION_ROWS)
+    df.to_csv(out_csv, index=False)
     return df
