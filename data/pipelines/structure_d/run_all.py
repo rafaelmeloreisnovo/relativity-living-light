@@ -1,4 +1,10 @@
-import argparse
+"""Pipeline principal Structure D.
+
+Saídas textuais produzidas por este pipeline:
+- results/structure_d/model_comparison.csv
+- results/structure_d/covariance_usage.csv
+"""
+
 import os
 import argparse
 import numpy as np
@@ -7,6 +13,11 @@ import pandas as pd
 from .data_access import load_active_datasets, load_run_config
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
+
+TEXTUAL_OUTPUTS = [
+    "results/structure_d/model_comparison.csv",
+    "results/structure_d/covariance_usage.csv",
+]
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
