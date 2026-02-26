@@ -94,6 +94,20 @@ Conteúdo principal:
 
 ---
 
+### [04] T_M + Inferência de m(t) — Versão Paper-Ready
+**Arquivo:** `04_TM_m_inferencia_paper_ready.md`
+
+Conteúdo principal:
+- Fechamento dimensional completo para \(\Phi_{ext}\), \(T_M\), \(\Phi_{eff}\) e \(Q_{ion}\)
+- Parametrização mínima de transmitância com cutoff rigidity \(R_c\)
+- Formulação inferencial de \(m(t)\) via SDE biestável com parâmetros identificáveis
+- Mapa de observáveis/proxies (paleointensidade, reversões, \(^{10}Be\), \(^{14}C\))
+- Bloco de cálculos determinísticos em arquivos low-level (C/ASM/Java)
+
+**Relevância:** Alta — transforma a cadeia Galáxia→Heliosfera→Magnetosfera→Química em módulo diretamente calibrável e falsificável
+
+---
+
 ## Principais Descobertas da Análise
 
 ### Convergência Estrutural com DESI DR2

@@ -1,0 +1,4 @@
+banda_geomagnetica,Rc0_GV,beta,gamma_sw,kappa_GV_inv,m0_A_m2,sw_ref
+equatorial,14.20,1.00,0.35,1.80,7.80e22,1.0
+media_latitude,6.80,1.00,0.35,1.80,7.80e22,1.0
+polar,1.10,1.00,0.35,1.80,7.80e22,1.0
