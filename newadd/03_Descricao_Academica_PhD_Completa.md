@@ -20,6 +20,17 @@ O modelo **Relativity Living Light (RLL)** é uma extensão fenomenológica da c
 
 A contribuição científica central do RLL é propor que a energia escura não é uma constante cosmológica (Λ), mas um **estado de superposição quântica de fótons** que transita entre comportamento de energia escura (alto redshift) e comportamento de matéria (baixo redshift), mediado por uma transição de fase em z ≈ 0.3-0.8. Este mecanismo é motivado fisicamente por resultados experimentais de não-localidade fotônica em escala laboratorial e possui correspondente no espectro da radiação de corpo negro.
 
+### Adendo de Fechamento Formal (tipagem, intervalos, unidades e observáveis)
+
+Para reforçar o critério de prova formal por camadas, este documento adota explicitamente:
+
+1. **Tipagem matemática:** símbolos conceituais do ciclo `ψχρΔΣΩ` são tratados como operadores/escalares com domínio definido; no bloco gerador, os potenciais efetivos são escalares reais positivos.
+2. **Intervalos operacionais:** ruído/penalidade e pesos entram com limites explícitos (`ρ∈[0,1]`, pesos normalizados), evitando explosão numérica na versão discreta.
+3. **Fechamento dimensional:** o escore evolutivo `R(t)` é adimensional e fatores energéticos entram normalizados por referência (`E/E_ref`).
+4. **Mapa observável obrigatório:** cada camada formal deve apontar para ao menos um observável cosmológico (`H(z)`, `fσ₈(z)`, `σ₈,eff(z)`) e um critério estatístico (`χ²`, `AIC`, `BIC`).
+
+Esse adendo preserva o eixo Ética/Consciência/Retro como termo dominante e evita que a formulação seja lida apenas como metáfora sem métrica.
+
 ---
 
 ## 1. Posicionamento na Literatura Científica

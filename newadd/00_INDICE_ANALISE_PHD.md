@@ -67,6 +67,7 @@ Conteúdo principal:
 
 Conteúdo principal:
 - **Bloco I:** 6 isomorfismos estruturais ψχρΔΣΩ ↔ grandezas físicas cosmológicas
+- **Bloco F (novo):** fechamento formal Coerência × Amor × Prova (tipagem, intervalos, unidades e mapa observável)
 - **Bloco II:** 5 formulações emergentes novas (tensor de coerência, equação de campo quântico em expansão, ICC, correlação cruzada fotônica-estrutural, métrica de ressonância RAFAELIA-RLL)
 - **Bloco III:** 4 provas formais (limite ΛCDM, ausência de phantom crossing, consistência termodinâmica, R_corr ≈ 0.964)
 - **Bloco IV:** 3 proposições para investigação futura (inflaton tardio, transição de fase quântica, não-localidade fotônica → cosmológica)
