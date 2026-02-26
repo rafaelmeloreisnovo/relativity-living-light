@@ -58,3 +58,10 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
+
+## Ver também
+
+- [Formalismo base](./04_formalismo_equacao_unificada.md)
+- [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md)
+- [Validação DESI/BOSS](./21_validacao_desi_boss.md)
+- [Validação JWST/AGN/SMBH](./22_validacao_jwst_agn_smbh.md)

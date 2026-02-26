@@ -67,4 +67,12 @@ A hipótese gera alvos observacionais diretos e indiretos:
 
 A validação segue o plano estatístico de `docs/PLANO_AD_AGN_JWST.md`: comparação por χ², penalização por complexidade (AIC/BIC) e formulação de previsões falsificáveis para separar ganho físico real de sobreajuste fenomenológico.
 
+## Ver também
+
+- [Formalismo base](./04_formalismo_equacao_unificada.md)
+- [Validação DESI/BOSS](./21_validacao_desi_boss.md)
+- [Validação JWST/AGN/SMBH](./22_validacao_jwst_agn_smbh.md)
+- [Painel analítico de resultados](./24_resultados_figuras_painel.md)
+
+
 ---
