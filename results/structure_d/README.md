@@ -62,3 +62,13 @@ Colunas esperadas:
 - `log_bayes_factor`: log do fator de Bayes utilizado na interpretação.
 - `evidence_strength`: classificação categórica da evidência (ex.: inconclusiva, moderada, forte).
 - `interpretation`: texto curto com a interpretação do resultado.
+## Índice canônico de artefatos textuais
+A referência oficial para **todos os artefatos textuais** de `results/` (incluindo este subdiretório) é:
+- `results/OUTPUTS_TEXTUAIS_INDEX.md`
+- manifesto de máquina correspondente: `results/manifest.json`
+
+## Saídas textuais específicas do Structure D
+- `model_comparison.csv`: comparação de χ²/AIC/BIC entre modelos.
+- `covariance_usage.csv`: resumo versionável por corrida indicando, por modelo e por bloco (SNe, BAO, fσ8, lentes, etc.), se a covariância usada foi cheia (`full`) ou fallback diagonal (`diagonal_fallback`).
+
+- `bayes_factor_interpretation.csv`: tabela canônica estática (Jeffreys/Trotta) com faixas de lnB e classificação textual de evidência.

@@ -1,15 +1,17 @@
+import argparse
 import os
+
 import numpy as np
 import pandas as pd
 
 from .data_access import load_active_datasets
-from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
+from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model, write_bayes_factor_interpretation
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
+from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
-DEFAULT_PROFILE = None
 
 BLOCK_COVARIANCE_FILENAMES = {
     "SNe": "cov_sne.csv",
@@ -64,26 +66,47 @@ def _resolve_covariance_file_path(dataset_desc, block_name):
     for path in candidate_paths:
         if os.path.exists(path):
             return path
-    return candidate_paths[-1] if candidate_paths else None
+    return None
 
 
-def _apply_covariance_policy(cfg, datasets, covariance_policy):
-    policy = covariance_policy or cfg.get("covariance_policy", "prefer_full")
+def _find_covariance_file(stem):
+    variants = [
+        f"{stem}_cov.csv",
+        f"{stem}_covariance.csv",
+        f"{stem}_C.csv",
+        f"C_{stem}.csv",
+        f"{stem.lower()}_cov.csv",
+        f"{stem.lower()}_covariance.csv",
+        f"{stem.lower()}_C.csv",
+        f"C_{stem.lower()}.csv",
+    ]
+    for name in variants:
+        path = os.path.join(INPUTS_DIR, name)
+        if os.path.exists(path):
+            return np.loadtxt(path, delimiter=",")
+    return None
+
+
+def _apply_covariance_policy(run_cfg, datasets, covariance_policy):
+    policy = covariance_policy or run_cfg.get("covariance_policy", "prefer_full")
     if policy not in {"prefer_full", "diagonal_only", "full_required"}:
         raise ValueError(f"unsupported covariance_policy: {policy}")
 
-    required_blocks = set(cfg.get("full_required_blocks", []))
+    required_blocks = set(run_cfg.get("full_required_blocks", []))
     if policy == "full_required" and not required_blocks:
         required_blocks = {_dataset_block_name(dataset_id, entry) for dataset_id, entry in datasets.items()}
 
-    block_reports = []
-    active_blocks = []
+    cov = _find_covariance_file(block_name)
+    if sigma_col is None and cov is None:
+        raise ValueError(
+            f"{os.path.basename(path)} requires 'sigma' for diagonal fallback or an external covariance matrix"
+        )
 
     for dataset_id, entry in datasets.items():
         block_name = _dataset_block_name(dataset_id, entry)
         active_blocks.append(block_name)
 
-        desc = cfg["datasets"][dataset_id]
+        desc = run_cfg["datasets"][dataset_id]
         obs_size = len(entry["values"])
         cov_path = _resolve_covariance_file_path(desc, block_name)
         has_cov_file = bool(cov_path and os.path.exists(cov_path))
@@ -106,60 +129,29 @@ def _apply_covariance_policy(cfg, datasets, covariance_policy):
             else:
                 raise ValueError(f"dataset {dataset_id} has neither sigma nor covariance to build diagonal-only likelihood")
         else:
-            if has_cov_file:
-                cov = np.loadtxt(cov_path, delimiter=",")
-                cov = _validate_covariance_shape(cov, obs_size, dataset_id, cov_path)
-                entry["covariance"] = cov
-                entry["errors"] = None
-                mode = "full_covariance"
-                source = "file"
-            elif has_cov_in_entry and policy == "prefer_full":
-                cov = _validate_covariance_shape(entry["covariance"], obs_size, dataset_id, "config_entry")
-                entry["covariance"] = cov
-                entry["errors"] = None
-                mode = "full_covariance"
-                source = "file"
-            elif has_sigma:
-                entry["covariance"] = None
-                mode = "diagonal_sigma"
-                source = "fallback"
-            else:
-                message = f"covariance required but missing sigma fallback for dataset {dataset_id}"
-                if policy == "full_required" and block_name in required_blocks:
-                    raise ValueError(f"full_required policy failed: missing covariance for block {block_name} ({dataset_id})")
-                raise ValueError(message)
-
-            if policy == "full_required" and block_name in required_blocks and mode != "full_covariance":
-                raise ValueError(f"full_required policy failed: missing covariance file for block {block_name} ({dataset_id})")
-
-        block_reports.append(
-            {
-                "dataset_id": dataset_id,
-                "block": block_name,
-                "covariance_mode": mode,
-                "source": source,
-                "covariance_path": cov_path if source == "file" else "",
-                "has_full_covariance": mode == "full_covariance",
-                "has_diagonal_sigma": entry.get("errors") is not None,
-            }
-        )
-
-    return policy, active_blocks, block_reports
+            # Blocos sem modelagem explícita neste pipeline: mantemos contribuição nula (obs-mod = 0)
+            block["mod"] = block["obs"].copy()
 
 
-def covariance_usage_summary(block_reports, diagonal_fallback=True):
+def _chi2_blocks(blocks):
+    total = 0.0
+    for block in blocks:
+        if "C" in block:
+            total += chi2_with_covariance(block["obs"], block["mod"], block["C"])
+        else:
+            total += chi2(block["obs"], block["mod"], block["sigma"])
+    return float(total)
+
+
+def covariance_usage_summary(blocks):
     rows = []
-    for report in block_reports:
+    for block in blocks:
         rows.append(
             {
-                "block": report["block"],
-                "dataset_id": report["dataset_id"],
-                "covariance_mode": report["covariance_mode"],
-                "source": report["source"],
-                "covariance_path": report["covariance_path"],
-                "has_full_covariance": bool(report["has_full_covariance"]),
-                "has_diagonal_sigma": bool(report["has_diagonal_sigma"]),
-                "diagonal_fallback": bool(diagonal_fallback),
+                "block": block["name"],
+                "covariance_mode": "full" if "C" in block else "diagonal",
+                "has_full_covariance": "C" in block,
+                "has_diagonal_sigma": "sigma" in block,
             }
         )
     return pd.DataFrame(rows)
@@ -171,11 +163,58 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
+def write_bayes_factor_summary(results_dir):
+    bayes_evidence_path = os.path.join(results_dir, "bayes_evidence.csv")
+    summary_path = os.path.join(results_dir, "bayes_factor_summary.csv")
+
+    if not os.path.exists(bayes_evidence_path):
+        return None
+
+    evidence = pd.read_csv(bayes_evidence_path)
+    if "model" not in evidence.columns or "logZ" not in evidence.columns:
+        raise ValueError(
+            "bayes_evidence.csv must contain columns 'model' and 'logZ'"
+        )
+
+    required_models = {"LCDM", "RLL_like+AGN"}
+    available_models = set(evidence["model"].astype(str).str.strip())
+    missing_models = sorted(required_models - available_models)
+    if missing_models:
+        raise ValueError(
+            "bayes_evidence.csv missing required model(s): " + ", ".join(missing_models)
+        )
+
+    logz_lcdm = float(
+        evidence.loc[evidence["model"].astype(str).str.strip() == "LCDM", "logZ"].iloc[0]
+    )
+    logz_rll = float(
+        evidence.loc[evidence["model"].astype(str).str.strip() == "RLL_like+AGN", "logZ"].iloc[0]
+    )
+
+    summary = pd.DataFrame(
+        [
+            {
+                "logZ_LCDM": logz_lcdm,
+                "logZ_RLL": logz_rll,
+                "lnB": logz_rll - logz_lcdm,
+            }
+        ],
+        columns=["logZ_LCDM", "logZ_RLL", "lnB"],
+    )
+    summary.to_csv(summary_path, index=False)
+    return summary_path
+
+
 def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    cfg, datasets = load_active_datasets(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+
+    import json
+    with open(os.path.join(BASE_DIR, config_path), "r", encoding="utf-8") as f:
+        cfg = json.load(f)
+
     covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
@@ -186,56 +225,196 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     fixed_params_lcdm = sorted(set(lcdm) - set(fit_params_lcdm))
     fixed_params_rll = sorted(set(rll) - set(fit_params_rll))
 
-    chi2_lcdm = 0.0
-    chi2_rll = 0.0
+    model_map_lcdm = {
+        "hz": model_LCDM_Hz,
+        "fsigma8": model_LCDM_fs8,
+        "real_hz": model_LCDM_Hz,
+        "real_bao": model_LCDM_BAO,
+        "sne": model_LCDM_SNe,
+        "lenses": model_LCDM_lenses,
+    }
+    model_map_rll = {
+        "hz": model_RLL_like_Hz,
+        "fsigma8": model_RLL_like_fs8,
+        "real_hz": model_RLL_like_Hz,
+        "real_bao": model_RLL_like_BAO,
+        "sne": model_RLL_like_SNe,
+        "lenses": model_RLL_like_lenses,
+    }
+
+    blocks_lcdm_active = []
+    blocks_rll_active = []
     total_observables = 0
 
-    for dataset_id, entry in datasets.items():
-        c2_l, c2_r, n_obs = _evaluate_supported_dataset(dataset_id, entry, lcdm, rll)
-        chi2_lcdm += c2_l
-        chi2_rll += c2_r
-        total_observables += n_obs
+    for dataset_id in cfg["active_datasets"]:
+        entry = datasets[dataset_id]
+        z = entry.get("z")
+        if z is None:
+            continue
 
-    if total_observables <= 0:
-        raise ValueError("no supported observables were evaluated; check profile active_datasets")
+        model_fn_lcdm = model_map_lcdm.get(dataset_id)
+        model_fn_rll = model_map_rll.get(dataset_id)
+        if model_fn_lcdm is None or model_fn_rll is None:
+            continue
 
-    active_datasets = ",".join(cfg_meta["active_datasets"])
+        mod_lcdm = model_fn_lcdm(z, lcdm)
+        mod_rll = model_fn_rll(z, rll)
+
+        obs_lcdm, mod_lcdm = _normalize_for_block(entry, mod_lcdm, dataset_id)
+        obs_rll, mod_rll = _normalize_for_block(entry, mod_rll, dataset_id)
+
+        block_name = _dataset_block_name(entry)
+        block_common = {
+            "block": block_name,
+            "observable": entry.get("observable", block_name),
+            "N": len(entry["values"]),
+            "errors": entry.get("errors"),
+            "covariance": entry.get("covariance"),
+        }
+
+        blocks_lcdm_active.append({**block_common, "obs": obs_lcdm, "mod": mod_lcdm})
+        blocks_rll_active.append({**block_common, "obs": obs_rll, "mod": mod_rll})
+        total_observables += len(entry["values"])
+
+    chi2_lcdm = chi2_blocks(blocks_lcdm_active)
+    chi2_rll = chi2_blocks(blocks_rll_active)
+
+    active_datasets = ",".join(cfg["active_datasets"])
 
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
 
-    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
-                     N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
-    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
-                     N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
+    rows.append(
+        dict(
+            model="LCDM",
+            chi2=chi2_lcdm,
+            AIC=aic(chi2_lcdm, k_lcdm),
+            BIC=bic(chi2_lcdm, k_lcdm, total_observables),
+            N=total_observables,
+            k=k_lcdm,
+            fit_params=",".join(fit_params_lcdm),
+            fixed_params=",".join(fixed_params_lcdm),
+            datasets_used=active_datasets,
+            run_name=cfg_meta.get("run_name", "unknown"),
+            covariance_policy=covariance_policy,
+        )
+    )
+    rows.append(
+        dict(
+            model="RLL_like+AGN",
+            chi2=chi2_rll,
+            AIC=aic(chi2_rll, k_rll),
+            BIC=bic(chi2_rll, k_rll, total_observables),
+            N=total_observables,
+            k=k_rll,
+            fit_params=",".join(fit_params_rll),
+            fixed_params=",".join(fixed_params_rll),
+            datasets_used=active_datasets,
+            run_name=cfg_meta.get("run_name", "unknown"),
+            covariance_policy=covariance_policy,
+        )
+    )
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
+    return df, out
 
-    cov_rows = []
     expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
     summary_df = covariance_usage_summary(block_reports, diagonal_fallback=True)
     missing = [
-        {"block": b, "dataset_id": "", "covariance_mode": "not_used", "source": "fallback", "covariance_path": "",
-         "has_full_covariance": False, "has_diagonal_sigma": False, "diagonal_fallback": True}
-        for b in expected_blocks if b not in set(summary_df["block"].tolist())
+        {
+            "block": b,
+            "dataset_id": "",
+            "covariance_mode": "not_used",
+            "source": "fallback",
+            "covariance_path": "",
+            "has_full_covariance": False,
+            "has_diagonal_sigma": False,
+            "diagonal_fallback": True,
+        }
+        for b in expected_blocks
+        if b not in set(summary_df["block"].tolist())
     ]
     if missing:
         summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
     summary_df.insert(0, "covariance_policy", covariance_policy)
     summary_df.insert(1, "active_blocks", ",".join(active_blocks))
-    cov_rows.append(summary_df)
 
+def run_bayesian_evidence(cfg_meta, datasets):
+    """# Bloco 2: Evidência Bayesiana."""
+    hz_entry = None
+    fs_entry = None
+    for dataset_id, entry in datasets.items():
+        observable = str(entry.get("observable", dataset_id)).lower()
+        if hz_entry is None and "hz" in observable:
+            hz_entry = entry
+        if fs_entry is None and "fs" in observable:
+            fs_entry = entry
+
+    data_hz = _to_inference_frame(hz_entry, "Hz") if hz_entry is not None else None
+    data_fs8 = _to_inference_frame(fs_entry, "fs8") if fs_entry is not None else None
+    if data_hz is None or data_fs8 is None:
+        print("[bayes] skipped: requires Hz + fσ8 datasets with diagonal sigma errors")
+        return None, None
+
+    rows = []
+    for model_name in ["LCDM", "RLL_like+AGN"]:
+        result = run_nested_dynesty(model_name, data_hz, data_fs8)
+        rows.append(
+            {
+                "model": model_name,
+                "logZ": result["logZ"],
+                "logZ_err": result["logZ_err"],
+                "datasets_used": ",".join(cfg_meta["active_datasets"]),
+                "run_name": cfg_meta.get("run_name", "unknown"),
+            }
+        )
+
+    out = os.path.join(RESULTS, "bayesian_evidence.csv")
+    df = evaluate_model(rows, out)
+    return df, out
+
+
+def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None, bayes=False):
+    os.makedirs(RESULTS, exist_ok=True)
+
+    cfg = load_run_config(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
+
+    # Bloco 1: Métrica clássica (χ²/AIC/BIC)
+    df, out = run_classic_metrics(cfg_meta, datasets, covariance_policy)
+
+    cov_rows = []
+    for model_name, active_blocks in (("LCDM", blocks_lcdm_active), ("RLL_like+AGN", blocks_rll_active)):
+        summary_df = covariance_usage_summary(active_blocks, diagonal_fallback=True)
+        missing = [
+            {"block": b, "observable": b, "N": 0, "covariance_mode": "not_used", "has_full_covariance": False, "has_diagonal_sigma": False}
+            for b in expected_blocks if b not in set(summary_df["block"].tolist())
+        ]
+        if missing:
+            summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
+        summary_df.insert(0, "model", model_name)
+        cov_rows.append(summary_df)
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
-    evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
+    evaluate_model(summary_df.to_dict(orient="records"), cov_out)
+
+    out_lcdm, out_rll = _save_model_posteriors(lcdm, rll, chi2_lcdm, chi2_rll)
+
+    bayes_rows = _build_bayes_evidence_rows(rows)
+    bayes_out = os.path.join(RESULTS, "bayes_evidence.csv")
+    bayes_df = evaluate_model(bayes_rows, bayes_out)
+
+    bayes_factor_out = os.path.join(RESULTS, "bayes_factor_interpretation.csv")
+    write_bayes_factor_interpretation(bayes_factor_out)
 
     print(df.to_string(index=False))
+    print("\nPosterior convention: loglike = -0.5 * chi2_total; uniform prior -> logpost = loglike (up to additive constant).")
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+    print(f"Wrote: {bayes_factor_out}")
 
 
 if __name__ == "__main__":
-    env_profile = os.environ.get("STRUCTURE_D_PROFILE")
-    main(profile_name=env_profile)
+    args = _build_parser().parse_args()
+    main(config_path=args.config, covariance_policy=args.covariance_policy, profile_name=args.profile, bayes=args.bayes)
