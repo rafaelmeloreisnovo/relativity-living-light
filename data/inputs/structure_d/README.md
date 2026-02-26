@@ -13,13 +13,18 @@ Você pode gerar dados exemplo rodando:
 Arquivo: `data/pipelines/structure_d/datasets_config.json`
 
 Campos principais:
-- `run_name`: identificador da corrida.
-- `active_datasets`: datasets habilitados na execução.
+- `default_profile`: profile usado por padrão.
+- `profiles`: perfis de corrida com `run_name` e `active_datasets`.
 - `datasets`: catálogo com path, observável, tipo de erro e metadados.
 
-Exemplo padrão:
-- ativos: `hz`, `fsigma8`.
-- reais estruturados disponíveis: `real_hz`, `real_bao`, `real_cmb_shift`.
+Profiles incluídos:
+- `structure_d_default` (ativos: `hz`, `fsigma8`).
+- `structure_d_real_validation` (ativos: `real_hz`, `real_bao`, `real_cmb_shift`).
+
+Execução por profile:
+- padrão: `python -m data.pipelines.structure_d.run_all`
+- profile explícito: `STRUCTURE_D_PROFILE=structure_d_real_validation python -m data.pipelines.structure_d.run_all`
+- validação real completa (Hz + BAO + CMB): `python -m data.pipelines.structure_d.run_all_real`
 
 Esquema comum por observável (camada de dados em `data/pipelines/structure_d/`):
 - `values`;

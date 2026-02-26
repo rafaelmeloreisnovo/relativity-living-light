@@ -28,3 +28,17 @@ Parâmetros derivados de `data/posterior_unified_synth.csv` usando estatística 
 - Commit (última atualização do arquivo): `8d49cba562a5b2b8a993de0e94d0b8b057e539fb`
 - Data do commit: `Sun Oct 19 15:21:22 2025 +0000`
 - Geração desta tabela: estatísticas calculadas diretamente do CSV local nesta revisão.
+
+## Política de artefatos e regeneração de gráficos
+
+- Este documento e os arquivos em `results/*.csv` e `results/*.json` são a fonte canônica do core versionado.
+- Gráficos e infográficos devem ser gerados localmente a partir dos dados textuais e publicados como artefatos externos (release/DOI), sem versionar binários no núcleo.
+
+Comandos de referência para regeneração fora do core:
+
+```bash
+python data/pipelines/structure_d/run_all.py
+python docs/rll_validation_real.py
+python docs/crescimento_estrutural.py
+```
+
