@@ -22,34 +22,79 @@ Referência: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/F
 
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
-## Equação de Friedmann estendida (forma normalizada)
+## Derivação da forma estendida
 
 **Base formal:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
 
 `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0 [f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`, com `E(a)=H(a)/H₀` e `a=1/(1+z)`.
+1. **Equação de Friedmann padrão (background FRW plano):**
+   
+   `H²(a)=H₀²[Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ]`.
 
-## Função de transição logística
+2. **Definição da taxa de expansão normalizada:**
 
-`f(z)=1/(1+exp((z-z_t)/w_t))`, que controla a fração coerente do setor de superposição.
+   `E(a)=H(a)/H₀`, portanto
 
-### Definições dos parâmetros
+   `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ`.
 
-- `Ω_s0`: densidade atual do setor de superposição (amplitude do componente híbrido DE/DM).
-- `z_t`: redshift de transição/coerência.
-- `w_t`: largura da transição (quão abrupta/suave).
-- `Ω_B0`: densidade efetiva do booster magnético (escala radiativa `a⁻⁴`).
-- `Ω_P0`: densidade efetiva do booster plasmático (também `a⁻⁴` no background).
+3. **Substituição explícita dos componentes padrão:**
 
-## Limites físicos e interpretação
+   - radiação: `Ω_r a⁻⁴`;
+   - matéria não-relativística: `Ω_m a⁻³`;
+   - constante cosmológica: `Ω_Λ`.
 
-- `z >> z_t`: `f→1`, regime coerente, `w_eff,sup≈-1` (componente tipo energia escura).
-- `z << z_t`: `f→0`, regime colapsado, termo `a⁻³` domina (componente tipo matéria escura).
-- `Ω_B0` e `Ω_P0` agem como correções subdominantes do background, relevantes em observáveis de precisão.
+4. **Inserção do setor de superposição com transição logística** (detalhes em [`05_formalismo_funcao_transicao.md`](./05_formalismo_funcao_transicao.md)):
+
+   `Ω_s0[f(a)+(1-f(a))a⁻³]`,
+
+   com
+
+   `f(z)=1/(1+exp((z-z_t)/w_t))` e `a=1/(1+z)`.
+
+5. **Inserção dos termos booster magnético/plasmático** (hipóteses do setor em [`09_hipoteses_setor_magnetico_plasmatico.md`](./09_hipoteses_setor_magnetico_plasmatico.md)):
+
+   `Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`.
+
+6. **Forma final normalizada:**
+
+   `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0[f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`.
+
+## Definição formal dos parâmetros
+
+- `Ω_r`: fração de densidade de radiação no presente (`a=1`); evolução de background `ρ_r(a)∝a⁻⁴`.
+- `Ω_m`: fração de densidade de matéria não-relativística no presente; evolução `ρ_m(a)∝a⁻³`.
+- `Ω_Λ`: fração associada ao termo tipo constante cosmológica; `ρ_Λ(a)=constante`.
+- `Ω_s0`: fração atual do setor de superposição; contribui como mistura `f(a)` (comportamento tipo DE) e `(1-f(a))a⁻³` (comportamento tipo DM).
+- `Ω_B0`: fração efetiva atual do booster magnético; no background entra como correção radiativa `a⁻⁴`.
+- `Ω_P0`: fração efetiva atual do booster plasmático; no background entra como correção radiativa `a⁻⁴`.
+
+## Hipóteses e domínio de validade
+
+- **Homogeneidade/isotropia:** a construção assume background FRW (média cosmológica), sem resolver estruturas locais individualmente.
+- **Regime efetivo fenomenológico:** os termos adicionais (`Ω_s0`, `Ω_B0`, `Ω_P0`) são parametrizações efetivas para confrontação observacional no nível de expansão.
+- **Validade em background:** a equação é usada para `H(z)` e integrais cosmológicas associadas, não como descrição microscópica completa do setor escuro.
+- **Separação de efeitos locais:** efeitos astrofísicos locais, não-lineares ou dependentes de ambiente devem ser tratados fora desta parametrização de background.
+
+## Limites assintóticos
+
+- **`a→0` (alto redshift):** os termos `a⁻⁴` dominam (`Ω_r`, `Ω_B0`, `Ω_P0`). Assim, o efeito relativo de `Ω_B0`/`Ω_P0` é naturalmente mais visível no regime primordial e em observáveis sensíveis à expansão radiativa.
+- **`a→1` (época atual):** cada `Ω_i` representa diretamente sua fração efetiva no presente; a interpretação é feita por balanço entre `Ω_m`, `Ω_Λ`, `Ω_s0` e correções `Ω_B0`, `Ω_P0`.
+- **`z≫z_t` (antes da transição):** `f→1`, o setor de superposição aproxima comportamento tipo DE.
+- **`z≪z_t` (após a transição):** `f→0`, prevalece a parcela `a⁻³` do setor de superposição, com caráter tipo DM.
+
+Para o impacto empírico desses regimes nas curvas comparativas e painéis de resultados, ver [`24_resultados_figuras_painel.md`](./24_resultados_figuras_painel.md).
 
 ## Conexão observacional
 
 **Fontes técnicas:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
 
 A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ₈(z)` e lensing, com nomenclatura alinhada a `docs/CONCEPTUAL_FRAMEWORK.md`, `docs/Relativity_Living_Light.md` e `docs/LAGRANGIANO_EFT.md`.
+
+## Ver também
+
+- [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md)
+- [Validação DESI/BOSS](./21_validacao_desi_boss.md)
+- [Validação JWST/AGN/SMBH](./22_validacao_jwst_agn_smbh.md)
+- [Painel analítico de resultados](./24_resultados_figuras_painel.md)
 
 ---
