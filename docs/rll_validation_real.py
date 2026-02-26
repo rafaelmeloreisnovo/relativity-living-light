@@ -17,6 +17,7 @@ Parâmetros livres:
 import numpy as np
 from scipy.optimize import minimize, differential_evolution
 from scipy.integrate import quad
+import os
 import warnings; warnings.filterwarnings('ignore')
 
 c_kms = 299792.458
@@ -202,6 +203,17 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RESULTS_DIR = os.path.join(REPO_ROOT, 'results')
+FIGS_PAPER_DIR = os.path.join(REPO_ROOT, 'figs', 'paper')
+PNG_PATH = os.path.join(FIGS_PAPER_DIR, 'RLL_validacao_real.png')
+CHI2_CSV_PATH = os.path.join(RESULTS_DIR, 'RLL_chi2_results.csv')
+HZ_CSV_PATH = os.path.join(RESULTS_DIR, 'Hz_data_real.csv')
+BAO_CSV_PATH = os.path.join(RESULTS_DIR, 'BAO_data_real.csv')
+
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(FIGS_PAPER_DIR, exist_ok=True)
+
 fig = plt.figure(figsize=(15,11))
 fig.suptitle('RLL vs ΛCDM — Validação: H(z) + BAO + CMB (Planck 2018)\n'
              '∆RafaelVerboΩ | Instituto Rafael | DOI: 10.5281/zenodo.17188137',
@@ -278,12 +290,12 @@ ax4.text(0.03,0.97, txt, transform=ax4.transAxes, fontsize=8.5,
          bbox=dict(boxstyle='round,pad=0.5', fc='#fffde7', alpha=0.95))
 ax4.set_title('Sumário Estatístico', fontsize=10)
 
-plt.savefig('/mnt/user-data/outputs/RLL_validacao_real.png', dpi=150, bbox_inches='tight')
-print("  ✅ PNG  → RLL_validacao_real.png")
+plt.savefig(PNG_PATH, dpi=150, bbox_inches='tight')
+print(f"  ✅ PNG  → {PNG_PATH}")
 
 # ═══ CSV ═══
-import csv, os; os.makedirs('/mnt/user-data/outputs', exist_ok=True)
-with open('/mnt/user-data/outputs/RLL_chi2_results.csv','w',newline='') as f:
+import csv
+with open(CHI2_CSV_PATH,'w',newline='') as f:
     w=csv.writer(f)
     w.writerow(['Model','H0','Om','OL','Os0','zt','wt','Ob_h2','chi2','AIC','BIC','N_obs','k','chi2_dof','verdict'])
     w.writerow(['LCDM',round(bL[0],3),round(bL[1],4),round(bL[2],4),
@@ -294,25 +306,25 @@ with open('/mnt/user-data/outputs/RLL_chi2_results.csv','w',newline='') as f:
                 round(c2_R,3),round(AIC_R,3),round(BIC_R,3),N_obs,k_R,round(c2_R/(N_obs-k_R),3),verdict])
     w.writerow(['DELTA_RLL_minus_LCDM','-','-','-','-','-','-','-',
                 round(dchi2,3),round(dAIC,3),round(dBIC,3),N_obs,k_R-k_L,'-',verdict])
-print("  ✅ CSV  → RLL_chi2_results.csv")
+print(f"  ✅ CSV  → {CHI2_CSV_PATH}")
 
 # ═══ H(z) data CSV ═══
-with open('/mnt/user-data/outputs/Hz_data_real.csv','w',newline='') as f:
+with open(HZ_CSV_PATH,'w',newline='') as f:
     w=csv.writer(f)
     w.writerow(['z','H_obs','sigma_H','source'])
     sources = ['CC']*17 + ['BOSS_DR12']*3 + ['CC']*9 + ['BOSS_Lya']
     for i,(z,H,s) in enumerate(Hz_data):
         src = 'CC+BAO_BOSS' if z in [0.380,0.510,0.570,0.610] else ('BAO_Lya' if z==2.340 else 'CC_Moresco2022')
         w.writerow([z,H,s,src])
-print("  ✅ CSV  → Hz_data_real.csv")
+print(f"  ✅ CSV  → {HZ_CSV_PATH}")
 
-with open('/mnt/user-data/outputs/BAO_data_real.csv','w',newline='') as f:
+with open(BAO_CSV_PATH,'w',newline='') as f:
     w=csv.writer(f)
     w.writerow(['z_eff','DV_over_rs','sigma','survey'])
     surveys=['6dFGS','SDSS_MGS','BOSS_DR12_LOWZ','BOSS_DR12_CMASS','DESI2024_BGS','DESI2024_LRG1','DESI2024_LRG2','DESI2024_ELG','DESI2024_QSO','BOSS_Lya']
     for i,(z,dv,s) in enumerate(BAO_data):
         w.writerow([z,dv,s,surveys[i]])
-print("  ✅ CSV  → BAO_data_real.csv\n")
+print(f"  ✅ CSV  → {BAO_CSV_PATH}\n")
 
 print("="*62)
 print(f"  Ciclo ψ→χ→ρ→Δ→Σ→Ω completo | N=45 obs")
