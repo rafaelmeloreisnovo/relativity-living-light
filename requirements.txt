@@ -1,6 +1,7 @@
 numpy>=1.25
 scipy>=1.11
 matplotlib>=3.7
+pandas>=2.0
 astropy>=5.3
 emcee>=3.2
 corner>=2.2

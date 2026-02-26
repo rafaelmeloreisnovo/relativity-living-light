@@ -142,6 +142,13 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
 
 ## 🔁 Fluxo Único de Execução Científica
 
+Comando único para reproduzir os principais pipelines:
+
+```bash
+bash scripts/run_repro_all.sh
+```
+
+
 **Árvore canônica obrigatória:** `docs/` + `data/` + `results/`.
 
 1. **Entrada (definição científica):** `docs/`
