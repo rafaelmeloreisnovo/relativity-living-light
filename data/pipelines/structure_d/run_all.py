@@ -1,15 +1,15 @@
 import os
+
 import numpy as np
 import pandas as pd
 
-from .data_access import load_active_datasets
-from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
+from .data_access import load_active_datasets, load_run_config
+from .likelihood import aic, bic, chi2, chi2_with_covariance, evaluate_model, save_posterior_csv
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
-DEFAULT_PROFILE = None
 
 BLOCK_COVARIANCE_FILENAMES = {
     "SNe": "cov_sne.csv",
@@ -67,12 +67,12 @@ def _resolve_covariance_file_path(dataset_desc, block_name):
     return candidate_paths[-1] if candidate_paths else None
 
 
-def _apply_covariance_policy(cfg, datasets, covariance_policy):
-    policy = covariance_policy or cfg.get("covariance_policy", "prefer_full")
+def _apply_covariance_policy(run_cfg, datasets, covariance_policy):
+    policy = covariance_policy or run_cfg.get("covariance_policy", "prefer_full")
     if policy not in {"prefer_full", "diagonal_only", "full_required"}:
         raise ValueError(f"unsupported covariance_policy: {policy}")
 
-    required_blocks = set(cfg.get("full_required_blocks", []))
+    required_blocks = set(run_cfg.get("full_required_blocks", []))
     if policy == "full_required" and not required_blocks:
         required_blocks = {_dataset_block_name(dataset_id, entry) for dataset_id, entry in datasets.items()}
 
@@ -83,7 +83,7 @@ def _apply_covariance_policy(cfg, datasets, covariance_policy):
         block_name = _dataset_block_name(dataset_id, entry)
         active_blocks.append(block_name)
 
-        desc = cfg["datasets"][dataset_id]
+        desc = run_cfg["datasets"][dataset_id]
         obs_size = len(entry["values"])
         cov_path = _resolve_covariance_file_path(desc, block_name)
         has_cov_file = bool(cov_path and os.path.exists(cov_path))
@@ -171,12 +171,51 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
+def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
+    observable = str(entry.get("observable", dataset_id)).lower()
+    z_values = entry.get("z")
+    if z_values is None:
+        return 0.0, 0.0, 0
+
+    if "hz" in observable:
+        model_l = model_LCDM_Hz(z_values, lcdm)
+        model_r = model_RLL_like_Hz(z_values, rll)
+    elif "fs" in observable:
+        model_l = model_LCDM_fs8(z_values, lcdm)
+        model_r = model_RLL_like_fs8(z_values, rll)
+    else:
+        return 0.0, 0.0, 0
+
+    return _chi2_from_entry(entry, model_l), _chi2_from_entry(entry, model_r), len(entry["values"])
+
+
+def _build_posterior_row(params, chi2_total):
+    loglike = -0.5 * float(chi2_total)
+    return {**params, "loglike": loglike, "logpost": loglike}
+
+
+def _save_model_posteriors(lcdm, rll, chi2_lcdm, chi2_rll):
+    lcdm_columns = ["H0", "Om", "Ol", "sigma8", "gamma", "loglike", "logpost"]
+    rll_columns = ["H0", "Om", "Ol", "sigma8", "gamma", "alpha", "z_peak", "width", "beta", "loglike", "logpost"]
+
+    lcdm_df = pd.DataFrame([_build_posterior_row(lcdm, chi2_lcdm)])[lcdm_columns]
+    rll_df = pd.DataFrame([_build_posterior_row(rll, chi2_rll)])[rll_columns]
+
+    out_lcdm = os.path.join(RESULTS, "posterior_LCDM.csv")
+    out_rll = os.path.join(RESULTS, "posterior_RLL_like_AGN.csv")
+
+    save_posterior_csv(lcdm_df, out_lcdm)
+    save_posterior_csv(rll_df, out_rll)
+    return out_lcdm, out_rll
+
+
+def main(config_path=DEFAULT_CONFIG, covariance_policy=None, profile_name=None):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    cfg, datasets = load_active_datasets(config_path)
-    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
+    run_cfg = load_run_config(config_path)
+    cfg, datasets = load_active_datasets(config_path, profile_name=profile_name)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(run_cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -199,7 +238,7 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     if total_observables <= 0:
         raise ValueError("no supported observables were evaluated; check profile active_datasets")
 
-    active_datasets = ",".join(cfg_meta["active_datasets"])
+    active_datasets = ",".join(cfg["active_datasets"])
 
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
@@ -214,7 +253,6 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
 
-    cov_rows = []
     expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
     summary_df = covariance_usage_summary(block_reports, diagonal_fallback=True)
     missing = [
@@ -226,14 +264,18 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
         summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
     summary_df.insert(0, "covariance_policy", covariance_policy)
     summary_df.insert(1, "active_blocks", ",".join(active_blocks))
-    cov_rows.append(summary_df)
 
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
-    evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
+    evaluate_model(summary_df.to_dict(orient="records"), cov_out)
+
+    out_lcdm, out_rll = _save_model_posteriors(lcdm, rll, chi2_lcdm, chi2_rll)
 
     print(df.to_string(index=False))
+    print("\nPosterior convention: loglike = -0.5 * chi2_total; uniform prior -> logpost = loglike (up to additive constant).")
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+    print(f"Wrote: {out_lcdm}")
+    print(f"Wrote: {out_rll}")
 
 
 if __name__ == "__main__":

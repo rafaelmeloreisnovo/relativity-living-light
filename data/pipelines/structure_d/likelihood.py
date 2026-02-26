@@ -67,3 +67,19 @@ def evaluate_model(results_rows, out_csv):
     df = pd.DataFrame(results_rows)
     df.to_csv(out_csv, index=False)
     return df
+
+
+def save_posterior_csv(df, out_path):
+    required_cols = ["loglike", "logpost"]
+    missing = [col for col in required_cols if col not in df.columns]
+    if missing:
+        raise ValueError(f"posterior table missing mandatory columns: {missing}")
+    if df.empty:
+        raise ValueError("posterior table must contain at least one row")
+
+    finite_mask = np.isfinite(df[required_cols].to_numpy(dtype=float))
+    if not finite_mask.all():
+        raise ValueError("posterior table has non-finite values in loglike/logpost")
+
+    df.to_csv(out_path, index=False)
+    return df
