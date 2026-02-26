@@ -1,0 +1,9 @@
+{
+  "z_CMB": 1089.92,
+  "R_obs": 1.7502,
+  "R_sig": 0.0046,
+  "la_obs": 301.471,
+  "la_sig": 0.090,
+  "survey": "Planck2018",
+  "reference": "Planck 2018 VI"
+}
