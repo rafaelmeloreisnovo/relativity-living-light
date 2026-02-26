@@ -4,6 +4,18 @@
 
 Estrutura do pipeline de cálculo, comparação e diagnóstico.
 
+
+## Termos canônicos aplicados neste ponto de entrada
+
+Referência: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md).
+
+- **superposição fotônica** (termo principal)
+- **coerência (f(z))**
+- **decoerência ((1−f(z)))**
+- **setor magnético**
+- **setor plasmático**
+- **transição DE→DM do setor de superposição**
+
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
 

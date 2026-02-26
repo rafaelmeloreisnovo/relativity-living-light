@@ -2,7 +2,19 @@
 
 [⬅️ Capítulo anterior](./08_hipoteses_hipotese_central.md) | [📚 Sumário do livro](./README.md) | [Capítulo próximo ➡️](./10_hipoteses_entropia_margens.md)
 
-Detalha hipóteses físicas adicionais para magnetismo e plasma no background.
+Detalha hipóteses físicas adicionais para setor magnético e setor plasmático no background.
+
+
+## Termos canônicos aplicados neste ponto de entrada
+
+Referência: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md).
+
+- **superposição fotônica** (termo principal)
+- **coerência (f(z))**
+- **decoerência ((1−f(z)))**
+- **setor magnético**
+- **setor plasmático**
+- **transição DE→DM do setor de superposição**
 
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
