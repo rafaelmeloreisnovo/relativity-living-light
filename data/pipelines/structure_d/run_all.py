@@ -1,8 +1,9 @@
+import argparse
 import os
 import numpy as np
 import pandas as pd
 
-from .data_access import load_active_datasets
+from .data_access import load_active_datasets, load_run_config
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
@@ -171,11 +172,27 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
+def build_parser():
+    parser = argparse.ArgumentParser(description="Run Structure D model comparison pipeline")
+    parser.add_argument("--bayes", action="store_true")
+    parser.add_argument("--seed", type=int, default=None)
+    parser.add_argument("--nwalkers", type=int, default=None)
+    parser.add_argument("--nsteps", type=int, default=None)
+    parser.add_argument("--nlive", type=int, default=None)
+    return parser
+
+
+def main(argv=None, config_path=DEFAULT_CONFIG, covariance_policy=None):
+    args = build_parser().parse_args(argv)
+
+    if args.bayes:
+        raise NotImplementedError("Bayesian mode is not implemented in this runner yet")
+
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    cfg, datasets = load_active_datasets(config_path)
+    cfg = load_run_config(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path)
     covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
@@ -206,10 +223,10 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
 
     rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
                      N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
     rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
                      N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
@@ -237,5 +254,4 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
 
 
 if __name__ == "__main__":
-    env_profile = os.environ.get("STRUCTURE_D_PROFILE")
-    main(profile_name=env_profile)
+    main()
