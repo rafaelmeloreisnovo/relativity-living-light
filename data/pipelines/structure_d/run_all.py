@@ -5,6 +5,7 @@ import pandas as pd
 from .data_access import load_active_datasets
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
+from .systematics import build_systematics_config
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
@@ -129,57 +130,29 @@ def _apply_covariance_policy(cfg, datasets, covariance_policy):
                     raise ValueError(f"full_required policy failed: missing covariance for block {block_name} ({dataset_id})")
                 raise ValueError(message)
 
-            if policy == "full_required" and block_name in required_blocks and mode != "full_covariance":
-                raise ValueError(f"full_required policy failed: missing covariance file for block {block_name} ({dataset_id})")
 
-        block_reports.append(
-            {
-                "dataset_id": dataset_id,
-                "block": block_name,
-                "covariance_mode": mode,
-                "source": source,
-                "covariance_path": cov_path if source == "file" else "",
-                "has_full_covariance": mode == "full_covariance",
-                "has_diagonal_sigma": entry.get("errors") is not None,
-            }
-        )
-
-    return policy, active_blocks, block_reports
+def _h0_seed_from_prior(h0_prior):
+    distribution = h0_prior.get("distribution")
+    if distribution == "gaussian":
+        return float(h0_prior["mean"])
+    if distribution == "uniform":
+        return 0.5 * (float(h0_prior["min"]) + float(h0_prior["max"]))
+    raise ValueError(f"Unsupported H0 prior distribution: {distribution}")
 
 
-def covariance_usage_summary(block_reports, diagonal_fallback=True):
-    rows = []
-    for report in block_reports:
-        rows.append(
-            {
-                "block": report["block"],
-                "dataset_id": report["dataset_id"],
-                "covariance_mode": report["covariance_mode"],
-                "source": report["source"],
-                "covariance_path": report["covariance_path"],
-                "has_full_covariance": bool(report["has_full_covariance"]),
-                "has_diagonal_sigma": bool(report["has_diagonal_sigma"]),
-                "diagonal_fallback": bool(diagonal_fallback),
-            }
-        )
-    return pd.DataFrame(rows)
-
-
-def _chi2_from_entry(entry, model_values):
-    if entry["errors"] is not None:
-        return chi2(entry["values"], model_values, entry["errors"])
-    return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
-
-
-def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
+def main(h0_scenario="Planck_like"):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    cfg, datasets = load_active_datasets(config_path)
-    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
+    experiments = ("Hz", "fsigma8")
+    systematics_config = build_systematics_config(experiments, h0_scenario=h0_scenario)
+    h0_seed = _h0_seed_from_prior(systematics_config["h0"]["prior"])
 
-    lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
-    rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
+    hz = load_csv(os.path.join(DATA, "Hz.csv"), ["z", "Hz", "sigma"])
+    fs8 = load_csv(os.path.join(DATA, "fsigma8.csv"), ["z", "fs8", "sigma"])
+
+    lcdm = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
+    rll = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
 
     fit_params_lcdm = ["H0", "Om", "sigma8", "gamma"]
     fit_params_rll = fit_params_lcdm + ["alpha", "z_peak", "width"]
@@ -204,12 +177,18 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
 
-    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
-                     N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
-    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
-                     N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
+    traceability = systematics_config["traceability"]
+    base_row = dict(
+        h0_scenario=traceability["h0_scenario"],
+        h0_prior_reference=traceability["h0_prior_reference"],
+        systematics_Hz=",".join(systematics_config["by_experiment"]["Hz"]["active_systematics"]),
+        systematics_fsigma8=",".join(systematics_config["by_experiment"]["fsigma8"]["active_systematics"]),
+    )
+
+    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, N), N=N, k=k_lcdm,
+                     fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm), **base_row))
+    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, N), N=N, k=k_rll,
+                     fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll), **base_row))
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
@@ -234,6 +213,7 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+
 
 
 if __name__ == "__main__":
