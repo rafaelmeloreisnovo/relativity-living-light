@@ -1,3 +1,4 @@
+import argparse
 import os
 import argparse
 import numpy as np
@@ -10,158 +11,133 @@ from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
-DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
-DEFAULT_PROFILE = None
-
-BLOCK_COVARIANCE_FILENAMES = {
-    "SNe": "cov_sne.csv",
-    "BAO": "cov_bao.csv",
-    "fσ8": "cov_fsigma8.csv",
-    "lenses": "cov_lenses.csv",
-}
-DATASET_BLOCK_ALIASES = {
-    "hz": "Hz",
-    "real_hz": "Hz",
-    "fsigma8": "fσ8",
-    "real_bao": "BAO",
-    "sne": "SNe",
-    "lenses": "lenses",
-}
+INPUTS_DIR = os.path.join(BASE_DIR, "data", "inputs", "structure_d")
 
 
-def _dataset_block_name(dataset_id, entry):
-    if dataset_id in DATASET_BLOCK_ALIASES:
-        return DATASET_BLOCK_ALIASES[dataset_id]
-    observable = str(entry.get("observable", dataset_id)).lower()
-    if "bao" in observable:
-        return "BAO"
-    if "lens" in observable:
-        return "lenses"
-    if "sne" in observable or "supernova" in observable:
-        return "SNe"
-    if "fs" in observable:
-        return "fσ8"
-    return str(entry.get("observable", dataset_id))
+def _resolve_column(df, aliases, required=False):
+    lower_map = {c.lower(): c for c in df.columns}
+    for alias in aliases:
+        col = lower_map.get(alias.lower())
+        if col is not None:
+            return col
+    if required:
+        raise ValueError(f"missing required column among aliases: {aliases}")
+    return None
 
 
-def _validate_covariance_shape(covariance, obs_size, dataset_id, cov_path):
-    cov = np.asarray(covariance, dtype=float)
-    if cov.ndim != 2 or cov.shape[0] != cov.shape[1]:
-        raise ValueError(f"covariance for {dataset_id} must be a square matrix: {cov_path}")
-    if cov.shape != (obs_size, obs_size):
-        raise ValueError(
-            f"covariance shape mismatch for {dataset_id}: expected {(obs_size, obs_size)}, got {cov.shape} ({cov_path})"
-        )
-    return cov
-
-
-def _resolve_covariance_file_path(dataset_desc, block_name):
-    candidate_paths = []
-    if dataset_desc.get("covariance_path"):
-        candidate_paths.append(os.path.join(BASE_DIR, dataset_desc["covariance_path"]))
-    dataset_path = os.path.join(BASE_DIR, dataset_desc["path"])
-    block_filename = BLOCK_COVARIANCE_FILENAMES.get(block_name)
-    if block_filename:
-        candidate_paths.append(os.path.join(os.path.dirname(dataset_path), block_filename))
-    for path in candidate_paths:
+def _find_dataset_file(stem):
+    variants = [
+        f"{stem}.csv",
+        f"{stem.lower()}.csv",
+        f"{stem.upper()}.csv",
+        f"{stem.capitalize()}.csv",
+    ]
+    for name in variants:
+        path = os.path.join(INPUTS_DIR, name)
         if os.path.exists(path):
             return path
-    return candidate_paths[-1] if candidate_paths else None
+    return None
 
 
-def _apply_covariance_policy(cfg, datasets, covariance_policy):
-    policy = covariance_policy or cfg.get("covariance_policy", "prefer_full")
-    if policy not in {"prefer_full", "diagonal_only", "full_required"}:
-        raise ValueError(f"unsupported covariance_policy: {policy}")
+def _find_covariance_file(stem):
+    variants = [
+        f"{stem}_cov.csv",
+        f"{stem}_covariance.csv",
+        f"{stem}_C.csv",
+        f"C_{stem}.csv",
+        f"{stem.lower()}_cov.csv",
+        f"{stem.lower()}_covariance.csv",
+        f"{stem.lower()}_C.csv",
+        f"C_{stem.lower()}.csv",
+    ]
+    for name in variants:
+        path = os.path.join(INPUTS_DIR, name)
+        if os.path.exists(path):
+            return np.loadtxt(path, delimiter=",")
+    return None
 
-    required_blocks = set(cfg.get("full_required_blocks", []))
-    if policy == "full_required" and not required_blocks:
-        required_blocks = {_dataset_block_name(dataset_id, entry) for dataset_id, entry in datasets.items()}
 
-    block_reports = []
-    active_blocks = []
+def _load_block(block_name, obs_aliases):
+    path = _find_dataset_file(block_name)
+    if path is None:
+        return None
 
-    for dataset_id, entry in datasets.items():
-        block_name = _dataset_block_name(dataset_id, entry)
-        active_blocks.append(block_name)
+    df = pd.read_csv(path)
+    z_col = _resolve_column(df, ["z"], required=True)
+    obs_col = _resolve_column(df, ["obs", *obs_aliases], required=True)
+    sigma_col = _resolve_column(df, ["sigma"])
 
-        desc = cfg["datasets"][dataset_id]
-        obs_size = len(entry["values"])
-        cov_path = _resolve_covariance_file_path(desc, block_name)
-        has_cov_file = bool(cov_path and os.path.exists(cov_path))
-        has_sigma = entry.get("errors") is not None
-        has_cov_in_entry = entry.get("covariance") is not None
-
-        if policy == "diagonal_only":
-            if has_sigma:
-                entry["covariance"] = None
-                mode = "diagonal_sigma"
-                source = "fallback"
-            elif has_cov_in_entry:
-                sigma = np.sqrt(np.diag(np.asarray(entry["covariance"], dtype=float)))
-                if len(sigma) != obs_size:
-                    raise ValueError(f"covariance diagonal length mismatch for {dataset_id}")
-                entry["errors"] = sigma
-                entry["covariance"] = None
-                mode = "diagonal_from_covariance"
-                source = "fallback"
-            else:
-                raise ValueError(f"dataset {dataset_id} has neither sigma nor covariance to build diagonal-only likelihood")
-        else:
-            if has_cov_file:
-                cov = np.loadtxt(cov_path, delimiter=",")
-                cov = _validate_covariance_shape(cov, obs_size, dataset_id, cov_path)
-                entry["covariance"] = cov
-                entry["errors"] = None
-                mode = "full_covariance"
-                source = "file"
-            elif has_cov_in_entry and policy == "prefer_full":
-                cov = _validate_covariance_shape(entry["covariance"], obs_size, dataset_id, "config_entry")
-                entry["covariance"] = cov
-                entry["errors"] = None
-                mode = "full_covariance"
-                source = "file"
-            elif has_sigma:
-                entry["covariance"] = None
-                mode = "diagonal_sigma"
-                source = "fallback"
-            else:
-                message = f"covariance required but missing sigma fallback for dataset {dataset_id}"
-                if policy == "full_required" and block_name in required_blocks:
-                    raise ValueError(f"full_required policy failed: missing covariance for block {block_name} ({dataset_id})")
-                raise ValueError(message)
-
-            if policy == "full_required" and block_name in required_blocks and mode != "full_covariance":
-                raise ValueError(f"full_required policy failed: missing covariance file for block {block_name} ({dataset_id})")
-
-        block_reports.append(
-            {
-                "dataset_id": dataset_id,
-                "block": block_name,
-                "covariance_mode": mode,
-                "source": source,
-                "covariance_path": cov_path if source == "file" else "",
-                "has_full_covariance": mode == "full_covariance",
-                "has_diagonal_sigma": entry.get("errors") is not None,
-            }
+    cov = _find_covariance_file(block_name)
+    if sigma_col is None and cov is None:
+        raise ValueError(
+            f"{os.path.basename(path)} requires 'sigma' for diagonal fallback or an external covariance matrix"
         )
 
-    return policy, active_blocks, block_reports
+    z = df[z_col].to_numpy(dtype=float)
+    obs = df[obs_col].to_numpy(dtype=float)
+
+    block = {
+        "name": block_name,
+        "z": z,
+        "obs": obs,
+        "mod": np.zeros_like(obs),
+    }
+
+    if sigma_col is not None:
+        block["sigma"] = df[sigma_col].to_numpy(dtype=float)
+    if cov is not None:
+        block["C"] = np.asarray(cov, dtype=float)
+
+    return block
 
 
-def covariance_usage_summary(block_reports, diagonal_fallback=True):
+def _base_blocks():
+    candidates = [
+        ("Hz", ["Hz", "H_obs"]),
+        ("fsigma8", ["fs8", "f_sigma8", "fsigma8"]),
+        ("sne", ["mu", "mub", "distance_modulus", "sne"]),
+        ("bao", ["DV_over_rs", "bao", "obs_bao"]),
+        ("lenses", ["lenses", "obs_lenses", "Ddt"]),
+    ]
+
+    blocks = []
+    for name, aliases in candidates:
+        block = _load_block(name, aliases)
+        if block is not None:
+            blocks.append(block)
+    return blocks
+
+
+def _apply_model_predictions(blocks, model_params, model_name):
+    for block in blocks:
+        if block["name"] == "Hz":
+            block["mod"] = model_LCDM_Hz(block["z"], model_params) if model_name == "LCDM" else model_RLL_like_Hz(block["z"], model_params)
+        elif block["name"] == "fsigma8":
+            block["mod"] = model_LCDM_fs8(block["z"], model_params) if model_name == "LCDM" else model_RLL_like_fs8(block["z"], model_params)
+        else:
+            # Blocos sem modelagem explícita neste pipeline: mantemos contribuição nula (obs-mod = 0)
+            block["mod"] = block["obs"].copy()
+
+
+def _chi2_blocks(blocks):
+    total = 0.0
+    for block in blocks:
+        if "C" in block:
+            total += chi2_with_covariance(block["obs"], block["mod"], block["C"])
+        else:
+            total += chi2(block["obs"], block["mod"], block["sigma"])
+    return float(total)
+
+
+def covariance_usage_summary(blocks):
     rows = []
-    for report in block_reports:
+    for block in blocks:
         rows.append(
             {
-                "block": report["block"],
-                "dataset_id": report["dataset_id"],
-                "covariance_mode": report["covariance_mode"],
-                "source": report["source"],
-                "covariance_path": report["covariance_path"],
-                "has_full_covariance": bool(report["has_full_covariance"]),
-                "has_diagonal_sigma": bool(report["has_diagonal_sigma"]),
-                "diagonal_fallback": bool(diagonal_fallback),
+                "block": block["name"],
+                "covariance_mode": "full" if "C" in block else "diagonal",
+                "has_full_covariance": "C" in block,
+                "has_diagonal_sigma": "sigma" in block,
             }
         )
     return pd.DataFrame(rows)
@@ -214,20 +190,23 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     fixed_params_lcdm = sorted(set(lcdm) - set(fit_params_lcdm))
     fixed_params_rll = sorted(set(rll) - set(fit_params_rll))
 
-    chi2_lcdm = 0.0
-    chi2_rll = 0.0
-    total_observables = 0
+    blocks_lcdm_active = _base_blocks()
+    blocks_rll_active = [
+        {
+            k: (v.copy() if isinstance(v, np.ndarray) else v)
+            for k, v in block.items()
+        }
+        for block in blocks_lcdm_active
+    ]
 
-    for dataset_id, entry in datasets.items():
-        c2_l, c2_r, n_obs = _evaluate_supported_dataset(dataset_id, entry, lcdm, rll)
-        chi2_lcdm += c2_l
-        chi2_rll += c2_r
-        total_observables += n_obs
+    _apply_model_predictions(blocks_lcdm_active, lcdm, "LCDM")
+    _apply_model_predictions(blocks_rll_active, rll, "RLL_like+AGN")
 
-    if total_observables <= 0:
-        raise ValueError("no supported observables were evaluated; check profile active_datasets")
+    chi2_lcdm = _chi2_blocks(blocks_lcdm_active)
+    chi2_rll = _chi2_blocks(blocks_rll_active)
+    total_observables = int(sum(len(block["obs"]) for block in blocks_lcdm_active))
 
-    active_datasets = ",".join(cfg_meta["active_datasets"])
+    active_datasets = ",".join(block["name"] for block in blocks_lcdm_active)
 
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
@@ -290,21 +269,12 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     df, out = run_classic_metrics(cfg_meta, datasets, covariance_policy)
 
     cov_rows = []
-    expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
-    summary_df = covariance_usage_summary(block_reports, diagonal_fallback=True)
-    missing = [
-        {"block": b, "dataset_id": "", "covariance_mode": "not_used", "source": "fallback", "covariance_path": "",
-         "has_full_covariance": False, "has_diagonal_sigma": False, "diagonal_fallback": True}
-        for b in expected_blocks if b not in set(summary_df["block"].tolist())
-    ]
-    if missing:
-        summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
-    summary_df.insert(0, "covariance_policy", covariance_policy)
-    summary_df.insert(1, "active_blocks", ",".join(active_blocks))
-    cov_rows.append(summary_df)
-
+    for model_name, active_blocks in (("LCDM", blocks_lcdm_active), ("RLL_like+AGN", blocks_rll_active)):
+        summary_df = covariance_usage_summary(active_blocks)
+        summary_df.insert(0, "model", model_name)
+        cov_rows.append(summary_df)
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
-    evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
+    evaluate_model(summary_rows, cov_out)
 
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
