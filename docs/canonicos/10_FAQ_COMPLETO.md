@@ -32,8 +32,8 @@ Define-se um campo efetivo onde a densidade espectral de fótons com coerência 
 onde C(ν,a) = fator de coerência (decoerência com z)
 ```
 
-Em z alto (primordial): C ≈ 1, fótons coerentes → comportam-se como pressão negativa (DE)  
-Em z baixo (hoje): C ≈ 0, fótons colapsados → comportam-se como matéria (DM)
+Em alto redshift (universo primordial): C ≈ 1, fótons em superposição coerente → comportam-se como energia escura (DE)  
+Em baixo redshift (universo tardio/hoje): C ≈ 0, fótons no estado colapsado efetivo → comportam-se como matéria escura (DM)
 
 ---
 
@@ -196,7 +196,7 @@ Razão: estado colapsado não emite luz própria.
 **Indiretamente suportado:** ✅ Sim
 ```
 ✓ w(z) dinâmica (DESI 2025)
-✓ Transição MD (Minnesota 2026)
+✓ Transição para regime de matéria escura (DM) dominante (Minnesota 2026)
 ✓ Acoplamento B (MeerKAT 2025)
 ✓ Pressão gravidade (Nature 2025)
 ✓ Spins alinhados em filamentos
@@ -270,7 +270,7 @@ Precisa de MCMC para determinar exatamente.
 z < 0.1:       ΛCDM e Rafael quase idênticos
 z = 0.5 - 1.0: Diferenças começam (5-10%)
 z = 1.0 - 2.0: Diferenças máximas (10-20%)
-z > 2.0:       Voltem a convergir (ambos DE-dominated)
+z > 2.0:       Voltam a convergir (ambos dominados por energia escura, DE)
 ```
 
 **Melhor janela:** z = 0.5 - 1.5
@@ -279,15 +279,15 @@ z > 2.0:       Voltem a convergir (ambos DE-dominated)
 
 ---
 
-### **P: Matéria escura é mesmo "colapsada"? Ou só pressão negativa?**
+### **P: Matéria escura (DM) é mesmo um estado colapsado? Ou só pressão negativa efetiva?**
 
 **R:**
 Bom debate. Duas interpretações:
 
 **Interpretação 1 (Rafael primária):**
-- De facto: transição DE → DM é mudança de estado quântico
+- De facto: com o tempo (z decrescente), transição energia escura (DE) → matéria escura (DM) é mudança de estado quântico
 - Colapso parcial: fótons deixam de propagar como ondas
-- Resultado: parecem "matéria"
+- Resultado: parecem matéria escura (DM)
 
 **Interpretação 2 (Alternativa):**
 - Não há colapso literal
@@ -396,7 +396,7 @@ z_t varia espacialmente:
 z_t(θ,φ) = z_t0 + δz_t(θ,φ)
 
 Efeito:
-Em certos (θ,φ), transição DE→DM mais cedo
+Em certos (θ,φ), o ponto de transição ocorre em redshift maior; em outros, em redshift menor
 → Cria dipolo preferencial
 → Explica anomalia SEM violar isotropia global
   (apenas localmente, como esperado em estrutura)
@@ -411,8 +411,8 @@ Próxima ação: Implementar e rodar.
 **R:**
 Bullet Cluster (colisão de aglomerados):
 ```
-Observação: gás desacelerou (pink), MD passou (azul)
-Interpretação: MD é colisionless
+Observação: gás desacelerou (pink), matéria escura (DM) passou (azul)
+Interpretação: matéria escura (DM) é colisionless
 
 Rafael prediz:
 - Superposição colapsada também colisionless ✅
@@ -543,7 +543,7 @@ Rafael usa fótons (observados).
 Outros: partículas novas (hipotéticas).
 
 Elegância:
-Rafael integra DE + DM + B + plasma em UM framework.
+Rafael integra energia escura (DE) + matéria escura (DM) + B + plasma em UM framework.
 Outros: setores separados.
 ```
 
