@@ -2,164 +2,152 @@ import os
 import numpy as np
 import pandas as pd
 
+from .likelihood import load_csv
 from .models import model_RLL_like_Hz, model_RLL_like_fs8
 
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+DATA = os.path.join(BASE_DIR, "data", "inputs", "structure_d")
+RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 
-def default_redshift_bins():
-    return [
-        ("low_z", -np.inf, 0.7),
-        ("mid_z", 0.7, 1.3),
-        ("high_z", 1.3, np.inf),
-    ]
-
-
-def _collect_observable_vectors(hz_df, fs8_df, params):
-    return {
-        "Hz": {
-            "z": hz_df["z"].to_numpy(dtype=float),
-            "values": model_RLL_like_Hz(hz_df["z"].to_numpy(dtype=float), params),
-        },
-        "f_sigma8": {
-            "z": fs8_df["z"].to_numpy(dtype=float),
-            "values": model_RLL_like_fs8(fs8_df["z"].to_numpy(dtype=float), params),
-        },
-    }
+RLL_PARAMS = {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Ol": 0.7,
+    "sigma8": 0.8,
+    "gamma": 0.55,
+    "alpha": 0.06,
+    "z_peak": 2.0,
+    "width": 1.2,
+    "beta": 0.0,
+}
 
 
-def _build_jacobian(group_name, z_mask_hz, z_mask_fs8, hz_df, fs8_df, params, fit_params, rel_step=1e-4):
+def adaptive_step(value, rel_step=1e-2, min_step=1e-4):
+    base = abs(float(value))
+    step = rel_step * base
+    if step < min_step:
+        step = min_step
+    return step
+
+
+def central_finite_difference(model_fn, z, params, param_name, step):
+    p_plus = dict(params)
+    p_minus = dict(params)
+    p_plus[param_name] = float(params[param_name]) + step
+    p_minus[param_name] = float(params[param_name]) - step
+
+    out_plus = np.asarray(model_fn(z, p_plus), dtype=float)
+    out_minus = np.asarray(model_fn(z, p_minus), dtype=float)
+    return (out_plus - out_minus) / (2.0 * step)
+
+
+def derivative_metrics(nominal_output, derivative, param_value, sigma=None):
+    nominal_output = np.asarray(nominal_output, dtype=float)
+    derivative = np.asarray(derivative, dtype=float)
+
+    elasticity = np.full_like(derivative, np.nan, dtype=float)
+    if param_value != 0.0:
+        valid = nominal_output != 0.0
+        elasticity[valid] = (param_value / nominal_output[valid]) * derivative[valid]
+
+    normalized_score = np.full_like(derivative, np.nan, dtype=float)
+    if sigma is not None:
+        sigma_arr = np.asarray(sigma, dtype=float)
+        valid_sigma = sigma_arr > 0.0
+        normalized_score[valid_sigma] = np.abs(derivative[valid_sigma]) / sigma_arr[valid_sigma]
+
+    return np.abs(derivative), elasticity, normalized_score
+
+
+def stability_check(derivative_step, derivative_half_step, rtol=5e-2, atol=1e-10):
+    derivative_step = np.asarray(derivative_step, dtype=float)
+    derivative_half_step = np.asarray(derivative_half_step, dtype=float)
+
+    delta = np.abs(derivative_half_step - derivative_step)
+    scale = np.maximum(np.abs(derivative_half_step), atol)
+    rel_diff = delta / scale
+    stable = rel_diff <= rtol
+    return stable, rel_diff
+
+
+def sensitivity_table_by_redshift(params=None):
+    params = dict(RLL_PARAMS if params is None else params)
+
+    hz = load_csv(os.path.join(DATA, "Hz.csv"), ["z", "Hz", "sigma"])
+    fs8 = load_csv(os.path.join(DATA, "fsigma8.csv"), ["z", "fs8", "sigma"])
+
+    z_hz = hz["z"].to_numpy(dtype=float)
+    z_fs = fs8["z"].to_numpy(dtype=float)
+
+    nominal_hz = np.asarray(model_RLL_like_Hz(z_hz, params), dtype=float)
+    nominal_fs = np.asarray(model_RLL_like_fs8(z_fs, params), dtype=float)
+
     rows = []
-    base = _collect_observable_vectors(hz_df, fs8_df, params)
+    for p_name in params:
+        p_value = float(params[p_name])
+        dp = adaptive_step(p_value)
+        dp_half = dp / 2.0
 
-    if group_name in ("Hz", "combined"):
-        rows.append(base["Hz"]["values"][z_mask_hz])
-    if group_name in ("f_sigma8", "combined"):
-        rows.append(base["f_sigma8"]["values"][z_mask_fs8])
+        deriv_hz = central_finite_difference(model_RLL_like_Hz, z_hz, params, p_name, dp)
+        deriv_hz_half = central_finite_difference(model_RLL_like_Hz, z_hz, params, p_name, dp_half)
+        stable_hz, rel_diff_hz = stability_check(deriv_hz, deriv_hz_half)
+        abs_hz, elas_hz, norm_hz = derivative_metrics(nominal_hz, deriv_hz, p_value, sigma=hz["sigma"].to_numpy(dtype=float))
 
-    if not rows:
-        return np.zeros((0, len(fit_params)), dtype=float)
+        for idx, z_val in enumerate(z_hz):
+            rows.append(
+                {
+                    "observable": "Hz",
+                    "z": float(z_val),
+                    "parameter": p_name,
+                    "param_nominal": p_value,
+                    "dp": dp,
+                    "dO_dp": float(deriv_hz[idx]),
+                    "abs_dO_dp": float(abs_hz[idx]),
+                    "dlnO_dlnp": float(elas_hz[idx]) if np.isfinite(elas_hz[idx]) else np.nan,
+                    "sigma_obs": float(hz["sigma"].iloc[idx]),
+                    "normalized_score": float(norm_hz[idx]) if np.isfinite(norm_hz[idx]) else np.nan,
+                    "stable": bool(stable_hz[idx]),
+                    "stability_rel_diff": float(rel_diff_hz[idx]),
+                    "step_reference": dp,
+                    "step_validation": dp_half,
+                }
+            )
 
-    base_vector = np.concatenate(rows)
-    n_obs = base_vector.size
-    jacobian = np.zeros((n_obs, len(fit_params)), dtype=float)
+        deriv_fs = central_finite_difference(model_RLL_like_fs8, z_fs, params, p_name, dp)
+        deriv_fs_half = central_finite_difference(model_RLL_like_fs8, z_fs, params, p_name, dp_half)
+        stable_fs, rel_diff_fs = stability_check(deriv_fs, deriv_fs_half)
+        abs_fs, elas_fs, norm_fs = derivative_metrics(nominal_fs, deriv_fs, p_value, sigma=fs8["sigma"].to_numpy(dtype=float))
 
-    for col, p in enumerate(fit_params):
-        step = rel_step * max(abs(float(params[p])), 1.0)
-        p_up = dict(params)
-        p_dn = dict(params)
-        p_up[p] = float(params[p]) + step
-        p_dn[p] = float(params[p]) - step
+        for idx, z_val in enumerate(z_fs):
+            rows.append(
+                {
+                    "observable": "fσ8",
+                    "z": float(z_val),
+                    "parameter": p_name,
+                    "param_nominal": p_value,
+                    "dp": dp,
+                    "dO_dp": float(deriv_fs[idx]),
+                    "abs_dO_dp": float(abs_fs[idx]),
+                    "dlnO_dlnp": float(elas_fs[idx]) if np.isfinite(elas_fs[idx]) else np.nan,
+                    "sigma_obs": float(fs8["sigma"].iloc[idx]),
+                    "normalized_score": float(norm_fs[idx]) if np.isfinite(norm_fs[idx]) else np.nan,
+                    "stable": bool(stable_fs[idx]),
+                    "stability_rel_diff": float(rel_diff_fs[idx]),
+                    "step_reference": dp,
+                    "step_validation": dp_half,
+                }
+            )
 
-        up = _collect_observable_vectors(hz_df, fs8_df, p_up)
-        dn = _collect_observable_vectors(hz_df, fs8_df, p_dn)
-
-        up_rows = []
-        dn_rows = []
-        if group_name in ("Hz", "combined"):
-            up_rows.append(up["Hz"]["values"][z_mask_hz])
-            dn_rows.append(dn["Hz"]["values"][z_mask_hz])
-        if group_name in ("f_sigma8", "combined"):
-            up_rows.append(up["f_sigma8"]["values"][z_mask_fs8])
-            dn_rows.append(dn["f_sigma8"]["values"][z_mask_fs8])
-
-        up_vec = np.concatenate(up_rows)
-        dn_vec = np.concatenate(dn_rows)
-        jacobian[:, col] = (up_vec - dn_vec) / (2.0 * step)
-
-    return jacobian
-
-
-def _safe_corrcoef_columns(jacobian):
-    n_params = jacobian.shape[1]
-    if jacobian.shape[0] < 2:
-        return np.eye(n_params, dtype=float)
-
-    centered = jacobian - jacobian.mean(axis=0, keepdims=True)
-    std = jacobian.std(axis=0, ddof=1)
-    corr = np.zeros((n_params, n_params), dtype=float)
-
-    for i in range(n_params):
-        corr[i, i] = 1.0
-        for j in range(i + 1, n_params):
-            if std[i] == 0.0 or std[j] == 0.0:
-                cij = 0.0
-            else:
-                cov_ij = float(np.dot(centered[:, i], centered[:, j]) / (jacobian.shape[0] - 1))
-                cij = cov_ij / (std[i] * std[j])
-            corr[i, j] = cij
-            corr[j, i] = cij
-    return corr
+    return pd.DataFrame(rows)
 
 
-def analyze_rll_degeneracy(hz_df, fs8_df, params, results_dir, fit_params=None, z_bins=None, high_corr_threshold=0.9):
-    if fit_params is None:
-        fit_params = ["H0", "Om", "sigma8", "gamma", "alpha", "z_peak", "width"]
-    if z_bins is None:
-        z_bins = default_redshift_bins()
-
-    os.makedirs(results_dir, exist_ok=True)
-    summary_rows = []
-
-    z_hz = hz_df["z"].to_numpy(dtype=float)
-    z_fs8 = fs8_df["z"].to_numpy(dtype=float)
-
-    for zbin_name, zmin, zmax in z_bins:
-        mask_hz = (z_hz >= zmin) & (z_hz < zmax)
-        mask_fs8 = (z_fs8 >= zmin) & (z_fs8 < zmax)
-
-        for group_name in ("Hz", "f_sigma8", "combined"):
-            J = _build_jacobian(group_name, mask_hz, mask_fs8, hz_df, fs8_df, params, fit_params)
-            if J.shape[0] == 0:
-                continue
-
-            corr = _safe_corrcoef_columns(J)
-            jtj = J.T @ J
-            try:
-                cond_jtj = float(np.linalg.cond(jtj))
-            except np.linalg.LinAlgError:
-                cond_jtj = float("inf")
-
-            corr_df = pd.DataFrame(corr, index=fit_params, columns=fit_params)
-            matrix_path = os.path.join(results_dir, f"rll_degeneracy_matrix_{group_name}_{zbin_name}.csv")
-            corr_df.to_csv(matrix_path, index=True)
-
-            for i, p_i in enumerate(fit_params):
-                for j in range(i + 1, len(fit_params)):
-                    p_j = fit_params[j]
-                    c = float(corr[i, j])
-                    summary_rows.append(
-                        {
-                            "zbin": zbin_name,
-                            "group": group_name,
-                            "param_i": p_i,
-                            "param_j": p_j,
-                            "corr": c,
-                            "abs_corr": abs(c),
-                            "high_corr_pair": bool(abs(c) >= high_corr_threshold),
-                            "cond_jtj": cond_jtj,
-                            "n_obs": int(J.shape[0]),
-                            "n_params": int(J.shape[1]),
-                        }
-                    )
-
-    summary_df = pd.DataFrame(summary_rows)
-    summary_path = os.path.join(results_dir, "rll_degeneracy_by_zbin.csv")
-    summary_df.to_csv(summary_path, index=False)
-    return summary_df, summary_path
+def main():
+    os.makedirs(RESULTS, exist_ok=True)
+    out = os.path.join(RESULTS, "rll_sensitivity_derivatives.csv")
+    df = sensitivity_table_by_redshift()
+    df.to_csv(out, index=False)
+    print(f"Wrote: {out}")
 
 
-def top_degenerate_pairs_by_bin(summary_df, top_n=3):
-    out = {}
-    if summary_df.empty:
-        return out
-
-    for zbin, gdf in summary_df.groupby("zbin"):
-        top = gdf.sort_values(["abs_corr", "group"], ascending=[False, True]).head(top_n)
-        out[zbin] = [
-            {
-                "group": row["group"],
-                "pair": f"{row['param_i']}~{row['param_j']}",
-                "corr": float(row["corr"]),
-            }
-            for _, row in top.iterrows()
-        ]
-    return out
+if __name__ == "__main__":
+    main()
