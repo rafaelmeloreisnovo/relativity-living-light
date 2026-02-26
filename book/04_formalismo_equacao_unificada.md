@@ -48,4 +48,15 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 
 A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ₈(z)` e lensing, com nomenclatura alinhada a `docs/CONCEPTUAL_FRAMEWORK.md`, `docs/Relativity_Living_Light.md` e `docs/LAGRANGIANO_EFT.md`.
 
+
+## Referências técnicas e bibliográficas
+
+- Planck Collaboration (2020). *Planck 2018 results. VI. Cosmological parameters*. A&A 641, A6. DOI:10.1051/0004-6361/201833910.
+- Linder, E. V. (2003). *Exploring the expansion history of the universe*. PRL 90, 091301.
+- Bellini, E., & Sawicki, I. (2015). *Maximal Freedom at Minimum Cost: Linear Large-Scale Structure in General Modifications of Gravity*. JCAP 2015, 050.
+- Bartelmann, M., & Schneider, P. (2001). *Weak gravitational lensing*. Physics Reports, 340(4-5), 291-472.
+- DES Collaboration (2022). *Dark Energy Survey Year 3 results: cosmological constraints from galaxy clustering and weak lensing*. PRD 105, 023520.
+
+**Fontes de consolidação no repositório:** `newadd/03_Descricao_Academica_PhD_Completa.md` (seção “Bibliografia Consolidada”), `docs/REFERENCES.md` e `book/39_apendice_referencias_fontes.md`.
+
 ---
