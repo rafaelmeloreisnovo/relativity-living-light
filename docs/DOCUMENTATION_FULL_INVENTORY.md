@@ -114,3 +114,24 @@
 | md | `docs/numeros_rafaelianos/Readme.md` | ⚡📖 Livro Sagrado dos Números Rafaelianos | 6771 | `a317cd897ca9` |
 | md | `docs/numeros_rafaelianos/harmonica.md` | 📐 Significado Matemático | 1534 | `ba0a50c87b90` |
 | zip | `docs/rll_revisado_v2.zip` | 22 entradas | 40801 | `aa61125ad94d` |
+
+
+## Audit trail — deduplicação nominal (2026-02-26)
+
+Critério aplicado: nomes com sufixo ` (n)` foram agrupados por nome-base; arquivo canônico definido como nome sem sufixo (preferindo arquivo já existente quando havia), e excedentes movidos para `duplicates_archive/` no mesmo diretório-raiz.
+
+| Escopo | Padrão duplicado | Canônico | Ação sobre excedentes |
+|---|---|---|---|
+| `figs/archive/` | `density_evolution_sup (1).png` | `figs/archive/density_evolution_sup.png` | n/a (apenas 1 cópia) |
+| `figs/archive/` | `hz_superposicao (1).png` | `figs/archive/hz_superposicao.png` | n/a (apenas 1 cópia) |
+| `figs/archive/` | `mock_H_fit (1..2).png` | `figs/archive/mock_H_fit.png` | `figs/archive/duplicates_archive/mock_H_fit (2).png` |
+| `figs/archive/` | `mock_SN_fit (1..3).png` | `figs/archive/mock_SN_fit.png` | `figs/archive/duplicates_archive/mock_SN_fit (2).png`, `figs/archive/duplicates_archive/mock_SN_fit (3).png` |
+| `figs/archive/` | `post_1d_Os (1..2).png` | `figs/archive/post_1d_Os.png` | `figs/archive/duplicates_archive/post_1d_Os (2).png` |
+| `figs/archive/` | `post_1d_zt (1..4).png` | `figs/archive/post_1d_zt.png` | `figs/archive/duplicates_archive/post_1d_zt (2).png`, `figs/archive/duplicates_archive/post_1d_zt (3).png`, `figs/archive/duplicates_archive/post_1d_zt (4).png` |
+| `figs/archive/` | `post_2d_Os_wt (1).png` | `figs/archive/post_2d_Os_wt.png` | n/a (apenas 1 cópia) |
+| `figs/archive/` | `post_2d_zt_wt (1..2).png` | `figs/archive/post_2d_zt_wt.png` | `figs/archive/duplicates_archive/post_2d_zt_wt (2).png` |
+| `figs/archive/` | `rotation_curves_sup (1).png` | `figs/archive/rotation_curves_sup.png` | n/a (apenas 1 cópia) |
+| `data/` | `Hz_superposicao (1).ipynb` | `data/Hz_superposicao.ipynb` (já existente) | `data/duplicates_archive/Hz_superposicao (1).ipynb` |
+| `newadd/` | `06_ETHICS_SYSTEMS (1).md` | `newadd/06_ETHICS_SYSTEMS.md` (já existente) | `newadd/duplicates_archive/06_ETHICS_SYSTEMS (1).md` |
+
+Referência textual atualizada em README: `README_MASTER.md` passou a apontar para `ciencia_Hz_superposicao.ipynb` (sem sufixo de cópia).

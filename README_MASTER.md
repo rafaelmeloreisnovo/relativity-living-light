@@ -106,7 +106,7 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
 │   ├── unified_entropy_margin_10_12.csv
 │   ├── Hz_superposicao.ipynb
 │   ├── ciencia_Hz_superposicao.ipynb
-│   ├── ciencia_Hz_superposicao (1).ipynb
+│   ├── ciencia_Hz_superposicao.ipynb
 │   ├── density_decomp.ipynb
 │   ├── rotation_model.ipynb
 │   ├── relativity_bundle_results.zip
@@ -142,6 +142,13 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
 
 ## 🔁 Fluxo Único de Execução Científica
 
+Comando único para reproduzir os principais pipelines:
+
+```bash
+bash scripts/run_repro_all.sh
+```
+
+
 **Árvore canônica obrigatória:** `docs/` + `data/` + `results/`.
 
 1. **Entrada (definição científica):** `docs/`
@@ -154,6 +161,27 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
    - Estrutura de saída canônica: `results/structure_d/README.md`
 
 `to_Add/` é reservado para histórico e auditoria, sem função operacional.
+
+## Reprodução rápida (1 comando)
+
+Para executar a reprodução principal de ponta a ponta, use:
+
+- `bash scripts/run_repro_all.sh`
+
+Modo opcional (inclui o preview de dois componentes de radiação):
+
+- `bash scripts/run_repro_all.sh --with-two-rad`
+
+Artefatos esperados após a execução:
+
+- `results/structure_d/model_comparison.csv`
+- `results/RLL_chi2_results.csv`
+- `results/two_radiation_model_preview.csv`
+- `figs/paper/RLL_validacao_real.png`
+
+> Nota: `results/two_radiation_model_preview.csv` é gerado apenas quando a flag opcional `--with-two-rad` é usada.
+
+---
 
 ## 🔬 Observáveis Testados
 
