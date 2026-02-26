@@ -3,7 +3,15 @@ import numpy as np
 import pandas as pd
 
 from .data_access import load_active_datasets
-from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
+from .likelihood import (
+    aic,
+    bic,
+    canonical_model_name,
+    chi2,
+    chi2_with_covariance,
+    estimate_log_evidence,
+    evaluate_model,
+)
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
@@ -171,11 +179,49 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
+def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
+    z_values = entry.get("z")
+    if z_values is None:
+        return 0.0, 0.0, 0
+
+    if dataset_id in {"hz", "real_hz"}:
+        lcdm_values = model_LCDM_Hz(z_values, lcdm)
+        rll_values = model_RLL_like_Hz(z_values, rll)
+    elif dataset_id == "fsigma8":
+        lcdm_values = model_LCDM_fs8(z_values, lcdm)
+        rll_values = model_RLL_like_fs8(z_values, rll)
+    else:
+        return 0.0, 0.0, 0
+
+    chi2_lcdm = _chi2_from_entry(entry, lcdm_values)
+    chi2_rll = _chi2_from_entry(entry, rll_values)
+    return chi2_lcdm, chi2_rll, len(entry["values"])
+
+
+def _build_bayes_evidence_rows(model_rows):
+    evidence_rows = []
+    for row in model_rows:
+        logz, logz_err = estimate_log_evidence(chi2_val=row["chi2"], k=row["k"], n_obs=row["N"])
+        evidence_rows.append(
+            {
+                "model": canonical_model_name(row["model"]),
+                "logZ": logz,
+                "logZ_err": logz_err,
+            }
+        )
+    return evidence_rows
+
+
+def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    cfg, datasets = load_active_datasets(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+
+    import json
+    with open(os.path.join(BASE_DIR, config_path), "r", encoding="utf-8") as f:
+        cfg = json.load(f)
+
     covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
@@ -204,12 +250,36 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
 
-    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
-                     N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
-    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
-                     N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
+    rows.append(
+        dict(
+            model="LCDM",
+            chi2=chi2_lcdm,
+            AIC=aic(chi2_lcdm, k_lcdm),
+            BIC=bic(chi2_lcdm, k_lcdm, total_observables),
+            N=total_observables,
+            k=k_lcdm,
+            fit_params=",".join(fit_params_lcdm),
+            fixed_params=",".join(fixed_params_lcdm),
+            datasets_used=active_datasets,
+            run_name=cfg_meta.get("run_name", "unknown"),
+            covariance_policy=covariance_policy,
+        )
+    )
+    rows.append(
+        dict(
+            model="RLL_like+AGN",
+            chi2=chi2_rll,
+            AIC=aic(chi2_rll, k_rll),
+            BIC=bic(chi2_rll, k_rll, total_observables),
+            N=total_observables,
+            k=k_rll,
+            fit_params=",".join(fit_params_rll),
+            fixed_params=",".join(fixed_params_rll),
+            datasets_used=active_datasets,
+            run_name=cfg_meta.get("run_name", "unknown"),
+            covariance_policy=covariance_policy,
+        )
+    )
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
@@ -218,9 +288,18 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
     summary_df = covariance_usage_summary(block_reports, diagonal_fallback=True)
     missing = [
-        {"block": b, "dataset_id": "", "covariance_mode": "not_used", "source": "fallback", "covariance_path": "",
-         "has_full_covariance": False, "has_diagonal_sigma": False, "diagonal_fallback": True}
-        for b in expected_blocks if b not in set(summary_df["block"].tolist())
+        {
+            "block": b,
+            "dataset_id": "",
+            "covariance_mode": "not_used",
+            "source": "fallback",
+            "covariance_path": "",
+            "has_full_covariance": False,
+            "has_diagonal_sigma": False,
+            "diagonal_fallback": True,
+        }
+        for b in expected_blocks
+        if b not in set(summary_df["block"].tolist())
     ]
     if missing:
         summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
@@ -231,9 +310,16 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
     evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
 
+    bayes_rows = _build_bayes_evidence_rows(rows)
+    bayes_out = os.path.join(RESULTS, "bayes_evidence.csv")
+    bayes_df = evaluate_model(bayes_rows, bayes_out)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+    print(f"Wrote: {bayes_out}")
+    print("\nBayesian evidence summary")
+    print(bayes_df.to_string(index=False))
 
 
 if __name__ == "__main__":
