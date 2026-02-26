@@ -1,10 +1,10 @@
-Coloque aqui seus CSVs reais. Formatos esperados:
+# Legado (histórico)
 
-## Hz.csv
-colunas: z, Hz, sigma
+Não use este diretório como entrada ativa.
 
-## fsigma8.csv
-colunas: z, fs8, sigma
+Entradas oficiais:
+- `data/inputs/structure_d/Hz.csv`
+- `data/inputs/structure_d/fsigma8.csv`
 
-Você pode gerar dados exemplo rodando:
-`python -m code.make_example_data`
+Comando oficial:
+`python -m data.pipelines.structure_d.make_example_data`
