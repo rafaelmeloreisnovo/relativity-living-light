@@ -6,6 +6,10 @@
 
 ---
 
+> **Classificação:** este documento é um **inventário histórico** de bundles legados.
+> **Não constitui recomendação** de armazenamento de arquivos binários no core do repositório.
+> Fonte normativa: [`docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md`](POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md).
+
 ## Registro de integração de bundles
 
 Campos obrigatórios por bundle: **nome do bundle**, **hash**, **data**, **origem**, **status de integração** (`não iniciado` / `em progresso` / `concluído`).
