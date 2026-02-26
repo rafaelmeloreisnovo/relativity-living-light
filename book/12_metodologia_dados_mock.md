@@ -8,8 +8,8 @@ Consolida o papel de simulações sintéticas para pré-validação.
 Documentos e artefatos relacionados incorporados nesta etapa:
 
 - data/posterior_unified_synth.csv
-- figs/paper/mock_H_fit.png
-- figs/paper/mock_SN_fit.png
+- figs/conceptual/concept_mock_hubble_fit_v01.png
+- figs/conceptual/concept_mock_supernova_fit_v01.png
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.

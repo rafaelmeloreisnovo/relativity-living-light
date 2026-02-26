@@ -43,17 +43,18 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 | Figura (canônica) | Métrica/Conteúdo | Objetivo |
 |---|---|---|
 | `figs/paper/corner_plot_unified_highres.png` | correlação de parâmetros | degenerescências e regiões credíveis |
-| `figs/paper/post_1d_Os.png` | posterior 1D de `Ω_s0` | constraints de `Ω_s0`, `z_t`, `w_t` |
-| `figs/paper/post_1d_zt.png` | posterior 1D de `z_t` | constraints de `Ω_s0`, `z_t`, `w_t` |
+| `figs/conceptual/concept_posterior_omega_s0_1d_v01.png` | posterior 1D de `Ω_s0` | constraints de `Ω_s0`, `z_t`, `w_t` |
+| `figs/conceptual/concept_posterior_zt_1d_v01.png` | posterior 1D de `z_t` | constraints de `Ω_s0`, `z_t`, `w_t` |
 | `figs/paper/post_2d_Os_zt.png` | posterior 2D `Ω_s0 × z_t` | constraints de `Ω_s0`, `z_t`, `w_t` |
-| `figs/paper/post_2d_Os_wt.png` | posterior 2D `Ω_s0 × w_t` | constraints de `Ω_s0`, `z_t`, `w_t` |
-| `figs/paper/post_2d_zt_wt.png` | posterior 2D `z_t × w_t` | constraints de `Ω_s0`, `z_t`, `w_t` |
+| `figs/conceptual/concept_posterior_omega_s0_wt_2d_v01.png` | posterior 2D `Ω_s0 × w_t` | constraints de `Ω_s0`, `z_t`, `w_t` |
+| `figs/conceptual/concept_posterior_zt_wt_2d_v01.png` | posterior 2D `z_t × w_t` | constraints de `Ω_s0`, `z_t`, `w_t` |
 
 ## Regra de nomenclatura (consolidada com `RMR/04_FIGURAS_README.md`)
 
 - Preferir sempre o prefixo `unified_` para resultados do modelo unificado.
-- Manter caminhos no padrão absoluto relativo ao repositório: `figs/paper/<arquivo>.png`.
-- Em caso de duplicidade de nomes (variantes antigas vs. atuais), declarar explicitamente o arquivo canônico neste capítulo.
+- Para figuras conceituais, adotar caminho canônico: `figs/conceptual/concept_<tema>_<observavel>_v<NN>.png`.
+- Manter demais painéis científicos no padrão: `figs/paper/<arquivo>.png`.
+- Em caso de duplicidade de nomes (variantes antigas vs. atuais), manter o binário em `figs/archive/` e expor o nome canônico em `figs/conceptual/` via symlink, declarando explicitamente o arquivo canônico neste capítulo.
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
