@@ -31,3 +31,19 @@ wc -l README.md docs/README_ROOT_LEGACY_ARCHIVE.md
 ## Nota
 
 - Este checklist não substitui backup externo; é uma verificação técnica local de integridade.
+
+## Validação de links
+
+Executar validação editorial dos capítulos alterados em `book/` antes de abrir/atualizar PR de documentação:
+
+```bash
+python3 scripts/validate_book_links.py
+```
+
+Opcionalmente, validar um subconjunto explícito de capítulos alterados:
+
+```bash
+python3 scripts/validate_book_links.py book/12_metodologia_dados_mock.md book/13_metodologia_dados_reais.md
+```
+
+**Regra de aceite:** zero links relativos quebrados nos capítulos alterados, incluindo a sequência mínima de navegação editorial (`capítulo anterior`, `sumário`, `capítulo próximo`).

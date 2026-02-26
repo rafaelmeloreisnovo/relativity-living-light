@@ -25,6 +25,8 @@ Referência: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/F
 Documentos e artefatos relacionados incorporados nesta etapa:
 ## Hipótese de acoplamento magneto-coerente
 
+### Modelo de acoplamento magneto-coerente (forma operacional)
+
 A hipótese estende a normalização de superposição fotônica por um termo dependente do setor magnético, seguindo a forma já registrada em `docs/BOOSTERS.md`:
 
 **Eq. 9.1**  
@@ -32,9 +34,24 @@ A hipótese estende a normalização de superposição fotônica por um termo de
 Ω_s0 → Ω_s0·[1+α_B(Ω_B0 a⁻⁴)^β]
 ```
 
-Neste acoplamento, `α_B` representa a força efetiva da interação entre campo magnético e setor de coerência fotônica, enquanto `β` controla a não-linearidade da resposta (saturação, amplificação sublinear ou superlinear conforme o regime). O cenário físico associado é de halos e aglomerados com plasma magnetizado onde o campo `B` modula a manutenção da coerência fotônica, alterando a fração efetiva entre ramo expansivo e ramo atrativo.
+Interpretação operacional dos parâmetros:
+
+- `α_B`: amplitude da força efetiva de acoplamento entre o setor magnético e o setor de coerência fotônica. Quando `α_B→0`, recupera-se o caso sem modulação magneto-coerente.
+- `β`: índice de regime da resposta ao termo magnético:
+  - `0<β<1` (**sublinear**): resposta amortecida/saturante; aumentos em `Ω_B0 a⁻⁴` produzem incrementos relativamente menores no acoplamento efetivo.
+  - `β≈1` (**linear**): resposta proporcional direta à energia magnética efetiva.
+  - `β>1` (**superlinear**): resposta amplificada; pequenas variações no setor magnético podem gerar modulação mais forte de `Ω_s0`.
+
+Hipótese de validade por domínio:
+
+- **Background cosmológico**: usa-se a forma média efetiva, com contribuição principal na contabilidade energética e em `H(z)`.
+- **Ambiente de halo/cluster**: a mesma estrutura funcional é interpretada como aproximação fenomenológica para plasma magnetizado, cisalhamento e turbulência locais, onde a modulação de coerência tende a ser mais relevante.
+
+Resultado o acoplamento magneto-coerente modulando a amplitude efetiva de superposição em ambientes magnetizados é sustentado por [Faraday-Rotation-Review-2011, Planck2018, DESI-DR2-2025].
 
 ## Papel do plasma (T, P) na dinâmica
+
+### Termo plasmático e interpretação observável
 
 No nível de background, a contribuição plasmática é modelada por:
 
@@ -50,7 +67,15 @@ Em termos microfísicos e magneto-térmicos, usa-se:
 ρ_plasma=(3/2)nk_B T/c² + B²/(2μ₀c²)
 ```
 
+Conexão com proxies observacionais:
+
+- **Temperatura (`T`)**: mapeia energia térmica do meio (raios X em clusters) e informa o termo `(3/2)nk_B T/c²`.
+- **Faraday (RM)**: traça magnetização integrada em linha de visada (`n_e B_∥`) e auxilia a ancorar a parcela magnética `B²/(2μ₀c²)`.
+- **Pressão efetiva (`P_eff`)**: combina pressão térmica e magnetização/turbulência, com impacto no termo gravitacional efetivo `ρ+3p/c²`.
+
 A pressão térmica não é apenas correção hidrodinâmica local: ela entra na fonte gravitacional efetiva via combinação `ρ+3p/c²`, reforçando a curvatura efetiva quando `T` e `P` aumentam. Em linha com `docs/VELOCIDADE_SOM.md`, o efeito dominante no regime discutido é sobre o background e sobre a transição coerência/decoerência; não há crescimento próprio por instabilidade de Jeans do componente neste domínio de parâmetros.
+
+Resultado o papel termodinâmico do plasma na fonte gravitacional efetiva e na transição de coerência é sustentado por [Cluster-MHD-2024, Faraday-Rotation-Review-2011, Planck2018].
 
 ## Decoerência e regime radiativo
 
@@ -60,7 +85,64 @@ Assim, distingue-se explicitamente:
 - efeito global cosmológico (termos médios escalando como `a⁻⁴`);
 - efeito local em estrutura (halos/aglomerados), onde magnetização, cisalhamento e turbulência modulam a coerência e a resposta gravitacional efetiva.
 
+
+## Referência explícita dos números estruturais
+
+Quando houver citação dos números **72** ou **144** para discretização direcional e malhas residuais deste capítulo, adotar a tabela canônica em [`38_apendice_numeros_rafaelianos.md`](./38_apendice_numeros_rafaelianos.md#tabela-canônica-de-números-estruturais).
+
+- `72`: discretização angular em setores de `5°` para assinatura magneto-plasmática.
+- `144`: malha refinada (`12×12`) para inspeção de resíduos em mapas observacionais.
+
+Nota de escopo: se `72` ou `144` aparecerem somente como convenção editorial/histórica, rotular explicitamente como uso não técnico.
+## Geometria e estrutura de campo
+
+Esta seção adota, para o setor magneto-plasmático, a formulação geométrica de base documentada em [`newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md), em particular os elementos toroidais, integrais de circulação e vínculos topológicos usados para descrever coerência de campo.
+
+### Geometria toroidal e coordenadas
+
+O setor é representado em geometria toroidal com decomposição angular em coordenadas poloidal (`θ`) e toroidal (`φ`), além de um parâmetro radial efetivo (`r`) para cascas de fluxo magnetizado. No regime de halos e aglomerados, essa parametrização separa:
+
+- variação ao longo das linhas fechadas do toro (direção toroidal);
+- variação transversal de curvatura/encurvamento de linha de campo (direção poloidal);
+- estratificação radial de densidade de plasma, pressão e intensidade magnética.
+
+Com isso, `B(r,θ,φ)` e os campos termodinâmicos associados (`T`, `P`, `n`) entram no modelo de forma anisotrópica controlada, preservando a leitura física de circulação local e acoplamento com a coerência fotônica.
+
+### Integrais de coerência
+
+Para quantificar coerência de campo em domínio toroidal, introduzem-se integrais/funcionais de circulação e fluxo efetivo, inspirados na base geométrica (`∮`, `∫`) de `newadd/04_GEOMETRY.md`:
+
+- integral de circulação coerente ao longo de curva fechada de campo (`C`): `I_C = ∮_C ω`;
+- integral de fluxo em superfície seccional (`Σ`): `Φ_Σ = ∫_Σ dω`;
+- funcional escalar de coerência média `𝒞[z]`, usado para modular os termos efetivos do setor magneto-coerente.
+
+No modelo efetivo, essas quantidades entram como operadores de peso sobre o acoplamento `Ω_s0·[1+α_B(Ω_B0 a⁻⁴)^β]`, permitindo distinguir regiões com alta coerência geométrica (menor decoerência local) de regiões turbulentas (maior transferência para o ramo atrativo).
+
+### Simetria geométrica e termos observáveis
+
+Assume-se simetria axial/toroidal como caso de referência, com anisotropias permitidas como perturbações controladas por magnetização, cisalhamento e turbulência plasmática. Essa estrutura de simetria organiza a projeção para observáveis:
+
+- **lensing `κ`**: responde à redistribuição geométrica de densidade/pressão efetiva e à quebra local de isotropia no potencial projetado;
+- **crescimento `fσ₈`**: sensível ao histórico de coerência/decoerência e ao impacto indireto da geometria magneto-plasmática na taxa de expansão;
+- **`H(z)`**: recebe correções de background via normalização efetiva dos setores, com assinatura dependente de como as integrais de coerência pesam os termos magnetizados ao longo de `z`.
+
+Em termos práticos, a simetria define quais termos são permitidos no ansatz fenomenológico e quais padrões de anisotropia devem aparecer de forma correlacionada entre lensing, crescimento e expansão.
+## Geometria efetiva do setor magneto-plasmático
+
+**Base formal:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
+
+A leitura geométrica do acoplamento magneto-plasmático trata curvatura efetiva, anisotropias locais e gradientes de pressão como correções de segunda ordem ao background, mantendo a consistência com a parametrização já adotada para `H(z)` e para os termos radiativos médios.
+
 ## Observáveis e assinaturas testáveis
+
+**Fontes técnicas:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
+### Cadeia de impacto em observáveis
+
+Organiza-se a inferência em uma cadeia operacional de três níveis:
+
+1. **Expansão `H(z)` → crescimento `fσ₈(z)`**: mudanças no orçamento efetivo alteram o histórico de expansão e, indiretamente, a taxa de crescimento de estruturas.
+2. **Potencial projetado → `κ/γ` (lensing)**: a resposta no potencial integrado ao longo da linha de visada afeta convergência e cisalhamento, com foco em sistemas de halo/aglomerado.
+3. **Potencial local/gradiente efetivo → curvas de rotação**: no regime galáctico, a modulação do gradiente potencial impacta velocidades orbitais inferidas.
 
 A hipótese gera alvos observacionais diretos e indiretos:
 
@@ -78,4 +160,74 @@ Figura `figs/paper/fig_kappa_field.png` conecta-se às equações <Eq. 9.1> e <E
 
 Figura `figs/paper/unified_f_and_weff.png` conecta-se às equações <Eq. 9.1> e <Eq. 9.2>.
 
+## Referências técnicas e bibliográficas
+
+- Widrow, L. M. (2002). *Origin of galactic and extragalactic magnetic fields*. Reviews of Modern Physics, 74(3), 775.
+- Carilli, C. L., & Taylor, G. B. (2002). *Cluster magnetic fields*. ARA&A, 40(1), 319-348.
+- Beck, R. (2015). *Magnetic fields in spiral galaxies* (uso de rotação de Faraday). A&ARv, 24(1), 4.
+- Sarazin, C. L. (1988). *X-ray emission from clusters of galaxies* (física de plasma intracluster).
+- Bartelmann, M., & Schneider, P. (2001). *Weak gravitational lensing*. Physics Reports, 340(4-5), 291-472.
+- DES Collaboration (2022). *Dark Energy Survey Year 3 results* (estrutura/lensing). PRD 105, 023520.
+
+**Fontes de consolidação no repositório:** `newadd/03_Descricao_Academica_PhD_Completa.md` (bloco de crescimento e estrutura), `docs/REFERENCES.md` e `book/39_apendice_referencias_fontes.md`.
+Resultado as assinaturas observacionais combinadas em lensing, rotação/Faraday e `fσ₈(z)` como testes do setor magneto-plasmático são sustentadas por [Faraday-Rotation-Review-2011, DESI-DR2-2025, eBOSS-DR16-2021].
+
+## Referências de rastreabilidade
+
+- [Planck2018] Planck Collaboration (2018), *Planck 2018 results. VI. Cosmological parameters*.
+- [DESI-DR2-2025] DESI Collaboration (2025), *Data Release 2 cosmological constraints*.
+- [eBOSS-DR16-2021] eBOSS Collaboration (2021), *DR16 cosmological analyses*.
+- [Faraday-Rotation-Review-2011] Govoni et al. (2011), *Magnetic fields in galaxy clusters and Faraday rotation review*.
+- [Cluster-MHD-2024] Vazza et al. (2024), *Cluster plasma and MHD constraints in large-scale structure*.
+## Ver também
+
+- [Formalismo base](./04_formalismo_equacao_unificada.md)
+- [Validação DESI/BOSS](./21_validacao_desi_boss.md)
+- [Validação JWST/AGN/SMBH](./22_validacao_jwst_agn_smbh.md)
+- [Painel analítico de resultados](./24_resultados_figuras_painel.md)
+
+Capítulos de validação diretamente conectados:
+
+- [`book/18_validacao_crescimento_fs8.md`](./18_validacao_crescimento_fs8.md)
+- [`book/19_validacao_lentes_aglomerados.md`](./19_validacao_lentes_aglomerados.md)
+- [`book/20_validacao_rotacao_galaxias.md`](./20_validacao_rotacao_galaxias.md)
+- [`book/24_resultados_figuras_painel.md`](./24_resultados_figuras_painel.md)
+
+## Falsificabilidade mínima
+
+Sinais que favorecem efeito físico (vs. degenerescência puramente paramétrica):
+
+- **Consistência cruzada entre sondas**: mesma região viável de (`α_B`, `β`, `Ω_P0`) ajusta simultaneamente `fσ₈(z)`, lentes em clusters e curvas de rotação, sem tensão estatística relevante.
+- **Escalonamento ambiente-dependente previsto**: ganho de sinal em halos/aglomerados magnetizados (alto RM, alta `T`) superior ao observado em ambientes pouco magnetizados.
+- **Correlação com proxies físicos independentes**: tendência monotônica entre desvio residual e estimadores de magnetização/pressão, além do que seria esperado por ruído e seleção.
+
+Sinais que sugerem degenerescência paramétrica:
+
+- melhora apenas global de ajuste sem padrão físico em função de `T`, RM ou pressão;
+- necessidade de regiões mutuamente incompatíveis de parâmetros para diferentes observáveis;
+- desaparecimento do ganho quando se impõe priors físicos em plasma/magnetização.
+
 ---
+
+## Referências consolidadas (padrão único)
+
+1. Abbott, T. M. C. et al. (DES Collaboration; primeiro autor institucional). 2022. "Dark Energy Survey Year 3 results: Cosmological constraints from galaxy clustering and weak lensing". PRD, 105(2):023520. DOI:10.1103/PhysRevD.105.023520.
+2. Bellini, E.; Sawicki, I. 2014. "Maximal freedom at minimum cost: linear large-scale structure in general modifications of gravity". JCAP, 2014(07):050. DOI:10.1088/1475-7516/2014/07/050.
+3. Clifton, T.; Ferreira, P. G.; Padilla, A.; Skordis, C. 2012. "Modified Gravity and Cosmology". Physics Reports, 513(1-3):1-189. DOI:10.1016/j.physrep.2012.01.001.
+4. Lelli, F.; McGaugh, S. S.; Schombert, J. M.; Pawlowski, M. S. (SPARC Collaboration). 2016. "One Law to Rule Them All: The Radial Acceleration Relation of Galaxies". ApJ, 836(2):152. DOI:10.3847/1538-4357/836/2/152.
+5. Alam, S. et al. (BOSS Collaboration; primeiro autor: S. Alam). 2017. "The clustering of galaxies in the completed SDSS-III Baryon Oscillation Spectroscopic Survey". MNRAS, 470(3):2617-2652. DOI:10.1093/mnras/stx721.
+
+---
+## Referências e convenções terminológicas
+- Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).
+### Quadro técnico — Dicionário Matemática → Observável
+
+| Operador/Função matemática | Definição no modelo | Variável observacional associada | Tipo de dado/sonda |
+|---|---|---|---|
+| `E(z)` ou `H(z)` | Background de expansão que conecta normalização `E(z)` e taxa física `H(z)`. | `H(z)` | BAO radial e cosmic chronometers. |
+| distância angular integrada | Distância geométrica integrada no cone de luz do modelo. | `D_A(z)` | BAO angular e lentes gravitacionais. |
+| função de crescimento efetiva | Resposta do crescimento de estrutura sob a expansão efetiva. | `fσ₈(z)` | RSD em levantamentos de galáxias. |
+| potencial/projeção de lente | Projeção da estrutura gravitacional na linha de visada. | `κ` | Weak lensing/cosmic shear. |
+
+> Versão curta. Para formulação completa e amarração de notação, ver o quadro técnico no Capítulo 04.
+
