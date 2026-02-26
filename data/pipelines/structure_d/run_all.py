@@ -171,40 +171,49 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
-    z_values = entry.get("z")
-    if z_values is None:
-        return 0.0, 0.0, 0
+def write_bayes_factor_summary(results_dir):
+    bayes_evidence_path = os.path.join(results_dir, "bayes_evidence.csv")
+    summary_path = os.path.join(results_dir, "bayes_factor_summary.csv")
 
-    if dataset_id in {"hz", "real_hz"}:
-        lcdm_values = model_LCDM_Hz(z_values, lcdm)
-        rll_values = model_RLL_like_Hz(z_values, rll)
-    elif dataset_id == "fsigma8":
-        lcdm_values = model_LCDM_fs8(z_values, lcdm)
-        rll_values = model_RLL_like_fs8(z_values, rll)
-    else:
-        return 0.0, 0.0, 0
+    if not os.path.exists(bayes_evidence_path):
+        return None
 
-    chi2_lcdm = _chi2_from_entry(entry, lcdm_values)
-    chi2_rll = _chi2_from_entry(entry, rll_values)
-    return chi2_lcdm, chi2_rll, len(entry["values"])
-
-
-def _build_bayes_evidence_rows(model_rows):
-    evidence_rows = []
-    for row in model_rows:
-        logz, logz_err = estimate_log_evidence(chi2_val=row["chi2"], k=row["k"], n_obs=row["N"])
-        evidence_rows.append(
-            {
-                "model": canonical_model_name(row["model"]),
-                "logZ": logz,
-                "logZ_err": logz_err,
-            }
+    evidence = pd.read_csv(bayes_evidence_path)
+    if "model" not in evidence.columns or "logZ" not in evidence.columns:
+        raise ValueError(
+            "bayes_evidence.csv must contain columns 'model' and 'logZ'"
         )
-    return evidence_rows
+
+    required_models = {"LCDM", "RLL_like+AGN"}
+    available_models = set(evidence["model"].astype(str).str.strip())
+    missing_models = sorted(required_models - available_models)
+    if missing_models:
+        raise ValueError(
+            "bayes_evidence.csv missing required model(s): " + ", ".join(missing_models)
+        )
+
+    logz_lcdm = float(
+        evidence.loc[evidence["model"].astype(str).str.strip() == "LCDM", "logZ"].iloc[0]
+    )
+    logz_rll = float(
+        evidence.loc[evidence["model"].astype(str).str.strip() == "RLL_like+AGN", "logZ"].iloc[0]
+    )
+
+    summary = pd.DataFrame(
+        [
+            {
+                "logZ_LCDM": logz_lcdm,
+                "logZ_RLL": logz_rll,
+                "lnB": logz_rll - logz_lcdm,
+            }
+        ],
+        columns=["logZ_LCDM", "logZ_RLL", "lnB"],
+    )
+    summary.to_csv(summary_path, index=False)
+    return summary_path
 
 
-def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None):
+def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
@@ -411,6 +420,10 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     print(f"Wrote: {bayes_out}")
     print("\nBayesian evidence summary")
     print(bayes_df.to_string(index=False))
+
+    bayes_factor_out = write_bayes_factor_summary(RESULTS)
+    if bayes_factor_out:
+        print(f"Wrote: {bayes_factor_out}")
 
 
 if __name__ == "__main__":
