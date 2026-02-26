@@ -14,7 +14,7 @@
 
 ## 🔬 Equação Principal Unificada
 
-A equação de Friedmann estendida que governa este modelo é:
+Resumo canônico do framework: ver `docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`.
 
 ```
 E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ +
@@ -49,6 +49,7 @@ onde:
    - Correção magneto-coerente opcional: parâmetros α_B, β
 
 ---
+Em síntese: o RLL estende a forma tipo Friedmann com um setor de superposição fotônica em transição dinâmica (DE→matéria), mantendo os termos clássicos e incluindo contribuições magnética e plasmática sob referência canônica única.
 
 
 ## 🧾 Micro-tabela canônica (termos de entrada)
