@@ -329,7 +329,7 @@ jupyter notebook 02_CODIGO_NUMERICO/notebooks/01_Quick_Start.ipynb
 # Grep em toda documentação
 grep -r "acoplamento magnético" .
 grep -r "campo B" .
-grep -r "w_eff" .
+grep -r "w_sup\|w_total\|w_legacy" .
 
 # Buscar em CSVs
 head -20 03_DADOS/reference_models/unified_fiducial_grid.csv

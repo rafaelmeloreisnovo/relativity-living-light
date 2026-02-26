@@ -1,5 +1,5 @@
-<!-- VERSAO: 2026-02-20 | STATUS: CANONICO OFICIAL -->
-**Versão:** 2026-02-20  
+<!-- VERSAO: 2026-02-26 | STATUS: CANONICO OFICIAL -->
+**Versão:** 2026-02-26  
 **Status:** Canônico oficial
 
 # 🔗 COMPARAÇÕES COM LITERATURA 2025-26
@@ -10,12 +10,20 @@
 
 ---
 
+> **Norma de leitura deste comparativo:** ao comparar com literatura externa, distinguir sempre `w_sup(z)` (componente de superposição) de `w_total(z)` (fluido cosmológico combinado), conforme `docs/canonicos/09_GLOSSARIO_COMPLETO.md`.
+> Evitar reintrodução da fórmula legada em tabelas e textos interpretativos.
+
+## 🖼️ Referências visuais anexadas no briefing
+
+- Painel ZIPRAF/Omega Core: usar como apoio visual para arquitetura/invariantes e narrativa de reconstrução.
+- Painel Relativity Living Light (RLL): usar como apoio visual para bloco observacional (JWST/CMB/SNe/BAO) e distinção de grandezas cosmológicas.
+
 ## 📌 OVERVIEW RÁPIDO
 
 | Estudo | Descoberta | Rafael Tinha | Gap | Status |
 |---|---|---|---|---|
 | **Minnesota** | MD quente→fria | Transição f(z) | 10 meses | ✅ Confirmado |
-| **DESI** | w(z) dinâmica | w_eff(z) analítico | 1 mês | ✅ Confirmado |
+| **DESI** | w(z) dinâmica | distinção canônica w_sup/w_total | 1 mês | ✅ Confirmado |
 | **MeerKAT** | Spins 4x align | Acoplamento α_B | 2-3 meses | ✅ Confirmado |
 | **Nature** | Pressão→gravidade | Em Friedmann | 2-3 meses | ✅ Confirmado |
 | **Böhme** | Dipolo 5.4σ | Solução f(z,θ,φ) | ~3 meses | ⚠️ A testar |
@@ -76,12 +84,12 @@ Comportamento:
 z → ∞ (primordial):
   f → 1
   ρ_sup ≈ Ω_s0 a⁻⁴ (radiação-like, QUENTE)
-  w_eff ≈ 1/3
+  w_total tende ao regime da componente dominante (ex.: radiação no primordial)
 
 z → 0 (hoje):
   f → 0
   ρ_sup ≈ Ω_s0 a⁻³ (matéria-like, FRIA)
-  w_eff ≈ 0
+  w_total tende ao regime da mistura tardia (matéria+DE+superposição)
 
 Parametrização:
 Ω_s0:  amplitude (0.05-0.15)
@@ -211,7 +219,7 @@ Da fórmula ρ_sup = Ω_s0[f + (1-f)a⁻³]
 Pressão p_sup = -f(z)·ρ_sup·c²
 → w_sup emerge naturalmente; w_total resulta da composição cosmológica
 
-Nota de compatibilidade histórica: equação antiga mantida apenas como registro, não usar em inferência.
+Nota de compatibilidade histórica: equação antiga mantida apenas como registro, rotulada como “não usar para inferência física atual”.
 
 Testabilidade:
 Quantitativa em qualquer z
@@ -272,13 +280,13 @@ Alinhamento: EXCELENTE (dentro 1σ em quase todos z)
 🎯 RAFAEL FEZ PRIMEIRO
 
 Evidência:
-  1. w_eff(z) analítico de fevereiro 2025
+  1. formalismo de transição analítica de fevereiro 2025
   2. DESI data de dezembro 2025
   3. Gap: ~10 meses
 
 Diferença:
   DESI: "Observamos w variar" (resultado experimental)
-  Rafael: "Aqui está a função w_eff(z) que explica" (teoria)
+  Rafael: "Aqui está a distinção w_sup(z)/w_total(z) que explica" (teoria)
 
 Implicação:
   Rafael não apenas previu. Forneceu framework completo
@@ -860,7 +868,7 @@ Próximos passos:
 │ ─────────────────────────────────────────────────────────────────
 │
 │ Minnesota   MD quente→fria       f(z) transição    10 meses  ✅
-│ DESI        w(z) dinâmica        w_eff(z) analítico 1 mês    ✅
+│ DESI        w(z) dinâmica        w_sup/w_total canôn. 1 mês  ✅
 │ MeerKAT     Spins 4x align       α_B acoplamento   2-3 mês   ✅
 │ Nature      Pressão→grav         ρ_plasma Friedm   2-3 mês   ✅
 │ Böhme       Dipolo 5.4σ          f(z,θ,φ) pronto   8 mês     ⚠️
