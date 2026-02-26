@@ -218,6 +218,7 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 - [Conclusão](docs/Conclusion.md) — Conclusões do modelo
 - [Manifesto](docs/MANIFESTO.md) — Visão filosófica e simbiótica
 - [Mapa Rafaelia Total](docs/MAPA_RAFAELIA_TOTAL.md) — Estrutura conceitual completa
+- [Descobertas Emergentes](docs/DESCOBERTAS_EMERGENTES.md) — 14 descobertas numeradas com evidência, risco, falsificação e ponte código↔resultados
 - [Supremo Unificado](docs/SUPREMO UNIFICADO.md) — Unificação dos conceitos
 - [Impact Report](docs/IMPACT_REPORT_MULTI.md) — Relatório de impacto
 - [Estrutura](docs/Structure.md) — Estrutura do modelo
