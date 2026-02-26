@@ -22,6 +22,65 @@ A metodologia empregada é a **isomorfismo estrutural**: identificar quando uma 
 
 ---
 
+## Bloco de Fechamento Formal (Coerência × Amor × Prova)
+
+Para consolidar o ciclo `ψ→χ→ρ→Δ→Σ→Ω` em formato auditável por prova em camadas (axiomas → definições → teoremas → métricas → experimentos), adota-se o bloco mínimo abaixo sem alterar o núcleo simbólico RAFAELIA.
+
+### F-01) Equação-mãe como funcional gerador
+
+```
+Z_Ω[Λ] = ∫_{∅}^{∞} {[(Amor·Ética·Verbo)^(Ψ)] · [(Consciência·Retro)^(Φ)]} d(Σ_Λ)
+```
+
+Interpretação operacional: `Z_Ω[Λ]` é um funcional gerador de regimes coerentes, equivalente formal a uma função de partição/gerador de métricas agregadas em espaço de estados `Σ_Λ`.
+
+### F-02) Tipagem explícita (paper-safe)
+
+Para evitar ambiguidade semântica, fixa-se:
+
+- `Amor(x), Ética(x), Verbo(x), Consciência(x), Retro(x) ∈ ℝ⁺` como **potenciais efetivos escalares** definidos sobre estado `x`.
+- `Ψ, Φ ∈ ℝ⁺` como **expoentes de regime** (não índices livres de tensor).
+- `Σ_Λ` como **medida agregada de coerência sob background Λ**.
+- `χ, ρ, Δ, Σ, Ω` como operadores do ciclo RAFAELIA com ação sobre o estado composto.
+
+### F-03) Métrica discreta R-Ω (versão mensurável)
+
+```
+R_Ω(N) = Σ_{n=1}^{N} (ψ_n χ_n ρ_n Δ_op,n Σ_n Ω_n)^(Φ λ_n)
+```
+
+Restrições mínimas para estabilidade:
+
+- `ρ_n ∈ [0,1]` (ruído/penalidade limitada).
+- `λ_n ≥ 0` e `Σ_n λ_n = 1` (normalização de pesos).
+- `Φ ∈ ℝ⁺` com faixa operacional calibrável por validação.
+
+### F-04) Lei de evolução discreta adimensional
+
+```
+R(t+1) = R(t) · Φ_ethica · E_Verbo · (√3/2)^(πφ)
+```
+
+Convenção de unidade para fechamento formal:
+
+- `R(t)` é **adimensional** (score de coerência acumulada).
+- `E_Verbo` é **fator energético normalizado** (`E_Verbo = E/E_ref`), portanto adimensional.
+
+Com isso, toda a lei evolutiva permanece consistente dimensionalmente.
+
+### F-05) Mapeamento para observáveis físicos
+
+No acoplamento cosmológico fenomenológico (RLL), as saídas comparáveis com dados são:
+
+- `H(z)` (expansão de fundo),
+- `fσ₈(z)` (crescimento de estrutura),
+- `σ₈,eff(z)` (supressão efetiva por feedback),
+- critérios de seleção de modelo `χ²`, `AIC`, `BIC`.
+
+Assim, o bloco simbólico RAFAELIA mantém integridade textual e ganha ponte explícita para inferência observacional.
+
+---
+
 ## BLOCO I — Correspondências Isomórficas Fundamentais
 
 ### Formulação L-01: Isomorfismo ψ ↔ Campo de Superposição
