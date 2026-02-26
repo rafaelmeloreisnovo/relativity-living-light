@@ -2,6 +2,14 @@ import numpy as np
 import pandas as pd
 
 
+def _as_1d_finite_array(name, values):
+    arr = np.asarray(values, dtype=float)
+    if arr.ndim != 1:
+        raise ValueError(f"{name} must be a 1D finite array")
+    if np.any(~np.isfinite(arr)):
+        raise ValueError(f"{name} must contain only finite values")
+    return arr
+
 def _validated_sigma_array(sigma):
     sigma_arr = _as_1d_finite_array("sigma", sigma)
     if np.any(sigma_arr <= 0):
