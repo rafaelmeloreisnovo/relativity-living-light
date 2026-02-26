@@ -9,6 +9,7 @@ from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
+DEFAULT_PROFILE = None
 
 BLOCK_COVARIANCE_FILENAMES = {
     "SNe": "cov_sne.csv",
@@ -189,21 +190,16 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     chi2_rll = 0.0
     total_observables = 0
 
-    if "hz" in datasets:
-        hz = datasets["hz"]
-        z_hz = hz["z"]
-        chi2_lcdm += _chi2_from_entry(hz, model_LCDM_Hz(z_hz, lcdm))
-        chi2_rll += _chi2_from_entry(hz, model_RLL_like_Hz(z_hz, rll))
-        total_observables += len(hz["values"])
+    for dataset_id, entry in datasets.items():
+        c2_l, c2_r, n_obs = _evaluate_supported_dataset(dataset_id, entry, lcdm, rll)
+        chi2_lcdm += c2_l
+        chi2_rll += c2_r
+        total_observables += n_obs
 
-    if "fsigma8" in datasets:
-        fs8 = datasets["fsigma8"]
-        z_fs = fs8["z"]
-        chi2_lcdm += _chi2_from_entry(fs8, model_LCDM_fs8(z_fs, lcdm))
-        chi2_rll += _chi2_from_entry(fs8, model_RLL_like_fs8(z_fs, rll))
-        total_observables += len(fs8["values"])
+    if total_observables <= 0:
+        raise ValueError("no supported observables were evaluated; check profile active_datasets")
 
-    active_datasets = ",".join(cfg["active_datasets"])
+    active_datasets = ",".join(cfg_meta["active_datasets"])
 
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
@@ -241,4 +237,5 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
 
 
 if __name__ == "__main__":
-    main()
+    env_profile = os.environ.get("STRUCTURE_D_PROFILE")
+    main(profile_name=env_profile)
