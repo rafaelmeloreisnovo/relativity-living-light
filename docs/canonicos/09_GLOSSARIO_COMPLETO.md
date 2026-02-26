@@ -13,6 +13,8 @@
 As duas imagens de referência devem acompanhar esta distinção conceitual em apresentações e FAQs:
 - Painel ZIPRAF/Omega Core (arquitetura de reconstrução e invariantes: seed φ, kernel matrix, hash/ECC, reconstrução).
 - Painel Relativity Living Light (mapa observacional e equações: radiação cosmológica, AGN, perturbações, ajuste JWST/CMB/SNe/BAO).
+- Painel ZIPRAF/Omega Core (arquitetura de reconstrução e invariantes)
+- Painel Relativity Living Light (mapa observacional e equações)
 
 ## 🔤 VARIÁVEIS COSMOLÓGICAS PADRÃO
 
@@ -57,6 +59,8 @@ As duas imagens de referência devem acompanhar esta distinção conceitual em a
 | **w** | Equação de estado genérica | p = w ρ c² | [-1, 1/3] | Definição termodinâmica padrão |
 | **w_sup(z)** | EoS da componente de superposição | p_sup/(ρ_sup c²) = -f(z) | [-1, 0] | Grandeza interna da componente Rafael |
 | **w_total(z)** | EoS do fluido cosmológico efetivo combinado | p_total/(ρ_total c²) | Varia com mistura | Grandeza oficial para inferência observacional |
+| **w** | Equação de estado | p = w ρ c² | [-1, 1/3] | DE: w=-1, matéria: w=0 |
+| **w_eff(z)** | Efetiva com z | Derivada de Friedmann | Varia | Rafael: transita DM→DE |
 | **γ** | Índice adiabático | p = (γ-1)ρu | [1, 5/3] | Gás monoatômico: γ=5/3 |
 
 ---
@@ -107,6 +111,18 @@ Limites corretos por grandeza:
   z→∞:   w_sup → -1;   w_total depende da componente dominante total
   z→0:   w_sup → 0;    w_total depende da mistura cosmológica em z=0
 ```
+Definição oficial da componente de superposição:
+  w_sup(z) = p_sup/(ρ_sup c²) = -f(z)
+
+Definição oficial do fluido cosmológico combinado:
+  w_total(z) = p_total/(ρ_total c²)
+             = (p_sup + p_r + p_m + p_Λ + p_k + ...)
+               /[(ρ_sup + ρ_r + ρ_m + ρ_Λ + ρ_k + ...)c²]
+
+Limites corretos por grandeza:
+  z→∞:   w_sup → -1;   w_total depende da componente dominante total
+  z→0:   w_sup → 0;    w_total depende da mistura cosmológica em z=0
+```
 
 > **Nota histórica (legado):**
 > `w_legacy(z) = -f(z)/[f(z) + (1-f)a⁻³]` foi mantida apenas como registro de versões anteriores.
@@ -119,6 +135,24 @@ Limites corretos por grandeza:
 | **w_sup(z)** | Equação de estado interna da componente de superposição | `w_sup(z) = p_sup/(ρ_sup c²) = -f(z)` |
 | **w_total(z)** | Equação de estado efetiva do conteúdo cosmológico combinado | `w_total(z) = p_total/(ρ_total c²)` |
 | **w_legacy(z)** | Forma histórica usada em rascunhos antigos | `w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]` (**não usar**) |
+
+> **Nota histórica (legado):**
+> `w_legacy(z) = -f(z)/[f(z) + (1-f)a⁻³]` foi mantida apenas como registro de versões anteriores.
+> **Não usar para inferência física atual.**
+
+### **Tabela canônica curta (símbolo → significado físico → equação válida)**
+
+| Símbolo | Significado físico | Equação válida (canônica) |
+|---|---|---|
+| **w_sup(z)** | Equação de estado interna da componente de superposição | `w_sup(z) = p_sup/(ρ_sup c²) = -f(z)` |
+| **w_total(z)** | Equação de estado efetiva do conteúdo cosmológico combinado | `w_total(z) = p_total/(ρ_total c²)` |
+| **w_legacy(z)** | Forma histórica usada em rascunhos antigos | `w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]` (**não usar**) |
+Limites:
+  z→∞ (f→0):   w_eff → 0   (DM-like)
+  z→0 (f→1):   w_eff → -1  (DE-like)
+```
+
+estes limites derivam diretamente da forma de `f(z)` adotada.
 
 ---
 
@@ -325,7 +359,20 @@ Limites canônicos:
   z→0: w_sup → 0;  w_total depende da mistura em z=0
 
 w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]  (não usar para inferência física atual)
+
+w_total(z) = p_total/(ρ_total c²)
+
+Limites canônicos:
+  z→∞: w_sup → -1; w_total depende da mistura dominante
+  z→0: w_sup → 0;  w_total depende da mistura em z=0
+
+w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]  (não usar para inferência física atual)
+Limites:
+  z→∞ (f→0): w_eff → 0   (DM-like)
+  z→0 (f→1): w_eff → -1  (DE-like)
 ```
+
+estes limites derivam diretamente da forma de `f(z)` adotada.
 
 ---
 

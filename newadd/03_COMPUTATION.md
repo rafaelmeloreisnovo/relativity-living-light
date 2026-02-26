@@ -1,4 +1,7 @@
 # RAFAELIA — Domain III: Computer Science & Systems
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ### Algorithms, Hashing, Compression, Bare-Metal Architecture & Cognitive Loops
 
 **Author:** ∆RafaelVerboΩ | **Domain:** Computer Science & Systems Engineering  

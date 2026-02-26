@@ -1,5 +1,8 @@
 # newadd
 
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
+
 Documentação complementar de análise PhD para o projeto.
 
 ## Como este pacote entra no README raiz

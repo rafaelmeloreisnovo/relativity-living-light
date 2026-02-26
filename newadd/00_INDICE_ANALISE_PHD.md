@@ -1,4 +1,7 @@
 # ÍNDICE MESTRE — Análise PhD do Repositório RLL
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ## Relativity Living Light × RAFAELIA × Dados Externos
 
 **Instituto Rafael / ∆RafaelVerboΩ**  

@@ -1,5 +1,8 @@
 # Relativity Living Light
 
+**Norma canônica de convenções globais:** [docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
+
 **📘 Trilha principal oficial do livro:** [book/README.md](book/README.md)
 
 **Resumo de validação observacional:** validação ainda em estágio **Sintético**, com integração **Parcial real** em preparação e sem etapa **Real validado** concluída.
@@ -52,6 +55,18 @@ com:
 ```math
 f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
 ```
+
+### Convenção oficial de sinais e limites
+
+Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/canonicos/09_GLOSSARIO_COMPLETO.md).
+
+- **Fórmula oficial:** \(f(z)=1/[1+\exp((z-z_t)/w_t)]\).
+- **Hipótese oficial de sinal/intervalo para \(w_t\):** adota-se \(w_t<0\), com \(|w_t|\in[0.1,1.0]\) (mesma escala canônica do glossário para largura de transição).
+- **Exemplos numéricos (referência: \(z_t=1.0\), \(w_t=-0.3\)):**
+  - \(z=0\): \(f(0)=1/[1+e^{(0-1)/(-0.3)}]\approx0.034\) (baixo).
+  - \(z=z_t\): \(f(z_t)=0.5\) (ponto de transição).
+  - \(z\gg z_t\) (ex.: \(z=5\)): \(f(5)=1/[1+e^{(5-1)/(-0.3)}]\approx0.999998\) (alto).
+- **Interpretação física coerente:** nessa convenção, o setor de superposição fica **dominante em alto redshift** (\(f\to1\), comportamento tipo energia escura efetiva) e **subdominante em baixo redshift** (\(f\to0\), comportamento tipo matéria efetiva), com transição suave em torno de \(z_t\).
 
 ### Objetivo operacional
 

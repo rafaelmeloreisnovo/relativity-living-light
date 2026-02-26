@@ -1,3 +1,8 @@
+<!-- VERSAO: 2026-02-20 | STATUS: CANONICO OFICIAL -->
+
+**Norma canônica de convenções globais:** [docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](CONVENCOES_GLOBAIS_RLL.md)
+
+**Versão:** 2026-02-20  
 <!-- VERSAO: 2026-02-26 | STATUS: CANONICO OFICIAL -->
 **Versão:** 2026-02-26  
 **Status:** Canônico oficial
