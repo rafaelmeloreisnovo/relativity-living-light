@@ -1,5 +1,5 @@
-<!-- VERSAO: 2026-02-20 | STATUS: CANONICO OFICIAL -->
-**Versão:** 2026-02-20  
+<!-- VERSAO: 2026-02-26 | STATUS: CANONICO OFICIAL -->
+**Versão:** 2026-02-26  
 **Status:** Canônico oficial
 
 # ❓ FAQ — PERGUNTAS FREQUENTES
@@ -7,6 +7,15 @@
 ## ∆RafaelVerboΩ — Relativity Living Light
 
 ---
+
+> **Definição oficial (canônica):** usar `w_sup(z)` para a componente de superposição e `w_total(z)` para o fluido cosmológico combinado.
+> Referência normativa: `docs/canonicos/09_GLOSSARIO_COMPLETO.md` (seção “Definição canônica: w_sup(z) vs w_total(z)”).
+> A fórmula legada `w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]` permanece apenas como nota histórica e **não deve ser usada para inferência física atual**.
+
+## 🖼️ Apoio visual (imagens anexadas pelo autor no briefing)
+
+- Imagem 1: painel ZIPRAF/Omega Core (reconstrução/invariantes).
+- Imagem 2: painel RLL/RAFAELIA (equações, perturbações e ajuste observacional).
 
 ## 🔬 PERGUNTAS SOBRE FÍSICA
 
@@ -271,7 +280,8 @@ Bom debate. Duas interpretações:
 **Interpretação 2 (Alternativa):**
 - Não há colapso literal
 - Apenas mudança efetiva de equação de estado
-- w transita de -1 a 0 via parâmetro fenomenológico f
+- Na componente de superposição, `w_sup` transita de -1 a 0 via `f(z)`
+- Em inferência observacional, usar `w_total`, não `w_legacy`
 
 **Qual é correta?** Microfísica decidirá. Hoje, ambas produzem mesmas predições.
 
@@ -314,7 +324,7 @@ Veja: 02_CODIGO_NUMERICO/README.md para detalhes.
 ```
 03_DADOS/reference_models/unified_fiducial_grid.csv:
   Ω_s0, z_t, w_t, [Ω_B0, Ω_P0 opcionais]
-  → H(z), μ(z), f(z), w_eff(z)
+  → H(z), μ(z), f(z), w_sup(z), w_total(z)
   ~500-1000 linhas (grid de parâmetros)
 
 03_DADOS/reference_models/entropy_bands_10_12.csv:
