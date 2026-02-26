@@ -1,297 +1,194 @@
 import argparse
 import os
-
 import numpy as np
+import pandas as pd
 
-from .data_access import load_active_datasets
-from .inference import run_lcdm_bayes, run_rll_like_agn_bayes
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
-INFERENCE_RESULTS = os.path.join(RESULTS, "inference")
+INPUTS_DIR = os.path.join(BASE_DIR, "data", "inputs", "structure_d")
 
 
-def _safe_float(value):
-    if value is None:
+def _resolve_column(df, aliases, required=False):
+    lower_map = {c.lower(): c for c in df.columns}
+    for alias in aliases:
+        col = lower_map.get(alias.lower())
+        if col is not None:
+            return col
+    if required:
+        raise ValueError(f"missing required column among aliases: {aliases}")
+    return None
+
+
+def _find_dataset_file(stem):
+    variants = [
+        f"{stem}.csv",
+        f"{stem.lower()}.csv",
+        f"{stem.upper()}.csv",
+        f"{stem.capitalize()}.csv",
+    ]
+    for name in variants:
+        path = os.path.join(INPUTS_DIR, name)
+        if os.path.exists(path):
+            return path
+    return None
+
+
+def _find_covariance_file(stem):
+    variants = [
+        f"{stem}_cov.csv",
+        f"{stem}_covariance.csv",
+        f"{stem}_C.csv",
+        f"C_{stem}.csv",
+        f"{stem.lower()}_cov.csv",
+        f"{stem.lower()}_covariance.csv",
+        f"{stem.lower()}_C.csv",
+        f"C_{stem.lower()}.csv",
+    ]
+    for name in variants:
+        path = os.path.join(INPUTS_DIR, name)
+        if os.path.exists(path):
+            return np.loadtxt(path, delimiter=",")
+    return None
+
+
+def _load_block(block_name, obs_aliases):
+    path = _find_dataset_file(block_name)
+    if path is None:
         return None
-    return float(value)
 
+    df = pd.read_csv(path)
+    z_col = _resolve_column(df, ["z"], required=True)
+    obs_col = _resolve_column(df, ["obs", *obs_aliases], required=True)
+    sigma_col = _resolve_column(df, ["sigma"])
 
-def _save_mcmc_outputs(result, out_dir):
-    model_name = result["model_name"]
-    model_slug = model_name.replace("+", "_plus_")
-
-    npz_path = os.path.join(out_dir, f"mcmc_{model_slug}.npz")
-    np.savez_compressed(
-        npz_path,
-        chain_flat=result["chain_flat"],
-        log_prob_flat=result["log_prob_flat"],
-        param_names=np.asarray(result["param_names"], dtype=object),
-        acceptance_fraction_mean=np.asarray(result["acceptance_fraction_mean"], dtype=float),
-        autocorr_time=np.asarray(result["autocorr_time"], dtype=float)
-        if result["autocorr_time"] is not None
-        else np.asarray([], dtype=float),
-    )
-
-    chain_df = pd.DataFrame(result["chain_flat"], columns=result["param_names"])
-    chain_df["log_prob"] = result["log_prob_flat"]
-    csv_path = os.path.join(out_dir, f"mcmc_{model_slug}.csv")
-    chain_df.to_csv(csv_path, index=False)
-
-    summary = {
-        "model_name": model_name,
-        "param_names": result["param_names"],
-        "n_samples": int(result["chain_flat"].shape[0]),
-        "n_dim": int(result["chain_flat"].shape[1]) if result["chain_flat"].ndim == 2 else 0,
-        "acceptance_fraction_mean": _safe_float(result["acceptance_fraction_mean"]),
-        "autocorr_time": result["autocorr_time"].tolist()
-        if result["autocorr_time"] is not None
-        else None,
-        "burnin": int(result["burnin"]),
-        "thin": int(result["thin"]),
-        "npz_file": os.path.basename(npz_path),
-        "csv_file": os.path.basename(csv_path),
-    }
-    json_path = os.path.join(out_dir, f"mcmc_{model_slug}.json")
-    with open(json_path, "w", encoding="utf-8") as fp:
-        json.dump(summary, fp, indent=2)
-
-    return {"npz": npz_path, "csv": csv_path, "json": json_path}
-
-
-def _save_nested_outputs(result, out_dir):
-    model_name = result["model_name"]
-    model_slug = model_name.replace("+", "_plus_")
-
-    niter = len(result["results"].logl)
-    npz_path = os.path.join(out_dir, f"nested_{model_slug}.npz")
-    np.savez_compressed(
-        npz_path,
-        param_names=np.asarray(result["param_names"], dtype=object),
-        logz=np.asarray(result["results"].logz, dtype=float),
-        logzerr=np.asarray(result["results"].logzerr, dtype=float),
-        logl=np.asarray(result["results"].logl, dtype=float),
-        samples=np.asarray(result["results"].samples, dtype=float),
-    )
-
-    csv_path = os.path.join(out_dir, f"nested_{model_slug}.csv")
-    pd.DataFrame(
-        {
-            "iteration": np.arange(niter, dtype=int),
-            "logz": np.asarray(result["results"].logz, dtype=float),
-            "logzerr": np.asarray(result["results"].logzerr, dtype=float),
-            "logl": np.asarray(result["results"].logl, dtype=float),
-        }
-    ).to_csv(csv_path, index=False)
-
-    summary = {
-        "model_name": model_name,
-        "param_names": result["param_names"],
-        "n_samples": int(result["results"].samples.shape[0]),
-        "n_dim": int(result["results"].samples.shape[1]) if result["results"].samples.ndim == 2 else 0,
-        "logZ": _safe_float(result["logZ"]),
-        "logZ_err": _safe_float(result["logZ_err"]),
-        "npz_file": os.path.basename(npz_path),
-        "csv_file": os.path.basename(csv_path),
-    }
-    json_path = os.path.join(out_dir, f"nested_{model_slug}.json")
-    with open(json_path, "w", encoding="utf-8") as fp:
-        json.dump(summary, fp, indent=2)
-
-    return {"npz": npz_path, "csv": csv_path, "json": json_path}
-
-
-def _run_inference_for_model(model_name, hz, fs8):
-    out_dir = os.path.join(INFERENCE_RESULTS, model_name.replace("+", "_plus_"))
-    os.makedirs(out_dir, exist_ok=True)
-
-    prior_spec = MODEL_PARAMETER_PRIORS[model_name]
-    ndim = len(prior_spec)
-    nwalkers = max(2 * ndim + 2, 24)
-
-    metadata = {
-        "model_name": model_name,
-        "mcmc": {"status": "not_run"},
-        "nested": {"status": "not_run"},
-    }
-
-    try:
-        mcmc = run_mcmc_emcee(
-            model_name,
-            hz,
-            fs8,
-            nwalkers=nwalkers,
-            nsteps=500,
-            burnin=125,
-            thin=2,
-            random_seed=42,
-            progress=False,
+    cov = _find_covariance_file(block_name)
+    if sigma_col is None and cov is None:
+        raise ValueError(
+            f"{os.path.basename(path)} requires 'sigma' for diagonal fallback or an external covariance matrix"
         )
-        files = _save_mcmc_outputs(mcmc, out_dir)
-        metadata["mcmc"] = {
-            "status": "ok",
-            "acceptance_fraction_mean": _safe_float(mcmc["acceptance_fraction_mean"]),
-            "autocorr_time": mcmc["autocorr_time"].tolist() if mcmc["autocorr_time"] is not None else None,
-            "files": {k: os.path.basename(v) for k, v in files.items()},
-        }
-        print(f"Inference MCMC ({model_name}) -> {files['json']}")
-    except ImportError as exc:
-        metadata["mcmc"] = {"status": "skipped", "reason": str(exc)}
-        print(f"Skipping MCMC ({model_name}): {exc}")
 
-    try:
-        nested = run_nested_dynesty(
-            model_name,
-            hz,
-            fs8,
-            nlive=150,
-            bound="multi",
-            sample="rwalk",
-            random_seed=42,
-        )
-        files = _save_nested_outputs(nested, out_dir)
-        metadata["nested"] = {
-            "status": "ok",
-            "logZ": _safe_float(nested["logZ"]),
-            "logZ_err": _safe_float(nested["logZ_err"]),
-            "files": {k: os.path.basename(v) for k, v in files.items()},
-        }
-        print(f"Inference nested ({model_name}) -> {files['json']}")
-    except ImportError as exc:
-        metadata["nested"] = {"status": "skipped", "reason": str(exc)}
-        print(f"Skipping nested ({model_name}): {exc}")
+    z = df[z_col].to_numpy(dtype=float)
+    obs = df[obs_col].to_numpy(dtype=float)
 
-    meta_path = os.path.join(out_dir, "inference_status.json")
-    with open(meta_path, "w", encoding="utf-8") as fp:
-        json.dump(metadata, fp, indent=2)
+    block = {
+        "name": block_name,
+        "z": z,
+        "obs": obs,
+        "mod": np.zeros_like(obs),
+    }
 
-    return metadata
+    if sigma_col is not None:
+        block["sigma"] = df[sigma_col].to_numpy(dtype=float)
+    if cov is not None:
+        block["C"] = np.asarray(cov, dtype=float)
 
-def covariance_usage_summary(block_reports, diagonal_fallback=True):
+    return block
+
+
+def _base_blocks():
+    candidates = [
+        ("Hz", ["Hz", "H_obs"]),
+        ("fsigma8", ["fs8", "f_sigma8", "fsigma8"]),
+        ("sne", ["mu", "mub", "distance_modulus", "sne"]),
+        ("bao", ["DV_over_rs", "bao", "obs_bao"]),
+        ("lenses", ["lenses", "obs_lenses", "Ddt"]),
+    ]
+
+    blocks = []
+    for name, aliases in candidates:
+        block = _load_block(name, aliases)
+        if block is not None:
+            blocks.append(block)
+    return blocks
+
+
+def _apply_model_predictions(blocks, model_params, model_name):
+    for block in blocks:
+        if block["name"] == "Hz":
+            block["mod"] = model_LCDM_Hz(block["z"], model_params) if model_name == "LCDM" else model_RLL_like_Hz(block["z"], model_params)
+        elif block["name"] == "fsigma8":
+            block["mod"] = model_LCDM_fs8(block["z"], model_params) if model_name == "LCDM" else model_RLL_like_fs8(block["z"], model_params)
+        else:
+            # Blocos sem modelagem explícita neste pipeline: mantemos contribuição nula (obs-mod = 0)
+            block["mod"] = block["obs"].copy()
+
+
+def _chi2_blocks(blocks):
+    total = 0.0
+    for block in blocks:
+        if "C" in block:
+            total += chi2_with_covariance(block["obs"], block["mod"], block["C"])
+        else:
+            total += chi2(block["obs"], block["mod"], block["sigma"])
+    return float(total)
+
+
+def covariance_usage_summary(blocks):
     rows = []
-    for report in block_reports:
+    for block in blocks:
         rows.append(
             {
-                "block": report["block"],
-                "dataset_id": report["dataset_id"],
-                "covariance_mode": report["covariance_mode"],
-                "source": report["source"],
-                "covariance_path": report["covariance_path"],
-                "has_full_covariance": bool(report["has_full_covariance"]),
-                "has_diagonal_sigma": bool(report["has_diagonal_sigma"]),
-                "diagonal_fallback": bool(diagonal_fallback),
+                "block": block["name"],
+                "covariance_mode": "full" if "C" in block else "diagonal",
+                "has_full_covariance": "C" in block,
+                "has_diagonal_sigma": "sigma" in block,
             }
         )
-    return rows
+    return pd.DataFrame(rows)
 
 
-def _chi2_from_entry(entry, model_values):
-    if entry["errors"] is not None:
-        return chi2(entry["values"], model_values, entry["errors"])
-    return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
-
-
-def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
-    if entry.get("z") is None:
-        return 0.0, 0.0, 0
-
-    if dataset_id in {"hz", "real_hz"} or str(entry.get("observable", "")).lower() == "hz":
-        model_lcdm = model_LCDM_Hz(entry["z"], lcdm)
-        model_rll = model_RLL_like_Hz(entry["z"], rll)
-    elif dataset_id == "fsigma8" or "fs" in str(entry.get("observable", "")).lower():
-        model_lcdm = model_LCDM_fs8(entry["z"], lcdm)
-        model_rll = model_RLL_like_fs8(entry["z"], rll)
-    else:
-        return 0.0, 0.0, 0
-
-    chi2_l = _chi2_from_entry(entry, model_lcdm)
-    chi2_r = _chi2_from_entry(entry, model_rll)
-    return chi2_l, chi2_r, len(entry["values"])
-
-
-def _save_bayes_results(datasets, seed, nwalkers, nsteps, nlive):
-    hz = datasets.get("hz") or datasets.get("real_hz")
-    fs8 = datasets.get("fsigma8")
-    if hz is None or fs8 is None:
-        raise ValueError("Bayes mode requires both hz and fsigma8 datasets active in profile")
-
-    lcdm_result = run_lcdm_bayes(hz, fs8, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive, output_dir=RESULTS)
-    rll_result = run_rll_like_agn_bayes(hz, fs8, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive, output_dir=RESULTS)
-
-    rows = [lcdm_result["row"], rll_result["row"]]
-    bayes_out = os.path.join(RESULTS, "bayes_model_comparison.csv")
-    evaluate_model(rows, bayes_out)
-    print(f"Wrote: {bayes_out}")
-
-
-def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None, run_bayes=False,
-         seed=42, nwalkers=32, nsteps=2000, nlive=400):
+def main():
     os.makedirs(RESULTS, exist_ok=True)
     os.makedirs(INFERENCE_RESULTS, exist_ok=True)
     rows = []
 
-    cfg, datasets = load_active_datasets(config_path, profile_name=profile_name)
-    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
-
-    lcdm = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
-    rll = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
+    lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
+    rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
 
     fit_params_lcdm = ["H0", "Om", "sigma8", "gamma"]
     fit_params_rll = fit_params_lcdm + ["alpha", "z_peak", "width"]
     fixed_params_lcdm = sorted(set(lcdm) - set(fit_params_lcdm))
     fixed_params_rll = sorted(set(rll) - set(fit_params_rll))
 
-    chi2_lcdm = 0.0
-    chi2_rll = 0.0
-    total_observables = 0
+    blocks_lcdm_active = _base_blocks()
+    blocks_rll_active = [
+        {
+            k: (v.copy() if isinstance(v, np.ndarray) else v)
+            for k, v in block.items()
+        }
+        for block in blocks_lcdm_active
+    ]
 
-    for dataset_id, entry in datasets.items():
-        c2_l, c2_r, n_obs = _evaluate_supported_dataset(dataset_id, entry, lcdm, rll)
-        chi2_lcdm += c2_l
-        chi2_rll += c2_r
-        total_observables += n_obs
+    _apply_model_predictions(blocks_lcdm_active, lcdm, "LCDM")
+    _apply_model_predictions(blocks_rll_active, rll, "RLL_like+AGN")
 
-    if total_observables <= 0:
-        raise ValueError("no supported observables were evaluated; check profile active_datasets")
+    chi2_lcdm = _chi2_blocks(blocks_lcdm_active)
+    chi2_rll = _chi2_blocks(blocks_rll_active)
+    total_observables = int(sum(len(block["obs"]) for block in blocks_lcdm_active))
 
-    active_datasets = ",".join(cfg["active_datasets"])
+    active_datasets = ",".join(block["name"] for block in blocks_lcdm_active)
 
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
 
     rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
                      N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), profile_name=cfg_meta.get("profile_name", "unknown")))
+                     datasets_used=active_datasets, run_name="structure_d_auto_blocks"))
     rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
                      N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), profile_name=cfg_meta.get("profile_name", "unknown")))
+                     datasets_used=active_datasets, run_name="structure_d_auto_blocks"))
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
 
-    expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
-    summary_rows = covariance_usage_summary(block_reports, diagonal_fallback=True)
-    used_blocks = {row["block"] for row in summary_rows}
-    for block in expected_blocks:
-        if block not in used_blocks:
-            summary_rows.append(
-                {
-                    "block": block,
-                    "dataset_id": "",
-                    "covariance_mode": "not_used",
-                    "source": "fallback",
-                    "covariance_path": "",
-                    "has_full_covariance": False,
-                    "has_diagonal_sigma": False,
-                    "diagonal_fallback": True,
-                }
-            )
-    for row in summary_rows:
-        row["covariance_policy"] = covariance_policy
-        row["active_blocks"] = ",".join(active_blocks)
-
+    cov_rows = []
+    for model_name, active_blocks in (("LCDM", blocks_lcdm_active), ("RLL_like+AGN", blocks_rll_active)):
+        summary_df = covariance_usage_summary(active_blocks)
+        summary_df.insert(0, "model", model_name)
+        cov_rows.append(summary_df)
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
     evaluate_model(summary_rows, cov_out)
 
@@ -326,7 +223,6 @@ def _parse_args():
     with open(manifest_path, "w", encoding="utf-8") as fp:
         json.dump(inference_manifest, fp, indent=2)
     print(f"Wrote: {manifest_path}")
-
 
 if __name__ == "__main__":
     args = _parse_args()
