@@ -7,9 +7,10 @@ Resultados em H(z), razão H/H_LCDM e comportamento em redshift.
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
 
-- figs/paper/unified_H_ratio.png
-- figs/paper/H_ratio_vs_z.png
+- figs/paper/unified_H_ratio.png *(canônico)*
 - docs/Results.md
+
+**Nota de canonização:** `figs/paper/unified_H_ratio.png` é o nome canônico para razão `H(z)/H_ΛCDM`; variante legada `figs/paper/H_ratio_vs_z.png`.
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.

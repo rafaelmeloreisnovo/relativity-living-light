@@ -7,9 +7,10 @@ Comparação de distância de luminosidade e resíduos em SN Ia.
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
 
-- figs/paper/unified_mu_residuals.png
-- figs/paper/mu_residuals.png
+- figs/paper/unified_mu_residuals.png *(canônico)*
 - docs/Results.md
+
+**Nota de canonização:** `figs/paper/unified_mu_residuals.png` é o nome canônico para resíduos `Δμ(z)`; variante legada `figs/paper/mu_residuals.png`.
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
