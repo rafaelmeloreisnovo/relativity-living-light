@@ -131,6 +131,14 @@ relativity-living-light/
 
 ---
 
+## Extensão formal pós-PhD (acoplamento magnetismo–radiação–plasma)
+
+Documento técnico dedicado com formalização completa do sistema acoplado (equações dinâmicas, programa observacional e estrutura de tese):
+
+- `docs/MODELO_COSMOLOGICO_UNIFICADO_MAGNETISMO_RADIACAO_PLASMA.md`
+
+---
+
 ## Próximos Passos Essenciais
 
 1. **Substituir dados sintéticos por Pantheon+** (1701 SNe Ia, público)
