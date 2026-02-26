@@ -43,7 +43,7 @@ E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ + Ωs₀[f(a) + (1-f(a))a⁻³] + ΩB
 
 **Norma metodológica (regime mínimo):** No modelo mínimo, termos de feedback local (AGN/SMBH) não retroagem diretamente na equação FRW. Esses termos entram no bloco de baryons/chemistry e afetam apenas observáveis de formação de estrutura (SFR, termodinâmica do gás, crescimento em halo-galáxia). Por consistência formal com as equações deste documento, o regime mínimo não inclui `ε_feedback` ou `f_duty` somando em `E²(a)`.
 
-A função logística f(z) = 1/[1 + exp((z - zₜ)/wₜ)] gera uma **transição suave entre comportamento tipo energia escura (z alto) e tipo matéria (z baixo)**, que é precisamente o padrão que os dados DESI DR2 favorecem na "mirage class" (Lodha et al. 2025).
+A função logística f(z) = 1/[1 + exp((z - zₜ)/wₜ)] gera uma **transição suave entre comportamento tipo energia escura em alto redshift (z≫z_t) e tipo matéria em baixo redshift (z≲z_t), na direção DE→DM com o tempo (z decresce)**, que é precisamente o padrão que os dados DESI DR2 favorecem na "mirage class" (Lodha et al. 2025).
 
 ### Convenção oficial de sinais e limites
 
@@ -71,7 +71,7 @@ Para explicitar a ponte entre os termos físicos do formalismo RLL e os canais e
 | Ωr — observáveis: `H(z)`, `D_A(z)` | FRW global | DESI / Planck / ACT |
 | N_eff — observáveis: `H(z)`, `D_A(z)` (via era de radiação) | FRW global | Planck / ACT |
 | Ωs(a) — observáveis: `H(z)`, `D_A(z)`, `fσ₈` | FRW global | DESI / LSST |
-| ΩP₀ — observáveis: temperatura do gás, `H(z)` em alto z | FRW global | Planck / ACT / JWST |
+| ΩP₀ — observáveis: temperatura do gás, `H(z)` em alto redshift | FRW global | Planck / ACT / JWST |
 | ε_feedback — observáveis: SFR, temperatura do gás | halo-galáxia | JWST |
 | f_duty — observáveis: massa SMBH, fração ativa AGN | halo-galáxia | JWST |
 ### Termo físico → observável
@@ -81,7 +81,7 @@ Para explicitar a ponte entre os termos físicos do formalismo RLL e os canais e
 | Ωr | FRW global | H(z), D_A(z); DESI/Planck/ACT |
 | N_eff | FRW global | H(z), D_A(z) (via era de radiação); Planck/ACT |
 | Ωs(a) | FRW global | H(z), D_A(z), fσ₈; DESI/LSST |
-| ΩP₀ | FRW global | temperatura do gás, H(z) em alto z; Planck/ACT/JWST |
+| ΩP₀ | FRW global | temperatura do gás, H(z) em alto redshift; Planck/ACT/JWST |
 | ε_feedback | halo-galáxia | SFR, temperatura do gás; JWST |
 | f_duty | halo-galáxia | massa SMBH, fração ativa AGN; JWST |
 
@@ -93,17 +93,17 @@ A equação de estado efetiva do RLL é determinada por:
 w_eff(z) = [Ωs₀ · df/dz · (1 - a⁻³)] / [3H²(a) · (1+z)⁻¹ · Ωs₀_total(a)]
 ```
 
-Para os valores de parâmetros best-fit do repositório RLL (Ωs₀ ≈ 0.04-0.08, zₜ ≈ 0.3-0.8, wₜ ≈ 0.1-0.3), o modelo efetivamente produz:
+Para os valores de parâmetros best-fit do repositório RLL (Ωs₀ ≈ 0.04-0.08, zₜ ≈ 0.3-0.8, wₜ ≈ 0.1-0.3), o mapeamento canônico de limites fica:
 
-- **z → 0:** w_eff → 0 (componente age como matéria em z baixo)
-- **z → zₜ:** w_eff → -1 (transição para comportamento tipo Λ)
-- **z >> zₜ:** w_eff → -1 + ε (domínio de energia escura suave)
+- **z → 0 (baixo redshift, z≲z_t):** w_eff → 0 (componente efetiva tipo matéria)
+- **z → zₜ:** w_eff → -1 (faixa de transição)
+- **z >> zₜ (alto redshift, z≫z_t):** w_eff → -1 + ε (domínio tipo energia escura suave)
 
 **Correspondência com DESI DR2:**
 
 | Parâmetro DESI DR2 (Best-fit) | Equivalente RLL | Compatibilidade |
 |-------------------------------|-----------------|-----------------|
-| w₀ ≈ -0.7 (mirage class) | w_eff(z=0) ≈ -0.65 a -0.80 | ✓ Alta |
+| w₀ ≈ -0.7 (mirage class) | w_eff(z≈zₜ) ≈ -0.65 a -0.80 | ✓ Alta |
 | wₐ ≈ -1.0 (mirage class) | dw/dz integrado ≈ -0.8 a -1.2 | ✓ Moderada-Alta |
 | zₜransição ≈ 0.4-0.6 (GEDE) | zₜ (RLL) ≈ 0.3-0.8 | ✓ Alta |
 | Ωm ≈ 0.295-0.315 | Ωm (RLL) via posterior sintético | ✓ Dentro de 1σ |
@@ -259,7 +259,7 @@ No enquadramento **O GAP É O SINAL — Ruído como Dimensão Não Mapeada**, o 
 | Ωs(a) | FRW global | DESI (`H(z)`/`D_A(z)` com gap de expansão), Planck/ACT (consistência de background), LSST (`fσ₈` em crescimento) |
 | ΩP₀ | FRW global | Planck/ACT (alto-z), DESI (desvio em `H(z)` reconstruído), LSST (`fσ₈` e estrutura em larga escala) |
 | ε_feedback | halo-galáxia | JWST (offset em SFR e temperatura do gás), SPARC/LSST quando aplicável (acoplamento com cinemática/barions) |
-| f_duty | halo-galáxia | JWST (**excesso de SMBH** em z alto), SPARC/LSST quando aplicável (discrepância de massa SMBH vs hospedeira) |
+| f_duty | halo-galáxia | JWST (**excesso de SMBH** em alto redshift), SPARC/LSST quando aplicável (discrepância de massa SMBH vs hospedeira) |
 
 ### 4.1 Teste χ² Cruzado: RLL vs. DESI DR2 BAO
 
