@@ -1,3 +1,4 @@
+import argparse
 import os
 import numpy as np
 import pandas as pd
@@ -141,6 +142,7 @@ def covariance_usage_summary(blocks):
 
 def main():
     os.makedirs(RESULTS, exist_ok=True)
+    os.makedirs(INFERENCE_RESULTS, exist_ok=True)
     rows = []
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
@@ -188,12 +190,51 @@ def main():
         summary_df.insert(0, "model", model_name)
         cov_rows.append(summary_df)
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
-    evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
+    evaluate_model(summary_rows, cov_out)
 
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
 
+    if run_bayes:
+        _save_bayes_results(datasets, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive)
+
+
+def _parse_args():
+    parser = argparse.ArgumentParser(description="Run structure_d model comparison pipeline")
+    parser.add_argument("--config", default=DEFAULT_CONFIG)
+    parser.add_argument("--profile", default=DEFAULT_PROFILE)
+    parser.add_argument("--covariance-policy", default=None)
+    parser.add_argument("--bayes", action="store_true")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--nwalkers", type=int, default=32)
+    parser.add_argument("--nsteps", type=int, default=2000)
+    parser.add_argument("--nlive", type=int, default=400)
+    return parser.parse_args()
+
+
+
+
+    inference_manifest = {
+        "LCDM": _run_inference_for_model("LCDM", hz, fs8),
+        "RLL_like+AGN": _run_inference_for_model("RLL_like+AGN", hz, fs8),
+    }
+    manifest_path = os.path.join(INFERENCE_RESULTS, "manifest.json")
+    with open(manifest_path, "w", encoding="utf-8") as fp:
+        json.dump(inference_manifest, fp, indent=2)
+    print(f"Wrote: {manifest_path}")
 
 if __name__ == "__main__":
-    main()
+    args = _parse_args()
+    env_profile = os.environ.get("STRUCTURE_D_PROFILE")
+    chosen_profile = args.profile if args.profile is not None else env_profile
+    main(
+        config_path=args.config,
+        profile_name=chosen_profile,
+        covariance_policy=args.covariance_policy,
+        run_bayes=args.bayes,
+        seed=args.seed,
+        nwalkers=args.nwalkers,
+        nsteps=args.nsteps,
+        nlive=args.nlive,
+    )
