@@ -4,6 +4,17 @@
 
 Base conceitual do Relativity Living Light (RLL) e escopo técnico do livro.
 
+
+## Termos canônicos aplicados neste ponto de entrada
+
+Referência: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md).
+
+- **superposição fotônica** (termo principal)
+- **coerência (f(z))**
+- **decoerência ((1−f(z)))**
+- **setor magnético**
+- **setor plasmático**
+- **transição DE→DM do setor de superposição**
 ## Bloco canônico do framework
 
 - Referência canônica: [`../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md)

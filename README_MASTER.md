@@ -16,7 +16,54 @@
 
 Resumo canônico do framework: ver `docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`.
 
+```
+E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ +
+        Ω_s0[f(a) + (1-f)a⁻³] +          # superposição fotônica (transição DE→DM do setor de superposição)
+        Ω_B0 a⁻⁴ +                         # setor magnético
+        Ω_P0 a⁻⁴                           # setor plasmático (T,P)
+```
+
+onde:
+- **f(z) = 1 / (1 + exp((z - z_t)/w_t))** — função de transição suave
+- **z_t** — redshift da transição DE→DM do setor de superposição
+- **w_t** — largura da transição
+- **Ω_s0** — densidade de superposição fotônica hoje
+- **Ω_B0** — densidade do setor magnético cósmico
+- **Ω_P0** — densidade do setor plasmático
+
+### Componentes do Modelo
+
+1. **Termos clássicos:**
+   - Matéria: Ω_m a⁻³
+   - Constante cosmológica: Ω_Λ
+   - Radiação: Ω_r a⁻⁴
+
+2. **Superposição fotônica (novo, termo canônico):**
+   - “superposição escura” (sinônimo legado/histórico)
+   - Coerência \(f(z)\) e decoerência \((1-f(z))\) na transição DE→DM do setor de superposição
+   - Comportamento dual: expansivo em z baixo, atrativo em z alto
+
+3. **Componentes adicionais:**
+   - Setor magnético coerente: Ω_B0 a⁻⁴
+   - Setor plasmático com temperatura e pressão: Ω_P0 a⁻⁴
+   - Correção magneto-coerente opcional: parâmetros α_B, β
+
+---
 Em síntese: o RLL estende a forma tipo Friedmann com um setor de superposição fotônica em transição dinâmica (DE→matéria), mantendo os termos clássicos e incluindo contribuições magnética e plasmática sob referência canônica única.
+
+
+## 🧾 Micro-tabela canônica (termos de entrada)
+
+Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md).
+
+| Termo canônico | Uso curto |
+|---|---|
+| superposição fotônica | setor de superposição |
+| coerência (f(z)) | coerência |
+| decoerência ((1−f(z))) | decoerência |
+| setor magnético | magnético |
+| setor plasmático | plasmático |
+| transição DE→DM do setor de superposição | DE→DM |
 
 ## 📂 Estrutura do Repositório
 
@@ -237,7 +284,7 @@ Mostrar que o modelo de **superposição dinâmica** pode:
 
 1. ✅ Replicar os ajustes do ΛCDM em múltiplos observáveis
 2. ✅ Estender a física cosmológica com novos graus de liberdade:
-   - Transições DE→matéria
+   - Transições DE→DM do setor de superposição
    - Magnetismo cósmico
    - Efeitos plasmáticos
 3. ✅ Fornecer uma interpretação física alternativa para o "setor escuro"

@@ -14,6 +14,22 @@ Atualizado em: 2026-02-25
 
 Ponto único para termos técnicos, siglas, variáveis e nomenclaturas do modelo **Relativity Living Light** com leitura rápida e rastreável.
 
+## Micro-tabela canônica (prioritária)
+
+Fonte: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md).
+
+| Termo canônico | Definição curta |
+|---|---|
+| superposição fotônica | componente dinâmica unificada principal |
+| coerência (f(z)) | ramo logístico coerente do setor de superposição |
+| decoerência ((1−f(z))) | ramo complementar do setor de superposição |
+| setor magnético | contribuição física associada a Ω_B0 e ρ_B |
+| setor plasmático | contribuição física associada a Ω_P0 e ρ_P |
+| transição DE→DM do setor de superposição | passagem efetiva entre ramos coerente/decoerente |
+
+> Nota editorial: termos alternativos devem ser marcados como **sinônimo legado** ou **histórico**.
+
+
 ## Navegação interna
 
 - [1) Variáveis cosmológicas padrão](#1-variáveis-cosmológicas-padrão)
@@ -71,7 +87,7 @@ Ponto único para termos técnicos, siglas, variáveis e nomenclaturas do modelo
 |---|---|---|---|---|
 | **ρ_B** | Densidade magnética | B²/(2μ₀c²) | kg/m³ | energia do campo B |
 | **Ω_B0** | Fração magnética atual | ρ_B(z=0)/ρc | adimensional | tipicamente pequena |
-| **B** | Campo magnético cósmico | intensidade de campo | Tesla/Gauss | usado em escalas cosmológicas |
+| **B** | Setor magnético (histórico: campo magnético cósmico) | intensidade de campo | Tesla/Gauss | usado em escalas cosmológicas |
 | **α_B** | Força de acoplamento | modulação em Ω_s0 | adimensional | calibra impacto magnético |
 | **β** | Expoente de acoplamento | potência não linear | adimensional | controla curvatura da modulação |
 
@@ -181,7 +197,7 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 - [Cosmologia padrão](#cosmologia-padrão)
 - [Superposição](#superposição)
 - [Magnetismo](#magnetismo)
-- [Plasma](#plasma)
+- [Setor plasmático](#setor-plasmático)
 - [Observáveis](#observáveis)
 - [Conversões](#conversões)
 
@@ -212,19 +228,19 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 > Em ajuste de dados de expansão, `f(z)` controla **quando** e **quão suave** é a transição entre regimes efetivos no termo de superposição. Um cenário com `z_t` maior desloca a transição para épocas mais antigas.
 
 ### Exemplo de uso — `w_eff`
-> Ao comparar modelos no diagrama `w(z)`, `w_eff` resume a dinâmica da componente unificada: próximo de `-1` em regime tipo energia escura e próximo de `0` em regime tipo matéria.
+> Ao comparar modelos no diagrama `w(z)`, `w_eff` resume a dinâmica da componente unificada: próximo de `-1` em regime tipo energia escura (histórico; canônico: ramo DE da transição DE→DM do setor de superposição) e próximo de `0` em regime tipo matéria (histórico; canônico: ramo DM da transição DE→DM do setor de superposição).
 
 ## Magnetismo
 
 | Símbolo | Nome | Definição | Unidade | Faixa/Observação |
 |---|---|---|---|---|
-| **B** | Campo magnético cósmico | Intensidade do campo magnético médio efetivo | T (ou G) | Escalas cosmológicas costumam ser tratadas em nG |
+| **B** | Setor magnético (histórico: campo magnético cósmico) | Intensidade do campo magnético médio efetivo | T (ou G) | Escalas cosmológicas costumam ser tratadas em nG |
 | **ρ_B** | Densidade magnética | \(\rho_B = B^2/(2\mu_0 c^2)\) | kg/m³ | Contribuição energética associada ao campo |
 | **Ω_B0** | Fração magnética hoje | \(\rho_B(z=0)/\rho_c\) | adimensional | Tipicamente pequena em relação a Ω_m |
 | **α_B** | Acoplamento magneto-coerente | Coeficiente de modulação magnética da superposição | adimensional | Parâmetro fenomenológico |
 | **β** | Expoente de não linearidade | Expoente do termo de modulação magnética | adimensional | Ajusta curvatura da resposta |
 
-## Plasma
+## Setor plasmático
 
 | Símbolo | Nome | Definição | Unidade | Faixa/Observação |
 |---|---|---|---|---|
@@ -306,7 +322,7 @@ Nota editorial: este capítulo consolida a notação para consulta rápida e pod
 
 | Símbolo | Significado | Fórmula | Range | Exemplo |
 |---|---|---|---|---|
-| **w** | Equação de estado | p = w ρ c² | [-1, 1/3] | DE: w=-1, matéria: w=0 |
+| **w** | Equação de estado | p = w ρ c² | [-1, 1/3] | DE (histórico): w=-1, matéria (histórico): w=0 |
 | **w_eff(z)** | Efetiva com z | Derivada de Friedmann | Varia | Rafael: transita DE→DM |
 | **γ** | Índice adiabático | p = (γ-1)ρu | [1, 5/3] | Gás monoatômico: γ=5/3 |
 
@@ -320,7 +336,7 @@ Nota editorial: este capítulo consolida a notação para consulta rápida e pod
 |---|---|---|---|---|
 | **ρ_s** | Densidade de superposição | Ω_s0 ρc [f(a) + (1-f)a⁻³] | kg/m³ | DE+DM em um termo |
 | **Ω_s0** | Amplitude hoje | densidade superposição/ρc | adimensional | Parâmetro livre: ~0.05-0.15 |
-| **f(a)** | Fração de coerência | 1/(1+exp((z-z_t)/w_t)) | [0,1] | 1→DE, 0→DM |
+| **f(a)** | Fração de coerência | 1/(1+exp((z-z_t)/w_t)) | [0,1] | 1→DE (histórico), 0→DM (histórico) |
 | **f(z)** | Mesma (redshift) | Mesmo que f(a) | [0,1] | Conveniente para observações |
 
 ---
@@ -363,7 +379,7 @@ Limites:
 |---|---|---|---|---|
 | **ρ_B** | Densidade magnética | B²/(2μ₀) / c² | kg/m³ | Energia do campo B |
 | **Ω_B0** | Amplitude magnética hoje | ρ_B(z=0) / ρc | adimensional | Parâmetro livre: ~10⁻⁶-10⁻⁵ |
-| **B** | Campo magnético cósmico | Intensidade do B | Tesla ou Gauss | nG (nanoGauss) primordial |
+| **B** | Setor magnético (histórico: campo magnético cósmico) | Intensidade do B | Tesla ou Gauss | nG (nanoGauss) primordial |
 
 ---
 
@@ -426,16 +442,16 @@ Efeito: Onde B é forte, coerência muda
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
 ---
 
-## 🔥 VARIÁVEIS DE PLASMA
+## 🔥 VARIÁVEIS DO SETOR PLASMÁTICO
 
-### **Componente plasmática**
+### **Componente do setor plasmático**
 
 | Símbolo | Nome | Definição | Unidades | Física |
 |---|---|---|---|---|
 | **ρ_P** | Densidade plasmática | (3/2)nk_BT/c² + B²/(2μ₀c²) | kg/m³ | Energia térmica + magnética |
-| **Ω_P0** | Amplitude plasma hoje | ρ_P(z=0) / ρc | adimensional | Parâmetro livre: ~10⁻⁶-10⁻⁵ |
+| **Ω_P0** | Amplitude do setor plasmático hoje | ρ_P(z=0) / ρc | adimensional | Parâmetro livre: ~10⁻⁶-10⁻⁵ |
 | **n** | Densidade de número | partículas/volume | m⁻³ | De elétrons/íons |
-| **T** | Temperatura | Cinética | K (Kelvin) | KeV, MeV para plasma |
+| **T** | Temperatura | Cinética | K (Kelvin) | KeV, MeV para setor plasmático |
 | **k_B** | Constante Boltzmann | 1.38×10⁻²³ | J/K | Vínculo quântico-clássico |
 
 ---

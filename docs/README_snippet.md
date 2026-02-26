@@ -1,4 +1,8 @@
-## 🔬 Validação Técnica — Modelo com ρ_superposição
+## 🔖 Ponte canônica de termos
+
+Antes de usar este snippet, adote os termos canônicos em [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](./canonicos/FRAMEWORK_RESUMO_CANONICO.md): **superposição fotônica**, **coerência (f(z))**, **decoerência ((1−f(z)))**, **setor magnético**, **setor plasmático**, **transição DE→DM do setor de superposição**.
+
+## 🔬 Validação Técnica — Modelo com superposição fotônica
 
 Para explorar a hipótese proposta, implementamos uma versão modificada da equação de Friedmann:
 
@@ -12,10 +16,12 @@ onde:
 - \( \Omega_\Lambda \): constante cosmológica
 - \( \Omega_{\text{sup}} \): fração de densidade associada à **superposição fotônica** hoje
 - \( n \): expoente de evolução do termo de superposição
+- \( f(z) \): **coerência** da superposição fotônica
+- \(1-f(z)\): **decoerência** da superposição fotônica
 
 ### Exemplo numérico
 
-No gráfico abaixo, comparamos o modelo padrão ΛCDM (Ω_sup = 0) com um modelo que inclui **ρ_superposição** (\( \Omega_{\text{sup}}=0.1, n=2 \)):
+No gráfico abaixo, comparamos o modelo padrão ΛCDM (Ω_sup = 0) com um modelo que inclui o **setor de superposição fotônica** (\( \Omega_{\text{sup}}=0.1, n=2 \)):
 
 ![Comparação H(z)](../figs/paper/hz_superposicao.png)
 
