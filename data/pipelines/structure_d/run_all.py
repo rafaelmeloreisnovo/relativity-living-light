@@ -1,8 +1,10 @@
+import argparse
 import os
+
 import numpy as np
 import pandas as pd
 
-from .data_access import load_active_datasets
+from .data_access import load_active_datasets, load_run_config
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
@@ -171,12 +173,59 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
+def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
+    if entry.get("z") is None:
+        raise ValueError(f"dataset {dataset_id} does not provide z values")
+
+    z = np.asarray(entry["z"], dtype=float)
+    block_name = _dataset_block_name(dataset_id, entry)
+
+    if block_name == "Hz":
+        c2_l = _chi2_from_entry(entry, model_LCDM_Hz(z, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_Hz(z, rll))
+    elif block_name == "fσ8":
+        c2_l = _chi2_from_entry(entry, model_LCDM_fs8(z, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_fs8(z, rll))
+    else:
+        raise ValueError(f"unsupported dataset for current model set: {dataset_id} ({block_name})")
+
+    return float(c2_l), float(c2_r), int(len(entry["values"]))
+
+
+def _artifact_kind(file_path):
+    name = os.path.basename(file_path).lower()
+    bayes_tokens = ("bayes", "evidence", "posterior", "nested", "mcmc")
+    return "bayes" if any(token in name for token in bayes_tokens) else "classic"
+
+
+def _print_written_artifact(file_path, kind):
+    print(f"[{kind}] wrote: {os.path.abspath(file_path)}")
+
+
+def _print_all_result_artifacts(results_dir, bayes, skip_paths=None):
+    skip_paths = {os.path.abspath(path) for path in (skip_paths or [])}
+    bayes_count = 0
+    for name in sorted(os.listdir(results_dir)):
+        artifact = os.path.abspath(os.path.join(results_dir, name))
+        if artifact in skip_paths or not os.path.isfile(artifact):
+            continue
+        kind = _artifact_kind(artifact)
+        if kind == "bayes":
+            bayes_count += 1
+            if not bayes:
+                continue
+        _print_written_artifact(artifact, kind)
+    if bayes and bayes_count == 0:
+        print("[bayes] wrote: none")
+
+
+def main(config_path=DEFAULT_CONFIG, covariance_policy=None, profile_name=DEFAULT_PROFILE, bayes=False):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    cfg, datasets = load_active_datasets(config_path)
-    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
+    full_cfg = load_run_config(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(full_cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -206,10 +255,10 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
 
     rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
                      N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
     rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
                      N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name=cfg.get("run_name", "unknown"), covariance_policy=covariance_policy))
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
@@ -232,10 +281,20 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
 
     print(df.to_string(index=False))
-    print(f"\nWrote: {out}")
-    print(f"Wrote: {cov_out}")
+    _print_written_artifact(out, "classic")
+    _print_written_artifact(cov_out, "classic")
+    _print_all_result_artifacts(RESULTS, bayes=bayes, skip_paths=[out, cov_out])
+
+
+def _build_parser():
+    parser = argparse.ArgumentParser(description="Executa o pipeline structure_d")
+    parser.add_argument("--config", default=DEFAULT_CONFIG)
+    parser.add_argument("--profile", default=os.environ.get("STRUCTURE_D_PROFILE", DEFAULT_PROFILE))
+    parser.add_argument("--covariance-policy", default=None, choices=["prefer_full", "diagonal_only", "full_required"])
+    parser.add_argument("--bayes", action="store_true", help="Exibe também artefatos bayesianos gerados")
+    return parser
 
 
 if __name__ == "__main__":
-    env_profile = os.environ.get("STRUCTURE_D_PROFILE")
-    main(profile_name=env_profile)
+    args = _build_parser().parse_args()
+    main(config_path=args.config, covariance_policy=args.covariance_policy, profile_name=args.profile, bayes=args.bayes)
