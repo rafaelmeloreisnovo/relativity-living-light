@@ -1,8 +1,8 @@
-# 21. Validação Observacional — DESI/BOSS
+# 21. Validação Observacional — DESI DR2 e BOSS DR12
 
 [⬅️ Capítulo anterior](./20_validacao_rotacao_galaxias.md) | [📚 Sumário do livro](./README.md) | [Capítulo próximo ➡️](./22_validacao_jwst_agn_smbh.md)
 
-Síntese das comparações direcionadas para levantamentos de larga escala.
+Síntese das comparações direcionadas para levantamentos de larga escala, com foco em DESI DR2 e BOSS DR12.
 
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
@@ -11,9 +11,42 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 - 06_COMPARACOES_DETALHADAS.md
 - docs/Results.md
 
+## Síntese DESI DR2/BOSS DR12
+
+A comparação conjunta entre DESI DR2 e BOSS DR12 é tratada como eixo canônico para verificar consistência entre geometria de fundo e crescimento estrutural no intervalo de redshift compartilhado.
+
+Resultado a síntese DESI DR2/BOSS DR12 como teste de consistência inter-survey é sustentado por [DESI-DR2-2025, BOSS-DR12-2017, eBOSS-DR16-2021].
+
+Na leitura de BAO, o foco está nos desvios relativos em distâncias angulares e na escala de oscilação, observando se a parametrização com transição de coerência preserva a calibração em torno do padrão ΛCDM.
+
+Resultado as implicações em BAO para calibração geométrica e desvio residual controlado são sustentadas por [DESI-DR2-2025, BOSS-DR12-2017, Planck2018].
+
+Para `fσ₈`, a avaliação prioriza tendência com z e tensão residual com parâmetros de crescimento efetivo, distinguindo ganho físico de flexibilidade paramétrica.
+
+Resultado as implicações em `fσ₈` para crescimento estrutural e tensão residual entre modelos são sustentadas por [DESI-DR2-2025, eBOSS-DR16-2021, Planck2018].
+
+## Referências de rastreabilidade
+
+- [Planck2018] Planck Collaboration (2018), *Planck 2018 results. VI. Cosmological parameters*.
+- [DESI-DR2-2025] DESI Collaboration (2025), *Data Release 2 cosmological constraints*.
+- [BOSS-DR12-2017] Alam et al. (2017), *BOSS DR12 consensus cosmology*.
+- [eBOSS-DR16-2021] eBOSS Collaboration (2021), *DR16 cosmological analyses*.
+
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
+
+## Amarração metodológica
+
+A leitura deste capítulo segue o [Formalismo base](./04_formalismo_equacao_unificada.md) e as [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md), com interpretação consolidada no [Painel analítico de resultados](./24_resultados_figuras_painel.md).
+
+## Ver também
+
+- [Formalismo base](./04_formalismo_equacao_unificada.md)
+- [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md)
+- [Validação JWST/AGN/SMBH](./22_validacao_jwst_agn_smbh.md)
+- [Painel analítico de resultados](./24_resultados_figuras_painel.md)
+
 
 ---
 
@@ -26,3 +59,5 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 5. Calderon, R. et al. (DESI Collaboration; primeiro autor: R. Calderon). 2024. "Crossing statistics for DESI DR1 dark energy constraints". JCAP, 2024(10):048. DOI:10.1088/1475-7516/2024/10/048.
 
 ---
+## Referências e convenções terminológicas
+- Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).
