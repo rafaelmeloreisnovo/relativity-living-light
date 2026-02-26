@@ -6,6 +6,17 @@ import numpy as np
 import pandas as pd
 
 
+MODEL_NAME_ALIASES = {
+    "RLL_like+AGN": "RLL_like_AGN",
+    "RLL_like_AGN": "RLL_like_AGN",
+    "LCDM": "LCDM",
+}
+
+
+def canonical_model_name(model_name):
+    return MODEL_NAME_ALIASES.get(str(model_name), str(model_name).replace("+", "_"))
+
+
 def _as_1d_finite_array(name, values):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -166,6 +177,17 @@ def aic(chi2_val, k):
 
 def bic(chi2_val, k, N):
     return float(chi2_val + k * np.log(N))
+
+
+def estimate_log_evidence(chi2_val=None, k=None, n_obs=None, bic_value=None):
+    if bic_value is None:
+        if chi2_val is None or k is None or n_obs is None:
+            raise ValueError("estimate_log_evidence requires bic_value or (chi2_val, k, n_obs)")
+        bic_value = bic(chi2_val, k, n_obs)
+
+    logz = float(-0.5 * float(bic_value))
+    logz_err = float("nan")
+    return logz, logz_err
 
 
 def load_csv(path, required_cols):

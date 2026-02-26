@@ -4,8 +4,16 @@ import os
 import numpy as np
 import pandas as pd
 
-from .data_access import load_active_datasets, load_run_config
-from .likelihood import aic, bic, chi2, chi2_with_covariance, evaluate_model, save_posterior_csv
+from .data_access import load_active_datasets
+from .likelihood import (
+    aic,
+    bic,
+    canonical_model_name,
+    chi2,
+    chi2_with_covariance,
+    estimate_log_evidence,
+    evaluate_model,
+)
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
@@ -164,50 +172,49 @@ def _chi2_from_entry(entry, model_values):
 
 
 def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
-    observable = str(entry.get("observable", dataset_id)).lower()
     z_values = entry.get("z")
     if z_values is None:
         return 0.0, 0.0, 0
 
-    if "hz" in observable:
-        model_l = model_LCDM_Hz(z_values, lcdm)
-        model_r = model_RLL_like_Hz(z_values, rll)
-    elif "fs" in observable:
-        model_l = model_LCDM_fs8(z_values, lcdm)
-        model_r = model_RLL_like_fs8(z_values, rll)
+    if dataset_id in {"hz", "real_hz"}:
+        lcdm_values = model_LCDM_Hz(z_values, lcdm)
+        rll_values = model_RLL_like_Hz(z_values, rll)
+    elif dataset_id == "fsigma8":
+        lcdm_values = model_LCDM_fs8(z_values, lcdm)
+        rll_values = model_RLL_like_fs8(z_values, rll)
     else:
         return 0.0, 0.0, 0
 
-    return _chi2_from_entry(entry, model_l), _chi2_from_entry(entry, model_r), len(entry["values"])
+    chi2_lcdm = _chi2_from_entry(entry, lcdm_values)
+    chi2_rll = _chi2_from_entry(entry, rll_values)
+    return chi2_lcdm, chi2_rll, len(entry["values"])
 
 
-def _build_posterior_row(params, chi2_total):
-    loglike = -0.5 * float(chi2_total)
-    return {**params, "loglike": loglike, "logpost": loglike}
+def _build_bayes_evidence_rows(model_rows):
+    evidence_rows = []
+    for row in model_rows:
+        logz, logz_err = estimate_log_evidence(chi2_val=row["chi2"], k=row["k"], n_obs=row["N"])
+        evidence_rows.append(
+            {
+                "model": canonical_model_name(row["model"]),
+                "logZ": logz,
+                "logZ_err": logz_err,
+            }
+        )
+    return evidence_rows
 
 
-def _save_model_posteriors(lcdm, rll, chi2_lcdm, chi2_rll):
-    lcdm_columns = ["H0", "Om", "Ol", "sigma8", "gamma", "loglike", "logpost"]
-    rll_columns = ["H0", "Om", "Ol", "sigma8", "gamma", "alpha", "z_peak", "width", "beta", "loglike", "logpost"]
-
-    lcdm_df = pd.DataFrame([_build_posterior_row(lcdm, chi2_lcdm)])[lcdm_columns]
-    rll_df = pd.DataFrame([_build_posterior_row(rll, chi2_rll)])[rll_columns]
-
-    out_lcdm = os.path.join(RESULTS, "posterior_LCDM.csv")
-    out_rll = os.path.join(RESULTS, "posterior_RLL_like_AGN.csv")
-
-    save_posterior_csv(lcdm_df, out_lcdm)
-    save_posterior_csv(rll_df, out_rll)
-    return out_lcdm, out_rll
-
-
-def main(config_path=DEFAULT_CONFIG, covariance_policy=None, profile_name=None):
+def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    run_cfg = load_run_config(config_path)
-    cfg, datasets = load_active_datasets(config_path, profile_name=profile_name)
-    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(run_cfg, datasets, covariance_policy)
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+
+    import json
+    with open(os.path.join(BASE_DIR, config_path), "r", encoding="utf-8") as f:
+        cfg = json.load(f)
+
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -276,12 +283,36 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None, profile_name=None):
     k_lcdm = len(fit_params_lcdm)
     k_rll = len(fit_params_rll)
 
-    rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
-                     N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
-    rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
-                     N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
+    rows.append(
+        dict(
+            model="LCDM",
+            chi2=chi2_lcdm,
+            AIC=aic(chi2_lcdm, k_lcdm),
+            BIC=bic(chi2_lcdm, k_lcdm, total_observables),
+            N=total_observables,
+            k=k_lcdm,
+            fit_params=",".join(fit_params_lcdm),
+            fixed_params=",".join(fixed_params_lcdm),
+            datasets_used=active_datasets,
+            run_name=cfg_meta.get("run_name", "unknown"),
+            covariance_policy=covariance_policy,
+        )
+    )
+    rows.append(
+        dict(
+            model="RLL_like+AGN",
+            chi2=chi2_rll,
+            AIC=aic(chi2_rll, k_rll),
+            BIC=bic(chi2_rll, k_rll, total_observables),
+            N=total_observables,
+            k=k_rll,
+            fit_params=",".join(fit_params_rll),
+            fixed_params=",".join(fixed_params_rll),
+            datasets_used=active_datasets,
+            run_name=cfg_meta.get("run_name", "unknown"),
+            covariance_policy=covariance_policy,
+        )
+    )
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
@@ -290,9 +321,18 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None, profile_name=None):
     expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
     summary_df = covariance_usage_summary(block_reports, diagonal_fallback=True)
     missing = [
-        {"block": b, "dataset_id": "", "covariance_mode": "not_used", "source": "fallback", "covariance_path": "",
-         "has_full_covariance": False, "has_diagonal_sigma": False, "diagonal_fallback": True}
-        for b in expected_blocks if b not in set(summary_df["block"].tolist())
+        {
+            "block": b,
+            "dataset_id": "",
+            "covariance_mode": "not_used",
+            "source": "fallback",
+            "covariance_path": "",
+            "has_full_covariance": False,
+            "has_diagonal_sigma": False,
+            "diagonal_fallback": True,
+        }
+        for b in expected_blocks
+        if b not in set(summary_df["block"].tolist())
     ]
     if missing:
         summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
@@ -360,12 +400,17 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
 
     out_lcdm, out_rll = _save_model_posteriors(lcdm, rll, chi2_lcdm, chi2_rll)
 
+    bayes_rows = _build_bayes_evidence_rows(rows)
+    bayes_out = os.path.join(RESULTS, "bayes_evidence.csv")
+    bayes_df = evaluate_model(bayes_rows, bayes_out)
+
     print(df.to_string(index=False))
     print("\nPosterior convention: loglike = -0.5 * chi2_total; uniform prior -> logpost = loglike (up to additive constant).")
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
-    print(f"Wrote: {out_lcdm}")
-    print(f"Wrote: {out_rll}")
+    print(f"Wrote: {bayes_out}")
+    print("\nBayesian evidence summary")
+    print(bayes_df.to_string(index=False))
 
 
 if __name__ == "__main__":
