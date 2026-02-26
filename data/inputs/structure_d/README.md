@@ -12,4 +12,8 @@ Você pode gerar dados exemplo rodando:
 
 Restrições numéricas aplicadas no pipeline:
 - `sigma` (em `Hz.csv` e `fsigma8.csv`) deve ser finito e estritamente positivo (`sigma > 0`).
+- `r` (vetor residual usado no cálculo geral de χ²) deve ser finito e 1D.
+- `C` (matriz de covariância) deve ser finita, quadrada, simétrica e compatível com a dimensão de `r`.
 - `width` usado em `gaussian_window(...)` (módulo `data/pipelines/structure_d/feedback_agn.py`) deve ser finito e estritamente positivo (`width > 0`).
+
+Observação: o pipeline aceita covariância cheia por bloco (SNe, BAO, fσ8, lentes). Quando não houver `C`, usa fallback diagonal com `sigma`.
