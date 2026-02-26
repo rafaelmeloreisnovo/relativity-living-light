@@ -155,6 +155,27 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
 
 `to_Add/` é reservado para histórico e auditoria, sem função operacional.
 
+## Reprodução rápida (1 comando)
+
+Para executar a reprodução principal de ponta a ponta, use:
+
+- `bash scripts/run_repro_all.sh`
+
+Modo opcional (inclui o preview de dois componentes de radiação):
+
+- `bash scripts/run_repro_all.sh --with-two-rad`
+
+Artefatos esperados após a execução:
+
+- `results/structure_d/model_comparison.csv`
+- `results/RLL_chi2_results.csv`
+- `results/two_radiation_model_preview.csv`
+- `figs/paper/RLL_validacao_real.png`
+
+> Nota: `results/two_radiation_model_preview.csv` é gerado apenas quando a flag opcional `--with-two-rad` é usada.
+
+---
+
 ## 🔬 Observáveis Testados
 
 O modelo foi testado contra múltiplos observáveis cosmológicos:
