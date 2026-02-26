@@ -1,8 +1,11 @@
 import argparse
 import os
+import argparse
 import numpy as np
 import pandas as pd
 
+from .data_access import load_active_datasets, load_run_config
+from .inference import run_nested_dynesty
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 
@@ -140,9 +143,43 @@ def covariance_usage_summary(blocks):
     return pd.DataFrame(rows)
 
 
-def main():
-    os.makedirs(RESULTS, exist_ok=True)
-    os.makedirs(INFERENCE_RESULTS, exist_ok=True)
+def _chi2_from_entry(entry, model_values):
+    if entry["errors"] is not None:
+        return chi2(entry["values"], model_values, entry["errors"])
+    return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
+
+
+def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
+    z_values = entry.get("z")
+    if z_values is None:
+        return 0.0, 0.0, 0
+
+    observable = str(entry.get("observable", dataset_id)).lower()
+    if "hz" in observable:
+        lcdm_model = model_LCDM_Hz(z_values, lcdm)
+        rll_model = model_RLL_like_Hz(z_values, rll)
+    elif "fs" in observable:
+        lcdm_model = model_LCDM_fs8(z_values, lcdm)
+        rll_model = model_RLL_like_fs8(z_values, rll)
+    else:
+        return 0.0, 0.0, 0
+
+    c2_lcdm = _chi2_from_entry(entry, lcdm_model)
+    c2_rll = _chi2_from_entry(entry, rll_model)
+    return c2_lcdm, c2_rll, len(entry["values"])
+
+
+def _to_inference_frame(entry, value_name):
+    if entry.get("errors") is None:
+        return None
+    z_values = entry.get("z")
+    if z_values is None:
+        return None
+    return pd.DataFrame({"z": z_values, value_name: entry["values"], "sigma": entry["errors"]})
+
+
+def run_classic_metrics(cfg_meta, datasets, covariance_policy):
+    """# Bloco 1: Métrica clássica (χ²/AIC/BIC)."""
     rows = []
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
@@ -176,13 +213,60 @@ def main():
 
     rows.append(dict(model="LCDM", chi2=chi2_lcdm, AIC=aic(chi2_lcdm, k_lcdm), BIC=bic(chi2_lcdm, k_lcdm, total_observables),
                      N=total_observables, k=k_lcdm, fit_params=",".join(fit_params_lcdm), fixed_params=",".join(fixed_params_lcdm),
-                     datasets_used=active_datasets, run_name="structure_d_auto_blocks"))
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
     rows.append(dict(model="RLL_like+AGN", chi2=chi2_rll, AIC=aic(chi2_rll, k_rll), BIC=bic(chi2_rll, k_rll, total_observables),
                      N=total_observables, k=k_rll, fit_params=",".join(fit_params_rll), fixed_params=",".join(fixed_params_rll),
-                     datasets_used=active_datasets, run_name="structure_d_auto_blocks"))
+                     datasets_used=active_datasets, run_name=cfg_meta.get("run_name", "unknown"), covariance_policy=covariance_policy))
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
+    return df, out
+
+
+def run_bayesian_evidence(cfg_meta, datasets):
+    """# Bloco 2: Evidência Bayesiana."""
+    hz_entry = None
+    fs_entry = None
+    for dataset_id, entry in datasets.items():
+        observable = str(entry.get("observable", dataset_id)).lower()
+        if hz_entry is None and "hz" in observable:
+            hz_entry = entry
+        if fs_entry is None and "fs" in observable:
+            fs_entry = entry
+
+    data_hz = _to_inference_frame(hz_entry, "Hz") if hz_entry is not None else None
+    data_fs8 = _to_inference_frame(fs_entry, "fs8") if fs_entry is not None else None
+    if data_hz is None or data_fs8 is None:
+        print("[bayes] skipped: requires Hz + fσ8 datasets with diagonal sigma errors")
+        return None, None
+
+    rows = []
+    for model_name in ["LCDM", "RLL_like+AGN"]:
+        result = run_nested_dynesty(model_name, data_hz, data_fs8)
+        rows.append(
+            {
+                "model": model_name,
+                "logZ": result["logZ"],
+                "logZ_err": result["logZ_err"],
+                "datasets_used": ",".join(cfg_meta["active_datasets"]),
+                "run_name": cfg_meta.get("run_name", "unknown"),
+            }
+        )
+
+    out = os.path.join(RESULTS, "bayesian_evidence.csv")
+    df = evaluate_model(rows, out)
+    return df, out
+
+
+def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None, bayes=False):
+    os.makedirs(RESULTS, exist_ok=True)
+
+    cfg = load_run_config(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
+
+    # Bloco 1: Métrica clássica (χ²/AIC/BIC)
+    df, out = run_classic_metrics(cfg_meta, datasets, covariance_policy)
 
     cov_rows = []
     for model_name, active_blocks in (("LCDM", blocks_lcdm_active), ("RLL_like+AGN", blocks_rll_active)):
@@ -196,45 +280,27 @@ def main():
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
 
-    if run_bayes:
-        _save_bayes_results(datasets, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive)
+    # Bloco 2: Evidência Bayesiana
+    if bayes:
+        bayes_df, bayes_out = run_bayesian_evidence(cfg_meta, datasets)
+        if bayes_df is not None:
+            print("\nBayesian evidence:")
+            print(bayes_df.to_string(index=False))
+            print(f"Wrote: {bayes_out}")
 
 
-def _parse_args():
-    parser = argparse.ArgumentParser(description="Run structure_d model comparison pipeline")
-    parser.add_argument("--config", default=DEFAULT_CONFIG)
-    parser.add_argument("--profile", default=DEFAULT_PROFILE)
-    parser.add_argument("--covariance-policy", default=None)
-    parser.add_argument("--bayes", action="store_true")
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--nwalkers", type=int, default=32)
-    parser.add_argument("--nsteps", type=int, default=2000)
-    parser.add_argument("--nlive", type=int, default=400)
-    return parser.parse_args()
+def _build_arg_parser():
+    parser = argparse.ArgumentParser(description="Run Structure D model comparison pipeline")
+    parser.add_argument("--config", default=DEFAULT_CONFIG, help="Path to dataset config JSON")
+    parser.add_argument("--profile", default=DEFAULT_PROFILE, help="Profile name from config")
+    parser.add_argument("--covariance-policy", default=None, choices=["prefer_full", "diagonal_only", "full_required"], help="Covariance handling policy")
+    parser.add_argument("--bayes", action="store_true", help="Enable Bayesian evidence estimation via dynesty")
+    return parser
 
-
-
-
-    inference_manifest = {
-        "LCDM": _run_inference_for_model("LCDM", hz, fs8),
-        "RLL_like+AGN": _run_inference_for_model("RLL_like+AGN", hz, fs8),
-    }
-    manifest_path = os.path.join(INFERENCE_RESULTS, "manifest.json")
-    with open(manifest_path, "w", encoding="utf-8") as fp:
-        json.dump(inference_manifest, fp, indent=2)
-    print(f"Wrote: {manifest_path}")
 
 if __name__ == "__main__":
-    args = _parse_args()
+    parser = _build_arg_parser()
+    args = parser.parse_args()
     env_profile = os.environ.get("STRUCTURE_D_PROFILE")
-    chosen_profile = args.profile if args.profile is not None else env_profile
-    main(
-        config_path=args.config,
-        profile_name=chosen_profile,
-        covariance_policy=args.covariance_policy,
-        run_bayes=args.bayes,
-        seed=args.seed,
-        nwalkers=args.nwalkers,
-        nsteps=args.nsteps,
-        nlive=args.nlive,
-    )
+    selected_profile = args.profile if args.profile is not None else env_profile
+    main(config_path=args.config, profile_name=selected_profile, covariance_policy=args.covariance_policy, bayes=args.bayes)
