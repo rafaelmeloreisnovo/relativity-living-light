@@ -273,3 +273,24 @@ Legenda:           Completa em português + inglês
 ---
 
 ∆RafaelVerboΩ — Instituto Rafael — 2026
+
+
+## 🧭 REGRA DE CANONIZAÇÃO PARA FIGURAS CONCEITUAIS
+
+Para eliminar ambiguidade de versões herdadas de `figs/archive/` (especialmente nomes com sufixo ` (1)`, ` (2)`, ...), adotar obrigatoriamente:
+
+- **Pasta canônica:** `figs/conceptual/`
+- **Padrão de nome estável:** `concept_<tema>_<observavel>_v<NN>.png`
+- **Versionamento:** `v01`, `v02`, `v03`... (2 dígitos)
+- **Regra de migração:** não sobrescrever legados; para evitar churn de binários, manter `figs/archive/` como fonte e publicar o canônico em `figs/conceptual/` via link estável (symlink) com nome semântico.
+
+### Exemplos canônicos vigentes
+- `figs/archive/mock_H_fit (1).png` → `figs/conceptual/concept_mock_hubble_fit_v01.png`
+- `figs/archive/mock_SN_fit (1).png` → `figs/conceptual/concept_mock_supernova_fit_v01.png`
+- `figs/archive/post_1d_Os (1).png` → `figs/conceptual/concept_posterior_omega_s0_1d_v01.png`
+- `figs/archive/post_1d_zt (1).png` → `figs/conceptual/concept_posterior_zt_1d_v01.png`
+- `figs/archive/post_2d_Os_wt (1).png` → `figs/conceptual/concept_posterior_omega_s0_wt_2d_v01.png`
+- `figs/archive/post_2d_zt_wt (1).png` → `figs/conceptual/concept_posterior_zt_wt_2d_v01.png`
+- `figs/archive/hz_superposicao (1).png` → `figs/conceptual/concept_expansion_hz_superposition_v01.png`
+- `figs/archive/density_evolution_sup (1).png` → `figs/conceptual/concept_density_evolution_superposition_v01.png`
+- `figs/archive/rotation_curves_sup (1).png` → `figs/conceptual/concept_rotation_curves_superposition_v01.png`

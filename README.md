@@ -161,7 +161,7 @@ Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/can
 | Crescimento de estrutura fσ₈(z) | `híbrido` | ![growth](figs/paper/unified_growth_fs8.png) |
 | Lente em aglomerados | `híbrido` | ![cluster lensing](figs/paper/cluster_lensing_SIS_unified.png) |
 | Curva de rotação (SPARC) | `híbrido` | ![rotation](figs/paper/rotcurve_NGC_2403.png) |
-| Ajuste H mock | `mock` | ![mock H](figs/paper/mock_H_fit.png) |
+| Ajuste H mock | `mock` | ![mock H](figs/conceptual/concept_mock_hubble_fit_v01.png) |
 
 ---
 
