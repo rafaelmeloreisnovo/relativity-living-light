@@ -95,7 +95,8 @@ Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/can
 - [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
 - [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
 - [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
-- [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md)
+- [docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md](docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) *(fonte oficial para formatos no core e artefatos externos)*
+- [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md) *(inventário histórico; não é recomendação de armazenamento no core)*
 - [docs/PLANO_AD_AGN_JWST.md](docs/PLANO_AD_AGN_JWST.md)
 
 ### Trilha autoral e conceitual (integridade de selo)
@@ -141,27 +142,22 @@ Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/can
 
 ## 3) Gráficos, infográficos e imagens
 
-### 3.1 Figura de referência solicitada (`híbrido`)
+Para manter o core do repositório estritamente textual/reprodutível, imagens e painéis visuais ficam fora do versionamento central e devem ser publicados como artefatos externos versionados (release/DOI).
 
-![Crescimento Estrutural: RLL vs ΛCDM vs Dados BOSS](https://github.com/instituto-Rafael/relativity-living-light/file_00000000bf0c71f59bb294eeaca6995f.png)
+### 3.1 Referências visuais externas
 
-### 3.2 Painel de resultados principais
+- Coleção externa oficial de figuras: [Zenodo DOI 10.5281/zenodo.17188137](https://doi.org/10.5281/zenodo.17188137)
+- Snapshot histórico de figura (`híbrido`): [Crescimento Estrutural RLL vs ΛCDM](https://github.com/instituto-Rafael/relativity-living-light/file_00000000bf0c71f59bb294eeaca6995f.png)
 
-| Tema | Selo de origem | Figura |
+### 3.2 Fonte reprodutível no core (texto + scripts)
+
+| Tema | Base textual rastreável | Script/fluxo para regenerar visual fora do core |
 |---|---|---|
-| Expansão cósmica H(z) | `mock` | ![H ratio](figs/paper/unified_H_ratio.png) |
-| Distância de luminosidade (Δμ) | `mock` | ![mu residuals](figs/paper/unified_mu_residuals.png) |
-| Frações de energia | `mock` | ![fractions](figs/paper/unified_fractions.png) |
-| Dinâmica f(z) e w_eff | `mock` | ![f and weff](figs/paper/unified_f_and_weff.png) |
-
-### 3.3 Painel observacional complementar
-
-| Tema | Selo de origem | Figura |
-|---|---|---|
-| Crescimento de estrutura fσ₈(z) | `híbrido` | ![growth](figs/paper/unified_growth_fs8.png) |
-| Lente em aglomerados | `híbrido` | ![cluster lensing](figs/paper/cluster_lensing_SIS_unified.png) |
-| Curva de rotação (SPARC) | `híbrido` | ![rotation](figs/paper/rotcurve_NGC_2403.png) |
-| Ajuste H mock | `mock` | ![mock H](figs/conceptual/concept_mock_hubble_fit_v01.png) |
+| Expansão cósmica H(z) | `data/posterior_unified_synth.csv`, `data/real/Hz_data_real.csv` | `python data/pipelines/structure_d/run_all.py` |
+| Distância de luminosidade (Δμ) | `results/RLL_chi2_results.csv`, `data/real/BAO_data_real.csv` | `python docs/rll_validation_real.py` |
+| Frações de energia e dinâmica f(z), w_eff | `data/relativity_living_light_models.csv`, `data/unified_entropy_margin_10_12.csv` | `python data/pipelines/structure_d/run_all.py` |
+| Crescimento de estrutura fσ₈(z) | `results/RLL_chi2_results.csv` | `python docs/crescimento_estrutural.py` |
+| Lente em aglomerados e rotação (SPARC) | tabelas em `results/*.csv` e séries em `data/*.csv` | scripts analíticos em `docs/` e `data/pipelines/structure_d/` |
 
 ---
 
@@ -183,17 +179,27 @@ Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/can
 
 ### Notebooks
 
-- `data/Hz_superposicao.ipynb`
-- `data/density_decomp.ipynb`
-- `data/rotation_model.ipynb`
+Notebooks binários (`.ipynb`) não fazem parte do core reprodutível. Use:
+
+- scripts equivalentes em `data/pipelines/structure_d/` e `docs/`;
+- tabelas canônicas em `data/*.csv`, `results/*.csv` e `data/real/*.csv`;
+- versão textual resumida de resultados em `docs/Results.md`.
 
 ### Bundles compactados
 
-- `data/RelativityLivingLight_v4_bundle.zip`
-- `data/relativity_bundle_results.zip`
-- `docs/rll_revisado_v2.zip`
+Bundles `.zip` devem ser distribuídos externamente como artefatos versionados. O inventário e a rastreabilidade textual permanecem em [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md).
 
-Inventário interno dos bundles: [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md)
+### Artefatos opcionais (externos)
+
+| Artefato externo | URL | SHA-256 | Versão/tag | Conteúdo resumido |
+|---|---|---|---|---|
+| Bundle completo RLL v4 | `https://doi.org/10.5281/zenodo.17188137` | `957575ff422fb72be0411f1329c649eabdcb9f8212676aa172309e7355ce3859` | `v4` | pacote opcional com figuras e anexos de distribuição |
+| Resultados compactados | `https://doi.org/10.5281/zenodo.17188137` | `5c0cca45792747d3538eb7feb26e537ca69ea1845087a56dc6950a3899139084` | `results-bundle` | export consolidado de saídas de execução |
+| Revisão documental v2 | `https://doi.org/10.5281/zenodo.17188137` | `aa61125ad94dc3f035ce288e200e64d3aaffe754f3a8f55d05a258a5dc4f2bd0` | `docs-v2` | pacote opcional de documentação revisada |
+
+Política oficial de armazenamento/publicação: [docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md](docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md).
+
+Inventário histórico interno dos bundles (legado): [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md) *(não é recomendação de armazenamento no core)*.
 
 ---
 

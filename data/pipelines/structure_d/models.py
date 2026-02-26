@@ -1,27 +1,164 @@
+import numpy as np
+
 from .cosmo import H_of_z
-from .growth import f_sigma8_proxy
 from .feedback_agn import Omega_f_from_feedback
+from .growth import f_sigma8_proxy
+
+
+def _param_float(params, key, default):
+    """Retorna parâmetro escalar como float; NaN quando inválido."""
+    try:
+        value = params.get(key, default)
+    except Exception:
+        return float("nan")
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return float("nan")
+
 
 def model_LCDM_Hz(z, params):
-    return H_of_z(z, H0=params['H0'], Om=params['Om'], Or=params.get('Or',0.0), Ol=params['Ol'], Omega_f=None)
+    return H_of_z(
+        z,
+        H0=params["H0"],
+        Om=params["Om"],
+        Or=params.get("Or", 0.0),
+        Ol=params["Ol"],
+        Omega_f=None,
+    )
+
 
 def model_RLL_like_Hz(z, params):
-    Omega_f = lambda zz: Omega_f_from_feedback(zz, beta=params.get('beta',0.0),
-                                               z_peak=params.get('z_peak',2.0),
-                                               width=params.get('width',1.0))
-    return H_of_z(z, H0=params['H0'], Om=params['Om'], Or=params.get('Or',0.0), Ol=params['Ol'], Omega_f=Omega_f)
+    Omega_f = lambda zz: Omega_f_from_feedback(
+        zz,
+        beta=params.get("beta", 0.0),
+        z_peak=params.get("z_peak", 2.0),
+        width=params.get("width", 1.0),
+    )
+    return H_of_z(
+        z,
+        H0=params["H0"],
+        Om=params["Om"],
+        Or=params.get("Or", 0.0),
+        Ol=params["Ol"],
+        Omega_f=Omega_f,
+    )
+
 
 def model_LCDM_fs8(z, params):
-    return f_sigma8_proxy(z, sigma8_0=params.get('sigma8',0.8),
-                          gamma=params.get('gamma',0.55),
-                          Om=params['Om'], Or=params.get('Or',0.0), Ol=params['Ol'],
-                          use_feedback=False)
+    return f_sigma8_proxy(
+        z,
+        sigma8_0=params.get("sigma8", 0.8),
+        gamma=params.get("gamma", 0.55),
+        Om=params["Om"],
+        Or=params.get("Or", 0.0),
+        Ol=params["Ol"],
+        use_feedback=False,
+    )
+
 
 def model_RLL_like_fs8(z, params):
-    return f_sigma8_proxy(z, sigma8_0=params.get('sigma8',0.8),
-                          gamma=params.get('gamma',0.55),
-                          Om=params['Om'], Or=params.get('Or',0.0), Ol=params['Ol'],
-                          use_feedback=True,
-                          alpha=params.get('alpha',0.05),
-                          z_peak=params.get('z_peak',2.0),
-                          width=params.get('width',1.0))
+    return f_sigma8_proxy(
+        z,
+        sigma8_0=params.get("sigma8", 0.8),
+        gamma=params.get("gamma", 0.55),
+        Om=params["Om"],
+        Or=params.get("Or", 0.0),
+        Ol=params["Ol"],
+        use_feedback=True,
+        alpha=params.get("alpha", 0.05),
+        z_peak=params.get("z_peak", 2.0),
+        width=params.get("width", 1.0),
+    )
+
+
+def cs2_toy_eft(z, params):
+    """Toy EFT para velocidade de som efetiva.
+
+    Parametrização (vetorizada em NumPy):
+      c_s^2(z) = c0 + c1 * z/(1+z) + c_log * log(1+z)
+
+    onde:
+      - c0    := params['cs2_0']   (default 1.0)
+      - c1    := params['cs2_a']   (default 0.0)
+      - c_log := params['cs2_log'] (default 0.0)
+
+    A função é robusta para domínio inválido (z <= -1), parâmetros não numéricos,
+    NaN/Inf: retorna arrays contendo NaN nesses pontos/entradas, sem lançar exceção.
+    """
+    z_arr = np.asarray(z, dtype=float)
+    c0 = _param_float(params, "cs2_0", 1.0)
+    c1 = _param_float(params, "cs2_a", 0.0)
+    c_log = _param_float(params, "cs2_log", 0.0)
+
+    valid = np.isfinite(z_arr) & (z_arr > -1.0)
+    out = np.full_like(z_arr, np.nan, dtype=float)
+    if not np.isfinite(c0) or not np.isfinite(c1) or not np.isfinite(c_log):
+        return out
+
+    with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
+        out[valid] = c0 + c1 * (z_arr[valid] / (1.0 + z_arr[valid])) + c_log * np.log1p(
+            z_arr[valid]
+        )
+    return out
+
+
+def stability_flags_toy_eft(z_grid, params):
+    """Diagnóstico central de estabilidade física para o toy EFT."""
+    z_arr = np.asarray(z_grid, dtype=float)
+    cs2 = cs2_toy_eft(z_arr, params)
+
+    finite_cs2 = np.isfinite(cs2)
+    finite_z = np.isfinite(z_arr)
+    domain_violation = np.any(~finite_z) or np.any(z_arr <= -1.0)
+
+    if np.any(finite_cs2):
+        cs2_min = float(np.min(cs2[finite_cs2]))
+        cs2_max = float(np.max(cs2[finite_cs2]))
+    else:
+        cs2_min = float("nan")
+        cs2_max = float("nan")
+
+    has_non_finite = np.any(~finite_cs2)
+    has_negative_cs2 = np.any(cs2[finite_cs2] < 0.0)
+    has_superluminal_cs2 = np.any(cs2[finite_cs2] > 1.0)
+
+    w0 = _param_float(params, "w0", -1.0)
+    wa = _param_float(params, "wa", 0.0)
+    with np.errstate(invalid="ignore"):
+        w_eff = w0 + wa * (z_arr / (1.0 + z_arr))
+    finite_w_eff = np.isfinite(w_eff)
+    has_ghost_instability = (
+        not np.isfinite(w0)
+        or not np.isfinite(wa)
+        or np.any(~finite_w_eff)
+        or np.any(w_eff[finite_w_eff] < -1.0)
+    )
+
+    is_stable = not (
+        has_non_finite
+        or has_negative_cs2
+        or has_superluminal_cs2
+        or has_ghost_instability
+        or domain_violation
+    )
+
+    return {
+        "cs2_min": cs2_min,
+        "cs2_max": cs2_max,
+        "has_negative_cs2": bool(has_negative_cs2),
+        "has_non_finite": bool(has_non_finite),
+        "has_superluminal_cs2": bool(has_superluminal_cs2),
+        "has_ghost_instability": bool(has_ghost_instability),
+        "has_domain_violation": bool(domain_violation),
+        "is_stable": bool(is_stable),
+    }
+
+
+def is_physically_stable(params, z_grid):
+    """Veto único para inferência: True somente para parâmetros estáveis."""
+    try:
+        flags = stability_flags_toy_eft(z_grid, params)
+    except Exception:
+        return False
+    return bool(flags.get("is_stable", False))
