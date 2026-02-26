@@ -212,6 +212,30 @@ Inventário interno dos bundles: [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_IN
 
 `to_Add/` permanece apenas como histórico de ingestão (sem papel operacional).
 
+## CLI e empacotamento Python
+
+O repositório agora pode ser instalado como pacote Python com entrada de comando `rll`.
+
+### Instalação
+
+```bash
+pip install -e .
+```
+
+### Uso rápido
+
+```bash
+rll run --data synthetic --model rll
+rll run --data real --model rll
+rll run --data real --model rll --with-bayes --with-covariance
+```
+
+### Mapeamento de fluxos atuais
+
+- `rll run --data synthetic ...` → `data/pipelines/structure_d/run_all.py`
+- `rll run --data real ...` → `docs/rll_validation_real.py`
+- `rll run --data real --with-bayes --with-covariance ...` → `docs/panteon_likelihood.py`
+
 ## 5) Bibliografia expandida (seleção essencial)
 
 > Referência bibliográfica completa e ampliada: [docs/REFERENCES.md](docs/REFERENCES.md)

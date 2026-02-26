@@ -2,6 +2,7 @@ import os
 from .data_access import load_active_datasets
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
+from .systematics import build_systematics_config
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
@@ -40,8 +41,8 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE):
 
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
 
-    lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
-    rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
+    lcdm = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
+    rll = dict(H0=h0_seed, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
 
     fit_params_lcdm = ["H0", "Om", "sigma8", "gamma"]
     fit_params_rll = fit_params_lcdm + ["alpha", "z_peak", "width"]
@@ -75,8 +76,29 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE):
 
     out = os.path.join(RESULTS, "model_comparison.csv")
     df = evaluate_model(rows, out)
+
+    cov_rows = []
+    expected_blocks = ["SNe", "BAO", "fσ8", "lenses", "Hz"]
+    summary_df = covariance_usage_summary(block_reports, diagonal_fallback=True)
+    missing = [
+        {"block": b, "dataset_id": "", "covariance_mode": "not_used", "source": "fallback", "covariance_path": "",
+         "has_full_covariance": False, "has_diagonal_sigma": False, "diagonal_fallback": True}
+        for b in expected_blocks if b not in set(summary_df["block"].tolist())
+    ]
+    if missing:
+        summary_df = pd.concat([summary_df, pd.DataFrame(missing)], ignore_index=True)
+    summary_df.insert(0, "covariance_policy", covariance_policy)
+    summary_df.insert(1, "active_blocks", ",".join(active_blocks))
+    cov_rows.append(summary_df)
+
+    cov_out = os.path.join(RESULTS, "covariance_usage.csv")
+    evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
+    print(f"Wrote: {cov_out}")
+
+
 
 
 if __name__ == "__main__":
