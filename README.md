@@ -95,7 +95,8 @@ Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/can
 - [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
 - [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
 - [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
-- [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md)
+- [docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md](docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) *(fonte oficial para formatos no core e artefatos externos)*
+- [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md) *(inventário histórico; não é recomendação de armazenamento no core)*
 - [docs/PLANO_AD_AGN_JWST.md](docs/PLANO_AD_AGN_JWST.md)
 
 ### Trilha autoral e conceitual (integridade de selo)
@@ -196,7 +197,9 @@ Bundles `.zip` devem ser distribuídos externamente como artefatos versionados. 
 | Resultados compactados | `https://doi.org/10.5281/zenodo.17188137` | `5c0cca45792747d3538eb7feb26e537ca69ea1845087a56dc6950a3899139084` | `results-bundle` | export consolidado de saídas de execução |
 | Revisão documental v2 | `https://doi.org/10.5281/zenodo.17188137` | `aa61125ad94dc3f035ce288e200e64d3aaffe754f3a8f55d05a258a5dc4f2bd0` | `docs-v2` | pacote opcional de documentação revisada |
 
-> Regra operacional: o core versiona apenas métricas/tabelas textuais (`docs/Results.md`, `results/*.csv`, `results/*.json`, `data/*.csv`, `data/*.json`). Gráficos devem ser regenerados via scripts e publicados externamente por release/DOI.
+Política oficial de armazenamento/publicação: [docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md](docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md).
+
+Inventário histórico interno dos bundles (legado): [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md) *(não é recomendação de armazenamento no core)*.
 
 ---
 
