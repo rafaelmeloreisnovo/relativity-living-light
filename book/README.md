@@ -2,6 +2,8 @@
 
 Trilha principal oficial do acervo consolidado em capítulos sequenciais.
 
+> **Nota canônica:** a formulação canônica do framework vive em `../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`.
+
 ## Sumário sequencial
 
 - [01. Fundamentos — Visão Geral](./01_fundamentos_visao_geral.md)

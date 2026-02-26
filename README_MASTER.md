@@ -14,40 +14,9 @@
 
 ## 🔬 Equação Principal Unificada
 
-A equação de Friedmann estendida que governa este modelo é:
+Resumo canônico do framework: ver `docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`.
 
-```
-E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ +
-        Ω_s0[f(a) + (1-f)a⁻³] +          # Superposição fotônica (DE→matéria)
-        Ω_B0 a⁻⁴ +                         # Campo magnético
-        Ω_P0 a⁻⁴                           # Plasma (T,P)
-```
-
-onde:
-- **f(z) = 1 / (1 + exp((z - z_t)/w_t))** — função de transição suave
-- **z_t** — redshift de transição entre energia escura e matéria
-- **w_t** — largura da transição
-- **Ω_s0** — densidade de superposição fotônica hoje
-- **Ω_B0** — densidade do campo magnético cósmico
-- **Ω_P0** — densidade do plasma
-
-### Componentes do Modelo
-
-1. **Termos clássicos:**
-   - Matéria: Ω_m a⁻³
-   - Constante cosmológica: Ω_Λ
-   - Radiação: Ω_r a⁻⁴
-
-2. **Superposição escura (novo):**
-   - Transição suave entre energia escura e matéria via f(z)
-   - Comportamento dual: expansivo em z baixo, atrativo em z alto
-
-3. **Componentes adicionais:**
-   - Campo magnético coerente: Ω_B0 a⁻⁴
-   - Plasma com temperatura e pressão: Ω_P0 a⁻⁴
-   - Correção magneto-coerente opcional: parâmetros α_B, β
-
----
+Em síntese: o RLL estende a forma tipo Friedmann com um setor de superposição fotônica em transição dinâmica (DE→matéria), mantendo os termos clássicos e incluindo contribuições magnética e plasmática sob referência canônica única.
 
 ## 📂 Estrutura do Repositório
 

@@ -4,6 +4,13 @@
 
 Detalha hipóteses físicas adicionais para magnetismo e plasma no background.
 
+## Bloco canônico do framework
+
+- Referência canônica: [`../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md)
+- Instrução editorial: não duplicar versão local da equação/interpretação.
+
+## Conteúdo incorporado (itens soltos/localizados)
+Documentos e artefatos relacionados incorporados nesta etapa:
 ## Hipótese de acoplamento magneto-coerente
 
 A hipótese estende a normalização de superposição fotônica por um termo dependente do setor magnético, seguindo a forma já registrada em `docs/BOOSTERS.md`:

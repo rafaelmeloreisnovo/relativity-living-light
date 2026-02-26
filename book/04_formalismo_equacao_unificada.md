@@ -4,6 +4,13 @@
 
 Apresenta a extensão tipo Friedmann com superposição dinâmica e termos adicionais.
 
+## Bloco canônico do framework
+
+- Referência canônica: [`../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md)
+- Instrução editorial: não duplicar versão local da equação/interpretação.
+
+## Conteúdo incorporado (itens soltos/localizados)
+Documentos e artefatos relacionados incorporados nesta etapa:
 ## Equação de Friedmann estendida (forma normalizada)
 
 `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0 [f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`, com `E(a)=H(a)/H₀` e `a=1/(1+z)`.
