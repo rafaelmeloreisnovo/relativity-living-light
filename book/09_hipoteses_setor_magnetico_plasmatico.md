@@ -78,8 +78,15 @@ Assim, distingue-se explicitamente:
 - efeito global cosmológico (termos médios escalando como `a⁻⁴`);
 - efeito local em estrutura (halos/aglomerados), onde magnetização, cisalhamento e turbulência modulam a coerência e a resposta gravitacional efetiva.
 
+## Geometria efetiva do setor magneto-plasmático
+
+**Base formal:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
+
+A leitura geométrica do acoplamento magneto-plasmático trata curvatura efetiva, anisotropias locais e gradientes de pressão como correções de segunda ordem ao background, mantendo a consistência com a parametrização já adotada para `H(z)` e para os termos radiativos médios.
+
 ## Observáveis e assinaturas testáveis
 
+**Fontes técnicas:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
 ### Cadeia de impacto em observáveis
 
 Organiza-se a inferência em uma cadeia operacional de três níveis:
