@@ -106,7 +106,7 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
 │   ├── unified_entropy_margin_10_12.csv
 │   ├── Hz_superposicao.ipynb
 │   ├── ciencia_Hz_superposicao.ipynb
-│   ├── ciencia_Hz_superposicao (1).ipynb
+│   ├── ciencia_Hz_superposicao.ipynb
 │   ├── density_decomp.ipynb
 │   ├── rotation_model.ipynb
 │   ├── relativity_bundle_results.zip
