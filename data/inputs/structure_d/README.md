@@ -24,6 +24,7 @@ Profiles incluídos:
 Execução por profile:
 - padrão: `python -m data.pipelines.structure_d.run_all`
 - profile explícito: `STRUCTURE_D_PROFILE=structure_d_real_validation python -m data.pipelines.structure_d.run_all`
+- validação real completa (Hz + BAO + CMB): `python -m data.pipelines.structure_d.run_all_real`
 
 Esquema comum por observável (camada de dados em `data/pipelines/structure_d/`):
 - `values`;
