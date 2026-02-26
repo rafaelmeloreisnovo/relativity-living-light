@@ -44,6 +44,16 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 - `z << z_t`: `f→0`, regime colapsado, termo `a⁻³` domina (componente tipo matéria escura).
 - `Ω_B0` e `Ω_P0` agem como correções subdominantes do background, relevantes em observáveis de precisão.
 
+
+## Referência explícita dos números estruturais
+
+Quando houver citação dos números **42** ou **84** em contexto de ajuste/robustez deste formalismo, adotar a definição técnica canônica da tabela em [`38_apendice_numeros_rafaelianos.md`](./38_apendice_numeros_rafaelianos.md#tabela-canônica-de-números-estruturais).
+
+- `42`: janela-base de ajuste local (hipótese operacional).
+- `84`: teste de robustez por duplicação de suporte amostral (inferência metodológica).
+
+Nota de escopo: se `42` ou `84` forem usados apenas como marcador editorial/histórico, registrar explicitamente que não há papel inferencial/físico associado.
+
 ## Conexão observacional
 
 A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ₈(z)` e lensing, com nomenclatura alinhada a `docs/CONCEPTUAL_FRAMEWORK.md`, `docs/Relativity_Living_Light.md` e `docs/LAGRANGIANO_EFT.md`.
