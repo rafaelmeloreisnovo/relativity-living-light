@@ -4,6 +4,11 @@
 
 Apresenta a extensão tipo Friedmann com superposição dinâmica e termos adicionais.
 
+## Bloco canônico do framework
+
+- Referência canônica: [`../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md)
+- Instrução editorial: não duplicar versão local da equação/interpretação.
+
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
 
