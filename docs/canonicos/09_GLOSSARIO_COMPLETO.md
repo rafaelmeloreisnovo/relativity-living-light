@@ -49,7 +49,7 @@
 | Símbolo | Significado | Fórmula | Range | Exemplo |
 |---|---|---|---|---|
 | **w** | Equação de estado | p = w ρ c² | [-1, 1/3] | DE: w=-1, matéria: w=0 |
-| **w_eff(z)** | Efetiva com z | Derivada de Friedmann | Varia | Rafael: transita DE→DM |
+| **w_eff(z)** | Efetiva com z | Derivada de Friedmann | Varia | Rafael: transita DM→DE |
 | **γ** | Índice adiabático | p = (γ-1)ρu | [1, 5/3] | Gás monoatômico: γ=5/3 |
 
 ---
@@ -91,9 +91,11 @@ w_t grande:  Transição suave
 w_eff(z) = -f(z) / [f(z) + (1-f)a⁻³]
 
 Limites:
-  z→∞ (f→1):   w_eff → -1  (DE-like)
-  z→0 (f→0):   w_eff → 0   (DM-like)
+  z→∞ (f→0):   w_eff → 0   (DM-like)
+  z→0 (f→1):   w_eff → -1  (DE-like)
 ```
+
+estes limites derivam diretamente da forma de `f(z)` adotada.
 
 ---
 
@@ -296,9 +298,11 @@ w_eff(z) = -f(z) / [f(z) + (1-f)a⁻³]
 w_eff(z) = p_eff / ρ_eff c²
 
 Limites:
-  z→∞: w_eff → -1
-  z→0: w_eff → 0
+  z→∞ (f→0): w_eff → 0   (DM-like)
+  z→0 (f→1): w_eff → -1  (DE-like)
 ```
+
+estes limites derivam diretamente da forma de `f(z)` adotada.
 
 ---
 
