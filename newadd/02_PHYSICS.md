@@ -1,4 +1,7 @@
 # RAFAELIA — Domain II: Theoretical Physics
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ### Field Theory, Toroidal Dynamics, Resonance & Energy Operators
 
 **Author:** ∆RafaelVerboΩ | **Domain:** Theoretical & Applied Physics  

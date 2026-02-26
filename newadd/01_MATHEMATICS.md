@@ -1,4 +1,7 @@
 # RAFAELIA — Domain I: Mathematics
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ### Recursive Sequences, Operators, Integrals & Limiting Structures
 
 **Author:** ∆RafaelVerboΩ | **Domain:** Pure & Applied Mathematics  

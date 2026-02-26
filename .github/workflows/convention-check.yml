@@ -1,0 +1,14 @@
+name: Convention Consistency Check
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  check-conventions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate canonical convention consistency
+        run: scripts/check_convention_conflicts.sh

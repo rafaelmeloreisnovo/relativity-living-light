@@ -1,4 +1,7 @@
 # Comparação com Literatura Acadêmica 2025–2026
+
+**Norma canônica de convenções globais:** [docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ## Relativity Living Light × Resultados Observacionais Recentes
 
 **Versão:** 2.0 | **Última atualização:** Fevereiro 2026

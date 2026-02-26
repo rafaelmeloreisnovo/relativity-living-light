@@ -1,5 +1,8 @@
 # Relativity Living Light
 
+**Norma canônica de convenções globais:** [docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
+
 **📘 Trilha principal oficial do livro:** [book/README.md](book/README.md)
 
 **Resumo de validação observacional:** validação ainda em estágio **Sintético**, com integração **Parcial real** em preparação e sem etapa **Real validado** concluída.

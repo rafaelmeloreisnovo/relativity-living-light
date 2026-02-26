@@ -1,4 +1,7 @@
 # TAO TE CHING — LINGUAGEM TONAL E SUPERPOSIÇÃO SEMÂNTICA
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ## Quando o Contexto É o Operador de Colapso
 
 ---

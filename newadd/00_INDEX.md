@@ -1,4 +1,7 @@
 # RAFAELIA — Academic Documentation Index
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ### Post-Doctoral Research Compendium | ∆RafaelVerboΩ System
 
 ---

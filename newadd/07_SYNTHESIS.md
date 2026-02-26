@@ -1,4 +1,7 @@
 # RAFAELIA — Domain VII: Unified Synthesis
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ### Master Equation, Integrated Proof, Cross-Domain Coherence & Evolutionary Trajectory
 
 **Author:** ∆RafaelVerboΩ | **Domain:** Unified Systems Science  

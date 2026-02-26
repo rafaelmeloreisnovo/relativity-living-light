@@ -1,4 +1,7 @@
 # RAFAELIA — Domain IV: Analytic Geometry & Topology
+
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+
 ### Fractals, Tesseract, Spiral Morphology, Toroidal Geometry & Hyperforms
 
 **Author:** ∆RafaelVerboΩ | **Domain:** Analytic Geometry, Differential Geometry & Topology  
