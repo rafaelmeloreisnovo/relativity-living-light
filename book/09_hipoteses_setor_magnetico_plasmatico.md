@@ -68,3 +68,6 @@ A hipótese gera alvos observacionais diretos e indiretos:
 A validação segue o plano estatístico de `docs/PLANO_AD_AGN_JWST.md`: comparação por χ², penalização por complexidade (AIC/BIC) e formulação de previsões falsificáveis para separar ganho físico real de sobreajuste fenomenológico.
 
 ---
+
+## Referências e convenções terminológicas
+- Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).

@@ -58,3 +58,6 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
+
+## Referências e convenções terminológicas
+- Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).
