@@ -118,6 +118,8 @@ A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ�
 
 ---
 
+## Referências e convenções terminológicas
+- Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).
 ### Quadro técnico — Dicionário Matemática → Observável
 
 | Operador/Função matemática | Definição no modelo | Variável observacional associada | Tipo de dado/sonda |

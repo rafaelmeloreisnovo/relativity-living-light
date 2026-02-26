@@ -28,3 +28,6 @@ A leitura deste capítulo segue o [Formalismo base](./04_formalismo_equacao_unif
 
 
 ---
+
+## Referências e convenções terminológicas
+- Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).
