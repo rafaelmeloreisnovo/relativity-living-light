@@ -1,3 +1,7 @@
+"""Referência explícita de saídas textuais deste módulo/pipeline."""
+
+TEXTUAL_OUTPUTS = []
+
 import numpy as np
 from .cosmo import Omega_m_z
 from .feedback_agn import suppression_factor

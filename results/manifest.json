@@ -1,0 +1,112 @@
+{
+  "version": "v1",
+  "canonical_index": "results/OUTPUTS_TEXTUAIS_INDEX.md",
+  "textual_artifacts": [
+    {
+      "path": "results/RLL_chi2_results.csv",
+      "format": "csv",
+      "description": "Tabela histórica de métricas χ² para comparações RLL em trilhas legadas/versionadas.",
+      "schema": {
+        "type": "columns",
+        "columns": ["model", "chi2", "AIC", "BIC"]
+      },
+      "generator_script": "news/archive_legacy/1/* (origem histórica; sem script único versionado neste caminho)",
+      "reproduction_command": "Não canônico (artefato legado já versionado)",
+      "data_or_version": "legacy"
+    },
+    {
+      "path": "results/two_radiation_model_preview.csv",
+      "format": "csv",
+      "description": "Prévia tabular do modelo de duas radiações para inspeção rápida de parâmetros/resultados.",
+      "schema": {
+        "type": "columns",
+        "columns": "definidas no próprio arquivo"
+      },
+      "generator_script": "Fluxo documental/técnico de duas radiações (sem script único dedicado em data/pipelines/structure_d/)",
+      "reproduction_command": "Não canônico (artefato versionado para referência)",
+      "data_or_version": "preview"
+    },
+    {
+      "path": "results/structure_d/model_comparison.csv",
+      "format": "csv",
+      "description": "Comparação entre modelos (ex.: LCDM vs RLL_like+AGN) com χ²/AIC/BIC e metadados da corrida.",
+      "schema": {
+        "type": "columns",
+        "columns": [
+          "model",
+          "chi2",
+          "AIC",
+          "BIC",
+          "N",
+          "k",
+          "fit_params",
+          "fixed_params",
+          "datasets_used",
+          "run_name"
+        ]
+      },
+      "generator_script": "data/pipelines/structure_d/run_all.py",
+      "reproduction_command": "python -m data.pipelines.structure_d.run_all",
+      "data_or_version": "run_name em data/pipelines/structure_d/datasets_config.json"
+    },
+    {
+      "path": "results/structure_d/covariance_usage.csv",
+      "format": "csv",
+      "description": "Resumo por bloco observacional do modo de covariância usado (cheia, fallback diagonal, não usado).",
+      "schema": {
+        "type": "columns",
+        "columns": [
+          "model",
+          "block",
+          "covariance_mode",
+          "has_full_covariance",
+          "has_diagonal_sigma"
+        ]
+      },
+      "generator_script": "data/pipelines/structure_d/run_all.py",
+      "reproduction_command": "python -m data.pipelines.structure_d.run_all",
+      "data_or_version": "run_name em data/pipelines/structure_d/datasets_config.json"
+    },
+    {
+      "path": "results/OUTPUTS_TEXTUAIS_INDEX.md",
+      "format": "md",
+      "description": "Índice canônico humano dos artefatos textuais de results/.",
+      "schema": {
+        "type": "markdown_table",
+        "columns": [
+          "caminho",
+          "formato",
+          "descrição",
+          "colunas/schema",
+          "script gerador",
+          "comando de reprodução",
+          "data/versão"
+        ]
+      },
+      "generator_script": "Curadoria manual versionada no repositório",
+      "reproduction_command": "cat results/OUTPUTS_TEXTUAIS_INDEX.md",
+      "data_or_version": "v1"
+    },
+    {
+      "path": "results/manifest.json",
+      "format": "json",
+      "description": "Manifesto de máquina com os mesmos metadados do índice canônico para automações/auditoria.",
+      "schema": {
+        "type": "object",
+        "required": ["version", "canonical_index", "textual_artifacts"],
+        "textual_artifact_keys": [
+          "path",
+          "format",
+          "description",
+          "schema",
+          "generator_script",
+          "reproduction_command",
+          "data_or_version"
+        ]
+      },
+      "generator_script": "Curadoria manual versionada no repositório",
+      "reproduction_command": "cat results/manifest.json",
+      "data_or_version": "v1"
+    }
+  ]
+}
