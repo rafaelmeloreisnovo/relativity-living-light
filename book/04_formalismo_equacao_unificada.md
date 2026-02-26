@@ -26,6 +26,7 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 
 **Base formal:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).
 
+**Eq. 4.1**  
 `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0 [f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`, com `E(a)=H(a)/H₀` e `a=1/(1+z)`.
 1. **Equação de Friedmann padrão (background FRW plano):**
    
@@ -67,6 +68,8 @@ Operacionalmente, `z_t` fixa o redshift central em que a transição DE→DM do 
 
 ### Propriedades matemáticas
 
+**Eq. 4.2**  
+`f(z)=1/(1+exp((z-z_t)/w_t))`, que controla a fração coerente do setor de superposição.
 - **Monotonicidade (para `w_t>0`)**: na convenção operacional do capítulo, `df/dz>0` para a fração coerente efetiva ao longo da varredura de redshift adotada.
 - **Assíntotas**: `f→1` para `z >> z_t` e `f→0` para `z << z_t`.
 - **Escala característica da transição**: `w_t` controla a espessura da janela de transição em redshift; valores menores comprimem a troca de regime, valores maiores alargam a transição.
@@ -79,6 +82,14 @@ Operacionalmente, `z_t` fixa o redshift central em que a transição DE→DM do 
 - `Ω_B0` e `Ω_P0` entram como correções `a⁻⁴` no background, com efeito potencial em observáveis de precisão (expansão em alto redshift, calibração de distância e lensing).
 
 Resultado a transição logística contínua entre regimes coerente e decoerente é sustentado por [DESI-DR2-2025, BOSS-DR12-2017, Planck2018].
+
+## Rastreabilidade formal
+
+Figura `figs/paper/hz_superposicao.png` conecta-se às equações <Eq. 4.1> e <Eq. 4.2>.
+
+Figura `figs/paper/f_transition.png` conecta-se às equações <Eq. 4.2> e <Eq. 4.1>.
+
+Figura `figs/paper/unified_fractions.png` conecta-se às equações <Eq. 4.1> e <Eq. 4.2>.
 
 ### Definições dos parâmetros
    `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0[f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`.
