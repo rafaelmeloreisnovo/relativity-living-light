@@ -116,6 +116,14 @@ Resultado a interpretação física DE→DM via coerência/decoerência e booste
 
 A validação fenomenológica usa como alvos principais `H(z)`, `Δμ(z)`, `fσ₈(z)` e lensing, com nomenclatura alinhada a `docs/CONCEPTUAL_FRAMEWORK.md`, `docs/Relativity_Living_Light.md` e `docs/LAGRANGIANO_EFT.md`.
 
+## Referências consolidadas (padrão único)
+
+1. Planck Collaboration (Aghanim et al.). 2020. "Planck 2018 results. VI. Cosmological parameters". A&A, 641(A6). DOI:10.1051/0004-6361/201833910.
+2. Chevallier, M.; Polarski, D. 2001. "Accelerating Universes with Scaling Dark Matter". IJMPD, 10(2):213-224. DOI:10.1142/S0218271801000822.
+3. Linder, E. V. 2003. "Exploring the Expansion History of the Universe". PRL, 90(9):091301. DOI:10.1103/PhysRevLett.90.091301.
+4. Ratra, B.; Peebles, P. J. E. 1988. "Cosmological Consequences of a Rolling Homogeneous Scalar Field". PRD, 37(12):3406-3427. DOI:10.1103/PhysRevD.37.3406.
+5. Armendariz-Picon, C.; Mukhanov, V.; Steinhardt, P. J. 2001. "Essentials of k-essence". PRD, 63(10):103510. DOI:10.1103/PhysRevD.63.103510.
+6. Li, X.; Shafieloo, A. 2019. "A Simple Phenomenological Emergent Dark Energy Model". ApJ, 883(L3). arXiv:1906.08275.
 ## Referências de rastreabilidade
 
 - [Planck2018] Planck Collaboration (2018), *Planck 2018 results. VI. Cosmological parameters*.

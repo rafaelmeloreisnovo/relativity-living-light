@@ -53,5 +53,14 @@ A leitura deste capítulo segue o [Formalismo base](./04_formalismo_equacao_unif
 
 ---
 
+## Referências consolidadas (padrão único)
+
+1. Harikane, Y. et al. 2022. "A Comprehensive Study of Galaxies at z>9-16 Found in the Early JWST Data". arXiv:2208.01612.
+2. Natarajan, P. et al. 2023. "Unveiling the First Black Holes with JWST: Challenges and Opportunities". arXiv:2308.02654.
+3. Larson, R. L. et al. 2023. "A CEERS search for active galactic nuclei in the first billion years of cosmic time". ApJ, 953(1):L29. DOI:10.3847/2041-8213/ace39f.
+4. Übler, H. et al. 2023. "GA-NIFS and JWST reveal a quasar host galaxy at z=6.3 with fast outflows". A&A, 679(A103). DOI:10.1051/0004-6361/202347737.
+5. Planck Collaboration (Aghanim et al.). 2020. "Planck 2018 results. VI. Cosmological parameters". A&A, 641(A6). DOI:10.1051/0004-6361/201833910.
+
+---
 ## Referências e convenções terminológicas
 - Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).
