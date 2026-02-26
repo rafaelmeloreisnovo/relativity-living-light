@@ -1,3 +1,7 @@
+"""Referência explícita de saídas textuais deste módulo/pipeline."""
+
+TEXTUAL_OUTPUTS = []
+
 import json
 import os
 import numpy as np
