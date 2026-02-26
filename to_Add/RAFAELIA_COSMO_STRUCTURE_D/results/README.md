@@ -1,1 +1,9 @@
-Outputs (CSVs, plots) aparecem aqui após rodar `python -m code.run_all`.
+# Legado (histórico)
+
+Não use este diretório para saída ativa.
+
+Saídas oficiais:
+- `results/structure_d/`
+
+Comando oficial:
+`python -m data.pipelines.structure_d.run_all`

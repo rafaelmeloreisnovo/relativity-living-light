@@ -1,28 +1,5 @@
-import os
-import numpy as np
-import pandas as pd
-
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DATA = os.path.join(ROOT, "data")
-
-def main(seed=42):
-    os.makedirs(DATA, exist_ok=True)
-    rng = np.random.default_rng(seed)
-
-    z_hz = np.array([0.1,0.2,0.4,0.6,0.8,1.0,1.5,2.0])
-    Hz_true = 70.0*np.sqrt(0.3*(1+z_hz)**3 + 0.7)
-    sig_hz = 3.0 + 2.0*rng.random(len(z_hz))
-    Hz_obs = Hz_true + rng.normal(0, sig_hz)
-    pd.DataFrame({"z":z_hz, "Hz":Hz_obs, "sigma":sig_hz}).to_csv(os.path.join(DATA,"Hz.csv"), index=False)
-
-    z_fs = np.array([0.1,0.3,0.5,0.8,1.0,1.5,2.0])
-    Omz = (0.3*(1+z_fs)**3)/(0.3*(1+z_fs)**3 + 0.7)
-    fs8_true = (Omz**0.55) * 0.8
-    sig_fs = 0.03 + 0.03*rng.random(len(z_fs))
-    fs8_obs = fs8_true + rng.normal(0, sig_fs)
-    pd.DataFrame({"z":z_fs, "fs8":fs8_obs, "sigma":sig_fs}).to_csv(os.path.join(DATA,"fsigma8.csv"), index=False)
-
-    print("Example data written: data/Hz.csv, data/fsigma8.csv")
+"""Compat wrapper for data.pipelines.structure_d.make_example_data (deprecated)."""
+from data.pipelines.structure_d.make_example_data import *  # noqa: F401,F403
 
 if __name__ == "__main__":
     main()

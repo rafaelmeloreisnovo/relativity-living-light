@@ -1,30 +1,13 @@
-# RAFAELIA · Cosmology Structure (D)
-Estrutura forte para integrar:
-- Expansão cosmológica (H(z))
-- Crescimento estrutural (fσ8)
-- Feedback AGN/quasar (supressão ambiental)
-- Validação estatística (χ², AIC, BIC)
+# RAFAELIA · Cosmology Structure (D) — histórico de ingestão
 
-> Gerado em 2026-02-21.
+Este conteúdo em `to_Add/` é histórico/legado.
+Não é caminho operacional.
 
-## Como rodar (rápido)
-1) Instale dependências:
+## Execução oficial
 ```bash
-python -m venv .venv
-. .venv/bin/activate  # Linux/Mac
-# ou: .venv\Scripts\activate  # Windows
-pip install -r requirements.txt
+python -m data.pipelines.structure_d.make_example_data
+python -m data.pipelines.structure_d.run_all
 ```
 
-2) Gere dados exemplo e rode validação:
-```bash
-python -m code.make_example_data
-python -m code.run_all
-```
-
-## Pastas
-- `core/` : equações e documentação formal
-- `data/` : CSVs (reais ou exemplo)
-- `code/` : scripts (expansão, crescimento, feedback, likelihood)
-- `results/` : outputs (tabelas e plots)
-- `paper/` : rascunho de artigo (esqueleto)
+## Status
+`rll_pipeline/` neste diretório foi reduzido a wrappers finos para `data.pipelines.structure_d`.
