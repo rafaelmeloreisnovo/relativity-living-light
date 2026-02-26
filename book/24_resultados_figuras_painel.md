@@ -86,6 +86,19 @@ Resultado a leitura sequencial do painel por blocos métricos para interpretaç�
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
 
+
+## Referências técnicas e bibliográficas
+
+- DESI Collaboration (2024). *DESI 2024 VI: BAO*. JCAP 2025, 021 (painéis de expansão/BAO).
+- Alam et al. (BOSS) (2017). *Clustering of galaxies in BOSS DR12* (crescimento e clustering).
+- Planck Collaboration (2020). *Planck 2018 results. VI. Cosmological parameters* (baseline CMB/lensing).
+- DES Collaboration (2022). *Dark Energy Survey Year 3 results* (weak lensing e clustering).
+- Bartelmann, M., & Schneider, P. (2001). *Weak gravitational lensing*. Physics Reports, 340(4-5), 291-472.
+- Lelli, McGaugh, & Schombert (2016). *SPARC: Mass Models for 175 Disk Galaxies*. AJ 152, 157 (curvas de rotação).
+- Brout et al. (2022). *The Pantheon+ Analysis*. ApJ 938, 110 (resíduos de distância em SN Ia).
+
+**Fontes de consolidação no repositório:** `newadd/03_Descricao_Academica_PhD_Completa.md`, `docs/REFERENCES.md` e `book/39_apendice_referencias_fontes.md`.
+
 ## Referências consolidadas (padrão único)
 
 1. Riess, A. G. et al. 2022. "A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km s−1 Mpc−1 Uncertainty from the Hubble Space Telescope and the SH0ES Team". ApJ, 934(1):L7. DOI:10.3847/2041-8213/ac5c5b.

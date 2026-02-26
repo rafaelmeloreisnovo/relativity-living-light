@@ -140,6 +140,17 @@ A hipótese gera alvos observacionais diretos e indiretos:
 
 A validação segue o plano estatístico de `docs/PLANO_AD_AGN_JWST.md`: comparação por χ², penalização por complexidade (AIC/BIC) e formulação de previsões falsificáveis para separar ganho físico real de sobreajuste fenomenológico.
 
+
+## Referências técnicas e bibliográficas
+
+- Widrow, L. M. (2002). *Origin of galactic and extragalactic magnetic fields*. Reviews of Modern Physics, 74(3), 775.
+- Carilli, C. L., & Taylor, G. B. (2002). *Cluster magnetic fields*. ARA&A, 40(1), 319-348.
+- Beck, R. (2015). *Magnetic fields in spiral galaxies* (uso de rotação de Faraday). A&ARv, 24(1), 4.
+- Sarazin, C. L. (1988). *X-ray emission from clusters of galaxies* (física de plasma intracluster).
+- Bartelmann, M., & Schneider, P. (2001). *Weak gravitational lensing*. Physics Reports, 340(4-5), 291-472.
+- DES Collaboration (2022). *Dark Energy Survey Year 3 results* (estrutura/lensing). PRD 105, 023520.
+
+**Fontes de consolidação no repositório:** `newadd/03_Descricao_Academica_PhD_Completa.md` (bloco de crescimento e estrutura), `docs/REFERENCES.md` e `book/39_apendice_referencias_fontes.md`.
 Resultado as assinaturas observacionais combinadas em lensing, rotação/Faraday e `fσ₈(z)` como testes do setor magneto-plasmático são sustentadas por [Faraday-Rotation-Review-2011, DESI-DR2-2025, eBOSS-DR16-2021].
 
 ## Referências de rastreabilidade

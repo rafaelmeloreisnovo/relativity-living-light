@@ -39,6 +39,17 @@ Resultado o impacto em estrutura de alto-z via vínculo entre halos, crescimento
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
 
+
+## Referências técnicas e bibliográficas
+
+- Harikane et al. (2022). *A Sample of UV-Bright Galaxies at z > 10 from JWST*. arXiv:2208.01612.
+- Natarajan et al. (2023). *Unveiling the first black holes with JWST*. arXiv:2308.02654.
+- Larson et al. (2023). *A JWST search for black holes*. ApJ 953, L29.
+- Treu, T. (2010). *Strong lensing by galaxies*. ARA&A 48, 87-125.
+- Kneib, J.-P., & Natarajan, P. (2011). *Cluster lenses*. A&ARv 19(1), 47.
+- Planck Collaboration (2020). *Planck 2018 results. VI. Cosmological parameters*. A&A 641, A6 (baseline cosmológico para comparação em alto-z).
+
+**Fontes de consolidação no repositório:** `newadd/03_Descricao_Academica_PhD_Completa.md` (bloco JWST e AGN), `docs/REFERENCES.md` e `book/39_apendice_referencias_fontes.md`.
 ## Amarração metodológica
 
 A leitura deste capítulo segue o [Formalismo base](./04_formalismo_equacao_unificada.md) e as [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md), com interpretação consolidada no [Painel analítico de resultados](./24_resultados_figuras_painel.md).
