@@ -171,6 +171,48 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
+def write_bayes_factor_summary(results_dir):
+    bayes_evidence_path = os.path.join(results_dir, "bayes_evidence.csv")
+    summary_path = os.path.join(results_dir, "bayes_factor_summary.csv")
+
+    if not os.path.exists(bayes_evidence_path):
+        return None
+
+    evidence = pd.read_csv(bayes_evidence_path)
+    if "model" not in evidence.columns or "logZ" not in evidence.columns:
+        raise ValueError(
+            "bayes_evidence.csv must contain columns 'model' and 'logZ'"
+        )
+
+    required_models = {"LCDM", "RLL_like+AGN"}
+    available_models = set(evidence["model"].astype(str).str.strip())
+    missing_models = sorted(required_models - available_models)
+    if missing_models:
+        raise ValueError(
+            "bayes_evidence.csv missing required model(s): " + ", ".join(missing_models)
+        )
+
+    logz_lcdm = float(
+        evidence.loc[evidence["model"].astype(str).str.strip() == "LCDM", "logZ"].iloc[0]
+    )
+    logz_rll = float(
+        evidence.loc[evidence["model"].astype(str).str.strip() == "RLL_like+AGN", "logZ"].iloc[0]
+    )
+
+    summary = pd.DataFrame(
+        [
+            {
+                "logZ_LCDM": logz_lcdm,
+                "logZ_RLL": logz_rll,
+                "lnB": logz_rll - logz_lcdm,
+            }
+        ],
+        columns=["logZ_LCDM", "logZ_RLL", "lnB"],
+    )
+    summary.to_csv(summary_path, index=False)
+    return summary_path
+
+
 def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
@@ -234,6 +276,10 @@ def main(config_path=DEFAULT_CONFIG, covariance_policy=None):
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+
+    bayes_factor_out = write_bayes_factor_summary(RESULTS)
+    if bayes_factor_out:
+        print(f"Wrote: {bayes_factor_out}")
 
 
 if __name__ == "__main__":
