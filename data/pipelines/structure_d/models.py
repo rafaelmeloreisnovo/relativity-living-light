@@ -1,3 +1,7 @@
+"""Referência explícita de saídas textuais deste módulo/pipeline."""
+
+TEXTUAL_OUTPUTS = []
+
 from .cosmo import H_of_z
 from .growth import f_sigma8_proxy
 from .feedback_agn import Omega_f_from_feedback

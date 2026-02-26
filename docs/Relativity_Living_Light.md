@@ -42,3 +42,6 @@ H(z)^2 = H_0^2 \left[ \Omega_m(1+z)^3 + \Omega_r(1+z)^4 + \Omega_\Lambda + \Omeg
 [3] Jimenez et al. (2003). *Dark halo properties from rotation curves* (pseudo-isothermal formulas).  
 [4] Nature/PRL 2024. *Bose–Einstein condensation of photons/polaritons*.  
 [5] Reviews on Friedmann equations derivations (AJP; NED/IPAC pedagogical notes).
+
+## Índice canônico de fórmulas
+- Consulte a referência oficial em [`docs/FORMULAS_CANONICAS_INDEX.md`](FORMULAS_CANONICAS_INDEX.md).

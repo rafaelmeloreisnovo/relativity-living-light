@@ -1,6 +1,22 @@
 {
-  "run_name": "structure_d_default",
-  "active_datasets": ["hz", "fsigma8"],
+  "default_profile": "structure_d_default",
+  "profiles": {
+    "structure_d_default": {
+      "run_name": "structure_d_default",
+      "active_datasets": [
+        "hz",
+        "fsigma8"
+      ]
+    },
+    "structure_d_real_validation": {
+      "run_name": "structure_d_real_validation",
+      "active_datasets": [
+        "real_hz",
+        "real_bao",
+        "real_cmb_shift"
+      ]
+    }
+  },
   "datasets": {
     "hz": {
       "format": "csv",
@@ -72,8 +88,14 @@
       "observable": "CMB_shift",
       "error_model": "errors",
       "keys": {
-        "values": ["R_obs", "la_obs"],
-        "errors": ["R_sig", "la_sig"]
+        "values": [
+          "R_obs",
+          "la_obs"
+        ],
+        "errors": [
+          "R_sig",
+          "la_sig"
+        ]
       },
       "metadata": {
         "survey": "Planck2018",
