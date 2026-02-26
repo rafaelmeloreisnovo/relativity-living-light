@@ -1,3 +1,7 @@
+"""Referência explícita de saídas textuais deste módulo/pipeline."""
+
+TEXTUAL_OUTPUTS = []
+
 import numpy as np
 
 def E_LCDM(z, Om=0.3, Or=0.0, Ol=0.7):
