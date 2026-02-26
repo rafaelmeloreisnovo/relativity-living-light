@@ -24,11 +24,21 @@ Referência: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](../docs/canonicos/F
 Documentos e artefatos relacionados incorporados nesta etapa:
 ## Equação de Friedmann estendida (forma normalizada)
 
+**Eq. 4.1**  
 `E²(a)=Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ + Ω_s0 [f(a)+(1-f(a))a⁻³] + Ω_B0 a⁻⁴ + Ω_P0 a⁻⁴`, com `E(a)=H(a)/H₀` e `a=1/(1+z)`.
 
 ## Função de transição logística
 
+**Eq. 4.2**  
 `f(z)=1/(1+exp((z-z_t)/w_t))`, que controla a fração coerente do setor de superposição.
+
+## Rastreabilidade formal
+
+Figura `figs/paper/hz_superposicao.png` conecta-se às equações <Eq. 4.1> e <Eq. 4.2>.
+
+Figura `figs/paper/f_transition.png` conecta-se às equações <Eq. 4.2> e <Eq. 4.1>.
+
+Figura `figs/paper/unified_fractions.png` conecta-se às equações <Eq. 4.1> e <Eq. 4.2>.
 
 ### Definições dos parâmetros
 

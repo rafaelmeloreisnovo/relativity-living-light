@@ -27,6 +27,7 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 
 A hipótese estende a normalização de superposição fotônica por um termo dependente do setor magnético, seguindo a forma já registrada em `docs/BOOSTERS.md`:
 
+**Eq. 9.1**  
 ```
 Ω_s0 → Ω_s0·[1+α_B(Ω_B0 a⁻⁴)^β]
 ```
@@ -37,12 +38,14 @@ Neste acoplamento, `α_B` representa a força efetiva da interação entre campo
 
 No nível de background, a contribuição plasmática é modelada por:
 
+**Eq. 9.2**  
 ```
 ρ_plasma(a)=Ω_P0 ρ_c0 a⁻⁴
 ```
 
 Em termos microfísicos e magneto-térmicos, usa-se:
 
+**Eq. 9.3**  
 ```
 ρ_plasma=(3/2)nk_B T/c² + B²/(2μ₀c²)
 ```
@@ -66,5 +69,13 @@ A hipótese gera alvos observacionais diretos e indiretos:
 - **Crescimento `fσ₈(z)`**: impacto principalmente indireto, via alteração de `H(z)` e das frações efetivas dos componentes no orçamento cosmológico.
 
 A validação segue o plano estatístico de `docs/PLANO_AD_AGN_JWST.md`: comparação por χ², penalização por complexidade (AIC/BIC) e formulação de previsões falsificáveis para separar ganho físico real de sobreajuste fenomenológico.
+
+## Rastreabilidade formal
+
+Figura `figs/paper/cluster_lensing_SIS_unified.png` conecta-se às equações <Eq. 9.1> e <Eq. 9.2>.
+
+Figura `figs/paper/fig_kappa_field.png` conecta-se às equações <Eq. 9.1> e <Eq. 9.3>.
+
+Figura `figs/paper/unified_f_and_weff.png` conecta-se às equações <Eq. 9.1> e <Eq. 9.2>.
 
 ---
