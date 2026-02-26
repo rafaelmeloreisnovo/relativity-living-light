@@ -1,8 +1,8 @@
-# 21. Validação Observacional — DESI/BOSS
+# 21. Validação Observacional — DESI DR2 e BOSS DR12
 
 [⬅️ Capítulo anterior](./20_validacao_rotacao_galaxias.md) | [📚 Sumário do livro](./README.md) | [Capítulo próximo ➡️](./22_validacao_jwst_agn_smbh.md)
 
-Síntese das comparações direcionadas para levantamentos de larga escala.
+Síntese das comparações direcionadas para levantamentos de larga escala, com foco em DESI DR2 e BOSS DR12.
 
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
@@ -36,4 +36,19 @@ Resultado as implicações em `fσ₈` para crescimento estrutural e tensão res
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
 - Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
 
+## Amarração metodológica
+
+A leitura deste capítulo segue o [Formalismo base](./04_formalismo_equacao_unificada.md) e as [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md), com interpretação consolidada no [Painel analítico de resultados](./24_resultados_figuras_painel.md).
+
+## Ver também
+
+- [Formalismo base](./04_formalismo_equacao_unificada.md)
+- [Hipóteses magneto-plasmáticas](./09_hipoteses_setor_magnetico_plasmatico.md)
+- [Validação JWST/AGN/SMBH](./22_validacao_jwst_agn_smbh.md)
+- [Painel analítico de resultados](./24_resultados_figuras_painel.md)
+
+
 ---
+
+## Referências e convenções terminológicas
+- Convenção editorial: usar exclusivamente as formas **DESI DR2**, **BOSS DR12** e **pós-PhD** (quando houver menção à etapa pós-doutoral).
