@@ -110,6 +110,16 @@ Para o impacto empírico desses regimes nas curvas comparativas e painéis de re
 
 Resultado a interpretação física DE→DM via coerência/decoerência e boosters subdominantes é sustentado por [Planck2018, DESI-DR2-2025, eBOSS-DR16-2021].
 
+
+## Referência explícita dos números estruturais
+
+Quando houver citação dos números **42** ou **84** em contexto de ajuste/robustez deste formalismo, adotar a definição técnica canônica da tabela em [`38_apendice_numeros_rafaelianos.md`](./38_apendice_numeros_rafaelianos.md#tabela-canônica-de-números-estruturais).
+
+- `42`: janela-base de ajuste local (hipótese operacional).
+- `84`: teste de robustez por duplicação de suporte amostral (inferência metodológica).
+
+Nota de escopo: se `42` ou `84` forem usados apenas como marcador editorial/histórico, registrar explicitamente que não há papel inferencial/físico associado.
+
 ## Conexão observacional
 
 **Fontes técnicas:** [`../newadd/01_MATHEMATICS.md`](../newadd/01_MATHEMATICS.md), [`../newadd/02_PHYSICS.md`](../newadd/02_PHYSICS.md), [`../newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md).

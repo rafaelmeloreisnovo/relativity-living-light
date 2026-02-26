@@ -82,6 +82,15 @@ Assim, distingue-se explicitamente:
 - efeito global cosmológico (termos médios escalando como `a⁻⁴`);
 - efeito local em estrutura (halos/aglomerados), onde magnetização, cisalhamento e turbulência modulam a coerência e a resposta gravitacional efetiva.
 
+
+## Referência explícita dos números estruturais
+
+Quando houver citação dos números **72** ou **144** para discretização direcional e malhas residuais deste capítulo, adotar a tabela canônica em [`38_apendice_numeros_rafaelianos.md`](./38_apendice_numeros_rafaelianos.md#tabela-canônica-de-números-estruturais).
+
+- `72`: discretização angular em setores de `5°` para assinatura magneto-plasmática.
+- `144`: malha refinada (`12×12`) para inspeção de resíduos em mapas observacionais.
+
+Nota de escopo: se `72` ou `144` aparecerem somente como convenção editorial/histórica, rotular explicitamente como uso não técnico.
 ## Geometria e estrutura de campo
 
 Esta seção adota, para o setor magneto-plasmático, a formulação geométrica de base documentada em [`newadd/04_GEOMETRY.md`](../newadd/04_GEOMETRY.md), em particular os elementos toroidais, integrais de circulação e vínculos topológicos usados para descrever coerência de campo.
