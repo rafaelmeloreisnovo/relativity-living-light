@@ -1,0 +1,7 @@
+parametro,valor_inicial,limite_inferior,limite_superior,unidade,nota
+a,2.50e-3,1.00e-5,1.00e-1,1/(A^4 m^8 s),curvatura quartica
+b,1.70e-2,1.00e-4,1.00e-1,1/(A^2 m^4 s),termo bistavel
+c,0.00,-5.00e-3,5.00e-3,1/(A m^2 s),assimetria
+eta,8.00e-2,1.00e-3,1.00,1/sqrt(s),ruido efetivo
+sigma_core,1.50e-2,1.00e-4,5.00e-1,1/s,forcing nucleo
+sigma_mantle,7.00e-3,1.00e-4,5.00e-1,1/s,forcing manto
