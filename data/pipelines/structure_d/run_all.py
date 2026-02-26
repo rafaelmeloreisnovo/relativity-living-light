@@ -1,14 +1,11 @@
-"""Pipeline principal Structure D.
-
-Saídas textuais produzidas por este pipeline:
-- results/structure_d/model_comparison.csv
-- results/structure_d/covariance_usage.csv
-"""
-
+import argparse
 import os
+
 import numpy as np
 import pandas as pd
-from .likelihood import chi2_blocks, covariance_usage_summary, aic, bic, load_csv, evaluate_model
+
+from .data_access import load_active_datasets, load_run_config
+from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
 from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
@@ -152,86 +149,59 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
-def _normalize_for_block(entry, mod, block_name):
-    obs = np.asarray(entry["values"], dtype=float)
-    mod_arr = np.asarray(mod, dtype=float)
-    if obs.shape != mod_arr.shape:
-        raise ValueError(f"{block_name}: model shape {mod_arr.shape} must match obs shape {obs.shape}")
+def _evaluate_supported_dataset(dataset_id, entry, lcdm, rll):
+    if entry.get("z") is None:
+        raise ValueError(f"dataset {dataset_id} does not provide z values")
 
-    observable = str(entry.get("observable", "")).lower()
-    if observable in {"hz", "h(z)"}:
-        return obs, mod_arr
-    if observable in {"fs8", "fσ8", "f_sigma8"}:
-        return obs, mod_arr
-    if observable in {"mu", "distance_modulus", "sne"}:
-        return obs, mod_arr
-    if observable in {"dv_over_rs", "bao", "dm_over_rs", "dh_over_rs"}:
-        return obs, mod_arr
-    if observable in {"lenses", "lens", "distance_ratio", "dls_over_ds"}:
-        return obs, mod_arr
-    return obs, mod_arr
+    z = np.asarray(entry["z"], dtype=float)
+    block_name = _dataset_block_name(dataset_id, entry)
 
+    if block_name == "Hz":
+        c2_l = _chi2_from_entry(entry, model_LCDM_Hz(z, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_Hz(z, rll))
+    elif block_name == "fσ8":
+        c2_l = _chi2_from_entry(entry, model_LCDM_fs8(z, lcdm))
+        c2_r = _chi2_from_entry(entry, model_RLL_like_fs8(z, rll))
+    else:
+        raise ValueError(f"unsupported dataset for current model set: {dataset_id} ({block_name})")
 
-def _dataset_block_name(entry):
-    observable = str(entry.get("observable", "")).lower()
-    if observable in {"mu", "distance_modulus", "sne"}:
-        return "SNe"
-    if observable in {"dv_over_rs", "bao", "dm_over_rs", "dh_over_rs"}:
-        return "BAO"
-    if observable in {"lenses", "lens", "distance_ratio", "dls_over_ds"}:
-        return "lenses"
-    if observable in {"fs8", "fσ8", "f_sigma8"}:
-        return "fσ8"
-    if observable in {"hz", "h(z)"}:
-        return "Hz"
-    return entry.get("observable", entry.get("dataset_id", "unknown"))
+    return float(c2_l), float(c2_r), int(len(entry["values"]))
 
 
-def covariance_usage_summary(active_blocks, diagonal_fallback=True):
-    rows = []
-    for block in active_blocks:
-        has_full_covariance = block.get("covariance") is not None
-        has_diagonal_sigma = block.get("errors") is not None
-        if has_full_covariance:
-            mode = "full_covariance"
-        elif has_diagonal_sigma and diagonal_fallback:
-            mode = "diagonal_sigma"
-        else:
-            mode = "not_used"
-
-        rows.append(
-            {
-                "block": block.get("block"),
-                "observable": block.get("observable"),
-                "N": block.get("N", len(block.get("obs", []))),
-                "covariance_mode": mode,
-                "has_full_covariance": bool(has_full_covariance),
-                "has_diagonal_sigma": bool(has_diagonal_sigma),
-            }
-        )
-
-    return pd.DataFrame(rows)
+def _artifact_kind(file_path):
+    name = os.path.basename(file_path).lower()
+    bayes_tokens = ("bayes", "evidence", "posterior", "nested", "mcmc")
+    return "bayes" if any(token in name for token in bayes_tokens) else "classic"
 
 
-def chi2_blocks(blocks):
-    total = 0.0
-    for block in blocks:
-        entry = {
-            "values": block["obs"],
-            "errors": block.get("errors"),
-            "covariance": block.get("covariance"),
-        }
-        total += _chi2_from_entry(entry, block["mod"])
-    return total
+def _print_written_artifact(file_path, kind):
+    print(f"[{kind}] wrote: {os.path.abspath(file_path)}")
 
 
-def main(config_path=DEFAULT_CONFIG):
+def _print_all_result_artifacts(results_dir, bayes, skip_paths=None):
+    skip_paths = {os.path.abspath(path) for path in (skip_paths or [])}
+    bayes_count = 0
+    for name in sorted(os.listdir(results_dir)):
+        artifact = os.path.abspath(os.path.join(results_dir, name))
+        if artifact in skip_paths or not os.path.isfile(artifact):
+            continue
+        kind = _artifact_kind(artifact)
+        if kind == "bayes":
+            bayes_count += 1
+            if not bayes:
+                continue
+        _print_written_artifact(artifact, kind)
+    if bayes and bayes_count == 0:
+        print("[bayes] wrote: none")
+
+
+def main(config_path=DEFAULT_CONFIG, covariance_policy=None, profile_name=DEFAULT_PROFILE, bayes=False):
     os.makedirs(RESULTS, exist_ok=True)
     rows = []
 
-    cfg = load_run_config(config_path)
-    cfg_meta, datasets = load_active_datasets(config_path)
-    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(cfg, datasets, covariance_policy)
+    full_cfg = load_run_config(config_path)
+    cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
+    covariance_policy, active_blocks, block_reports = _apply_covariance_policy(full_cfg, datasets, covariance_policy)
 
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
@@ -381,23 +351,20 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     deg_pairs = top_degenerate_pairs_by_bin(deg_df, top_n=3)
 
     print(df.to_string(index=False))
-    print(f"\nWrote: {out}")
-    print(f"Wrote: {cov_out}")
-    print(f"Wrote: {deg_out}")
-    if deg_pairs:
-        print("\nTop degeneracies by z-bin (RLL):")
-        for zbin in sorted(deg_pairs):
-            pairs_txt = "; ".join([f"{p['group']}:{p['pair']} (corr={p['corr']:.3f})" for p in deg_pairs[zbin]])
-            print(f"- {zbin}: {pairs_txt}")
+    _print_written_artifact(out, "classic")
+    _print_written_artifact(cov_out, "classic")
+    _print_all_result_artifacts(RESULTS, bayes=bayes, skip_paths=[out, cov_out])
 
 
-def _build_arg_parser():
-    parser = argparse.ArgumentParser(description="Run Structure D model comparison pipeline")
-    parser.add_argument("--config", default=DEFAULT_CONFIG, help="Path to dataset config JSON")
-    parser.add_argument("--profile", default=DEFAULT_PROFILE, help="Profile name from config")
-    parser.add_argument("--covariance-policy", default=None, choices=["prefer_full", "diagonal_only", "full_required"], help="Covariance handling policy")
-    parser.add_argument("--bayes", action="store_true", help="Enable Bayesian evidence estimation via dynesty")
+def _build_parser():
+    parser = argparse.ArgumentParser(description="Executa o pipeline structure_d")
+    parser.add_argument("--config", default=DEFAULT_CONFIG)
+    parser.add_argument("--profile", default=os.environ.get("STRUCTURE_D_PROFILE", DEFAULT_PROFILE))
+    parser.add_argument("--covariance-policy", default=None, choices=["prefer_full", "diagonal_only", "full_required"])
+    parser.add_argument("--bayes", action="store_true", help="Exibe também artefatos bayesianos gerados")
     return parser
 
+
 if __name__ == "__main__":
-    main()
+    args = _build_parser().parse_args()
+    main(config_path=args.config, covariance_policy=args.covariance_policy, profile_name=args.profile, bayes=args.bayes)
