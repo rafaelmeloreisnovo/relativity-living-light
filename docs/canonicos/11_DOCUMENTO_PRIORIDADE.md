@@ -508,6 +508,35 @@ Referência ao repositório GitHub como evidence
 
 ---
 
+
+## 🧩 Fonte de verdade máquina-legível
+
+O acompanhamento canônico das frentes desta cronologia passa a ser versionado em:
+
+- `docs/tracking_frentes.csv`
+- `docs/tracking_frentes.json`
+
+Schema mínimo adotado por item:
+
+- `version`
+- `item_type` (`area` ou `descoberta`)
+- `item_id` (`A1..A8`, `D1..D14`)
+- `title`
+- `status`
+- `priority`
+- `metric_name`
+- `metric_value`
+- `evidence_ref`
+- `code_module_ref`
+- `results_ref`
+- `updated_at`
+
+Convenção de evolução por release:
+
+1. Adicionar novas linhas por `version` (modelo append-only).
+2. Nunca sobrescrever histórico de versões anteriores.
+3. Manter `item_id` estável entre versões para rastreabilidade.
+
 ## 🔒 METADADOS DO DOCUMENTO
 
 - **Criado:** Janeiro 2026

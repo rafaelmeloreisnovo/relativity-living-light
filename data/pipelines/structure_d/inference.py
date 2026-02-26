@@ -8,6 +8,9 @@ amostragem MCMC (``emcee``) e evidência Bayesiana via nested sampling
 
 from __future__ import annotations
 
+import os
+import time
+
 import numpy as np
 
 from .models import (
@@ -332,3 +335,95 @@ def run_nested_dynesty(
         "logZ_err": logz_err,
         "results": results,
     }
+
+
+def _standardize_input_data(hz, fs8):
+    hz_data = {
+        "z": _column(hz, "z"),
+        "Hz": _column(hz, "Hz"),
+        "sigma": _column(hz, "sigma"),
+    }
+    fs8_data = {
+        "z": _column(fs8, "z"),
+        "fs8": _column(fs8, "fs8"),
+        "sigma": _column(fs8, "sigma"),
+    }
+    return hz_data, fs8_data
+
+
+def _build_bayes_summary(model_name, nested_result, *, seed, nwalkers, nsteps, nlive, output_dir, elapsed_seconds):
+    os.makedirs(output_dir, exist_ok=True)
+    run_timestamp_utc = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    row = {
+        "model": model_name,
+        "logZ": float(nested_result["logZ"]),
+        "logZ_err": float(nested_result["logZ_err"]),
+        "seed": int(seed),
+        "nwalkers": int(nwalkers),
+        "nsteps": int(nsteps),
+        "nlive": int(nlive),
+        "output_dir": output_dir,
+        "run_timestamp_utc": run_timestamp_utc,
+        "elapsed_seconds": float(elapsed_seconds),
+    }
+    return {
+        "model": model_name,
+        "logZ": float(nested_result["logZ"]),
+        "logZ_err": float(nested_result["logZ_err"]),
+        "metadata": {
+            "seed": int(seed),
+            "nwalkers": int(nwalkers),
+            "nsteps": int(nsteps),
+            "nlive": int(nlive),
+            "output_dir": output_dir,
+            "run_timestamp_utc": run_timestamp_utc,
+            "elapsed_seconds": float(elapsed_seconds),
+        },
+        "row": row,
+    }
+
+
+def run_lcdm_bayes(hz, fs8, seed=42, nwalkers=32, nsteps=2000, nlive=400, output_dir="results/structure_d"):
+    hz_data, fs8_data = _standardize_input_data(hz, fs8)
+    t0 = time.perf_counter()
+    nested_result = run_nested_dynesty(
+        "LCDM",
+        hz_data,
+        fs8_data,
+        nlive=nlive,
+        random_seed=seed,
+    )
+    elapsed = time.perf_counter() - t0
+    return _build_bayes_summary(
+        "LCDM",
+        nested_result,
+        seed=seed,
+        nwalkers=nwalkers,
+        nsteps=nsteps,
+        nlive=nlive,
+        output_dir=output_dir,
+        elapsed_seconds=elapsed,
+    )
+
+
+def run_rll_like_agn_bayes(hz, fs8, seed=42, nwalkers=32, nsteps=2000, nlive=400, output_dir="results/structure_d"):
+    hz_data, fs8_data = _standardize_input_data(hz, fs8)
+    t0 = time.perf_counter()
+    nested_result = run_nested_dynesty(
+        "RLL_like+AGN",
+        hz_data,
+        fs8_data,
+        nlive=nlive,
+        random_seed=seed,
+    )
+    elapsed = time.perf_counter() - t0
+    return _build_bayes_summary(
+        "RLL_like+AGN",
+        nested_result,
+        seed=seed,
+        nwalkers=nwalkers,
+        nsteps=nsteps,
+        nlive=nlive,
+        output_dir=output_dir,
+        elapsed_seconds=elapsed,
+    )
