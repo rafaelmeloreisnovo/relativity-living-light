@@ -48,6 +48,19 @@ E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ + Ωs₀[f(a) + (1-f(a))a⁻³] + ΩB
 
 A função logística f(z) = 1/[1 + exp((z - zₜ)/wₜ)] gera uma **transição suave entre comportamento tipo energia escura (z alto) e tipo matéria (z baixo)**, que é precisamente o padrão que os dados DESI DR2 favorecem na "mirage class" (Lodha et al. 2025).
 
+### Convenção oficial de sinais e limites
+
+Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/canonicos/09_GLOSSARIO_COMPLETO.md).
+
+- **Fórmula oficial:** `f(z) = 1/(1 + exp((z - z_t)/w_t))`.
+- **Hipótese oficial de sinal/intervalo de `w_t`:** adota-se `w_t < 0`, com `|w_t| ∈ [0.1, 1.0]`.
+- **Exemplos numéricos** (referência: `z_t = 1.0`, `w_t = -0.3`):
+  - `z = 0` → `f(0) ≈ 0.034`.
+  - `z = z_t` → `f(z_t) = 0.5`.
+  - `z >> z_t` (ex.: `z = 5`) → `f(5) ≈ 0.999998`.
+- **Interpretação física coerente:** nesta convenção, `f` cresce com `z`; assim, o setor de superposição é dominante em alto redshift (`f→1`) e subdominante em baixo redshift (`f→0`), com transição suave em torno de `z_t`.
+
+
 ---
 
 ## 2. Análise Cruzada: RLL × DESI DR2

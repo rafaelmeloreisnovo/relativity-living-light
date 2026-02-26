@@ -1,7 +1,7 @@
 # 🌌 Relativity Living Light — Unified Photonic Superposition Model (v3)
 
 ## 🇧🇷 Síntese (PT)
-Propomos que a **superposição fotônica** atua como um componente energético dinâmico que **transita** de w ≈ -1 (expansivo, tipo energia escura) para w ≈ 0 (atrativo, tipo matéria).  
+Propomos que a **superposição fotônica** atua como um componente energético dinâmico que **transita** de w ≈ -1 (expansivo, tipo energia escura) para w ≈ 0 (atrativo, tipo matéria).
 Esse estado é **modulado** por **campos magnéticos cósmicos** e pelas condições **plasmáticas** (temperatura, pressão), integrando-se de forma natural na equação de Friedmann:
 
 E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ +
@@ -9,19 +9,32 @@ E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ +
 + Ω_B0 a⁻⁴                ← campo magnético
 + Ω_P0 a⁻⁴                ← plasma (T,P)
 
-com f(z) = 1 / (1 + exp((z - z_t)/w_t)).  
-Opcionalmente: **correção magneto-coerente**  
+com f(z) = 1 / (1 + exp((z - z_t)/w_t)).
+
+### Convenção oficial de sinais e limites
+
+Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/canonicos/09_GLOSSARIO_COMPLETO.md).
+
+- **Fórmula oficial / Official formula:** `f(z) = 1/(1 + exp((z - z_t)/w_t))`.
+- **Hipótese oficial de sinal/intervalo de `w_t` / Official sign-range hypothesis for `w_t`:** adota-se `w_t < 0`, com `|w_t| ∈ [0.1, 1.0]`.
+- **Exemplos numéricos / Numerical examples** (referência/reference: `z_t = 1.0`, `w_t = -0.3`):
+  - `z = 0` → `f(0) ≈ 0.034`.
+  - `z = z_t` → `f(z_t) = 0.5`.
+  - `z >> z_t` (ex.: `z = 5`) → `f(5) ≈ 0.999998`.
+- **Interpretação física coerente / Coherent physical interpretation:** nesta convenção `f` cresce com `z`; portanto, o setor de superposição domina em alto redshift (`f→1`) e perde peso em baixo redshift (`f→0`), com transição suave em torno de `z_t`.
+
+Opcionalmente: **correção magneto-coerente**
 Ω_s0 → Ω_s0 {1 + α_B (Ω_B0 a⁻⁴)^β}.
 
 ---
 
 ### 🔬 Observáveis e Testes
 
-- **Expansão cósmica:** H(z), Δμ em supernovas Ia.  
-- **Crescimento de estrutura:** fσ₈(z), comparável a BOSS/DESI.  
-- **Aglomerados:** weak/strong lensing (Bullet, Abell 2744, Frontier Fields).  
-- **Galáxias:** Curvas de rotação (SPARC).  
-- **Radiação extra:** Limites de N_eff no CMB/BBN.  
+- **Expansão cósmica:** H(z), Δμ em supernovas Ia.
+- **Crescimento de estrutura:** fσ₈(z), comparável a BOSS/DESI.
+- **Aglomerados:** weak/strong lensing (Bullet, Abell 2744, Frontier Fields).
+- **Galáxias:** Curvas de rotação (SPARC).
+- **Radiação extra:** Limites de N_eff no CMB/BBN.
 - **Faixas de robustez:** Bandas com **margem de entropia 10/12**.
 
 ---
@@ -55,7 +68,7 @@ Opcionalmente: **correção magneto-coerente**
 
 ## 🇺🇸 Summary (EN)
 
-We posit **photonic superposition** as a dynamic energy component that **transitions** from w ≈ -1 (dark-energy-like, expansive) to w ≈ 0 (matter-like, clustering).  
+We posit **photonic superposition** as a dynamic energy component that **transitions** from w ≈ -1 (dark-energy-like, expansive) to w ≈ 0 (matter-like, clustering).
 This state is **modulated** by **cosmic magnetic fields** and **plasma conditions** (temperature, pressure), naturally extending the Friedmann equation:
 
 E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ +
@@ -63,19 +76,19 @@ E²(a) = Ω_r a⁻⁴ + Ω_m a⁻³ + Ω_Λ +
 + Ω_B0 a⁻⁴                ← magnetic field
 + Ω_P0 a⁻⁴                ← plasma (T,P)
 
-with f(z) = 1 / (1 + exp((z - z_t)/w_t)).  
-Optional: **magneto-coherence correction**  
+with f(z) = 1 / (1 + exp((z - z_t)/w_t)).
+Optional: **magneto-coherence correction**
 Ω_s0 → Ω_s0 {1 + α_B (Ω_B0 a⁻⁴)^β}.
 
 ---
 
 ### 🔬 Observables & Tests
 
-- **Cosmic expansion:** H(z), Δμ from SNe Ia.  
-- **Structure growth:** fσ₈(z), for BOSS/DESI comparison.  
-- **Clusters:** weak/strong lensing (Bullet, Abell 2744, Frontier Fields).  
-- **Galaxies:** rotation curves (SPARC).  
-- **Extra radiation:** constraints on N_eff (CMB/BBN).  
+- **Cosmic expansion:** H(z), Δμ from SNe Ia.
+- **Structure growth:** fσ₈(z), for BOSS/DESI comparison.
+- **Clusters:** weak/strong lensing (Bullet, Abell 2744, Frontier Fields).
+- **Galaxies:** rotation curves (SPARC).
+- **Extra radiation:** constraints on N_eff (CMB/BBN).
 - **Robustness:** entropy-margin 10/12 uncertainty bands.
 
 ---
