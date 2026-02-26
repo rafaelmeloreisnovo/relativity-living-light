@@ -4,3 +4,5 @@ Outputs (CSVs, tabelas e plots) do fluxo Structure D aparecem aqui após rodar:
 Arquivos relevantes de saída:
 - `model_comparison.csv`: comparação de χ²/AIC/BIC entre modelos.
 - `covariance_usage.csv`: resumo versionável por corrida indicando, por modelo e por bloco (SNe, BAO, fσ8, lentes, etc.), se a covariância usada foi cheia (`full`) ou fallback diagonal (`diagonal_fallback`).
+
+- `rll_sensitivity_derivatives.csv`: derivadas por diferença finita central por redshift para cada parâmetro RLL, incluindo elasticidade, escore normalizado por incerteza observacional e flag de estabilidade numérica.

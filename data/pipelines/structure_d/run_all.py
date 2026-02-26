@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from .likelihood import chi2_blocks, covariance_usage_summary, aic, bic, load_csv, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
+from .sensitivity import sensitivity_table_by_redshift
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 DATA = os.path.join(BASE_DIR, "data", "inputs", "structure_d")
@@ -71,9 +72,13 @@ def main():
     cov_out = os.path.join(RESULTS, "covariance_usage.csv")
     evaluate_model([r for d in cov_rows for r in d.to_dict(orient="records")], cov_out)
 
+    sens_out = os.path.join(RESULTS, "rll_sensitivity_derivatives.csv")
+    sensitivity_table_by_redshift().to_csv(sens_out, index=False)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {cov_out}")
+    print(f"Wrote: {sens_out}")
 
 
 if __name__ == "__main__":
