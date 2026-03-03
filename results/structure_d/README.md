@@ -72,3 +72,30 @@ A referência oficial para **todos os artefatos textuais** de `results/` (inclui
 - `covariance_usage.csv`: resumo versionável por corrida indicando, por modelo e por bloco (SNe, BAO, fσ8, lentes, etc.), se a covariância usada foi cheia (`full`) ou fallback diagonal (`diagonal_fallback`).
 
 - `bayes_factor_interpretation.csv`: tabela canônica estática (Jeffreys/Trotta) com faixas de lnB e classificação textual de evidência.
+
+
+## Artefatos de regimes em redshift (novos)
+- `rll_regime_summary.csv`: resumo por bin de redshift com estatísticas de `R(z)` (`R_mean`, `R_median`, `R_std`), rótulo de regime e campo `notes` para auditoria de configuração.
+- `rll_regime_metadata.csv`: metadado auxiliar (1 linha por corrida) repetindo limiares, estratégia de binning e `SENSITIVITY_EPS` para rastreabilidade.
+- `rll_regime_overview.png`: visão global de `R(z)` vs. `z` com faixas de classificação.
+- `rll_regime_by_bin.png`: evolução do regime médio por bin de redshift.
+
+## Significado físico de `R(z)`
+Neste pipeline, `R(z)` é tratado como um **indicador adimensional de dominância relativa** entre o setor efetivo RLL-like e a referência ΛCDM ao longo do redshift. A interpretação operacional é:
+- `R(z) > 0`: tendência de dominância do setor RLL-like.
+- `R(z) < 0`: tendência de dominância do setor ΛCDM.
+- `|R(z)|` pequeno: regime de equilíbrio efetivo (mistura/balanço).
+
+## Convenção de classificação
+A convenção está explicitada em `data/pipelines/structure_d/reporting.py` e serializada em `notes`:
+- limiar principal: `DOMINANCE_THRESHOLD = 0.10`;
+- fronteiras do balanceado: `-0.10 <= R(z) <= 0.10`;
+- classes:
+  - `lcdm_dominant` para `R(z) < -0.10`;
+  - `balanced` para `-0.10 <= R(z) <= 0.10`;
+  - `rll_dominant` para `R(z) > 0.10`.
+
+## Estratégia de binning e sensibilidade numérica
+- Binning em redshift padrão: `fixed_n_bins` com `n_bins = 8` (há suporte alternativo para bins manuais).
+- Passo de derivada numérica central: `SENSITIVITY_EPS = 1e-4`.
+- Todos esses parâmetros são registrados em `rll_regime_summary.csv` (campo `notes`) e em `rll_regime_metadata.csv`.
