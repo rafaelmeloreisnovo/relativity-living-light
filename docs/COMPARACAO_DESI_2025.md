@@ -91,7 +91,71 @@ A extensão anisotrópica f(z,θ,φ) proposta em `teoria/EXTENSAO_ANISOTROPICA.m
 
 ---
 
-## 6. O Que Seria Necessário para Estabelecer Prioridade Formal
+## 6. External validation (mapeamento quantitativo)
+
+Esta seção conecta explicitamente a formulação do `RAFAELIA_COSMO_STRUCTURE_D/paper/draft.md` com os resultados externos, separando o que é **convergência qualitativa** do que conta como **suporte quantitativo**.
+
+### 6.1 Mapeamento explícito CPL ↔ parametrização RLL
+
+Para comparação no mesmo espaço de parâmetros da literatura (DESI), definimos o mapeamento local em torno de `a=1`:
+
+\[
+w_{RLL}(a) = -f(a),\quad f(a)=\frac{1}{1+\exp\left(\frac{z(a)-z_t}{w_t}\right)},\quad z(a)=a^{-1}-1
+\]
+
+\[
+w_{CPL}(a)=w_0+w_a(1-a)
+\]
+
+Correspondência operacional (1ª ordem em Taylor):
+
+- \(w_0 \equiv w_{RLL}(a=1) = -f_0\)
+- \(w_a \equiv -\left.\frac{dw_{RLL}}{da}\right|_{a=1} = -\left.\frac{df}{da}\right|_{a=1}\)
+- com \(\frac{df}{dz}=-\frac{f(1-f)}{w_t}\) e \(\frac{dz}{da}=-a^{-2}\), então:
+
+\[
+w_a = -\frac{f_0(1-f_0)}{w_t}
+\]
+
+Métricas comparáveis no mesmo protocolo de ajuste:
+
+- \(\chi^2_{\min}\) total e por dataset
+- \(\Delta\mathrm{AIC}\), \(\Delta\mathrm{BIC}\) vs \(\Lambda\)CDM e vs CPL livre
+- tensão em parâmetros via distância em sigma (ex.: \(|w_0^{RLL\to CPL}-w_0^{DESI}|/\sigma_{w_0}\))
+- PPC (posterior predictive checks) para BAO, SN e crescimento \(f\sigma_8\)
+
+### 6.2 Critérios objetivos de rejeição (falsificação)
+
+Um ajuste RLL é classificado como **rejeitado** se qualquer critério abaixo ocorrer:
+
+1. **Penalização de informação:** \(\Delta\mathrm{AIC}>10\) e \(\Delta\mathrm{BIC}>10\) contra o melhor modelo concorrente no mesmo conjunto de dados.
+2. **Mau ajuste absoluto:** p-valor global do \(\chi^2\) < 0.01.
+3. **Discrepância paramétrica externa:** mapeamento RLL→CPL incompatível em >3σ com contornos DESI (para \(w_0,w_a\)).
+4. **Resíduo sistemático observacional:** média dos resíduos normalizados por bin de redshift com viés \(|\langle r/\sigma\rangle|>2\) em dois ou mais observáveis independentes.
+
+### 6.3 Separação metodológica: qualitativo vs quantitativo
+
+| Nível de evidência | Definição operacional | Exemplo neste contexto |
+|---|---|---|
+| Convergência qualitativa | Mesma direção física/heurística sem equivalência estatística formal | “w(z) dinâmico” em DESI e transição logística em RLL |
+| Suporte quantitativo | Compatibilidade numérica com incertezas + métricas de ajuste | RLL→CPL dentro de 1–2σ e \(\Delta\mathrm{AIC}\le 2\) |
+
+Regra editorial para o paper: afirmações de prioridade/conexão devem indicar explicitamente em qual nível estão.
+
+### 6.4 Tabela de previsões falsificáveis (observável/dataset futuro)
+
+| Observável | Dataset futuro-alvo | Previsão RLL falsificável | Critério de falha |
+|---|---|---|---|
+| \(w_0,w_a\) efetivos (via mapeamento) | DESI DR3 + SN de alta-z | Região mapeada RLL→CPL sobrepõe 68% CL do ajuste conjunto | Sem sobreposição em 95% CL |
+| Curvatura de \(H(z)\) em \(0.8<z<1.6\) | DESI DR3 BAO + Roman SN | Inflexão compatível com transição em torno de \(z_t\sim 1\) | Modelo requer \(z_t\) fora do intervalo 0.5–2.0 para ajustar dados |
+| Crescimento \(f\sigma_8(z)\) | Euclid + DESI full-shape | Desvio sistemático controlado por \(\Omega_{s0}\) sem degradação de \(\chi^2\) global | \(\Delta\chi^2>9\) (≈3σ para 1 dof efetivo) contra \(\Lambda\)CDM/CPL |
+| Dipolo anisotrópico em expansão/crescimento | SKA + CMB-S4 + catálogos all-sky | Sinal dipolar coerente com extensão \(f(z,\theta,\phi)\) e eixo estável entre probes | Eixos incompatíveis >3σ ou amplitude consistente com zero em todos os probes |
+
+Integração no texto principal: esta seção deve ser usada como contraparte quantitativa direta da seção “External validation” em `RAFAELIA_COSMO_STRUCTURE_D/paper/draft.md`.
+
+---
+
+## 7. O Que Seria Necessário para Estabelecer Prioridade Formal
 
 Prioridade científica reconhecida requer, nesta ordem:
 
