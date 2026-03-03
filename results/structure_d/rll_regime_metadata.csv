@@ -1,0 +1,2 @@
+dominance_threshold,balanced_min,balanced_max,binning_strategy,n_bins,manual_bins,sensitivity_eps,notes
+0.1,-0.1,0.1,fixed_n_bins,8,[],0.0001,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
