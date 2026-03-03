@@ -1,5 +1,7 @@
 # Draft (paper skeleton)
 
+> Governança de evidências: novas claims só entram neste draft com rastreabilidade prévia em `paper/evidence_traceability.md`.
+
 ## Abstract
 Este trabalho testa, no escopo de dados de expansão e crescimento usados no fluxo legado do Structure D, se uma extensão fenomenológica do tipo RLL-like+AGN melhora a descrição observacional em relação ao ΛCDM. Usamos o conjunto conjunto de observações com \(N=45\) pontos (\(H(z)\) e \(f\sigma_8(z)\)) e comparamos dois modelos: (i) ΛCDM com \(k=4\) parâmetros livres e (ii) RLL-like+AGN com \(k=7\). O ajuste é feito por máxima verossimilhança Gaussiana, reportado via \(\chi^2\), AIC e BIC. O melhor \(\chi^2\) numérico é praticamente idêntico entre modelos (123.681 para ΛCDM e 123.679 para RLL-like+AGN; \(\Delta\chi^2=-0.002\) em favor do modelo estendido), porém a penalização por complexidade domina: \(\Delta\mathrm{AIC}=+5.998\) e \(\Delta\mathrm{BIC}=+11.418\) (RLL-like+AGN menos favorecido). Conclusão quantitativa: com estes dados e esta configuração, a evidência de informação favorece ΛCDM de forma moderada (AIC) a forte (BIC), sem ganho estatístico relevante em \(\chi^2\).
 
