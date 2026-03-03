@@ -7,6 +7,7 @@ import pandas as pd
 from .data_access import load_active_datasets, load_run_config
 from .likelihood import chi2, chi2_with_covariance, aic, bic, evaluate_model
 from .models import model_LCDM_Hz, model_RLL_like_Hz, model_LCDM_fs8, model_RLL_like_fs8
+from .reporting import generate_reporting_artifacts
 from .sensitivity import analyze_rll_degeneracy, top_degenerate_pairs_by_bin
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
@@ -387,6 +388,33 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     print(df.to_string(index=False))
     _print_written_artifact(out, "classic")
     _print_written_artifact(cov_out, "classic")
+
+    hz = datasets.get("hz") or datasets.get("real_hz")
+    fs8 = datasets.get("fsigma8")
+    lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
+    rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
+
+    figs_dir = os.path.join(RESULTS, "figs")
+    os.makedirs(figs_dir, exist_ok=True)
+    summary_csv = os.path.join(RESULTS, "rll_regime_summary.csv")
+
+    reporting_outputs = generate_reporting_artifacts(
+        lcdm=lcdm,
+        rll=rll,
+        hz=hz,
+        fs8=fs8,
+        figs_dir=figs_dir,
+        summary_csv_path=summary_csv,
+    )
+
+    _print_written_artifact(summary_csv, "classic")
+    if isinstance(reporting_outputs, dict):
+        for png_path in reporting_outputs.get("png_paths", []):
+            _print_written_artifact(png_path, "classic")
+    elif isinstance(reporting_outputs, (list, tuple)):
+        for png_path in reporting_outputs:
+            _print_written_artifact(png_path, "classic")
+
     _print_all_result_artifacts(RESULTS, bayes=bayes, skip_paths=[out, cov_out])
 
 
