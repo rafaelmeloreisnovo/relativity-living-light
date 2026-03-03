@@ -1,5 +1,7 @@
 # Draft (paper skeleton)
 
+> Governança de evidências: novas claims só entram neste draft com rastreabilidade prévia em `paper/evidence_traceability.md`.
+
 ## Abstract
 (…)
 
