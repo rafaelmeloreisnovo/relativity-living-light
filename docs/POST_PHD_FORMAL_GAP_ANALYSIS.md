@@ -58,7 +58,8 @@ Para ser referência formal, o projeto precisa cumprir simultaneamente:
 ### Fase B — 15 a 30 dias (blindagem de reprodutibilidade)
 1. Criar script único de execução científica (ex.: `run_validation.sh` ou equivalente Python) para gerar artefatos finais.
 2. Incluir validações automáticas de inputs/outputs (existência, formato, checksum básico).
-3. Fixar convenção de versionamento de resultados (data + hash + commit).
+3. Padronizar um comando canônico único de execução ponta-a-ponta: `scripts/run_repro_all.sh` (com variantes `--bayes` e `--with-two-rad`).
+4. Fixar convenção de versionamento de resultados (data + hash + commit).
 
 **Entrega da fase:** pipeline auditável de ponta a ponta.
 
