@@ -26,6 +26,28 @@ OPTIONAL_OUTPUTS = {
     "bayes_factor_interpretation.csv": "optional Bayesian interpretation table; generated only when --bayes is used",
 }
 
+EXPECTED_SCHEMA_BY_OUTPUT = {
+    "model_comparison.csv": [
+        "model",
+        "chi2",
+        "AIC",
+        "BIC",
+        "N",
+        "k",
+        "datasets_used",
+        "run_name",
+        "profile_name",
+        "covariance_policy",
+    ],
+    "covariance_usage.csv": [
+        "dataset_id",
+        "block",
+        "covariance_mode",
+        "has_full_covariance",
+        "has_diagonal_sigma",
+    ],
+}
+
 
 MODEL_BY_DATASET = {
     "hz": (model_LCDM_Hz, model_RLL_like_Hz),
@@ -185,6 +207,15 @@ def _assert_required_outputs():
         raise RuntimeError(f"required outputs were not generated: {missing}")
 
 
+def _validate_output_schema(filename, expected_header):
+    path = os.path.join(RESULTS, filename)
+    actual_header = list(pd.read_csv(path, nrows=0).columns)
+    if actual_header != expected_header:
+        raise RuntimeError(
+            f"schema mismatch for {filename}: expected {expected_header}, got {actual_header}"
+        )
+
+
 def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None, bayes=False):
     os.makedirs(RESULTS, exist_ok=True)
 
@@ -210,6 +241,8 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
 
     out_contract = _write_reproduction_contract(effective_profile, effective_policy, bayes, produced_optional)
     _assert_required_outputs()
+    for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
+        _validate_output_schema(filename, expected_header)
 
     print(df_model.to_string(index=False))
     print(f"[classic] wrote: {out_model}")
