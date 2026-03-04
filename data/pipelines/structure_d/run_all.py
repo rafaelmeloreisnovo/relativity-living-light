@@ -7,7 +7,14 @@ import pandas as pd
 
 from .data_access import load_active_datasets, load_run_config
 from .likelihood import aic, bic, chi2, chi2_with_covariance, evaluate_model, estimate_log_evidence, write_bayes_factor_interpretation
-from .models import model_LCDM_Hz, model_LCDM_fs8, model_RLL_like_Hz, model_RLL_like_fs8
+from .models import (
+    model_LCDM_Hz,
+    model_LCDM_bao_dv_over_rs,
+    model_LCDM_fs8,
+    model_RLL_like_Hz,
+    model_RLL_like_bao_dv_over_rs,
+    model_RLL_like_fs8,
+)
 from .reporting import run_reporting_pipeline
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
@@ -52,6 +59,7 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
 MODEL_BY_DATASET = {
     "hz": (model_LCDM_Hz, model_RLL_like_Hz),
     "fsigma8": (model_LCDM_fs8, model_RLL_like_fs8),
+    "real_bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
 }
 
 
@@ -84,9 +92,13 @@ def _chi2_from_entry(entry, model_values):
     return chi2_with_covariance(entry["values"], model_values, entry["covariance"])
 
 
+def _chi2_bao_from_entry(entry, model_values):
+    return _chi2_from_entry(entry, model_values)
+
+
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
-    lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55)
-    rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
+    lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, Ob_h2=0.02236)
+    rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00, Ob_h2=0.02236)
 
     rows = []
     cov_rows = []
@@ -112,12 +124,20 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
 
         model_lcdm, model_rll = model_pair
         z = np.asarray(entry["z"], dtype=float)
-        chi2_lcdm += _chi2_from_entry(entry, model_lcdm(z, lcdm))
-        chi2_rll += _chi2_from_entry(entry, model_rll(z, rll))
+        lcdm_prediction = model_lcdm(z, lcdm)
+        rll_prediction = model_rll(z, rll)
+
+        if dataset_id == "real_bao":
+            chi2_lcdm += _chi2_bao_from_entry(entry, lcdm_prediction)
+            chi2_rll += _chi2_bao_from_entry(entry, rll_prediction)
+        else:
+            chi2_lcdm += _chi2_from_entry(entry, lcdm_prediction)
+            chi2_rll += _chi2_from_entry(entry, rll_prediction)
+
         n_obs += len(entry["values"])
 
     if n_obs == 0:
-        raise ValueError("no supported datasets (hz/fsigma8) were active for classical metrics")
+        raise ValueError("no supported datasets (hz/fsigma8/real_bao) were active for classical metrics")
     if not cov_rows:
         profile_name = cfg_meta.get("profile_name", DEFAULT_PROFILE)
         active = cfg_meta.get("active_datasets", [])
