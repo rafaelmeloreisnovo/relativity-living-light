@@ -1,7 +1,13 @@
 {
   "command": "python -m data.pipelines.structure_d.run_all",
+  "execution_path": "classic",
   "profile": "structure_d_default",
   "covariance_policy": "prefer_full",
+  "covariance_policy_supported": [
+    "prefer_full",
+    "diagonal_only",
+    "full_required"
+  ],
   "required_outputs": [
     "model_comparison.csv",
     "covariance_usage.csv",
@@ -10,9 +16,14 @@
   ],
   "optional_outputs": [
     {
-      "file": "bayes_evidence.csv",
+      "file": "bayes_evidence_bic_proxy.csv",
       "produced": false,
-      "reason": "optional Bayesian summary; generated only when --bayes is used"
+      "reason": "optional Bayesian summary via BIC proxy; generated only when --bayes --bayes-mode bic_proxy is used"
+    },
+    {
+      "file": "bayes_evidence_inference.csv",
+      "produced": false,
+      "reason": "optional Bayesian summary via nested inference; generated only when --bayes --bayes-mode inference is used"
     },
     {
       "file": "bayes_factor_interpretation.csv",
@@ -21,9 +32,55 @@
     }
   ],
   "bayes_enabled": false,
-  "covariance_policy_supported": [
-    "prefer_full",
-    "diagonal_only",
-    "full_required"
-  ]
+  "bayes_mode": null,
+  "covariance_usage_non_empty": true,
+  "bayes_factor_interpretation_contract": {
+    "table_version": "2026-03-04",
+    "classification_rule": "row interval where lnB_min <= lnB < lnB_max",
+    "rows": [
+      {
+        "lnB_min": "-inf",
+        "lnB_max": -5.0,
+        "classification": "very_strong_against_model_1",
+        "notes": "Jeffreys/Trotta: evidence strongly favors model_0 over model_1."
+      },
+      {
+        "lnB_min": -5.0,
+        "lnB_max": -2.5,
+        "classification": "moderate_against_model_1",
+        "notes": "Jeffreys/Trotta: moderate evidence against model_1."
+      },
+      {
+        "lnB_min": -2.5,
+        "lnB_max": -1.0,
+        "classification": "weak_against_model_1",
+        "notes": "Jeffreys/Trotta: weak evidence against model_1."
+      },
+      {
+        "lnB_min": -1.0,
+        "lnB_max": 1.0,
+        "classification": "inconclusive",
+        "notes": "Jeffreys/Trotta: inconclusive or not worth more than a bare mention."
+      },
+      {
+        "lnB_min": 1.0,
+        "lnB_max": 2.5,
+        "classification": "weak_for_model_1",
+        "notes": "Jeffreys/Trotta: weak evidence supporting model_1."
+      },
+      {
+        "lnB_min": 2.5,
+        "lnB_max": 5.0,
+        "classification": "moderate_for_model_1",
+        "notes": "Jeffreys/Trotta: moderate evidence supporting model_1."
+      },
+      {
+        "lnB_min": 5.0,
+        "lnB_max": "inf",
+        "classification": "very_strong_for_model_1",
+        "notes": "Jeffreys/Trotta: strong to very strong evidence supporting model_1."
+      }
+    ],
+    "table_sha256": "b916fd98c09223b8a30794bd7392e3746656b6951973ed79aa0b7bc14fd940f0"
+  }
 }

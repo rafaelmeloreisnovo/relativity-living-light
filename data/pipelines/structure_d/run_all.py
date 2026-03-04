@@ -7,7 +7,16 @@ import pandas as pd
 
 from .data_access import load_active_datasets, load_run_config
 from .inference import run_lcdm_bayes, run_rll_like_agn_bayes
-from .likelihood import aic, bic, chi2, chi2_with_covariance, evaluate_model, estimate_log_evidence, write_bayes_factor_interpretation
+from .likelihood import (
+    aic,
+    bayes_factor_interpretation_contract,
+    bic,
+    chi2,
+    chi2_with_covariance,
+    estimate_log_evidence,
+    evaluate_model,
+    write_bayes_factor_interpretation,
+)
 from .models import (
     model_LCDM_Hz,
     model_LCDM_bao_dv_over_rs,
@@ -258,6 +267,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         "bayes_enabled": bool(bayes),
         "bayes_mode": bayes_mode if bayes else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
+        "bayes_factor_interpretation_contract": bayes_factor_interpretation_contract(),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -283,6 +293,7 @@ def _write_real_reproduction_contract(profile_name, covariance_policy):
         ],
         "bayes_enabled": False,
         "covariance_usage_non_empty": True,
+        "bayes_factor_interpretation_contract": bayes_factor_interpretation_contract(),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:

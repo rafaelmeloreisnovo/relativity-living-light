@@ -4,6 +4,8 @@ TEXTUAL_OUTPUTS = []
 
 import numpy as np
 import pandas as pd
+import hashlib
+import json
 
 
 BAYES_FACTOR_INTERPRETATION_ROWS = [
@@ -243,3 +245,25 @@ def write_bayes_factor_interpretation(out_csv):
     df = pd.DataFrame(BAYES_FACTOR_INTERPRETATION_ROWS)
     df.to_csv(out_csv, index=False)
     return df
+
+
+def bayes_factor_interpretation_contract():
+    normalized_rows = []
+    for row in BAYES_FACTOR_INTERPRETATION_ROWS:
+        normalized_rows.append(
+            {
+                "lnB_min": "-inf" if np.isneginf(row["lnB_min"]) else float(row["lnB_min"]),
+                "lnB_max": "inf" if np.isposinf(row["lnB_max"]) else float(row["lnB_max"]),
+                "classification": str(row["classification"]),
+                "notes": str(row["notes"]),
+            }
+        )
+
+    payload = {
+        "table_version": "2026-03-04",
+        "classification_rule": "row interval where lnB_min <= lnB < lnB_max",
+        "rows": normalized_rows,
+    }
+    canonical_payload = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    payload["table_sha256"] = hashlib.sha256(canonical_payload.encode("utf-8")).hexdigest()
+    return payload
