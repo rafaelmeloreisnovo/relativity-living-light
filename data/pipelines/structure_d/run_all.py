@@ -268,11 +268,18 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
-    resolved_bayes_mode = None
-    if bayes:
-        resolved_bayes_mode = bayes_mode or "bic_proxy"
-
+def _write_reproduction_contract(
+    profile_name,
+    covariance_policy,
+    bayes,
+    bayes_mode,
+    produced_optional,
+    covariance_usage_non_empty,
+    bayes_seed,
+    bayes_nwalkers,
+    bayes_nsteps,
+    bayes_nlive,
+):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -289,7 +296,15 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
             for name, reason in OPTIONAL_OUTPUTS.items()
         ],
         "bayes_enabled": bool(bayes),
-        "bayes_mode": resolved_bayes_mode,
+        "bayes_mode": bayes_mode if bayes else None,
+        "bayes_runtime_metadata": {
+            "seed": int(bayes_seed),
+            "nwalkers": int(bayes_nwalkers),
+            "nsteps": int(bayes_nsteps),
+            "nlive": int(bayes_nlive),
+        }
+        if bayes
+        else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
@@ -315,6 +330,8 @@ def _write_real_reproduction_contract(profile_name, covariance_policy):
             for name, reason in OPTIONAL_OUTPUTS.items()
         ],
         "bayes_enabled": False,
+        "bayes_mode": None,
+        "bayes_runtime_metadata": None,
         "covariance_usage_non_empty": True,
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
@@ -445,6 +462,10 @@ def main(
         bayes_mode,
         produced_optional,
         covariance_usage_non_empty,
+        bayes_seed,
+        bayes_nwalkers,
+        bayes_nsteps,
+        bayes_nlive,
     )
     _assert_required_outputs()
     for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
