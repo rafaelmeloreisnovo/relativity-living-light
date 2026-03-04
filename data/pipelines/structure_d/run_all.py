@@ -96,6 +96,13 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
 
     if n_obs == 0:
         raise ValueError("no supported datasets (hz/fsigma8) were active for classical metrics")
+    if not cov_rows:
+        profile_name = cfg_meta.get("profile_name", DEFAULT_PROFILE)
+        active = cfg_meta.get("active_datasets", [])
+        raise ValueError(
+            "covariance_usage.csv would be empty: no covariance rows generated "
+            f"for profile={profile_name!r} with active_datasets={active}"
+        )
 
     rows.append(
         {
@@ -130,7 +137,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     out_cov = os.path.join(RESULTS, "covariance_usage.csv")
     evaluate_model(rows, out_model)
     evaluate_model(cov_rows, out_cov)
-    return pd.DataFrame(rows), out_model, out_cov
+    return pd.DataFrame(rows), out_model, out_cov, bool(cov_rows)
 
 
 def run_optional_bayes_summary(df_model):
@@ -153,7 +160,7 @@ def run_optional_bayes_summary(df_model):
     return [out_evidence, out_interp]
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, produced_optional):
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, produced_optional, covariance_usage_non_empty):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "profile": profile_name,
@@ -168,6 +175,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, produce
             for name, reason in OPTIONAL_OUTPUTS.items()
         ],
         "bayes_enabled": bool(bayes),
+        "covariance_usage_non_empty": bool(covariance_usage_non_empty),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -193,7 +201,7 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
     effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
 
-    df_model, out_model, out_cov = run_classic_metrics(cfg_meta, datasets, effective_policy)
+    df_model, out_model, out_cov, covariance_usage_non_empty = run_classic_metrics(cfg_meta, datasets, effective_policy)
 
     hz = datasets.get("hz")
     fs8 = datasets.get("fsigma8")
@@ -208,7 +216,13 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
         for path in run_optional_bayes_summary(df_model):
             produced_optional.append(os.path.basename(path))
 
-    out_contract = _write_reproduction_contract(effective_profile, effective_policy, bayes, produced_optional)
+    out_contract = _write_reproduction_contract(
+        effective_profile,
+        effective_policy,
+        bayes,
+        produced_optional,
+        covariance_usage_non_empty,
+    )
     _assert_required_outputs()
 
     print(df_model.to_string(index=False))
