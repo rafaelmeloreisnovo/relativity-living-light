@@ -5,6 +5,10 @@ TEXTUAL_OUTPUTS = []
 import numpy as np
 
 
+_COVARIANCE_VALIDATION_ATOL = 1e-10
+_COVARIANCE_VALIDATION_RTOL = 1e-8
+
+
 def _as_float_array(values, name):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -23,6 +27,34 @@ def _as_float_matrix(values, name):
     if np.any(~np.isfinite(mat)):
         raise ValueError(f"{name} must contain only finite values")
     return mat
+
+
+def _validate_covariance_matrix(covariance, expected_size):
+    if covariance.shape[0] != expected_size:
+        raise ValueError("covariance dimension must match values length")
+    if np.any(np.diag(covariance) <= 0):
+        raise ValueError("covariance diagonal must be strictly positive")
+    if not np.allclose(
+        covariance,
+        covariance.T,
+        rtol=_COVARIANCE_VALIDATION_RTOL,
+        atol=_COVARIANCE_VALIDATION_ATOL,
+    ):
+        raise ValueError(
+            "invalid covariance matrix: matrix must be symmetric within tolerance "
+            f"(rtol={_COVARIANCE_VALIDATION_RTOL}, atol={_COVARIANCE_VALIDATION_ATOL})"
+        )
+
+    sym_cov = 0.5 * (covariance + covariance.T)
+    eigvals = np.linalg.eigvalsh(sym_cov)
+    min_eig = float(np.min(eigvals))
+    scale = max(float(np.max(np.diag(sym_cov))), 1.0)
+    eig_tol = _COVARIANCE_VALIDATION_ATOL + _COVARIANCE_VALIDATION_RTOL * scale
+    if min_eig < -eig_tol:
+        raise ValueError(
+            "invalid covariance matrix: matrix must be positive semidefinite "
+            f"within tolerance (min_eigenvalue={min_eig:.3e}, tol={eig_tol:.3e})"
+        )
 
 
 def validate_observable_schema(entry):
@@ -51,10 +83,7 @@ def validate_observable_schema(entry):
             raise ValueError("errors must be strictly positive")
     else:
         covariance = _as_float_matrix(entry["covariance"], "covariance")
-        if covariance.shape[0] != len(values):
-            raise ValueError("covariance dimension must match values length")
-        if np.any(np.diag(covariance) <= 0):
-            raise ValueError("covariance diagonal must be strictly positive")
+        _validate_covariance_matrix(covariance, expected_size=len(values))
 
     metadata = entry["metadata"]
     for k in ["survey", "redshift_range", "reference"]:
