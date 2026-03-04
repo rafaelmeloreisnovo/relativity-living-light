@@ -515,5 +515,99 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                 )
 
 
+
+class StructureDDuplicateZPolicyTest(unittest.TestCase):
+    def _write_csv(self, path, rows):
+        pd.DataFrame(rows).to_csv(path, index=False)
+
+    def _write_config(self, cfg_path, csv_path, policy):
+        config = {
+            "default_profile": "dup_policy",
+            "profiles": {
+                "dup_policy": {
+                    "run_name": "dup_policy",
+                    "active_datasets": ["hz"],
+                }
+            },
+            "datasets": {
+                "hz": {
+                    "format": "csv",
+                    "path": csv_path,
+                    "observable": "Hz",
+                    "error_model": "errors",
+                    "duplicate_z_policy": policy,
+                    "columns": {
+                        "z": "z",
+                        "value": "Hz",
+                        "error": "sigma",
+                    },
+                    "metadata": {
+                        "survey": "synthetic",
+                        "redshift_range": "[0.1,0.2]",
+                        "reference": "unit-test",
+                    },
+                }
+            },
+        }
+        with open(cfg_path, "w", encoding="utf-8") as fp:
+            json.dump(config, fp)
+
+    def test_duplicate_z_policy_erro_raises(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            csv_path = os.path.join(temp_dir, "hz.csv")
+            cfg_path = os.path.join(temp_dir, "config.json")
+            self._write_csv(
+                csv_path,
+                {
+                    "z": [0.1, 0.1, 0.2],
+                    "Hz": [70.0, 72.0, 75.0],
+                    "sigma": [2.0, 3.0, 2.5],
+                },
+            )
+            self._write_config(cfg_path, csv_path, "erro")
+
+            with self.assertRaises(ValueError):
+                load_active_datasets(cfg_path, profile_name="dup_policy")
+
+    def test_duplicate_z_policy_agregar_averages_rows(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            csv_path = os.path.join(temp_dir, "hz.csv")
+            cfg_path = os.path.join(temp_dir, "config.json")
+            self._write_csv(
+                csv_path,
+                {
+                    "z": [0.1, 0.1, 0.2],
+                    "Hz": [70.0, 72.0, 75.0],
+                    "sigma": [2.0, 3.0, 2.5],
+                },
+            )
+            self._write_config(cfg_path, csv_path, "agregar")
+
+            _, datasets = load_active_datasets(cfg_path, profile_name="dup_policy")
+            hz = datasets["hz"]
+            np.testing.assert_allclose(hz["z"], np.array([0.1, 0.2]))
+            np.testing.assert_allclose(hz["values"], np.array([71.0, 75.0]))
+            np.testing.assert_allclose(hz["errors"], np.array([2.5, 2.5]))
+
+    def test_duplicate_z_policy_primeira_ocorrencia_keeps_first(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            csv_path = os.path.join(temp_dir, "hz.csv")
+            cfg_path = os.path.join(temp_dir, "config.json")
+            self._write_csv(
+                csv_path,
+                {
+                    "z": [0.1, 0.1, 0.2],
+                    "Hz": [70.0, 72.0, 75.0],
+                    "sigma": [2.0, 3.0, 2.5],
+                },
+            )
+            self._write_config(cfg_path, csv_path, "primeira ocorrência")
+
+            _, datasets = load_active_datasets(cfg_path, profile_name="dup_policy")
+            hz = datasets["hz"]
+            np.testing.assert_allclose(hz["z"], np.array([0.1, 0.2]))
+            np.testing.assert_allclose(hz["values"], np.array([70.0, 75.0]))
+            np.testing.assert_allclose(hz["errors"], np.array([2.0, 2.5]))
+
 if __name__ == "__main__":
     unittest.main()
