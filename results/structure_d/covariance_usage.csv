@@ -1,1 +1,3 @@
-model,block,covariance_mode,has_full_covariance,has_diagonal_sigma
+dataset_id,block,covariance_mode,has_full_covariance,has_diagonal_sigma
+hz,Hz,diagonal,False,True
+fsigma8,fσ8,diagonal,False,True

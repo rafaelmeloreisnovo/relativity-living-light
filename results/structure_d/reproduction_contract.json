@@ -1,0 +1,24 @@
+{
+  "command": "python -m data.pipelines.structure_d.run_all",
+  "profile": "structure_d_default",
+  "covariance_policy": "prefer_full",
+  "required_outputs": [
+    "model_comparison.csv",
+    "covariance_usage.csv",
+    "rll_regime_summary.csv",
+    "reproduction_contract.json"
+  ],
+  "optional_outputs": [
+    {
+      "file": "bayes_evidence.csv",
+      "produced": false,
+      "reason": "optional Bayesian summary; generated only when --bayes is used"
+    },
+    {
+      "file": "bayes_factor_interpretation.csv",
+      "produced": false,
+      "reason": "optional Bayesian interpretation table; generated only when --bayes is used"
+    }
+  ],
+  "bayes_enabled": false
+}
