@@ -20,5 +20,10 @@
       "reason": "optional Bayesian interpretation table; generated only when --bayes is used"
     }
   ],
-  "bayes_enabled": false
+  "bayes_enabled": false,
+  "covariance_policy_supported": [
+    "prefer_full",
+    "diagonal_only",
+    "full_required"
+  ]
 }
