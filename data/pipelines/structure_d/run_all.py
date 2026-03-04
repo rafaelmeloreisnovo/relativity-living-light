@@ -56,6 +56,7 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "dataset_id",
         "block",
         "covariance_mode",
+        "effective_decision",
         "has_full_covariance",
         "has_diagonal_sigma",
     ],
@@ -152,6 +153,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
                 "dataset_id": dataset_id,
                 "block": _dataset_block_name(dataset_id, entry),
                 "covariance_mode": "full" if entry.get("covariance") is not None else "diagonal",
+                "effective_decision": "full" if entry.get("covariance") is not None else "diag",
                 "has_full_covariance": bool(entry.get("covariance") is not None),
                 "has_diagonal_sigma": bool(entry.get("errors") is not None),
             }
@@ -399,6 +401,7 @@ def main(
                 "dataset_id": dataset_id,
                 "block": _dataset_block_name(dataset_id, entry),
                 "covariance_mode": "full" if entry.get("covariance") is not None else "diagonal",
+                "effective_decision": "full" if entry.get("covariance") is not None else "diag",
                 "has_full_covariance": bool(entry.get("covariance") is not None),
                 "has_diagonal_sigma": bool(entry.get("errors") is not None),
             }

@@ -277,6 +277,7 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             cov_usage = pd.read_csv(out_cov)
             hz_row = cov_usage[cov_usage["dataset_id"] == "hz"].iloc[0]
             self.assertEqual(hz_row["covariance_mode"], "diagonal")
+            self.assertEqual(hz_row["effective_decision"], "diag")
             self.assertFalse(bool(hz_row["has_full_covariance"]))
             self.assertTrue(bool(hz_row["has_diagonal_sigma"]))
 
@@ -552,6 +553,7 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             cov_usage = pd.read_csv(out_cov)
             hz_row = cov_usage[cov_usage["dataset_id"] == "hz"].iloc[0]
             self.assertEqual(hz_row["covariance_mode"], "diagonal")
+            self.assertEqual(hz_row["effective_decision"], "diag")
             self.assertFalse(bool(hz_row["has_full_covariance"]))
             self.assertTrue(bool(hz_row["has_diagonal_sigma"]))
 
