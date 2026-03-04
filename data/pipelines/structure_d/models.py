@@ -5,6 +5,9 @@ from .feedback_agn import Omega_f_from_feedback
 from .growth import f_sigma8_proxy
 
 
+C_KMS = 299792.458
+
+
 def _param_float(params, key, default):
     """Retorna parâmetro escalar como float; NaN quando inválido."""
     try:
@@ -70,6 +73,51 @@ def model_RLL_like_fs8(z, params):
         z_peak=params.get("z_peak", 2.0),
         width=params.get("width", 1.0),
     )
+
+
+def _comoving_distance_mpc(z, params, hz_fn, n_steps=512):
+    z_scalar = float(z)
+    if not np.isfinite(z_scalar) or z_scalar < 0.0:
+        return np.nan
+    grid = np.linspace(0.0, z_scalar, int(max(n_steps, 16)))
+    hz = np.asarray(hz_fn(grid, params), dtype=float)
+    if np.any(~np.isfinite(hz)) or np.any(hz <= 0.0):
+        return np.nan
+    return float(np.trapz(C_KMS / hz, grid))
+
+
+def _rs_drag_mpc(params):
+    h0 = float(params["H0"])
+    om = float(params["Om"])
+    ob_h2 = float(params.get("Ob_h2", 0.02236))
+    return 147.78 * (om * (h0 / 100.0) ** 2 / 0.1432) ** (-0.255) * (ob_h2 / 0.02236) ** (-0.134)
+
+
+def _dv_over_rs(z, params, hz_fn):
+    z_arr = np.asarray(z, dtype=float)
+    out = np.full_like(z_arr, np.nan, dtype=float)
+    rs = _rs_drag_mpc(params)
+    if not np.isfinite(rs) or rs <= 0.0:
+        return out
+
+    for idx, z_val in np.ndenumerate(z_arr):
+        if not np.isfinite(z_val) or z_val <= 0.0:
+            continue
+        hz_val = float(hz_fn(np.array([z_val], dtype=float), params)[0])
+        dc_val = _comoving_distance_mpc(z_val, params, hz_fn)
+        if not np.isfinite(hz_val) or hz_val <= 0.0 or not np.isfinite(dc_val) or dc_val <= 0.0:
+            continue
+        dv_val = (z_val * C_KMS / hz_val * dc_val**2) ** (1.0 / 3.0)
+        out[idx] = dv_val / rs
+    return out
+
+
+def model_LCDM_bao_dv_over_rs(z, params):
+    return _dv_over_rs(z, params, model_LCDM_Hz)
+
+
+def model_RLL_like_bao_dv_over_rs(z, params):
+    return _dv_over_rs(z, params, model_RLL_like_Hz)
 
 
 def cs2_toy_eft(z, params):
