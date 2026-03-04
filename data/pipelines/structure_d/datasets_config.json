@@ -32,7 +32,8 @@
         "survey": "inputs_structure_d",
         "redshift_range": "[0.0, 3.0]",
         "reference": "local_input"
-      }
+      },
+      "duplicate_z_policy": "erro"
     },
     "fsigma8": {
       "format": "csv",
@@ -48,7 +49,8 @@
         "survey": "inputs_structure_d",
         "redshift_range": "[0.0, 3.0]",
         "reference": "local_input"
-      }
+      },
+      "duplicate_z_policy": "erro"
     },
     "real_hz": {
       "format": "csv",
@@ -64,7 +66,8 @@
         "survey": "CC+BAO_Lya",
         "redshift_range": "[0.07, 2.34]",
         "reference": "Moresco2022+BOSS"
-      }
+      },
+      "duplicate_z_policy": "erro"
     },
     "real_bao": {
       "format": "csv",
@@ -80,7 +83,8 @@
         "survey": "BOSS_DR12+DESI2024",
         "redshift_range": "[0.106, 2.33]",
         "reference": "BOSS_DR12_DESI2024"
-      }
+      },
+      "duplicate_z_policy": "erro"
     },
     "real_cmb_shift": {
       "format": "json_scalars",

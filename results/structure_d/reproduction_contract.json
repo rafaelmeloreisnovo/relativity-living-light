@@ -1,7 +1,13 @@
 {
   "command": "python -m data.pipelines.structure_d.run_all",
+  "execution_path": "classic",
   "profile": "structure_d_default",
   "covariance_policy": "prefer_full",
+  "covariance_policy_supported": [
+    "prefer_full",
+    "diagonal_only",
+    "full_required"
+  ],
   "required_outputs": [
     "model_comparison.csv",
     "covariance_usage.csv",
@@ -10,9 +16,14 @@
   ],
   "optional_outputs": [
     {
-      "file": "bayes_evidence.csv",
+      "file": "bayes_evidence_bic_proxy.csv",
       "produced": false,
-      "reason": "optional Bayesian summary; generated only when --bayes is used"
+      "reason": "optional Bayesian summary via BIC proxy; generated only when --bayes --bayes-mode bic_proxy is used"
+    },
+    {
+      "file": "bayes_evidence_inference.csv",
+      "produced": false,
+      "reason": "optional Bayesian summary via nested inference; generated only when --bayes --bayes-mode inference is used"
     },
     {
       "file": "bayes_factor_interpretation.csv",
@@ -21,9 +32,6 @@
     }
   ],
   "bayes_enabled": false,
-  "covariance_policy_supported": [
-    "prefer_full",
-    "diagonal_only",
-    "full_required"
-  ]
+  "bayes_mode": null,
+  "covariance_usage_non_empty": true
 }
