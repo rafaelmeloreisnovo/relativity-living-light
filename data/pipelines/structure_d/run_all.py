@@ -240,6 +240,10 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
 
 
 def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
+    resolved_bayes_mode = None
+    if bayes:
+        resolved_bayes_mode = bayes_mode or "bic_proxy"
+
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -256,7 +260,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
             for name, reason in OPTIONAL_OUTPUTS.items()
         ],
         "bayes_enabled": bool(bayes),
-        "bayes_mode": bayes_mode if bayes else None,
+        "bayes_mode": resolved_bayes_mode,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
