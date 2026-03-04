@@ -9,4 +9,9 @@ if __name__ == "__main__":
         profile_name=args.profile,
         covariance_policy=args.covariance_policy,
         bayes=args.bayes,
+        bayes_mode=args.bayes_mode,
+        bayes_seed=args.bayes_seed,
+        bayes_nwalkers=args.bayes_nwalkers,
+        bayes_nsteps=args.bayes_nsteps,
+        bayes_nlive=args.bayes_nlive,
     )
