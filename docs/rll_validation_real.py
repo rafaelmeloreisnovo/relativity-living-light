@@ -142,15 +142,15 @@ print(f"  H(z) CC={len(z_Hz)} | BAO={len(z_BAO)} | CMB=2  →  N_obs={N_obs}\n")
 # ΛCDM
 print("▶ ΛCDM [k=4] minimizando...")
 bounds_L = [(60,80),(0.10,0.60),(0.50,0.90),(0.018,0.026)]
-res_L = differential_evolution(obj_LCDM, bounds_L, seed=42, maxiter=300, tol=1e-6, workers=1)
+res_L = differential_evolution(obj_LCDM, bounds_L, seed=42, maxiter=int(os.environ.get("RLL_REAL_MAXITER_LCDM", "300")), tol=1e-6, workers=1)
 bL = res_L.x; c2_L = res_L.fun; k_L = 4
 print(f"   H0={bL[0]:.2f}  Om={bL[1]:.4f}  OL={bL[2]:.4f}  Ob_h2={bL[3]:.5f}")
 print(f"   χ²={c2_L:.2f}  dof={N_obs-k_L}  χ²/dof={c2_L/(N_obs-k_L):.2f}\n")
 
 # RLL
 print("▶ RLL  [k=7] minimizando...")
-bounds_R = [(60,80),(0.10,0.55),(0.40,0.90),(0.00,0.25),(0.10,3.0),(0.05,2.0),(0.018,0.026)]
-res_R = differential_evolution(obj_RLL, bounds_R, seed=42, maxiter=500, tol=1e-6, workers=1)
+bounds_R = [(60,80),(0.10,0.55),(0.40,0.90),(0.00,0.25),(0.10,3.0),(0.10,1.0),(0.018,0.026)]
+res_R = differential_evolution(obj_RLL, bounds_R, seed=42, maxiter=int(os.environ.get("RLL_REAL_MAXITER_RLL", "500")), tol=1e-6, workers=1)
 bR = res_R.x; c2_R = res_R.fun; k_R = 7
 print(f"   H0={bR[0]:.2f}  Om={bR[1]:.4f}  OL={bR[2]:.4f}")
 print(f"   Os0={bR[3]:.4f}  zt={bR[4]:.3f}  wt={bR[5]:.3f}  Ob_h2={bR[6]:.5f}")

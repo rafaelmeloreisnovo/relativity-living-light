@@ -131,7 +131,7 @@ def main(config_path=DEFAULT_CONFIG, profile_name=REAL_PROFILE):
     n_obs = len(hz["values"]) + len(bao["values"]) + len(cmb["values"])
 
     bounds_l = [(60.0, 80.0), (0.10, 0.60), (0.50, 0.90), (0.018, 0.026)]
-    bounds_r = [(60.0, 80.0), (0.10, 0.60), (0.50, 0.90), (0.000, 0.250), (0.1, 10.0), (0.05, 5.0), (0.018, 0.026)]
+    bounds_r = [(60.0, 80.0), (0.10, 0.60), (0.50, 0.90), (0.000, 0.250), (0.1, 10.0), (0.1, 1.0), (0.018, 0.026)]
 
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
