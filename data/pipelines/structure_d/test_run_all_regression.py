@@ -13,12 +13,14 @@ from data.pipelines.structure_d.data_access import load_active_datasets
 
 
 class StructureDDefaultRegressionTest(unittest.TestCase):
-    def test_structure_d_default_writes_non_empty_covariance_usage(self):
-        generated_paths = [
+    def setUp(self):
+        self.generated_paths = [
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz.csv"),
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8.csv"),
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
             os.path.join(run_all.RESULTS, "reproduction_contract.json"),
+            os.path.join(run_all.RESULTS, "bayes_evidence_bic_proxy.csv"),
+            os.path.join(run_all.RESULTS, "bayes_factor_interpretation.csv"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_00.csv"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_01.csv"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_02.csv"),
@@ -29,15 +31,14 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             os.path.join(run_all.RESULTS, "figs"),
         ]
 
-        def _cleanup_generated_files():
-            for path in generated_paths:
-                if os.path.isdir(path):
-                    shutil.rmtree(path)
-                elif os.path.exists(path):
-                    os.remove(path)
+    def tearDown(self):
+        for path in self.generated_paths:
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            elif os.path.exists(path):
+                os.remove(path)
 
-        self.addCleanup(_cleanup_generated_files)
-
+    def test_structure_d_default_writes_non_empty_covariance_usage(self):
         make_example_data.main(seed=42)
         run_all.main(profile_name="structure_d_default")
 
@@ -61,6 +62,23 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract.get("covariance_usage_non_empty"),
             "reproduction contract must register covariance_usage_non_empty=true",
         )
+        self.assertIsNone(
+            contract.get("bayes_mode"),
+            "reproduction contract must set bayes_mode to null when --bayes is disabled",
+        )
+
+    def test_structure_d_bayes_bic_proxy_writes_mode_specific_output(self):
+        make_example_data.main(seed=42)
+        run_all.main(profile_name="structure_d_default", bayes=True, bayes_mode="bic_proxy")
+
+        evidence_path = os.path.join(run_all.RESULTS, "bayes_evidence_bic_proxy.csv")
+        self.assertTrue(os.path.exists(evidence_path), "bayes_evidence_bic_proxy.csv was not generated")
+
+        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
+        with open(contract_path, "r", encoding="utf-8") as fp:
+            contract = json.load(fp)
+
+        self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):

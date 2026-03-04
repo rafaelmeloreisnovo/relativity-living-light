@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from .data_access import load_active_datasets, load_run_config
+from .inference import run_lcdm_bayes, run_rll_like_agn_bayes
 from .likelihood import aic, bic, chi2, chi2_with_covariance, evaluate_model, estimate_log_evidence, write_bayes_factor_interpretation
 from .models import (
     model_LCDM_Hz,
@@ -31,7 +32,8 @@ REQUIRED_OUTPUTS = [
     "reproduction_contract.json",
 ]
 OPTIONAL_OUTPUTS = {
-    "bayes_evidence.csv": "optional Bayesian summary; generated only when --bayes is used",
+    "bayes_evidence_bic_proxy.csv": "optional Bayesian summary via BIC proxy; generated only when --bayes --bayes-mode bic_proxy is used",
+    "bayes_evidence_inference.csv": "optional Bayesian summary via nested inference; generated only when --bayes --bayes-mode inference is used",
     "bayes_factor_interpretation.csv": "optional Bayesian interpretation table; generated only when --bayes is used",
 }
 
@@ -201,7 +203,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     return pd.DataFrame(rows), out_model, out_cov, bool(cov_rows)
 
 
-def run_optional_bayes_summary(df_model):
+def run_optional_bayes_summary_bic_proxy(df_model):
     rows = []
     for _, row in df_model.iterrows():
         logz, logz_err = estimate_log_evidence(bic_value=float(row["BIC"]))
@@ -214,14 +216,29 @@ def run_optional_bayes_summary(df_model):
             }
         )
 
-    out_evidence = os.path.join(RESULTS, "bayes_evidence.csv")
+    out_evidence = os.path.join(RESULTS, "bayes_evidence_bic_proxy.csv")
     out_interp = os.path.join(RESULTS, "bayes_factor_interpretation.csv")
     evaluate_model(rows, out_evidence)
     write_bayes_factor_interpretation(out_interp)
     return [out_evidence, out_interp]
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, produced_optional, covariance_usage_non_empty):
+def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, nlive):
+    rows = []
+    for runner in (run_lcdm_bayes, run_rll_like_agn_bayes):
+        result = runner(hz_df, fs8_df, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive, output_dir=RESULTS)
+        row = dict(result["row"])
+        row["source"] = "inference"
+        rows.append(row)
+
+    out_evidence = os.path.join(RESULTS, "bayes_evidence_inference.csv")
+    out_interp = os.path.join(RESULTS, "bayes_factor_interpretation.csv")
+    evaluate_model(rows, out_evidence)
+    write_bayes_factor_interpretation(out_interp)
+    return [out_evidence, out_interp]
+
+
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -238,6 +255,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, produce
             for name, reason in OPTIONAL_OUTPUTS.items()
         ],
         "bayes_enabled": bool(bayes),
+        "bayes_mode": bayes_mode if bayes else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
@@ -290,7 +308,17 @@ def _validate_output_schema(filename, expected_header):
         )
 
 
-def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_policy=None, bayes=False):
+def main(
+    config_path=DEFAULT_CONFIG,
+    profile_name=DEFAULT_PROFILE,
+    covariance_policy=None,
+    bayes=False,
+    bayes_mode="bic_proxy",
+    bayes_seed=42,
+    bayes_nwalkers=32,
+    bayes_nsteps=2000,
+    bayes_nlive=400,
+):
     os.makedirs(RESULTS, exist_ok=True)
 
     cfg = load_run_config(config_path)
@@ -332,6 +360,8 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
 
     df_model, out_model, out_cov, covariance_usage_non_empty = run_classic_metrics(cfg_meta, datasets, effective_policy)
 
+    hz_df = None
+    fs8_df = None
     hz = datasets.get("hz")
     fs8 = datasets.get("fsigma8")
     if hz is not None and fs8 is not None:
@@ -342,13 +372,29 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
 
     produced_optional = []
     if bayes:
-        for path in run_optional_bayes_summary(df_model):
+        if bayes_mode == "bic_proxy":
+            output_paths = run_optional_bayes_summary_bic_proxy(df_model)
+        elif bayes_mode == "inference":
+            if hz_df is None or fs8_df is None:
+                raise ValueError("bayes_mode='inference' requires both hz and fsigma8 datasets")
+            output_paths = run_optional_bayes_summary_inference(
+                hz_df,
+                fs8_df,
+                seed=bayes_seed,
+                nwalkers=bayes_nwalkers,
+                nsteps=bayes_nsteps,
+                nlive=bayes_nlive,
+            )
+        else:
+            raise ValueError(f"unsupported bayes_mode: {bayes_mode}")
+        for path in output_paths:
             produced_optional.append(os.path.basename(path))
 
     out_contract = _write_reproduction_contract(
         effective_profile,
         effective_policy,
         bayes,
+        bayes_mode,
         produced_optional,
         covariance_usage_non_empty,
     )
@@ -364,6 +410,7 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     if bayes:
         for name in produced_optional:
             print(f"[bayes] wrote: {os.path.join(RESULTS, name)}")
+        print(f"[bayes] mode: {bayes_mode}")
 
 
 def _build_parser():
@@ -372,9 +419,24 @@ def _build_parser():
     parser.add_argument("--profile", default=os.environ.get("STRUCTURE_D_PROFILE", DEFAULT_PROFILE))
     parser.add_argument("--covariance-policy", default=None, choices=["prefer_full", "diagonal_only", "full_required"])
     parser.add_argument("--bayes", action="store_true", help="Gera artefatos bayesianos opcionais")
+    parser.add_argument("--bayes-mode", default="bic_proxy", choices=["bic_proxy", "inference"], help="Seleciona entre proxy BIC e inferência real")
+    parser.add_argument("--bayes-seed", type=int, default=42)
+    parser.add_argument("--bayes-nwalkers", type=int, default=32)
+    parser.add_argument("--bayes-nsteps", type=int, default=2000)
+    parser.add_argument("--bayes-nlive", type=int, default=400)
     return parser
 
 
 if __name__ == "__main__":
     args = _build_parser().parse_args()
-    main(config_path=args.config, profile_name=args.profile, covariance_policy=args.covariance_policy, bayes=args.bayes)
+    main(
+        config_path=args.config,
+        profile_name=args.profile,
+        covariance_policy=args.covariance_policy,
+        bayes=args.bayes,
+        bayes_mode=args.bayes_mode,
+        bayes_seed=args.bayes_seed,
+        bayes_nwalkers=args.bayes_nwalkers,
+        bayes_nsteps=args.bayes_nsteps,
+        bayes_nlive=args.bayes_nlive,
+    )
