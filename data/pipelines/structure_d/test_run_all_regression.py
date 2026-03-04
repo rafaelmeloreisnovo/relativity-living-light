@@ -17,6 +17,7 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
         self.generated_paths = [
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz.csv"),
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8.csv"),
+            os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "mock_data_contract.json"),
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
             os.path.join(run_all.RESULTS, "reproduction_contract.json"),
             os.path.join(run_all.RESULTS, "bayes_evidence_bic_proxy.csv"),
@@ -57,6 +58,17 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
         contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
         with open(contract_path, "r", encoding="utf-8") as fp:
             contract = json.load(fp)
+
+        self.assertEqual(
+            contract.get("mock_data_contract"),
+            "data/inputs/structure_d/mock_data_contract.json",
+        )
+        self.assertTrue(
+            os.path.exists(
+                os.path.join(run_all.BASE_DIR, contract.get("mock_data_contract"))
+            ),
+            "mock_data_contract.json must exist when using generated example data",
+        )
 
         self.assertTrue(
             contract.get("covariance_usage_non_empty"),
