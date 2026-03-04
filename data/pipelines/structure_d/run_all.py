@@ -16,11 +16,13 @@ from .models import (
     model_RLL_like_fs8,
 )
 from .reporting import run_reporting_pipeline
+from . import run_all_real
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
 DEFAULT_PROFILE = "structure_d_default"
+REAL_PROFILE = "structure_d_real_validation"
 
 REQUIRED_OUTPUTS = [
     "model_comparison.csv",
@@ -209,6 +211,7 @@ def run_optional_bayes_summary(df_model):
 def _write_reproduction_contract(profile_name, covariance_policy, bayes, produced_optional, covariance_usage_non_empty):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
+        "execution_path": "classic",
         "profile": profile_name,
         "covariance_policy": covariance_policy,
         "required_outputs": REQUIRED_OUTPUTS,
@@ -222,6 +225,31 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, produce
         ],
         "bayes_enabled": bool(bayes),
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
+    }
+    out_contract = os.path.join(RESULTS, "reproduction_contract.json")
+    with open(out_contract, "w", encoding="utf-8") as fp:
+        json.dump(contract, fp, ensure_ascii=False, indent=2)
+    return out_contract
+
+
+def _write_real_reproduction_contract(profile_name, covariance_policy):
+    contract = {
+        "command": "python -m data.pipelines.structure_d.run_all --profile structure_d_real_validation",
+        "execution_path": "run_all_real",
+        "delegated_module": "data.pipelines.structure_d.run_all_real",
+        "profile": profile_name,
+        "covariance_policy": covariance_policy,
+        "required_outputs": REQUIRED_OUTPUTS,
+        "optional_outputs": [
+            {
+                "file": name,
+                "produced": False,
+                "reason": reason,
+            }
+            for name, reason in OPTIONAL_OUTPUTS.items()
+        ],
+        "bayes_enabled": False,
+        "covariance_usage_non_empty": True,
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -255,6 +283,38 @@ def main(config_path=DEFAULT_CONFIG, profile_name=DEFAULT_PROFILE, covariance_po
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
     effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
+
+    if effective_profile == REAL_PROFILE:
+        df_model = run_all_real.main(
+            config_path=config_path,
+            profile_name=effective_profile,
+            output_filename="model_comparison.csv",
+            covariance_policy=effective_policy,
+            include_fit_params=False,
+        )
+        out_cov = os.path.join(RESULTS, "covariance_usage.csv")
+        cov_rows = [
+            {
+                "dataset_id": dataset_id,
+                "block": _dataset_block_name(dataset_id, entry),
+                "covariance_mode": "full" if entry.get("covariance") is not None else "diagonal",
+                "has_full_covariance": bool(entry.get("covariance") is not None),
+                "has_diagonal_sigma": bool(entry.get("errors") is not None),
+            }
+            for dataset_id, entry in datasets.items()
+        ]
+        evaluate_model(cov_rows, out_cov)
+        out_contract = _write_real_reproduction_contract(effective_profile, effective_policy)
+        _assert_required_outputs()
+        for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
+            _validate_output_schema(filename, expected_header)
+
+        print(df_model.to_string(index=False))
+        print(f"[real] wrote: {os.path.join(RESULTS, 'model_comparison.csv')}")
+        print(f"[real] wrote: {out_cov}")
+        print(f"[real] wrote: {os.path.join(RESULTS, 'rll_regime_summary.csv')}")
+        print(f"[real] wrote: {out_contract}")
+        return
 
     df_model, out_model, out_cov, covariance_usage_non_empty = run_classic_metrics(cfg_meta, datasets, effective_policy)
 

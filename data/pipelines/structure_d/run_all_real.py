@@ -109,7 +109,13 @@ def _obj_rll(params, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig
     return c2
 
 
-def main(config_path=DEFAULT_CONFIG, profile_name=REAL_PROFILE):
+def main(
+    config_path=DEFAULT_CONFIG,
+    profile_name=REAL_PROFILE,
+    output_filename="model_comparison_real.csv",
+    covariance_policy="prefer_full",
+    include_fit_params=True,
+):
     os.makedirs(RESULTS, exist_ok=True)
 
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
@@ -159,49 +165,68 @@ def main(config_path=DEFAULT_CONFIG, profile_name=REAL_PROFILE):
     k_l = 4
     k_r = 7
 
+    datasets_used = ",".join(cfg_meta["active_datasets"])
+    run_name = cfg_meta["run_name"]
+    profile = cfg_meta["profile_name"]
+
+    row_lcdm = dict(
+        model="LCDM",
+        chi2=c2_l,
+        AIC=aic(c2_l, k_l),
+        BIC=bic(c2_l, k_l, n_obs),
+        N=n_obs,
+        k=k_l,
+        datasets_used=datasets_used,
+        run_name=run_name,
+        profile_name=profile,
+        covariance_policy=covariance_policy,
+    )
+    row_rll = dict(
+        model="RLL_like+AGN",
+        chi2=c2_r,
+        AIC=aic(c2_r, k_r),
+        BIC=bic(c2_r, k_r, n_obs),
+        N=n_obs,
+        k=k_r,
+        datasets_used=datasets_used,
+        run_name=run_name,
+        profile_name=profile,
+        covariance_policy=covariance_policy,
+    )
+    if include_fit_params:
+        row_lcdm.update(
+            {
+                "H0": b_l[0],
+                "Om": b_l[1],
+                "OL": b_l[2],
+                "Ob_h2": b_l[3],
+                "Os0": np.nan,
+                "zt": np.nan,
+                "wt": np.nan,
+            }
+        )
+        row_rll.update(
+            {
+                "H0": b_r[0],
+                "Om": b_r[1],
+                "OL": b_r[2],
+                "Ob_h2": b_r[6],
+                "Os0": b_r[3],
+                "zt": b_r[4],
+                "wt": b_r[5],
+            }
+        )
+
     rows = [
-        dict(
-            model="LCDM_real",
-            chi2=c2_l,
-            AIC=aic(c2_l, k_l),
-            BIC=bic(c2_l, k_l, n_obs),
-            N=n_obs,
-            k=k_l,
-            datasets_used=",".join(cfg_meta["active_datasets"]),
-            run_name=cfg_meta["run_name"],
-            profile_name=cfg_meta["profile_name"],
-            H0=b_l[0],
-            Om=b_l[1],
-            OL=b_l[2],
-            Ob_h2=b_l[3],
-            Os0=np.nan,
-            zt=np.nan,
-            wt=np.nan,
-        ),
-        dict(
-            model="RLL_real",
-            chi2=c2_r,
-            AIC=aic(c2_r, k_r),
-            BIC=bic(c2_r, k_r, n_obs),
-            N=n_obs,
-            k=k_r,
-            datasets_used=",".join(cfg_meta["active_datasets"]),
-            run_name=cfg_meta["run_name"],
-            profile_name=cfg_meta["profile_name"],
-            H0=b_r[0],
-            Om=b_r[1],
-            OL=b_r[2],
-            Ob_h2=b_r[6],
-            Os0=b_r[3],
-            zt=b_r[4],
-            wt=b_r[5],
-        ),
+        row_lcdm,
+        row_rll,
     ]
 
-    out = os.path.join(RESULTS, "model_comparison_real.csv")
+    out = os.path.join(RESULTS, output_filename)
     df = evaluate_model(rows, out)
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
+    return df
 
 
 if __name__ == "__main__":
