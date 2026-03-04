@@ -45,23 +45,53 @@ def _parse_csv_dataset(dataset_id, desc):
 
     values = df[cols["value"]].to_numpy(dtype=float)
     z_values = df[cols["z"]].to_numpy(dtype=float) if cols.get("z") else None
+    z_reordered = False
+
+    if z_values is not None:
+        z_order_policy = desc.get("z_order_policy", "validate")
+        if z_order_policy not in ("validate", "sort"):
+            raise ValueError(
+                f"unsupported z_order_policy for {dataset_id}: {z_order_policy}"
+            )
+
+        monotonic_non_decreasing = np.all(np.diff(z_values) >= 0.0)
+        if not monotonic_non_decreasing:
+            if z_order_policy == "sort":
+                sort_idx = np.argsort(z_values, kind="mergesort")
+                z_values = z_values[sort_idx]
+                values = values[sort_idx]
+                z_reordered = True
+            else:
+                raise ValueError(
+                    f"dataset {dataset_id} has non-monotonic z; "
+                    "set z_order_policy='sort' to reorder explicitly"
+                )
+
+    metadata = dict(desc["metadata"])
+    metadata["z_reordered"] = bool(z_reordered)
 
     entry = {
         "dataset_id": dataset_id,
         "observable": desc["observable"],
         "z": z_values,
         "values": values,
-        "metadata": desc["metadata"],
+        "metadata": metadata,
     }
 
     if desc["error_model"] == "errors":
-        entry["errors"] = df[cols["error"]].to_numpy(dtype=float)
+        errors = df[cols["error"]].to_numpy(dtype=float)
+        if z_reordered:
+            errors = errors[sort_idx]
+        entry["errors"] = errors
     elif desc["error_model"] == "covariance":
         if cols.get("covariance"):
             cov_path = _abs_path(cols["covariance"])
         else:
             cov_path = _abs_path(desc["covariance_path"])
-        entry["covariance"] = np.loadtxt(cov_path, delimiter=",")
+        covariance = np.loadtxt(cov_path, delimiter=",")
+        if z_reordered:
+            covariance = covariance[np.ix_(sort_idx, sort_idx)]
+        entry["covariance"] = covariance
     else:
         raise ValueError(f"unsupported error_model for {dataset_id}: {desc['error_model']}")
 
