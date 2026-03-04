@@ -75,6 +75,10 @@ def _apply_covariance_policy(datasets, covariance_policy):
         if covariance_policy == "diagonal_only" and entry.get("covariance") is not None:
             entry["errors"] = np.sqrt(np.diag(np.asarray(entry["covariance"], dtype=float)))
             entry["covariance"] = None
+        if covariance_policy == "full_required" and entry.get("covariance") is None:
+            raise ValueError(
+                f"covariance-policy full_required requires full covariance for dataset {entry['dataset_id']!r}"
+            )
     return covariance_policy
 
 
