@@ -66,15 +66,17 @@ MODEL_BY_DATASET = {
     "hz": (model_LCDM_Hz, model_RLL_like_Hz),
     "real_hz": (model_LCDM_Hz, model_RLL_like_Hz),
     "fsigma8": (model_LCDM_fs8, model_RLL_like_fs8),
+    "hz_cov_synth": (model_LCDM_Hz, model_RLL_like_Hz),
+    "fsigma8_cov_synth": (model_LCDM_fs8, model_RLL_like_fs8),
     "real_bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
 }
 
 
 def _dataset_block_name(dataset_id, entry):
     observable = str(entry.get("observable", dataset_id)).lower()
-    if dataset_id in {"hz", "real_hz"} or "hz" in observable:
+    if dataset_id in {"hz", "real_hz", "hz_cov_synth"} or "hz" in observable:
         return "Hz"
-    if dataset_id in {"fsigma8"} or "fs" in observable:
+    if dataset_id in {"fsigma8", "fsigma8_cov_synth"} or "fs" in observable:
         return "fσ8"
     if "bao" in observable:
         return "BAO"
@@ -159,7 +161,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         n_obs += len(entry["values"])
 
     if n_obs == 0:
-        raise ValueError("no supported datasets (hz/fsigma8/real_bao) were active for classical metrics")
+        raise ValueError("no supported datasets (hz/hz_cov_synth/fsigma8/fsigma8_cov_synth/real_bao) were active for classical metrics")
     if not cov_rows:
         profile_name = cfg_meta.get("profile_name", DEFAULT_PROFILE)
         active = cfg_meta.get("active_datasets", [])
