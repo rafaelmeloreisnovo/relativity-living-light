@@ -213,6 +213,7 @@ def run_optional_bayes_summary_bic_proxy(df_model):
                 "model": row["model"],
                 "log_evidence": logz,
                 "log_evidence_std": logz_err,
+                "log_evidence_std_defined": bool(np.isfinite(logz_err)),
                 "source": "bic_proxy",
             }
         )

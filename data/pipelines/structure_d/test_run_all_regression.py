@@ -73,6 +73,11 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
 
         evidence_path = os.path.join(run_all.RESULTS, "bayes_evidence_bic_proxy.csv")
         self.assertTrue(os.path.exists(evidence_path), "bayes_evidence_bic_proxy.csv was not generated")
+        evidence_df = pd.read_csv(evidence_path)
+
+        self.assertIn("bic_proxy", evidence_df["source"].unique())
+        self.assertIn("log_evidence_std_defined", evidence_df.columns)
+        self.assertFalse(evidence_df["log_evidence_std_defined"].any())
 
         contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
         with open(contract_path, "r", encoding="utf-8") as fp:
