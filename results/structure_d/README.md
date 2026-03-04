@@ -19,12 +19,13 @@ Estes arquivos são obrigatórios e o pipeline valida que todos existem ao final
 - Motivo da opcionalidade: é um resumo complementar, não necessário para o perfil padrão clássico. O status de produção é registrado em `reproduction_contract.json`.
 
 ## Artefatos efetivamente produzidos no perfil padrão
-Além dos 4 obrigatórios, o pipeline padrão também gera artefatos auxiliares de reporting em `results/structure_d` e `results/structure_d/figs`, incluindo:
+Além dos 4 obrigatórios, o pipeline padrão também gera artefatos auxiliares de reporting.
+Versionados no repositório (textuais):
 - `sensitivity_long.csv`
 - `dominance_by_z.csv`
-- `figs/sensitivity_curves.png`
-- `figs/dominance_regime_curve.png`
-- `degeneracy_corr_bin_*.csv` e `figs/degeneracy_heatmap_bin_*.png` (dependem da discretização em bins)
+- `degeneracy_corr_bin_*.csv`
+
+Artefatos binários (`results/structure_d/figs/*.png`) podem ser gerados localmente na execução, mas não são necessários para o contrato canônico e não são versionados.
 
 ## Reproduction contract
 Comando (perfil padrão):

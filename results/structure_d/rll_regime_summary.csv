@@ -1,9 +1,6 @@
-z_bin,z_min,z_max,n_points,R_mean,R_median,R_std,regime,notes
-0,0.0,0.375,15,-0.21210475330898543,-0.21290488214798944,0.0036355329536629307,lcdm_dominant,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
-1,0.375,0.75,15,-0.1817275835157504,-0.18486786268956973,0.016342589116075668,lcdm_dominant,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
-2,0.75,1.125,15,-0.07764838505278235,-0.08148842973273888,0.04477593158745813,balanced,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
-3,1.125,1.5,15,0.08765489130960885,0.09181076301295162,0.0430433304049438,balanced,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
-4,1.5,1.875,15,0.1853773515193817,0.1882961768078318,0.014922709582529482,rll_dominant,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
-5,1.875,2.25,15,0.2129188220880819,0.2136402250371899,0.0032670616507007736,rll_dominant,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
-6,2.25,2.625,15,0.21864096937529823,0.21878454363572603,0.0006356413921020017,rll_dominant,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
-7,2.625,3.0,16,0.21975270411609957,0.2197820067228728,0.00012337330786267787,rll_dominant,"dominance_threshold=0.1;balanced_rule=[-0.1,0.1];binning_strategy=fixed_n_bins;n_bins=8;manual_bins=none;sensitivity_eps=0.0001"
+z_min,z_max,R_mean,dominant_regime,top_parameters,notes
+0.1,0.41666666666666663,0.019186894415480424,expansion_dominated,Om;Ol;beta,inverse-threshold classification
+0.41666666666666663,0.7333333333333333,0.014426595917839923,expansion_dominated,Om;Ol;beta,inverse-threshold classification
+0.7333333333333333,1.05,0.010716566936042421,expansion_dominated,Om;Ol;beta,inverse-threshold classification
+1.3666666666666667,1.6833333333333333,0.00716020719140239,expansion_dominated,Om;Ol;beta,inverse-threshold classification
+1.6833333333333333,2.0,0.005423273830095865,expansion_dominated,Om;Ol;beta,inverse-threshold classification
