@@ -290,12 +290,17 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             with open(cfg_path, "w", encoding="utf-8") as fp:
                 json.dump(config, fp)
 
-            with self.assertRaisesRegex(ValueError, "full_required"):
+            with self.assertRaisesRegex(ValueError, "full_required") as ctx:
                 run_all.main(
                     config_path=cfg_path,
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
+
+            message = str(ctx.exception)
+            self.assertIn("incompatible datasets", message)
+            self.assertIn("hz", message)
+            self.assertIn("fsigma8", message)
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
@@ -507,12 +512,17 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             with open(cfg_path, "w", encoding="utf-8") as fp:
                 json.dump(config, fp)
 
-            with self.assertRaisesRegex(ValueError, "full_required"):
+            with self.assertRaisesRegex(ValueError, "full_required") as ctx:
                 run_all.main(
                     config_path=cfg_path,
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
+
+            message = str(ctx.exception)
+            self.assertIn("incompatible datasets", message)
+            self.assertIn("hz", message)
+            self.assertIn("fsigma8", message)
 
 
 if __name__ == "__main__":
