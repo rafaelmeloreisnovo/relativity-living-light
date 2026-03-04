@@ -8,7 +8,12 @@
       "description": "Tabela histórica de métricas χ² para comparações RLL em trilhas legadas/versionadas.",
       "schema": {
         "type": "columns",
-        "columns": ["model", "chi2", "AIC", "BIC"]
+        "columns": [
+          "model",
+          "chi2",
+          "AIC",
+          "BIC"
+        ]
       },
       "generator_script": "news/archive_legacy/1/* (origem histórica; sem script único versionado neste caminho)",
       "reproduction_command": "Não canônico (artefato legado já versionado)",
@@ -39,10 +44,10 @@
           "BIC",
           "N",
           "k",
-          "fit_params",
-          "fixed_params",
           "datasets_used",
-          "run_name"
+          "run_name",
+          "profile_name",
+          "covariance_policy"
         ]
       },
       "generator_script": "data/pipelines/structure_d/run_all.py",
@@ -56,7 +61,7 @@
       "schema": {
         "type": "columns",
         "columns": [
-          "model",
+          "dataset_id",
           "block",
           "covariance_mode",
           "has_full_covariance",
@@ -93,7 +98,11 @@
       "description": "Manifesto de máquina com os mesmos metadados do índice canônico para automações/auditoria.",
       "schema": {
         "type": "object",
-        "required": ["version", "canonical_index", "textual_artifacts"],
+        "required": [
+          "version",
+          "canonical_index",
+          "textual_artifacts"
+        ],
         "textual_artifact_keys": [
           "path",
           "format",
