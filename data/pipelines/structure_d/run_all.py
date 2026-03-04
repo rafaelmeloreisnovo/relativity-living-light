@@ -26,6 +26,8 @@ OPTIONAL_OUTPUTS = {
     "bayes_factor_interpretation.csv": "optional Bayesian interpretation table; generated only when --bayes is used",
 }
 
+SUPPORTED_COVARIANCE_POLICIES = ["prefer_full", "diagonal_only", "full_required"]
+
 EXPECTED_SCHEMA_BY_OUTPUT = {
     "model_comparison.csv": [
         "model",
@@ -71,6 +73,17 @@ def _dataset_block_name(dataset_id, entry):
 
 
 def _apply_covariance_policy(datasets, covariance_policy):
+    if covariance_policy == "full_required":
+        incompatible_ids = []
+        for dataset_id, entry in datasets.items():
+            if entry.get("covariance") is None:
+                incompatible_ids.append(dataset_id)
+        if incompatible_ids:
+            raise ValueError(
+                "covariance_policy='full_required' requires full covariance for all active datasets; "
+                f"incompatible datasets: {incompatible_ids}"
+            )
+
     for entry in datasets.values():
         if covariance_policy == "diagonal_only" and entry.get("covariance") is not None:
             entry["errors"] = np.sqrt(np.diag(np.asarray(entry["covariance"], dtype=float)))
@@ -187,6 +200,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, produce
         "command": "python -m data.pipelines.structure_d.run_all",
         "profile": profile_name,
         "covariance_policy": covariance_policy,
+        "covariance_policy_supported": SUPPORTED_COVARIANCE_POLICIES,
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {
