@@ -87,11 +87,9 @@ def _dataset_block_name(dataset_id, entry):
 
 def _apply_covariance_policy(datasets, covariance_policy):
     if covariance_policy == "full_required":
-        incompatible_ids = []
-        for dataset_id, entry in datasets.items():
-            if entry.get("covariance") is None:
-                incompatible_ids.append(dataset_id)
+        incompatible_ids = [dataset_id for dataset_id, entry in datasets.items() if entry.get("covariance") is None]
         if incompatible_ids:
+            incompatible_ids = sorted(incompatible_ids)
             raise ValueError(
                 "covariance_policy='full_required' requires full covariance for all active datasets; "
                 f"incompatible datasets: {incompatible_ids}"
@@ -101,10 +99,6 @@ def _apply_covariance_policy(datasets, covariance_policy):
         if covariance_policy == "diagonal_only" and entry.get("covariance") is not None:
             entry["errors"] = np.sqrt(np.diag(np.asarray(entry["covariance"], dtype=float)))
             entry["covariance"] = None
-        if covariance_policy == "full_required" and entry.get("covariance") is None:
-            raise ValueError(
-                f"covariance-policy full_required requires full covariance for dataset {entry['dataset_id']!r}"
-            )
     return covariance_policy
 
 
