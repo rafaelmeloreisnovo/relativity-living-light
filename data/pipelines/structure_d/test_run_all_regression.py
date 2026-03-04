@@ -514,6 +514,110 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                     covariance_policy="full_required",
                 )
 
+    def test_classic_metrics_accumulates_real_cmb_shift_scalar_payload(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_dir = os.path.join(temp_dir, "data")
+            os.makedirs(data_dir, exist_ok=True)
+
+            hz_path = os.path.join(data_dir, "hz.csv")
+            fs8_path = os.path.join(data_dir, "fsigma8.csv")
+            cmb_path = os.path.join(data_dir, "cmb.json")
+            cfg_path = os.path.join(temp_dir, "config.json")
+
+            pd.DataFrame(
+                {
+                    "z": [0.1, 0.3],
+                    "Hz": [70.0, 78.0],
+                    "sigma": [2.0, 2.5],
+                }
+            ).to_csv(hz_path, index=False)
+            pd.DataFrame(
+                {
+                    "z": [0.2, 0.6],
+                    "fs8": [0.48, 0.41],
+                    "sigma": [0.03, 0.04],
+                }
+            ).to_csv(fs8_path, index=False)
+            with open(cmb_path, "w", encoding="utf-8") as fp:
+                json.dump(
+                    {
+                        "R_obs": 1.75,
+                        "la_obs": 301.4,
+                        "R_sig": 0.02,
+                        "la_sig": 0.10,
+                    },
+                    fp,
+                )
+
+            config = {
+                "default_profile": "cmb_policy",
+                "profiles": {
+                    "cmb_policy": {
+                        "run_name": "cmb_policy",
+                        "active_datasets": ["hz", "fsigma8", "real_cmb_shift"],
+                    }
+                },
+                "datasets": {
+                    "hz": {
+                        "format": "csv",
+                        "path": hz_path,
+                        "observable": "Hz",
+                        "error_model": "errors",
+                        "columns": {
+                            "z": "z",
+                            "value": "Hz",
+                            "error": "sigma",
+                        },
+                        "metadata": {
+                            "survey": "synthetic",
+                            "redshift_range": "[0.1,0.3]",
+                            "reference": "unit-test",
+                        },
+                    },
+                    "fsigma8": {
+                        "format": "csv",
+                        "path": fs8_path,
+                        "observable": "fs8",
+                        "error_model": "errors",
+                        "columns": {
+                            "z": "z",
+                            "value": "fs8",
+                            "error": "sigma",
+                        },
+                        "metadata": {
+                            "survey": "synthetic",
+                            "redshift_range": "[0.2,0.6]",
+                            "reference": "unit-test",
+                        },
+                    },
+                    "real_cmb_shift": {
+                        "format": "json_scalars",
+                        "path": cmb_path,
+                        "observable": "CMB_shift",
+                        "error_model": "errors",
+                        "keys": {
+                            "values": ["R_obs", "la_obs"],
+                            "errors": ["R_sig", "la_sig"],
+                        },
+                        "metadata": {
+                            "survey": "synthetic",
+                            "redshift_range": "z=1089.92",
+                            "reference": "unit-test",
+                        },
+                    },
+                },
+            }
+            with open(cfg_path, "w", encoding="utf-8") as fp:
+                json.dump(config, fp)
+
+            cfg_meta, datasets = load_active_datasets(cfg_path, profile_name="cmb_policy")
+            df_model, out_model, out_cov, _ = run_all.run_classic_metrics(cfg_meta, datasets, "prefer_full")
+            self.addCleanup(os.remove, out_model)
+            self.addCleanup(os.remove, out_cov)
+
+            self.assertEqual(int(df_model["N"].iloc[0]), 6)
+            self.assertTrue(np.isfinite(df_model["chi2"]).all())
+
 
 if __name__ == "__main__":
     unittest.main()

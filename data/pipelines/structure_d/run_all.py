@@ -69,6 +69,9 @@ MODEL_BY_DATASET = {
     "real_bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
 }
 
+C_KMS = 299792.458
+Z_CMB = 1089.92
+
 
 def _dataset_block_name(dataset_id, entry):
     observable = str(entry.get("observable", dataset_id)).lower()
@@ -118,6 +121,26 @@ def _chi2_bao_from_entry(entry, model_values):
     return _chi2_from_entry(entry, model_values)
 
 
+def _rs_drag_from_params(params):
+    h0 = float(params["H0"])
+    om = float(params["Om"])
+    ob_h2 = float(params.get("Ob_h2", 0.02236))
+    return 147.78 * (om * (h0 / 100.0) ** 2 / 0.1432) ** (-0.255) * (ob_h2 / 0.02236) ** (-0.134)
+
+
+def _comoving_distance_using_hz_model(z, params, hz_model_fn, n_steps=1024):
+    z_grid = np.linspace(0.0, float(z), int(max(n_steps, 32)))
+    hz = np.asarray(hz_model_fn(z_grid, params), dtype=float)
+    return float(np.trapz(C_KMS / hz, z_grid))
+
+
+def _cmb_shift_prediction(params, hz_model_fn):
+    dc_cmb = _comoving_distance_using_hz_model(Z_CMB, params, hz_model_fn)
+    r_pred = np.sqrt(float(params["Om"])) * float(params["H0"]) / C_KMS * dc_cmb
+    la_pred = np.pi * dc_cmb / _rs_drag_from_params(params)
+    return np.array([r_pred, la_pred], dtype=float)
+
+
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, Ob_h2=0.02236)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00, Ob_h2=0.02236)
@@ -140,6 +163,12 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             }
         )
 
+        if dataset_id == "real_cmb_shift":
+            chi2_lcdm += _chi2_from_entry(entry, _cmb_shift_prediction(lcdm, model_LCDM_Hz))
+            chi2_rll += _chi2_from_entry(entry, _cmb_shift_prediction(rll, model_RLL_like_Hz))
+            n_obs += len(entry["values"])
+            continue
+
         model_pair = MODEL_BY_DATASET.get(dataset_id)
         if model_pair is None or entry.get("z") is None:
             continue
@@ -159,7 +188,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         n_obs += len(entry["values"])
 
     if n_obs == 0:
-        raise ValueError("no supported datasets (hz/fsigma8/real_bao) were active for classical metrics")
+        raise ValueError("no supported datasets (hz/fsigma8/real_bao/real_cmb_shift) were active for classical metrics")
     if not cov_rows:
         profile_name = cfg_meta.get("profile_name", DEFAULT_PROFILE)
         active = cfg_meta.get("active_datasets", [])
