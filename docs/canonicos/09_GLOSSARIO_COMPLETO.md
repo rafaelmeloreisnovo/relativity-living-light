@@ -82,6 +82,8 @@ Mapeamento canônico para w_t>0:
 - z >> z_t (alto redshift) → f≈0
 - z << z_t (baixo redshift) → f≈1
 
+**Convenção oficial única para inferência:** `w_t` deve ser estritamente positivo nos ajustes (`0.1 ≤ w_t ≤ 1.0`).
+
 ---
 
 ### **Parâmetros de transição**

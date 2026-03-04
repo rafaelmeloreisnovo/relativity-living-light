@@ -104,6 +104,16 @@
 
 ---
 
+
+### Release 2026.03 — Unificação da convenção de `w_t` (README + glossário + outputs)
+- **Data de referência:** 2026-03-04
+- **Escopo:** unificação da convenção oficial para `w_t>0` com faixa `[0.1, 1.0]`, ajuste de bounds no pipeline real e regeneração dos artefatos comparativos.
+- **Impacto comparativo em métricas (RLL, real):**
+  - **Antes da correção (arquivo legado):** `wt=0.062`, `χ²=123.679`, `AIC=137.679`, `BIC=150.326`.
+  - **Após correção (convenção unificada):** `wt=0.464`, `χ²=123.967`, `AIC=137.967`, `BIC=150.615`.
+  - **Variação (após − antes):** `Δχ²=+0.288`, `ΔAIC=+0.288`, `ΔBIC=+0.289`.
+- **Leitura técnica:** com a restrição canônica de largura positiva no intervalo oficial, o ajuste RLL deslocou `wt` para dentro da faixa normativa e manteve qualidade estatística global próxima ao estado anterior.
+
 ## 3) Política recomendada de versionamento documental (a partir desta revisão)
 
 1. **Cada PR relevante** deve atualizar este histórico com:
