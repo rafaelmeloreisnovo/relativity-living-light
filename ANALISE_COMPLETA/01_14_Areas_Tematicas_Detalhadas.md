@@ -22,7 +22,7 @@ Esta área representa o **núcleo científico** do repositório, focando na prop
 - `docs/Relativity_Living_Light.md` - Teoria central
 - `docs/RelativityLivingLight_arXiv.tex` - Artigo formal LaTeX
 - `docs/RelativityLivingLight_arXiv.pdf` - PDF do artigo
-- `docs/Conclusion.md` - Conclusões teóricas
+- `docs/RAFAELIA_UNIFIED_PAPER.md` - Conclusões teóricas
 - `docs/README_patch_unified_PT_EN_v3.md` - Patch unificado v3
 - `docs/README_patch_unified_PT_EN_v4.md` - Patch unificado v4
 
@@ -382,9 +382,9 @@ Esta área explora as **implicações filosóficas** das ideias propostas, quest
 - `docs/SUPREMO UNIFICADO.md` - Visão unificadora
 - `docs/MAPA CIENTIESPIRITUAL.md` - Integração ciência-espiritualidade
 - `docs/MAPA FRACTAL.md` - Padrões fractais como estrutura universal
-- `docs/New theory and beyond.md` - Teorias além do paradigma atual
-- `docs/More.md` - Reflexões adicionais
-- `docs/Others in line.md` - Outras linhas de pensamento
+- `docs/THEORY_INVENTORY_AND_EXTENSIONS.md` - Teorias além do paradigma atual
+- `docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md` - Reflexões adicionais
+- `docs/FRACTAL_REPORT_UNIFIED.md` - Outras linhas de pensamento
 
 ### Temas Filosóficos
 
@@ -443,7 +443,7 @@ Documentos que descrevem **processos, estruturas e reformas** na organização d
 ### Arquivos Mapeados (5 arquivos)
 
 **Documentos de Processo:**
-- `docs/Structure.md` - Estrutura organizacional do repositório
+- `docs/REPOSITORY_STRUCTURE_SUGGESTION.md` - Estrutura organizacional do repositório
 - `GOVERNANCE_REORG_DRAFT.md` - Rascunho de reorganização de governança
 - `REFORM_LOG.md` - Log de reformas implementadas
 - `RESUMO_REFORMA.md` - Resumo das reformas
@@ -451,7 +451,7 @@ Documentos que descrevem **processos, estruturas e reformas** na organização d
 
 ### Conteúdo Típico
 
-**Structure.md:**
+**REPOSITORY_STRUCTURE_SUGGESTION.md:**
 - Hierarquia de diretórios
 - Convenções de nomenclatura
 - Fluxo de trabalho (workflow)
@@ -798,10 +798,10 @@ Material destinado a **tornar a ciência acessível** a públicos não-especiali
 - `docs/README_sup_unification_snippet.md` - Snippet sobre unificação
 
 **Textos Acessíveis:**
-- `docs/Easy..md` - Versão simplificada
-- `docs/NewWays.md` - Novos caminhos de compreensão
-- `docs/Readme.md` - README alternativo
-- `docs/1.md` - (arquivo muito curto, possivelmente stub)
+- `docs/EASY_NOTES_EMPTY.md` - Versão simplificada
+- `docs/FRACTAL_LAYERED_MAP.md` - Novos caminhos de compreensão
+- `docs/DATA_DESCRIPTOR_BUNDLE_V4.md` - README alternativo
+- `docs/PLACEHOLDER_EMPTY_DOCUMENT.md` - (arquivo muito curto, possivelmente stub)
 
 ### Estratégias de Comunicação
 
@@ -855,9 +855,9 @@ Reflexões sobre **novas teorias, paradigmas emergentes** e caminhos além do mo
 ### Arquivos Mapeados (3 arquivos)
 
 **Textos de Inovação:**
-- `docs/New theory and beyond.md` - Teorias além do atual
-- `docs/More.md` - Mais reflexões
-- `docs/Others in line.md` - Outras linhas de pesquisa
+- `docs/THEORY_INVENTORY_AND_EXTENSIONS.md` - Teorias além do atual
+- `docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md` - Mais reflexões
+- `docs/FRACTAL_REPORT_UNIFIED.md` - Outras linhas de pesquisa
 
 ### Temas de Inovação
 

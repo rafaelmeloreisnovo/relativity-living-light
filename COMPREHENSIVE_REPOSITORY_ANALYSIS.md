@@ -39,7 +39,7 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 - `README.md`, `README_MASTER.md`
 - `docs/Relativity_Living_Light.md`
 - `docs/RelativityLivingLight_arXiv.tex`, `docs/RelativityLivingLight_arXiv.pdf`
-- `docs/Conclusion.md`
+- `docs/RAFAELIA_UNIFIED_PAPER.md`
 
 **Referências acadêmicas:**
 1. Perlmutter, S., et al. (1999). "Measurements of Ω and Λ from 42 High-Redshift Supernovae." *The Astrophysical Journal*, 517(2), 565-586. DOI: 10.1086/307221
@@ -140,7 +140,7 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 **Descrição:** Documentos descrevendo estruturas, métodos, processos de reforma e governança.
 
 **Arquivos principais:**
-- `docs/Structure.md`
+- `docs/REPOSITORY_STRUCTURE_SUGGESTION.md`
 - `GOVERNANCE_REORG_DRAFT.md`
 - `REFORM_LOG.md`
 - `RESUMO_REFORMA.md`
@@ -238,8 +238,8 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 **Arquivos principais:**
 - `docs/README_snippet.md`
 - `docs/README_block_multilang.md`
-- `docs/Easy..md`
-- `docs/NewWays.md`
+- `docs/EASY_NOTES_EMPTY.md`
+- `docs/FRACTAL_LAYERED_MAP.md`
 
 **Referências acadêmicas:**
 18. Trumbo, C. W., & Weigold, M. F. (2002). "Advancing Science Communication: A Survey of Science Communicators." *Science Communication*, 23(3), 310-322. DOI: 10.1177/107554700202300306
@@ -253,9 +253,9 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 **Descrição:** Novas teorias, caminhos além dos paradigmas atuais.
 
 **Arquivos principais:**
-- `docs/New theory and beyond.md`
-- `docs/More.md`
-- `docs/Others in line.md`
+- `docs/THEORY_INVENTORY_AND_EXTENSIONS.md`
+- `docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md`
+- `docs/FRACTAL_REPORT_UNIFIED.md`
 
 **Referências acadêmicas:**
 19. Lakatos, I. (1970). "Falsification and the Methodology of Scientific Research Programmes." In *Criticism and the Growth of Knowledge* (pp. 91-196). Cambridge University Press. ISBN: 978-0521096232
@@ -363,7 +363,7 @@ O repositório apresenta conteúdo multidisciplinar que pode ser organizado nas 
 **Público-alvo:** Filósofos da ciência, divulgadores, público geral.
 
 ### Nível 2: Teórico-Matemático
-**Arquivos:** `docs/RelativityLivingLight_arXiv.tex`, `docs/Conclusion.md`  
+**Arquivos:** `docs/RelativityLivingLight_arXiv.tex`, `docs/RAFAELIA_UNIFIED_PAPER.md`  
 **Objetivo:** Formalizar a teoria com equações rigorosas.  
 **Público-alvo:** Físicos teóricos, matemáticos, doutorandos.
 

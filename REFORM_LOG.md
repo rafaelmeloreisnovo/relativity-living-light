@@ -161,26 +161,26 @@ rotation_model.ipynb (Ciencia_aplicada) → data/
 #### Da Raiz
 ```
 ADMIN.md
-Conclusion.md
+RAFAELIA_UNIFIED_PAPER.md
 IMPACT_REPORT_MULTI.md
 MANIFESTO.md
 MAPA CIENTIESPIRITUAL.md
 MAPA FRACTAL.md
 MAPA_RAFAELIA_TOTAL.md
-More.md
-Others in line.md
+BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md
+FRACTAL_REPORT_UNIFIED.md
 README_patch_unified_PT_EN_v3.md
 README_patch_unified_PT_EN_v4.md
 README_snippet.md
 Results.md
-Structure.md
+REPOSITORY_STRUCTURE_SUGGESTION.md
 SUPREMO UNIFICADO.md
 Estatísticas → docs/estatisticas.md (renomeado)
 ```
 
 #### De /Ciencia_aplicada
 ```
-Easy..md → docs/ciencia_Easy..md (duplicados prefixados)
+EASY_NOTES_EMPTY.md → docs/ciencia_EASY_NOTES_EMPTY.md (duplicados prefixados)
 README_block_multilang.md → docs/ciencia_README_block_multilang.md
 README_snippet.md → docs/ciencia_README_snippet.md (duplicado)
 README_sup_unification_snippet.md → docs/ciencia_README_sup_unification_snippet.md
@@ -189,16 +189,16 @@ Relativity_Living_Light.md → docs/ciencia_Relativity_Living_Light.md
 
 #### De /Doc
 ```
-New theory and beyond.md
-NewWays.md
-Others in open because that.md
+THEORY_INVENTORY_AND_EXTENSIONS.md
+FRACTAL_LAYERED_MAP.md
+NEXT_THEORIES_AND_DERIVED_HYPOTHESES.md
 RelativityLivingLight_arXiv.pdf
 ```
 
 #### De /Last
 ```
-1.md
-Readme.md
+PLACEHOLDER_EMPTY_DOCUMENT.md
+DATA_DESCRIPTOR_BUNDLE_V4.md
 ```
 
 #### De /NumerosRafaelianos → /docs/numeros_rafaelianos/
@@ -206,7 +206,7 @@ Readme.md
 CientiEspiritual.md
 Constante.md
 Numeros.md
-Readme.md
+DATA_DESCRIPTOR_BUNDLE_V4.md
 harmonica.md
 ```
 
@@ -405,7 +405,7 @@ As curvas de rotação planas revelam a presença da 'luz materializada'...
 ⚠️ **Atenção:** Links internos nos documentos podem precisar de atualização manual.
 
 **Arquivos que referenciam outros:**
-- README.md (links para Conclusion.md, MAPA_RAFAELIA_TOTAL.md, etc.)
+- README.md (links para RAFAELIA_UNIFIED_PAPER.md, MAPA_RAFAELIA_TOTAL.md, etc.)
 - Vários documentos em /docs podem ter links relativos
 
 **Solução:** README_MASTER.md fornece links corretos atualizados.
