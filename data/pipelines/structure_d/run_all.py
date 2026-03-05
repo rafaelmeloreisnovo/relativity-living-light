@@ -284,6 +284,7 @@ def _write_reproduction_contract(
         "profile": profile_name,
         "covariance_policy": covariance_policy,
         "covariance_policy_supported": SUPPORTED_COVARIANCE_POLICIES,
+        "mock_data_contract": "data/inputs/structure_d/mock_data_contract.json",
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {
@@ -318,6 +319,7 @@ def _write_real_reproduction_contract(profile_name, covariance_policy):
         "delegated_module": "data.pipelines.structure_d.run_all_real",
         "profile": profile_name,
         "covariance_policy": covariance_policy,
+        "mock_data_contract": None,
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {

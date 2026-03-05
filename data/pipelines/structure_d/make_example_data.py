@@ -1,16 +1,15 @@
 """Referência explícita de saídas textuais deste módulo/pipeline."""
 
 TEXTUAL_OUTPUTS = [
-    "data/inputs/structure_d/Hz.csv",
-    "data/inputs/structure_d/fsigma8.csv",
-    "data/inputs/structure_d/Hz_cov.csv",
-    "data/inputs/structure_d/Hz_cov_matrix.csv",
-    "data/inputs/structure_d/fsigma8_cov.csv",
-    "data/inputs/structure_d/fsigma8_cov_matrix.csv",
+    'data/inputs/structure_d/Hz.csv',
+    'data/inputs/structure_d/fsigma8.csv',
+    'data/inputs/structure_d/mock_data_contract.json',
 ]
 
-import argparse
+import json
 import os
+from datetime import datetime, timezone
+
 import numpy as np
 import pandas as pd
 
@@ -45,25 +44,27 @@ def main(seed=42, generate_covariance=False):
     fs8_obs = fs8_true + rng.normal(0, sig_fs)
     pd.DataFrame({"z": z_fs, "fs8": fs8_obs, "sigma": sig_fs}).to_csv(os.path.join(DATA, "fsigma8.csv"), index=False)
 
-    if generate_covariance:
-        hz_cov = _build_covariance(sig_hz, rng)
-        fs8_cov = _build_covariance(sig_fs, rng)
+    metadata = {
+        "seed": int(seed),
+        "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "datasets": {
+            "Hz.csv": {
+                "z_range": [float(np.min(z_hz)), float(np.max(z_hz))],
+                "sigma_range": [3.0, 5.0],
+                "rows": int(len(z_hz)),
+            },
+            "fsigma8.csv": {
+                "z_range": [float(np.min(z_fs)), float(np.max(z_fs))],
+                "sigma_range": [0.03, 0.06],
+                "rows": int(len(z_fs)),
+            },
+        },
+    }
+    contract_path = os.path.join(DATA, "mock_data_contract.json")
+    with open(contract_path, "w", encoding="utf-8") as fp:
+        json.dump(metadata, fp, ensure_ascii=False, indent=2)
 
-        pd.DataFrame({"z": z_hz, "Hz": Hz_obs}).to_csv(os.path.join(DATA, "Hz_cov.csv"), index=False)
-        np.savetxt(os.path.join(DATA, "Hz_cov_matrix.csv"), hz_cov, delimiter=",")
-
-        pd.DataFrame({"z": z_fs, "fs8": fs8_obs}).to_csv(os.path.join(DATA, "fsigma8_cov.csv"), index=False)
-        np.savetxt(os.path.join(DATA, "fsigma8_cov_matrix.csv"), fs8_cov, delimiter=",")
-
-    print("Example data written: data/inputs/structure_d/Hz.csv, data/inputs/structure_d/fsigma8.csv")
-    if generate_covariance:
-        print(
-            "Covariance-mode data written: "
-            "data/inputs/structure_d/Hz_cov.csv, "
-            "data/inputs/structure_d/Hz_cov_matrix.csv, "
-            "data/inputs/structure_d/fsigma8_cov.csv, "
-            "data/inputs/structure_d/fsigma8_cov_matrix.csv"
-        )
+    print("Example data written: data/inputs/structure_d/Hz.csv, data/inputs/structure_d/fsigma8.csv, data/inputs/structure_d/mock_data_contract.json")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate synthetic Structure-D example datasets.")

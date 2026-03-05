@@ -32,6 +32,10 @@
     }
   ],
   "bayes_enabled": false,
-  "bayes_mode": null,
-  "covariance_usage_non_empty": true
+  "covariance_policy_supported": [
+    "prefer_full",
+    "diagonal_only",
+    "full_required"
+  ],
+  "mock_data_contract": "data/inputs/structure_d/mock_data_contract.json"
 }
