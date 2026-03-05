@@ -4,15 +4,19 @@
 
 Fechamento bibliográfico e trilha de fontes primárias do projeto.
 
-## Conteúdo incorporado (itens soltos/localizados)
-Documentos e artefatos relacionados incorporados nesta etapa:
+## Referência canônica unificada
+A bibliografia (externa e interna) foi consolidada em:
 
-- docs/REFERENCES.md
-- docs/CANONICAL_SOURCES.md
-- data/CITATION.cff
+- [`docs/REFERENCES.md` → seção **"Bibliografia unificada"**](../docs/REFERENCES.md#bibliografia-unificada)
 
-## Notas de consolidação
-- Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
-- Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
+> Este apêndice passa a funcionar como ponte para o ponto de consolidação, evitando duplicação textual de entradas bibliográficas.
+
+## Fontes internas rastreadas (IDs `INT-*`)
+- `INT-001` → `docs/REFERENCES.md`
+- `INT-002` → `docs/CANONICAL_SOURCES.md`
+- `INT-003` → `data/CITATION.cff`
+
+## Nota de rastreabilidade histórica
+Para preservar o histórico de citações `[1]...[42]`, consulte a tabela **"Mapeamento legado → novo ID"** na seção unificada.
 
 ---
