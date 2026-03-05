@@ -28,6 +28,28 @@ def _as_float_matrix(values, name):
     return mat
 
 
+def _validate_covariance_matrix(covariance, expected_size):
+    if covariance.shape != (expected_size, expected_size):
+        raise ValueError(
+            f"covariance shape mismatch: expected {(expected_size, expected_size)}, got {covariance.shape}"
+        )
+    diag = np.diag(covariance)
+    if np.any(diag <= 0):
+        raise ValueError("covariance diagonal must be strictly positive")
+
+
+def _json_safe_metadata(metadata):
+    if not isinstance(metadata, dict):
+        raise ValueError("metadata must be a dict")
+    safe = {}
+    for key, value in metadata.items():
+        if isinstance(value, (str, int, float, bool)) or value is None:
+            safe[str(key)] = value
+        else:
+            safe[str(key)] = str(value)
+    return safe
+
+
 def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
     if int(min_points_with_z) != min_points_with_z or min_points_with_z < 1:
         raise ValueError("min_points_with_z must be a positive integer")

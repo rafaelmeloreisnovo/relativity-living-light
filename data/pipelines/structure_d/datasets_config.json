@@ -91,7 +91,8 @@
         "redshift_range": "[0.106, 2.33]",
         "reference": "BOSS_DR12_DESI2024"
       },
-      "duplicate_z_policy": "erro"
+      "duplicate_z_policy": "erro",
+      "z_order_policy": "sort"
     },
     "real_cmb_shift": {
       "format": "json_scalars",
