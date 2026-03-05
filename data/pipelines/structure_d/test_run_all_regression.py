@@ -10,6 +10,7 @@ import pandas as pd
 
 from data.pipelines.structure_d import make_example_data, run_all
 from data.pipelines.structure_d.data_access import load_active_datasets
+from to_Add.RAFAELIA_COSMO_STRUCTURE_D.rll_pipeline import run_all as compat_run_all
 
 
 class StructureDDefaultRegressionTest(unittest.TestCase):
@@ -513,6 +514,33 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
+
+
+class StructureDEntrypointParityTest(unittest.TestCase):
+    def test_compat_entrypoint_matches_authoritative_output(self):
+        make_example_data.main(seed=42)
+        self.addCleanup(os.remove, os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz.csv"))
+        self.addCleanup(os.remove, os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8.csv"))
+
+        original_results = run_all.RESULTS
+        original_required_outputs = list(run_all.REQUIRED_OUTPUTS)
+        temp_results = tempfile.mkdtemp(prefix="structure_d_entrypoint_")
+        self.addCleanup(shutil.rmtree, temp_results)
+        self.addCleanup(setattr, run_all, "RESULTS", original_results)
+        self.addCleanup(setattr, compat_run_all, "RESULTS", original_results)
+        self.addCleanup(setattr, run_all, "REQUIRED_OUTPUTS", original_required_outputs)
+
+        run_all.RESULTS = temp_results
+        compat_run_all.RESULTS = temp_results
+        run_all.REQUIRED_OUTPUTS = ["model_comparison.csv", "covariance_usage.csv", "reproduction_contract.json"]
+
+        run_all.main(profile_name="structure_d_default")
+        expected = pd.read_csv(os.path.join(temp_results, "model_comparison.csv")).sort_values("model").reset_index(drop=True)
+
+        compat_run_all.main(profile_name="structure_d_default")
+        observed = pd.read_csv(os.path.join(temp_results, "model_comparison.csv")).sort_values("model").reset_index(drop=True)
+
+        pd.testing.assert_frame_equal(expected, observed, check_exact=False, rtol=0.0, atol=1e-12)
 
 
 if __name__ == "__main__":
