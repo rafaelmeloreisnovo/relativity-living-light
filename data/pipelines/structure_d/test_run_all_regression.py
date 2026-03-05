@@ -4,6 +4,7 @@ import os
 import shutil
 import tempfile
 import unittest
+from unittest import mock
 
 import numpy as np
 import pandas as pd
@@ -20,6 +21,7 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
             os.path.join(run_all.RESULTS, "reproduction_contract.json"),
             os.path.join(run_all.RESULTS, "bayes_evidence_bic_proxy.csv"),
+            os.path.join(run_all.RESULTS, "bayes_evidence_inference.csv"),
             os.path.join(run_all.RESULTS, "bayes_factor_interpretation.csv"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_00.csv"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_01.csv"),
@@ -87,6 +89,64 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
 
         self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
 
+
+
+    def test_structure_d_bayes_inference_uses_inference_routines_and_persists_metadata(self):
+        make_example_data.main(seed=42)
+
+        fake_lcdm = {
+            "row": {
+                "model": "LCDM",
+                "logZ": -10.0,
+                "logZ_err": 0.5,
+                "seed": 7,
+                "nwalkers": 16,
+                "nsteps": 100,
+                "nlive": 50,
+            }
+        }
+        fake_rll = {
+            "row": {
+                "model": "RLL_like+AGN",
+                "logZ": -9.0,
+                "logZ_err": 0.7,
+                "seed": 7,
+                "nwalkers": 16,
+                "nsteps": 100,
+                "nlive": 50,
+            }
+        }
+
+        with mock.patch.object(run_all, "run_lcdm_bayes", return_value=fake_lcdm) as lcdm_mock, mock.patch.object(
+            run_all,
+            "run_rll_like_agn_bayes",
+            return_value=fake_rll,
+        ) as rll_mock:
+            run_all.main(
+                profile_name="structure_d_default",
+                bayes=True,
+                bayes_mode="inference",
+                bayes_seed=7,
+                bayes_nwalkers=16,
+                bayes_nsteps=100,
+                bayes_nlive=50,
+            )
+
+        self.assertEqual(lcdm_mock.call_count, 1)
+        self.assertEqual(rll_mock.call_count, 1)
+
+        evidence_path = os.path.join(run_all.RESULTS, "bayes_evidence_inference.csv")
+        self.assertTrue(os.path.exists(evidence_path), "bayes_evidence_inference.csv was not generated")
+
+        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
+        with open(contract_path, "r", encoding="utf-8") as fp:
+            contract = json.load(fp)
+
+        self.assertEqual(contract.get("bayes_mode"), "inference")
+        self.assertEqual(
+            contract.get("bayes_runtime_metadata"),
+            {"seed": 7, "nwalkers": 16, "nsteps": 100, "nlive": 50},
+        )
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
     def test_mock_real_like_profile_generates_required_artifacts(self):
@@ -220,6 +280,7 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             cov_usage = pd.read_csv(out_cov)
             hz_row = cov_usage[cov_usage["dataset_id"] == "hz"].iloc[0]
             self.assertEqual(hz_row["covariance_mode"], "diagonal")
+            self.assertEqual(hz_row["effective_decision"], "diag")
             self.assertFalse(bool(hz_row["has_full_covariance"]))
             self.assertTrue(bool(hz_row["has_diagonal_sigma"]))
 
@@ -293,12 +354,17 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             with open(cfg_path, "w", encoding="utf-8") as fp:
                 json.dump(config, fp)
 
-            with self.assertRaisesRegex(ValueError, "full_required"):
+            with self.assertRaisesRegex(ValueError, "full_required") as ctx:
                 run_all.main(
                     config_path=cfg_path,
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
+
+            message = str(ctx.exception)
+            self.assertIn("incompatible datasets", message)
+            self.assertIn("hz", message)
+            self.assertIn("fsigma8", message)
 
 
 if __name__ == "__main__":
