@@ -9,6 +9,15 @@
 
 ## Introdução
 
+## Mapeamento Canônico (INT/EXT)
+
+A organização oficial das fontes do projeto foi consolidada em:
+
+- **Fontes internas do repositório (`INT-*`)**: [`docs/REFERENCES.md#fontes-internas-do-repositório`](../docs/REFERENCES.md#fontes-internas-do-repositório)
+- **Literatura externa (`EXT-*`)**: [`docs/REFERENCES.md#literatura-externa`](../docs/REFERENCES.md#literatura-externa)
+
+> Nota: a numeração local `[1]...[42]` desta bibliografia permanece para leitura temática desta análise, mas o catálogo canônico para citação cruzada e manutenção passa a ser o esquema `INT-*`/`EXT-*` em `docs/REFERENCES.md`.
+
 Este documento apresenta uma bibliografia abrangente de **27 referências primárias** e **15 referências secundárias**, totalizando **42 fontes acadêmicas** que contextualizam e validam o trabalho apresentado no repositório `relativity-living-light`. As referências estão organizadas por área temática e incluem artigos peer-reviewed, livros acadêmicos e padrões internacionais.
 
 ---

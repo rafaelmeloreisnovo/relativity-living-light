@@ -4,15 +4,22 @@
 
 Fechamento bibliográfico e trilha de fontes primárias do projeto.
 
+## Catálogo canônico por classe
+
+Documento-base: [`docs/REFERENCES.md`](../docs/REFERENCES.md).
+
+- **Fontes internas do repositório (`INT-*`)**: [`docs/REFERENCES.md#fontes-internas-do-repositório`](../docs/REFERENCES.md#fontes-internas-do-repositório)
+- **Literatura externa (`EXT-*`)**: [`docs/REFERENCES.md#literatura-externa`](../docs/REFERENCES.md#literatura-externa)
+
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
 
-- docs/REFERENCES.md
-- docs/CANONICAL_SOURCES.md
-- data/CITATION.cff
+- `docs/REFERENCES.md` (canônico com IDs `INT-*` / `EXT-*`)
+- `docs/CANONICAL_SOURCES.md`
+- `data/CITATION.cff`
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
-- Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
+- Novas entradas bibliográficas devem seguir a regra editorial de `docs/REFERENCES.md`.
 
 ---
