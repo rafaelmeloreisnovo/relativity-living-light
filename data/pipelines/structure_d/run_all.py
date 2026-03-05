@@ -1,6 +1,8 @@
 import argparse
+import csv
 import json
 import os
+import time
 
 import numpy as np
 import pandas as pd
@@ -60,6 +62,8 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "has_diagonal_sigma",
     ],
 }
+
+EXECUTION_TIMING_BASENAME = "execution_timing"
 
 
 MODEL_BY_DATASET = {
@@ -309,6 +313,22 @@ def _validate_output_schema(filename, expected_header):
         )
 
 
+def _write_execution_timing(records, basename=EXECUTION_TIMING_BASENAME):
+    csv_path = os.path.join(RESULTS, f"{basename}.csv")
+    json_path = os.path.join(RESULTS, f"{basename}.json")
+
+    with open(csv_path, "w", encoding="utf-8", newline="") as fp:
+        writer = csv.DictWriter(fp, fieldnames=["block", "duration_seconds"])
+        writer.writeheader()
+        for record in records:
+            writer.writerow(record)
+
+    with open(json_path, "w", encoding="utf-8") as fp:
+        json.dump(records, fp, ensure_ascii=False, indent=2)
+
+    return csv_path, json_path
+
+
 def main(
     config_path=DEFAULT_CONFIG,
     profile_name=DEFAULT_PROFILE,
@@ -322,12 +342,17 @@ def main(
 ):
     os.makedirs(RESULTS, exist_ok=True)
 
+    timing_records = []
+
+    load_t0 = time.perf_counter()
     cfg = load_run_config(config_path)
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
     effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
+    timing_records.append({"block": "load", "duration_seconds": time.perf_counter() - load_t0})
 
     if effective_profile == REAL_PROFILE:
+        fit_t0 = time.perf_counter()
         df_model = run_all_real.main(
             config_path=config_path,
             profile_name=effective_profile,
@@ -335,6 +360,9 @@ def main(
             covariance_policy=effective_policy,
             include_fit_params=False,
         )
+        timing_records.append({"block": "fit", "duration_seconds": time.perf_counter() - fit_t0})
+
+        write_t0 = time.perf_counter()
         out_cov = os.path.join(RESULTS, "covariance_usage.csv")
         cov_rows = [
             {
@@ -348,17 +376,26 @@ def main(
         ]
         evaluate_model(cov_rows, out_cov)
         out_contract = _write_real_reproduction_contract(effective_profile, effective_policy)
+        timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
+
+        validate_t0 = time.perf_counter()
         _assert_required_outputs()
         for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
             _validate_output_schema(filename, expected_header)
+        timing_records.append({"block": "validate", "duration_seconds": time.perf_counter() - validate_t0})
+
+        out_timing_csv, out_timing_json = _write_execution_timing(timing_records)
 
         print(df_model.to_string(index=False))
         print(f"[real] wrote: {os.path.join(RESULTS, 'model_comparison.csv')}")
         print(f"[real] wrote: {out_cov}")
         print(f"[real] wrote: {os.path.join(RESULTS, 'rll_regime_summary.csv')}")
         print(f"[real] wrote: {out_contract}")
+        print(f"[real] wrote: {out_timing_csv}")
+        print(f"[real] wrote: {out_timing_json}")
         return
 
+    fit_t0 = time.perf_counter()
     df_model, out_model, out_cov, covariance_usage_non_empty = run_classic_metrics(cfg_meta, datasets, effective_policy)
 
     hz_df = None
@@ -390,7 +427,9 @@ def main(
             raise ValueError(f"unsupported bayes_mode: {bayes_mode}")
         for path in output_paths:
             produced_optional.append(os.path.basename(path))
+    timing_records.append({"block": "fit", "duration_seconds": time.perf_counter() - fit_t0})
 
+    write_t0 = time.perf_counter()
     out_contract = _write_reproduction_contract(
         effective_profile,
         effective_policy,
@@ -399,15 +438,23 @@ def main(
         produced_optional,
         covariance_usage_non_empty,
     )
+    timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
+
+    validate_t0 = time.perf_counter()
     _assert_required_outputs()
     for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
         _validate_output_schema(filename, expected_header)
+    timing_records.append({"block": "validate", "duration_seconds": time.perf_counter() - validate_t0})
+
+    out_timing_csv, out_timing_json = _write_execution_timing(timing_records)
 
     print(df_model.to_string(index=False))
     print(f"[classic] wrote: {out_model}")
     print(f"[classic] wrote: {out_cov}")
     print(f"[classic] wrote: {os.path.join(RESULTS, 'rll_regime_summary.csv')}")
     print(f"[classic] wrote: {out_contract}")
+    print(f"[classic] wrote: {out_timing_csv}")
+    print(f"[classic] wrote: {out_timing_json}")
     if bayes:
         for name in produced_optional:
             print(f"[bayes] wrote: {os.path.join(RESULTS, name)}")

@@ -29,6 +29,8 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             os.path.join(run_all.RESULTS, "dominance_by_z.csv"),
             os.path.join(run_all.RESULTS, "sensitivity_long.csv"),
             os.path.join(run_all.RESULTS, "figs"),
+            os.path.join(run_all.RESULTS, "execution_timing.csv"),
+            os.path.join(run_all.RESULTS, "execution_timing.json"),
         ]
 
     def tearDown(self):
@@ -67,6 +69,14 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             "reproduction contract must set bayes_mode to null when --bayes is disabled",
         )
 
+        timing_csv = os.path.join(run_all.RESULTS, "execution_timing.csv")
+        timing_json = os.path.join(run_all.RESULTS, "execution_timing.json")
+        self.assertTrue(os.path.exists(timing_csv), "execution_timing.csv was not generated")
+        self.assertTrue(os.path.exists(timing_json), "execution_timing.json was not generated")
+
+        timing_df = pd.read_csv(timing_csv)
+        self.assertListEqual(list(timing_df["block"]), ["load", "fit", "write", "validate"])
+
     def test_structure_d_bayes_bic_proxy_writes_mode_specific_output(self):
         make_example_data.main(seed=42)
         run_all.main(profile_name="structure_d_default", bayes=True, bayes_mode="bic_proxy")
@@ -96,6 +106,8 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             os.path.join(run_all.RESULTS, "dominance_by_z.csv"),
             os.path.join(run_all.RESULTS, "sensitivity_long.csv"),
             os.path.join(run_all.RESULTS, "figs"),
+            os.path.join(run_all.RESULTS, "execution_timing.csv"),
+            os.path.join(run_all.RESULTS, "execution_timing.json"),
         ]
 
         def _cleanup_generated_files():
@@ -313,6 +325,8 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             os.path.join(run_all.RESULTS, "dominance_by_z.csv"),
             os.path.join(run_all.RESULTS, "sensitivity_long.csv"),
             os.path.join(run_all.RESULTS, "figs"),
+            os.path.join(run_all.RESULTS, "execution_timing.csv"),
+            os.path.join(run_all.RESULTS, "execution_timing.json"),
         ]
 
         def _cleanup_generated_files():
