@@ -11,6 +11,8 @@ import pandas as pd
 from data.pipelines.structure_d import make_example_data, run_all
 from data.pipelines.structure_d.data_access import load_active_datasets
 
+from data.pipelines.structure_d.schema import validate_observable_schema
+
 
 class StructureDDefaultRegressionTest(unittest.TestCase):
     def setUp(self):
@@ -515,5 +517,31 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                 )
 
 
+class StructureDSchemaMetadataRegressionTest(unittest.TestCase):
+    def test_validate_observable_schema_normalizes_metadata_to_json_safe_scalars(self):
+        entry = {
+            "dataset_id": "meta_case",
+            "observable": "Hz",
+            "z": np.array([0.1, 0.2]),
+            "values": np.array([70.0, 72.0]),
+            "errors": np.array([1.0, 1.2]),
+            "metadata": {
+                "survey": np.str_("synthetic"),
+                "redshift_range": (np.float64(0.1), np.float64(0.2)),
+                "reference": np.int64(2026),
+                "is_mock": np.bool_(True),
+            },
+        }
+
+        normalized = validate_observable_schema(entry)
+        metadata = normalized["metadata"]
+
+        self.assertEqual(metadata["survey"], "synthetic")
+        self.assertEqual(metadata["redshift_range"], [0.1, 0.2])
+        self.assertEqual(metadata["reference"], 2026)
+        self.assertIs(metadata["is_mock"], True)
+
+
 if __name__ == "__main__":
     unittest.main()
+

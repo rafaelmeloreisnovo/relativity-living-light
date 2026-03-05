@@ -25,6 +25,29 @@ def _as_float_matrix(values, name):
     return mat
 
 
+def _json_safe_scalar(value):
+    if isinstance(value, (bool, np.bool_)):
+        return bool(value)
+    if isinstance(value, (int, np.integer)):
+        return int(value)
+    if isinstance(value, (float, np.floating)):
+        scalar = float(value)
+        if not np.isfinite(scalar):
+            raise ValueError("metadata contains non-finite float")
+        return scalar
+    if isinstance(value, str):
+        return value
+    return str(value)
+
+
+def _json_safe_metadata(metadata):
+    if isinstance(metadata, dict):
+        return {str(k): _json_safe_metadata(v) for k, v in metadata.items()}
+    if isinstance(metadata, (list, tuple)):
+        return [_json_safe_metadata(v) for v in metadata]
+    return _json_safe_scalar(metadata)
+
+
 def validate_observable_schema(entry):
     required = ["dataset_id", "observable", "values", "metadata"]
     missing = [k for k in required if k not in entry]
@@ -56,7 +79,7 @@ def validate_observable_schema(entry):
         if np.any(np.diag(covariance) <= 0):
             raise ValueError("covariance diagonal must be strictly positive")
 
-    metadata = entry["metadata"]
+    metadata = _json_safe_metadata(entry["metadata"])
     for k in ["survey", "redshift_range", "reference"]:
         if k not in metadata:
             raise ValueError(f"metadata missing key: {k}")
