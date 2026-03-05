@@ -286,14 +286,14 @@ print(f"  ✅ PNG  → {PNG_PATH}")
 import csv
 with open(CHI2_CSV_PATH,'w',newline='') as f:
     w=csv.writer(f)
-    w.writerow(['Model','H0','Om','OL','Os0','zt','wt','Ob_h2','chi2','AIC','BIC','N_obs','k','chi2_dof','verdict'])
-    w.writerow(['LCDM',round(bL[0],3),round(bL[1],4),round(bL[2],4),
+    w.writerow(['model','regime','H0','Om','OL','Os0','zt','wt','Ob_h2','chi2','AIC','BIC','N_obs','k','chi2_dof','verdict'])
+    w.writerow(['lcdm','real',round(bL[0],3),round(bL[1],4),round(bL[2],4),
                 '-','-','-',round(bL[3],5),
                 round(c2_L,3),round(AIC_L,3),round(BIC_L,3),N_obs,k_L,round(c2_L/(N_obs-k_L),3),'-'])
-    w.writerow(['RLL',round(bR[0],3),round(bR[1],4),round(bR[2],4),
+    w.writerow(['rll_like_agn','real',round(bR[0],3),round(bR[1],4),round(bR[2],4),
                 round(bR[3],4),round(bR[4],3),round(bR[5],3),round(bR[6],5),
                 round(c2_R,3),round(AIC_R,3),round(BIC_R,3),N_obs,k_R,round(c2_R/(N_obs-k_R),3),verdict])
-    w.writerow(['DELTA_RLL_minus_LCDM','-','-','-','-','-','-','-',
+    w.writerow(['delta_rll_like_agn_minus_lcdm','real','-','-','-','-','-','-','-',
                 round(dchi2,3),round(dAIC,3),round(dBIC,3),N_obs,k_R-k_L,'-',verdict])
 print(f"  ✅ CSV  → {CHI2_CSV_PATH}")
 
