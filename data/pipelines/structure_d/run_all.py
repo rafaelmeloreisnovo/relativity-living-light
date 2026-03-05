@@ -62,6 +62,24 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
 }
 
 
+def _validate_profile_name(cfg, profile_name):
+    profiles = cfg.get("profiles")
+    if not profiles:
+        return
+
+    selected_profile = profile_name or cfg.get("default_profile", DEFAULT_PROFILE)
+    if selected_profile in profiles:
+        return
+
+    available_profiles = ", ".join(sorted(profiles.keys()))
+    raise ValueError(
+        "profile inválido: "
+        f"{selected_profile!r}. "
+        "Perfis disponíveis: "
+        f"{available_profiles}"
+    )
+
+
 MODEL_BY_DATASET = {
     "hz": (model_LCDM_Hz, model_RLL_like_Hz),
     "real_hz": (model_LCDM_Hz, model_RLL_like_Hz),
@@ -323,6 +341,7 @@ def main(
     os.makedirs(RESULTS, exist_ok=True)
 
     cfg = load_run_config(config_path)
+    _validate_profile_name(cfg, profile_name)
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
     effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
