@@ -11,6 +11,7 @@ BAYES=0
 REQUIRED_OUTPUTS=(
   "results/structure_d/model_comparison.csv"
   "results/structure_d/covariance_usage.csv"
+  "results/structure_d/error_mode_usage.csv"
   "results/structure_d/rll_regime_summary.csv"
   "results/structure_d/reproduction_contract.json"
   "results/RLL_chi2_results.csv"

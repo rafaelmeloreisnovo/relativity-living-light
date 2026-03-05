@@ -109,6 +109,35 @@ def _obj_rll(params, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig
     return c2
 
 
+def _dataset_block_name(dataset_id, entry):
+    observable = str(entry.get("observable", dataset_id)).lower()
+    if dataset_id in {"hz", "real_hz"} or "hz" in observable:
+        return "Hz"
+    if dataset_id in {"fsigma8"} or "fs" in observable:
+        return "fσ8"
+    if dataset_id in {"real_bao"} or "bao" in observable:
+        return "BAO"
+    if "sne" in observable:
+        return "SNe"
+    if "lens" in observable:
+        return "lenses"
+    return str(entry.get("observable", dataset_id))
+
+
+def _write_error_mode_usage(datasets):
+    rows = []
+    for dataset_id, entry in datasets.items():
+        rows.append(
+            {
+                "dataset_id": dataset_id,
+                "block": _dataset_block_name(dataset_id, entry),
+                "error_mode": "covariance" if entry.get("covariance") is not None else "errors",
+            }
+        )
+    out = os.path.join(RESULTS, "error_mode_usage.csv")
+    evaluate_model(rows, out)
+    return out
+
 def main(
     config_path=DEFAULT_CONFIG,
     profile_name=REAL_PROFILE,
@@ -223,9 +252,11 @@ def main(
     ]
 
     out = os.path.join(RESULTS, output_filename)
+    out_error_mode = _write_error_mode_usage(datasets)
     df = evaluate_model(rows, out)
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
+    print(f"Wrote: {out_error_mode}")
     return df
 
 

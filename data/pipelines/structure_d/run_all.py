@@ -28,6 +28,7 @@ REAL_PROFILE = "structure_d_real_validation"
 REQUIRED_OUTPUTS = [
     "model_comparison.csv",
     "covariance_usage.csv",
+    "error_mode_usage.csv",
     "rll_regime_summary.csv",
     "reproduction_contract.json",
 ]
@@ -58,6 +59,11 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "covariance_mode",
         "has_full_covariance",
         "has_diagonal_sigma",
+    ],
+    "error_mode_usage.csv": [
+        "dataset_id",
+        "block",
+        "error_mode",
     ],
 }
 
@@ -116,6 +122,19 @@ def _chi2_from_entry(entry, model_values):
 
 def _chi2_bao_from_entry(entry, model_values):
     return _chi2_from_entry(entry, model_values)
+
+
+def _build_error_mode_rows(datasets):
+    rows = []
+    for dataset_id, entry in datasets.items():
+        rows.append(
+            {
+                "dataset_id": dataset_id,
+                "block": _dataset_block_name(dataset_id, entry),
+                "error_mode": "covariance" if entry.get("covariance") is not None else "errors",
+            }
+        )
+    return rows
 
 
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
@@ -199,8 +218,10 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
 
     out_model = os.path.join(RESULTS, "model_comparison.csv")
     out_cov = os.path.join(RESULTS, "covariance_usage.csv")
+    out_error_mode = os.path.join(RESULTS, "error_mode_usage.csv")
     evaluate_model(rows, out_model)
     evaluate_model(cov_rows, out_cov)
+    evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
     return pd.DataFrame(rows), out_model, out_cov, bool(cov_rows)
 
 
@@ -336,6 +357,7 @@ def main(
             include_fit_params=False,
         )
         out_cov = os.path.join(RESULTS, "covariance_usage.csv")
+        out_error_mode = os.path.join(RESULTS, "error_mode_usage.csv")
         cov_rows = [
             {
                 "dataset_id": dataset_id,
@@ -347,6 +369,7 @@ def main(
             for dataset_id, entry in datasets.items()
         ]
         evaluate_model(cov_rows, out_cov)
+        evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
         out_contract = _write_real_reproduction_contract(effective_profile, effective_policy)
         _assert_required_outputs()
         for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
@@ -355,6 +378,7 @@ def main(
         print(df_model.to_string(index=False))
         print(f"[real] wrote: {os.path.join(RESULTS, 'model_comparison.csv')}")
         print(f"[real] wrote: {out_cov}")
+        print(f"[real] wrote: {out_error_mode}")
         print(f"[real] wrote: {os.path.join(RESULTS, 'rll_regime_summary.csv')}")
         print(f"[real] wrote: {out_contract}")
         return
@@ -406,6 +430,7 @@ def main(
     print(df_model.to_string(index=False))
     print(f"[classic] wrote: {out_model}")
     print(f"[classic] wrote: {out_cov}")
+    print(f"[classic] wrote: {os.path.join(RESULTS, 'error_mode_usage.csv')}")
     print(f"[classic] wrote: {os.path.join(RESULTS, 'rll_regime_summary.csv')}")
     print(f"[classic] wrote: {out_contract}")
     if bayes:

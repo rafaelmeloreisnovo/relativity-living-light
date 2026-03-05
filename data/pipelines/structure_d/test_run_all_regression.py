@@ -86,6 +86,7 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
         generated_paths = [
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
             os.path.join(run_all.RESULTS, "covariance_usage.csv"),
+            os.path.join(run_all.RESULTS, "error_mode_usage.csv"),
             os.path.join(run_all.RESULTS, "rll_regime_summary.csv"),
             os.path.join(run_all.RESULTS, "reproduction_contract.json"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_00.csv"),
@@ -303,6 +304,7 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
         generated_paths = [
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
             os.path.join(run_all.RESULTS, "covariance_usage.csv"),
+            os.path.join(run_all.RESULTS, "error_mode_usage.csv"),
             os.path.join(run_all.RESULTS, "rll_regime_summary.csv"),
             os.path.join(run_all.RESULTS, "reproduction_contract.json"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_00.csv"),
