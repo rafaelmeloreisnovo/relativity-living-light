@@ -39,14 +39,21 @@ def _hz_rll(z, h0, om, ol, os0, zt, wt):
     return h0 * np.sqrt(np.maximum(_e2_rll(z, om, ol, os0, zt, wt), 1e-12))
 
 
-def _dc(z_val, hz_fn, *args):
+def _dc(z_val, hz_fn, *args, cache=None):
+    if cache is not None:
+        cache_key = (hz_fn.__name__, float(z_val), tuple(float(a) for a in args))
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
     fn = lambda zz: C_KMS / hz_fn(zz, *args)
     val, _ = quad(fn, 0, z_val, limit=150, epsrel=1e-5)
+    if cache is not None:
+        cache[cache_key] = val
     return val
 
 
-def _dv_over_rs(z, hz_fn, h0, om, ob_h2, *args):
-    dc_val = _dc(z, hz_fn, h0, om, *args)
+def _dv_over_rs(z, hz_fn, h0, om, ob_h2, *args, dc_cache=None):
+    dc_val = _dc(z, hz_fn, h0, om, *args, cache=dc_cache)
     hz_val = hz_fn(z, h0, om, *args)
     dv = (z * C_KMS / hz_val * dc_val ** 2) ** (1.0 / 3.0)
     rs = _rs_fn(h0, ob_h2, om)
@@ -67,25 +74,25 @@ def _chi2_hz_rll(z_hz, h_obs, s_h, h0, om, ol, os0, zt, wt):
     return float(np.sum(((h_obs - h_th) / s_h) ** 2))
 
 
-def _chi2_bao_lcdm(z_bao, dv_obs, s_dv, h0, om, ol, ob_h2):
-    dv_th = np.array([_dv_over_rs(z, _hz_lcdm, h0, om, ob_h2, ol) for z in z_bao], dtype=float)
+def _chi2_bao_lcdm(z_bao, dv_obs, s_dv, h0, om, ol, ob_h2, dc_cache=None):
+    dv_th = np.array([_dv_over_rs(z, _hz_lcdm, h0, om, ob_h2, ol, dc_cache=dc_cache) for z in z_bao], dtype=float)
     return float(np.sum(((dv_obs - dv_th) / s_dv) ** 2))
 
 
-def _chi2_bao_rll(z_bao, dv_obs, s_dv, h0, om, ol, os0, zt, wt, ob_h2):
-    dv_th = np.array([_dv_over_rs(z, _hz_rll, h0, om, ob_h2, ol, os0, zt, wt) for z in z_bao], dtype=float)
+def _chi2_bao_rll(z_bao, dv_obs, s_dv, h0, om, ol, os0, zt, wt, ob_h2, dc_cache=None):
+    dv_th = np.array([_dv_over_rs(z, _hz_rll, h0, om, ob_h2, ol, os0, zt, wt, dc_cache=dc_cache) for z in z_bao], dtype=float)
     return float(np.sum(((dv_obs - dv_th) / s_dv) ** 2))
 
 
-def _chi2_cmb_lcdm(r_obs, la_obs, r_sig, la_sig, h0, om, ol, ob_h2):
-    dc_cmb = _dc(Z_CMB, _hz_lcdm, h0, om, ol)
+def _chi2_cmb_lcdm(r_obs, la_obs, r_sig, la_sig, h0, om, ol, ob_h2, dc_cache=None):
+    dc_cmb = _dc(Z_CMB, _hz_lcdm, h0, om, ol, cache=dc_cache)
     r_th = np.sqrt(om) * h0 / C_KMS * dc_cmb
     la_th = np.pi * dc_cmb / _rs_fn(h0, ob_h2, om)
     return ((r_th - r_obs) / r_sig) ** 2 + ((la_th - la_obs) / la_sig) ** 2
 
 
-def _chi2_cmb_rll(r_obs, la_obs, r_sig, la_sig, h0, om, ol, os0, zt, wt, ob_h2):
-    dc_cmb = _dc(Z_CMB, _hz_rll, h0, om, ol, os0, zt, wt)
+def _chi2_cmb_rll(r_obs, la_obs, r_sig, la_sig, h0, om, ol, os0, zt, wt, ob_h2, dc_cache=None):
+    dc_cmb = _dc(Z_CMB, _hz_rll, h0, om, ol, os0, zt, wt, cache=dc_cache)
     r_th = np.sqrt(om) * h0 / C_KMS * dc_cmb
     la_th = np.pi * dc_cmb / _rs_fn(h0, ob_h2, om)
     return ((r_th - r_obs) / r_sig) ** 2 + ((la_th - la_obs) / la_sig) ** 2
@@ -93,19 +100,21 @@ def _chi2_cmb_rll(r_obs, la_obs, r_sig, la_sig, h0, om, ol, os0, zt, wt, ob_h2):
 
 def _obj_lcdm(params, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig):
     h0, om, ol, ob_h2 = params
+    dc_cache = {}
     c2 = 0.0
     c2 += _chi2_hz_lcdm(z_hz, h_obs, s_h, h0, om, ol)
-    c2 += _chi2_bao_lcdm(z_bao, dv_obs, s_dv, h0, om, ol, ob_h2)
-    c2 += _chi2_cmb_lcdm(r_obs, la_obs, r_sig, la_sig, h0, om, ol, ob_h2)
+    c2 += _chi2_bao_lcdm(z_bao, dv_obs, s_dv, h0, om, ol, ob_h2, dc_cache=dc_cache)
+    c2 += _chi2_cmb_lcdm(r_obs, la_obs, r_sig, la_sig, h0, om, ol, ob_h2, dc_cache=dc_cache)
     return c2
 
 
 def _obj_rll(params, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig):
     h0, om, ol, os0, zt, wt, ob_h2 = params
+    dc_cache = {}
     c2 = 0.0
     c2 += _chi2_hz_rll(z_hz, h_obs, s_h, h0, om, ol, os0, zt, wt)
-    c2 += _chi2_bao_rll(z_bao, dv_obs, s_dv, h0, om, ol, os0, zt, wt, ob_h2)
-    c2 += _chi2_cmb_rll(r_obs, la_obs, r_sig, la_sig, h0, om, ol, os0, zt, wt, ob_h2)
+    c2 += _chi2_bao_rll(z_bao, dv_obs, s_dv, h0, om, ol, os0, zt, wt, ob_h2, dc_cache=dc_cache)
+    c2 += _chi2_cmb_rll(r_obs, la_obs, r_sig, la_sig, h0, om, ol, os0, zt, wt, ob_h2, dc_cache=dc_cache)
     return c2
 
 
