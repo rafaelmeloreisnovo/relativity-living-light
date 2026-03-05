@@ -1,0 +1,20 @@
+id_antigo,id_novo,status_antigo,updated_at,responsavel
+A1,RLL59-009,confirmado,2026-03-05,Equipe RLL
+A1,RLL59-015,confirmado,2026-03-05,Equipe RLL
+A2,RLL59-004,confirmado,2026-03-05,Equipe RLL
+A3,RLL59-005,confirmado,2026-03-05,Equipe RLL
+A3,RLL59-011,confirmado,2026-03-05,Equipe RLL
+A5,RLL59-006,confirmado,2026-03-05,Equipe RLL
+A5,RLL59-007,confirmado,2026-03-05,Equipe RLL
+A5,RLL59-010,confirmado,2026-03-05,Equipe RLL
+A5,RLL59-012,confirmado,2026-03-05,Equipe RLL
+A7,RLL59-003,em_validacao,2026-03-05,Equipe RLL
+D1,RLL59-002,confirmado,2026-03-05,Equipe RLL
+D2,RLL59-001,confirmado,2026-03-05,Equipe RLL
+D2,RLL59-013,confirmado,2026-03-05,Equipe RLL
+D3,RLL59-001,confirmado,2026-03-05,Equipe RLL
+D3,RLL59-014,confirmado,2026-03-05,Equipe RLL
+D5,RLL59-003,confirmado,2026-03-05,Equipe RLL
+D5,RLL59-016,confirmado,2026-03-05,Equipe RLL
+D7,RLL59-017,confirmado,2026-03-05,Equipe RLL
+D11,RLL59-008,proposto,2026-03-05,Equipe RLL
