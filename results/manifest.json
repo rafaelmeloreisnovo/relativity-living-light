@@ -64,6 +64,7 @@
           "dataset_id",
           "block",
           "covariance_mode",
+          "effective_decision",
           "has_full_covariance",
           "has_diagonal_sigma"
         ]
