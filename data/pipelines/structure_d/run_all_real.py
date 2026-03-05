@@ -1,3 +1,4 @@
+import json
 import os
 import csv
 import json
@@ -200,12 +201,16 @@ def main(
 
     bounds_l = [(60.0, 80.0), (0.10, 0.60), (0.50, 0.90), (0.018, 0.026)]
     bounds_r = [(60.0, 80.0), (0.10, 0.60), (0.50, 0.90), (0.000, 0.250), (0.1, 10.0), (0.1, 1.0), (0.018, 0.026)]
+    lcdm_param_order = ["H0", "Om", "OL", "Ob_h2"]
+    rll_param_order = ["H0", "Om", "OL", "Os0", "zt", "wt", "Ob_h2"]
+    lcdm_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
+    rll_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
 
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,
-        seed=OPTIMIZER_SEED,
-        maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120")),
+        seed=42,
+        maxiter=lcdm_maxiter,
         tol=1e-6,
         workers=1,
     )
@@ -213,8 +218,8 @@ def main(
     res_r = differential_evolution(
         lambda p: _obj_rll(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_r,
-        seed=OPTIMIZER_SEED,
-        maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150")),
+        seed=42,
+        maxiter=rll_maxiter,
         tol=1e-6,
         workers=1,
     )
@@ -291,19 +296,41 @@ def main(
     out = os.path.join(RESULTS, output_filename)
     out_error_mode = _write_error_mode_usage(datasets)
     df = evaluate_model(rows, out)
-    timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
-
-    validate_t0 = time.perf_counter()
-    if df.empty:
-        raise RuntimeError("model_comparison output is empty")
-    timing_records.append({"block": "validate", "duration_seconds": time.perf_counter() - validate_t0})
-
-    out_timing_csv, out_timing_json = _write_execution_timing(timing_records)
+    fit_metadata = {
+        "output_csv": out,
+        "profile_name": profile,
+        "run_name": run_name,
+        "datasets_used": cfg_meta["active_datasets"],
+        "optimizer": {
+            "name": "scipy.optimize.differential_evolution",
+            "seed": 42,
+            "tol": 1e-6,
+            "workers": 1,
+        },
+        "fit_models": {
+            "LCDM": {
+                "param_order": lcdm_param_order,
+                "bounds": [{"name": name, "min": float(low), "max": float(high)} for name, (low, high) in zip(lcdm_param_order, bounds_l)],
+                "maxiter": lcdm_maxiter,
+                "best_fit": {name: float(value) for name, value in zip(lcdm_param_order, b_l)},
+                "chi2": c2_l,
+            },
+            "RLL_like+AGN": {
+                "param_order": rll_param_order,
+                "bounds": [{"name": name, "min": float(low), "max": float(high)} for name, (low, high) in zip(rll_param_order, bounds_r)],
+                "maxiter": rll_maxiter,
+                "best_fit": {name: float(value) for name, value in zip(rll_param_order, b_r)},
+                "chi2": c2_r,
+            },
+        },
+    }
+    metadata_out = os.path.splitext(out)[0] + "_fit_metadata.json"
+    with open(metadata_out, "w", encoding="utf-8") as fp:
+        json.dump(fit_metadata, fp, ensure_ascii=False, indent=2)
 
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
-    print(f"Wrote: {out_timing_csv}")
-    print(f"Wrote: {out_timing_json}")
+    print(f"Wrote: {metadata_out}")
     return df
 
 
