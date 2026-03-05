@@ -14,6 +14,12 @@ Este documento consolida o estado canônico do programa **Relativity Living Ligh
 
 **Palavras-chave:** cosmologia observacional, DE efetiva, transição logística, inferência bayesiana, falsificabilidade.
 
+### Convenção canônica de citação por claim técnica
+
+- **Markdown (documentos canônicos):** usar chaves explícitas no corpo do texto, no formato `[INT-###]` (fonte interna) e `[EXT-###]` (fonte externa).
+- **LaTeX (preprint):** usar chaves bibliográficas em `\cite{...}` (ex.: `\cite{desi2025}`, `\cite{trotta2008}`).
+- **Regra de auditoria:** toda afirmação factual/técnica deve carregar ao menos uma chave.
+
 ---
 
 ## 1. Introdução e escopo
@@ -46,6 +52,8 @@ E^2(a)=\Omega_r a^{-4}+\Omega_m a^{-3}+\Omega_\Lambda
 
 onde `E(a)=H(a)/H0`.
 
+Definição operacional alinhada ao formalismo canônico de notação e decomposição por componentes cosmológicos. [INT-001]
+
 ### 2.2 Função de transição
 
 ```math
@@ -58,6 +66,8 @@ Parâmetros:
 - `w_t`: largura da transição;
 - `Ω_s0`: amplitude atual do setor de superposição.
 
+Forma logística adotada para garantir transição suave e parametrizável entre regimes dinâmicos. [INT-002]
+
 ### 2.3 Equação de estado do setor de superposição
 
 ```math
@@ -67,12 +77,16 @@ w_{\mathrm{sup}}(z)=
 
 A aproximação `w_sup≈-f(z)` é permitida apenas para leitura rápida e nunca substitui a forma completa em inferência.
 
+O uso de forma completa em inferência evita viés de aproximação no cálculo de observáveis derivados. [EXT-003]
+
 ### 2.4 Limites assintóticos oficiais
 
 Com `w_t>0`:
 
 - `z\gg z_t`  ⇒ `f(z)→0`  ⇒ setor sup com comportamento tipo matéria (`w_sup→0`);
 - `z\ll z_t`  ⇒ `f(z)→1`  ⇒ setor sup com comportamento tipo DE (`w_sup→-1`).
+
+Esses limites são a referência oficial para consistência entre implementação numérica, texto e validação observacional. [INT-003]
 
 Este mapeamento é **obrigatório** para todo material derivado.
 
@@ -88,8 +102,8 @@ A leitura operacional do RLL é de um setor efetivo que muda de regime sem desco
 Consequências metodológicas:
 
 1. O modelo pode reproduzir o pano de fundo de expansão sem introduzir salto não físico;
-2. O setor adiciona estrutura testável em observáveis de crescimento e distâncias;
-3. A distinção entre explicação e ajuste deve ser feita por comparação estatística explícita.
+2. O setor adiciona estrutura testável em observáveis de crescimento e distâncias. [EXT-004]
+3. A distinção entre explicação e ajuste deve ser feita por comparação estatística explícita. [EXT-005]
 
 ---
 
@@ -126,16 +140,16 @@ Portanto, o status correto é: **framework formal e executável em fase de valid
 ### 6.1 Observáveis principais
 
 - `H(z)` (cronômetros cósmicos);
-- BAO (escalas de distância);
-- SN Ia (`μ(z)`);
-- crescimento (`fσ8(z)`);
-- forma de `P(k)` em regime compatível com aproximações adotadas.
+- BAO (escalas de distância). [EXT-006]
+- SN Ia (`μ(z)`). [EXT-007]
+- crescimento (`fσ8(z)`). [EXT-008]
+- forma de `P(k)` em regime compatível com aproximações adotadas. [EXT-009]
 
 ### 6.2 Métricas mínimas de decisão
 
 - ajuste: `χ²`;
-- penalização por complexidade: `AIC`, `BIC`;
-- evidência relativa: `ln B` (fator de Bayes).
+- penalização por complexidade: `AIC`, `BIC`. [EXT-010]
+- evidência relativa: `ln B` (fator de Bayes). [EXT-005]
 
 ### 6.3 Critério de reporting
 
@@ -143,7 +157,7 @@ Toda conclusão comparativa deve publicar simultaneamente:
 
 1. melhor ajuste pontual;
 2. incertezas marginais dos parâmetros;
-3. impacto de sistemáticos/priores;
+3. impacto de sistemáticos/priores. [EXT-005]
 4. sensibilidade a subconjuntos de dados;
 5. tabela final de decisão com mesma base observacional para todos os modelos.
 
@@ -153,11 +167,11 @@ Toda conclusão comparativa deve publicar simultaneamente:
 
 As predições abaixo são proposições de teste e podem ser refutadas por dados:
 
-1. **Transição detectável em baixa-média época cósmica**: ajuste favorece `z_t` finito em vez de limite degenerado (`z_t→∞`).
-2. **Largura não nula de transição**: posterior favorece `w_t>0` com suporte incompatível com transição abrupta extrema.
-3. **Assinatura em crescimento**: `fσ8(z)` apresenta desvio sistemático mensurável frente ao ΛCDM em faixa intermediária de redshift.
-4. **Consistência cruzada expansão-crescimento**: conjunto combinado (`H(z)+BAO+SN+fσ8`) mantém região de parâmetros compatível sem tensionamento interno severo.
-5. **Competitividade informacional**: RLL atinge desempenho comparável ou superior em `AIC/BIC` e `ln B` dentro do mesmo dataset e mesmas hipóteses de prior.
+1. **Transição detectável em baixa-média época cósmica**: ajuste favorece `z_t` finito em vez de limite degenerado (`z_t→∞`). [INT-004]
+2. **Largura não nula de transição**: posterior favorece `w_t>0` com suporte incompatível com transição abrupta extrema. [INT-005]
+3. **Assinatura em crescimento**: `fσ8(z)` apresenta desvio sistemático mensurável frente ao ΛCDM em faixa intermediária de redshift. [EXT-008]
+4. **Consistência cruzada expansão-crescimento**: conjunto combinado (`H(z)+BAO+SN+fσ8`) mantém região de parâmetros compatível sem tensionamento interno severo. [EXT-011]
+5. **Competitividade informacional**: RLL atinge desempenho comparável ou superior em `AIC/BIC` e `ln B` dentro do mesmo dataset e mesmas hipóteses de prior. [EXT-005]
 
 Se essas condições não ocorrerem sob análise robusta, o modelo deve ser considerado parcialmente ou totalmente falsificado no escopo testado.
 
@@ -214,8 +228,8 @@ Toda execução deve registrar hash de dados de entrada, commit git, timestamp e
 Classificação operacional:
 
 - **TRL2:** conceito e estrutura teórica formulados;
-- **TRL3:** prova computacional e geração de artefatos;
-- **TRL4:** validação quantitativa com dados reais e comparação rigorosa.
+- **TRL3:** prova computacional e geração de artefatos. [INT-006]
+- **TRL4:** validação quantitativa com dados reais e comparação rigorosa. [INT-007]
 
 Estado atual deste documento: **entre TRL3 e transição para TRL4**.
 
@@ -250,3 +264,55 @@ Em termos canônicos, a síntese correta é:
 - [`docs/COMPARACAO_DESI_2025.md`](../COMPARACAO_DESI_2025.md)
 - [`docs/Results.md`](../Results.md)
 - [`README.md`](../../README.md)
+
+---
+## 14. Referências canônicas unificadas (chaves)
+
+### Chaves internas (INT)
+
+- **[INT-001]** `docs/canonicos/CONVENCOES_GLOBAIS_RLL.md` (notação e decomposição canônica).
+- **[INT-002]** `docs/canonicos/10_FAQ_COMPLETO.md` (função logística e interpretação operacional).
+- **[INT-003]** `docs/canonicos/CONVENCOES_GLOBAIS_RLL.md` (limites assintóticos obrigatórios).
+- **[INT-004]** `docs/ROADMAP_VALIDACAO.md` (teste de detecção de `z_t` finito).
+- **[INT-005]** `docs/ROADMAP_VALIDACAO.md` (teste de `w_t>0` e robustez de posterior).
+- **[INT-006]** `docs/Results.md` (pipeline e artefatos computacionais reproduzíveis).
+- **[INT-007]** `docs/ROADMAP_VALIDACAO.md` (plano de transição TRL3→TRL4 com dados reais).
+
+### Chaves externas (EXT)
+
+- **[EXT-003]** Lewis \\& Bridle (2002), *Physical Review D* 66:103511 (inferência cosmológica e riscos de aproximações em parâmetros derivados).
+- **[EXT-004]** Okada et al. (2026), *PRL* 136 (transição hot→cold e impacto em observáveis de crescimento/expansão).
+- **[EXT-005]** Trotta (2008), *Contemporary Physics* 49:71–104 (comparação bayesiana, `ln B` e robustez a prior).
+- **[EXT-006]** DESI Collaboration (2024/2025), resultados BAO e constraints cosmológicos.
+- **[EXT-007]** Brout et al. (2022), Pantheon+ (*ApJ*), constraints de SN Ia em `μ(z)`.
+- **[EXT-008]** BOSS Collaboration / literatura `fσ8` para crescimento linear em redshift intermediário.
+- **[EXT-009]** Planck Collaboration (2020), *A\&A* 641 A6 (forma de `P(k)` e consistência com parâmetros de fundo).
+- **[EXT-010]** Akaike (1974) + Schwarz (1978): definições canônicas de `AIC`/`BIC`.
+- **[EXT-011]** DESI + Pantheon+ + BOSS (análises combinadas para consistência cruzada expansão-crescimento).
+
+---
+
+## 15. Mapa de claims → referências
+
+| Claim curto | Chave(s) |
+|---|---|
+| Decomposição canônica de `E^2(a)` | [INT-001] |
+| Transição logística suave com (`z_t`, `w_t`, `Ω_s0`) | [INT-002] |
+| Forma completa de `w_sup(z)` para inferência | [EXT-003] |
+| Limites assintóticos oficiais (`w_sup→0/-1`) | [INT-003] |
+| Estrutura testável em crescimento/distâncias | [EXT-004] |
+| Comparação estatística explícita por evidência | [EXT-005] |
+| BAO como observável primário | [EXT-006] |
+| SN Ia (`μ(z)`) como observável primário | [EXT-007] |
+| Crescimento via `fσ8(z)` como observável primário | [EXT-008] |
+| Forma de `P(k)` em regime compatível | [EXT-009] |
+| Métricas `AIC/BIC` para penalização de complexidade | [EXT-010] |
+| `ln B` para evidência relativa | [EXT-005] |
+| Predição: `z_t` finito é detectável | [INT-004] |
+| Predição: `w_t>0` é testável e falsificável | [INT-005] |
+| Predição: assinatura em `fσ8(z)` | [EXT-008] |
+| Predição: consistência conjunta (`H(z)+BAO+SN+fσ8`) | [EXT-011] |
+| Predição: competitividade por `AIC/BIC` e `ln B` | [EXT-005] |
+| Status atual entre TRL3 e TRL4 | [INT-006], [INT-007] |
+
+---
