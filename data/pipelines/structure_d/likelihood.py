@@ -84,8 +84,20 @@ def _validated_covariance_matrix(cov, expected_size=None):
 
 
 def chi2(obs, mod, sigma):
-    sigma = _validated_sigma_array(sigma)
-    r = (obs - mod) / sigma
+    obs_arr = _as_1d_finite_array("obs", obs)
+    mod_arr = _as_1d_finite_array("mod", mod)
+    sigma_arr = _validated_sigma_array(sigma)
+
+    obs_size = obs_arr.size
+    mod_size = mod_arr.size
+    sigma_size = sigma_arr.size
+    if obs_size != mod_size or obs_size != sigma_size:
+        raise ValueError(
+            "obs, mod e sigma devem ter o mesmo tamanho em chi2 "
+            f"(obs={obs_size}, mod={mod_size}, sigma={sigma_size})"
+        )
+
+    r = (obs_arr - mod_arr) / sigma_arr
     return float(np.sum(r * r))
 
 
