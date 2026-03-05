@@ -550,6 +550,63 @@ class StructureDRealOutputSchemaTest(unittest.TestCase):
         self.assertEqual(header[len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"]) :], run_all_real.EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
 
 
+class StructureDScalarDatasetRegressionTest(unittest.TestCase):
+    def test_run_classic_metrics_handles_cmb_shift_scalar_dataset(self):
+        cfg_meta = {
+            "run_name": "scalar_case",
+            "profile_name": "scalar_case",
+            "active_datasets": ["real_cmb_shift"],
+        }
+        datasets = {
+            "real_cmb_shift": {
+                "dataset_id": "real_cmb_shift",
+                "observable": "CMB_shift",
+                "z": None,
+                "values": np.array([1.75, 301.5], dtype=float),
+                "errors": np.array([0.02, 0.3], dtype=float),
+                "covariance": None,
+                "metadata": {
+                    "survey": "synthetic",
+                    "redshift_range": "z=1089.92",
+                    "reference": "unit-test",
+                },
+            }
+        }
+
+        df_model, out_model, out_cov, _ = run_all.run_classic_metrics(cfg_meta, datasets, "prefer_full")
+        self.addCleanup(os.remove, out_model)
+        self.addCleanup(os.remove, out_cov)
+
+        self.assertEqual(int(df_model["N"].iloc[0]), 2)
+        cov_usage = pd.read_csv(out_cov)
+        self.assertIn("real_cmb_shift", set(cov_usage["dataset_id"]))
+
+    def test_run_classic_metrics_rejects_unknown_scalar_observable(self):
+        cfg_meta = {
+            "run_name": "scalar_case",
+            "profile_name": "scalar_case",
+            "active_datasets": ["scalar_custom"],
+        }
+        datasets = {
+            "scalar_custom": {
+                "dataset_id": "scalar_custom",
+                "observable": "custom_scalar",
+                "z": None,
+                "values": np.array([1.0], dtype=float),
+                "errors": np.array([0.1], dtype=float),
+                "covariance": None,
+                "metadata": {
+                    "survey": "synthetic",
+                    "redshift_range": "n/a",
+                    "reference": "unit-test",
+                },
+            }
+        }
+
+        with self.assertRaisesRegex(ValueError, "unsupported scalar dataset"):
+            run_all.run_classic_metrics(cfg_meta, datasets, "prefer_full")
+
+
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
     def test_mock_real_like_profile_generates_required_artifacts(self):
         generated_paths = [

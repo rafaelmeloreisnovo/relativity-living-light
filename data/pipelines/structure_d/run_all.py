@@ -115,56 +115,8 @@ MODEL_BY_DATASET = {
     "real_bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
 }
 
-MODEL_KIND_BY_DATASET = {
-    "hz": "hz",
-    "real_hz": "hz",
-    "fsigma8": "fsigma8",
-    "real_bao": "bao",
-}
-
-MODEL_BY_KIND = {
-    "hz": (model_LCDM_Hz, model_RLL_like_Hz),
-    "fsigma8": (model_LCDM_fs8, model_RLL_like_fs8),
-    "bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
-}
-
-
-def _normalize_observable_token(value):
-    normalized = str(value).strip().lower().replace("σ", "sigma")
-    return "".join(ch for ch in normalized if ch.isalnum())
-
-
-def _infer_model_kind(dataset_id, entry):
-    kind = MODEL_KIND_BY_DATASET.get(dataset_id)
-    if kind is not None:
-        return kind
-
-    observable = _normalize_observable_token(entry.get("observable", dataset_id))
-    if "hz" in observable:
-        return "hz"
-    if "fsigma8" in observable or "fs8" in observable:
-        return "fsigma8"
-    if "bao" in observable or "dvovers" in observable:
-        return "bao"
-    return None
-
-
-def _resolve_model_pair(dataset_id, entry):
-    model_pair = MODEL_BY_DATASET.get(dataset_id)
-    if model_pair is not None:
-        return _infer_model_kind(dataset_id, entry), model_pair
-
-    kind = _infer_model_kind(dataset_id, entry)
-    if kind is None:
-        return None, None
-    return kind, MODEL_BY_KIND.get(kind)
-
-
-def _find_dataset_by_kind(datasets, kind):
-    for dataset_id, entry in datasets.items():
-        if _infer_model_kind(dataset_id, entry) == kind:
-            return entry
-    return None
+C_KMS = 299792.458
+Z_CMB = 1089.92
 
 
 def _dataset_block_name(dataset_id, entry):
@@ -209,17 +161,37 @@ def _chi2_bao_from_entry(entry, model_values):
     return _chi2_from_entry(entry, model_values)
 
 
-def _build_error_mode_rows(datasets):
-    rows = []
-    for dataset_id, entry in datasets.items():
-        rows.append(
-            {
-                "dataset_id": dataset_id,
-                "block": _dataset_block_name(dataset_id, entry),
-                "error_mode": "covariance" if entry.get("covariance") is not None else "errors",
-            }
-        )
-    return rows
+def _comoving_distance_mpc(z, hz_model, params, n_steps=2048):
+    z_scalar = float(z)
+    if not np.isfinite(z_scalar) or z_scalar <= 0.0:
+        return float("nan")
+    grid = np.linspace(0.0, z_scalar, int(max(64, n_steps)))
+    hz = np.asarray(hz_model(grid, params), dtype=float)
+    if np.any(~np.isfinite(hz)) or np.any(hz <= 0.0):
+        return float("nan")
+    return float(np.trapz(C_KMS / hz, grid))
+
+
+def _cmb_shift_prediction(params, hz_model):
+    dc_cmb = _comoving_distance_mpc(Z_CMB, hz_model, params)
+    if not np.isfinite(dc_cmb) or dc_cmb <= 0.0:
+        return np.array([np.nan, np.nan], dtype=float)
+    r_th = np.sqrt(params["Om"]) * params["H0"] / C_KMS * dc_cmb
+    rs = 147.78 * (params["Om"] * (params["H0"] / 100.0) ** 2 / 0.1432) ** (-0.255) * (params.get("Ob_h2", 0.02236) / 0.02236) ** (-0.134)
+    la_th = np.pi * dc_cmb / rs
+    return np.array([r_th, la_th], dtype=float)
+
+
+def _chi2_scalar_by_observable(entry, lcdm, rll):
+    observable = str(entry.get("observable", "")).strip().lower()
+    if observable == "cmb_shift":
+        lcdm_prediction = _cmb_shift_prediction(lcdm, model_LCDM_Hz)
+        rll_prediction = _cmb_shift_prediction(rll, model_RLL_like_Hz)
+        return _chi2_from_entry(entry, lcdm_prediction), _chi2_from_entry(entry, rll_prediction)
+    raise ValueError(
+        f"unsupported scalar dataset {entry['dataset_id']!r} with observable={entry.get('observable')!r}; "
+        "add explicit scalar handling instead of silently discarding"
+    )
 
 
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
@@ -246,9 +218,27 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             }
         )
 
-        model_kind, model_pair = _resolve_model_pair(dataset_id, entry)
-        if model_pair is None or entry.get("z") is None:
+        model_pair = MODEL_BY_DATASET.get(dataset_id)
+        has_z = entry.get("z") is not None
+
+        if model_pair is None and has_z:
+            raise ValueError(
+                f"dataset {dataset_id!r} has redshift samples but no registered model pair; "
+                "add MODEL_BY_DATASET mapping instead of silently discarding"
+            )
+
+        if not has_z:
+            scalar_chi2_lcdm, scalar_chi2_rll = _chi2_scalar_by_observable(entry, lcdm, rll)
+            chi2_lcdm += scalar_chi2_lcdm
+            chi2_rll += scalar_chi2_rll
+            n_obs += len(entry["values"])
             continue
+
+        if model_pair is None:
+            raise ValueError(
+                f"dataset {dataset_id!r} is unsupported by classical metrics; "
+                "explicitly register the observable/model before using it"
+            )
 
         model_lcdm, model_rll = model_pair
         z = np.asarray(entry["z"], dtype=float)
@@ -265,7 +255,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         n_obs += len(entry["values"])
 
     if n_obs == 0:
-        raise ValueError("no supported datasets (hz/hz_cov_synth/fsigma8/fsigma8_cov_synth/real_bao) were active for classical metrics")
+        raise ValueError("no supported datasets were active for classical metrics")
     if not cov_rows:
         profile_name = cfg_meta.get("profile_name", DEFAULT_PROFILE)
         active = cfg_meta.get("active_datasets", [])
