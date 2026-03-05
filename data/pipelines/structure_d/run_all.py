@@ -9,6 +9,8 @@ from .data_access import load_active_datasets, load_run_config
 from .inference import run_lcdm_bayes, run_rll_like_agn_bayes
 from .likelihood import aic, bic, chi2, chi2_with_covariance, evaluate_model, estimate_log_evidence, write_bayes_factor_interpretation
 from .models import (
+    N_FREE_PARAMS_LCDM,
+    N_FREE_PARAMS_RLL,
     model_LCDM_Hz,
     model_LCDM_bao_dv_over_rs,
     model_LCDM_fs8,
@@ -172,10 +174,10 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         {
             "model": "LCDM",
             "chi2": float(chi2_lcdm),
-            "AIC": aic(chi2_lcdm, 4),
-            "BIC": bic(chi2_lcdm, 4, n_obs),
+            "AIC": aic(chi2_lcdm, N_FREE_PARAMS_LCDM),
+            "BIC": bic(chi2_lcdm, N_FREE_PARAMS_LCDM, n_obs),
             "N": int(n_obs),
-            "k": 4,
+            "k": N_FREE_PARAMS_LCDM,
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
             "run_name": cfg_meta.get("run_name", "unknown"),
             "profile_name": cfg_meta.get("profile_name", DEFAULT_PROFILE),
@@ -186,10 +188,10 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         {
             "model": "RLL_like+AGN",
             "chi2": float(chi2_rll),
-            "AIC": aic(chi2_rll, 7),
-            "BIC": bic(chi2_rll, 7, n_obs),
+            "AIC": aic(chi2_rll, N_FREE_PARAMS_RLL),
+            "BIC": bic(chi2_rll, N_FREE_PARAMS_RLL, n_obs),
             "N": int(n_obs),
-            "k": 7,
+            "k": N_FREE_PARAMS_RLL,
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
             "run_name": cfg_meta.get("run_name", "unknown"),
             "profile_name": cfg_meta.get("profile_name", DEFAULT_PROFILE),
