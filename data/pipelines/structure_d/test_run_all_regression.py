@@ -66,6 +66,8 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract.get("bayes_mode"),
             "reproduction contract must set bayes_mode to null when --bayes is disabled",
         )
+        self.assertIn("dirty_worktree", contract)
+        self.assertIn("git_commit", contract)
 
     def test_structure_d_bayes_bic_proxy_writes_mode_specific_output(self):
         make_example_data.main(seed=42)
