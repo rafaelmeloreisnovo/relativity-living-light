@@ -137,6 +137,26 @@ Este arquivo registra o **histórico de versões e decisões** de organização 
   - **Variação (após − antes):** `Δχ²=+0.288`, `ΔAIC=+0.288`, `ΔBIC=+0.289`.
 - **Leitura técnica:** com a restrição canônica de largura positiva no intervalo oficial, o ajuste RLL deslocou `wt` para dentro da faixa normativa e manteve qualidade estatística global próxima ao estado anterior.
 
+
+### Release 2026.03b — Padronização de naming em `docs/`
+- **Data de referência:** 2026-03-05
+- **Escopo:** adoção da convenção única `UPPER_SNAKE_CASE.md`, renomeação de arquivos ambíguos e atualização de referências internas.
+
+| Renomeado de | Para |
+|---|---|
+| `docs/1.md` | `docs/PLACEHOLDER_EMPTY_DOCUMENT.md` |
+| `docs/Easy..md` | `docs/EASY_NOTES_EMPTY.md` |
+| `docs/NewWays.md` | `docs/FRACTAL_LAYERED_MAP.md` |
+| `docs/New theory and beyond.md` | `docs/THEORY_INVENTORY_AND_EXTENSIONS.md` |
+| `docs/More.md` | `docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md` |
+| `docs/Others in line.md` | `docs/FRACTAL_REPORT_UNIFIED.md` |
+| `docs/Others in open because that.md` | `docs/NEXT_THEORIES_AND_DERIVED_HYPOTHESES.md` |
+| `docs/Readme.md` | `docs/DATA_DESCRIPTOR_BUNDLE_V4.md` |
+| `docs/Conclusion.md` | `docs/RAFAELIA_UNIFIED_PAPER.md` |
+| `docs/Structure.md` | `docs/REPOSITORY_STRUCTURE_SUGGESTION.md` |
+
+- **Impacto:** remoção de ambiguidades nominais, padronização técnica de nomes e redução de risco de links órfãos.
+
 ## 3) Política recomendada de versionamento documental (a partir desta revisão)
 
 1. **Cada PR relevante** deve atualizar este histórico com:

@@ -43,7 +43,7 @@ Este nível apresenta as **ideias fundamentais**, motivações filosóficas e qu
 - **docs/MANIFESTO.md** - Declaração de princípios e visão de mundo
 - **docs/SUPREMO UNIFICADO.md** - Síntese conceitual unificadora
 - **docs/MAPA CIENTIESPIRITUAL.md** - Conexões entre ciência e dimensões espirituais/filosóficas
-- **docs/New theory and beyond.md** - Propostas de teorias além do paradigma atual
+- **docs/THEORY_INVENTORY_AND_EXTENSIONS.md** - Propostas de teorias além do paradigma atual
 
 ### Público-Alvo
 
@@ -90,7 +90,7 @@ Neste nível, as ideias conceituais são **formalizadas matematicamente**, usand
 
 - **docs/RelativityLivingLight_arXiv.tex** - Artigo formal em LaTeX
 - **docs/RelativityLivingLight_arXiv.pdf** - Versão compilada do artigo
-- **docs/Conclusion.md** - Conclusões teóricas com equações
+- **docs/RAFAELIA_UNIFIED_PAPER.md** - Conclusões teóricas com equações
 - **docs/Relativity_Living_Light.md** - Teoria central formalizada
 - **docs/CONCEPTUAL_FRAMEWORK.md** - Framework conceitual rigoroso
 
@@ -301,7 +301,7 @@ Este nível traduz o conhecimento científico em **aplicações práticas**, est
 - **GOVERNANCE_REORG_DRAFT.md** - Estrutura de governança
 - **REFORM_LOG.md** - Histórico de reformas e melhorias
 - **RESUMO_REFORMA.md** - Resumo das reformas
-- **docs/NewWays.md** - Novos caminhos e oportunidades
+- **docs/FRACTAL_LAYERED_MAP.md** - Novos caminhos e oportunidades
 
 ### Público-Alvo
 
