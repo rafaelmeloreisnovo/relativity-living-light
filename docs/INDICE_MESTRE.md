@@ -62,6 +62,14 @@ Encaminhamentos complementares:
 > Materiais abaixo são preservados por histórico/rastreabilidade e **não** são a fonte oficial.
 
 ### Duplicatas históricas da série canônica
+- Duplicatas históricas mantidas para rastreabilidade (raiz, `RMR/` e `news/archive_legacy/`).
+- Fonte oficial única para consulta e citação:
+  - [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
+  - [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
+  - [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
+  - [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
+  - [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
+  - [`docs/canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md`](canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md)
 - 00_COMO_LER.md → [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
 - 06_COMPARACOES_DETALHADAS.md → [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
 - 09_GLOSSARIO_COMPLETO.md → [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)

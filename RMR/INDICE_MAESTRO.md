@@ -18,7 +18,7 @@ Este é o mapa de navegação central. **Tudo** que foi criado está mapeado aba
 
 ### **Para o Físico Teórico**
 ```
-Comece: 00_COMO_LER.md → "PARA O FÍSICO TEÓRICO"
+Comece: [docs/canonicos/00_COMO_LER.md](../docs/canonicos/00_COMO_LER.md) → "PARA O FÍSICO TEÓRICO"
 Depois: 01_PAPER_PRINCIPAL/
 Aprofunde: 07_TEORIA_ESTENDIDA/
 Valide: 05_TESTES_VALIDACAO/ + 02_CODIGO_NUMERICO/
@@ -26,7 +26,7 @@ Valide: 05_TESTES_VALIDACAO/ + 02_CODIGO_NUMERICO/
 
 ### **Para o Observacionista**
 ```
-Comece: 00_COMO_LER.md → "PARA O OBSERVACIONISTA"
+Comece: [docs/canonicos/00_COMO_LER.md](../docs/canonicos/00_COMO_LER.md) → "PARA O OBSERVACIONISTA"
 Depois: 05_TESTES_VALIDACAO/ + 03_DADOS/
 Veja: 04_FIGURAS/01_COSMOLOGIA/ + 02_OBSERVAVEIS/
 Compare: 06_COMPARACAO_LITERATURA/
@@ -34,18 +34,18 @@ Compare: 06_COMPARACAO_LITERATURA/
 
 ### **Para o Estudante**
 ```
-Comece: 10_FAQ_COMPLETO.md
-Depois: 09_GLOSSARIO_COMPLETO.md
+Comece: [docs/canonicos/10_FAQ_COMPLETO.md](../docs/canonicos/10_FAQ_COMPLETO.md)
+Depois: [docs/canonicos/09_GLOSSARIO_COMPLETO.md](../docs/canonicos/09_GLOSSARIO_COMPLETO.md)
 Visualize: 04_FIGURAS/ (tudo)
-Aprofunde: 00_COMO_LER.md → seu nível
+Aprofunde: [docs/canonicos/00_COMO_LER.md](../docs/canonicos/00_COMO_LER.md) → seu nível
 ```
 
 ### **Para o Jornalista/Divulgador**
 ```
-Comece: 11_DOCUMENTO_PRIORIDADE.md (3 min)
-Depois: 10_FAQ_COMPLETO.md "P&R Observacional"
+Comece: [docs/canonicos/11_DOCUMENTO_PRIORIDADE.md](../docs/canonicos/11_DOCUMENTO_PRIORIDADE.md) (3 min)
+Depois: [docs/canonicos/10_FAQ_COMPLETO.md](../docs/canonicos/10_FAQ_COMPLETO.md) "P&R Observacional"
 Pegue: 04_FIGURAS/ para usar em reportagens
-Cite: Templates em 11_DOCUMENTO_PRIORIDADE.md
+Cite: Templates em [docs/canonicos/11_DOCUMENTO_PRIORIDADE.md](../docs/canonicos/11_DOCUMENTO_PRIORIDADE.md)
 ```
 
 ---
@@ -55,12 +55,12 @@ Cite: Templates em 11_DOCUMENTO_PRIORIDADE.md
 ### **CAMADA 1: NAVEGAÇÃO & PRIORIDADE**
 
 ```
-✅ 00_COMO_LER.md
+✅ docs/canonicos/00_COMO_LER.md
    └─ 5 roteiros: Físico | Observacionista | Estudante | Jornalista | Leigo
    └─ ~15 min de leitura
    └─ Recomendado: COMECE AQUI
 
-✅ 11_DOCUMENTO_PRIORIDADE.md
+✅ docs/canonicos/11_DOCUMENTO_PRIORIDADE.md
    └─ Prova temporal: Rafael 10 meses ANTES de 6 estudos
    └─ Tabelas comparativas
    └─ Quem fez o quê primeiro
@@ -168,14 +168,14 @@ Cite: Templates em 11_DOCUMENTO_PRIORIDADE.md
 ### **CAMADA 8: REFERÊNCIA & GLOSSÁRIO**
 
 ```
-✅ 09_GLOSSARIO_COMPLETO.md
+✅ docs/canonicos/09_GLOSSARIO_COMPLETO.md
    └─ 60+ variáveis cosmológicas
    └─ Símbolos, unidades, range, interpretação
    └─ Conversões de unidades
    └─ Equivalências com literatura
    └─ Pronto para consulta
 
-✅ 10_FAQ_COMPLETO.md
+✅ docs/canonicos/10_FAQ_COMPLETO.md
    └─ 30+ perguntas:
       ├─ Físicas (superposição, W, MOND, etc)
       ├─ Observacionais (testado? como?)
@@ -229,7 +229,7 @@ Cite: Templates em 11_DOCUMENTO_PRIORIDADE.md
 
 ```
 Hora 1:
-  └─ 00_COMO_LER.md (escolha seu perfil)
+  └─ docs/canonicos/00_COMO_LER.md (escolha seu perfil)
 
 Horas 2-4:
   └─ Leia documentação principal (seu nível)
@@ -254,10 +254,10 @@ Horas 21-24:
 ### **Se quer...**
 
 **...entender superposição fotônica**
-→ 10_FAQ_COMPLETO.md (seção "O que é superposição fotônica?")
+→ [docs/canonicos/10_FAQ_COMPLETO.md](../docs/canonicos/10_FAQ_COMPLETO.md) (seção "O que é superposição fotônica?")
 
 **...saber quem foi primeiro**
-→ 11_DOCUMENTO_PRIORIDADE.md (tabela executiva)
+→ [docs/canonicos/11_DOCUMENTO_PRIORIDADE.md](../docs/canonicos/11_DOCUMENTO_PRIORIDADE.md) (tabela executiva)
 
 **...rodar modelo próprio**
 → 02_CODIGO_NUMERICO/README.md
