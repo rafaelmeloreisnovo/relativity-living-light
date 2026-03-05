@@ -3,9 +3,18 @@
 TEXTUAL_OUTPUTS = [
     'data/inputs/structure_d/Hz.csv',
     'data/inputs/structure_d/fsigma8.csv',
+    'data/inputs/structure_d/Hz_cov.csv',
+    'data/inputs/structure_d/Hz_cov_matrix.csv',
+    'data/inputs/structure_d/fsigma8_cov.csv',
+    'data/inputs/structure_d/fsigma8_cov_matrix.csv',
     'data/inputs/structure_d/mock_data_contract.json',
+    'data/inputs/structure_d/Hz_cov.csv',
+    'data/inputs/structure_d/Hz_cov_matrix.csv',
+    'data/inputs/structure_d/fsigma8_cov.csv',
+    'data/inputs/structure_d/fsigma8_cov_matrix.csv',
 ]
 
+import argparse
 import json
 import os
 import argparse
@@ -55,15 +64,15 @@ def main(seed=42, generate_covariance=False):
     rng = np.random.default_rng(seed)
 
     z_hz = np.array([0.1, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0])
-    Hz_true = 70.0 * np.sqrt(0.3 * (1 + z_hz) ** 3 + 0.7)
+    hz_true = 70.0 * np.sqrt(0.3 * (1 + z_hz) ** 3 + 0.7)
     sig_hz = 3.0 + 2.0 * rng.random(len(z_hz))
     Hz_obs = Hz_true + rng.normal(0, sig_hz)
     hz_df = pd.DataFrame({"z": z_hz, "Hz": Hz_obs, "sigma": sig_hz})
     write_csv_checked(hz_df, os.path.join(DATA, "Hz.csv"))
 
     z_fs = np.array([0.1, 0.3, 0.5, 0.8, 1.0, 1.5, 2.0])
-    Omz = (0.3 * (1 + z_fs) ** 3) / (0.3 * (1 + z_fs) ** 3 + 0.7)
-    fs8_true = (Omz ** 0.55) * 0.8
+    omz = (0.3 * (1 + z_fs) ** 3) / (0.3 * (1 + z_fs) ** 3 + 0.7)
+    fs8_true = (omz ** 0.55) * 0.8
     sig_fs = 0.03 + 0.03 * rng.random(len(z_fs))
     fs8_obs = fs8_true + rng.normal(0, sig_fs)
     fs_df = pd.DataFrame({"z": z_fs, "fs8": fs8_obs, "sigma": sig_fs})
@@ -88,19 +97,42 @@ def main(seed=42, generate_covariance=False):
     metadata = {
         "seed": int(seed),
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "generated_covariance": bool(generate_covariance),
         "datasets": {
             "Hz.csv": {
                 "z_range": [float(np.min(z_hz)), float(np.max(z_hz))],
-                "sigma_range": [3.0, 5.0],
+                "sigma_range": [float(np.min(sig_hz)), float(np.max(sig_hz))],
                 "rows": int(len(z_hz)),
             },
             "fsigma8.csv": {
                 "z_range": [float(np.min(z_fs)), float(np.max(z_fs))],
-                "sigma_range": [0.03, 0.06],
+                "sigma_range": [float(np.min(sig_fs)), float(np.max(sig_fs))],
                 "rows": int(len(z_fs)),
             },
         },
+        "covariance_generated": bool(generate_covariance),
     }
+
+    if generate_covariance:
+        hz_cov_df = hz_df[["z", "Hz"]].copy()
+        fs8_cov_df = fs8_df[["z", "fs8"]].copy()
+        hz_cov_matrix = _build_covariance(z_hz, sig_hz)
+        fs8_cov_matrix = _build_covariance(z_fs, sig_fs)
+
+        write_csv_checked(hz_cov_df, os.path.join(DATA, "Hz_cov.csv"))
+        write_matrix_checked(hz_cov_matrix, os.path.join(DATA, "Hz_cov_matrix.csv"))
+        write_csv_checked(fs8_cov_df, os.path.join(DATA, "fsigma8_cov.csv"))
+        write_matrix_checked(fs8_cov_matrix, os.path.join(DATA, "fsigma8_cov_matrix.csv"))
+
+        metadata["datasets"]["Hz_cov.csv"] = {
+            "rows": int(len(z_hz)),
+            "matrix_shape": [int(len(z_hz)), int(len(z_hz))],
+        }
+        metadata["datasets"]["fsigma8_cov.csv"] = {
+            "rows": int(len(z_fs)),
+            "matrix_shape": [int(len(z_fs)), int(len(z_fs))],
+        }
+
     contract_path = os.path.join(DATA, "mock_data_contract.json")
     with open(contract_path, "w", encoding="utf-8") as fp:
         json.dump(metadata, fp, ensure_ascii=False, indent=2)
@@ -124,10 +156,24 @@ def main(seed=42, generate_covariance=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate synthetic Structure-D example datasets.")
     parser.add_argument("--seed", type=int, default=42, help="RNG seed for reproducible mock generation.")
+    parser.set_defaults(generate_covariance=True)
     parser.add_argument(
         "--with-covariance",
+        dest="generate_covariance",
         action="store_true",
-        help="Also generate synthetic covariance matrices and CSVs compatible with error_model='covariance'.",
+        help="Generate synthetic covariance matrices and CSVs compatible with error_model='covariance' (default).",
+    )
+    parser.add_argument(
+        "--without-covariance",
+        dest="generate_covariance",
+        action="store_false",
+        help="Disable covariance artifact generation.",
+    )
+    parser.add_argument(
+        "--without-covariance",
+        action="store_true",
+        help="Disable covariance generation even if --with-covariance is present.",
     )
     args = parser.parse_args()
-    main(seed=args.seed, generate_covariance=args.with_covariance)
+    generate_covariance = bool(args.with_covariance or not args.without_covariance)
+    main(seed=args.seed, generate_covariance=generate_covariance)

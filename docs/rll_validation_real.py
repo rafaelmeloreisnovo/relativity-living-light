@@ -198,7 +198,6 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
-REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR = os.path.join(REPO_ROOT, 'results')
 FIGS_PAPER_DIR = os.path.join(REPO_ROOT, 'figs', 'paper')
 PNG_PATH = os.path.join(FIGS_PAPER_DIR, 'RLL_validacao_real.png')

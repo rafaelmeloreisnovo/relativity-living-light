@@ -2,6 +2,7 @@ import argparse
 import csv
 import json
 import os
+import subprocess
 import time
 import subprocess
 
@@ -67,8 +68,6 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "BIC",
         "N",
         "k",
-        "fit_params",
-        "fixed_params",
         "datasets_used",
         "run_name",
         "profile_name",
@@ -96,9 +95,38 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "top_parameters",
         "notes",
     ],
+    "error_mode_usage.csv": [
+        "dataset_id",
+        "error_mode",
+        "has_covariance",
+        "has_diagonal_sigma",
+        "n_obs",
+    ],
 }
 
 EXECUTION_TIMING_BASENAME = "execution_timing"
+
+
+def _safe_git_commit():
+    head_file = os.path.join(BASE_DIR, ".git", "HEAD")
+    if not os.path.exists(head_file):
+        return None
+    try:
+        import subprocess
+
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=BASE_DIR, text=True).strip()
+    except Exception:
+        return None
+
+
+def _safe_dirty_worktree():
+    try:
+        import subprocess
+
+        out = subprocess.check_output(["git", "status", "--porcelain"], cwd=BASE_DIR, text=True)
+        return bool(out.strip())
+    except Exception:
+        return None
 
 
 def _validate_profile_name(cfg, profile_name):
@@ -242,6 +270,19 @@ def _chi2_scalar_by_observable(entry, lcdm, rll):
     )
 
 
+
+
+def _find_dataset_by_kind(datasets, kind):
+    kind_aliases = {
+        "hz": {"hz", "real_hz", "hz_cov_synth"},
+        "fsigma8": {"fsigma8", "fsigma8_cov_synth"},
+    }
+    target_ids = kind_aliases.get(kind, {kind})
+    for dataset_id in target_ids:
+        if dataset_id in datasets:
+            return datasets[dataset_id]
+    return None
+
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, Ob_h2=0.02236)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00, Ob_h2=0.02236)
@@ -296,6 +337,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         z = np.asarray(entry["z"], dtype=float)
         lcdm_prediction = model_lcdm(z, lcdm)
         rll_prediction = model_rll(z, rll)
+        model_kind = "bao" if entry.get("observable") == "DV_over_rs" else "default"
 
         if "bao" in str(entry.get("observable", "")).lower():
             chi2_lcdm += _chi2_bao_from_entry(entry, lcdm_prediction)
@@ -359,6 +401,21 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
     return pd.DataFrame(rows), out_model, out_cov, bool(cov_rows)
 
+
+
+
+def _find_dataset_by_kind(datasets, kind):
+    kind_l = str(kind).lower()
+    for dataset_id, entry in datasets.items():
+        observable = str(entry.get("observable", "")).lower()
+        if kind_l in dataset_id.lower() or kind_l in observable:
+            z = entry.get("z")
+            values = entry.get("values")
+            errors = entry.get("errors")
+            if z is None or values is None or errors is None:
+                continue
+            return entry
+    return None
 
 def run_optional_bayes_summary_bic_proxy(df_model):
     rows = []
@@ -447,7 +504,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         ],
         "bayes_enabled": bool(bayes),
         "bayes_mode": bayes_mode if bayes else None,
-        "bayes_inference_hyperparameters": inference_hyperparameters,
+        "bayes_inference_hyperparameters": inference_hyperparameters if bayes else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
         "datasets": _dataset_contract_block(cfg_meta, datasets),
     }
@@ -589,6 +646,19 @@ def _validate_required_csv_schemas():
         _validate_output_schema(filename, EXPECTED_SCHEMA_BY_OUTPUT[filename])
 
 
+
+
+def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
+    result = {
+        "profile": effective_profile,
+        "covariance_policy": effective_policy,
+        "rows": int(len(df_model)),
+        "output_paths": dict(output_paths),
+    }
+    if extra_paths:
+        result["extra_paths"] = dict(extra_paths)
+    return result
+
 def main(
     config_path=DEFAULT_CONFIG,
     profile_name=DEFAULT_PROFILE,
@@ -724,7 +794,6 @@ def main(
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
     out_timing_csv, out_timing_json = _write_timing_artifacts(timing_records)
 
-    validate_t0 = time.perf_counter()
     _assert_required_outputs()
     _validate_required_csv_schemas()
 
@@ -734,8 +803,6 @@ def main(
     print(f"[classic] wrote: {os.path.join(RESULTS, 'error_mode_usage.csv')}")
     print(f"[classic] wrote: {os.path.join(RESULTS, 'rll_regime_summary.csv')}")
     print(f"[classic] wrote: {out_contract}")
-    print(f"[classic] wrote: {out_timing_csv}")
-    print(f"[classic] wrote: {out_timing_json}")
     if bayes:
         for name in produced_optional:
             print(f"[bayes] wrote: {os.path.join(RESULTS, name)}")
@@ -763,6 +830,19 @@ def main(
         else None,
     )
 
+
+
+
+def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
+    payload = {
+        "effective_profile": effective_profile,
+        "effective_policy": effective_policy,
+        "rows": len(df_model),
+        "output_paths": output_paths,
+    }
+    if extra_paths:
+        payload["extra_paths"] = extra_paths
+    return payload
 
 def _build_parser():
     parser = argparse.ArgumentParser(description="Executa o pipeline structure_d")
