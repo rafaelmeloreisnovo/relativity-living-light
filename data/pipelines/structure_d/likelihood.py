@@ -2,6 +2,8 @@
 
 TEXTUAL_OUTPUTS = []
 
+import warnings
+
 import numpy as np
 import pandas as pd
 import hashlib
@@ -101,15 +103,55 @@ def chi2(obs, mod, sigma):
     return float(np.sum(r * r))
 
 
-def chi2_with_covariance(obs, mod, covariance):
+def chi2_with_covariance(obs, mod, covariance, diag_accumulator=None):
     obs_arr = np.asarray(obs, dtype=float)
     mod_arr = np.asarray(mod, dtype=float)
     if obs_arr.shape != mod_arr.shape:
         raise ValueError("obs and mod must have the same shape")
     cov = _validated_covariance_matrix(covariance, expected_size=obs_arr.shape[0])
     residual = obs_arr - mod_arr
-    solved = np.linalg.solve(cov, residual)
+    solved = _solve_covariance_system(cov, residual, diag_accumulator=diag_accumulator)
     return float(residual @ solved)
+
+
+def _register_solve_fallback(diag_accumulator, method, detail):
+    warnings.warn(detail, RuntimeWarning, stacklevel=3)
+    if diag_accumulator is None:
+        return
+    diag_accumulator["covariance_solve_fallback_used"] = True
+    diag_accumulator["covariance_solve_fallback_method"] = method
+    diag_accumulator["covariance_solve_fallback_count"] = int(
+        diag_accumulator.get("covariance_solve_fallback_count", 0)
+    ) + 1
+
+
+def _solve_covariance_system(covariance, residual, diag_accumulator=None):
+    try:
+        return np.linalg.solve(covariance, residual)
+    except np.linalg.LinAlgError:
+        scale = float(np.max(np.diag(covariance)))
+        epsilon = np.finfo(float).eps * max(scale, 1.0)
+        regularized_covariance = covariance + np.eye(covariance.shape[0], dtype=float) * epsilon
+        try:
+            solved = np.linalg.solve(regularized_covariance, residual)
+        except np.linalg.LinAlgError:
+            _register_solve_fallback(
+                diag_accumulator,
+                method="pseudo_inverse",
+                detail=(
+                    "covariance solve failed; falling back to pseudo-inverse after regularized solve failure"
+                ),
+            )
+            return np.linalg.pinv(covariance) @ residual
+
+        _register_solve_fallback(
+            diag_accumulator,
+            method="regularized_solve",
+            detail=(
+                "covariance solve failed; used minimal diagonal regularization fallback"
+            ),
+        )
+        return solved
 
 
 def _theta_to_dict(theta, data):
