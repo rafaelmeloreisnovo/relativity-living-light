@@ -15,6 +15,13 @@
         "real_bao",
         "real_cmb_shift"
       ]
+    },
+    "structure_d_synthetic_advanced": {
+      "run_name": "structure_d_synthetic_advanced",
+      "active_datasets": [
+        "hz_cov_synth",
+        "fsigma8_cov_synth"
+      ]
     }
   },
   "datasets": {
@@ -105,6 +112,40 @@
         "survey": "Planck2018",
         "redshift_range": "z=1089.92",
         "reference": "Planck2018_VI"
+      }
+    },
+    "hz_cov_synth": {
+      "format": "csv",
+      "path": "data/inputs/structure_d/Hz_cov.csv",
+      "observable": "Hz",
+      "error_model": "covariance",
+      "columns": {
+        "z": "z",
+        "value": "Hz",
+        "covariance": null
+      },
+      "covariance_path": "data/inputs/structure_d/Hz_cov_matrix.csv",
+      "metadata": {
+        "survey": "inputs_structure_d_covariance",
+        "redshift_range": "[0.0, 3.0]",
+        "reference": "local_input_covariance"
+      }
+    },
+    "fsigma8_cov_synth": {
+      "format": "csv",
+      "path": "data/inputs/structure_d/fsigma8_cov.csv",
+      "observable": "fs8",
+      "error_model": "covariance",
+      "columns": {
+        "z": "z",
+        "value": "fs8",
+        "covariance": null
+      },
+      "covariance_path": "data/inputs/structure_d/fsigma8_cov_matrix.csv",
+      "metadata": {
+        "survey": "inputs_structure_d_covariance",
+        "redshift_range": "[0.0, 3.0]",
+        "reference": "local_input_covariance"
       }
     }
   }

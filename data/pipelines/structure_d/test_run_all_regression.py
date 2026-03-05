@@ -210,6 +210,31 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                 f"required output {filename} was not generated for mock real-like profile",
             )
 
+    def test_synthetic_advanced_profile_with_covariance_inputs_runs(self):
+        generated_paths = [
+            os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz_cov.csv"),
+            os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz_cov_matrix.csv"),
+            os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8_cov.csv"),
+            os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8_cov_matrix.csv"),
+            os.path.join(run_all.RESULTS, "model_comparison.csv"),
+            os.path.join(run_all.RESULTS, "covariance_usage.csv"),
+            os.path.join(run_all.RESULTS, "reproduction_contract.json"),
+        ]
+
+        def _cleanup_generated_files():
+            for path in generated_paths:
+                if os.path.exists(path):
+                    os.remove(path)
+
+        self.addCleanup(_cleanup_generated_files)
+
+        make_example_data.main(seed=321, generate_covariance=True)
+        run_all.main(profile_name="structure_d_synthetic_advanced")
+
+        cov_usage_path = os.path.join(run_all.RESULTS, "covariance_usage.csv")
+        cov_usage = pd.read_csv(cov_usage_path)
+        self.assertTrue((cov_usage["covariance_mode"] == "full").all())
+
     def test_covariance_policy_diagonal_only_converts_covariance_to_sigma(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             data_dir = os.path.join(temp_dir, "data")
