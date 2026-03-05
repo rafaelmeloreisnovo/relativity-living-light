@@ -110,12 +110,33 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
         make_example_data.main(seed=123)
         run_all.main(profile_name="structure_d_default")
 
+        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
+        with open(contract_path, "r", encoding="utf-8") as fp:
+            contract = json.load(fp)
+
+        self.assertEqual(contract.get("required_outputs"), run_all.REQUIRED_OUTPUTS)
+        self.assertEqual(contract.get("profile"), "structure_d_default")
+        self.assertEqual(contract.get("covariance_policy"), "prefer_full")
+
+        optional_entries = contract.get("optional_outputs", [])
+        self.assertEqual(len(optional_entries), len(run_all.OPTIONAL_OUTPUTS))
+        self.assertEqual(
+            sorted(entry.get("file") for entry in optional_entries),
+            sorted(run_all.OPTIONAL_OUTPUTS.keys()),
+        )
+
         for filename in run_all.REQUIRED_OUTPUTS:
             output_path = os.path.join(run_all.RESULTS, filename)
             self.assertTrue(
                 os.path.exists(output_path),
                 f"required output {filename} was not generated for mock real-like profile",
             )
+
+        for optional in optional_entries:
+            file_name = optional["file"]
+            output_path = os.path.join(run_all.RESULTS, file_name)
+            self.assertFalse(bool(optional.get("produced")), f"{file_name} should not be produced without --bayes")
+            self.assertFalse(os.path.exists(output_path), f"{file_name} should not exist when produced=false")
 
     def test_covariance_policy_diagonal_only_converts_covariance_to_sigma(self):
         with tempfile.TemporaryDirectory() as temp_dir:
