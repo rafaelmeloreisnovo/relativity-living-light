@@ -1,5 +1,7 @@
 import os
+import json
 import numpy as np
+import pandas as pd
 from scipy.integrate import quad
 from scipy.optimize import differential_evolution
 
@@ -16,6 +18,35 @@ REGIME_REAL = "real"
 
 C_KMS = 299792.458
 Z_CMB = 1089.92
+
+EXPECTED_MODEL_COMPARISON_HEADER = [
+    "model",
+    "chi2",
+    "AIC",
+    "BIC",
+    "N",
+    "k",
+    "datasets_used",
+    "run_name",
+    "profile_name",
+    "covariance_policy",
+]
+EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER = ["H0", "Om", "OL", "Ob_h2", "Os0", "zt", "wt"]
+
+
+def _expected_model_comparison_header(include_fit_params):
+    if include_fit_params:
+        return EXPECTED_MODEL_COMPARISON_HEADER + EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER
+    return EXPECTED_MODEL_COMPARISON_HEADER
+
+
+def _validate_model_comparison_header(csv_path, include_fit_params):
+    expected_header = _expected_model_comparison_header(include_fit_params)
+    actual_header = list(pd.read_csv(csv_path, nrows=0).columns)
+    if actual_header != expected_header:
+        raise RuntimeError(
+            f"schema mismatch for {os.path.basename(csv_path)}: expected {expected_header}, got {actual_header}"
+        )
 
 
 def _f_log(z, zt, wt):
@@ -112,6 +143,35 @@ def _obj_rll(params, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig
     return c2
 
 
+def _dataset_block_name(dataset_id, entry):
+    observable = str(entry.get("observable", dataset_id)).lower()
+    if dataset_id in {"hz", "real_hz"} or "hz" in observable:
+        return "Hz"
+    if dataset_id in {"fsigma8"} or "fs" in observable:
+        return "fσ8"
+    if dataset_id in {"real_bao"} or "bao" in observable:
+        return "BAO"
+    if "sne" in observable:
+        return "SNe"
+    if "lens" in observable:
+        return "lenses"
+    return str(entry.get("observable", dataset_id))
+
+
+def _write_error_mode_usage(datasets):
+    rows = []
+    for dataset_id, entry in datasets.items():
+        rows.append(
+            {
+                "dataset_id": dataset_id,
+                "block": _dataset_block_name(dataset_id, entry),
+                "error_mode": "covariance" if entry.get("covariance") is not None else "errors",
+            }
+        )
+    out = os.path.join(RESULTS, "error_mode_usage.csv")
+    evaluate_model(rows, out)
+    return out
+
 def main(
     config_path=DEFAULT_CONFIG,
     profile_name=REAL_PROFILE,
@@ -145,7 +205,7 @@ def main(
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,
-        seed=42,
+        seed=OPTIMIZER_SEED,
         maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120")),
         tol=1e-6,
         workers=1,
@@ -154,7 +214,7 @@ def main(
     res_r = differential_evolution(
         lambda p: _obj_rll(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_r,
-        seed=42,
+        seed=OPTIMIZER_SEED,
         maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150")),
         tol=1e-6,
         workers=1,
@@ -228,9 +288,12 @@ def main(
     ]
 
     out = os.path.join(RESULTS, output_filename)
+    out_error_mode = _write_error_mode_usage(datasets)
     df = evaluate_model(rows, out)
+    _validate_model_comparison_header(out, include_fit_params)
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
+    print(f"Wrote: {out_error_mode}")
     return df
 
 
