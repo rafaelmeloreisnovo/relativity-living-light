@@ -8,29 +8,11 @@ RISK_REGEX='1\s*[→>-]+\s*DE.{0,80}0\s*[→>-]+\s*DM|f\s*\(\s*z\s*\)\s*->?\s*1.
 LOGISTIC_REGEX='f\s*\(\s*z\s*\)\s*=\s*1\s*/\s*\(\s*1\s*\+\s*exp\s*\(\s*\(\s*z\s*-\s*z[_t]?\s*\)\s*/\s*w[_t]?\s*\)\s*\)'
 
 if command -v rg >/dev/null 2>&1; then
-  list_files() {
-    rg --files -g '*.md' -g '*.tex'
-  }
-  has_match() {
-    local regex="$1" file="$2"
-    rg -n -i "$regex" "$file" >/dev/null 2>&1
-  }
-  print_matches() {
-    local regex="$1" file="$2"
-    rg -n -i "$regex" "$file" || true
-  }
+  list_files() { rg --files -g '*.md' -g '*.tex'; }
+  search_in_file() { rg -n -i "$1" "$2"; }
 else
-  list_files() {
-    find . -type f \( -name '*.md' -o -name '*.tex' \) -print | sed 's#^./##'
-  }
-  has_match() {
-    local regex="$1" file="$2"
-    grep -n -E -i "$regex" "$file" >/dev/null 2>&1
-  }
-  print_matches() {
-    local regex="$1" file="$2"
-    grep -n -E -i "$regex" "$file" || true
-  }
+  list_files() { find . -type f \( -name '*.md' -o -name '*.tex' \) | sed 's#^\./##'; }
+  search_in_file() { grep -nEi "$1" "$2"; }
 fi
 
 files="$(list_files)"
@@ -38,9 +20,9 @@ files="$(list_files)"
 status=0
 while IFS= read -r file; do
   [[ -z "$file" ]] && continue
-  if has_match "$RISK_REGEX" "$file" && has_match "$LOGISTIC_REGEX" "$file"; then
+  if search_in_file "$RISK_REGEX" "$file" >/dev/null 2>&1 && search_in_file "$LOGISTIC_REGEX" "$file" >/dev/null 2>&1; then
     echo "[CONTRADICTION_RISK] $file"
-    print_matches "$RISK_REGEX|$LOGISTIC_REGEX" "$file"
+    search_in_file "$RISK_REGEX|$LOGISTIC_REGEX" "$file" || true
     status=1
   fi
 done <<< "$files"

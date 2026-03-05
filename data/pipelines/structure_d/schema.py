@@ -41,13 +41,10 @@ def _validate_covariance_matrix(covariance, expected_size):
 def _json_safe_metadata(metadata):
     if not isinstance(metadata, dict):
         raise ValueError("metadata must be a dict")
-    safe = {}
+    sanitized = {}
     for key, value in metadata.items():
-        if isinstance(value, (str, int, float, bool)) or value is None:
-            safe[str(key)] = value
-        else:
-            safe[str(key)] = str(value)
-    return safe
+        sanitized[str(key)] = str(value)
+    return sanitized
 
 
 def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):

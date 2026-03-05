@@ -2,10 +2,11 @@
 
 TEXTUAL_OUTPUTS = []
 
+import hashlib
 import json
 import os
-import hashlib
 from datetime import datetime, timezone
+
 import numpy as np
 import pandas as pd
 
@@ -57,7 +58,6 @@ def load_run_config(config_path):
 
 def _resolve_profile(cfg, profile_name=None):
     if "profiles" not in cfg:
-        # backward-compatible path (legacy flat config)
         resolved = dict(cfg)
         resolved.setdefault("run_name", "legacy")
         resolved["active_datasets"] = list(cfg.get("active_datasets", []))
@@ -71,6 +71,24 @@ def _resolve_profile(cfg, profile_name=None):
     if "covariance_policy" not in resolved and "covariance_policy" in cfg:
         resolved["covariance_policy"] = cfg["covariance_policy"]
     return resolved
+
+
+def _build_source_info(path):
+    path_abs = _abs_path(path)
+    with open(path_abs, "rb") as f:
+        hasher = hashlib.sha256()
+        while True:
+            chunk = f.read(1024 * 1024)
+            if not chunk:
+                break
+            hasher.update(chunk)
+        digest = hasher.hexdigest()
+    mtime_utc = datetime.fromtimestamp(os.path.getmtime(path_abs), tz=timezone.utc).isoformat()
+    return {
+        "path_abs": path_abs,
+        "timestamp_utc": mtime_utc,
+        "sha256": digest,
+    }
 
 
 def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
@@ -125,6 +143,7 @@ def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WI
     values = df[cols["value"]].to_numpy(dtype=float)
     z_values = df[cols["z"]].to_numpy(dtype=float) if cols.get("z") else None
     z_reordered = False
+    sort_idx = None
 
     if z_values is not None:
         z_order_policy = desc.get("z_order_policy", "validate")
@@ -146,7 +165,7 @@ def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WI
                     "set z_order_policy='sort' to reorder explicitly"
                 )
 
-    metadata = dict(desc["metadata"])
+    metadata = dict(desc.get("metadata") or {})
     metadata["z_reordered"] = bool(z_reordered)
 
     entry = {
@@ -161,20 +180,21 @@ def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WI
 
     if desc["error_model"] == "errors":
         errors = df[cols["error"]].to_numpy(dtype=float)
-        if z_reordered:
+        if sort_idx is not None:
             errors = errors[sort_idx]
         entry["errors"] = errors
     elif desc["error_model"] == "covariance":
-        if cols.get("covariance"):
-            cov_path = _abs_path(cols["covariance"])
-        else:
-            cov_path = _abs_path(desc["covariance_path"])
+        cov_path = _abs_path(cols["covariance"]) if cols.get("covariance") else _abs_path(desc["covariance_path"])
         covariance = np.loadtxt(cov_path, delimiter=",")
+
         if selected_covariance_idx is not None:
             covariance = covariance[np.ix_(selected_covariance_idx, selected_covariance_idx)]
-        if z_reordered:
+
+        if sort_idx is not None:
             covariance = covariance[np.ix_(sort_idx, sort_idx)]
+
         entry["covariance"] = covariance
+        entry["errors"] = None
     else:
         raise ValueError(f"unsupported error_model for {dataset_id}: {desc['error_model']}")
 
@@ -192,7 +212,7 @@ def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_P
     if missing_values or missing_errors:
         raise ValueError(
             "dataset "
-            f"{dataset_id} missing json keys in file {source_info['path_abs']}: "
+            f"{dataset_id} missing json keys in file {desc['path']}: "
             f"values={missing_values}, errors={missing_errors}"
         )
 
@@ -211,17 +231,6 @@ def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_P
         "source": source_info,
     }
     return validate_observable_schema(entry, min_points_with_z=min_points_with_z)
-
-
-def _build_source_info(path):
-    path_abs = _abs_path(path)
-    digest = _sha256_file(path_abs)
-    mtime_utc = datetime.fromtimestamp(os.path.getmtime(path_abs), tz=timezone.utc).isoformat()
-    return {
-        "path_abs": path_abs,
-        "timestamp_utc": mtime_utc,
-        "sha256": digest,
-    }
 
 
 def load_dataset_by_descriptor(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):

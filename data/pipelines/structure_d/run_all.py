@@ -2,6 +2,7 @@ import argparse
 import csv
 import json
 import os
+import subprocess
 import time
 
 import numpy as np
@@ -95,6 +96,13 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "top_parameters",
         "notes",
     ],
+    "error_mode_usage.csv": [
+        "dataset_id",
+        "error_mode",
+        "has_covariance",
+        "has_diagonal_sigma",
+        "n_obs",
+    ],
 }
 
 EXECUTION_TIMING_BASENAME = "execution_timing"
@@ -168,29 +176,19 @@ def _dataset_block_name(dataset_id, entry):
     return str(entry.get("observable", dataset_id))
 
 
-
-
 def _build_error_mode_rows(datasets):
     rows = []
     for dataset_id, entry in datasets.items():
-        has_cov = entry.get("covariance") is not None
-        has_err = entry.get("errors") is not None
-        if has_cov:
-            mode = "covariance"
-        elif has_err:
-            mode = "errors"
-        else:
-            mode = "unknown"
-        rows.append(
-            {
-                "dataset_id": dataset_id,
-                "observable": entry.get("observable", dataset_id),
-                "error_mode": mode,
-                "has_full_covariance": bool(has_cov),
-                "has_diagonal_sigma": bool(has_err),
-            }
-        )
+        has_cov = bool(entry.get("covariance") is not None)
+        rows.append({
+            "dataset_id": dataset_id,
+            "error_mode": "covariance" if has_cov else "errors",
+            "has_covariance": has_cov,
+            "has_diagonal_sigma": bool(entry.get("errors") is not None),
+            "n_obs": int(len(entry.get("values", []))),
+        })
     return rows
+
 
 def _apply_covariance_policy(datasets, covariance_policy):
     if covariance_policy == "full_required":
@@ -320,13 +318,8 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         lcdm_prediction = model_lcdm(z, lcdm)
         rll_prediction = model_rll(z, rll)
 
-        is_bao_dataset = dataset_id == "real_bao"
-        if is_bao_dataset:
-            chi2_lcdm += _chi2_bao_from_entry(entry, lcdm_prediction)
-            chi2_rll += _chi2_bao_from_entry(entry, rll_prediction)
-        else:
-            chi2_lcdm += _chi2_from_entry(entry, lcdm_prediction)
-            chi2_rll += _chi2_from_entry(entry, rll_prediction)
+        chi2_lcdm += _chi2_from_entry(entry, lcdm_prediction)
+        chi2_rll += _chi2_from_entry(entry, rll_prediction)
 
         n_obs += len(entry["values"])
 
@@ -379,6 +372,21 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
     return pd.DataFrame(rows), out_model, out_cov, bool(cov_rows)
 
+
+
+
+def _find_dataset_by_kind(datasets, kind):
+    kind_l = str(kind).lower()
+    for dataset_id, entry in datasets.items():
+        observable = str(entry.get("observable", "")).lower()
+        if kind_l in dataset_id.lower() or kind_l in observable:
+            z = entry.get("z")
+            values = entry.get("values")
+            errors = entry.get("errors")
+            if z is None or values is None or errors is None:
+                continue
+            return entry
+    return None
 
 def run_optional_bayes_summary_bic_proxy(df_model):
     rows = []
@@ -433,15 +441,15 @@ def _dataset_contract_block(cfg_meta, datasets):
     return rows
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, bayes_seed, bayes_nwalkers, bayes_nsteps, bayes_nlive):
-    git_commit = _safe_git_commit()
-    dirty_worktree = _safe_dirty_worktree()
-    inference_hyperparameters = {
-        "seed": int(bayes_seed),
-        "nwalkers": int(bayes_nwalkers),
-        "nsteps": int(bayes_nsteps),
-        "nlive": int(bayes_nlive),
-    } if bayes and bayes_mode == "inference" else None
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, inference_hyperparameters=None):
+    try:
+        git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    except Exception:
+        git_commit = None
+    try:
+        dirty_worktree = bool(subprocess.check_output(["git", "status", "--porcelain"], text=True).strip())
+    except Exception:
+        dirty_worktree = None
 
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
@@ -728,7 +736,6 @@ def main(
     )
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
 
-    validate_t0 = time.perf_counter()
     _assert_required_outputs()
     _validate_required_csv_schemas()
 
@@ -765,6 +772,19 @@ def main(
         else None,
     )
 
+
+
+
+def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
+    payload = {
+        "effective_profile": effective_profile,
+        "effective_policy": effective_policy,
+        "rows": len(df_model),
+        "output_paths": output_paths,
+    }
+    if extra_paths:
+        payload["extra_paths"] = extra_paths
+    return payload
 
 def _build_parser():
     parser = argparse.ArgumentParser(description="Executa o pipeline structure_d")

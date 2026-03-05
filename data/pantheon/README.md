@@ -1,10 +1,13 @@
 # Pantheon+ inputs
 
-Coloque os arquivos Pantheon+ nesta pasta para ativar o fluxo observacional completo:
+Este diretório é reservado para os arquivos do Pantheon+ usados em `docs/panteon_likelihood.py`.
 
+Arquivos esperados:
 - `lcparam_full_long_zhel.txt` (obrigatório)
-- `sys_full_long.txt` (opcional, recomendado para covariância sistemática)
+- `sys_full_long.txt` (opcional, recomendado)
 
-Origem sugerida: repositório oficial Pantheon+SH0ES DataRelease.
+Fonte oficial:
+- https://github.com/PantheonPlusSH0ES/DataRelease
 
-Sem esses arquivos, scripts que dependem de Pantheon+ devem operar em modo parcial (sem SNe) e reportar explicitamente a ausência.
+Modo offline:
+- Se `sys_full_long.txt` não existir, o pipeline usa apenas covariância estatística (diagonal) e emite aviso explícito.

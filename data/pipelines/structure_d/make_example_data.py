@@ -34,24 +34,21 @@ def write_csv_checked(df, output_path):
         )
 
 
-def _make_covariance(sigmas, rho=0.15):
-    sigmas = np.asarray(sigmas, dtype=float)
-    corr = np.full((len(sigmas), len(sigmas)), rho, dtype=float)
-    np.fill_diagonal(corr, 1.0)
-    cov = corr * np.outer(sigmas, sigmas)
-    return cov
-
-
-def _write_covariance_matrix(covariance, output_path):
-    try:
-        np.savetxt(output_path, covariance, delimiter=",", fmt="%.10g")
-    except OSError as exc:
-        raise OSError(f"Falha ao escrever matriz de covariância: {output_path}") from exc
-
+def write_matrix_checked(matrix, output_path):
+    np.savetxt(output_path, matrix, delimiter=",")
     if (not os.path.exists(output_path)) or os.path.getsize(output_path) <= 0:
         raise RuntimeError(
-            f"Arquivo de covariância inválido após escrita (ausente ou vazio): {output_path}"
+            f"Arquivo de matriz inválido após escrita (ausente ou vazio): {output_path}"
         )
+
+
+def _correlated_covariance(sigmas, corr=0.2):
+    sigmas = np.asarray(sigmas, dtype=float)
+    n = sigmas.size
+    corr_m = np.full((n, n), corr, dtype=float)
+    np.fill_diagonal(corr_m, 1.0)
+    cov = np.outer(sigmas, sigmas) * corr_m
+    return cov
 
 
 def main(seed=42, generate_covariance=True):
@@ -62,41 +59,54 @@ def main(seed=42, generate_covariance=True):
     hz_true = 70.0 * np.sqrt(0.3 * (1 + z_hz) ** 3 + 0.7)
     sig_hz = 3.0 + 2.0 * rng.random(len(z_hz))
     hz_obs = hz_true + rng.normal(0, sig_hz)
-    hz_df = pd.DataFrame({"z": z_hz, "Hz": hz_obs, "sigma": sig_hz})
-    write_csv_checked(hz_df, os.path.join(DATA, "Hz.csv"))
+
+    write_csv_checked(
+        pd.DataFrame({"z": z_hz, "Hz": hz_obs, "sigma": sig_hz}),
+        os.path.join(DATA, "Hz.csv"),
+    )
 
     z_fs = np.array([0.1, 0.3, 0.5, 0.8, 1.0, 1.5, 2.0])
     omz = (0.3 * (1 + z_fs) ** 3) / (0.3 * (1 + z_fs) ** 3 + 0.7)
     fs8_true = (omz ** 0.55) * 0.8
     sig_fs = 0.03 + 0.03 * rng.random(len(z_fs))
     fs8_obs = fs8_true + rng.normal(0, sig_fs)
-    fs8_df = pd.DataFrame({"z": z_fs, "fs8": fs8_obs, "sigma": sig_fs})
-    write_csv_checked(fs8_df, os.path.join(DATA, "fsigma8.csv"))
+
+    write_csv_checked(
+        pd.DataFrame({"z": z_fs, "fs8": fs8_obs, "sigma": sig_fs}),
+        os.path.join(DATA, "fsigma8.csv"),
+    )
 
     if generate_covariance:
-        hz_cov_df = hz_df[["z", "Hz"]].copy()
-        fs8_cov_df = fs8_df[["z", "fs8"]].copy()
-        write_csv_checked(hz_cov_df, os.path.join(DATA, "Hz_cov.csv"))
-        write_csv_checked(fs8_cov_df, os.path.join(DATA, "fsigma8_cov.csv"))
-
-        hz_cov = _make_covariance(sig_hz, rho=0.12)
-        fs8_cov = _make_covariance(sig_fs, rho=0.10)
-        _write_covariance_matrix(hz_cov, os.path.join(DATA, "Hz_cov_matrix.csv"))
-        _write_covariance_matrix(fs8_cov, os.path.join(DATA, "fsigma8_cov_matrix.csv"))
+        write_csv_checked(
+            pd.DataFrame({"z": z_hz, "Hz": hz_obs}),
+            os.path.join(DATA, "Hz_cov.csv"),
+        )
+        write_csv_checked(
+            pd.DataFrame({"z": z_fs, "fs8": fs8_obs}),
+            os.path.join(DATA, "fsigma8_cov.csv"),
+        )
+        write_matrix_checked(
+            _correlated_covariance(sig_hz, corr=0.15),
+            os.path.join(DATA, "Hz_cov_matrix.csv"),
+        )
+        write_matrix_checked(
+            _correlated_covariance(sig_fs, corr=0.10),
+            os.path.join(DATA, "fsigma8_cov_matrix.csv"),
+        )
 
     metadata = {
         "seed": int(seed),
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "with_covariance": bool(generate_covariance),
+        "generated_covariance": bool(generate_covariance),
         "datasets": {
             "Hz.csv": {
                 "z_range": [float(np.min(z_hz)), float(np.max(z_hz))],
-                "sigma_range": [3.0, 5.0],
+                "sigma_range": [float(np.min(sig_hz)), float(np.max(sig_hz))],
                 "rows": int(len(z_hz)),
             },
             "fsigma8.csv": {
                 "z_range": [float(np.min(z_fs)), float(np.max(z_fs))],
-                "sigma_range": [0.03, 0.06],
+                "sigma_range": [float(np.min(sig_fs)), float(np.max(sig_fs))],
                 "rows": int(len(z_fs)),
             },
         },
@@ -105,7 +115,10 @@ def main(seed=42, generate_covariance=True):
     with open(contract_path, "w", encoding="utf-8") as fp:
         json.dump(metadata, fp, ensure_ascii=False, indent=2)
 
-    print("Example data written in data/inputs/structure_d/")
+    print(
+        "Example data written: Hz.csv, fsigma8.csv, mock_data_contract.json"
+        + (", Hz_cov.csv, Hz_cov_matrix.csv, fsigma8_cov.csv, fsigma8_cov_matrix.csv" if generate_covariance else "")
+    )
 
 
 if __name__ == "__main__":
@@ -124,5 +137,11 @@ if __name__ == "__main__":
         action="store_false",
         help="Disable covariance artifact generation.",
     )
+    parser.add_argument(
+        "--without-covariance",
+        action="store_true",
+        help="Disable covariance generation even if --with-covariance is present.",
+    )
     args = parser.parse_args()
-    main(seed=args.seed, generate_covariance=args.generate_covariance)
+    generate_covariance = bool(args.with_covariance or not args.without_covariance)
+    main(seed=args.seed, generate_covariance=generate_covariance)
