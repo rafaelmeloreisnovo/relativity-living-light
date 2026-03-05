@@ -4,6 +4,7 @@ import os
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
@@ -513,6 +514,44 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
+
+
+class StructureDRealRunMetadataTest(unittest.TestCase):
+    def test_run_all_real_writes_fit_bounds_metadata(self):
+        from data.pipelines.structure_d import run_all_real
+
+        output_csv = "test_model_comparison_real.csv"
+        metadata_path = os.path.join(run_all_real.RESULTS, "test_model_comparison_real_fit_metadata.json")
+        csv_path = os.path.join(run_all_real.RESULTS, output_csv)
+        self.addCleanup(lambda: os.path.exists(csv_path) and os.remove(csv_path))
+        self.addCleanup(lambda: os.path.exists(metadata_path) and os.remove(metadata_path))
+
+        class _Result:
+            def __init__(self, x, fun):
+                self.x = np.array(x, dtype=float)
+                self.fun = float(fun)
+
+        fake_results = [
+            _Result([67.7, 0.31, 0.69, 0.0224], 11.2),
+            _Result([68.0, 0.30, 0.70, 0.04, 2.1, 0.5, 0.0221], 10.8),
+        ]
+
+        with patch("data.pipelines.structure_d.run_all_real.differential_evolution", side_effect=fake_results):
+            run_all_real.main(output_filename=output_csv)
+
+        self.assertTrue(os.path.exists(metadata_path), "fit metadata json was not generated")
+
+        with open(metadata_path, "r", encoding="utf-8") as fp:
+            meta = json.load(fp)
+
+        self.assertEqual(meta["fit_models"]["LCDM"]["param_order"], ["H0", "Om", "OL", "Ob_h2"])
+        self.assertEqual(meta["fit_models"]["RLL_like+AGN"]["param_order"], ["H0", "Om", "OL", "Os0", "zt", "wt", "Ob_h2"])
+        self.assertEqual(len(meta["fit_models"]["LCDM"]["bounds"]), 4)
+        self.assertEqual(len(meta["fit_models"]["RLL_like+AGN"]["bounds"]), 7)
+        self.assertEqual(meta["fit_models"]["LCDM"]["bounds"][0], {"name": "H0", "min": 60.0, "max": 80.0})
+        self.assertEqual(meta["fit_models"]["RLL_like+AGN"]["bounds"][3], {"name": "Os0", "min": 0.0, "max": 0.25})
+        self.assertEqual(meta["fit_models"]["LCDM"]["best_fit"]["Om"], 0.31)
+        self.assertEqual(meta["fit_models"]["RLL_like+AGN"]["best_fit"]["zt"], 2.1)
 
 
 if __name__ == "__main__":
