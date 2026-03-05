@@ -2,7 +2,7 @@
 
 **Objetivo:** registrar o conteúdo interno de cada `.zip` para rastreabilidade e organização documental.
 
-**Total de bundles:** 4
+**Total de bundles:** 5
 
 ---
 
@@ -17,6 +17,7 @@ Campos obrigatórios por bundle: **nome do bundle**, **hash**, **data**, **orige
 | Bundle | Hash (SHA-256) | Data de registro | Origem | Status de integração |
 |---|---|---|---|---|
 | `to_Add/RAFAELIA_COSMO_STRUCTURE_D.zip` | `db3fa53131ab7922b47d5645e9bedb23f4110317fd5724ef97c84df55b744b92` | 2026-02-25 | `to_Add/` | não iniciado |
+| `rll_reproducivel.zip` | `fd61741209effbfba1793ccc55e9cc10fec352db7a6388c1bd7235da75f7b1e4` | 2026-03-05 | `/` (raiz do repositório) | concluído |
 
 ---
 
@@ -146,3 +147,31 @@ Campos obrigatórios por bundle: **nome do bundle**, **hash**, **data**, **orige
 | 22 | `rll_output/{docs,teoria,codigo,data}/` | 0 | 2026-02-20 12:42 |
 
 ---
+
+---
+
+## `rll_reproducivel.zip`
+
+- Tamanho do arquivo: **381763 bytes**
+- Total de entradas: **16**
+- Hash SHA-256: `fd61741209effbfba1793ccc55e9cc10fec352db7a6388c1bd7235da75f7b1e4`
+- Status de integração: **concluído**
+
+### Organização aplicada no repositório
+
+- `rll_pkg/results/RLL_relatorio_simulacao.txt` → `results/reproducivel_RLL_relatorio_simulacao.txt`
+- `rll_pkg/results/RLL_simulacao_dados_reais.png` → `results/reproducivel_RLL_simulacao_dados_reais.png`
+
+| # | Entrada | Tamanho (bytes) | Data do zip |
+|---:|---|---:|---|
+| 1 | `rll_pkg/data/BAO_data_real.csv` | 331 | 2026-03-05 13:23 |
+| 2 | `rll_pkg/data/Hz_data_real.csv` | 1033 | 2026-03-05 13:23 |
+| 3 | `rll_pkg/data/CMB_shift_real.json` | 160 | 2026-03-05 13:23 |
+| 4 | `rll_pkg/README.md` | 5972 | 2026-03-05 13:23 |
+| 5 | `rll_pkg/rll_mcmc_standalone.py` | 16215 | 2026-03-05 13:23 |
+| 6 | `rll_pkg/paper/PAPER_CORRIGIDO.tex` | 8640 | 2026-03-05 13:23 |
+| 7 | `rll_pkg/paper/PRIORIDADE_TEMPORAL.md` | 17735 | 2026-03-05 13:23 |
+| 8 | `rll_pkg/results/model_comparison_original.csv` | 365 | 2026-03-05 13:23 |
+| 9 | `rll_pkg/results/RLL_relatorio_simulacao.txt` | 3175 | 2026-03-05 13:23 |
+| 10 | `rll_pkg/results/RLL_simulacao_dados_reais.png` | 404222 | 2026-03-05 13:23 |
+| 11 | `rll_pkg/requirements.txt` | 103 | 2026-03-05 13:23 |
