@@ -89,6 +89,14 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract.get("bayes_mode"),
             "reproduction contract must set bayes_mode to null when --bayes is disabled",
         )
+        interp_contract = contract.get("bayes_factor_interpretation_contract", {})
+        self.assertEqual(interp_contract.get("table_version"), "2026-03-04")
+        self.assertEqual(
+            interp_contract.get("classification_rule"),
+            "row interval where lnB_min <= lnB < lnB_max",
+        )
+        self.assertEqual(len(interp_contract.get("rows", [])), 7)
+        self.assertRegex(str(interp_contract.get("table_sha256", "")), r"^[0-9a-f]{64}$")
 
     def test_structure_d_bayes_bic_proxy_writes_mode_specific_output(self):
         make_example_data.main(seed=42)
@@ -102,6 +110,7 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract = json.load(fp)
 
         self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
+        self.assertIn("bayes_factor_interpretation_contract", contract)
 
     def test_structure_d_bayes_contract_tracks_optional_outputs(self):
         make_example_data.main(seed=42)
