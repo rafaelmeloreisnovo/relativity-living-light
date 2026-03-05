@@ -61,6 +61,8 @@ def validate_observable_schema(entry):
         if k not in metadata:
             raise ValueError(f"metadata missing key: {k}")
 
+    dataset_source = entry.get("dataset_source")
+
     return {
         "dataset_id": str(entry["dataset_id"]),
         "observable": str(entry["observable"]),
@@ -69,4 +71,5 @@ def validate_observable_schema(entry):
         "errors": _as_float_array(entry["errors"], "errors") if has_errors else None,
         "covariance": _as_float_matrix(entry["covariance"], "covariance") if has_cov else None,
         "metadata": metadata,
+        "dataset_source": str(dataset_source) if dataset_source is not None else "unknown",
     }

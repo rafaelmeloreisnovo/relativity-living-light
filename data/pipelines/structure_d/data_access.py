@@ -18,6 +18,21 @@ def _abs_path(path):
     return os.path.join(BASE_DIR, path)
 
 
+def _dataset_source_from_descriptor(desc):
+    metadata = desc.get("metadata") or {}
+    source_parts = []
+
+    dataset_path = desc.get("path")
+    if dataset_path:
+        source_parts.append(f"path={dataset_path}")
+
+    reference = metadata.get("reference")
+    if reference:
+        source_parts.append(f"reference={reference}")
+
+    return "; ".join(source_parts) if source_parts else "unknown"
+
+
 def load_run_config(config_path):
     with open(_abs_path(config_path), "r", encoding="utf-8") as f:
         return json.load(f)
@@ -52,6 +67,7 @@ def _parse_csv_dataset(dataset_id, desc):
         "z": z_values,
         "values": values,
         "metadata": desc["metadata"],
+        "dataset_source": _dataset_source_from_descriptor(desc),
     }
 
     if desc["error_model"] == "errors":
@@ -82,6 +98,7 @@ def _parse_scalar_json_dataset(dataset_id, desc):
         "values": values,
         "errors": errors,
         "metadata": desc["metadata"],
+        "dataset_source": _dataset_source_from_descriptor(desc),
         "z": None,
     }
     return validate_observable_schema(entry)
