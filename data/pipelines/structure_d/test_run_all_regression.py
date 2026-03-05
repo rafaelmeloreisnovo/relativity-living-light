@@ -4,6 +4,7 @@ import os
 import shutil
 import tempfile
 import unittest
+import unittest.mock
 
 import numpy as np
 import pandas as pd
@@ -19,6 +20,7 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8.csv"),
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
             os.path.join(run_all.RESULTS, "reproduction_contract.json"),
+            os.path.join(run_all.RESULTS, "reproduction_contract_real.json"),
             os.path.join(run_all.RESULTS, "bayes_evidence_bic_proxy.csv"),
             os.path.join(run_all.RESULTS, "bayes_factor_interpretation.csv"),
             os.path.join(run_all.RESULTS, "degeneracy_corr_bin_00.csv"),
@@ -514,6 +516,40 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                     covariance_policy="full_required",
                 )
 
+
+class StructureDRunAllRealRegressionTest(unittest.TestCase):
+    def test_run_all_real_writes_reproduction_artifact(self):
+        generated_paths = [
+            os.path.join(run_all.RESULTS, "model_comparison_real.csv"),
+            os.path.join(run_all.RESULTS, "reproduction_contract_real.json"),
+        ]
+
+        def _cleanup_generated_files():
+            for path in generated_paths:
+                if os.path.isdir(path):
+                    shutil.rmtree(path)
+                elif os.path.exists(path):
+                    os.remove(path)
+
+        self.addCleanup(_cleanup_generated_files)
+
+        with unittest.mock.patch.dict(os.environ, {"STRUCTURE_D_MAXITER_LCDM": "1", "STRUCTURE_D_MAXITER_RLL": "1"}):
+            run_all.run_all_real.main(output_filename="model_comparison_real.csv")
+
+        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract_real.json")
+        self.assertTrue(os.path.exists(contract_path), "reproduction_contract_real.json was not generated")
+
+        with open(contract_path, "r", encoding="utf-8") as fp:
+            contract = json.load(fp)
+
+        self.assertEqual(contract.get("command"), "python -m data.pipelines.structure_d.run_all_real")
+        self.assertEqual(contract.get("profile"), run_all.REAL_PROFILE)
+        self.assertEqual(contract.get("seed"), run_all.run_all_real.OPTIMIZER_SEED)
+        self.assertEqual(contract.get("outputs"), ["model_comparison_real.csv"])
+
+        bounds = contract.get("bounds", {})
+        self.assertEqual(len(bounds.get("LCDM", [])), 4)
+        self.assertEqual(len(bounds.get("RLL_like+AGN", [])), 7)
 
 if __name__ == "__main__":
     unittest.main()

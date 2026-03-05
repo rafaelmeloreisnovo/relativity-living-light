@@ -1,4 +1,5 @@
 import os
+import json
 import numpy as np
 from scipy.integrate import quad
 from scipy.optimize import differential_evolution
@@ -10,6 +11,8 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
 REAL_PROFILE = "structure_d_real_validation"
+OPTIMIZER_SEED = 42
+REAL_REPRODUCTION_ARTIFACT = "reproduction_contract_real.json"
 
 C_KMS = 299792.458
 Z_CMB = 1089.92
@@ -142,7 +145,7 @@ def main(
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,
-        seed=42,
+        seed=OPTIMIZER_SEED,
         maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120")),
         tol=1e-6,
         workers=1,
@@ -151,7 +154,7 @@ def main(
     res_r = differential_evolution(
         lambda p: _obj_rll(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_r,
-        seed=42,
+        seed=OPTIMIZER_SEED,
         maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150")),
         tol=1e-6,
         workers=1,
@@ -224,8 +227,24 @@ def main(
 
     out = os.path.join(RESULTS, output_filename)
     df = evaluate_model(rows, out)
+
+    contract = {
+        "command": "python -m data.pipelines.structure_d.run_all_real",
+        "profile": profile,
+        "seed": OPTIMIZER_SEED,
+        "bounds": {
+            "LCDM": bounds_l,
+            "RLL_like+AGN": bounds_r,
+        },
+        "outputs": [output_filename],
+    }
+    out_contract = os.path.join(RESULTS, REAL_REPRODUCTION_ARTIFACT)
+    with open(out_contract, "w", encoding="utf-8") as fp:
+        json.dump(contract, fp, ensure_ascii=False, indent=2)
+
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
+    print(f"Wrote: {out_contract}")
     return df
 
 
