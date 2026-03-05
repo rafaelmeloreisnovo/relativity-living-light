@@ -389,6 +389,7 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
 
             cov_usage = pd.read_csv(out_cov)
             hz_row = cov_usage[cov_usage["dataset_id"] == "hz"].iloc[0]
+            self.assertEqual(hz_row["dataset_source"], f"path={hz_path}; reference=unit-test")
             self.assertEqual(hz_row["covariance_mode"], "diagonal")
             self.assertEqual(hz_row["effective_decision"], "diag")
             self.assertFalse(bool(hz_row["has_full_covariance"]))
@@ -577,7 +578,14 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             np.testing.assert_allclose(hz_entry["errors"], np.array([2.0, 2.2, 2.5]))
             self.assertTrue(hz_entry["metadata"]["z_reordered"])
 
-    def test_monotonic_z_marks_metadata_without_reorder(self):
+            cov_usage = pd.read_csv(out_cov)
+            hz_row = cov_usage[cov_usage["dataset_id"] == "hz"].iloc[0]
+            self.assertEqual(hz_row["dataset_source"], f"path={hz_path}; reference=unit-test")
+            self.assertEqual(hz_row["covariance_mode"], "diagonal")
+            self.assertFalse(bool(hz_row["has_full_covariance"]))
+            self.assertTrue(bool(hz_row["has_diagonal_sigma"]))
+
+    def test_covariance_policy_full_required_raises_for_dataset_without_full_matrix(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             data_path = os.path.join(temp_dir, "hz.csv")
             cfg_path = os.path.join(temp_dir, "config.json")
