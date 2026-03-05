@@ -4,6 +4,7 @@ import csv
 import json
 import time
 import numpy as np
+import pandas as pd
 
 try:
     from scipy.integrate import quad
@@ -24,6 +25,10 @@ DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_conf
 REAL_PROFILE = "structure_d_real_validation"
 EXECUTION_TIMING_BASENAME = "execution_timing_real"
 
+MODEL_LCDM = "lcdm"
+MODEL_RLL_AGN = "rll_like_agn"
+REGIME_REAL = "real"
+
 C_KMS = 299792.458
 Z_CMB = 1089.92
 
@@ -41,6 +46,26 @@ EXPECTED_MODEL_COMPARISON_HEADER = [
 ]
 EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER = ["H0", "Om", "OL", "Ob_h2", "Os0", "zt", "wt"]
 
+
+
+
+def _write_error_mode_usage(datasets):
+    rows = []
+    for dataset_id, entry in datasets.items():
+        has_cov = entry.get("covariance") is not None
+        has_err = entry.get("errors") is not None
+        rows.append(
+            {
+                "dataset_id": dataset_id,
+                "observable": entry.get("observable", dataset_id),
+                "error_mode": "covariance" if has_cov else "errors",
+                "has_full_covariance": bool(has_cov),
+                "has_diagonal_sigma": bool(has_err),
+            }
+        )
+    out_error_mode = os.path.join(RESULTS, "error_mode_usage.csv")
+    evaluate_model(rows, out_error_mode)
+    return out_error_mode
 
 def _expected_model_comparison_header(include_fit_params):
     if include_fit_params:
@@ -263,10 +288,6 @@ def main(
         run_name=run_name,
         profile_name=profile,
         covariance_policy=covariance_policy,
-        maxiter_lcdm=maxiter_lcdm,
-        maxiter_rll=maxiter_rll,
-        tol=tol,
-        seed=seed,
     )
     row_rll = dict(
         model=MODEL_RLL_AGN,
@@ -280,10 +301,6 @@ def main(
         run_name=run_name,
         profile_name=profile,
         covariance_policy=covariance_policy,
-        maxiter_lcdm=maxiter_lcdm,
-        maxiter_rll=maxiter_rll,
-        tol=tol,
-        seed=seed,
     )
     if include_fit_params:
         row_lcdm.update(

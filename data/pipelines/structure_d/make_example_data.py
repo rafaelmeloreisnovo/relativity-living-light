@@ -3,6 +3,10 @@
 TEXTUAL_OUTPUTS = [
     'data/inputs/structure_d/Hz.csv',
     'data/inputs/structure_d/fsigma8.csv',
+    'data/inputs/structure_d/Hz_cov.csv',
+    'data/inputs/structure_d/Hz_cov_matrix.csv',
+    'data/inputs/structure_d/fsigma8_cov.csv',
+    'data/inputs/structure_d/fsigma8_cov_matrix.csv',
     'data/inputs/structure_d/mock_data_contract.json',
     'data/inputs/structure_d/Hz_cov.csv',
     'data/inputs/structure_d/Hz_cov_matrix.csv',
@@ -73,18 +77,37 @@ def main(seed=42, generate_covariance=False):
     fs8_df = pd.DataFrame({"z": z_fs, "fs8": fs8_obs, "sigma": sig_fs})
     write_csv_checked(fs8_df, os.path.join(DATA, "fsigma8.csv"))
 
+    if generate_covariance:
+        write_csv_checked(
+            pd.DataFrame({"z": z_hz, "Hz": hz_obs}),
+            os.path.join(DATA, "Hz_cov.csv"),
+        )
+        write_csv_checked(
+            pd.DataFrame({"z": z_fs, "fs8": fs8_obs}),
+            os.path.join(DATA, "fsigma8_cov.csv"),
+        )
+        write_matrix_checked(
+            _correlated_covariance(sig_hz, corr=0.15),
+            os.path.join(DATA, "Hz_cov_matrix.csv"),
+        )
+        write_matrix_checked(
+            _correlated_covariance(sig_fs, corr=0.10),
+            os.path.join(DATA, "fsigma8_cov_matrix.csv"),
+        )
+
     metadata = {
         "seed": int(seed),
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "generated_covariance": bool(generate_covariance),
         "datasets": {
             "Hz.csv": {
                 "z_range": [float(np.min(z_hz)), float(np.max(z_hz))],
-                "sigma_range": [3.0, 5.0],
+                "sigma_range": [float(np.min(sig_hz)), float(np.max(sig_hz))],
                 "rows": int(len(z_hz)),
             },
             "fsigma8.csv": {
                 "z_range": [float(np.min(z_fs)), float(np.max(z_fs))],
-                "sigma_range": [0.03, 0.06],
+                "sigma_range": [float(np.min(sig_fs)), float(np.max(sig_fs))],
                 "rows": int(len(z_fs)),
             },
         },
@@ -134,10 +157,24 @@ def main(seed=42, generate_covariance=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate synthetic Structure-D example datasets.")
     parser.add_argument("--seed", type=int, default=42, help="RNG seed for reproducible mock generation.")
+    parser.set_defaults(generate_covariance=True)
     parser.add_argument(
         "--with-covariance",
+        dest="generate_covariance",
         action="store_true",
-        help="Also generate synthetic covariance matrices and CSVs compatible with error_model='covariance'.",
+        help="Generate synthetic covariance matrices and CSVs compatible with error_model='covariance' (default).",
+    )
+    parser.add_argument(
+        "--without-covariance",
+        dest="generate_covariance",
+        action="store_false",
+        help="Disable covariance artifact generation.",
+    )
+    parser.add_argument(
+        "--without-covariance",
+        action="store_true",
+        help="Disable covariance generation even if --with-covariance is present.",
     )
     args = parser.parse_args()
-    main(seed=args.seed, generate_covariance=args.with_covariance)
+    generate_covariance = bool(args.with_covariance or not args.without_covariance)
+    main(seed=args.seed, generate_covariance=generate_covariance)
