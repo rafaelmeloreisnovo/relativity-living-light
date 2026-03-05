@@ -58,8 +58,73 @@ def _parse_csv_dataset(dataset_id, desc):
     if missing:
         raise ValueError(f"dataset {dataset_id} missing columns: {missing}")
 
+    selected_covariance_idx = None
+    z_col = cols.get("z")
+    if z_col:
+        dup_mask = df.duplicated(subset=[z_col], keep=False)
+        if dup_mask.any():
+            raw_policy = str(desc.get("duplicate_z_policy", "erro")).strip().lower()
+            policy_aliases = {
+                "erro": "erro",
+                "error": "erro",
+                "agregar": "agregar",
+                "aggregate": "agregar",
+                "primeira ocorrência": "primeira_ocorrencia",
+                "primeira_ocorrencia": "primeira_ocorrencia",
+                "first": "primeira_ocorrencia",
+            }
+            policy = policy_aliases.get(raw_policy)
+            if policy is None:
+                raise ValueError(
+                    f"dataset {dataset_id} has unsupported duplicate_z_policy: {desc.get('duplicate_z_policy')}"
+                )
+
+            dup_z_values = sorted(df.loc[dup_mask, z_col].astype(float).unique().tolist())
+            if policy == "erro":
+                raise ValueError(
+                    f"dataset {dataset_id} has duplicated z values in column '{z_col}': {dup_z_values}"
+                )
+
+            if policy == "agregar":
+                if desc["error_model"] == "covariance":
+                    raise ValueError(
+                        f"dataset {dataset_id} duplicate_z_policy='agregar' is not supported for covariance"
+                    )
+                agg_map = {cols["value"]: "mean"}
+                if cols.get("error"):
+                    agg_map[cols["error"]] = "mean"
+                df = df.groupby(z_col, sort=False, as_index=False).agg(agg_map)
+            elif policy == "primeira_ocorrencia":
+                first_mask = ~df.duplicated(subset=[z_col], keep="first")
+                selected_covariance_idx = np.flatnonzero(first_mask.to_numpy())
+                df = df.loc[first_mask].reset_index(drop=True)
+
     values = df[cols["value"]].to_numpy(dtype=float)
     z_values = df[cols["z"]].to_numpy(dtype=float) if cols.get("z") else None
+    z_reordered = False
+
+    if z_values is not None:
+        z_order_policy = desc.get("z_order_policy", "validate")
+        if z_order_policy not in ("validate", "sort"):
+            raise ValueError(
+                f"unsupported z_order_policy for {dataset_id}: {z_order_policy}"
+            )
+
+        monotonic_non_decreasing = np.all(np.diff(z_values) >= 0.0)
+        if not monotonic_non_decreasing:
+            if z_order_policy == "sort":
+                sort_idx = np.argsort(z_values, kind="mergesort")
+                z_values = z_values[sort_idx]
+                values = values[sort_idx]
+                z_reordered = True
+            else:
+                raise ValueError(
+                    f"dataset {dataset_id} has non-monotonic z; "
+                    "set z_order_policy='sort' to reorder explicitly"
+                )
+
+    metadata = dict(desc["metadata"])
+    metadata["z_reordered"] = bool(z_reordered)
 
     entry = {
         "dataset_id": dataset_id,
@@ -71,13 +136,19 @@ def _parse_csv_dataset(dataset_id, desc):
     }
 
     if desc["error_model"] == "errors":
-        entry["errors"] = df[cols["error"]].to_numpy(dtype=float)
+        errors = df[cols["error"]].to_numpy(dtype=float)
+        if z_reordered:
+            errors = errors[sort_idx]
+        entry["errors"] = errors
     elif desc["error_model"] == "covariance":
         if cols.get("covariance"):
             cov_path = _abs_path(cols["covariance"])
         else:
             cov_path = _abs_path(desc["covariance_path"])
-        entry["covariance"] = np.loadtxt(cov_path, delimiter=",")
+        covariance = np.loadtxt(cov_path, delimiter=",")
+        if z_reordered:
+            covariance = covariance[np.ix_(sort_idx, sort_idx)]
+        entry["covariance"] = covariance
     else:
         raise ValueError(f"unsupported error_model for {dataset_id}: {desc['error_model']}")
 
