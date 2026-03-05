@@ -73,7 +73,7 @@ def _resolve_profile(cfg, profile_name=None):
     return resolved
 
 
-def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
+def _parse_csv_dataset(dataset_id, desc, min_points_with_z):
     source_info = _build_source_info(desc["path"])
     df = pd.read_csv(source_info["path_abs"])
     cols = desc["columns"]
@@ -180,7 +180,7 @@ def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WI
     return validate_observable_schema(entry, min_points_with_z=min_points_with_z)
 
 
-def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
+def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z):
     source_info = _build_source_info(desc["path"])
     with open(source_info["path_abs"], "r", encoding="utf-8") as f:
         raw = json.load(f)
@@ -214,11 +214,11 @@ def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_P
 
 def _build_source_info(path):
     path_abs = _abs_path(path)
-    digest_obj = hashlib.sha256()
+    hasher = hashlib.sha256()
     with open(path_abs, "rb") as f:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            digest_obj.update(chunk)
-    digest = digest_obj.hexdigest()
+            hasher.update(chunk)
+    digest = hasher.hexdigest()
     mtime_utc = datetime.fromtimestamp(os.path.getmtime(path_abs), tz=timezone.utc).isoformat()
     return {
         "path_abs": path_abs,
@@ -227,7 +227,7 @@ def _build_source_info(path):
     }
 
 
-def load_dataset_by_descriptor(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
+def load_dataset_by_descriptor(dataset_id, desc, min_points_with_z):
     fmt = desc["format"]
     if fmt == "csv":
         return _parse_csv_dataset(dataset_id, desc, min_points_with_z=min_points_with_z)

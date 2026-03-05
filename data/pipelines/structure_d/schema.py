@@ -8,6 +8,33 @@ import numpy as np
 DEFAULT_MIN_POINTS_WITH_Z = 3
 
 
+def _json_safe_metadata(metadata):
+    if not isinstance(metadata, dict):
+        raise ValueError("metadata must be a dict")
+    clean = {}
+    for key, value in metadata.items():
+        if isinstance(value, (str, int, float, bool)) or value is None:
+            clean[str(key)] = value
+        else:
+            clean[str(key)] = str(value)
+    return clean
+
+
+def _validate_covariance_matrix(covariance, expected_size):
+    if covariance.shape != (expected_size, expected_size):
+        raise ValueError(
+            f"covariance shape must be ({expected_size}, {expected_size}), got {covariance.shape}"
+        )
+    if not np.allclose(covariance, covariance.T, atol=1e-12, rtol=0.0):
+        raise ValueError("covariance matrix must be symmetric")
+    diag = np.diag(covariance)
+    if np.any(diag <= 0):
+        raise ValueError("covariance diagonal must be strictly positive")
+    evals = np.linalg.eigvalsh(covariance)
+    if np.min(evals) < -1e-12:
+        raise ValueError("covariance matrix must be positive semidefinite")
+
+
 def _as_float_array(values, name):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:

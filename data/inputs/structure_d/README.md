@@ -28,6 +28,18 @@ Se quiser desabilitar os artefatos de covariância:
 `python -m data.pipelines.structure_d.make_example_data --without-covariance`
 
 A geração de exemplos também cria `mock_data_contract.json` com:
+
+## Covariância sintética (opcional)
+colunas de dados:
+- `Hz_cov.csv` com colunas `z, Hz`
+- `fsigma8_cov.csv` com colunas `z, fs8`
+
+matrizes:
+- `Hz_cov_matrix.csv`
+- `fsigma8_cov_matrix.csv`
+
+Gerar junto com os dados base:
+`python -m data.pipelines.structure_d.make_example_data --with-covariance`
 - `seed` utilizado;
 - `generated_at_utc` (timestamp ISO-8601 UTC);
 - ranges de `z` e `sigma` usados para `Hz.csv` e `fsigma8.csv`.

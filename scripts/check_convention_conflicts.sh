@@ -9,28 +9,32 @@ LOGISTIC_REGEX='f\s*\(\s*z\s*\)\s*=\s*1\s*/\s*\(\s*1\s*\+\s*exp\s*\(\s*\(\s*z\s*
 
 if command -v rg >/dev/null 2>&1; then
   files=$(rg --files -g '*.md' -g '*.tex')
-  find_matches() {
-    rg -n -i "$1" "$2" >/dev/null 2>&1
-  }
-  dump_matches() {
-    rg -n -i "$1" "$2" || true
+  scan_file() {
+    local file="$1"
+    if rg -n -i "$RISK_REGEX" "$file" >/dev/null 2>&1 && rg -n -i "$LOGISTIC_REGEX" "$file" >/dev/null 2>&1; then
+      echo "[CONTRADICTION_RISK] $file"
+      rg -n -i "$RISK_REGEX|$LOGISTIC_REGEX" "$file" || true
+      return 1
+    fi
+    return 0
   }
 else
-  files=$(find . -type f \( -name '*.md' -o -name '*.tex' \) -print | sed 's#^\./##')
-  find_matches() {
-    grep -E -i -n "$1" "$2" >/dev/null 2>&1
-  }
-  dump_matches() {
-    grep -E -i -n "$1" "$2" || true
+  files=$(find . -type f \( -name '*.md' -o -name '*.tex' \) | sed 's|^./||')
+  scan_file() {
+    local file="$1"
+    if grep -Ein "$RISK_REGEX" "$file" >/dev/null 2>&1 && grep -Ein "$LOGISTIC_REGEX" "$file" >/dev/null 2>&1; then
+      echo "[CONTRADICTION_RISK] $file"
+      grep -Ein "$RISK_REGEX|$LOGISTIC_REGEX" "$file" || true
+      return 1
+    fi
+    return 0
   }
 fi
 
 status=0
 while IFS= read -r file; do
   [[ -z "$file" ]] && continue
-  if find_matches "$RISK_REGEX" "$file" && find_matches "$LOGISTIC_REGEX" "$file"; then
-    echo "[CONTRADICTION_RISK] $file"
-    dump_matches "$RISK_REGEX|$LOGISTIC_REGEX" "$file"
+  if ! scan_file "$file"; then
     status=1
   fi
 done <<< "$files"

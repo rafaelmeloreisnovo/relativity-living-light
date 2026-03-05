@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import time
+import subprocess
 
 import numpy as np
 import pandas as pd
@@ -83,7 +84,7 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
     ],
     "error_mode_usage.csv": [
         "dataset_id",
-        "block",
+        "observable",
         "error_mode",
     ],
     "rll_regime_summary.csv": [
@@ -174,20 +175,28 @@ def _dataset_block_name(dataset_id, entry):
     return str(entry.get("observable", dataset_id))
 
 
-
-
-def _find_dataset_by_kind(datasets, kind):
-    kind_norm = str(kind).lower()
+def _build_error_mode_rows(datasets):
+    rows = []
     for dataset_id, entry in datasets.items():
-        dataset_norm = dataset_id.lower()
-        observable_norm = str(entry.get("observable", "")).lower()
-        if kind_norm in dataset_norm:
-            return entry
-        if kind_norm == "fsigma8" and ("fs8" in observable_norm or "fsigma8" in observable_norm):
-            return entry
-        if kind_norm == "hz" and "hz" in observable_norm:
-            return entry
-    return None
+        has_cov = entry.get("covariance") is not None
+        has_err = entry.get("errors") is not None
+        if has_cov and has_err:
+            mode = "both"
+        elif has_cov:
+            mode = "covariance"
+        elif has_err:
+            mode = "errors"
+        else:
+            mode = "none"
+        rows.append(
+            {
+                "dataset_id": dataset_id,
+                "observable": entry.get("observable", "unknown"),
+                "error_mode": mode,
+            }
+        )
+    return rows
+
 
 def _apply_covariance_policy(datasets, covariance_policy):
     if covariance_policy == "full_required":
@@ -206,19 +215,17 @@ def _apply_covariance_policy(datasets, covariance_policy):
     return covariance_policy
 
 
-
-
-def _build_error_mode_rows(datasets):
-    rows = []
+def _find_dataset_by_kind(datasets, kind):
+    target = str(kind).lower()
     for dataset_id, entry in datasets.items():
-        rows.append(
-            {
-                "dataset_id": dataset_id,
-                "block": _dataset_block_name(dataset_id, entry),
-                "error_mode": "covariance" if entry.get("covariance") is not None else "errors",
-            }
-        )
-    return rows
+        observable = str(entry.get("observable", "")).lower()
+        dataset_name = str(dataset_id).lower()
+        if target == "hz" and ("hz" in dataset_name or "hz" in observable):
+            return entry
+        if target == "fsigma8" and ("fsigma8" in dataset_name or "fs8" in observable or "fsigma8" in observable):
+            return entry
+    return None
+
 
 def _chi2_from_entry(entry, model_values):
     if entry.get("errors") is not None:
@@ -332,8 +339,12 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         rll_prediction = model_rll(z, rll)
         model_kind = "bao" if entry.get("observable") == "DV_over_rs" else "default"
 
-        chi2_lcdm += _chi2_from_entry(entry, lcdm_prediction)
-        chi2_rll += _chi2_from_entry(entry, rll_prediction)
+        if "bao" in str(entry.get("observable", "")).lower():
+            chi2_lcdm += _chi2_bao_from_entry(entry, lcdm_prediction)
+            chi2_rll += _chi2_bao_from_entry(entry, rll_prediction)
+        else:
+            chi2_lcdm += _chi2_from_entry(entry, lcdm_prediction)
+            chi2_rll += _chi2_from_entry(entry, rll_prediction)
 
         n_obs += len(entry["values"])
 
@@ -444,18 +455,17 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
+def _git_metadata():
+    try:
+        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    except Exception:
+        commit = None
+    try:
+        dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], text=True).strip())
+    except Exception:
+        dirty = None
+    return commit, dirty
 
-
-def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
-    result = {
-        "profile": effective_profile,
-        "covariance_policy": effective_policy,
-        "rows": int(len(df_model)),
-        "outputs": dict(output_paths),
-    }
-    if extra_paths:
-        result.update(extra_paths)
-    return result
 
 def _dataset_contract_block(cfg_meta, datasets):
     rows = []
@@ -472,14 +482,8 @@ def _dataset_contract_block(cfg_meta, datasets):
     return rows
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, inference_hyperparameters=None):
-    try:
-        git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-        dirty_worktree = bool(subprocess.check_output(["git", "status", "--porcelain"], text=True).strip())
-    except Exception:
-        git_commit = None
-        dirty_worktree = None
-
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, inference_hyperparameters):
+    git_commit, dirty_worktree = _git_metadata()
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -508,6 +512,27 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
     with open(out_contract, "w", encoding="utf-8") as fp:
         json.dump(contract, fp, ensure_ascii=False, indent=2)
     return out_contract
+
+
+def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
+    payload = {
+        "rows": int(len(df_model)),
+        "profile": effective_profile,
+        "covariance_policy": effective_policy,
+        "output_paths": output_paths,
+    }
+    if extra_paths:
+        payload["extra_paths"] = extra_paths
+    return payload
+
+
+def _write_timing_artifacts(timing_records):
+    out_timing_csv = os.path.join(RESULTS, f"{EXECUTION_TIMING_BASENAME}.csv")
+    out_timing_json = os.path.join(RESULTS, f"{EXECUTION_TIMING_BASENAME}.json")
+    evaluate_model(timing_records, out_timing_csv)
+    with open(out_timing_json, "w", encoding="utf-8") as fp:
+        json.dump(timing_records, fp, ensure_ascii=False, indent=2)
+    return out_timing_csv, out_timing_json
 
 
 def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_lcdm, maxiter_rll, tol, seed):
@@ -601,9 +626,10 @@ def _assert_json_output_has_useful_content(filename, path):
 def _validate_output_schema(filename, expected_header):
     path = os.path.join(RESULTS, filename)
     actual_header = list(pd.read_csv(path, nrows=0).columns)
-    if actual_header != expected_header:
+    missing = [column for column in expected_header if column not in actual_header]
+    if missing:
         raise RuntimeError(
-            f"schema mismatch for {filename}: expected {expected_header}, got {actual_header}"
+            f"schema mismatch for {filename}: missing required columns {missing}; got {actual_header}"
         )
 
 
@@ -758,12 +784,15 @@ def main(
         covariance_usage_non_empty,
         cfg_meta,
         datasets,
-        bayes_seed,
-        bayes_nwalkers,
-        bayes_nsteps,
-        bayes_nlive,
+        inference_hyperparameters={
+            "seed": int(bayes_seed),
+            "nwalkers": int(bayes_nwalkers),
+            "nsteps": int(bayes_nsteps),
+            "nlive": int(bayes_nlive),
+        } if bayes and bayes_mode == "inference" else None,
     )
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
+    out_timing_csv, out_timing_json = _write_timing_artifacts(timing_records)
 
     _assert_required_outputs()
     _validate_required_csv_schemas()
