@@ -9,7 +9,7 @@ import unittest.mock
 import numpy as np
 import pandas as pd
 
-from data.pipelines.structure_d import make_example_data, run_all
+from data.pipelines.structure_d import make_example_data, run_all, run_all_real
 from data.pipelines.structure_d.data_access import load_active_datasets
 from to_Add.RAFAELIA_COSMO_STRUCTURE_D.rll_pipeline import run_all as compat_run_all
 
@@ -197,6 +197,17 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract.get("bayes_runtime_metadata"),
             {"seed": 7, "nwalkers": 16, "nsteps": 100, "nlive": 50},
         )
+
+class StructureDRealOutputSchemaTest(unittest.TestCase):
+    def test_expected_model_comparison_header_without_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=False)
+        self.assertEqual(header, run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+
+    def test_expected_model_comparison_header_with_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=True)
+        self.assertEqual(header[: len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])], run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+        self.assertEqual(header[len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"]) :], run_all_real.EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
+
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
     def test_run_classic_metrics_supports_lookup_fallback_by_normalized_observable(self):
@@ -575,6 +586,17 @@ class StructureDProfileMetadataPropagationTest(unittest.TestCase):
             cov_df = pd.read_csv(os.path.join(run_all.RESULTS, "covariance_usage.csv"))
             hz_row = cov_df[cov_df["dataset_id"] == "hz"].iloc[0]
             self.assertEqual(hz_row["covariance_mode"], "diagonal")
+
+
+class StructureDRealOutputSchemaTest(unittest.TestCase):
+    def test_expected_model_comparison_header_without_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=False)
+        self.assertEqual(header, run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+
+    def test_expected_model_comparison_header_with_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=True)
+        self.assertEqual(header[: len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])], run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+        self.assertEqual(header[len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"]) :], run_all_real.EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):

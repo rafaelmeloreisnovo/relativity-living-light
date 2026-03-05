@@ -1,6 +1,7 @@
 import os
 import json
 import numpy as np
+import pandas as pd
 from scipy.integrate import quad
 from scipy.optimize import differential_evolution
 
@@ -16,6 +17,35 @@ REAL_REPRODUCTION_ARTIFACT = "reproduction_contract_real.json"
 
 C_KMS = 299792.458
 Z_CMB = 1089.92
+
+EXPECTED_MODEL_COMPARISON_HEADER = [
+    "model",
+    "chi2",
+    "AIC",
+    "BIC",
+    "N",
+    "k",
+    "datasets_used",
+    "run_name",
+    "profile_name",
+    "covariance_policy",
+]
+EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER = ["H0", "Om", "OL", "Ob_h2", "Os0", "zt", "wt"]
+
+
+def _expected_model_comparison_header(include_fit_params):
+    if include_fit_params:
+        return EXPECTED_MODEL_COMPARISON_HEADER + EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER
+    return EXPECTED_MODEL_COMPARISON_HEADER
+
+
+def _validate_model_comparison_header(csv_path, include_fit_params):
+    expected_header = _expected_model_comparison_header(include_fit_params)
+    actual_header = list(pd.read_csv(csv_path, nrows=0).columns)
+    if actual_header != expected_header:
+        raise RuntimeError(
+            f"schema mismatch for {os.path.basename(csv_path)}: expected {expected_header}, got {actual_header}"
+        )
 
 
 def _f_log(z, zt, wt):
@@ -257,21 +287,7 @@ def main(
     out = os.path.join(RESULTS, output_filename)
     out_error_mode = _write_error_mode_usage(datasets)
     df = evaluate_model(rows, out)
-
-    contract = {
-        "command": "python -m data.pipelines.structure_d.run_all_real",
-        "profile": profile,
-        "seed": OPTIMIZER_SEED,
-        "bounds": {
-            "LCDM": bounds_l,
-            "RLL_like+AGN": bounds_r,
-        },
-        "outputs": [output_filename],
-    }
-    out_contract = os.path.join(RESULTS, REAL_REPRODUCTION_ARTIFACT)
-    with open(out_contract, "w", encoding="utf-8") as fp:
-        json.dump(contract, fp, ensure_ascii=False, indent=2)
-
+    _validate_model_comparison_header(out, include_fit_params)
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {out_error_mode}")
