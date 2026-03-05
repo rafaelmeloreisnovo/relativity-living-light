@@ -13,6 +13,16 @@ Repositório principal do modelo **Relativity Living Light (RLL)**, com foco em 
 
 ---
 
+## Escopo deste arquivo
+
+Este `README.md` é **porta de entrada** do repositório.
+
+- Apresenta visão geral, status e contexto do projeto.
+- Encaminha para os índices oficiais sem replicar inventários extensos.
+- Não substitui o índice canônico (`docs/INDICE_MESTRE.md`) nem o inventário bruto (`docs/DOCUMENTATION_FULL_INVENTORY.md`).
+
+---
+
 
 ## Status dos Dados
 
@@ -78,26 +88,14 @@ Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/can
 
 ## 2) Navegação principal (canônica)
 
-### Núcleo científico
+Para evitar sobreposição entre índices, este README mantém apenas encaminhamento:
 
-- [docs/Relativity_Living_Light.md](docs/Relativity_Living_Light.md)
-- [docs/Results.md](docs/Results.md)
-- [docs/BOOSTERS.md](docs/BOOSTERS.md)
-- [docs/COMPARACAO_DESI_2025.md](docs/COMPARACAO_DESI_2025.md)
-- [docs/ROADMAP_VALIDACAO.md](docs/ROADMAP_VALIDACAO.md)
-- [docs/REFERENCES.md](docs/REFERENCES.md)
-- [docs/PLANO_ABCD_JWST_AGN_SMBH.md](docs/PLANO_ABCD_JWST_AGN_SMBH.md)
-- [docs/ARQUITETURA_DUAS_RADIACOES_IMPLEMENTACAO.md](docs/ARQUITETURA_DUAS_RADIACOES_IMPLEMENTACAO.md)
+- **Navegação canônica completa:** [docs/INDICE_MESTRE.md](docs/INDICE_MESTRE.md)
+- **Inventário bruto de arquivos (`.md`/`.zip`):** [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
+- **Mapa de organização e governança:** [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
+- **Histórico de decisões e releases:** [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
 
-### Governança e organização documental
-
-- [docs/INDICE_MESTRE.md](docs/INDICE_MESTRE.md)
-- [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
-- [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
-- [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
-- [docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md](docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) *(fonte oficial para formatos no core e artefatos externos)*
-- [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md) *(inventário histórico; não é recomendação de armazenamento no core)*
-- [docs/PLANO_AD_AGN_JWST.md](docs/PLANO_AD_AGN_JWST.md)
+Leitura sugerida: `README.md` → `docs/INDICE_MESTRE.md` → `docs/DOCUMENTATION_FULL_INVENTORY.md`.
 
 ### Trilha autoral e conceitual (integridade de selo)
 

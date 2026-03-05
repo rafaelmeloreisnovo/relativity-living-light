@@ -1,6 +1,15 @@
 # Inventário Completo de Documentação e Bundles
 ## Varredura integral de arquivos `.md` e `.zip` do repositório
 
+## Escopo deste arquivo
+
+Este arquivo é o **inventário bruto** do acervo documental.
+
+- Registra a varredura completa de arquivos `.md` e `.zip` com metadados técnicos.
+- Não define prioridade de leitura nem trilha canônica.
+- Para navegação oficial, use [`docs/INDICE_MESTRE.md`](INDICE_MESTRE.md).
+- Para porta de entrada do projeto, use [`README.md`](../README.md).
+
 **Critério:** todos os `.md` e `.zip` encontrados por varredura recursiva no repositório, com título detectado, tamanho e hash SHA-256 abreviado.
 
 **Total de arquivos catalogados:** 105
