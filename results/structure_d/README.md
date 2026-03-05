@@ -9,6 +9,7 @@ Outputs (CSVs e plots) do fluxo Structure D aparecem aqui após rodar:
 Estes arquivos são obrigatórios e o pipeline valida que todos existem ao final da execução:
 - `model_comparison.csv`
 - `covariance_usage.csv`
+- `error_mode_usage.csv`
 - `rll_regime_summary.csv`
 - `reproduction_contract.json`
 
@@ -19,7 +20,7 @@ Estes arquivos são obrigatórios e o pipeline valida que todos existem ao final
 - Motivo da opcionalidade: é um resumo complementar, não necessário para o perfil padrão clássico. O status de produção é registrado em `reproduction_contract.json`.
 
 ## Artefatos efetivamente produzidos no perfil padrão
-Além dos 4 obrigatórios, o pipeline padrão também gera artefatos auxiliares de reporting.
+Além dos 5 obrigatórios, o pipeline padrão também gera artefatos auxiliares de reporting.
 Versionados no repositório (textuais):
 - `sensitivity_long.csv`
 - `dominance_by_z.csv`
@@ -39,6 +40,7 @@ Contrato de reprodução:
 - Arquivos esperados (sempre):
   - `model_comparison.csv`
   - `covariance_usage.csv`
+  - `error_mode_usage.csv`
   - `rll_regime_summary.csv`
   - `reproduction_contract.json`
 - Arquivos opcionais (somente com `--bayes`):
