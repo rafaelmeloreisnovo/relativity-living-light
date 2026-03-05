@@ -9,6 +9,7 @@ from scipy.optimize import differential_evolution
 
 from .data_access import load_active_datasets
 from .likelihood import aic, bic, evaluate_model
+from .models import N_FREE_PARAMS_LCDM, N_FREE_PARAMS_RLL
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
@@ -218,8 +219,8 @@ def main(
     c2_r = float(res_r.fun)
     timing_records.append({"block": "fit", "duration_seconds": time.perf_counter() - fit_t0})
 
-    k_l = 4
-    k_r = 7
+    k_l = N_FREE_PARAMS_LCDM
+    k_r = N_FREE_PARAMS_RLL
 
     datasets_used = ",".join(cfg_meta["active_datasets"])
     run_name = cfg_meta["run_name"]
