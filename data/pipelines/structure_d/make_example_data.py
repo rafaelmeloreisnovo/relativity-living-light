@@ -1,8 +1,15 @@
 """Referência explícita de saídas textuais deste módulo/pipeline."""
 
-TEXTUAL_OUTPUTS = ['data/inputs/structure_d/Hz.csv', 'data/inputs/structure_d/fsigma8.csv']
+TEXTUAL_OUTPUTS = [
+    'data/inputs/structure_d/Hz.csv',
+    'data/inputs/structure_d/fsigma8.csv',
+    'data/inputs/structure_d/mock_data_contract.json',
+]
 
+import json
 import os
+from datetime import datetime, timezone
+
 import numpy as np
 import pandas as pd
 
@@ -44,7 +51,35 @@ def main(seed=42):
         os.path.join(DATA, "fsigma8.csv"),
     )
 
-    print("Example data written: data/inputs/structure_d/Hz.csv, data/inputs/structure_d/fsigma8.csv")
+    metadata = {
+        "seed": int(seed),
+        "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "datasets": {
+            "Hz.csv": {
+                "z_range": [float(np.min(z_hz)), float(np.max(z_hz))],
+                "sigma_range": [3.0, 5.0],
+                "rows": int(len(z_hz)),
+            },
+            "fsigma8.csv": {
+                "z_range": [float(np.min(z_fs)), float(np.max(z_fs))],
+                "sigma_range": [0.03, 0.06],
+                "rows": int(len(z_fs)),
+            },
+        },
+    }
+    contract_path = os.path.join(DATA, "mock_data_contract.json")
+    with open(contract_path, "w", encoding="utf-8") as fp:
+        json.dump(metadata, fp, ensure_ascii=False, indent=2)
+
+    print("Example data written: data/inputs/structure_d/Hz.csv, data/inputs/structure_d/fsigma8.csv, data/inputs/structure_d/mock_data_contract.json")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Generate synthetic Structure-D example datasets.")
+    parser.add_argument("--seed", type=int, default=42, help="RNG seed for reproducible mock generation.")
+    parser.add_argument(
+        "--with-covariance",
+        action="store_true",
+        help="Also generate synthetic covariance matrices and CSVs compatible with error_model='covariance'.",
+    )
+    args = parser.parse_args()
+    main(seed=args.seed, generate_covariance=args.with_covariance)
