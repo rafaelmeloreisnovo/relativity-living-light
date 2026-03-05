@@ -9,6 +9,11 @@ colunas: z, fs8, sigma
 Você pode gerar dados exemplo rodando:
 `python -m data.pipelines.structure_d.make_example_data`
 
+A geração de exemplos também cria `mock_data_contract.json` com:
+- `seed` utilizado;
+- `generated_at_utc` (timestamp ISO-8601 UTC);
+- ranges de `z` e `sigma` usados para `Hz.csv` e `fsigma8.csv`.
+
 ## Configuração por corrida (datasets ativos)
 Arquivo: `data/pipelines/structure_d/datasets_config.json`
 
