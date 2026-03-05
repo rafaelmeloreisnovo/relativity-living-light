@@ -7,12 +7,17 @@ Fechamento bibliográfico e trilha de fontes primárias do projeto.
 ## Conteúdo incorporado (itens soltos/localizados)
 Documentos e artefatos relacionados incorporados nesta etapa:
 
-- docs/REFERENCES.md
-- docs/CANONICAL_SOURCES.md
-- data/CITATION.cff
+- `docs/REFERENCES.md` (catálogo canônico com seções fixas `Fontes internas do repositório` e `Literatura externa`, IDs `INT-*` e `EXT-*`)
+- `docs/CANONICAL_SOURCES.md`
+- `data/CITATION.cff`
+
+## Navegação recomendada
+- Fontes internas: consultar seção **Fontes internas do repositório** em `docs/REFERENCES.md`.
+- Literatura externa: consultar seção **Literatura externa** em `docs/REFERENCES.md`.
+- Regra editorial: seguir a seção **Regra editorial para futuras adições** em `docs/REFERENCES.md` ao cadastrar novas fontes.
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.
-- Atualize este capítulo quando novos materiais da mesma temática forem adicionados ao repositório.
+- O cadastro e a classificação de referências devem ser feitos primeiro em `docs/REFERENCES.md`, preservando a numeração de IDs por classe.
 
 ---

@@ -1,327 +1,163 @@
 # References: Photonic Cosmology Framework
 
-## Primary Reference: Nature Article
+Este arquivo é o **catálogo canônico de referências** do repositório.
 
-**Main Article:**
-- **Title**: Nonlocality-enabled photonic analogies of parallel spaces
-- **Journal**: Nature Communications (2025)
-- **DOI**: 10.1038/s41467-025-63981-3
-- **URL**: https://www.nature.com/articles/s41467-025-63981-3
-- **Key Finding**: Laboratory demonstration of photonic systems simulating parallel spaces through nonlocal quantum correlations
+## Fontes internas do repositório
 
-**Relevance to Living Light Model**: Provides experimental evidence that photons can exist in extended, nonlocal states at laboratory scales, supporting the conceptual foundation of cosmological-scale photonic superposition.
+> Critério: artefatos versionados neste repositório (documentos, scripts, datasets e índices internos).
 
----
+### INT-001 — Framework técnico principal
+- **Título**: README patch unificado PT/EN v4
+- **Tipo**: Documento interno
+- **Caminho**: `docs/README_patch_unified_PT_EN_v4.md`
+- **Descrição**: Formulação matemática e narrativa técnica consolidada do modelo.
 
-## Quantum Optics & Nonlocality
+### INT-002 — Resultados computacionais do repositório
+- **Título**: Dados e figuras do pipeline RLL
+- **Tipo**: Datasets/artefatos internos
+- **Caminho**: `data/relativity_living_light_models.csv`, `data/unified_entropy_margin_10_12.csv` e figuras derivadas
+- **Descrição**: Base numérica para validações (H(z), Δμ, crescimento estrutural, rotação e lentes).
 
-### Foundational Papers
-
-1. **Bell's Theorem and Nonlocality**
-   - Bell, J.S. (1964). "On the Einstein Podolsky Rosen paradox". *Physics Physique Физика*, 1(3), 195-200.
-   - Establishes theoretical framework for quantum nonlocality
-
-2. **Experimental Tests**
-   - Aspect, A., Dalibard, J., & Roger, G. (1982). "Experimental Test of Bell's Inequalities Using Time-Varying Analyzers". *Physical Review Letters*, 49(25), 1804-1807.
-   - First definitive experimental demonstration of quantum nonlocality
-
-3. **Modern Nonlocality**
-   - Gisin, N. (2014). "Quantum Chance: Nonlocality, Teleportation and Other Quantum Marvels". *Springer*.
-   - Contemporary perspective on quantum nonlocality and its implications
-
-### Photonic Superposition
-
-4. **Photonic Coherence**
-   - Mandel, L., & Wolf, E. (1995). "Optical Coherence and Quantum Optics". *Cambridge University Press*.
-   - Comprehensive treatment of optical coherence theory
-
-5. **Bose-Einstein Condensates of Photons**
-   - Klaers, J., Schmitt, J., Vewinger, F., & Weitz, M. (2010). "Bose-Einstein condensation of photons in an optical microcavity". *Nature*, 468(7323), 545-548.
-   - Photons can exhibit collective, matter-like behavior
+### INT-003 — Análises internas do artigo Nature
+- **Título**: Pacote de análise interna do artigo de referência
+- **Tipo**: Documentação interna
+- **Caminho**: `docs/NATURE_ARTICLE_ANALYSIS.md`, `docs/ARTICLE_ANALYSIS_SUMMARY.md`, `docs/CONCEPTUAL_FRAMEWORK.md`
+- **Descrição**: Interpretação autoral, síntese e diagramas conceituais ligados ao framework.
 
 ---
 
-## Cosmology: Dark Energy & Dark Matter
+## Literatura externa
 
-### Standard Model (ΛCDM)
+> Critério: papers, livros, notícias, preprints e publicações fora do repositório.
 
-6. **Cosmological Constant**
-   - Weinberg, S. (1989). "The cosmological constant problem". *Reviews of Modern Physics*, 61(1), 1-23.
-   - Fundamental challenge of understanding dark energy
+### EXT-001 — Nonlocality-enabled photonic analogies of parallel spaces
+- **Autores**: Nature Communications (2025)
+- **Tipo**: Artigo peer-reviewed
+- **Fonte**: *Nature Communications*
+- **DOI/URL**: 10.1038/s41467-025-63981-3 / https://www.nature.com/articles/s41467-025-63981-3
+- **Nota**: Evidência laboratorial de estados fotônicos não-locais.
 
-7. **Dark Energy Overview**
-   - Peebles, P.J.E., & Ratra, B. (2003). "The cosmological constant and dark energy". *Reviews of Modern Physics*, 75(2), 559-606.
-   - Comprehensive review of dark energy in cosmology
+### EXT-002 — Bell's theorem and nonlocality
+- Bell, J.S. (1964). "On the Einstein Podolsky Rosen paradox". *Physics Physique Физика*, 1(3), 195-200.
 
-8. **Dark Matter Review**
-   - Bertone, G., Hooper, D., & Silk, J. (2005). "Particle dark matter: evidence, candidates and constraints". *Physics Reports*, 405(5-6), 279-390.
-   - Overview of dark matter evidence and candidate particles
+### EXT-003 — Experimental tests of Bell inequalities
+- Aspect, A., Dalibard, J., & Roger, G. (1982). "Experimental Test of Bell's Inequalities Using Time-Varying Analyzers". *Physical Review Letters*, 49(25), 1804-1807.
 
-### Recent Observations
+### EXT-004 — Modern nonlocality overview
+- Gisin, N. (2014). *Quantum Chance: Nonlocality, Teleportation and Other Quantum Marvels*. Springer.
 
-9. **Planck Results**
-   - Planck Collaboration (2020). "Planck 2018 results. VI. Cosmological parameters". *Astronomy & Astrophysics*, 641, A6.
-   - Current best constraints on cosmological parameters
+### EXT-005 — Optical coherence and quantum optics
+- Mandel, L., & Wolf, E. (1995). *Optical Coherence and Quantum Optics*. Cambridge University Press.
 
-10. **DESI Results**
-    - DESI Collaboration (2024). "DESI 2024 VI: Cosmological Constraints from the Measurements of Baryon Acoustic Oscillations". *arXiv preprint*.
-    - Latest BAO measurements and cosmological constraints
+### EXT-006 — Bose-Einstein condensation of photons
+- Klaers, J., Schmitt, J., Vewinger, F., & Weitz, M. (2010). "Bose-Einstein condensation of photons in an optical microcavity". *Nature*, 468(7323), 545-548.
 
-11. **Dark Energy Survey**
-    - DES Collaboration (2022). "Dark Energy Survey Year 3 results: Cosmological constraints from galaxy clustering and weak lensing". *Physical Review D*, 105(2), 023520.
-    - Combined constraints from structure formation
+### EXT-007 — Cosmological constant problem
+- Weinberg, S. (1989). "The cosmological constant problem". *Reviews of Modern Physics*, 61(1), 1-23.
 
-12. **Weakening Dark Energy?**
-    - Castelvecchi, D. (2025). "Is dark energy getting weaker? Fresh data bolster shock finding". *Nature News*.
-    - Recent evidence suggesting dark energy may be evolving
+### EXT-008 — Dark energy overview
+- Peebles, P.J.E., & Ratra, B. (2003). "The cosmological constant and dark energy". *Reviews of Modern Physics*, 75(2), 559-606.
 
----
+### EXT-009 — Dark matter review
+- Bertone, G., Hooper, D., & Silk, J. (2005). "Particle dark matter: evidence, candidates and constraints". *Physics Reports*, 405(5-6), 279-390.
 
-## Alternative Dark Sector Models
+### EXT-010 — Planck cosmological parameters
+- Planck Collaboration (2020). "Planck 2018 results. VI. Cosmological parameters". *Astronomy & Astrophysics*, 641, A6.
 
-### Modified Gravity
+### EXT-011 — DESI BAO constraints
+- DESI Collaboration (2024). "DESI 2024 VI: Cosmological Constraints from the Measurements of Baryon Acoustic Oscillations". *arXiv preprint*.
 
-13. **MOND**
-    - Milgrom, M. (1983). "A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis". *The Astrophysical Journal*, 270, 365-370.
-    - Alternative to dark matter via modified dynamics
+### EXT-012 — Dark Energy Survey Y3
+- DES Collaboration (2022). "Dark Energy Survey Year 3 results: Cosmological constraints from galaxy clustering and weak lensing". *Physical Review D*, 105(2), 023520.
 
-14. **f(R) Gravity**
-    - De Felice, A., & Tsujikawa, S. (2010). "f(R) theories". *Living Reviews in Relativity*, 13(1), 3.
-    - Modified gravity as dark energy alternative
+### EXT-013 — Nature News on weakening dark energy
+- Castelvecchi, D. (2025). "Is dark energy getting weaker? Fresh data bolster shock finding". *Nature News*.
 
-### Dynamical Dark Energy
+### EXT-014 — MOND
+- Milgrom, M. (1983). "A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis". *The Astrophysical Journal*, 270, 365-370.
 
-15. **Quintessence**
-    - Caldwell, R.R., Dave, R., & Steinhardt, P.J. (1998). "Cosmological imprint of an energy component with general equation of state". *Physical Review Letters*, 80(8), 1582.
-    - Scalar field models of evolving dark energy
+### EXT-015 — f(R) gravity review
+- De Felice, A., & Tsujikawa, S. (2010). "f(R) theories". *Living Reviews in Relativity*, 13(1), 3.
 
-16. **Phantom Energy**
-    - Caldwell, R.R. (2002). "A phantom menace? Cosmological consequences of a dark energy component with super-negative equation of state". *Physics Letters B*, 545(1-2), 23-29.
-    - w < -1 dark energy models
+### EXT-016 — Quintessence
+- Caldwell, R.R., Dave, R., & Steinhardt, P.J. (1998). "Cosmological imprint of an energy component with general equation of state". *Physical Review Letters*, 80(8), 1582.
 
-### Unified Dark Sector
+### EXT-017 — Phantom energy
+- Caldwell, R.R. (2002). "A phantom menace? Cosmological consequences of a dark energy component with super-negative equation of state". *Physics Letters B*, 545(1-2), 23-29.
 
-17. **Interaction Models**
-    - Wang, B., Abdalla, E., Atrio-Barandela, F., & Pavón, D. (2016). "Dark matter and dark energy interactions: theoretical challenges, cosmological implications and observational signatures". *Reports on Progress in Physics*, 79(9), 096901.
-    - Dark matter-dark energy coupling theories
+### EXT-018 — Unified dark sector interactions
+- Wang, B., Abdalla, E., Atrio-Barandela, F., & Pavón, D. (2016). "Dark matter and dark energy interactions: theoretical challenges, cosmological implications and observational signatures". *Reports on Progress in Physics*, 79(9), 096901.
 
----
+### EXT-019 — Strong lensing review
+- Treu, T. (2010). "Strong lensing by galaxies". *Annual Review of Astronomy and Astrophysics*, 48, 87-125.
 
-## Structure Formation & Lensing
+### EXT-020 — Weak lensing theory
+- Bartelmann, M., & Schneider, P. (2001). "Weak gravitational lensing". *Physics Reports*, 340(4-5), 291-472.
 
-### Gravitational Lensing
+### EXT-021 — Cluster lenses
+- Kneib, J.P., & Natarajan, P. (2011). "Cluster lenses". *The Astronomy and Astrophysics Review*, 19(1), 47.
 
-18. **Strong Lensing**
-    - Treu, T. (2010). "Strong lensing by galaxies". *Annual Review of Astronomy and Astrophysics*, 48, 87-125.
-    - Review of strong gravitational lensing
+### EXT-022 — Bullet Cluster empirical proof
+- Clowe, D., et al. (2006). "A direct empirical proof of the existence of dark matter". *The Astrophysical Journal Letters*, 648(2), L109.
 
-19. **Weak Lensing**
-    - Bartelmann, M., & Schneider, P. (2001). "Weak gravitational lensing". *Physics Reports*, 340(4-5), 291-472.
-    - Comprehensive weak lensing theory
+### EXT-023 — JWST follow-up (Bullet Cluster)
+- Recent JWST observations of Bullet Cluster (2024-2025).
 
-20. **Cluster Lensing**
-    - Kneib, J.P., & Natarajan, P. (2011). "Cluster lenses". *The Astronomy and Astrophysics Review*, 19(1), 47.
-    - Lensing by galaxy clusters
+### EXT-024 — SPARC database
+- Lelli, F., McGaugh, S.S., & Schombert, J.M. (2016). "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves". *The Astronomical Journal*, 152(6), 157.
 
-### Bullet Cluster
+### EXT-025 — Decoherence theory
+- Zurek, W.H. (2003). "Decoherence, einselection, and the quantum origins of the classical". *Reviews of Modern Physics*, 75(3), 715.
 
-21. **Dark Matter Evidence**
-    - Clowe, D., et al. (2006). "A direct empirical proof of the existence of dark matter". *The Astrophysical Journal Letters*, 648(2), L109.
-    - Separation of dark and baryonic matter in colliding clusters
+### EXT-026 — Quantum cosmology
+- Hartle, J.B., & Hawking, S.W. (1983). "Wave function of the Universe". *Physical Review D*, 28(12), 2960.
 
-22. **JWST Follow-up**
-    - Recent JWST observations of Bullet Cluster (2024-2025)
-    - Enhanced resolution of mass distribution
+### EXT-027 — Macroscopic superposition limits
+- Leggett, A.J. (2002). "Testing the limits of quantum mechanics: motivation, state of play, prospects". *Journal of Physics: Condensed Matter*, 14(15), R415.
 
-### Galaxy Rotation Curves
+### EXT-028 — Large-scale cosmic magnetism
+- Widrow, L.M. (2002). "Origin of galactic and extragalactic magnetic fields". *Reviews of Modern Physics*, 74(3), 775.
 
-23. **SPARC Database**
-    - Lelli, F., McGaugh, S.S., & Schombert, J.M. (2016). "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves". *The Astronomical Journal*, 152(6), 157.
-    - High-quality rotation curve data
+### EXT-029 — Cluster magnetic fields
+- Carilli, C.L., & Taylor, G.B. (2002). "Cluster magnetic fields". *Annual Review of Astronomy and Astrophysics*, 40(1), 319-348.
 
----
+### EXT-030 — Faraday rotation
+- Beck, R. (2015). "Magnetic fields in spiral galaxies". *The Astronomy and Astrophysics Review*, 24(1), 4.
 
-## Quantum Decoherence & Cosmology
+### EXT-031 — Plasma universe
+- Peratt, A.L. (1992). *Physics of the Plasma Universe*. Springer-Verlag.
 
-24. **Decoherence Theory**
-    - Zurek, W.H. (2003). "Decoherence, einselection, and the quantum origins of the classical". *Reviews of Modern Physics*, 75(3), 715.
-    - How quantum systems become classical
+### EXT-032 — Intracluster medium physics
+- Sarazin, C.L. (1988). *X-ray emission from clusters of galaxies*. Cambridge University Press.
 
-25. **Quantum Cosmology**
-    - Hartle, J.B., & Hawking, S.W. (1983). "Wave function of the Universe". *Physical Review D*, 28(12), 2960.
-    - Quantum mechanics applied to the universe
+### EXT-033 — MCMC for cosmology
+- Lewis, A., & Bridle, S. (2002). "Cosmological parameters from CMB and other data: A Monte Carlo approach". *Physical Review D*, 66(10), 103511.
 
-26. **Macroscopic Superposition**
-    - Leggett, A.J. (2002). "Testing the limits of quantum mechanics: motivation, state of play, prospects". *Journal of Physics: Condensed Matter*, 14(15), R415.
-    - Limits of quantum behavior at large scales
+### EXT-034 — Bayesian model comparison
+- Trotta, R. (2008). "Bayes in the sky: Bayesian inference and model selection in cosmology". *Contemporary Physics*, 49(2), 71-104.
 
----
+### EXT-035 — Casimir effect
+- Casimir, H.B.G. (1948). "On the attraction between two perfectly conducting plates". *Proceedings of the Koninklijke Nederlandse Akademie van Wetenschappen*, 51, 793-795.
 
-## Electromagnetic Fields in Cosmology
+### EXT-036 — Zero-point energy
+- Milonni, P.W. (1994). *The Quantum Vacuum: An Introduction to Quantum Electrodynamics*. Academic Press.
 
-### Cosmic Magnetic Fields
+### EXT-037 — Entropic gravity
+- Verlinde, E. (2011). "On the origin of gravity and the laws of Newton". *Journal of High Energy Physics*, 2011(4), 29.
 
-27. **Large-Scale Magnetism**
-    - Widrow, L.M. (2002). "Origin of galactic and extragalactic magnetic fields". *Reviews of Modern Physics*, 74(3), 775.
-    - Cosmic magnetic field origin and evolution
-
-28. **Cluster Magnetic Fields**
-    - Carilli, C.L., & Taylor, G.B. (2002). "Cluster magnetic fields". *Annual Review of Astronomy and Astrophysics*, 40(1), 319-348.
-    - Observations of magnetic fields in galaxy clusters
-
-29. **Faraday Rotation**
-    - Beck, R. (2015). "Magnetic fields in spiral galaxies". *The Astronomy and Astrophysics Review*, 24(1), 4.
-    - Using Faraday rotation to measure cosmic magnetic fields
-
-### Plasma Cosmology
-
-30. **Cosmic Plasma**
-    - Peratt, A.L. (1992). "Physics of the Plasma Universe". *Springer-Verlag*.
-    - Role of plasma in cosmic structure
-
-31. **ICM Physics**
-    - Sarazin, C.L. (1988). "X-ray emission from clusters of galaxies". *Cambridge University Press*.
-    - Intracluster medium properties
+### EXT-038 — Holographic principle
+- Bousso, R. (2002). "The holographic principle". *Reviews of Modern Physics*, 74(3), 825.
 
 ---
 
-## Computational & Statistical Methods
+## Regra editorial para futuras adições
 
-32. **MCMC for Cosmology**
-    - Lewis, A., & Bridle, S. (2002). "Cosmological parameters from CMB and other data: A Monte Carlo approach". *Physical Review D*, 66(10), 103511.
-    - CosmoMC methodology
-
-33. **Bayesian Model Comparison**
-    - Trotta, R. (2008). "Bayes in the sky: Bayesian inference and model selection in cosmology". *Contemporary Physics*, 49(2), 71-104.
-    - Statistical methods for comparing cosmological models
-
----
-
-## Related Theoretical Frameworks
-
-### Vacuum Energy & Zero-Point Fields
-
-34. **Casimir Effect**
-    - Casimir, H.B.G. (1948). "On the attraction between two perfectly conducting plates". *Proceedings of the Koninklijke Nederlandse Akademie van Wetenschappen*, 51, 793-795.
-    - Vacuum energy manifestation
-
-35. **Zero-Point Energy**
-    - Milonni, P.W. (1994). "The Quantum Vacuum: An Introduction to Quantum Electrodynamics". *Academic Press*.
-    - Comprehensive treatment of vacuum physics
-
-### Emergent Gravity
-
-36. **Entropic Gravity**
-    - Verlinde, E. (2011). "On the origin of gravity and the laws of Newton". *Journal of High Energy Physics*, 2011(4), 29.
-    - Gravity as emergent phenomenon
-
-37. **Holographic Principle**
-    - Bousso, R. (2002). "The holographic principle". *Reviews of Modern Physics*, 74(3), 825.
-    - Information-theoretic approach to spacetime
-
----
-
-## Living Light Model: Repository Documents
-
-38. **Technical Framework**
-    - README_patch_unified_PT_EN_v4.md
-    - Complete mathematical formulation of the model
-
-39. **Computational Results**
-    - Data files: `relativity_living_light_models.csv`, `unified_entropy_margin_10_12.csv`
-    - Figures: H(z) ratio, Δμ residuals, structure growth, rotation curves, lensing
-
-40. **Nature Article Analysis**
-    - NATURE_ARTICLE_ANALYSIS.md (this analysis)
-    - ARTICLE_ANALYSIS_SUMMARY.md (quick reference)
-    - CONCEPTUAL_FRAMEWORK.md (visual diagrams)
-
----
-
-## Future Directions & Ongoing Research
-
-### Upcoming Surveys
-
-41. **Euclid Mission**
-    - ESA mission for dark energy and dark matter investigation
-    - Launch: 2023; Data: ongoing
-    - Will provide: high-precision weak lensing and BAO measurements
-
-42. **Vera Rubin Observatory (LSST)**
-    - Wide-field survey telescope
-    - First light: 2025
-    - Will provide: billions of galaxies for lensing and supernovae
-
-43. **Roman Space Telescope**
-    - NASA mission for dark energy investigation
-    - Launch: ~2027
-    - Will provide: high-redshift supernovae and weak lensing
-
-### Theoretical Developments
-
-44. **Quantum Gravity**
-    - Active research area: loop quantum gravity, string theory
-    - May inform photonic superposition at Planck scale
-
-45. **Machine Learning in Cosmology**
-    - Emerging methods for parameter inference
-    - Neural networks for faster cosmological simulations
-
----
-
-## Citation Format
-
-For citing the Relativity Living Light model:
-
-**Repository Citation:**
-```
-Instituto Rafael (2025). Relativity Living Light: Unified Photonic Superposition Model.
-GitHub repository: https://github.com/instituto-Rafael/relativity-living-light
-DOI: 10.5281/zenodo.17188137
-```
-
-**Nature Article Citation:**
-```
-[Authors] (2025). Nonlocality-enabled photonic analogies of parallel spaces.
-Nature Communications. DOI: 10.1038/s41467-025-63981-3
-```
-
----
-
-## Additional Resources
-
-### Online Resources
-
-- **NASA/IPAC Extragalactic Database (NED)**: https://ned.ipac.caltech.edu/
-- **SDSS SkyServer**: http://skyserver.sdss.org/
-- **Planck Legacy Archive**: https://pla.esac.esa.int/
-- **arXiv Astrophysics**: https://arxiv.org/archive/astro-ph
-
-### Software Tools
-
-- **CLASS**: Cosmic Linear Anisotropy Solving System (CMB calculations)
-- **CAMB**: Code for Anisotropies in the Microwave Background
-- **CosmoMC**: Cosmological Monte Carlo parameter inference
-- **emcee**: Python MCMC sampler
-- **astropy**: Python astronomy package
-
----
-
-## Version History
-
-- **v1.0** (November 2025): Initial reference compilation
-- Connection established between Nature article s41467-025-63981-3 and Living Light model
-- Comprehensive bibliography spanning quantum optics to cosmology
-
----
-
-## Notes
-
-This reference list is intentionally broad, covering:
-1. Foundational quantum mechanics and optics
-2. Standard cosmology (ΛCDM)
-3. Alternative models and recent challenges
-4. Observational methods and data
-5. Theoretical frameworks potentially relevant to photonic cosmology
-
-The goal is to situate the Living Light model within the broader context of modern physics and cosmology, showing how it builds on established work while proposing novel connections between quantum optics and cosmic-scale phenomena.
+1. **Classificação obrigatória**: toda nova entrada deve ser incluída em apenas uma seção fixa: `Fontes internas do repositório` (INT) ou `Literatura externa` (EXT).
+2. **Atribuição de ID**: usar o próximo identificador sequencial da seção (`INT-00N` ou `EXT-00N`), sem reutilizar IDs removidos.
+3. **Campos mínimos obrigatórios**:
+   - **ID**
+   - **Título**
+   - **Tipo**
+   - **Origem**: caminho interno (`docs/...`, `data/...`, etc.) ou referência bibliográfica completa/DOI/URL
+   - **Nota de relevância** (1 linha)
+4. **Vínculos canônicos**: sempre que adicionar item aqui, atualizar referências cruzadas em `book/39_apendice_referencias_fontes.md` e `ANALISE_COMPLETA/Bibliografia_Completa.md`.
