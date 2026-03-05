@@ -45,6 +45,7 @@ Encaminhamentos complementares:
 - [`docs/ZIP_CONTENT_INDEX.md`](ZIP_CONTENT_INDEX.md) *(inventário histórico; não normativo para armazenamento no core)*
 - [`docs/DATA_INTEGRITY_CHECKLIST.md`](DATA_INTEGRITY_CHECKLIST.md)
 - [`docs/ADMIN.md`](ADMIN.md)
+- [`docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md`](AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md)
 
 ## 3) Série canônica consolidada (`docs/canonicos/`)
 
