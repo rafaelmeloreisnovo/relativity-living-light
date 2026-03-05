@@ -482,7 +482,7 @@ def _dataset_contract_block(cfg_meta, datasets):
     return rows
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, inference_hyperparameters):
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, inference_hyperparameters, execution_timing_outputs=None):
     git_commit, dirty_worktree = _git_metadata()
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
@@ -507,6 +507,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         "bayes_inference_hyperparameters": inference_hyperparameters if bayes else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
         "datasets": _dataset_contract_block(cfg_meta, datasets),
+        "execution_timing_outputs": execution_timing_outputs or [],
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -526,16 +527,23 @@ def _build_main_result(df_model, effective_profile, effective_policy, output_pat
     return payload
 
 
-def _write_timing_artifacts(timing_records):
-    out_timing_csv = os.path.join(RESULTS, f"{EXECUTION_TIMING_BASENAME}.csv")
-    out_timing_json = os.path.join(RESULTS, f"{EXECUTION_TIMING_BASENAME}.json")
-    evaluate_model(timing_records, out_timing_csv)
+def _write_execution_timing(records, basename=EXECUTION_TIMING_BASENAME):
+    out_timing_csv = os.path.join(RESULTS, f"{basename}.csv")
+    out_timing_json = os.path.join(RESULTS, f"{basename}.json")
+
+    with open(out_timing_csv, "w", encoding="utf-8", newline="") as fp:
+        writer = csv.DictWriter(fp, fieldnames=["block", "duration_seconds"])
+        writer.writeheader()
+        for record in records:
+            writer.writerow(record)
+
     with open(out_timing_json, "w", encoding="utf-8") as fp:
-        json.dump(timing_records, fp, ensure_ascii=False, indent=2)
+        json.dump(records, fp, ensure_ascii=False, indent=2)
+
     return out_timing_csv, out_timing_json
 
 
-def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_lcdm, maxiter_rll, tol, seed):
+def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_lcdm, maxiter_rll, tol, seed, execution_timing_outputs=None):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all --profile structure_d_real_validation",
         "execution_path": "run_all_real",
@@ -561,6 +569,7 @@ def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_l
         "covariance_usage_non_empty": True,
         "real_execution_skipped": False,
         "real_execution_skip_reason": None,
+        "execution_timing_outputs": execution_timing_outputs or [],
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -688,6 +697,7 @@ def main(
         tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
         seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
 
+        fit_t0 = time.perf_counter()
         df_model = run_all_real.main(
             config_path=config_path,
             profile_name=effective_profile,
@@ -711,6 +721,9 @@ def main(
         ]
         evaluate_model(cov_rows, out_cov)
         evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
+        timing_records.append({"block": "fit", "duration_seconds": time.perf_counter() - fit_t0})
+
+        write_t0 = time.perf_counter()
         out_contract = _write_real_reproduction_contract(
             effective_profile,
             effective_policy,
@@ -718,7 +731,13 @@ def main(
             maxiter_rll=maxiter_rll,
             tol=tol,
             seed=seed,
+            execution_timing_outputs=[
+                f"{EXECUTION_TIMING_BASENAME}.csv",
+                f"{EXECUTION_TIMING_BASENAME}.json",
+            ],
         )
+        timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
+        out_timing_csv, out_timing_json = _write_execution_timing(timing_records, basename=EXECUTION_TIMING_BASENAME)
         _assert_required_outputs()
         _validate_required_csv_schemas()
 
@@ -775,6 +794,8 @@ def main(
     timing_records.append({"block": "fit", "duration_seconds": time.perf_counter() - fit_t0})
 
     write_t0 = time.perf_counter()
+    timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
+    out_timing_csv, out_timing_json = _write_execution_timing(timing_records, basename=EXECUTION_TIMING_BASENAME)
     out_contract = _write_reproduction_contract(
         effective_profile,
         effective_policy,
@@ -790,9 +811,11 @@ def main(
             "nsteps": int(bayes_nsteps),
             "nlive": int(bayes_nlive),
         } if bayes and bayes_mode == "inference" else None,
+        execution_timing_outputs=[
+            os.path.basename(out_timing_csv),
+            os.path.basename(out_timing_json),
+        ],
     )
-    timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
-    out_timing_csv, out_timing_json = _write_timing_artifacts(timing_records)
 
     _assert_required_outputs()
     _validate_required_csv_schemas()
