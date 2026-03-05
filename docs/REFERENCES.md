@@ -1,5 +1,16 @@
 # References: Photonic Cosmology Framework
 
+## Canonical Citation Keys (Claim-Level)
+
+- [EXT-003] Lewis & Bridle (2002), *Physical Review D* 66, 103511.
+- [EXT-004] Okada et al. (2026), *Physical Review Letters* 136.
+- [EXT-005] Trotta (2008), *Contemporary Physics* 49, 71–104.
+- [EXT-006] DESI Collaboration (2024/2025), BAO cosmological constraints.
+- [EXT-007] Brout et al. (2022), Pantheon+ SN Ia cosmology.
+- [EXT-008] BOSS Collaboration (`fσ8` growth constraints).
+- [EXT-009] Planck Collaboration (2020), *A&A* 641, A6.
+- [EXT-010] Akaike (1974) and Schwarz (1978), AIC/BIC definitions.
+- [EXT-011] Combined analyses (DESI + Pantheon+ + BOSS) for expansion-growth consistency.
 
 ## Bibliografia unificada
 
