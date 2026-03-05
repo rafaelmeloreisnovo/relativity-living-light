@@ -22,14 +22,14 @@ from .models import (
 
 
 MODEL_PARAMETER_PRIORS = {
-    "LCDM": {
+    "lcdm": {
         "H0": {"prior": "uniform", "min": 50.0, "max": 90.0},
         "Om": {"prior": "uniform", "min": 0.1, "max": 0.5},
         "Ol": {"prior": "uniform", "min": 0.5, "max": 0.9},
         "sigma8": {"prior": "uniform", "min": 0.5, "max": 1.1},
         "gamma": {"prior": "uniform", "min": 0.3, "max": 0.8},
     },
-    "RLL_like+AGN": {
+    "rll_like_agn": {
         "H0": {"prior": "uniform", "min": 50.0, "max": 90.0},
         "Om": {"prior": "uniform", "min": 0.1, "max": 0.5},
         "Ol": {"prior": "uniform", "min": 0.5, "max": 0.9},
@@ -91,7 +91,7 @@ def log_likelihood_joint(theta, model_name, data_hz, data_fs8):
 
     Parameter order:
         1) theta: array-like no mesmo ordenamento de ``MODEL_PARAMETER_PRIORS[model_name]``
-        2) model_name: ``"LCDM"`` ou ``"RLL_like+AGN"``
+        2) model_name: ``"lcdm"`` ou ``"rll_like_agn"``
         3) data_hz: estrutura com colunas/chaves ``z``, ``Hz`` e ``sigma``
         4) data_fs8: estrutura com colunas/chaves ``z``, ``fs8`` e ``sigma``
 
@@ -100,10 +100,10 @@ def log_likelihood_joint(theta, model_name, data_hz, data_fs8):
     """
     params = _theta_to_params(theta, model_name)
 
-    if model_name == "LCDM":
+    if model_name == "lcdm":
         hz_model = model_LCDM_Hz(_column(data_hz, "z"), params)
         fs_model = model_LCDM_fs8(_column(data_fs8, "z"), params)
-    elif model_name == "RLL_like+AGN":
+    elif model_name == "rll_like_agn":
         hz_model = model_RLL_like_Hz(_column(data_hz, "z"), params)
         fs_model = model_RLL_like_fs8(_column(data_fs8, "z"), params)
     else:
@@ -122,7 +122,7 @@ def log_prior(theta, model_name):
 
     Parameter order:
         1) theta: array-like no ordenamento de ``MODEL_PARAMETER_PRIORS[model_name]``
-        2) model_name: ``"LCDM"`` ou ``"RLL_like+AGN"``
+        2) model_name: ``"lcdm"`` ou ``"rll_like_agn"``
 
     Returns:
         float: ``0.0`` dentro do suporte uniforme e ``-np.inf`` fora do suporte.
@@ -387,7 +387,7 @@ def run_lcdm_bayes(hz, fs8, seed=42, nwalkers=32, nsteps=2000, nlive=400, output
     hz_data, fs8_data = _standardize_input_data(hz, fs8)
     t0 = time.perf_counter()
     nested_result = run_nested_dynesty(
-        "LCDM",
+        "lcdm",
         hz_data,
         fs8_data,
         nlive=nlive,
@@ -395,7 +395,7 @@ def run_lcdm_bayes(hz, fs8, seed=42, nwalkers=32, nsteps=2000, nlive=400, output
     )
     elapsed = time.perf_counter() - t0
     return _build_bayes_summary(
-        "LCDM",
+        "lcdm",
         nested_result,
         seed=seed,
         nwalkers=nwalkers,
@@ -410,7 +410,7 @@ def run_rll_like_agn_bayes(hz, fs8, seed=42, nwalkers=32, nsteps=2000, nlive=400
     hz_data, fs8_data = _standardize_input_data(hz, fs8)
     t0 = time.perf_counter()
     nested_result = run_nested_dynesty(
-        "RLL_like+AGN",
+        "rll_like_agn",
         hz_data,
         fs8_data,
         nlive=nlive,
@@ -418,7 +418,7 @@ def run_rll_like_agn_bayes(hz, fs8, seed=42, nwalkers=32, nsteps=2000, nlive=400
     )
     elapsed = time.perf_counter() - t0
     return _build_bayes_summary(
-        "RLL_like+AGN",
+        "rll_like_agn",
         nested_result,
         seed=seed,
         nwalkers=nwalkers,
