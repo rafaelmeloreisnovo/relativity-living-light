@@ -7,6 +7,10 @@ from .growth import f_sigma8_proxy
 
 C_KMS = 299792.458
 
+# Número de parâmetros livres usados na comparação estatística dos modelos.
+N_FREE_PARAMS_LCDM = 4
+N_FREE_PARAMS_RLL = 7
+
 
 def _param_float(params, key, default):
     """Retorna parâmetro escalar como float; NaN quando inválido."""

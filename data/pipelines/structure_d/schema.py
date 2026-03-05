@@ -5,6 +5,9 @@ TEXTUAL_OUTPUTS = []
 import numpy as np
 
 
+DEFAULT_MIN_POINTS_WITH_Z = 3
+
+
 def _as_float_array(values, name):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -25,7 +28,10 @@ def _as_float_matrix(values, name):
     return mat
 
 
-def validate_observable_schema(entry):
+def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
+    if int(min_points_with_z) != min_points_with_z or min_points_with_z < 1:
+        raise ValueError("min_points_with_z must be a positive integer")
+
     required = ["dataset_id", "observable", "values", "metadata"]
     missing = [k for k in required if k not in entry]
     if missing:
@@ -37,6 +43,10 @@ def validate_observable_schema(entry):
         z = _as_float_array(entry["z"], "z")
         if len(z) != len(values):
             raise ValueError("z and values must have the same length")
+        if len(z) < int(min_points_with_z):
+            raise ValueError(
+                f"datasets with z must have at least {int(min_points_with_z)} points"
+            )
 
     has_errors = "errors" in entry and entry["errors"] is not None
     has_cov = "covariance" in entry and entry["covariance"] is not None
@@ -51,15 +61,14 @@ def validate_observable_schema(entry):
             raise ValueError("errors must be strictly positive")
     else:
         covariance = _as_float_matrix(entry["covariance"], "covariance")
-        if covariance.shape[0] != len(values):
-            raise ValueError("covariance dimension must match values length")
-        if np.any(np.diag(covariance) <= 0):
-            raise ValueError("covariance diagonal must be strictly positive")
+        _validate_covariance_matrix(covariance, expected_size=len(values))
 
-    metadata = entry["metadata"]
+    metadata = _json_safe_metadata(entry["metadata"])
     for k in ["survey", "redshift_range", "reference"]:
         if k not in metadata:
             raise ValueError(f"metadata missing key: {k}")
+
+    dataset_source = entry.get("dataset_source")
 
     return {
         "dataset_id": str(entry["dataset_id"]),
@@ -69,4 +78,5 @@ def validate_observable_schema(entry):
         "errors": _as_float_array(entry["errors"], "errors") if has_errors else None,
         "covariance": _as_float_matrix(entry["covariance"], "covariance") if has_cov else None,
         "metadata": metadata,
+        "dataset_source": str(dataset_source) if dataset_source is not None else "unknown",
     }
