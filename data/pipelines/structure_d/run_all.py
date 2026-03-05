@@ -481,21 +481,10 @@ def main(
     _validate_profile_name(cfg, profile_name)
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
-    requested_policy = covariance_policy or cfg.get("covariance_policy", "prefer_full")
-
-    real_datasets = {"real_hz", "real_bao", "real_cmb_shift"}
-    is_real_profile = (
-        effective_profile == REAL_PROFILE
-        or cfg_meta.get("run_name") == REAL_PROFILE
-        or real_datasets.issubset(set(cfg_meta.get("active_datasets", [])))
+    effective_policy = _apply_covariance_policy(
+        datasets,
+        covariance_policy or cfg_meta.get("covariance_policy") or cfg.get("covariance_policy", "prefer_full"),
     )
-
-    if is_real_profile:
-        # datasets reais são consumidos por run_all_real e usam erros diagonais explícitos;
-        # não deve falhar por política de covariância "full_required" aqui.
-        effective_policy = requested_policy
-    else:
-        effective_policy = _apply_covariance_policy(datasets, requested_policy)
 
     if is_real_profile:
         df_model = run_all_real.main(

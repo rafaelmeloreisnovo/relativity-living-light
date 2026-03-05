@@ -471,6 +471,143 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             self.assertIn("hz", message)
             self.assertIn("fsigma8", message)
 
+class StructureDProfileMetadataPropagationTest(unittest.TestCase):
+    def test_load_active_datasets_preserves_legacy_policy_field(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_dir = os.path.join(temp_dir, "data")
+            os.makedirs(data_dir, exist_ok=True)
+
+            hz_path = os.path.join(data_dir, "hz.csv")
+            pd.DataFrame({"z": [0.1, 0.3], "Hz": [70.0, 75.0], "sigma": [2.0, 2.5]}).to_csv(hz_path, index=False)
+
+            cfg_path = os.path.join(temp_dir, "legacy_config.json")
+            config = {
+                "run_name": "legacy_profile",
+                "active_datasets": ["hz"],
+                "covariance_policy": "diagonal_only",
+                "datasets": {
+                    "hz": {
+                        "format": "csv",
+                        "path": hz_path,
+                        "observable": "Hz",
+                        "error_model": "errors",
+                        "columns": {
+                            "z": "z",
+                            "value": "Hz",
+                            "error": "sigma",
+                        },
+                        "metadata": {"survey": "synthetic", "redshift_range": "[0.1,0.3]", "reference": "unit-test"},
+                    }
+                },
+            }
+            with open(cfg_path, "w", encoding="utf-8") as fp:
+                json.dump(config, fp)
+
+            meta, _ = load_active_datasets(cfg_path)
+            self.assertEqual(meta["covariance_policy"], "diagonal_only")
+
+    def test_run_all_uses_profile_covariance_policy_from_metadata(self):
+        generated_paths = [
+            os.path.join(run_all.RESULTS, "model_comparison.csv"),
+            os.path.join(run_all.RESULTS, "covariance_usage.csv"),
+            os.path.join(run_all.RESULTS, "rll_regime_summary.csv"),
+            os.path.join(run_all.RESULTS, "reproduction_contract.json"),
+        ]
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            self.addCleanup(
+                lambda: [shutil.rmtree(path) if os.path.isdir(path) else os.remove(path) for path in generated_paths if os.path.exists(path)]
+            )
+
+            data_dir = os.path.join(temp_dir, "data")
+            os.makedirs(data_dir, exist_ok=True)
+
+            hz_path = os.path.join(data_dir, "hz_cov.csv")
+            cov_path = os.path.join(data_dir, "hz_cov.csv.matrix")
+            fs8_path = os.path.join(data_dir, "fs8.csv")
+            cfg_path = os.path.join(temp_dir, "profile_config.json")
+
+            pd.DataFrame({"z": [0.1, 0.3, 0.7], "Hz": [72.0, 79.0, 96.0]}).to_csv(hz_path, index=False)
+            np.savetxt(cov_path, np.array([[4.0, 0.5, 0.2], [0.5, 9.0, 0.3], [0.2, 0.3, 16.0]]), delimiter=",")
+            pd.DataFrame({"z": [0.2, 0.5, 0.9], "fs8": [0.45, 0.42, 0.39], "sigma": [0.03, 0.04, 0.05]}).to_csv(fs8_path, index=False)
+
+            config = {
+                "default_profile": "diag_profile",
+                "profiles": {
+                    "diag_profile": {
+                        "run_name": "diag_profile",
+                        "active_datasets": ["hz", "fsigma8"],
+                        "covariance_policy": "diagonal_only",
+                    }
+                },
+                "datasets": {
+                    "hz": {
+                        "format": "csv",
+                        "path": hz_path,
+                        "observable": "Hz",
+                        "error_model": "covariance",
+                        "columns": {"z": "z", "value": "Hz", "covariance": None},
+                        "covariance_path": cov_path,
+                        "metadata": {"survey": "synthetic", "redshift_range": "[0.1,0.7]", "reference": "unit-test"},
+                    },
+                    "fsigma8": {
+                        "format": "csv",
+                        "path": fs8_path,
+                        "observable": "fs8",
+                        "error_model": "errors",
+                        "columns": {"z": "z", "value": "fs8", "error": "sigma"},
+                        "metadata": {"survey": "synthetic", "redshift_range": "[0.2,0.9]", "reference": "unit-test"},
+                    },
+                },
+            }
+            with open(cfg_path, "w", encoding="utf-8") as fp:
+                json.dump(config, fp)
+
+            run_all.main(config_path=cfg_path, profile_name="diag_profile")
+
+            model_df = pd.read_csv(os.path.join(run_all.RESULTS, "model_comparison.csv"))
+            self.assertTrue((model_df["covariance_policy"] == "diagonal_only").all())
+
+            cov_df = pd.read_csv(os.path.join(run_all.RESULTS, "covariance_usage.csv"))
+            hz_row = cov_df[cov_df["dataset_id"] == "hz"].iloc[0]
+            self.assertEqual(hz_row["covariance_mode"], "diagonal")
+
+
+class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
+    def test_mock_real_like_profile_generates_required_artifacts(self):
+        generated_paths = [
+            os.path.join(run_all.RESULTS, "model_comparison.csv"),
+            os.path.join(run_all.RESULTS, "covariance_usage.csv"),
+            os.path.join(run_all.RESULTS, "rll_regime_summary.csv"),
+            os.path.join(run_all.RESULTS, "reproduction_contract.json"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_00.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_01.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_02.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_04.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_05.csv"),
+            os.path.join(run_all.RESULTS, "dominance_by_z.csv"),
+            os.path.join(run_all.RESULTS, "sensitivity_long.csv"),
+            os.path.join(run_all.RESULTS, "figs"),
+        ]
+
+        def _cleanup_generated_files():
+            for path in generated_paths:
+                if os.path.isdir(path):
+                    shutil.rmtree(path)
+                elif os.path.exists(path):
+                    os.remove(path)
+
+        self.addCleanup(_cleanup_generated_files)
+
+        make_example_data.main(seed=123)
+        run_all.main(profile_name="structure_d_default")
+
+        for filename in run_all.REQUIRED_OUTPUTS:
+            output_path = os.path.join(run_all.RESULTS, filename)
+            self.assertTrue(
+                os.path.exists(output_path),
+                f"required output {filename} was not generated for mock real-like profile",
+            )
 
     def test_non_monotonic_z_raises_by_default(self):
         with tempfile.TemporaryDirectory() as temp_dir:
