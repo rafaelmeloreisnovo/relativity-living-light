@@ -2,8 +2,12 @@
 
 TEXTUAL_OUTPUTS = []
 
+import warnings
+
 import numpy as np
 import pandas as pd
+import hashlib
+import json
 
 
 BAYES_FACTOR_INTERPRETATION_ROWS = [
@@ -82,20 +86,72 @@ def _validated_covariance_matrix(cov, expected_size=None):
 
 
 def chi2(obs, mod, sigma):
-    sigma = _validated_sigma_array(sigma)
-    r = (obs - mod) / sigma
+    obs_arr = _as_1d_finite_array("obs", obs)
+    mod_arr = _as_1d_finite_array("mod", mod)
+    sigma_arr = _validated_sigma_array(sigma)
+
+    obs_size = obs_arr.size
+    mod_size = mod_arr.size
+    sigma_size = sigma_arr.size
+    if obs_size != mod_size or obs_size != sigma_size:
+        raise ValueError(
+            "obs, mod e sigma devem ter o mesmo tamanho em chi2 "
+            f"(obs={obs_size}, mod={mod_size}, sigma={sigma_size})"
+        )
+
+    r = (obs_arr - mod_arr) / sigma_arr
     return float(np.sum(r * r))
 
 
-def chi2_with_covariance(obs, mod, covariance):
+def chi2_with_covariance(obs, mod, covariance, diag_accumulator=None):
     obs_arr = np.asarray(obs, dtype=float)
     mod_arr = np.asarray(mod, dtype=float)
     if obs_arr.shape != mod_arr.shape:
         raise ValueError("obs and mod must have the same shape")
     cov = _validated_covariance_matrix(covariance, expected_size=obs_arr.shape[0])
     residual = obs_arr - mod_arr
-    solved = np.linalg.solve(cov, residual)
+    solved = _solve_covariance_system(cov, residual, diag_accumulator=diag_accumulator)
     return float(residual @ solved)
+
+
+def _register_solve_fallback(diag_accumulator, method, detail):
+    warnings.warn(detail, RuntimeWarning, stacklevel=3)
+    if diag_accumulator is None:
+        return
+    diag_accumulator["covariance_solve_fallback_used"] = True
+    diag_accumulator["covariance_solve_fallback_method"] = method
+    diag_accumulator["covariance_solve_fallback_count"] = int(
+        diag_accumulator.get("covariance_solve_fallback_count", 0)
+    ) + 1
+
+
+def _solve_covariance_system(covariance, residual, diag_accumulator=None):
+    try:
+        return np.linalg.solve(covariance, residual)
+    except np.linalg.LinAlgError:
+        scale = float(np.max(np.diag(covariance)))
+        epsilon = np.finfo(float).eps * max(scale, 1.0)
+        regularized_covariance = covariance + np.eye(covariance.shape[0], dtype=float) * epsilon
+        try:
+            solved = np.linalg.solve(regularized_covariance, residual)
+        except np.linalg.LinAlgError:
+            _register_solve_fallback(
+                diag_accumulator,
+                method="pseudo_inverse",
+                detail=(
+                    "covariance solve failed; falling back to pseudo-inverse after regularized solve failure"
+                ),
+            )
+            return np.linalg.pinv(covariance) @ residual
+
+        _register_solve_fallback(
+            diag_accumulator,
+            method="regularized_solve",
+            detail=(
+                "covariance solve failed; used minimal diagonal regularization fallback"
+            ),
+        )
+        return solved
 
 
 def _theta_to_dict(theta, data):
@@ -243,3 +299,25 @@ def write_bayes_factor_interpretation(out_csv):
     df = pd.DataFrame(BAYES_FACTOR_INTERPRETATION_ROWS)
     df.to_csv(out_csv, index=False)
     return df
+
+
+def bayes_factor_interpretation_contract():
+    normalized_rows = []
+    for row in BAYES_FACTOR_INTERPRETATION_ROWS:
+        normalized_rows.append(
+            {
+                "lnB_min": "-inf" if np.isneginf(row["lnB_min"]) else float(row["lnB_min"]),
+                "lnB_max": "inf" if np.isposinf(row["lnB_max"]) else float(row["lnB_max"]),
+                "classification": str(row["classification"]),
+                "notes": str(row["notes"]),
+            }
+        )
+
+    payload = {
+        "table_version": "2026-03-04",
+        "classification_rule": "row interval where lnB_min <= lnB < lnB_max",
+        "rows": normalized_rows,
+    }
+    canonical_payload = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    payload["table_sha256"] = hashlib.sha256(canonical_payload.encode("utf-8")).hexdigest()
+    return payload
