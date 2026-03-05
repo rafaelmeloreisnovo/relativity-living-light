@@ -396,14 +396,17 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
     return out_contract
 
 
-def _write_real_reproduction_contract(profile_name, covariance_policy, real_execution_skipped=False, skip_reason=None):
+def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_lcdm, maxiter_rll, tol, seed):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all --profile structure_d_real_validation",
         "execution_path": "run_all_real",
         "delegated_module": "data.pipelines.structure_d.run_all_real",
         "profile": profile_name,
         "covariance_policy": covariance_policy,
-        "mock_data_contract": None,
+        "maxiter_lcdm": int(maxiter_lcdm),
+        "maxiter_rll": int(maxiter_rll),
+        "tol": float(tol),
+        "seed": int(seed),
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {
@@ -501,62 +504,18 @@ def main(
     timing_records.append({"block": "load", "duration_seconds": time.perf_counter() - load_t0})
 
     if effective_profile == REAL_PROFILE:
-        try:
-            df_model = run_all_real.main(
-                config_path=config_path,
-                profile_name=effective_profile,
-                output_filename="model_comparison.csv",
-                covariance_policy=effective_policy,
-                include_fit_params=False,
-            )
-            real_execution_skipped = False
-            real_execution_skip_reason = None
-        except ImportError as exc:
-            if "SciPy" not in str(exc) and "scipy" not in str(exc):
-                raise
-            real_execution_skipped = True
-            real_execution_skip_reason = str(exc)
-            print(f"[real] execução pulada: {real_execution_skip_reason}")
-            fallback_rows = [
-                {
-                    "model": "LCDM",
-                    "chi2": np.nan,
-                    "AIC": np.nan,
-                    "BIC": np.nan,
-                    "N": 0,
-                    "k": 4,
-                    "datasets_used": ",".join(cfg_meta["active_datasets"]),
-                    "run_name": cfg_meta.get("run_name", "unknown"),
-                    "profile_name": effective_profile,
-                    "covariance_policy": effective_policy,
-                },
-                {
-                    "model": "RLL_like+AGN",
-                    "chi2": np.nan,
-                    "AIC": np.nan,
-                    "BIC": np.nan,
-                    "N": 0,
-                    "k": 7,
-                    "datasets_used": ",".join(cfg_meta["active_datasets"]),
-                    "run_name": cfg_meta.get("run_name", "unknown"),
-                    "profile_name": effective_profile,
-                    "covariance_policy": effective_policy,
-                },
-            ]
-            out_model = os.path.join(RESULTS, "model_comparison.csv")
-            df_model = evaluate_model(fallback_rows, out_model)
-            out_regime = os.path.join(RESULTS, "rll_regime_summary.csv")
-            evaluate_model(
-                [
-                    {
-                        "regime": "skipped",
-                        "count": 0,
-                        "fraction": 0.0,
-                        "reason": real_execution_skip_reason,
-                    }
-                ],
-                out_regime,
-            )
+        maxiter_lcdm = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
+        maxiter_rll = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
+        tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
+        seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
+
+        df_model = run_all_real.main(
+            config_path=config_path,
+            profile_name=effective_profile,
+            output_filename="model_comparison.csv",
+            covariance_policy=effective_policy,
+            include_fit_params=False,
+        )
         out_cov = os.path.join(RESULTS, "covariance_usage.csv")
         out_error_mode = os.path.join(RESULTS, "error_mode_usage.csv")
         cov_rows = [
@@ -575,8 +534,10 @@ def main(
         out_contract = _write_real_reproduction_contract(
             effective_profile,
             effective_policy,
-            real_execution_skipped=real_execution_skipped,
-            skip_reason=real_execution_skip_reason,
+            maxiter_lcdm=maxiter_lcdm,
+            maxiter_rll=maxiter_rll,
+            tol=tol,
+            seed=seed,
         )
         _assert_required_outputs()
         for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():

@@ -206,21 +206,26 @@ def main(
     lcdm_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
     rll_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
 
+    seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
+    tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
+    maxiter_lcdm = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
+    maxiter_rll = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
+
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,
-        seed=42,
-        maxiter=lcdm_maxiter,
-        tol=1e-6,
+        seed=seed,
+        maxiter=maxiter_lcdm,
+        tol=tol,
         workers=1,
     )
 
     res_r = differential_evolution(
         lambda p: _obj_rll(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_r,
-        seed=42,
-        maxiter=rll_maxiter,
-        tol=1e-6,
+        seed=seed,
+        maxiter=maxiter_rll,
+        tol=tol,
         workers=1,
     )
 
@@ -249,6 +254,10 @@ def main(
         run_name=run_name,
         profile_name=profile,
         covariance_policy=covariance_policy,
+        maxiter_lcdm=maxiter_lcdm,
+        maxiter_rll=maxiter_rll,
+        tol=tol,
+        seed=seed,
     )
     row_rll = dict(
         model=MODEL_RLL_AGN,
@@ -262,6 +271,10 @@ def main(
         run_name=run_name,
         profile_name=profile,
         covariance_policy=covariance_policy,
+        maxiter_lcdm=maxiter_lcdm,
+        maxiter_rll=maxiter_rll,
+        tol=tol,
+        seed=seed,
     )
     if include_fit_params:
         row_lcdm.update(
