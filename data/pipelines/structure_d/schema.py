@@ -5,6 +5,10 @@ TEXTUAL_OUTPUTS = []
 import numpy as np
 
 
+_COVARIANCE_VALIDATION_ATOL = 1e-10
+_COVARIANCE_VALIDATION_RTOL = 1e-8
+
+
 def _as_float_array(values, name):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -74,15 +78,14 @@ def validate_observable_schema(entry):
             raise ValueError("errors must be strictly positive")
     else:
         covariance = _as_float_matrix(entry["covariance"], "covariance")
-        if covariance.shape[0] != len(values):
-            raise ValueError("covariance dimension must match values length")
-        if np.any(np.diag(covariance) <= 0):
-            raise ValueError("covariance diagonal must be strictly positive")
+        _validate_covariance_matrix(covariance, expected_size=len(values))
 
     metadata = _json_safe_metadata(entry["metadata"])
     for k in ["survey", "redshift_range", "reference"]:
         if k not in metadata:
             raise ValueError(f"metadata missing key: {k}")
+
+    dataset_source = entry.get("dataset_source")
 
     return {
         "dataset_id": str(entry["dataset_id"]),
@@ -92,4 +95,5 @@ def validate_observable_schema(entry):
         "errors": _as_float_array(entry["errors"], "errors") if has_errors else None,
         "covariance": _as_float_matrix(entry["covariance"], "covariance") if has_cov else None,
         "metadata": metadata,
+        "dataset_source": str(dataset_source) if dataset_source is not None else "unknown",
     }
