@@ -47,6 +47,8 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "BIC",
         "N",
         "k",
+        "fit_params",
+        "fixed_params",
         "datasets_used",
         "run_name",
         "profile_name",
@@ -121,6 +123,10 @@ def _chi2_bao_from_entry(entry, model_values):
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, Ob_h2=0.02236)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00, Ob_h2=0.02236)
+    fit_params_lcdm = ["H0", "Om", "sigma8", "gamma"]
+    fit_params_rll = fit_params_lcdm + ["alpha", "z_peak", "width"]
+    fixed_params_lcdm = sorted(set(lcdm) - set(fit_params_lcdm))
+    fixed_params_rll = sorted(set(rll) - set(fit_params_rll))
 
     rows = []
     cov_rows = []
@@ -176,6 +182,8 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             "BIC": bic(chi2_lcdm, 4, n_obs),
             "N": int(n_obs),
             "k": 4,
+            "fit_params": ",".join(fit_params_lcdm),
+            "fixed_params": ",".join(fixed_params_lcdm),
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
             "run_name": cfg_meta.get("run_name", "unknown"),
             "profile_name": cfg_meta.get("profile_name", DEFAULT_PROFILE),
@@ -190,6 +198,8 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             "BIC": bic(chi2_rll, 7, n_obs),
             "N": int(n_obs),
             "k": 7,
+            "fit_params": ",".join(fit_params_rll),
+            "fixed_params": ",".join(fixed_params_rll),
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
             "run_name": cfg_meta.get("run_name", "unknown"),
             "profile_name": cfg_meta.get("profile_name", DEFAULT_PROFILE),
