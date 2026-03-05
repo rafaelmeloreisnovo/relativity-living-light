@@ -69,6 +69,9 @@ MODEL_BY_DATASET = {
     "real_bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
 }
 
+C_KMS = 299792.458
+Z_CMB = 1089.92
+
 
 def _dataset_block_name(dataset_id, entry):
     observable = str(entry.get("observable", dataset_id)).lower()
@@ -118,6 +121,39 @@ def _chi2_bao_from_entry(entry, model_values):
     return _chi2_from_entry(entry, model_values)
 
 
+def _comoving_distance_mpc(z, hz_model, params, n_steps=2048):
+    z_scalar = float(z)
+    if not np.isfinite(z_scalar) or z_scalar <= 0.0:
+        return float("nan")
+    grid = np.linspace(0.0, z_scalar, int(max(64, n_steps)))
+    hz = np.asarray(hz_model(grid, params), dtype=float)
+    if np.any(~np.isfinite(hz)) or np.any(hz <= 0.0):
+        return float("nan")
+    return float(np.trapz(C_KMS / hz, grid))
+
+
+def _cmb_shift_prediction(params, hz_model):
+    dc_cmb = _comoving_distance_mpc(Z_CMB, hz_model, params)
+    if not np.isfinite(dc_cmb) or dc_cmb <= 0.0:
+        return np.array([np.nan, np.nan], dtype=float)
+    r_th = np.sqrt(params["Om"]) * params["H0"] / C_KMS * dc_cmb
+    rs = 147.78 * (params["Om"] * (params["H0"] / 100.0) ** 2 / 0.1432) ** (-0.255) * (params.get("Ob_h2", 0.02236) / 0.02236) ** (-0.134)
+    la_th = np.pi * dc_cmb / rs
+    return np.array([r_th, la_th], dtype=float)
+
+
+def _chi2_scalar_by_observable(entry, lcdm, rll):
+    observable = str(entry.get("observable", "")).strip().lower()
+    if observable == "cmb_shift":
+        lcdm_prediction = _cmb_shift_prediction(lcdm, model_LCDM_Hz)
+        rll_prediction = _cmb_shift_prediction(rll, model_RLL_like_Hz)
+        return _chi2_from_entry(entry, lcdm_prediction), _chi2_from_entry(entry, rll_prediction)
+    raise ValueError(
+        f"unsupported scalar dataset {entry['dataset_id']!r} with observable={entry.get('observable')!r}; "
+        "add explicit scalar handling instead of silently discarding"
+    )
+
+
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, Ob_h2=0.02236)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00, Ob_h2=0.02236)
@@ -141,8 +177,26 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         )
 
         model_pair = MODEL_BY_DATASET.get(dataset_id)
-        if model_pair is None or entry.get("z") is None:
+        has_z = entry.get("z") is not None
+
+        if model_pair is None and has_z:
+            raise ValueError(
+                f"dataset {dataset_id!r} has redshift samples but no registered model pair; "
+                "add MODEL_BY_DATASET mapping instead of silently discarding"
+            )
+
+        if not has_z:
+            scalar_chi2_lcdm, scalar_chi2_rll = _chi2_scalar_by_observable(entry, lcdm, rll)
+            chi2_lcdm += scalar_chi2_lcdm
+            chi2_rll += scalar_chi2_rll
+            n_obs += len(entry["values"])
             continue
+
+        if model_pair is None:
+            raise ValueError(
+                f"dataset {dataset_id!r} is unsupported by classical metrics; "
+                "explicitly register the observable/model before using it"
+            )
 
         model_lcdm, model_rll = model_pair
         z = np.asarray(entry["z"], dtype=float)
@@ -159,7 +213,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         n_obs += len(entry["values"])
 
     if n_obs == 0:
-        raise ValueError("no supported datasets (hz/fsigma8/real_bao) were active for classical metrics")
+        raise ValueError("no supported datasets were active for classical metrics")
     if not cov_rows:
         profile_name = cfg_meta.get("profile_name", DEFAULT_PROFILE)
         active = cfg_meta.get("active_datasets", [])
