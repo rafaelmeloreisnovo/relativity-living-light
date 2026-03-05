@@ -12,8 +12,9 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "
 RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
 REAL_PROFILE = "structure_d_real_validation"
-OPTIMIZER_SEED = 42
-REAL_REPRODUCTION_ARTIFACT = "reproduction_contract_real.json"
+MODEL_LCDM = "lcdm"
+MODEL_RLL_AGN = "rll_like_agn"
+REGIME_REAL = "real"
 
 C_KMS = 299792.458
 Z_CMB = 1089.92
@@ -232,7 +233,8 @@ def main(
     profile = cfg_meta["profile_name"]
 
     row_lcdm = dict(
-        model="LCDM",
+        model=MODEL_LCDM,
+        regime=REGIME_REAL,
         chi2=c2_l,
         AIC=aic(c2_l, k_l),
         BIC=bic(c2_l, k_l, n_obs),
@@ -244,7 +246,8 @@ def main(
         covariance_policy=covariance_policy,
     )
     row_rll = dict(
-        model="RLL_like+AGN",
+        model=MODEL_RLL_AGN,
+        regime=REGIME_REAL,
         chi2=c2_r,
         AIC=aic(c2_r, k_r),
         BIC=bic(c2_r, k_r, n_obs),

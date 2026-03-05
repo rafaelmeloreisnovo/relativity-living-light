@@ -34,6 +34,10 @@ RESULTS = os.path.join(BASE_DIR, "results", "structure_d")
 DEFAULT_CONFIG = os.path.join("data", "pipelines", "structure_d", "datasets_config.json")
 DEFAULT_PROFILE = "structure_d_default"
 REAL_PROFILE = "structure_d_real_validation"
+MODEL_LCDM = "lcdm"
+MODEL_RLL_AGN = "rll_like_agn"
+REGIME_SYNTHETIC = "synthetic"
+REGIME_REAL = "real"
 
 REQUIRED_OUTPUTS = [
     "model_comparison.csv",
@@ -53,6 +57,7 @@ SUPPORTED_COVARIANCE_POLICIES = ["prefer_full", "diagonal_only", "full_required"
 EXPECTED_SCHEMA_BY_OUTPUT = {
     "model_comparison.csv": [
         "model",
+        "regime",
         "chi2",
         "AIC",
         "BIC",
@@ -268,7 +273,8 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
 
     rows.append(
         {
-            "model": "LCDM",
+            "model": MODEL_LCDM,
+            "regime": REGIME_SYNTHETIC,
             "chi2": float(chi2_lcdm),
             "AIC": aic(chi2_lcdm, 4),
             "BIC": bic(chi2_lcdm, 4, n_obs),
@@ -282,7 +288,8 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     )
     rows.append(
         {
-            "model": "RLL_like+AGN",
+            "model": MODEL_RLL_AGN,
+            "regime": REGIME_SYNTHETIC,
             "chi2": float(chi2_rll),
             "AIC": aic(chi2_rll, 7),
             "BIC": bic(chi2_rll, 7, n_obs),
@@ -311,6 +318,7 @@ def run_optional_bayes_summary_bic_proxy(df_model):
         rows.append(
             {
                 "model": row["model"],
+                "regime": row.get("regime", REGIME_SYNTHETIC),
                 "log_evidence": logz,
                 "log_evidence_std": logz_err,
                 "log_evidence_std_defined": bool(np.isfinite(logz_err)),
@@ -330,6 +338,7 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     for runner in (run_lcdm_bayes, run_rll_like_agn_bayes):
         result = runner(hz_df, fs8_df, seed=seed, nwalkers=nwalkers, nsteps=nsteps, nlive=nlive, output_dir=RESULTS)
         row = dict(result["row"])
+        row["regime"] = REGIME_SYNTHETIC
         row["source"] = "inference"
         rows.append(row)
 
