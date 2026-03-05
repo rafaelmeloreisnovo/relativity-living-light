@@ -261,19 +261,16 @@ def main(
     bounds_r = [(60.0, 80.0), (0.10, 0.60), (0.50, 0.90), (0.000, 0.250), (0.1, 10.0), (0.1, 1.0), (0.018, 0.026)]
     lcdm_param_order = ["H0", "Om", "OL", "Ob_h2"]
     rll_param_order = ["H0", "Om", "OL", "Os0", "zt", "wt", "Ob_h2"]
-    lcdm_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
-    rll_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
-
     seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
     tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
-    maxiter_lcdm = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
-    maxiter_rll = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
+    lcdm_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
+    rll_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
 
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,
         seed=seed,
-        maxiter=maxiter_lcdm,
+        maxiter=lcdm_maxiter,
         tol=tol,
         workers=1,
     )
@@ -282,7 +279,7 @@ def main(
         lambda p: _obj_rll(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_r,
         seed=seed,
-        maxiter=maxiter_rll,
+        maxiter=rll_maxiter,
         tol=tol,
         workers=1,
     )
@@ -370,8 +367,8 @@ def main(
         "datasets_used": cfg_meta["active_datasets"],
         "optimizer": {
             "name": "scipy.optimize.differential_evolution",
-            "seed": 42,
-            "tol": 1e-6,
+            "seed": seed,
+            "tol": tol,
             "workers": 1,
         },
         "fit_models": {
