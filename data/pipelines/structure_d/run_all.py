@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import subprocess
 
 import numpy as np
 import pandas as pd
@@ -320,22 +321,29 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
-def _write_reproduction_contract(
-    profile_name,
-    covariance_policy,
-    bayes,
-    bayes_mode,
-    produced_optional,
-    covariance_usage_non_empty,
-    bayes_seed,
-    bayes_nwalkers,
-    bayes_nsteps,
-    bayes_nlive,
-):
+def _resolve_git_metadata():
+    try:
+        git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    except Exception:
+        git_commit = None
+
+    try:
+        status_output = subprocess.check_output(["git", "status", "--porcelain"], text=True)
+        dirty_worktree = bool(status_output.strip())
+    except Exception:
+        dirty_worktree = None
+
+    return git_commit, dirty_worktree
+
+
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
+    git_commit, dirty_worktree = _resolve_git_metadata()
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
         "profile": profile_name,
+        "git_commit": git_commit,
+        "dirty_worktree": dirty_worktree,
         "covariance_policy": covariance_policy,
         "covariance_policy_supported": SUPPORTED_COVARIANCE_POLICIES,
         "mock_data_contract": "data/inputs/structure_d/mock_data_contract.json",
