@@ -635,9 +635,9 @@ Perguntas frequentes são atualizadas regularmente.
 
 Se você é novo aqui:
 
-1. **Leia:** 00_COMO_LER.md (guia de navegação)
+1. **Leia:** [docs/canonicos/00_COMO_LER.md](00_COMO_LER.md) (guia de navegação)
 2. **Veja:** 04_FIGURAS/ (visualização)
-3. **Entenda:** 10_FAQ (este arquivo!)
+3. **Entenda:** [docs/canonicos/10_FAQ_COMPLETO.md](10_FAQ_COMPLETO.md) (este arquivo!)
 4. **Aprofunde:** 01_PAPER_PRINCIPAL/
 
 Bem-vindo! 🌀♾️⚛︎
