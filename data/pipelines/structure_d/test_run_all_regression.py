@@ -19,6 +19,8 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz.csv"),
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8.csv"),
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
+            os.path.join(run_all.RESULTS, "covariance_usage.csv"),
+            os.path.join(run_all.RESULTS, "rll_regime_summary.csv"),
             os.path.join(run_all.RESULTS, "reproduction_contract.json"),
             os.path.join(run_all.RESULTS, "bayes_evidence_bic_proxy.csv"),
             os.path.join(run_all.RESULTS, "bayes_evidence_inference.csv"),
@@ -88,6 +90,30 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract = json.load(fp)
 
         self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
+
+    def test_structure_d_bayes_contract_tracks_optional_outputs(self):
+        make_example_data.main(seed=42)
+        run_all.main(profile_name="structure_d_default", bayes=True)
+
+        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
+        with open(contract_path, "r", encoding="utf-8") as fp:
+            contract = json.load(fp)
+
+        self.assertTrue(contract.get("bayes_enabled"))
+        self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
+
+        optional_outputs = {entry["file"]: bool(entry["produced"]) for entry in contract.get("optional_outputs", [])}
+        self.assertEqual(optional_outputs.get("bayes_evidence_bic_proxy.csv"), True)
+        self.assertEqual(optional_outputs.get("bayes_factor_interpretation.csv"), True)
+        self.assertEqual(optional_outputs.get("bayes_evidence_inference.csv"), False)
+
+        for filename, was_produced in optional_outputs.items():
+            path = os.path.join(run_all.RESULTS, filename)
+            self.assertEqual(
+                os.path.exists(path),
+                was_produced,
+                f"contract produced flag mismatch for optional artifact {filename}",
+            )
 
 
 
