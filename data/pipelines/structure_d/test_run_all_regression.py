@@ -8,7 +8,7 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from data.pipelines.structure_d import make_example_data, run_all
+from data.pipelines.structure_d import make_example_data, run_all, run_all_real
 from data.pipelines.structure_d.data_access import load_active_datasets
 
 
@@ -79,6 +79,17 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract = json.load(fp)
 
         self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
+
+
+class StructureDRealOutputSchemaTest(unittest.TestCase):
+    def test_expected_model_comparison_header_without_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=False)
+        self.assertEqual(header, run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+
+    def test_expected_model_comparison_header_with_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=True)
+        self.assertEqual(header[: len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])], run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+        self.assertEqual(header[len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"]) :], run_all_real.EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
@@ -296,6 +307,17 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
+
+
+class StructureDRealOutputSchemaTest(unittest.TestCase):
+    def test_expected_model_comparison_header_without_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=False)
+        self.assertEqual(header, run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+
+    def test_expected_model_comparison_header_with_fit_params(self):
+        header = run_all_real._expected_model_comparison_header(include_fit_params=True)
+        self.assertEqual(header[: len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])], run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
+        self.assertEqual(header[len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"]) :], run_all_real.EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):

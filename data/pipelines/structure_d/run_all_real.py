@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import pandas as pd
 from scipy.integrate import quad
 from scipy.optimize import differential_evolution
 
@@ -13,6 +14,35 @@ REAL_PROFILE = "structure_d_real_validation"
 
 C_KMS = 299792.458
 Z_CMB = 1089.92
+
+EXPECTED_MODEL_COMPARISON_HEADER = [
+    "model",
+    "chi2",
+    "AIC",
+    "BIC",
+    "N",
+    "k",
+    "datasets_used",
+    "run_name",
+    "profile_name",
+    "covariance_policy",
+]
+EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER = ["H0", "Om", "OL", "Ob_h2", "Os0", "zt", "wt"]
+
+
+def _expected_model_comparison_header(include_fit_params):
+    if include_fit_params:
+        return EXPECTED_MODEL_COMPARISON_HEADER + EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER
+    return EXPECTED_MODEL_COMPARISON_HEADER
+
+
+def _validate_model_comparison_header(csv_path, include_fit_params):
+    expected_header = _expected_model_comparison_header(include_fit_params)
+    actual_header = list(pd.read_csv(csv_path, nrows=0).columns)
+    if actual_header != expected_header:
+        raise RuntimeError(
+            f"schema mismatch for {os.path.basename(csv_path)}: expected {expected_header}, got {actual_header}"
+        )
 
 
 def _f_log(z, zt, wt):
@@ -224,6 +254,7 @@ def main(
 
     out = os.path.join(RESULTS, output_filename)
     df = evaluate_model(rows, out)
+    _validate_model_comparison_header(out, include_fit_params)
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     return df
