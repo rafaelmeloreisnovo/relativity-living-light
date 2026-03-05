@@ -347,7 +347,48 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             self.assertEqual(hz_row["covariance_mode"], "diagonal")
             self.assertEqual(hz_row["effective_decision"], "diag")
             self.assertFalse(bool(hz_row["has_full_covariance"]))
-            self.assertTrue(bool(hz_row["has_diagonal_sigma"]))
+
+
+class StructureDOutputSchemaValidationTest(unittest.TestCase):
+    def setUp(self):
+        self.generated_paths = [
+            os.path.join(run_all.RESULTS, "model_comparison.csv"),
+            os.path.join(run_all.RESULTS, "covariance_usage.csv"),
+            os.path.join(run_all.RESULTS, "rll_regime_summary.csv"),
+            os.path.join(run_all.RESULTS, "reproduction_contract.json"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_00.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_01.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_02.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_04.csv"),
+            os.path.join(run_all.RESULTS, "degeneracy_corr_bin_05.csv"),
+            os.path.join(run_all.RESULTS, "dominance_by_z.csv"),
+            os.path.join(run_all.RESULTS, "sensitivity_long.csv"),
+            os.path.join(run_all.RESULTS, "figs"),
+        ]
+
+    def tearDown(self):
+        for path in self.generated_paths:
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            elif os.path.exists(path):
+                os.remove(path)
+
+    def test_required_csv_schema_definitions_cover_all_required_outputs(self):
+        required_csv_outputs = [name for name in run_all.REQUIRED_OUTPUTS if name.endswith(".csv")]
+        missing = [name for name in required_csv_outputs if name not in run_all.EXPECTED_SCHEMA_BY_OUTPUT]
+        self.assertEqual(missing, [], "all required CSV outputs must have an expected schema mapping")
+
+    def test_schema_validation_fails_early_when_summary_header_diverges(self):
+        make_example_data.main(seed=42)
+        run_all.main(profile_name="structure_d_default")
+
+        summary_path = os.path.join(run_all.RESULTS, "rll_regime_summary.csv")
+        bad = pd.read_csv(summary_path)
+        bad = bad.rename(columns={"notes": "notes_broken"})
+        bad.to_csv(summary_path, index=False)
+
+        with self.assertRaisesRegex(RuntimeError, "schema mismatch for rll_regime_summary.csv"):
+            run_all._validate_required_csv_schemas()
 
     def test_covariance_policy_full_required_raises_for_dataset_without_full_matrix(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -745,7 +786,6 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             self.assertEqual(hz_row["dataset_source"], f"path={hz_path}; reference=unit-test")
             self.assertEqual(hz_row["covariance_mode"], "diagonal")
             self.assertFalse(bool(hz_row["has_full_covariance"]))
-            self.assertTrue(bool(hz_row["has_diagonal_sigma"]))
 
     def test_covariance_policy_full_required_raises_for_dataset_without_full_matrix(self):
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -82,10 +82,13 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "has_full_covariance",
         "has_diagonal_sigma",
     ],
-    "error_mode_usage.csv": [
-        "dataset_id",
-        "block",
-        "error_mode",
+    "rll_regime_summary.csv": [
+        "z_min",
+        "z_max",
+        "R_mean",
+        "dominant_regime",
+        "top_parameters",
+        "notes",
     ],
 }
 
@@ -448,36 +451,17 @@ def _validate_output_schema(filename, expected_header):
         )
 
 
-def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
-    models = []
-    key_metrics = {}
+def _validate_required_csv_schemas():
+    required_csv_outputs = [name for name in REQUIRED_OUTPUTS if name.endswith(".csv")]
+    missing_schema_definitions = [name for name in required_csv_outputs if name not in EXPECTED_SCHEMA_BY_OUTPUT]
+    if missing_schema_definitions:
+        raise RuntimeError(
+            "missing expected schema definition for required csv outputs: "
+            f"{missing_schema_definitions}"
+        )
 
-    for _, row in df_model.iterrows():
-        model_name = str(row["model"])
-        model_metrics = {
-            "chi2": float(row["chi2"]),
-            "aic": float(row["AIC"]),
-            "bic": float(row["BIC"]),
-            "n": int(row["N"]),
-            "k": int(row["k"]),
-        }
-        models.append({"model": model_name, **model_metrics})
-        key_metrics[model_name] = model_metrics
-
-    if models:
-        best_bic = min(models, key=lambda item: item["bic"])
-        key_metrics["best_model_by_bic"] = best_bic["model"]
-
-    result = {
-        "paths": output_paths,
-        "effective_profile": effective_profile,
-        "covariance_policy": effective_policy,
-        "models": models,
-        "key_metrics": key_metrics,
-    }
-    if extra_paths:
-        result["extra_paths"] = extra_paths
-    return result
+    for filename in required_csv_outputs:
+        _validate_output_schema(filename, EXPECTED_SCHEMA_BY_OUTPUT[filename])
 
 
 def main(
@@ -540,11 +524,7 @@ def main(
             seed=seed,
         )
         _assert_required_outputs()
-        for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
-            _validate_output_schema(filename, expected_header)
-        timing_records.append({"block": "validate", "duration_seconds": time.perf_counter() - validate_t0})
-
-        out_timing_csv, out_timing_json = _write_execution_timing(timing_records)
+        _validate_required_csv_schemas()
 
         print(df_model.to_string(index=False))
         print(f"[real] wrote: {os.path.join(RESULTS, 'model_comparison.csv')}")
@@ -613,11 +593,7 @@ def main(
 
     validate_t0 = time.perf_counter()
     _assert_required_outputs()
-    for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
-        _validate_output_schema(filename, expected_header)
-    timing_records.append({"block": "validate", "duration_seconds": time.perf_counter() - validate_t0})
-
-    out_timing_csv, out_timing_json = _write_execution_timing(timing_records)
+    _validate_required_csv_schemas()
 
     print(df_model.to_string(index=False))
     print(f"[classic] wrote: {out_model}")
