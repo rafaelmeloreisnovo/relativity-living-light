@@ -1,0 +1,46 @@
+{
+  "generated_at_utc": "2026-03-05T12:05:10.420797+00:00",
+  "inputs": {
+    "model_comparison": "results/RLL_chi2_results.csv",
+    "covariance_usage": "results/structure_d/covariance_usage.csv"
+  },
+  "models": {
+    "LCDM": {
+      "model": "LCDM",
+      "chi2": 123.681,
+      "aic": 131.681,
+      "bic": 138.908,
+      "k": 4,
+      "n_obs": 45
+    },
+    "RLL": {
+      "model": "RLL",
+      "chi2": 123.968,
+      "aic": 137.968,
+      "bic": 150.615,
+      "k": 7,
+      "n_obs": 45
+    }
+  },
+  "delta_rll_minus_lcdm": {
+    "chi2": 0.287,
+    "AIC": 6.287,
+    "BIC": 11.707,
+    "chi2_assessment": "RLL pior que ΛCDM",
+    "AIC_assessment": "evidência moderada contra RLL",
+    "BIC_assessment": "evidência forte contra RLL"
+  },
+  "covariance": {
+    "rows": 2,
+    "all_diagonal": true,
+    "diagonal_rows": [
+      "hz",
+      "fsigma8"
+    ]
+  },
+  "gates": {
+    "pantheon_plus_integrated": false,
+    "lnB_available": false,
+    "full_covariance_usage": false
+  }
+}

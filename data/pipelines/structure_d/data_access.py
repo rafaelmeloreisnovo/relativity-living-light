@@ -62,7 +62,7 @@ def _resolve_profile(cfg, profile_name=None):
     return resolved
 
 
-def _parse_csv_dataset(dataset_id, desc):
+def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
     source_info = _build_source_info(desc["path"])
     df = pd.read_csv(source_info["path_abs"])
     cols = desc["columns"]
@@ -143,7 +143,7 @@ def _parse_csv_dataset(dataset_id, desc):
         "observable": desc["observable"],
         "z": z_values,
         "values": values,
-        "metadata": desc["metadata"],
+        "metadata": metadata,
         "source": source_info,
     }
 
@@ -158,6 +158,8 @@ def _parse_csv_dataset(dataset_id, desc):
         else:
             cov_path = _abs_path(desc["covariance_path"])
         covariance = np.loadtxt(cov_path, delimiter=",")
+        if selected_covariance_idx is not None:
+            covariance = covariance[np.ix_(selected_covariance_idx, selected_covariance_idx)]
         if z_reordered:
             covariance = covariance[np.ix_(sort_idx, sort_idx)]
         entry["covariance"] = covariance
@@ -167,7 +169,7 @@ def _parse_csv_dataset(dataset_id, desc):
     return validate_observable_schema(entry, min_points_with_z=min_points_with_z)
 
 
-def _parse_scalar_json_dataset(dataset_id, desc):
+def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
     source_info = _build_source_info(desc["path"])
     with open(source_info["path_abs"], "r", encoding="utf-8") as f:
         raw = json.load(f)
@@ -178,7 +180,7 @@ def _parse_scalar_json_dataset(dataset_id, desc):
     if missing_values or missing_errors:
         raise ValueError(
             "dataset "
-            f"{dataset_id} missing json keys in file {source_path}: "
+            f"{dataset_id} missing json keys in file {source_info['path_abs']}: "
             f"values={missing_values}, errors={missing_errors}"
         )
 
@@ -190,7 +192,7 @@ def _parse_scalar_json_dataset(dataset_id, desc):
         "observable": desc["observable"],
         "values": values,
         "errors": errors,
-        "metadata": desc["metadata"],
+        "metadata": dict(desc["metadata"]),
         "dataset_source": _dataset_source_from_descriptor(desc),
         "z": None,
         "source": source_info,
@@ -200,8 +202,11 @@ def _parse_scalar_json_dataset(dataset_id, desc):
 
 def _build_source_info(path):
     path_abs = _abs_path(path)
+    digest_obj = hashlib.sha256()
     with open(path_abs, "rb") as f:
-        digest = hashlib.file_digest(f, "sha256").hexdigest()
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            digest_obj.update(chunk)
+    digest = digest_obj.hexdigest()
     mtime_utc = datetime.fromtimestamp(os.path.getmtime(path_abs), tz=timezone.utc).isoformat()
     return {
         "path_abs": path_abs,
@@ -210,7 +215,7 @@ def _build_source_info(path):
     }
 
 
-def load_dataset_by_descriptor(dataset_id, desc):
+def load_dataset_by_descriptor(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
     fmt = desc["format"]
     if fmt == "csv":
         return _parse_csv_dataset(dataset_id, desc, min_points_with_z=min_points_with_z)
