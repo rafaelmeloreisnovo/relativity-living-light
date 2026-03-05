@@ -5,6 +5,10 @@ TEXTUAL_OUTPUTS = []
 import numpy as np
 
 
+_COVARIANCE_VALIDATION_ATOL = 1e-10
+_COVARIANCE_VALIDATION_RTOL = 1e-8
+
+
 def _as_float_array(values, name):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -23,6 +27,29 @@ def _as_float_matrix(values, name):
     if np.any(~np.isfinite(mat)):
         raise ValueError(f"{name} must contain only finite values")
     return mat
+
+
+def _json_safe_scalar(value):
+    if isinstance(value, (bool, np.bool_)):
+        return bool(value)
+    if isinstance(value, (int, np.integer)):
+        return int(value)
+    if isinstance(value, (float, np.floating)):
+        scalar = float(value)
+        if not np.isfinite(scalar):
+            raise ValueError("metadata contains non-finite float")
+        return scalar
+    if isinstance(value, str):
+        return value
+    return str(value)
+
+
+def _json_safe_metadata(metadata):
+    if isinstance(metadata, dict):
+        return {str(k): _json_safe_metadata(v) for k, v in metadata.items()}
+    if isinstance(metadata, (list, tuple)):
+        return [_json_safe_metadata(v) for v in metadata]
+    return _json_safe_scalar(metadata)
 
 
 def validate_observable_schema(entry):
@@ -51,15 +78,14 @@ def validate_observable_schema(entry):
             raise ValueError("errors must be strictly positive")
     else:
         covariance = _as_float_matrix(entry["covariance"], "covariance")
-        if covariance.shape[0] != len(values):
-            raise ValueError("covariance dimension must match values length")
-        if np.any(np.diag(covariance) <= 0):
-            raise ValueError("covariance diagonal must be strictly positive")
+        _validate_covariance_matrix(covariance, expected_size=len(values))
 
-    metadata = entry["metadata"]
+    metadata = _json_safe_metadata(entry["metadata"])
     for k in ["survey", "redshift_range", "reference"]:
         if k not in metadata:
             raise ValueError(f"metadata missing key: {k}")
+
+    dataset_source = entry.get("dataset_source")
 
     return {
         "dataset_id": str(entry["dataset_id"]),
@@ -69,4 +95,5 @@ def validate_observable_schema(entry):
         "errors": _as_float_array(entry["errors"], "errors") if has_errors else None,
         "covariance": _as_float_matrix(entry["covariance"], "covariance") if has_cov else None,
         "metadata": metadata,
+        "dataset_source": str(dataset_source) if dataset_source is not None else "unknown",
     }

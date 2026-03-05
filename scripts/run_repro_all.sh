@@ -11,6 +11,7 @@ BAYES=0
 REQUIRED_OUTPUTS=(
   "results/structure_d/model_comparison.csv"
   "results/structure_d/covariance_usage.csv"
+  "results/structure_d/error_mode_usage.csv"
   "results/structure_d/rll_regime_summary.csv"
   "results/structure_d/reproduction_contract.json"
   "results/RLL_chi2_results.csv"
@@ -51,7 +52,7 @@ python -m data.pipelines.structure_d.make_example_data
 echo "[2/4] Executando pipeline completo Structure-D..."
 if [[ "$BAYES" -eq 1 ]]; then
   python -m data.pipelines.structure_d.run_all --bayes
-  REQUIRED_OUTPUTS+=("results/structure_d/bayes_evidence.csv")
+  REQUIRED_OUTPUTS+=("results/structure_d/bayes_evidence_bic_proxy.csv")
   REQUIRED_OUTPUTS+=("results/structure_d/bayes_factor_interpretation.csv")
 else
   python -m data.pipelines.structure_d.run_all

@@ -3,6 +3,7 @@ import csv
 import json
 import time
 import numpy as np
+import pandas as pd
 from scipy.integrate import quad
 from scipy.optimize import differential_evolution
 
@@ -17,6 +18,35 @@ EXECUTION_TIMING_BASENAME = "execution_timing_real"
 
 C_KMS = 299792.458
 Z_CMB = 1089.92
+
+EXPECTED_MODEL_COMPARISON_HEADER = [
+    "model",
+    "chi2",
+    "AIC",
+    "BIC",
+    "N",
+    "k",
+    "datasets_used",
+    "run_name",
+    "profile_name",
+    "covariance_policy",
+]
+EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER = ["H0", "Om", "OL", "Ob_h2", "Os0", "zt", "wt"]
+
+
+def _expected_model_comparison_header(include_fit_params):
+    if include_fit_params:
+        return EXPECTED_MODEL_COMPARISON_HEADER + EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER
+    return EXPECTED_MODEL_COMPARISON_HEADER
+
+
+def _validate_model_comparison_header(csv_path, include_fit_params):
+    expected_header = _expected_model_comparison_header(include_fit_params)
+    actual_header = list(pd.read_csv(csv_path, nrows=0).columns)
+    if actual_header != expected_header:
+        raise RuntimeError(
+            f"schema mismatch for {os.path.basename(csv_path)}: expected {expected_header}, got {actual_header}"
+        )
 
 
 def _f_log(z, zt, wt):
@@ -167,7 +197,7 @@ def main(
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,
-        seed=42,
+        seed=OPTIMIZER_SEED,
         maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120")),
         tol=1e-6,
         workers=1,
@@ -176,7 +206,7 @@ def main(
     res_r = differential_evolution(
         lambda p: _obj_rll(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_r,
-        seed=42,
+        seed=OPTIMIZER_SEED,
         maxiter=int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150")),
         tol=1e-6,
         workers=1,
@@ -196,7 +226,8 @@ def main(
     profile = cfg_meta["profile_name"]
 
     row_lcdm = dict(
-        model="LCDM",
+        model=MODEL_LCDM,
+        regime=REGIME_REAL,
         chi2=c2_l,
         AIC=aic(c2_l, k_l),
         BIC=bic(c2_l, k_l, n_obs),
@@ -208,7 +239,8 @@ def main(
         covariance_policy=covariance_policy,
     )
     row_rll = dict(
-        model="RLL_like+AGN",
+        model=MODEL_RLL_AGN,
+        regime=REGIME_REAL,
         chi2=c2_r,
         AIC=aic(c2_r, k_r),
         BIC=bic(c2_r, k_r, n_obs),
@@ -250,6 +282,7 @@ def main(
 
     write_t0 = time.perf_counter()
     out = os.path.join(RESULTS, output_filename)
+    out_error_mode = _write_error_mode_usage(datasets)
     df = evaluate_model(rows, out)
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
 
