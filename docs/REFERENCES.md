@@ -325,3 +325,113 @@ This reference list is intentionally broad, covering:
 5. Theoretical frameworks potentially relevant to photonic cosmology
 
 The goal is to situate the Living Light model within the broader context of modern physics and cosmology, showing how it builds on established work while proposing novel connections between quantum optics and cosmic-scale phenomena.
+---
+
+## Bibliografia unificada
+
+Ponto canônico de consolidação para referências externas e fontes internas do repositório.
+
+### Esquema de identificadores estáveis
+
+- `EXT-001` ... `EXT-999`: literatura externa (artigos, livros, preprints) consolidada de `ANALISE_COMPLETA/Bibliografia_Completa.md`.
+- `INT-001` ... `INT-999`: fontes internas do repositório consolidadas de `book/39_apendice_referencias_fontes.md`.
+- Regra de estabilidade: IDs atribuídos não são reutilizados; novas entradas apenas recebem próximos sufixos livres.
+
+### Entradas consolidadas — literatura externa (`EXT-*`)
+
+- `EXT-001` | Legado `[1]` | Perlmutter, S., Aldering, G., Goldhaber, G., et al. (1999) — *Measurements of Ω and Λ from 42 High-Redshift Supernovae*.
+- `EXT-002` | Legado `[2]` | Riess, A. G., Filippenko, A. V., Challis, P., et al. (1998) — *Observational Evidence from Supernovae for an Accelerating Universe and a Cosmological Constant*.
+- `EXT-003` | Legado `[3]` | Planck Collaboration (2020) — *Planck 2018 results. VI. Cosmological parameters*.
+- `EXT-004` | Legado `[4]` | Betoule, M., Kessler, R., Guy, J., et al. (2014) — *Improved cosmological constraints from a joint analysis of the SDSS-II and SNLS supernova samples*.
+- `EXT-005` | Legado `[5]` | Weinberg, S. (1989) — *The Cosmological Constant Problem*.
+- `EXT-006` | Legado `[6]` | Carroll, S. M. (2001) — *The Cosmological Constant*.
+- `EXT-007` | Legado `[7]` | Tegmark, M., Blanton, M. R., Strauss, M. A., et al. (2004) — *Cosmological parameters from SDSS and WMAP*.
+- `EXT-008` | Legado `[8]` | Aspect, A., Grangier, P., & Roger, G. (1982) — *Experimental Realization of Einstein-Podolsky-Rosen-Bohm Gedankenexperiment: A New Violation of Bell's Inequalities*.
+- `EXT-009` | Legado `[9]` | Glauber, R. J. (2007) — *Quantum Theory of Optical Coherence: Selected Papers and Lectures*.
+- `EXT-010` | Legado `[10]` | Nielsen, M. A., & Chuang, I. L. (2010) — *Quantum Computation and Quantum Information*.
+- `EXT-011` | Legado `[11]` | McKinney, W. (2010) — *Data Structures for Statistical Computing in Python*.
+- `EXT-012` | Legado `[12]` | Pérez, F., & Granger, B. E. (2007) — *IPython: A System for Interactive Scientific Computing*.
+- `EXT-013` | Legado `[13]` | Hunter, J. D. (2007) — *Matplotlib: A 2D Graphics Environment*.
+- `EXT-014` | Legado `[14]` | Gelman, A., Carlin, J. B., Stern, H. S., et al. (2013) — *Bayesian Data Analysis*.
+- `EXT-015` | Legado `[15]` | Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman, J. (2013) — *emcee: The MCMC Hammer*.
+- `EXT-016` | Legado `[16]` | Popper, K. R. (1959) — *The Logic of Scientific Discovery*.
+- `EXT-017` | Legado `[17]` | Kuhn, T. S. (1962) — *The Structure of Scientific Revolutions*.
+- `EXT-018` | Legado `[18]` | Lakatos, I. (1970) — *Falsification and the Methodology of Scientific Research Programmes*.
+- `EXT-019` | Legado `[19]` | Mandelbrot, B. B. (1982) — *The Fractal Geometry of Nature*.
+- `EXT-020` | Legado `[20]` | Koshy, T. (2001) — *Fibonacci and Lucas Numbers with Applications*.
+- `EXT-021` | Legado `[21]` | Creswell, J. W., & Creswell, J. D. (2017) — *Research Design: Qualitative, Quantitative, and Mixed Methods Approaches*.
+- `EXT-022` | Legado `[22]` | Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009) — *Introduction to Meta-Analysis*.
+- `EXT-023` | Legado `[23]` | Wilkinson, M. D., Dumontier, M., Aalbersberg, I. J., et al. (2016) — *The FAIR Guiding Principles for scientific data management and stewardship*.
+- `EXT-024` | Legado `[24]` | Smith, A. M., Katz, D. S., Niemeyer, K. E., & FORCE11 Software Citation Working Group (2016) — *Software citation principles*.
+- `EXT-025` | Legado `[25]` | Saltzer, J. H., & Schroeder, M. D. (1975) — *The protection of information in computer systems*.
+- `EXT-026` | Legado `[26]` | Trumbo, C. W., & Weigold, M. F. (2002) — *Advancing Science Communication: A Survey of Science Communicators*.
+- `EXT-027` | Legado `[27]` | Hastie, T., Tibshirani, R., & Friedman, J. (2009) — *The Elements of Statistical Learning: Data Mining, Inference, and Prediction*.
+- `EXT-028` | Legado `[28]` | Mukhanov, V. (2005) — *Physical Foundations of Cosmology*.
+- `EXT-029` | Legado `[29]` | Dodelson, S., & Schmidt, F. (2020) — *Modern Cosmology*.
+- `EXT-030` | Legado `[30]` | Baumann, D. (2009) — *TASI Lectures on Inflation*.
+- `EXT-031` | Legado `[31]` | Peskin, M. E., & Schroeder, D. V. (1995) — *An Introduction to Quantum Field Theory*.
+- `EXT-032` | Legado `[32]` | Weinberg, S. (1995) — *The Quantum Theory of Fields, Vol. 1: Foundations*.
+- `EXT-033` | Legado `[33]` | Carroll, S. M. (2004) — *Spacetime and Geometry: An Introduction to General Relativity*.
+- `EXT-034` | Legado `[34]` | Wald, R. M. (1984) — *General Relativity*.
+- `EXT-035` | Legado `[35]` | Press, W. H., Teukolsky, S. A., Vetterling, W. T., & Flannery, B. P. (2007) — *Numerical Recipes: The Art of Scientific Computing*.
+- `EXT-036` | Legado `[36]` | VanderPlas, J. (2016) — *Python Data Science Handbook*.
+- `EXT-037` | Legado `[37]` | Tufte, E. R. (2001) — *The Visual Display of Quantitative Information*.
+- `EXT-038` | Legado `[38]` | Resnik, D. B. (2011) — *What is Ethics in Research & Why is it Important?*.
+- `EXT-039` | Legado `[39]` | Nielsen, M. (2011) — *Reinventing Discovery: The New Era of Networked Science*.
+- `EXT-040` | Legado `[40]` | Mehta, P., Bukov, M., Wang, C. H., et al. (2019) — *A high-bias, low-variance introduction to Machine Learning for physicists*.
+- `EXT-041` | Legado `[41]` | Cover, T. M., & Thomas, J. A. (2006) — *Elements of Information Theory*.
+- `EXT-042` | Legado `[42]` | Kragh, H. (2007) — *Conceptions of Cosmos: From Myths to the Accelerating Universe*.
+
+### Entradas consolidadas — fontes internas (`INT-*`)
+
+- `INT-001` | `docs/REFERENCES.md` — Catálogo canônico de referências e contexto bibliográfico do projeto.
+- `INT-002` | `docs/CANONICAL_SOURCES.md` — Inventário de fontes canônicas internas, com foco em trilha autoral.
+- `INT-003` | `data/CITATION.cff` — Metadados de citação formal do repositório (autoria, título, versão e DOI).
+
+### Mapeamento legado → novo ID (rastreabilidade `[1]...[42]`)
+
+| Legado | Novo ID |
+|---|---|
+| `[1]` | `EXT-001` |
+| `[2]` | `EXT-002` |
+| `[3]` | `EXT-003` |
+| `[4]` | `EXT-004` |
+| `[5]` | `EXT-005` |
+| `[6]` | `EXT-006` |
+| `[7]` | `EXT-007` |
+| `[8]` | `EXT-008` |
+| `[9]` | `EXT-009` |
+| `[10]` | `EXT-010` |
+| `[11]` | `EXT-011` |
+| `[12]` | `EXT-012` |
+| `[13]` | `EXT-013` |
+| `[14]` | `EXT-014` |
+| `[15]` | `EXT-015` |
+| `[16]` | `EXT-016` |
+| `[17]` | `EXT-017` |
+| `[18]` | `EXT-018` |
+| `[19]` | `EXT-019` |
+| `[20]` | `EXT-020` |
+| `[21]` | `EXT-021` |
+| `[22]` | `EXT-022` |
+| `[23]` | `EXT-023` |
+| `[24]` | `EXT-024` |
+| `[25]` | `EXT-025` |
+| `[26]` | `EXT-026` |
+| `[27]` | `EXT-027` |
+| `[28]` | `EXT-028` |
+| `[29]` | `EXT-029` |
+| `[30]` | `EXT-030` |
+| `[31]` | `EXT-031` |
+| `[32]` | `EXT-032` |
+| `[33]` | `EXT-033` |
+| `[34]` | `EXT-034` |
+| `[35]` | `EXT-035` |
+| `[36]` | `EXT-036` |
+| `[37]` | `EXT-037` |
+| `[38]` | `EXT-038` |
+| `[39]` | `EXT-039` |
+| `[40]` | `EXT-040` |
+| `[41]` | `EXT-041` |
+| `[42]` | `EXT-042` |
+
