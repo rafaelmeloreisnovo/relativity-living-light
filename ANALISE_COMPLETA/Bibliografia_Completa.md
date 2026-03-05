@@ -22,6 +22,14 @@ Este documento apresenta uma bibliografia abrangente de **27 referências primá
 
 ---
 
+## Organização canônica e links cruzados
+
+- Catálogo canônico: `docs/REFERENCES.md`.
+- Seções fixas: **Fontes internas do repositório** (`INT-*`) e **Literatura externa** (`EXT-*`).
+- Para manutenção de cadastro, classificação e novos IDs, seguir a seção **Regra editorial para futuras adições** em `docs/REFERENCES.md`.
+
+---
+
 ## 1. Cosmologia e Astrofísica Observacional
 
 ### 1.1 Descoberta da Aceleração Cósmica
