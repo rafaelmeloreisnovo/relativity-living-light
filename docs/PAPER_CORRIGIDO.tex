@@ -12,7 +12,7 @@
 \maketitle
 
 \begin{abstract}
-We present the \textbf{Relativity Living Light} (RLL) model, an extension of the standard $\Lambda$CDM cosmology that introduces a dynamic dark sector component $\Omega_{s0}$ governed by a logistic transition function $f(z)$. This component interpolates smoothly between dark-energy-like ($w\approx -1$) and dark-matter-like ($w\approx 0$) behavior across cosmic time, parametrized by a transition redshift $z_t$ and transition width $w_t$. The extended Friedmann equation is tested against simulated observables (H(z), SNe~Ia, growth of structure). Current results are based on synthetic data; validation against Pantheon+, DESI BAO, and BOSS fσ₈ data constitutes the immediate next step.
+We present the \textbf{Relativity Living Light} (RLL) model, an extension of the standard $\Lambda$CDM cosmology that introduces a dynamic dark sector component $\Omega_{s0}$ governed by a logistic transition function $f(z)$. This component interpolates smoothly between dark-energy-like ($w\approx -1$) and dark-matter-like ($w\approx 0$) behavior across cosmic time, parametrized by a transition redshift $z_t$ and transition width $w_t$. The extended Friedmann equation is tested against simulated observables (H(z), SNe~Ia, growth of structure). Current results are based on synthetic data; validation against Pantheon+, DESI BAO, and BOSS fσ₈ data constitutes the immediate next step \cite{pantheon,desi2025}.
 \end{abstract}
 
 \section{Theoretical Framework}
@@ -41,9 +41,9 @@ f(z) = \frac{1}{1 + \exp\!\left(\dfrac{z - z_t}{w_t}\right)}
 
 \noindent \textbf{Asymptotic limits:}
 \begin{itemize}
-  \item $z \gg z_t$: $f \to 1$, component scales as radiation ($\rho \propto a^{-4}$, hot)
+  \item $z \gg z_t$: $f \to 0$, component scales as matter-like ($\rho \propto a^{-3}$, cold)
   \item $z \approx z_t$: smooth transition parametrized by $w_t$
-  \item $z \ll z_t$: $f \to 0$, component scales as matter ($\rho \propto a^{-3}$, cold)
+  \item $z \ll z_t$: $f \to 1$, component approaches dark-energy-like behavior ($w\to -1$)
 \end{itemize}
 
 \subsection{Effective Equation of State}
@@ -69,7 +69,7 @@ The growth rate observable is $f\sigma_8(z) = \sigma_8(z) \cdot \Omega_m(z)^\gam
 
 \subsection{Anisotropic Extension}
 
-A directional generalization of the transition function can address the Böhme et al. (2025) 5.4$\sigma$ CMB dipole anomaly:
+A directional generalization of the transition function can address the Böhme et al. (2025) 5.4$\sigma$ CMB dipole anomaly \cite{bohme2025}:
 
 \begin{equation}
 f(z,\theta,\varphi) = \frac{1}{1 + \exp\!\left(\dfrac{z - z_t(\theta,\varphi)}{w_t(\theta,\varphi)}\right)}
@@ -120,16 +120,16 @@ RLL model    & 56.84  & $-99.3$ \\
 
 \section{Connection to Recent Literature}
 
-\textbf{DESI DR2 (2025):} Evidence for dynamic dark energy at 2.8–4.2$\sigma$ in combined BAO+CMB+SNe analysis is qualitatively consistent with the RLL framework, where $w_{\rm eff}(z)$ evolves from $\approx -1$ at low-$z$ toward 0 at high-$z$.
+\textbf{DESI DR2 (2025):} Evidence for dynamic dark energy at 2.8–4.2$\sigma$ in combined BAO+CMB+SNe analysis is qualitatively consistent with the RLL framework, where $w_{\rm eff}(z)$ evolves from $\approx -1$ at low-$z$ toward 0 at high-$z$ \cite{desi2025}.
 
-\textbf{Okada et al., PRL 136 (2026):} The Minnesota study of hot-to-cold dark matter transition is analytically reproduced by the asymptotic behavior of $f(z)$: $\rho_{\rm sup} \propto a^{-4}$ (hot, $z\gg z_t$) and $\rho_{\rm sup} \propto a^{-3}$ (cold, $z\ll z_t$).
+\textbf{Okada et al., PRL 136 (2026):} The Minnesota study of hot-to-cold dark matter transition is used as external motivation for a redshift-dependent dark sector transition in RLL \cite{okada2026}.
 
 \section{Roadmap to Publication}
 
 \begin{enumerate}
-  \item Replace synthetic data with Pantheon+ (1701 SNe Ia) and DESI DR2 BAO
+  \item Replace synthetic data with Pantheon+ (1701 SNe Ia) and DESI DR2 BAO \cite{pantheon,desi2025}
   \item Implement growth equation (Eq.~\ref{eq:growth}) and compare with BOSS DR12 $f\sigma_8$
-  \item Test anisotropic extension (Eq.~\ref{eq:fzang}) against Böhme dipole
+  \item Test anisotropic extension (Eq.~\ref{eq:fzang}) against Böhme dipole \cite{bohme2025}
   \item Verify ghost-free stability: $c_s^2 > 0$ across full parameter space
   \item Compute formal Bayes Factor via Nested Sampling
   \item Submit to arXiv (astro-ph.CO) and JCAP
