@@ -8,6 +8,7 @@ TEXTUAL_OUTPUTS = [
 
 import json
 import os
+import argparse
 from datetime import datetime, timezone
 
 import numpy as np
@@ -28,7 +29,28 @@ def write_csv_checked(df, output_path):
             f"Arquivo CSV inválido após escrita (ausente ou vazio): {output_path}"
         )
 
-def main(seed=42):
+def _write_covariance_products(z_values, values, sigma_values, csv_name, matrix_name):
+    n_points = len(z_values)
+    corr = np.eye(n_points)
+    for i in range(n_points):
+        if i + 1 < n_points:
+            corr[i, i + 1] = 0.12
+            corr[i + 1, i] = 0.12
+        if i + 2 < n_points:
+            corr[i, i + 2] = 0.05
+            corr[i + 2, i] = 0.05
+
+    sigma_diag = np.diag(sigma_values)
+    covariance = sigma_diag @ corr @ sigma_diag
+
+    write_csv_checked(
+        pd.DataFrame({"z": z_values, values.name: values.to_numpy(dtype=float)}),
+        os.path.join(DATA, csv_name),
+    )
+    np.savetxt(os.path.join(DATA, matrix_name), covariance, delimiter=",", fmt="%.10g")
+
+
+def main(seed=42, generate_covariance=False):
     os.makedirs(DATA, exist_ok=True)
     rng = np.random.default_rng(seed)
 
@@ -36,20 +58,32 @@ def main(seed=42):
     Hz_true = 70.0 * np.sqrt(0.3 * (1 + z_hz) ** 3 + 0.7)
     sig_hz = 3.0 + 2.0 * rng.random(len(z_hz))
     Hz_obs = Hz_true + rng.normal(0, sig_hz)
-    write_csv_checked(
-        pd.DataFrame({"z": z_hz, "Hz": Hz_obs, "sigma": sig_hz}),
-        os.path.join(DATA, "Hz.csv"),
-    )
+    hz_df = pd.DataFrame({"z": z_hz, "Hz": Hz_obs, "sigma": sig_hz})
+    write_csv_checked(hz_df, os.path.join(DATA, "Hz.csv"))
 
     z_fs = np.array([0.1, 0.3, 0.5, 0.8, 1.0, 1.5, 2.0])
     Omz = (0.3 * (1 + z_fs) ** 3) / (0.3 * (1 + z_fs) ** 3 + 0.7)
     fs8_true = (Omz ** 0.55) * 0.8
     sig_fs = 0.03 + 0.03 * rng.random(len(z_fs))
     fs8_obs = fs8_true + rng.normal(0, sig_fs)
-    write_csv_checked(
-        pd.DataFrame({"z": z_fs, "fs8": fs8_obs, "sigma": sig_fs}),
-        os.path.join(DATA, "fsigma8.csv"),
-    )
+    fs_df = pd.DataFrame({"z": z_fs, "fs8": fs8_obs, "sigma": sig_fs})
+    write_csv_checked(fs_df, os.path.join(DATA, "fsigma8.csv"))
+
+    if generate_covariance:
+        _write_covariance_products(
+            z_hz,
+            hz_df["Hz"],
+            hz_df["sigma"],
+            csv_name="Hz_cov.csv",
+            matrix_name="Hz_cov_matrix.csv",
+        )
+        _write_covariance_products(
+            z_fs,
+            fs_df["fs8"],
+            fs_df["sigma"],
+            csv_name="fsigma8_cov.csv",
+            matrix_name="fsigma8_cov_matrix.csv",
+        )
 
     metadata = {
         "seed": int(seed),
@@ -71,7 +105,21 @@ def main(seed=42):
     with open(contract_path, "w", encoding="utf-8") as fp:
         json.dump(metadata, fp, ensure_ascii=False, indent=2)
 
-    print("Example data written: data/inputs/structure_d/Hz.csv, data/inputs/structure_d/fsigma8.csv, data/inputs/structure_d/mock_data_contract.json")
+    outputs = [
+        "data/inputs/structure_d/Hz.csv",
+        "data/inputs/structure_d/fsigma8.csv",
+        "data/inputs/structure_d/mock_data_contract.json",
+    ]
+    if generate_covariance:
+        outputs.extend(
+            [
+                "data/inputs/structure_d/Hz_cov.csv",
+                "data/inputs/structure_d/Hz_cov_matrix.csv",
+                "data/inputs/structure_d/fsigma8_cov.csv",
+                "data/inputs/structure_d/fsigma8_cov_matrix.csv",
+            ]
+        )
+    print("Example data written: " + ", ".join(outputs))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate synthetic Structure-D example datasets.")

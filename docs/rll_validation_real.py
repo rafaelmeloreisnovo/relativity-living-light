@@ -18,7 +18,13 @@ import numpy as np
 from scipy.optimize import minimize, differential_evolution
 from scipy.integrate import quad
 import os
+import sys
 import warnings; warnings.filterwarnings('ignore')
+
+if __package__ is None or __package__ == "":
+    REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if REPO_ROOT not in sys.path:
+        sys.path.insert(0, REPO_ROOT)
 
 from data.pipelines.structure_d.data_access import load_active_datasets
 
