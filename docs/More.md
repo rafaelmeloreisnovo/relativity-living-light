@@ -126,3 +126,25 @@ O repositório é válido como registro autoral e manifesto científico-filosóf
 
 
 --
+
+## Conexões necessárias e latentes (RLL ↔ biofísica/agricultura)
+
+### Necessário (testável agora)
+- **Função logística comum:**
+  \[
+  f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
+  \]
+  pode ser calibrada como função de transição de estado também em sistemas biológicos de dois estados (ex.: limiar de florescimento e resposta fotoperiódica), preservando \(z_t\) como ponto crítico e \(w_t\) como largura de transição.
+- **Predição experimental direta:** ajustar eficiência fotossintética (ou proxy excitônico) vs. temperatura por uma curva logística para testar se o regime de decoerência apresenta o mesmo perfil funcional de transição usado no RLL.
+- **Aplicação agronômica imediata:** usar \((z_t,w_t)\) por cultivar para previsão de janela de plantio/florescimento, em vez de modelos lineares com corte rígido.
+
+### Latente (programa de pesquisa)
+- **Lei de escala multiescala:** buscar invariantes adimensionais que permitam comparar transições cosmológicas e biológicas sem confundir semelhança formal com identidade física.
+- **Solo como rede de percolação/coerência:** modelar a transição seco→úmido e o acoplamento microbioma–micélio como mudança de regime de propagação de sinal, com métrica logística de estado.
+- **Canal magneto-biológico:** testar acoplamento entre campo magnético externo e variáveis de desempenho ecofisiológico sob desenho experimental controlado.
+
+### Critério de validação
+Uma conexão é tratada como física (e não só metafórica) quando reproduz:
+1. mesma **classe de equação**,
+2. mesmos **observáveis mensuráveis**,
+3. mesma **estrutura de previsão falsificável**.
