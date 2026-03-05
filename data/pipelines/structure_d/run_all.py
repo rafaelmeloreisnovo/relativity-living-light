@@ -59,6 +59,14 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "has_full_covariance",
         "has_diagonal_sigma",
     ],
+    "rll_regime_summary.csv": [
+        "z_min",
+        "z_max",
+        "R_mean",
+        "dominant_regime",
+        "top_parameters",
+        "notes",
+    ],
 }
 
 
@@ -309,6 +317,19 @@ def _validate_output_schema(filename, expected_header):
         )
 
 
+def _validate_required_csv_schemas():
+    required_csv_outputs = [name for name in REQUIRED_OUTPUTS if name.endswith(".csv")]
+    missing_schema_definitions = [name for name in required_csv_outputs if name not in EXPECTED_SCHEMA_BY_OUTPUT]
+    if missing_schema_definitions:
+        raise RuntimeError(
+            "missing expected schema definition for required csv outputs: "
+            f"{missing_schema_definitions}"
+        )
+
+    for filename in required_csv_outputs:
+        _validate_output_schema(filename, EXPECTED_SCHEMA_BY_OUTPUT[filename])
+
+
 def main(
     config_path=DEFAULT_CONFIG,
     profile_name=DEFAULT_PROFILE,
@@ -349,8 +370,7 @@ def main(
         evaluate_model(cov_rows, out_cov)
         out_contract = _write_real_reproduction_contract(effective_profile, effective_policy)
         _assert_required_outputs()
-        for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
-            _validate_output_schema(filename, expected_header)
+        _validate_required_csv_schemas()
 
         print(df_model.to_string(index=False))
         print(f"[real] wrote: {os.path.join(RESULTS, 'model_comparison.csv')}")
@@ -400,8 +420,7 @@ def main(
         covariance_usage_non_empty,
     )
     _assert_required_outputs()
-    for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
-        _validate_output_schema(filename, expected_header)
+    _validate_required_csv_schemas()
 
     print(df_model.to_string(index=False))
     print(f"[classic] wrote: {out_model}")
