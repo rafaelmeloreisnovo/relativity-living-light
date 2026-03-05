@@ -1,13 +1,23 @@
 import argparse
 import json
 import os
+import subprocess
 
 import numpy as np
 import pandas as pd
 
 from .data_access import load_active_datasets, load_run_config
 from .inference import run_lcdm_bayes, run_rll_like_agn_bayes
-from .likelihood import aic, bic, chi2, chi2_with_covariance, evaluate_model, estimate_log_evidence, write_bayes_factor_interpretation
+from .likelihood import (
+    aic,
+    bayes_factor_interpretation_contract,
+    bic,
+    chi2,
+    chi2_with_covariance,
+    estimate_log_evidence,
+    evaluate_model,
+    write_bayes_factor_interpretation,
+)
 from .models import (
     model_LCDM_Hz,
     model_LCDM_bao_dv_over_rs,
@@ -56,7 +66,9 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
     "covariance_usage.csv": [
         "dataset_id",
         "block",
+        "dataset_source",
         "covariance_mode",
+        "effective_decision",
         "has_full_covariance",
         "has_diagonal_sigma",
     ],
@@ -68,19 +80,90 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
 }
 
 
+def _validate_profile_name(cfg, profile_name):
+    profiles = cfg.get("profiles")
+    if not profiles:
+        return
+
+    selected_profile = profile_name or cfg.get("default_profile", DEFAULT_PROFILE)
+    if selected_profile in profiles:
+        return
+
+    available_profiles = ", ".join(sorted(profiles.keys()))
+    raise ValueError(
+        "profile inválido: "
+        f"{selected_profile!r}. "
+        "Perfis disponíveis: "
+        f"{available_profiles}"
+    )
+
+
 MODEL_BY_DATASET = {
     "hz": (model_LCDM_Hz, model_RLL_like_Hz),
     "real_hz": (model_LCDM_Hz, model_RLL_like_Hz),
     "fsigma8": (model_LCDM_fs8, model_RLL_like_fs8),
+    "hz_cov_synth": (model_LCDM_Hz, model_RLL_like_Hz),
+    "fsigma8_cov_synth": (model_LCDM_fs8, model_RLL_like_fs8),
     "real_bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
 }
+
+MODEL_KIND_BY_DATASET = {
+    "hz": "hz",
+    "real_hz": "hz",
+    "fsigma8": "fsigma8",
+    "real_bao": "bao",
+}
+
+MODEL_BY_KIND = {
+    "hz": (model_LCDM_Hz, model_RLL_like_Hz),
+    "fsigma8": (model_LCDM_fs8, model_RLL_like_fs8),
+    "bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
+}
+
+
+def _normalize_observable_token(value):
+    normalized = str(value).strip().lower().replace("σ", "sigma")
+    return "".join(ch for ch in normalized if ch.isalnum())
+
+
+def _infer_model_kind(dataset_id, entry):
+    kind = MODEL_KIND_BY_DATASET.get(dataset_id)
+    if kind is not None:
+        return kind
+
+    observable = _normalize_observable_token(entry.get("observable", dataset_id))
+    if "hz" in observable:
+        return "hz"
+    if "fsigma8" in observable or "fs8" in observable:
+        return "fsigma8"
+    if "bao" in observable or "dvovers" in observable:
+        return "bao"
+    return None
+
+
+def _resolve_model_pair(dataset_id, entry):
+    model_pair = MODEL_BY_DATASET.get(dataset_id)
+    if model_pair is not None:
+        return _infer_model_kind(dataset_id, entry), model_pair
+
+    kind = _infer_model_kind(dataset_id, entry)
+    if kind is None:
+        return None, None
+    return kind, MODEL_BY_KIND.get(kind)
+
+
+def _find_dataset_by_kind(datasets, kind):
+    for dataset_id, entry in datasets.items():
+        if _infer_model_kind(dataset_id, entry) == kind:
+            return entry
+    return None
 
 
 def _dataset_block_name(dataset_id, entry):
     observable = str(entry.get("observable", dataset_id)).lower()
-    if dataset_id in {"hz", "real_hz"} or "hz" in observable:
+    if dataset_id in {"hz", "real_hz", "hz_cov_synth"} or "hz" in observable:
         return "Hz"
-    if dataset_id in {"fsigma8"} or "fs" in observable:
+    if dataset_id in {"fsigma8", "fsigma8_cov_synth"} or "fs" in observable:
         return "fσ8"
     if "bao" in observable:
         return "BAO"
@@ -93,11 +176,9 @@ def _dataset_block_name(dataset_id, entry):
 
 def _apply_covariance_policy(datasets, covariance_policy):
     if covariance_policy == "full_required":
-        incompatible_ids = []
-        for dataset_id, entry in datasets.items():
-            if entry.get("covariance") is None:
-                incompatible_ids.append(dataset_id)
+        incompatible_ids = [dataset_id for dataset_id, entry in datasets.items() if entry.get("covariance") is None]
         if incompatible_ids:
+            incompatible_ids = sorted(incompatible_ids)
             raise ValueError(
                 "covariance_policy='full_required' requires full covariance for all active datasets; "
                 f"incompatible datasets: {incompatible_ids}"
@@ -107,10 +188,6 @@ def _apply_covariance_policy(datasets, covariance_policy):
         if covariance_policy == "diagonal_only" and entry.get("covariance") is not None:
             entry["errors"] = np.sqrt(np.diag(np.asarray(entry["covariance"], dtype=float)))
             entry["covariance"] = None
-        if covariance_policy == "full_required" and entry.get("covariance") is None:
-            raise ValueError(
-                f"covariance-policy full_required requires full covariance for dataset {entry['dataset_id']!r}"
-            )
     return covariance_policy
 
 
@@ -153,13 +230,15 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             {
                 "dataset_id": dataset_id,
                 "block": _dataset_block_name(dataset_id, entry),
+                "dataset_source": entry.get("dataset_source", "unknown"),
                 "covariance_mode": "full" if entry.get("covariance") is not None else "diagonal",
+                "effective_decision": "full" if entry.get("covariance") is not None else "diag",
                 "has_full_covariance": bool(entry.get("covariance") is not None),
                 "has_diagonal_sigma": bool(entry.get("errors") is not None),
             }
         )
 
-        model_pair = MODEL_BY_DATASET.get(dataset_id)
+        model_kind, model_pair = _resolve_model_pair(dataset_id, entry)
         if model_pair is None or entry.get("z") is None:
             continue
 
@@ -168,7 +247,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         lcdm_prediction = model_lcdm(z, lcdm)
         rll_prediction = model_rll(z, rll)
 
-        if dataset_id == "real_bao":
+        if model_kind == "bao":
             chi2_lcdm += _chi2_bao_from_entry(entry, lcdm_prediction)
             chi2_rll += _chi2_bao_from_entry(entry, rll_prediction)
         else:
@@ -178,7 +257,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         n_obs += len(entry["values"])
 
     if n_obs == 0:
-        raise ValueError("no supported datasets (hz/fsigma8/real_bao) were active for classical metrics")
+        raise ValueError("no supported datasets (hz/hz_cov_synth/fsigma8/fsigma8_cov_synth/real_bao) were active for classical metrics")
     if not cov_rows:
         profile_name = cfg_meta.get("profile_name", DEFAULT_PROFILE)
         active = cfg_meta.get("active_datasets", [])
@@ -234,6 +313,7 @@ def run_optional_bayes_summary_bic_proxy(df_model):
                 "model": row["model"],
                 "log_evidence": logz,
                 "log_evidence_std": logz_err,
+                "log_evidence_std_defined": bool(np.isfinite(logz_err)),
                 "source": "bic_proxy",
             }
         )
@@ -260,13 +340,32 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
+def _resolve_git_metadata():
+    try:
+        git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    except Exception:
+        git_commit = None
+
+    try:
+        status_output = subprocess.check_output(["git", "status", "--porcelain"], text=True)
+        dirty_worktree = bool(status_output.strip())
+    except Exception:
+        dirty_worktree = None
+
+    return git_commit, dirty_worktree
+
+
 def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
+    git_commit, dirty_worktree = _resolve_git_metadata()
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
         "profile": profile_name,
+        "git_commit": git_commit,
+        "dirty_worktree": dirty_worktree,
         "covariance_policy": covariance_policy,
         "covariance_policy_supported": SUPPORTED_COVARIANCE_POLICIES,
+        "mock_data_contract": "data/inputs/structure_d/mock_data_contract.json",
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {
@@ -278,7 +377,16 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         ],
         "bayes_enabled": bool(bayes),
         "bayes_mode": bayes_mode if bayes else None,
+        "bayes_runtime_metadata": {
+            "seed": int(bayes_seed),
+            "nwalkers": int(bayes_nwalkers),
+            "nsteps": int(bayes_nsteps),
+            "nlive": int(bayes_nlive),
+        }
+        if bayes
+        else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
+        "bayes_factor_interpretation_contract": bayes_factor_interpretation_contract(),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -293,6 +401,7 @@ def _write_real_reproduction_contract(profile_name, covariance_policy):
         "delegated_module": "data.pipelines.structure_d.run_all_real",
         "profile": profile_name,
         "covariance_policy": covariance_policy,
+        "mock_data_contract": None,
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {
@@ -303,7 +412,10 @@ def _write_real_reproduction_contract(profile_name, covariance_policy):
             for name, reason in OPTIONAL_OUTPUTS.items()
         ],
         "bayes_enabled": False,
+        "bayes_mode": None,
+        "bayes_runtime_metadata": None,
         "covariance_usage_non_empty": True,
+        "bayes_factor_interpretation_contract": bayes_factor_interpretation_contract(),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -330,6 +442,29 @@ def _validate_output_schema(filename, expected_header):
         )
 
 
+
+
+def _write_real_regime_summary_placeholder(df_model):
+    out_path = os.path.join(RESULTS, "rll_regime_summary.csv")
+    rll_row = df_model[df_model["model"] == "RLL_like+AGN"]
+    if rll_row.empty:
+        rll_chi2 = np.nan
+    else:
+        rll_chi2 = float(rll_row.iloc[0]["chi2"])
+
+    summary_df = pd.DataFrame([
+        {
+            "z_min": 0.0,
+            "z_max": np.inf,
+            "R_mean": rll_chi2,
+            "dominant_regime": "real_profile_fit",
+            "top_parameters": "real_hz;real_bao;real_cmb_shift",
+            "notes": "placeholder summary for real-profile validation flow",
+        }
+    ])
+    summary_df.to_csv(out_path, index=False)
+    return out_path
+
 def main(
     config_path=DEFAULT_CONFIG,
     profile_name=DEFAULT_PROFILE,
@@ -344,11 +479,15 @@ def main(
     os.makedirs(RESULTS, exist_ok=True)
 
     cfg = load_run_config(config_path)
+    _validate_profile_name(cfg, profile_name)
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
-    effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
+    effective_policy = _apply_covariance_policy(
+        datasets,
+        covariance_policy or cfg_meta.get("covariance_policy") or cfg.get("covariance_policy", "prefer_full"),
+    )
 
-    if effective_profile == REAL_PROFILE:
+    if is_real_profile:
         df_model = run_all_real.main(
             config_path=config_path,
             profile_name=effective_profile,
@@ -362,7 +501,9 @@ def main(
             {
                 "dataset_id": dataset_id,
                 "block": _dataset_block_name(dataset_id, entry),
+                "dataset_source": entry.get("dataset_source", "unknown"),
                 "covariance_mode": "full" if entry.get("covariance") is not None else "diagonal",
+                "effective_decision": "full" if entry.get("covariance") is not None else "diag",
                 "has_full_covariance": bool(entry.get("covariance") is not None),
                 "has_diagonal_sigma": bool(entry.get("errors") is not None),
             }
@@ -371,6 +512,7 @@ def main(
         evaluate_model(cov_rows, out_cov)
         evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
         out_contract = _write_real_reproduction_contract(effective_profile, effective_policy)
+        out_regime = _write_real_regime_summary_placeholder(df_model)
         _assert_required_outputs()
         for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
             _validate_output_schema(filename, expected_header)
@@ -387,8 +529,8 @@ def main(
 
     hz_df = None
     fs8_df = None
-    hz = datasets.get("hz")
-    fs8 = datasets.get("fsigma8")
+    hz = _find_dataset_by_kind(datasets, "hz")
+    fs8 = _find_dataset_by_kind(datasets, "fsigma8")
     if hz is not None and fs8 is not None:
         hz_df = pd.DataFrame({"z": hz["z"], "Hz": hz["values"], "sigma": hz["errors"]})
         fs8_df = pd.DataFrame({"z": fs8["z"], "fs8": fs8["values"], "sigma": fs8["errors"]})
@@ -422,6 +564,10 @@ def main(
         bayes_mode,
         produced_optional,
         covariance_usage_non_empty,
+        bayes_seed,
+        bayes_nwalkers,
+        bayes_nsteps,
+        bayes_nlive,
     )
     _assert_required_outputs()
     for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
