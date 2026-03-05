@@ -73,24 +73,6 @@ def _resolve_profile(cfg, profile_name=None):
     return resolved
 
 
-def _build_source_info(path):
-    path_abs = _abs_path(path)
-    with open(path_abs, "rb") as f:
-        hasher = hashlib.sha256()
-        while True:
-            chunk = f.read(1024 * 1024)
-            if not chunk:
-                break
-            hasher.update(chunk)
-        digest = hasher.hexdigest()
-    mtime_utc = datetime.fromtimestamp(os.path.getmtime(path_abs), tz=timezone.utc).isoformat()
-    return {
-        "path_abs": path_abs,
-        "timestamp_utc": mtime_utc,
-        "sha256": digest,
-    }
-
-
 def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
     source_info = _build_source_info(desc["path"])
     df = pd.read_csv(source_info["path_abs"])
@@ -174,7 +156,6 @@ def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WI
         "z": z_values,
         "values": values,
         "metadata": metadata,
-        "dataset_source": _dataset_source_from_descriptor(desc),
         "source": source_info,
     }
 
@@ -186,11 +167,9 @@ def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WI
     elif desc["error_model"] == "covariance":
         cov_path = _abs_path(cols["covariance"]) if cols.get("covariance") else _abs_path(desc["covariance_path"])
         covariance = np.loadtxt(cov_path, delimiter=",")
-
         if selected_covariance_idx is not None:
             covariance = covariance[np.ix_(selected_covariance_idx, selected_covariance_idx)]
-
-        if sort_idx is not None:
+        if z_reordered:
             covariance = covariance[np.ix_(sort_idx, sort_idx)]
 
         entry["covariance"] = covariance
@@ -212,7 +191,7 @@ def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_P
     if missing_values or missing_errors:
         raise ValueError(
             "dataset "
-            f"{dataset_id} missing json keys in file {desc['path']}: "
+            f"{dataset_id} missing json keys in file {source_info['path_abs']}: "
             f"values={missing_values}, errors={missing_errors}"
         )
 
@@ -225,12 +204,27 @@ def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_P
         "observable": desc["observable"],
         "values": values,
         "errors": errors,
-        "metadata": metadata,
+        "metadata": dict(desc["metadata"]),
         "dataset_source": _dataset_source_from_descriptor(desc),
         "z": None,
         "source": source_info,
     }
     return validate_observable_schema(entry, min_points_with_z=min_points_with_z)
+
+
+def _build_source_info(path):
+    path_abs = _abs_path(path)
+    digest_obj = hashlib.sha256()
+    with open(path_abs, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            digest_obj.update(chunk)
+    digest = digest_obj.hexdigest()
+    mtime_utc = datetime.fromtimestamp(os.path.getmtime(path_abs), tz=timezone.utc).isoformat()
+    return {
+        "path_abs": path_abs,
+        "timestamp_utc": mtime_utc,
+        "sha256": digest,
+    }
 
 
 def load_dataset_by_descriptor(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):

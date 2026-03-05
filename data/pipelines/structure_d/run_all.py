@@ -83,10 +83,8 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
     ],
     "error_mode_usage.csv": [
         "dataset_id",
-        "observable",
+        "block",
         "error_mode",
-        "has_full_covariance",
-        "has_diagonal_sigma",
     ],
     "rll_regime_summary.csv": [
         "z_min",
@@ -176,19 +174,20 @@ def _dataset_block_name(dataset_id, entry):
     return str(entry.get("observable", dataset_id))
 
 
-def _build_error_mode_rows(datasets):
-    rows = []
-    for dataset_id, entry in datasets.items():
-        has_cov = bool(entry.get("covariance") is not None)
-        rows.append({
-            "dataset_id": dataset_id,
-            "error_mode": "covariance" if has_cov else "errors",
-            "has_covariance": has_cov,
-            "has_diagonal_sigma": bool(entry.get("errors") is not None),
-            "n_obs": int(len(entry.get("values", []))),
-        })
-    return rows
 
+
+def _find_dataset_by_kind(datasets, kind):
+    kind_norm = str(kind).lower()
+    for dataset_id, entry in datasets.items():
+        dataset_norm = dataset_id.lower()
+        observable_norm = str(entry.get("observable", "")).lower()
+        if kind_norm in dataset_norm:
+            return entry
+        if kind_norm == "fsigma8" and ("fs8" in observable_norm or "fsigma8" in observable_norm):
+            return entry
+        if kind_norm == "hz" and "hz" in observable_norm:
+            return entry
+    return None
 
 def _apply_covariance_policy(datasets, covariance_policy):
     if covariance_policy == "full_required":
@@ -206,6 +205,20 @@ def _apply_covariance_policy(datasets, covariance_policy):
             entry["covariance"] = None
     return covariance_policy
 
+
+
+
+def _build_error_mode_rows(datasets):
+    rows = []
+    for dataset_id, entry in datasets.items():
+        rows.append(
+            {
+                "dataset_id": dataset_id,
+                "block": _dataset_block_name(dataset_id, entry),
+                "error_mode": "covariance" if entry.get("covariance") is not None else "errors",
+            }
+        )
+    return rows
 
 def _chi2_from_entry(entry, model_values):
     if entry.get("errors") is not None:
@@ -317,6 +330,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         z = np.asarray(entry["z"], dtype=float)
         lcdm_prediction = model_lcdm(z, lcdm)
         rll_prediction = model_rll(z, rll)
+        model_kind = "bao" if entry.get("observable") == "DV_over_rs" else "default"
 
         chi2_lcdm += _chi2_from_entry(entry, lcdm_prediction)
         chi2_rll += _chi2_from_entry(entry, rll_prediction)
@@ -342,6 +356,8 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             "BIC": bic(chi2_lcdm, N_FREE_PARAMS_LCDM, n_obs),
             "N": int(n_obs),
             "k": N_FREE_PARAMS_LCDM,
+            "fit_params": ",".join(fit_params_lcdm),
+            "fixed_params": ",".join(fixed_params_lcdm),
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
             "run_name": cfg_meta.get("run_name", "unknown"),
             "profile_name": cfg_meta.get("profile_name", DEFAULT_PROFILE),
@@ -357,6 +373,8 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             "BIC": bic(chi2_rll, N_FREE_PARAMS_RLL, n_obs),
             "N": int(n_obs),
             "k": N_FREE_PARAMS_RLL,
+            "fit_params": ",".join(fit_params_rll),
+            "fixed_params": ",".join(fixed_params_rll),
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
             "run_name": cfg_meta.get("run_name", "unknown"),
             "profile_name": cfg_meta.get("profile_name", DEFAULT_PROFILE),
@@ -426,6 +444,19 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
+
+
+def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
+    result = {
+        "profile": effective_profile,
+        "covariance_policy": effective_policy,
+        "rows": int(len(df_model)),
+        "outputs": dict(output_paths),
+    }
+    if extra_paths:
+        result.update(extra_paths)
+    return result
+
 def _dataset_contract_block(cfg_meta, datasets):
     rows = []
     for dataset_id in cfg_meta.get("active_datasets", []):
@@ -444,11 +475,9 @@ def _dataset_contract_block(cfg_meta, datasets):
 def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, inference_hyperparameters=None):
     try:
         git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-    except Exception:
-        git_commit = None
-    try:
         dirty_worktree = bool(subprocess.check_output(["git", "status", "--porcelain"], text=True).strip())
     except Exception:
+        git_commit = None
         dirty_worktree = None
 
     contract = {
@@ -471,7 +500,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         ],
         "bayes_enabled": bool(bayes),
         "bayes_mode": bayes_mode if bayes else None,
-        "bayes_inference_hyperparameters": inference_hyperparameters,
+        "bayes_inference_hyperparameters": inference_hyperparameters if bayes else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
         "datasets": _dataset_contract_block(cfg_meta, datasets),
     }

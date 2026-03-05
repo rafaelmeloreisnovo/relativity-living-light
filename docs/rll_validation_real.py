@@ -17,16 +17,18 @@ Parâmetros livres:
 import numpy as np
 from scipy.optimize import minimize, differential_evolution
 from scipy.integrate import quad
-import warnings; warnings.filterwarnings('ignore')
-
 import os
 import sys
+from pathlib import Path
+import warnings; warnings.filterwarnings('ignore')
 
-REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if REPO_ROOT not in sys.path:
-    sys.path.insert(0, REPO_ROOT)
-
-from data.pipelines.structure_d.data_access import load_active_datasets
+try:
+    from data.pipelines.structure_d.data_access import load_active_datasets
+except ModuleNotFoundError:
+    repo_root = Path(__file__).resolve().parents[1]
+    if str(repo_root) not in sys.path:
+        sys.path.insert(0, str(repo_root))
+    from data.pipelines.structure_d.data_access import load_active_datasets
 
 c_kms = 299792.458
 z_CMB = 1089.92

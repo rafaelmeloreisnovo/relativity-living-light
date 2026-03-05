@@ -1,13 +1,19 @@
 # Pantheon+ inputs
 
-Este diretório é reservado para os arquivos do Pantheon+ usados em `docs/panteon_likelihood.py`.
+Este diretório é o ponto canônico para os insumos Pantheon+ usados por `docs/panteon_likelihood.py`.
 
-Arquivos esperados:
+## Arquivos esperados
+
 - `lcparam_full_long_zhel.txt` (obrigatório)
-- `sys_full_long.txt` (opcional, recomendado)
+- `sys_full_long.txt` (opcional, recomendado para covariância sistemática)
 
-Fonte oficial:
-- https://github.com/PantheonPlusSH0ES/DataRelease
+## Como usar sem travar o pipeline principal
 
-Modo offline:
-- Se `sys_full_long.txt` não existir, o pipeline usa apenas covariância estatística (diagonal) e emite aviso explícito.
+- O pipeline principal `data.pipelines.structure_d.run_all` não depende deste diretório.
+- A validação Pantheon+ é rodada separadamente via `python docs/panteon_likelihood.py`.
+- Se `sys_full_long.txt` não existir, o script roda com covariância estatística diagonal e registra aviso.
+
+## Fonte
+
+Data release oficial:
+https://github.com/PantheonPlusSH0ES/DataRelease

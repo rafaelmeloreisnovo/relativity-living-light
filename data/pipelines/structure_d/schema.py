@@ -99,3 +99,24 @@ def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_
         "metadata": metadata,
         "dataset_source": str(dataset_source) if dataset_source is not None else "unknown",
     }
+
+
+def _validate_covariance_matrix(covariance, expected_size):
+    if covariance.shape != (expected_size, expected_size):
+        raise ValueError(
+            f"covariance must have shape ({expected_size}, {expected_size})"
+        )
+    if not np.allclose(covariance, covariance.T, rtol=1e-10, atol=1e-12):
+        raise ValueError("covariance must be symmetric")
+    diag = np.diag(covariance)
+    if np.any(diag <= 0):
+        raise ValueError("covariance diagonal must be strictly positive")
+
+
+def _json_safe_metadata(metadata):
+    if not isinstance(metadata, dict):
+        raise ValueError("metadata must be a dict")
+    cleaned = {}
+    for key, value in metadata.items():
+        cleaned[str(key)] = value if isinstance(value, (str, int, float, bool)) or value is None else str(value)
+    return cleaned
