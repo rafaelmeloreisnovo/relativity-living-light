@@ -69,6 +69,57 @@ MODEL_BY_DATASET = {
     "real_bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
 }
 
+MODEL_KIND_BY_DATASET = {
+    "hz": "hz",
+    "real_hz": "hz",
+    "fsigma8": "fsigma8",
+    "real_bao": "bao",
+}
+
+MODEL_BY_KIND = {
+    "hz": (model_LCDM_Hz, model_RLL_like_Hz),
+    "fsigma8": (model_LCDM_fs8, model_RLL_like_fs8),
+    "bao": (model_LCDM_bao_dv_over_rs, model_RLL_like_bao_dv_over_rs),
+}
+
+
+def _normalize_observable_token(value):
+    normalized = str(value).strip().lower().replace("σ", "sigma")
+    return "".join(ch for ch in normalized if ch.isalnum())
+
+
+def _infer_model_kind(dataset_id, entry):
+    kind = MODEL_KIND_BY_DATASET.get(dataset_id)
+    if kind is not None:
+        return kind
+
+    observable = _normalize_observable_token(entry.get("observable", dataset_id))
+    if "hz" in observable:
+        return "hz"
+    if "fsigma8" in observable or "fs8" in observable:
+        return "fsigma8"
+    if "bao" in observable or "dvovers" in observable:
+        return "bao"
+    return None
+
+
+def _resolve_model_pair(dataset_id, entry):
+    model_pair = MODEL_BY_DATASET.get(dataset_id)
+    if model_pair is not None:
+        return _infer_model_kind(dataset_id, entry), model_pair
+
+    kind = _infer_model_kind(dataset_id, entry)
+    if kind is None:
+        return None, None
+    return kind, MODEL_BY_KIND.get(kind)
+
+
+def _find_dataset_by_kind(datasets, kind):
+    for dataset_id, entry in datasets.items():
+        if _infer_model_kind(dataset_id, entry) == kind:
+            return entry
+    return None
+
 
 def _dataset_block_name(dataset_id, entry):
     observable = str(entry.get("observable", dataset_id)).lower()
@@ -140,7 +191,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
             }
         )
 
-        model_pair = MODEL_BY_DATASET.get(dataset_id)
+        model_kind, model_pair = _resolve_model_pair(dataset_id, entry)
         if model_pair is None or entry.get("z") is None:
             continue
 
@@ -149,7 +200,7 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
         lcdm_prediction = model_lcdm(z, lcdm)
         rll_prediction = model_rll(z, rll)
 
-        if dataset_id == "real_bao":
+        if model_kind == "bao":
             chi2_lcdm += _chi2_bao_from_entry(entry, lcdm_prediction)
             chi2_rll += _chi2_bao_from_entry(entry, rll_prediction)
         else:
@@ -363,8 +414,8 @@ def main(
 
     hz_df = None
     fs8_df = None
-    hz = datasets.get("hz")
-    fs8 = datasets.get("fsigma8")
+    hz = _find_dataset_by_kind(datasets, "hz")
+    fs8 = _find_dataset_by_kind(datasets, "fsigma8")
     if hz is not None and fs8 is not None:
         hz_df = pd.DataFrame({"z": hz["z"], "Hz": hz["values"], "sigma": hz["errors"]})
         fs8_df = pd.DataFrame({"z": fs8["z"], "fs8": fs8["values"], "sigma": fs8["errors"]})

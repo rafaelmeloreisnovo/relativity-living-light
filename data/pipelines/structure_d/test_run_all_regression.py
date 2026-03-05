@@ -82,6 +82,38 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
+    def test_run_classic_metrics_supports_lookup_fallback_by_normalized_observable(self):
+        datasets = {
+            "hz_renamed": {
+                "dataset_id": "hz_renamed",
+                "observable": " H(z) ",
+                "z": np.array([0.1, 0.3, 0.5]),
+                "values": np.array([71.0, 79.0, 89.0]),
+                "errors": np.array([2.0, 2.0, 3.0]),
+                "metadata": {"reference": "unit-test"},
+            },
+            "fs8_renamed": {
+                "dataset_id": "fs8_renamed",
+                "observable": "fσ8",
+                "z": np.array([0.2, 0.6, 1.0]),
+                "values": np.array([0.47, 0.41, 0.36]),
+                "errors": np.array([0.03, 0.04, 0.05]),
+                "metadata": {"reference": "unit-test"},
+            },
+        }
+        cfg_meta = {
+            "run_name": "renamed_dataset_ids",
+            "profile_name": "renamed_dataset_ids",
+            "active_datasets": ["hz_renamed", "fs8_renamed"],
+        }
+
+        df_model, _, out_cov, _ = run_all.run_classic_metrics(cfg_meta, datasets, "prefer_full")
+        self.addCleanup(os.remove, out_cov)
+        self.addCleanup(os.remove, os.path.join(run_all.RESULTS, "model_comparison.csv"))
+
+        self.assertEqual(set(df_model["model"]), {"LCDM", "RLL_like+AGN"})
+        self.assertTrue((df_model["N"] > 0).all())
+
     def test_mock_real_like_profile_generates_required_artifacts(self):
         generated_paths = [
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
