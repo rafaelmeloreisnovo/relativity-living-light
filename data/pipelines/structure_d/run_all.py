@@ -349,23 +349,27 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
-def _resolve_git_metadata():
-    try:
-        git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-    except Exception:
-        git_commit = None
+def _write_reproduction_contract(
+    profile_name,
+    covariance_policy,
+    bayes,
+    bayes_mode,
+    produced_optional,
+    covariance_usage_non_empty,
+    bayes_seed,
+    bayes_nwalkers,
+    bayes_nsteps,
+    bayes_nlive,
+):
+    inference_hyperparameters = None
+    if bayes and bayes_mode == "inference":
+        inference_hyperparameters = {
+            "seed": int(bayes_seed),
+            "nwalkers": int(bayes_nwalkers),
+            "nsteps": int(bayes_nsteps),
+            "nlive": int(bayes_nlive),
+        }
 
-    try:
-        status_output = subprocess.check_output(["git", "status", "--porcelain"], text=True)
-        dirty_worktree = bool(status_output.strip())
-    except Exception:
-        dirty_worktree = None
-
-    return git_commit, dirty_worktree
-
-
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
-    git_commit, dirty_worktree = _resolve_git_metadata()
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -386,14 +390,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         ],
         "bayes_enabled": bool(bayes),
         "bayes_mode": bayes_mode if bayes else None,
-        "bayes_runtime_metadata": {
-            "seed": int(bayes_seed),
-            "nwalkers": int(bayes_nwalkers),
-            "nsteps": int(bayes_nsteps),
-            "nlive": int(bayes_nlive),
-        }
-        if bayes
-        else None,
+        "bayes_inference_hyperparameters": inference_hyperparameters,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
         "bayes_factor_interpretation_contract": bayes_factor_interpretation_contract(),
     }
@@ -592,6 +589,11 @@ def main(
         for name in produced_optional:
             print(f"[bayes] wrote: {os.path.join(RESULTS, name)}")
         print(f"[bayes] mode: {bayes_mode}")
+        if bayes_mode == "inference":
+            print(
+                "[bayes] inference hyperparameters: "
+                f"seed={bayes_seed}, nwalkers={bayes_nwalkers}, nsteps={bayes_nsteps}, nlive={bayes_nlive}"
+            )
 
 
 def _build_parser():

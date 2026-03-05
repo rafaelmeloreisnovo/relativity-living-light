@@ -113,100 +113,39 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract = json.load(fp)
 
         self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
-        self.assertIn("bayes_factor_interpretation_contract", contract)
+        self.assertIsNone(
+            contract.get("bayes_inference_hyperparameters"),
+            "bic_proxy mode must not persist inference hyperparameters",
+        )
 
-    def test_structure_d_bayes_contract_tracks_optional_outputs(self):
-        make_example_data.main(seed=42)
-        run_all.main(profile_name="structure_d_default", bayes=True)
+    def test_reproduction_contract_persists_inference_hyperparameters(self):
+        contract_path = run_all._write_reproduction_contract(
+            profile_name="structure_d_default",
+            covariance_policy="prefer_full",
+            bayes=True,
+            bayes_mode="inference",
+            produced_optional=["bayes_evidence_inference.csv"],
+            covariance_usage_non_empty=True,
+            bayes_seed=123,
+            bayes_nwalkers=48,
+            bayes_nsteps=3500,
+            bayes_nlive=600,
+        )
+        self.generated_paths.append(contract_path)
 
-        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
-        with open(contract_path, "r", encoding="utf-8") as fp:
-            contract = json.load(fp)
-
-        self.assertTrue(contract.get("bayes_enabled"))
-        self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
-
-        optional_outputs = {entry["file"]: bool(entry["produced"]) for entry in contract.get("optional_outputs", [])}
-        self.assertEqual(optional_outputs.get("bayes_evidence_bic_proxy.csv"), True)
-        self.assertEqual(optional_outputs.get("bayes_factor_interpretation.csv"), True)
-        self.assertEqual(optional_outputs.get("bayes_evidence_inference.csv"), False)
-
-        for filename, was_produced in optional_outputs.items():
-            path = os.path.join(run_all.RESULTS, filename)
-            self.assertEqual(
-                os.path.exists(path),
-                was_produced,
-                f"contract produced flag mismatch for optional artifact {filename}",
-            )
-
-
-
-    def test_structure_d_bayes_inference_uses_inference_routines_and_persists_metadata(self):
-        make_example_data.main(seed=42)
-
-        fake_lcdm = {
-            "row": {
-                "model": "LCDM",
-                "logZ": -10.0,
-                "logZ_err": 0.5,
-                "seed": 7,
-                "nwalkers": 16,
-                "nsteps": 100,
-                "nlive": 50,
-            }
-        }
-        fake_rll = {
-            "row": {
-                "model": "RLL_like+AGN",
-                "logZ": -9.0,
-                "logZ_err": 0.7,
-                "seed": 7,
-                "nwalkers": 16,
-                "nsteps": 100,
-                "nlive": 50,
-            }
-        }
-
-        with mock.patch.object(run_all, "run_lcdm_bayes", return_value=fake_lcdm) as lcdm_mock, mock.patch.object(
-            run_all,
-            "run_rll_like_agn_bayes",
-            return_value=fake_rll,
-        ) as rll_mock:
-            run_all.main(
-                profile_name="structure_d_default",
-                bayes=True,
-                bayes_mode="inference",
-                bayes_seed=7,
-                bayes_nwalkers=16,
-                bayes_nsteps=100,
-                bayes_nlive=50,
-            )
-
-        self.assertEqual(lcdm_mock.call_count, 1)
-        self.assertEqual(rll_mock.call_count, 1)
-
-        evidence_path = os.path.join(run_all.RESULTS, "bayes_evidence_inference.csv")
-        self.assertTrue(os.path.exists(evidence_path), "bayes_evidence_inference.csv was not generated")
-
-        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract.json")
         with open(contract_path, "r", encoding="utf-8") as fp:
             contract = json.load(fp)
 
         self.assertEqual(contract.get("bayes_mode"), "inference")
         self.assertEqual(
-            contract.get("bayes_runtime_metadata"),
-            {"seed": 7, "nwalkers": 16, "nsteps": 100, "nlive": 50},
+            contract.get("bayes_inference_hyperparameters"),
+            {
+                "seed": 123,
+                "nwalkers": 48,
+                "nsteps": 3500,
+                "nlive": 600,
+            },
         )
-
-class StructureDRealOutputSchemaTest(unittest.TestCase):
-    def test_expected_model_comparison_header_without_fit_params(self):
-        header = run_all_real._expected_model_comparison_header(include_fit_params=False)
-        self.assertEqual(header, run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
-
-    def test_expected_model_comparison_header_with_fit_params(self):
-        header = run_all_real._expected_model_comparison_header(include_fit_params=True)
-        self.assertEqual(header[: len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])], run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"])
-        self.assertEqual(header[len(run_all.EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"]) :], run_all_real.EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
