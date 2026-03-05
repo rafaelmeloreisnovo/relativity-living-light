@@ -11,11 +11,14 @@
 
 ## Mapa da consolidação aplicada
 
+A série normativa oficial é `00/06/09/10/11/12`, com todos os documentos consolidados em `docs/canonicos/`.
+
 - `docs/canonicos/00_COMO_LER.md`
 - `docs/canonicos/06_COMPARACOES_DETALHADAS.md`
 - `docs/canonicos/09_GLOSSARIO_COMPLETO.md`
 - `docs/canonicos/10_FAQ_COMPLETO.md`
 - `docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`
+- `docs/canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md`
 
 ## Nota sobre inventários ZIP
 

@@ -10,7 +10,7 @@ _Scope: non-destructive reorganization, governance cleanup, and reproducibility 
 
 ## A. Repository Audit (Inventory & Classification)
 - **Root**: `README.md` (manifesto/symbolic), `README_MASTER.md` (navigation), `REFORM_LOG.md`, `RESUMO_REFORMA.md`, `SECURITY_SUMMARY.md`, `LICENSE.md` (RAFCODE-𝚽, non-OSI), `requirements.txt`.
-- **Docs (`/docs`)**: mixture of scientific (e.g., `Conclusion.md`, `Structure.md`, `RelativityLivingLight_arXiv.tex/.pdf`, `ARTICLE_ANALYSIS_SUMMARY.md`, `ANALISE_ARTIGO_NATURE_PT.md`) and symbolic/manifesto content (`MANIFESTO.md`, `MAPA_RAFAELIA_TOTAL.md`, `SUPREMO UNIFICADO.md`, `IMPACT_REPORT_MULTI.md`, `New theory and beyond.md`, numeric series in `/docs/numeros_rafaelianos`). Patches and snippets (`README_patch_unified_PT_EN_v3/v4.md`, `README_snippet.md`, etc.) mix scientific explanation and narrative.
+- **Docs (`/docs`)**: mixture of scientific (e.g., `RAFAELIA_UNIFIED_PAPER.md`, `REPOSITORY_STRUCTURE_SUGGESTION.md`, `RelativityLivingLight_arXiv.tex/.pdf`, `ARTICLE_ANALYSIS_SUMMARY.md`, `ANALISE_ARTIGO_NATURE_PT.md`) and symbolic/manifesto content (`MANIFESTO.md`, `MAPA_RAFAELIA_TOTAL.md`, `SUPREMO UNIFICADO.md`, `IMPACT_REPORT_MULTI.md`, `THEORY_INVENTORY_AND_EXTENSIONS.md`, numeric series in `/docs/numeros_rafaelianos`). Patches and snippets (`README_patch_unified_PT_EN_v3/v4.md`, `README_snippet.md`, etc.) mix scientific explanation and narrative.
 - **Data (`/data`)**:
   - Notebooks: `Hz_superposicao.ipynb`, `ciencia_Hz_superposicao*.ipynb`, `density_decomp.ipynb`, `rotation_model.ipynb`.
   - CSV/JSON: `posterior_unified_synth.csv` (synthetic posterior canônico), `relativity_living_light_models.csv`, `unified_entropy_margin_10_12.csv`, `zenodo.json`, `CITATION.cff` (CC-BY-SA-4.0, v4.0, author Rafael Melo Reis).
@@ -43,7 +43,7 @@ _Scope: non-destructive reorganization, governance cleanup, and reproducibility 
 │   ├── scientific_core/      # Conclusion, Structure, arXiv tex/pdf, ANALISE_*, ARTICLE_* 
 │   ├── readme_patches/       # README_patch_unified_PT_EN_v3/v4, README_snippet*
 │   ├── logs_summaries/       # REFORM_LOG.md, RESUMO_REFORMA.md, SECURITY_SUMMARY.md
-│   └── references/           # REFERENCES.md, More.md, Others*, RESULTS/IMPACT
+│   └── references/           # REFERENCES.md, BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md, Others*, RESULTS/IMPACT
 ├── data/
 │   ├── synthetic/            # posterior_unified_synth.csv, synthetic_posterior_summary.json
 │   ├── derived/              # relativity_living_light_models.csv, unified_entropy_margin_10_12.csv

@@ -1,1 +1,3 @@
+arquivo histórico, não normativo; use docs/canonicos/...
+
 Documento movido para o local canônico: `docs/canonicos/09_GLOSSARIO_COMPLETO.md`.

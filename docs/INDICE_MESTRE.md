@@ -1,8 +1,22 @@
 # ÍNDICE MESTRE — Documentação Oficial
 ## Relativity Living Light
 
-**Atualizado em:** 2026-02-25
+**Atualizado em:** 2026-03-05
 **Regra:** seção principal lista apenas caminhos canônicos oficiais.
+
+---
+
+## Escopo deste arquivo
+
+Este arquivo é a **navegação canônica** da documentação do repositório.
+
+- Lista os caminhos oficiais por trilha temática.
+- Atua como referência de navegação para leitura e manutenção.
+- Não substitui o README (porta de entrada) e não tenta reproduzir o inventário bruto.
+
+Encaminhamentos complementares:
+- Porta de entrada: [`README.md`](../README.md)
+- Inventário bruto (`.md` e `.zip`): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
 
 ---
 
@@ -56,7 +70,21 @@
   - [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
   - [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
   - [`docs/canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md`](canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md)
+- 00_COMO_LER.md → [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
+- 06_COMPARACOES_DETALHADAS.md → [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
+- 09_GLOSSARIO_COMPLETO.md → [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
+- 09_GLOSSARIO_COMPLETO-1.md → [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
+- 10_FAQ_COMPLETO.md → [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
+- 11_DOCUMENTO_PRIORIDADE.md → [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
+- RMR/00_COMO_LER.md → [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
+- RMR/06_COMPARACOES_DETALHADAS.md → [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
+- RMR/09_GLOSSARIO_COMPLETO.md → [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
+- RMR/09_GLOSSARIO_COMPLETO-1.md → [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
+- RMR/10_FAQ_COMPLETO.md → [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
+- RMR/11_DOCUMENTO_PRIORIDADE.md → [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
 
 ### Arquivos de arquivo estendido
 - [`news/archive_legacy/`](../news/archive_legacy/)
 - [`docs/README_ROOT_LEGACY_ARCHIVE.md`](README_ROOT_LEGACY_ARCHIVE.md)
+- Referência canônica central desta navegação: seção principal deste arquivo.
+- Inventário bruto e completo (inclui histórico/legado): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md).

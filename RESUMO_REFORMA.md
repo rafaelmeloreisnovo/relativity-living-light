@@ -211,7 +211,7 @@ O README_MASTER.md fornece todos os links corretos atualizados.
 
 ### Navegação Rápida
 1. **Entender o projeto**: Leia `/README_MASTER.md`
-2. **Explorar a física**: Veja `/docs/Conclusion.md` e `/docs/Structure.md`
+2. **Explorar a física**: Veja `/docs/RAFAELIA_UNIFIED_PAPER.md` e `/docs/REPOSITORY_STRUCTURE_SUGGESTION.md`
 3. **Ver resultados**: Gráficos em `/figs`
 4. **Analisar dados**: CSVs em `/data`
 5. **Executar notebooks**: Jupyter em `/data/*.ipynb`

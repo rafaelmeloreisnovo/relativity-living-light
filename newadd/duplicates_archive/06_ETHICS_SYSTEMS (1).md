@@ -1,6 +1,6 @@
 # RAFAELIA — Domain VI: Ethics & Systems Theory
 
-**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
+**Norma canônica de convenções globais:** [../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](../../docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
 
 ### Ethical Field Theory, Feedback Dynamics, Coherence-Maximization & Living Synthesis
 

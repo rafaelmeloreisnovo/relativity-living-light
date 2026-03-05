@@ -77,13 +77,13 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
 ├── /docs                  # 📄 Documentação e textos simbióticos
 │   ├── ADMIN.md
 │   ├── MANIFESTO.md
-│   ├── Conclusion.md
+│   ├── RAFAELIA_UNIFIED_PAPER.md
 │   ├── MAPA_RAFAELIA_TOTAL.md
 │   ├── SUPREMO UNIFICADO.md
 │   ├── IMPACT_REPORT_MULTI.md
-│   ├── Structure.md
+│   ├── REPOSITORY_STRUCTURE_SUGGESTION.md
 │   ├── Results.md
-│   ├── More.md
+│   ├── BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md
 │   ├── estatisticas.md
 │   ├── README_patch_unified_PT_EN_v3.md
 │   ├── README_patch_unified_PT_EN_v4.md
@@ -96,7 +96,7 @@ Referência completa: [`docs/canonicos/FRAMEWORK_RESUMO_CANONICO.md`](docs/canon
 │       ├── Constante.md
 │       ├── Numeros.md
 │       ├── harmonica.md
-│       └── Readme.md
+│       └── DATA_DESCRIPTOR_BUNDLE_V4.md
 │
 ├── /data                  # 📊 Dados, notebooks e arquivos CSV/JSON
 │   ├── zenodo.json
@@ -215,13 +215,13 @@ O modelo foi testado contra múltiplos observáveis cosmológicos:
 ## 📚 Navegação Rápida por Seção
 
 ### Documentação Científica
-- [Conclusão](docs/Conclusion.md) — Conclusões do modelo
+- [Conclusão](docs/RAFAELIA_UNIFIED_PAPER.md) — Conclusões do modelo
 - [Manifesto](docs/MANIFESTO.md) — Visão filosófica e simbiótica
 - [Mapa Rafaelia Total](docs/MAPA_RAFAELIA_TOTAL.md) — Estrutura conceitual completa
 - [Descobertas Emergentes](docs/DESCOBERTAS_EMERGENTES.md) — 14 descobertas numeradas com evidência, risco, falsificação e ponte código↔resultados
 - [Supremo Unificado](docs/SUPREMO UNIFICADO.md) — Unificação dos conceitos
 - [Impact Report](docs/IMPACT_REPORT_MULTI.md) — Relatório de impacto
-- [Estrutura](docs/Structure.md) — Estrutura do modelo
+- [Estrutura](docs/REPOSITORY_STRUCTURE_SUGGESTION.md) — Estrutura do modelo
 - [Resultados](docs/Results.md) — Resultados obtidos
 - [Estatísticas](docs/estatisticas.md) — Análises estatísticas
 
@@ -331,7 +331,7 @@ Mostrar que o modelo de **superposição dinâmica** pode:
 ## 📖 Como Usar Este Repositório
 
 1. **Entender o Modelo**: Leia o [README.md](README.md) principal e [MANIFESTO.md](docs/MANIFESTO.md)
-2. **Explorar a Física**: Veja [Conclusion.md](docs/Conclusion.md) e [Structure.md](docs/Structure.md)
+2. **Explorar a Física**: Veja [RAFAELIA_UNIFIED_PAPER.md](docs/RAFAELIA_UNIFIED_PAPER.md) e [REPOSITORY_STRUCTURE_SUGGESTION.md](docs/REPOSITORY_STRUCTURE_SUGGESTION.md)
 3. **Análises e Dados**: Explore os notebooks em `/data` e os gráficos em `/figs`
 4. **Reproduzir Resultados**: Use os CSVs e notebooks para replicar as análises
 
