@@ -9,7 +9,8 @@ import numpy as np
 import pandas as pd
 
 from data.pipelines.structure_d import make_example_data, run_all
-from data.pipelines.structure_d.data_access import load_active_datasets
+from data.pipelines.structure_d.data_access import load_active_datasets, load_run_config
+from data.pipelines.structure_d.schema import validate_observable_schema
 
 
 class StructureDDefaultRegressionTest(unittest.TestCase):
@@ -514,6 +515,30 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
                     covariance_policy="full_required",
                 )
 
+
+
+class StructureDSchemaValidationTest(unittest.TestCase):
+    def test_validate_observable_schema_rejects_short_z_series_by_default(self):
+        entry = {
+            "dataset_id": "toy",
+            "observable": "Hz",
+            "z": np.array([0.1, 0.2], dtype=float),
+            "values": np.array([70.0, 72.0], dtype=float),
+            "errors": np.array([1.0, 1.0], dtype=float),
+            "metadata": {
+                "survey": "synthetic",
+                "redshift_range": "[0.1,0.2]",
+                "reference": "unit-test",
+            },
+        }
+
+        with self.assertRaisesRegex(ValueError, "at least 3 points"):
+            validate_observable_schema(entry)
+
+    def test_load_run_config_applies_conservative_defaults(self):
+        cfg = load_run_config(run_all.DEFAULT_CONFIG)
+        self.assertIn("validation", cfg)
+        self.assertEqual(cfg["validation"].get("min_points_with_z"), 3)
 
 if __name__ == "__main__":
     unittest.main()

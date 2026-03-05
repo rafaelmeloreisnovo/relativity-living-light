@@ -103,5 +103,8 @@
         "reference": "Planck2018_VI"
       }
     }
+  },
+  "validation": {
+    "min_points_with_z": 3
   }
 }

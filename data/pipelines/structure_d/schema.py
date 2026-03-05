@@ -5,6 +5,9 @@ TEXTUAL_OUTPUTS = []
 import numpy as np
 
 
+DEFAULT_MIN_POINTS_WITH_Z = 3
+
+
 def _as_float_array(values, name):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -25,7 +28,10 @@ def _as_float_matrix(values, name):
     return mat
 
 
-def validate_observable_schema(entry):
+def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
+    if int(min_points_with_z) != min_points_with_z or min_points_with_z < 1:
+        raise ValueError("min_points_with_z must be a positive integer")
+
     required = ["dataset_id", "observable", "values", "metadata"]
     missing = [k for k in required if k not in entry]
     if missing:
@@ -37,6 +43,10 @@ def validate_observable_schema(entry):
         z = _as_float_array(entry["z"], "z")
         if len(z) != len(values):
             raise ValueError("z and values must have the same length")
+        if len(z) < int(min_points_with_z):
+            raise ValueError(
+                f"datasets with z must have at least {int(min_points_with_z)} points"
+            )
 
     has_errors = "errors" in entry and entry["errors"] is not None
     has_cov = "covariance" in entry and entry["covariance"] is not None
