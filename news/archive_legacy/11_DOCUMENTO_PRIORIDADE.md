@@ -1,3 +1,5 @@
+arquivo histórico, não normativo; use docs/canonicos/...
+
 > ⚠️ **Aviso de canonicidade:** este arquivo é histórico/legado. A versão oficial está em `docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`.
 
 # 11 — DOCUMENTO DE PRIORIDADE
