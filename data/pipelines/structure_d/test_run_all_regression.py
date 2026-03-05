@@ -444,5 +444,153 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             self.assertIn("fsigma8", message)
 
 
+    def test_non_monotonic_z_raises_by_default(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_path = os.path.join(temp_dir, "hz.csv")
+            cfg_path = os.path.join(temp_dir, "config.json")
+
+            pd.DataFrame(
+                {
+                    "z": [0.3, 0.1, 0.2],
+                    "Hz": [78.0, 70.0, 74.0],
+                    "sigma": [2.5, 2.0, 2.2],
+                }
+            ).to_csv(data_path, index=False)
+
+            config = {
+                "default_profile": "z_validation",
+                "profiles": {
+                    "z_validation": {
+                        "run_name": "z_validation",
+                        "active_datasets": ["hz"],
+                    }
+                },
+                "datasets": {
+                    "hz": {
+                        "format": "csv",
+                        "path": data_path,
+                        "observable": "Hz",
+                        "error_model": "errors",
+                        "columns": {
+                            "z": "z",
+                            "value": "Hz",
+                            "error": "sigma",
+                        },
+                        "metadata": {
+                            "survey": "synthetic",
+                            "redshift_range": "[0.1,0.3]",
+                            "reference": "unit-test",
+                        },
+                    }
+                },
+            }
+
+            with open(cfg_path, "w", encoding="utf-8") as fp:
+                json.dump(config, fp)
+
+            with self.assertRaisesRegex(ValueError, "non-monotonic z"):
+                load_active_datasets(cfg_path, profile_name="z_validation")
+
+    def test_non_monotonic_z_can_be_sorted_and_records_metadata(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_path = os.path.join(temp_dir, "hz.csv")
+            cfg_path = os.path.join(temp_dir, "config.json")
+
+            pd.DataFrame(
+                {
+                    "z": [0.3, 0.1, 0.2],
+                    "Hz": [78.0, 70.0, 74.0],
+                    "sigma": [2.5, 2.0, 2.2],
+                }
+            ).to_csv(data_path, index=False)
+
+            config = {
+                "default_profile": "z_sorted",
+                "profiles": {
+                    "z_sorted": {
+                        "run_name": "z_sorted",
+                        "active_datasets": ["hz"],
+                    }
+                },
+                "datasets": {
+                    "hz": {
+                        "format": "csv",
+                        "path": data_path,
+                        "observable": "Hz",
+                        "error_model": "errors",
+                        "z_order_policy": "sort",
+                        "columns": {
+                            "z": "z",
+                            "value": "Hz",
+                            "error": "sigma",
+                        },
+                        "metadata": {
+                            "survey": "synthetic",
+                            "redshift_range": "[0.1,0.3]",
+                            "reference": "unit-test",
+                        },
+                    }
+                },
+            }
+
+            with open(cfg_path, "w", encoding="utf-8") as fp:
+                json.dump(config, fp)
+
+            _, datasets = load_active_datasets(cfg_path, profile_name="z_sorted")
+            hz_entry = datasets["hz"]
+
+            np.testing.assert_allclose(hz_entry["z"], np.array([0.1, 0.2, 0.3]))
+            np.testing.assert_allclose(hz_entry["values"], np.array([70.0, 74.0, 78.0]))
+            np.testing.assert_allclose(hz_entry["errors"], np.array([2.0, 2.2, 2.5]))
+            self.assertTrue(hz_entry["metadata"]["z_reordered"])
+
+    def test_monotonic_z_marks_metadata_without_reorder(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_path = os.path.join(temp_dir, "hz.csv")
+            cfg_path = os.path.join(temp_dir, "config.json")
+
+            pd.DataFrame(
+                {
+                    "z": [0.1, 0.2, 0.3],
+                    "Hz": [70.0, 74.0, 78.0],
+                    "sigma": [2.0, 2.2, 2.5],
+                }
+            ).to_csv(data_path, index=False)
+
+            config = {
+                "default_profile": "z_monotonic",
+                "profiles": {
+                    "z_monotonic": {
+                        "run_name": "z_monotonic",
+                        "active_datasets": ["hz"],
+                    }
+                },
+                "datasets": {
+                    "hz": {
+                        "format": "csv",
+                        "path": data_path,
+                        "observable": "Hz",
+                        "error_model": "errors",
+                        "columns": {
+                            "z": "z",
+                            "value": "Hz",
+                            "error": "sigma",
+                        },
+                        "metadata": {
+                            "survey": "synthetic",
+                            "redshift_range": "[0.1,0.3]",
+                            "reference": "unit-test",
+                        },
+                    }
+                },
+            }
+
+            with open(cfg_path, "w", encoding="utf-8") as fp:
+                json.dump(config, fp)
+
+            _, datasets = load_active_datasets(cfg_path, profile_name="z_monotonic")
+            self.assertFalse(datasets["hz"]["metadata"]["z_reordered"])
+
+
 if __name__ == "__main__":
     unittest.main()
