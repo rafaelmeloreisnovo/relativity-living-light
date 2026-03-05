@@ -325,7 +325,10 @@ def main(
     cfg = load_run_config(config_path)
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
-    effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
+    effective_policy = _apply_covariance_policy(
+        datasets,
+        covariance_policy or cfg_meta.get("covariance_policy") or cfg.get("covariance_policy", "prefer_full"),
+    )
 
     if effective_profile == REAL_PROFILE:
         df_model = run_all_real.main(

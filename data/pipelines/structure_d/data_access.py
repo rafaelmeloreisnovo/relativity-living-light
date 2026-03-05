@@ -26,14 +26,19 @@ def load_run_config(config_path):
 def _resolve_profile(cfg, profile_name=None):
     if "profiles" not in cfg:
         # backward-compatible path (legacy flat config)
-        active = cfg.get("active_datasets", [])
-        run_name = cfg.get("run_name", "legacy")
-        return {"run_name": run_name, "active_datasets": active}
+        resolved = dict(cfg)
+        resolved.setdefault("run_name", "legacy")
+        resolved["active_datasets"] = list(cfg.get("active_datasets", []))
+        return resolved
 
     selected = profile_name or cfg.get("default_profile")
     if selected not in cfg["profiles"]:
         raise ValueError(f"profile not found in config: {selected}")
-    return cfg["profiles"][selected]
+    resolved = dict(cfg["profiles"][selected])
+    resolved["active_datasets"] = list(resolved.get("active_datasets", []))
+    if "covariance_policy" not in resolved and "covariance_policy" in cfg:
+        resolved["covariance_policy"] = cfg["covariance_policy"]
+    return resolved
 
 
 def _parse_csv_dataset(dataset_id, desc):
@@ -107,11 +112,10 @@ def load_active_datasets(config_path, profile_name=None):
             raise ValueError(f"active dataset not found in config: {dataset_id}")
         datasets[dataset_id] = load_dataset_by_descriptor(dataset_id, desc)
 
-    meta = {
-        "run_name": profile.get("run_name", "unknown"),
-        "active_datasets": list(profile["active_datasets"]),
-        "profile_name": profile_name or cfg.get("default_profile", "legacy")
-    }
+    meta = dict(profile)
+    meta["run_name"] = profile.get("run_name", "unknown")
+    meta["active_datasets"] = list(profile["active_datasets"])
+    meta["profile_name"] = profile_name or cfg.get("default_profile", "legacy")
     return meta, datasets
 
 
