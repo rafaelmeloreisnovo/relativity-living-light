@@ -265,13 +265,17 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
     return out_contract
 
 
-def _write_real_reproduction_contract(profile_name, covariance_policy):
+def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_lcdm, maxiter_rll, tol, seed):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all --profile structure_d_real_validation",
         "execution_path": "run_all_real",
         "delegated_module": "data.pipelines.structure_d.run_all_real",
         "profile": profile_name,
         "covariance_policy": covariance_policy,
+        "maxiter_lcdm": int(maxiter_lcdm),
+        "maxiter_rll": int(maxiter_rll),
+        "tol": float(tol),
+        "seed": int(seed),
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {
@@ -328,6 +332,11 @@ def main(
     effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
 
     if effective_profile == REAL_PROFILE:
+        maxiter_lcdm = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
+        maxiter_rll = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
+        tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
+        seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
+
         df_model = run_all_real.main(
             config_path=config_path,
             profile_name=effective_profile,
@@ -347,7 +356,14 @@ def main(
             for dataset_id, entry in datasets.items()
         ]
         evaluate_model(cov_rows, out_cov)
-        out_contract = _write_real_reproduction_contract(effective_profile, effective_policy)
+        out_contract = _write_real_reproduction_contract(
+            effective_profile,
+            effective_policy,
+            maxiter_lcdm=maxiter_lcdm,
+            maxiter_rll=maxiter_rll,
+            tol=tol,
+            seed=seed,
+        )
         _assert_required_outputs()
         for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
             _validate_output_schema(filename, expected_header)
