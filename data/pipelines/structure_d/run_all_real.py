@@ -1,7 +1,14 @@
 import os
 import numpy as np
-from scipy.integrate import quad
-from scipy.optimize import differential_evolution
+
+try:
+    from scipy.integrate import quad
+    from scipy.optimize import differential_evolution
+except ImportError as exc:
+    raise ImportError(
+        "run_all_real requer SciPy. Instale com `pip install scipy` "
+        "(ou `pip install -r requirements.txt`) para habilitar a execução real."
+    ) from exc
 
 from .data_access import load_active_datasets
 from .likelihood import aic, bic, evaluate_model
