@@ -12,5 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check structure_d required outputs
         run: bash scripts/check_structure_d_required_outputs.sh
+      - name: Check structure_d dataset/model coverage
+        run: bash scripts/check_structure_d_model_dataset_coverage.sh
       - name: Validate canonical convention consistency
         run: scripts/check_convention_conflicts.sh
