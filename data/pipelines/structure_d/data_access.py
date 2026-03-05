@@ -161,10 +161,20 @@ def _parse_csv_dataset(dataset_id, desc):
 
 
 def _parse_scalar_json_dataset(dataset_id, desc):
-    with open(_abs_path(desc["path"]), "r", encoding="utf-8") as f:
+    source_path = _abs_path(desc["path"])
+    with open(source_path, "r", encoding="utf-8") as f:
         raw = json.load(f)
 
     keys = desc["keys"]
+    missing_values = [k for k in keys["values"] if k not in raw]
+    missing_errors = [k for k in keys["errors"] if k not in raw]
+    if missing_values or missing_errors:
+        raise ValueError(
+            "dataset "
+            f"{dataset_id} missing json keys in file {source_path}: "
+            f"values={missing_values}, errors={missing_errors}"
+        )
+
     values = np.array([raw[k] for k in keys["values"]], dtype=float)
     errors = np.array([raw[k] for k in keys["errors"]], dtype=float)
 
