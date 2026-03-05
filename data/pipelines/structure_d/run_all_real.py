@@ -37,6 +37,7 @@ Z_CMB = 1089.92
 
 EXPECTED_MODEL_COMPARISON_HEADER = [
     "model",
+    "regime",
     "chi2",
     "AIC",
     "BIC",
@@ -71,9 +72,10 @@ def _write_error_mode_usage(datasets):
     return out_error_mode
 
 def _expected_model_comparison_header(include_fit_params):
-    if include_fit_params:
-        return EXPECTED_MODEL_COMPARISON_HEADER + EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER
-    return EXPECTED_MODEL_COMPARISON_HEADER
+    header = list(EXPECTED_MODEL_COMPARISON_HEADER)
+    if bool(include_fit_params):
+        header.extend(EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
+    return header
 
 
 def _validate_model_comparison_header(csv_path, include_fit_params):
@@ -360,6 +362,7 @@ def main(
     out = os.path.join(RESULTS, output_filename)
     out_error_mode = _write_error_mode_usage(datasets)
     df = evaluate_model(rows, out)
+    _validate_model_comparison_header(out, include_fit_params=include_fit_params)
     fit_metadata = {
         "output_csv": out,
         "profile_name": profile,
@@ -394,7 +397,6 @@ def main(
 
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
     _write_execution_timing(timing_records)
-    _validate_model_comparison_header(out, include_fit_params=include_fit_params)
 
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
