@@ -239,7 +239,27 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
+def _write_reproduction_contract(
+    profile_name,
+    covariance_policy,
+    bayes,
+    bayes_mode,
+    produced_optional,
+    covariance_usage_non_empty,
+    bayes_seed,
+    bayes_nwalkers,
+    bayes_nsteps,
+    bayes_nlive,
+):
+    inference_hyperparameters = None
+    if bayes and bayes_mode == "inference":
+        inference_hyperparameters = {
+            "seed": int(bayes_seed),
+            "nwalkers": int(bayes_nwalkers),
+            "nsteps": int(bayes_nsteps),
+            "nlive": int(bayes_nlive),
+        }
+
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -257,6 +277,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         ],
         "bayes_enabled": bool(bayes),
         "bayes_mode": bayes_mode if bayes else None,
+        "bayes_inference_hyperparameters": inference_hyperparameters,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
@@ -398,6 +419,10 @@ def main(
         bayes_mode,
         produced_optional,
         covariance_usage_non_empty,
+        bayes_seed,
+        bayes_nwalkers,
+        bayes_nsteps,
+        bayes_nlive,
     )
     _assert_required_outputs()
     for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
@@ -412,6 +437,11 @@ def main(
         for name in produced_optional:
             print(f"[bayes] wrote: {os.path.join(RESULTS, name)}")
         print(f"[bayes] mode: {bayes_mode}")
+        if bayes_mode == "inference":
+            print(
+                "[bayes] inference hyperparameters: "
+                f"seed={bayes_seed}, nwalkers={bayes_nwalkers}, nsteps={bayes_nsteps}, nlive={bayes_nlive}"
+            )
 
 
 def _build_parser():

@@ -79,6 +79,39 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
             contract = json.load(fp)
 
         self.assertEqual(contract.get("bayes_mode"), "bic_proxy")
+        self.assertIsNone(
+            contract.get("bayes_inference_hyperparameters"),
+            "bic_proxy mode must not persist inference hyperparameters",
+        )
+
+    def test_reproduction_contract_persists_inference_hyperparameters(self):
+        contract_path = run_all._write_reproduction_contract(
+            profile_name="structure_d_default",
+            covariance_policy="prefer_full",
+            bayes=True,
+            bayes_mode="inference",
+            produced_optional=["bayes_evidence_inference.csv"],
+            covariance_usage_non_empty=True,
+            bayes_seed=123,
+            bayes_nwalkers=48,
+            bayes_nsteps=3500,
+            bayes_nlive=600,
+        )
+        self.generated_paths.append(contract_path)
+
+        with open(contract_path, "r", encoding="utf-8") as fp:
+            contract = json.load(fp)
+
+        self.assertEqual(contract.get("bayes_mode"), "inference")
+        self.assertEqual(
+            contract.get("bayes_inference_hyperparameters"),
+            {
+                "seed": 123,
+                "nwalkers": 48,
+                "nsteps": 3500,
+                "nlive": 600,
+            },
+        )
 
 
 class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
