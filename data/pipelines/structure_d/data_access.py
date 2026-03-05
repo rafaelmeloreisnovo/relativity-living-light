@@ -7,7 +7,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from .schema import validate_observable_schema
+from .schema import DEFAULT_MIN_POINTS_WITH_Z, validate_observable_schema
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
@@ -35,7 +35,11 @@ def _dataset_source_from_descriptor(desc):
 
 def load_run_config(config_path):
     with open(_abs_path(config_path), "r", encoding="utf-8") as f:
-        return json.load(f)
+        cfg = json.load(f)
+
+    validation_cfg = cfg.setdefault("validation", {})
+    validation_cfg.setdefault("min_points_with_z", DEFAULT_MIN_POINTS_WITH_Z)
+    return cfg
 
 
 def _resolve_profile(cfg, profile_name=None):
@@ -56,7 +60,7 @@ def _resolve_profile(cfg, profile_name=None):
     return resolved
 
 
-def _parse_csv_dataset(dataset_id, desc):
+def _parse_csv_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
     df = pd.read_csv(_abs_path(desc["path"]))
     cols = desc["columns"]
     missing = [c for c in cols.values() if c and c not in df.columns]
@@ -157,12 +161,11 @@ def _parse_csv_dataset(dataset_id, desc):
     else:
         raise ValueError(f"unsupported error_model for {dataset_id}: {desc['error_model']}")
 
-    return validate_observable_schema(entry)
+    return validate_observable_schema(entry, min_points_with_z=min_points_with_z)
 
 
-def _parse_scalar_json_dataset(dataset_id, desc):
-    source_path = _abs_path(desc["path"])
-    with open(source_path, "r", encoding="utf-8") as f:
+def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
+    with open(_abs_path(desc["path"]), "r", encoding="utf-8") as f:
         raw = json.load(f)
 
     keys = desc["keys"]
@@ -187,15 +190,15 @@ def _parse_scalar_json_dataset(dataset_id, desc):
         "dataset_source": _dataset_source_from_descriptor(desc),
         "z": None,
     }
-    return validate_observable_schema(entry)
+    return validate_observable_schema(entry, min_points_with_z=min_points_with_z)
 
 
-def load_dataset_by_descriptor(dataset_id, desc):
+def load_dataset_by_descriptor(dataset_id, desc, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
     fmt = desc["format"]
     if fmt == "csv":
-        return _parse_csv_dataset(dataset_id, desc)
+        return _parse_csv_dataset(dataset_id, desc, min_points_with_z=min_points_with_z)
     if fmt == "json_scalars":
-        return _parse_scalar_json_dataset(dataset_id, desc)
+        return _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=min_points_with_z)
     raise ValueError(f"unsupported dataset format for {dataset_id}: {fmt}")
 
 
@@ -203,12 +206,16 @@ def load_active_datasets(config_path, profile_name=None):
     cfg = load_run_config(config_path)
     profile = _resolve_profile(cfg, profile_name=profile_name)
 
+    min_points_with_z = cfg.get("validation", {}).get("min_points_with_z", DEFAULT_MIN_POINTS_WITH_Z)
+
     datasets = {}
     for dataset_id in profile["active_datasets"]:
         desc = cfg["datasets"].get(dataset_id)
         if desc is None:
             raise ValueError(f"active dataset not found in config: {dataset_id}")
-        datasets[dataset_id] = load_dataset_by_descriptor(dataset_id, desc)
+        datasets[dataset_id] = load_dataset_by_descriptor(
+            dataset_id, desc, min_points_with_z=min_points_with_z
+        )
 
     meta = dict(profile)
     meta["run_name"] = profile.get("run_name", "unknown")
@@ -219,10 +226,14 @@ def load_active_datasets(config_path, profile_name=None):
 
 def load_datasets_by_ids(config_path, dataset_ids):
     cfg = load_run_config(config_path)
+    min_points_with_z = cfg.get("validation", {}).get("min_points_with_z", DEFAULT_MIN_POINTS_WITH_Z)
+
     datasets = {}
     for dataset_id in dataset_ids:
         desc = cfg["datasets"].get(dataset_id)
         if desc is None:
             raise ValueError(f"dataset not found in config: {dataset_id}")
-        datasets[dataset_id] = load_dataset_by_descriptor(dataset_id, desc)
+        datasets[dataset_id] = load_dataset_by_descriptor(
+            dataset_id, desc, min_points_with_z=min_points_with_z
+        )
     return cfg, datasets

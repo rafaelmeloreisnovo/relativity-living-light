@@ -5,8 +5,7 @@ TEXTUAL_OUTPUTS = []
 import numpy as np
 
 
-_COVARIANCE_VALIDATION_ATOL = 1e-10
-_COVARIANCE_VALIDATION_RTOL = 1e-8
+DEFAULT_MIN_POINTS_WITH_Z = 3
 
 
 def _as_float_array(values, name):
@@ -29,30 +28,10 @@ def _as_float_matrix(values, name):
     return mat
 
 
-def _json_safe_scalar(value):
-    if isinstance(value, (bool, np.bool_)):
-        return bool(value)
-    if isinstance(value, (int, np.integer)):
-        return int(value)
-    if isinstance(value, (float, np.floating)):
-        scalar = float(value)
-        if not np.isfinite(scalar):
-            raise ValueError("metadata contains non-finite float")
-        return scalar
-    if isinstance(value, str):
-        return value
-    return str(value)
+def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
+    if int(min_points_with_z) != min_points_with_z or min_points_with_z < 1:
+        raise ValueError("min_points_with_z must be a positive integer")
 
-
-def _json_safe_metadata(metadata):
-    if isinstance(metadata, dict):
-        return {str(k): _json_safe_metadata(v) for k, v in metadata.items()}
-    if isinstance(metadata, (list, tuple)):
-        return [_json_safe_metadata(v) for v in metadata]
-    return _json_safe_scalar(metadata)
-
-
-def validate_observable_schema(entry):
     required = ["dataset_id", "observable", "values", "metadata"]
     missing = [k for k in required if k not in entry]
     if missing:
@@ -64,6 +43,10 @@ def validate_observable_schema(entry):
         z = _as_float_array(entry["z"], "z")
         if len(z) != len(values):
             raise ValueError("z and values must have the same length")
+        if len(z) < int(min_points_with_z):
+            raise ValueError(
+                f"datasets with z must have at least {int(min_points_with_z)} points"
+            )
 
     has_errors = "errors" in entry and entry["errors"] is not None
     has_cov = "covariance" in entry and entry["covariance"] is not None

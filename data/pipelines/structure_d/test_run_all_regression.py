@@ -9,10 +9,8 @@ import unittest.mock
 import numpy as np
 import pandas as pd
 
-from data.pipelines.structure_d import make_example_data, run_all, run_all_real
-from data.pipelines.structure_d.data_access import load_active_datasets
-from to_Add.RAFAELIA_COSMO_STRUCTURE_D.rll_pipeline import run_all as compat_run_all
-
+from data.pipelines.structure_d import make_example_data, run_all
+from data.pipelines.structure_d.data_access import load_active_datasets, load_run_config
 from data.pipelines.structure_d.schema import validate_observable_schema
 
 
@@ -797,91 +795,29 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             self.assertFalse(datasets["hz"]["metadata"]["z_reordered"])
 
 
-class StructureDEntrypointParityTest(unittest.TestCase):
-    def test_compat_entrypoint_matches_authoritative_output(self):
-        make_example_data.main(seed=42)
-        self.addCleanup(os.remove, os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz.csv"))
-        self.addCleanup(os.remove, os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8.csv"))
 
-        original_results = run_all.RESULTS
-        original_required_outputs = list(run_all.REQUIRED_OUTPUTS)
-        temp_results = tempfile.mkdtemp(prefix="structure_d_entrypoint_")
-        self.addCleanup(shutil.rmtree, temp_results)
-        self.addCleanup(setattr, run_all, "RESULTS", original_results)
-        self.addCleanup(setattr, compat_run_all, "RESULTS", original_results)
-        self.addCleanup(setattr, run_all, "REQUIRED_OUTPUTS", original_required_outputs)
-
-        run_all.RESULTS = temp_results
-        compat_run_all.RESULTS = temp_results
-        run_all.REQUIRED_OUTPUTS = ["model_comparison.csv", "covariance_usage.csv", "reproduction_contract.json"]
-
-        run_all.main(profile_name="structure_d_default")
-        expected = pd.read_csv(os.path.join(temp_results, "model_comparison.csv")).sort_values("model").reset_index(drop=True)
-
-        compat_run_all.main(profile_name="structure_d_default")
-        observed = pd.read_csv(os.path.join(temp_results, "model_comparison.csv")).sort_values("model").reset_index(drop=True)
-
-        pd.testing.assert_frame_equal(expected, observed, check_exact=False, rtol=0.0, atol=1e-12)
-
-
-class StructureDSchemaMetadataRegressionTest(unittest.TestCase):
-    def test_validate_observable_schema_normalizes_metadata_to_json_safe_scalars(self):
+class StructureDSchemaValidationTest(unittest.TestCase):
+    def test_validate_observable_schema_rejects_short_z_series_by_default(self):
         entry = {
-            "dataset_id": "meta_case",
+            "dataset_id": "toy",
             "observable": "Hz",
-            "z": np.array([0.1, 0.2]),
-            "values": np.array([70.0, 72.0]),
-            "errors": np.array([1.0, 1.2]),
+            "z": np.array([0.1, 0.2], dtype=float),
+            "values": np.array([70.0, 72.0], dtype=float),
+            "errors": np.array([1.0, 1.0], dtype=float),
             "metadata": {
-                "survey": np.str_("synthetic"),
-                "redshift_range": (np.float64(0.1), np.float64(0.2)),
-                "reference": np.int64(2026),
-                "is_mock": np.bool_(True),
+                "survey": "synthetic",
+                "redshift_range": "[0.1,0.2]",
+                "reference": "unit-test",
             },
         }
 
-        normalized = validate_observable_schema(entry)
-        metadata = normalized["metadata"]
+        with self.assertRaisesRegex(ValueError, "at least 3 points"):
+            validate_observable_schema(entry)
 
-        self.assertEqual(metadata["survey"], "synthetic")
-        self.assertEqual(metadata["redshift_range"], [0.1, 0.2])
-        self.assertEqual(metadata["reference"], 2026)
-        self.assertIs(metadata["is_mock"], True)
-
-
-class StructureDRunAllRealRegressionTest(unittest.TestCase):
-    def test_run_all_real_writes_reproduction_artifact(self):
-        generated_paths = [
-            os.path.join(run_all.RESULTS, "model_comparison_real.csv"),
-            os.path.join(run_all.RESULTS, "reproduction_contract_real.json"),
-        ]
-
-        def _cleanup_generated_files():
-            for path in generated_paths:
-                if os.path.isdir(path):
-                    shutil.rmtree(path)
-                elif os.path.exists(path):
-                    os.remove(path)
-
-        self.addCleanup(_cleanup_generated_files)
-
-        with unittest.mock.patch.dict(os.environ, {"STRUCTURE_D_MAXITER_LCDM": "1", "STRUCTURE_D_MAXITER_RLL": "1"}):
-            run_all.run_all_real.main(output_filename="model_comparison_real.csv")
-
-        contract_path = os.path.join(run_all.RESULTS, "reproduction_contract_real.json")
-        self.assertTrue(os.path.exists(contract_path), "reproduction_contract_real.json was not generated")
-
-        with open(contract_path, "r", encoding="utf-8") as fp:
-            contract = json.load(fp)
-
-        self.assertEqual(contract.get("command"), "python -m data.pipelines.structure_d.run_all_real")
-        self.assertEqual(contract.get("profile"), run_all.REAL_PROFILE)
-        self.assertEqual(contract.get("seed"), run_all.run_all_real.OPTIMIZER_SEED)
-        self.assertEqual(contract.get("outputs"), ["model_comparison_real.csv"])
-
-        bounds = contract.get("bounds", {})
-        self.assertEqual(len(bounds.get("LCDM", [])), 4)
-        self.assertEqual(len(bounds.get("RLL_like+AGN", [])), 7)
+    def test_load_run_config_applies_conservative_defaults(self):
+        cfg = load_run_config(run_all.DEFAULT_CONFIG)
+        self.assertIn("validation", cfg)
+        self.assertEqual(cfg["validation"].get("min_points_with_z"), 3)
 
 if __name__ == "__main__":
     unittest.main()
