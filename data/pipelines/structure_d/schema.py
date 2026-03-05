@@ -29,32 +29,27 @@ def _as_float_matrix(values, name):
     return mat
 
 
-def _validate_covariance_matrix(covariance, expected_size):
-    if covariance.shape[0] != expected_size:
-        raise ValueError("covariance dimension must match values length")
-    if np.any(np.diag(covariance) <= 0):
-        raise ValueError("covariance diagonal must be strictly positive")
-    if not np.allclose(
-        covariance,
-        covariance.T,
-        rtol=_COVARIANCE_VALIDATION_RTOL,
-        atol=_COVARIANCE_VALIDATION_ATOL,
-    ):
-        raise ValueError(
-            "invalid covariance matrix: matrix must be symmetric within tolerance "
-            f"(rtol={_COVARIANCE_VALIDATION_RTOL}, atol={_COVARIANCE_VALIDATION_ATOL})"
-        )
+def _json_safe_scalar(value):
+    if isinstance(value, (bool, np.bool_)):
+        return bool(value)
+    if isinstance(value, (int, np.integer)):
+        return int(value)
+    if isinstance(value, (float, np.floating)):
+        scalar = float(value)
+        if not np.isfinite(scalar):
+            raise ValueError("metadata contains non-finite float")
+        return scalar
+    if isinstance(value, str):
+        return value
+    return str(value)
 
-    sym_cov = 0.5 * (covariance + covariance.T)
-    eigvals = np.linalg.eigvalsh(sym_cov)
-    min_eig = float(np.min(eigvals))
-    scale = max(float(np.max(np.diag(sym_cov))), 1.0)
-    eig_tol = _COVARIANCE_VALIDATION_ATOL + _COVARIANCE_VALIDATION_RTOL * scale
-    if min_eig < -eig_tol:
-        raise ValueError(
-            "invalid covariance matrix: matrix must be positive semidefinite "
-            f"within tolerance (min_eigenvalue={min_eig:.3e}, tol={eig_tol:.3e})"
-        )
+
+def _json_safe_metadata(metadata):
+    if isinstance(metadata, dict):
+        return {str(k): _json_safe_metadata(v) for k, v in metadata.items()}
+    if isinstance(metadata, (list, tuple)):
+        return [_json_safe_metadata(v) for v in metadata]
+    return _json_safe_scalar(metadata)
 
 
 def validate_observable_schema(entry):
@@ -85,7 +80,7 @@ def validate_observable_schema(entry):
         covariance = _as_float_matrix(entry["covariance"], "covariance")
         _validate_covariance_matrix(covariance, expected_size=len(values))
 
-    metadata = entry["metadata"]
+    metadata = _json_safe_metadata(entry["metadata"])
     for k in ["survey", "redshift_range", "reference"]:
         if k not in metadata:
             raise ValueError(f"metadata missing key: {k}")
