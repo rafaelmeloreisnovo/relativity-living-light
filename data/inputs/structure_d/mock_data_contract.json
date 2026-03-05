@@ -1,0 +1,29 @@
+{
+  "seed": 7,
+  "generated_at_utc": "2026-03-05T14:26:24.626870Z",
+  "generated_covariance": true,
+  "datasets": {
+    "Hz.csv": {
+      "z_range": [
+        0.1,
+        2.0
+      ],
+      "sigma_range": [
+        3.0105306091311492,
+        4.794427601939151
+      ],
+      "rows": 8
+    },
+    "fsigma8.csv": {
+      "z_range": [
+        0.1,
+        2.0
+      ],
+      "sigma_range": [
+        0.03480636101573534,
+        0.05986500850303178
+      ],
+      "rows": 7
+    }
+  }
+}

@@ -168,18 +168,21 @@ Para executar a reprodução principal de ponta a ponta, use:
 
 - `bash scripts/run_repro_all.sh`
 
-Modo opcional (inclui o preview de dois componentes de radiação):
+Modos opcionais:
 
-- `bash scripts/run_repro_all.sh --with-two-rad`
+- `bash scripts/run_repro_all.sh --with-two-rad` (inclui preview de dois componentes de radiação)
+- `bash scripts/run_repro_all.sh --audit-gap` (gera relatório automático de gaps de auditoria)
 
 Artefatos esperados após a execução:
 
 - `results/structure_d/model_comparison.csv`
 - `results/RLL_chi2_results.csv`
 - `results/two_radiation_model_preview.csv`
+- `results/audit/rll_audit_gap_report.json`
+- `results/audit/rll_audit_gap_report.md`
 - `figs/paper/RLL_validacao_real.png`
 
-> Nota: `results/two_radiation_model_preview.csv` é gerado apenas quando a flag opcional `--with-two-rad` é usada.
+> Nota: `results/two_radiation_model_preview.csv` é gerado apenas com `--with-two-rad`; os relatórios `results/audit/*` apenas com `--audit-gap`.
 
 ---
 

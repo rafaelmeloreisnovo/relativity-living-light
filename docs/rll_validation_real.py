@@ -17,8 +17,14 @@ Parâmetros livres:
 import numpy as np
 from scipy.optimize import minimize, differential_evolution
 from scipy.integrate import quad
-import os
 import warnings; warnings.filterwarnings('ignore')
+
+import os
+import sys
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
 
 from data.pipelines.structure_d.data_access import load_active_datasets
 
@@ -192,7 +198,6 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
-REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR = os.path.join(REPO_ROOT, 'results')
 FIGS_PAPER_DIR = os.path.join(REPO_ROOT, 'figs', 'paper')
 PNG_PATH = os.path.join(FIGS_PAPER_DIR, 'RLL_validacao_real.png')
