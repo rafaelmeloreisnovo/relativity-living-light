@@ -268,7 +268,22 @@ def run_optional_bayes_summary_inference(hz_df, fs8_df, seed, nwalkers, nsteps, 
     return [out_evidence, out_interp]
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty):
+def _dataset_contract_block(cfg_meta, datasets):
+    rows = []
+    for dataset_id in cfg_meta.get("active_datasets", []):
+        source = datasets.get(dataset_id, {}).get("source", {})
+        rows.append(
+            {
+                "dataset_id": dataset_id,
+                "path_abs": source.get("path_abs"),
+                "timestamp_utc": source.get("timestamp_utc"),
+                "sha256": source.get("sha256"),
+            }
+        )
+    return rows
+
+
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -287,6 +302,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         "bayes_enabled": bool(bayes),
         "bayes_mode": bayes_mode if bayes else None,
         "covariance_usage_non_empty": bool(covariance_usage_non_empty),
+        "datasets": _dataset_contract_block(cfg_meta, datasets),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -294,7 +310,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
     return out_contract
 
 
-def _write_real_reproduction_contract(profile_name, covariance_policy):
+def _write_real_reproduction_contract(profile_name, covariance_policy, cfg_meta, datasets):
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all --profile structure_d_real_validation",
         "execution_path": "run_all_real",
@@ -312,6 +328,7 @@ def _write_real_reproduction_contract(profile_name, covariance_policy):
         ],
         "bayes_enabled": False,
         "covariance_usage_non_empty": True,
+        "datasets": _dataset_contract_block(cfg_meta, datasets),
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -376,7 +393,7 @@ def main(
             for dataset_id, entry in datasets.items()
         ]
         evaluate_model(cov_rows, out_cov)
-        out_contract = _write_real_reproduction_contract(effective_profile, effective_policy)
+        out_contract = _write_real_reproduction_contract(effective_profile, effective_policy, cfg_meta, datasets)
         _assert_required_outputs()
         for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():
             _validate_output_schema(filename, expected_header)
@@ -427,6 +444,8 @@ def main(
         bayes_mode,
         produced_optional,
         covariance_usage_non_empty,
+        cfg_meta,
+        datasets,
     )
     _assert_required_outputs()
     for filename, expected_header in EXPECTED_SCHEMA_BY_OUTPUT.items():

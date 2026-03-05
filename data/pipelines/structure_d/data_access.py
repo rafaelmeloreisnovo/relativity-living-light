@@ -4,6 +4,8 @@ TEXTUAL_OUTPUTS = []
 
 import json
 import os
+import hashlib
+from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 
@@ -37,7 +39,8 @@ def _resolve_profile(cfg, profile_name=None):
 
 
 def _parse_csv_dataset(dataset_id, desc):
-    df = pd.read_csv(_abs_path(desc["path"]))
+    source_info = _build_source_info(desc["path"])
+    df = pd.read_csv(source_info["path_abs"])
     cols = desc["columns"]
     missing = [c for c in cols.values() if c and c not in df.columns]
     if missing:
@@ -52,6 +55,7 @@ def _parse_csv_dataset(dataset_id, desc):
         "z": z_values,
         "values": values,
         "metadata": desc["metadata"],
+        "source": source_info,
     }
 
     if desc["error_model"] == "errors":
@@ -69,7 +73,8 @@ def _parse_csv_dataset(dataset_id, desc):
 
 
 def _parse_scalar_json_dataset(dataset_id, desc):
-    with open(_abs_path(desc["path"]), "r", encoding="utf-8") as f:
+    source_info = _build_source_info(desc["path"])
+    with open(source_info["path_abs"], "r", encoding="utf-8") as f:
         raw = json.load(f)
 
     keys = desc["keys"]
@@ -83,8 +88,21 @@ def _parse_scalar_json_dataset(dataset_id, desc):
         "errors": errors,
         "metadata": desc["metadata"],
         "z": None,
+        "source": source_info,
     }
     return validate_observable_schema(entry)
+
+
+def _build_source_info(path):
+    path_abs = _abs_path(path)
+    with open(path_abs, "rb") as f:
+        digest = hashlib.file_digest(f, "sha256").hexdigest()
+    mtime_utc = datetime.fromtimestamp(os.path.getmtime(path_abs), tz=timezone.utc).isoformat()
+    return {
+        "path_abs": path_abs,
+        "timestamp_utc": mtime_utc,
+        "sha256": digest,
+    }
 
 
 def load_dataset_by_descriptor(dataset_id, desc):
