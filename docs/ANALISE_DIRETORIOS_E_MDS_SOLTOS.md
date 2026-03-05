@@ -17,7 +17,7 @@ Arquivos com valor técnico direto para leitura científica e reprodutibilidade:
 - `docs/Results.md`
 - `docs/estatisticas.md`
 - `docs/REFERENCES.md`
-- `docs/Readme.md` / `README.md`
+- `docs/DATA_DESCRIPTOR_BUNDLE_V4.md` / `README.md`
 
 **Uso recomendado:** manter este bloco como trilha principal para validação do modelo, parâmetros e comparação com dados.
 
@@ -42,9 +42,9 @@ Arquivos de manifesto e narrativa autoral:
 - `docs/MAPA CIENTIESPIRITUAL.md`
 - `docs/SUPREMO UNIFICADO.md`
 - `docs/IMPACT_REPORT_MULTI.md`
-- `docs/NewWays.md`
-- `docs/New theory and beyond.md`
-- `docs/Others in line.md`
+- `docs/FRACTAL_LAYERED_MAP.md`
+- `docs/THEORY_INVENTORY_AND_EXTENSIONS.md`
+- `docs/FRACTAL_REPORT_UNIFIED.md`
 
 **Uso recomendado:** manter separados do fluxo técnico principal para não misturar escopo científico com escopo conceitual.
 

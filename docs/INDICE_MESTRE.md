@@ -1,8 +1,22 @@
 # ÍNDICE MESTRE — Documentação Oficial
 ## Relativity Living Light
 
-**Atualizado em:** 2026-02-25
+**Atualizado em:** 2026-03-05
 **Regra:** seção principal lista apenas caminhos canônicos oficiais.
+
+---
+
+## Escopo deste arquivo
+
+Este arquivo é a **navegação canônica** da documentação do repositório.
+
+- Lista os caminhos oficiais por trilha temática.
+- Atua como referência de navegação para leitura e manutenção.
+- Não substitui o README (porta de entrada) e não tenta reproduzir o inventário bruto.
+
+Encaminhamentos complementares:
+- Porta de entrada: [`README.md`](../README.md)
+- Inventário bruto (`.md` e `.zip`): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
 
 ---
 
@@ -64,3 +78,5 @@
 ### Arquivos de arquivo estendido
 - [`news/archive_legacy/`](../news/archive_legacy/)
 - [`docs/README_ROOT_LEGACY_ARCHIVE.md`](README_ROOT_LEGACY_ARCHIVE.md)
+- Referência canônica central desta navegação: seção principal deste arquivo.
+- Inventário bruto e completo (inclui histórico/legado): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md).

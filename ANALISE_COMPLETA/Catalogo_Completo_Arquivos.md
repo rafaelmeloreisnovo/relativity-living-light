@@ -213,7 +213,7 @@
 
 ## 3. Diretório docs/
 
-### 3.1 1.md
+### 3.1 PLACEHOLDER_EMPTY_DOCUMENT.md
 - **Tipo:** Markdown (muito curto)
 - **Descrição:** Arquivo stub ou placeholder
 - **Conteúdo:** Arquivo muito pequeno, possivelmente incompleto
@@ -269,7 +269,7 @@
 - **Nível Hierárquico:** 2 (Teórico/Matemático)
 - **Uso Recomendado:** Compreensão da estrutura teórica
 
-### 3.8 Conclusion.md
+### 3.8 RAFAELIA_UNIFIED_PAPER.md
 - **Tipo:** Markdown com LaTeX (UTF-8, linhas longas)
 - **Descrição:** Conclusões teóricas com equações
 - **Conteúdo:** Síntese teórica final com formalização matemática
@@ -277,7 +277,7 @@
 - **Nível Hierárquico:** 2 (Teórico/Matemático)
 - **Uso Recomendado:** Leitura após compreender teoria principal
 
-### 3.9 Easy..md
+### 3.9 EASY_NOTES_EMPTY.md
 - **Tipo:** Markdown (muito curto)
 - **Descrição:** Versão simplificada/acessível
 - **Conteúdo:** Material simplificado para público não-especializado
@@ -325,7 +325,7 @@
 - **Nível Hierárquico:** 1 (Conceitual/Filosófico)
 - **Uso Recomendado:** Visão holística do projeto
 
-### 3.15 More.md
+### 3.15 BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** Reflexões adicionais
 - **Conteúdo:** Material complementar, ideias em desenvolvimento
@@ -341,7 +341,7 @@
 - **Nível Hierárquico:** 5 (Comparação/Validação)
 - **Uso Recomendado:** Leitura por público internacional
 
-### 3.17 New theory and beyond.md
+### 3.17 THEORY_INVENTORY_AND_EXTENSIONS.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** Novas teorias além do paradigma atual
 - **Conteúdo:** Propostas inovadoras, especulações fundamentadas
@@ -349,7 +349,7 @@
 - **Nível Hierárquico:** 1 (Conceitual/Filosófico)
 - **Uso Recomendado:** Inspiração para pesquisa de fronteira
 
-### 3.18 NewWays.md
+### 3.18 FRACTAL_LAYERED_MAP.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** Novos caminhos de compreensão
 - **Conteúdo:** Abordagens alternativas, métodos não-convencionais
@@ -357,7 +357,7 @@
 - **Nível Hierárquico:** 1 (Conceitual/Filosófico)
 - **Uso Recomendado:** Educação, divulgação
 
-### 3.19 Others in line.md
+### 3.19 FRACTAL_REPORT_UNIFIED.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** Outras linhas de pesquisa
 - **Conteúdo:** Tópicos relacionados a serem explorados
@@ -365,7 +365,7 @@
 - **Nível Hierárquico:** 1 (Conceitual/Filosófico)
 - **Uso Recomendado:** Planejamento de pesquisas futuras
 
-### 3.20 Others in open because that.md
+### 3.20 NEXT_THEORIES_AND_DERIVED_HYPOTHESES.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** Tópicos em aberto
 - **Conteúdo:** Questões não resolvidas, problemas em aberto
@@ -421,7 +421,7 @@
 - **Nível Hierárquico:** 5 (Comparação/Validação)
 - **Uso Recomendado:** Citações, aprofundamento teórico
 
-### 3.27 Readme.md
+### 3.27 DATA_DESCRIPTOR_BUNDLE_V4.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** README alternativo (minúsculo)
 - **Conteúdo:** Possivelmente versão antiga ou alternativa
@@ -469,7 +469,7 @@
 - **Nível Hierárquico:** 1 (Conceitual/Filosófico)
 - **Uso Recomendado:** Compreensão holística
 
-### 3.33 Structure.md
+### 3.33 REPOSITORY_STRUCTURE_SUGGESTION.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** Estrutura organizacional do repositório
 - **Conteúdo:** Hierarquia de diretórios, convenções, workflow
@@ -519,7 +519,7 @@
 - **Nível Hierárquico:** 2 (Teórico/Matemático)
 - **Uso Recomendado:** Análise de padrões matemáticos
 
-#### 3.36.4 Readme.md
+#### 3.36.4 DATA_DESCRIPTOR_BUNDLE_V4.md
 - **Tipo:** Markdown (UTF-8)
 - **Descrição:** Índice do subdiretório numeros_rafaelianos
 - **Conteúdo:** Guia de navegação do subdiretório
@@ -695,16 +695,16 @@
 → data/CITATION.cff, LICENSE.md, data/zenodo.json
 
 **Quero colaborar:**
-→ GOVERNANCE_REORG_DRAFT.md, docs/Structure.md, REFORM_LOG.md
+→ GOVERNANCE_REORG_DRAFT.md, docs/REPOSITORY_STRUCTURE_SUGGESTION.md, REFORM_LOG.md
 
 ---
 
 ## Recomendações
 
 ### Arquivos a Revisar
-1. `docs/1.md` e `docs/Easy..md` - Verificar se devem ser expandidos
+1. `docs/PLACEHOLDER_EMPTY_DOCUMENT.md` e `docs/EASY_NOTES_EMPTY.md` - Verificar se devem ser expandidos
 2. Arquivos duplicados com "(1)", "(2)" - Considerar consolidação ou renomeação clara
-3. `docs/Readme.md` vs `README.md` - Verificar duplicação
+3. `docs/DATA_DESCRIPTOR_BUNDLE_V4.md` vs `README.md` - Verificar duplicação
 
 ### Arquivos Essenciais (Top 10)
 1. README.md - Porta de entrada

@@ -26,8 +26,8 @@ O diretório `newadd/` deve ser referenciado no `README.md` da raiz como trilha 
 ```md
 ### Documentação complementar — Trilha de análise PhD (`newadd/`)
 
-- [Índice da análise PhD](newadd/00_INDICE_ANALISE_PHD.md)
-- [RLL × DESI — Cross Analysis (PhD)](newadd/01_RLL_DESI_CrossAnalysis_PhD.md)
-- [Formulações Latentes — RAFAELIA/RLL](newadd/02_Formulacoes_Latentes_RAFAELIA_RLL.md)
-- [Descrição Acadêmica PhD Completa](newadd/03_Descricao_Academica_PhD_Completa.md)
+- [Índice da análise PhD](00_INDICE_ANALISE_PHD.md)
+- [RLL × DESI — Cross Analysis (PhD)](01_RLL_DESI_CrossAnalysis_PhD.md)
+- [Formulações Latentes — RAFAELIA/RLL](02_Formulacoes_Latentes_RAFAELIA_RLL.md)
+- [Descrição Acadêmica PhD Completa](03_Descricao_Academica_PhD_Completa.md)
 ```

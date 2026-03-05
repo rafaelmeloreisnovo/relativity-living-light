@@ -1,6 +1,14 @@
 # Histórico de Updates e Release Notes
 ## Relativity Living Light — trilha cronológica com data, escopo e evidência
 
+## Escopo deste arquivo
+
+Este arquivo registra o **histórico de versões e decisões** de organização e conteúdo.
+
+- Mantém trilha temporal auditável de mudanças relevantes.
+- Explicita critérios de decisão quando houver reorganizações documentais.
+- Não atua como índice de navegação nem como inventário bruto.
+
 **Objetivo:** consolidar, em formato auditável, os principais ciclos de evolução do repositório com links diretos para commits e pull requests.
 
 **Repositório de referência:** <https://github.com/instituto-Rafael/relativity-living-light>
@@ -11,6 +19,7 @@
 
 | Data | Marco | Evidência | O que mudou (síntese técnica) |
 |---|---|---|---|
+| 2026-03-05 | **Reorganização de papéis dos índices documentais** | [`README.md`](../README.md) · [`docs/INDICE_MESTRE.md`](INDICE_MESTRE.md) · [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md) · [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md) | Definição de papel único por índice, inclusão de seções de escopo, remoção de sobreposição e criação da matriz `índice -> finalidade -> público`. |
 | 2026-02-20 (hotfix) | **Salvaguarda de conteúdo legado + checklist de integridade** | [docs/README_ROOT_LEGACY_ARCHIVE.md](README_ROOT_LEGACY_ARCHIVE.md) · [docs/DATA_INTEGRITY_CHECKLIST.md](DATA_INTEGRITY_CHECKLIST.md) | Arquivamento do README anterior completo e criação de checklist de integridade para reduzir risco de perda de dados. |
 | 2026-02-20 (atual) | **Varredura integral de documentação e bundles** | [docs/RELEASE_NOTES_HISTORY.md](RELEASE_NOTES_HISTORY.md) · [docs/DOCUMENTATION_FULL_INVENTORY.md](DOCUMENTATION_FULL_INVENTORY.md) · [docs/ZIP_CONTENT_INDEX.md](ZIP_CONTENT_INDEX.md) | Inventário completo de `.md` e `.zip`, índice interno de bundles e reforço de governança com rastreabilidade total. |
 | 2026-02-20 (data-integrity) | **Canonização do posterior sintético e limpeza de duplicatas** | [docs/DATA_INTEGRITY_CHECKLIST.md](DATA_INTEGRITY_CHECKLIST.md) · [docs/RELEASE_NOTES_HISTORY.md](RELEASE_NOTES_HISTORY.md) | `data/posterior_unified_synth.csv` definido como arquivo canônico; remoção de `posterior_unified_synth (1|2).csv` e atualização de referências em docs. |
@@ -25,6 +34,20 @@
 ---
 
 ## 2) Release notes detalhadas por ciclo
+
+### Release 2026.03b — Reorganização dos índices documentais (papel único)
+- **Data de referência:** 2026-03-05
+- **Entregas-chave:**
+  - Definição explícita de papel único para os três índices: `README.md` (porta de entrada), `docs/INDICE_MESTRE.md` (navegação canônica) e `docs/DOCUMENTATION_FULL_INVENTORY.md` (inventário bruto).
+  - Inclusão do cabeçalho **Escopo deste arquivo** nos índices para eliminar sobreposição de responsabilidade.
+  - Redução de conteúdo duplicado entre índices, mantendo encaminhamento por links.
+  - Criação da matriz `índice -> finalidade -> público` em `docs/DOCUMENTATION_ORGANIZATION_MASTER.md`.
+- **Critérios de decisão:**
+  1. Separação clara entre entrada, navegação e inventário técnico para reduzir ambiguidade.
+  2. Priorização de manutenção simples: cada índice com responsabilidade única e explícita.
+  3. Preservação de rastreabilidade via links de encaminhamento em vez de cópia redundante.
+- **Impacto:** menor duplicidade editorial, melhor governança de atualização e leitura mais previsível para públicos distintos.
+
 
 ### Release 2025.10 — Reestruturação sistêmica
 - **Data de referência:** 2025-10-19
@@ -113,6 +136,26 @@
   - **Após correção (convenção unificada):** `wt=0.464`, `χ²=123.967`, `AIC=137.967`, `BIC=150.615`.
   - **Variação (após − antes):** `Δχ²=+0.288`, `ΔAIC=+0.288`, `ΔBIC=+0.289`.
 - **Leitura técnica:** com a restrição canônica de largura positiva no intervalo oficial, o ajuste RLL deslocou `wt` para dentro da faixa normativa e manteve qualidade estatística global próxima ao estado anterior.
+
+
+### Release 2026.03b — Padronização de naming em `docs/`
+- **Data de referência:** 2026-03-05
+- **Escopo:** adoção da convenção única `UPPER_SNAKE_CASE.md`, renomeação de arquivos ambíguos e atualização de referências internas.
+
+| Renomeado de | Para |
+|---|---|
+| `docs/1.md` | `docs/PLACEHOLDER_EMPTY_DOCUMENT.md` |
+| `docs/Easy..md` | `docs/EASY_NOTES_EMPTY.md` |
+| `docs/NewWays.md` | `docs/FRACTAL_LAYERED_MAP.md` |
+| `docs/New theory and beyond.md` | `docs/THEORY_INVENTORY_AND_EXTENSIONS.md` |
+| `docs/More.md` | `docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md` |
+| `docs/Others in line.md` | `docs/FRACTAL_REPORT_UNIFIED.md` |
+| `docs/Others in open because that.md` | `docs/NEXT_THEORIES_AND_DERIVED_HYPOTHESES.md` |
+| `docs/Readme.md` | `docs/DATA_DESCRIPTOR_BUNDLE_V4.md` |
+| `docs/Conclusion.md` | `docs/RAFAELIA_UNIFIED_PAPER.md` |
+| `docs/Structure.md` | `docs/REPOSITORY_STRUCTURE_SUGGESTION.md` |
+
+- **Impacto:** remoção de ambiguidades nominais, padronização técnica de nomes e redução de risco de links órfãos.
 
 ## 3) Política recomendada de versionamento documental (a partir desta revisão)
 

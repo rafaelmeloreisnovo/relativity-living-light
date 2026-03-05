@@ -1,6 +1,15 @@
 # Inventário Completo de Documentação e Bundles
 ## Varredura integral de arquivos `.md` e `.zip` do repositório
 
+## Escopo deste arquivo
+
+Este arquivo é o **inventário bruto** do acervo documental.
+
+- Registra a varredura completa de arquivos `.md` e `.zip` com metadados técnicos.
+- Não define prioridade de leitura nem trilha canônica.
+- Para navegação oficial, use [`docs/INDICE_MESTRE.md`](INDICE_MESTRE.md).
+- Para porta de entrada do projeto, use [`README.md`](../README.md).
+
 **Critério:** todos os `.md` e `.zip` encontrados por varredura recursiva no repositório, com título detectado, tamanho e hash SHA-256 abreviado.
 
 **Total de arquivos catalogados:** 105
@@ -56,7 +65,7 @@
 | md | `SECURITY_SUMMARY.md` | 🔒 Security Summary — RAFAELIA Repository Restructuring | 5969 | `0372a1b84d8d` |
 | zip | `data/RelativityLivingLight_v4_bundle.zip` | 20 entradas | 4096271 | `957575ff422f` |
 | zip | `data/relativity_bundle_results.zip` | 19 entradas | 4095297 | `5c0cca457927` |
-| md | `docs/1.md` | (vazio) | 1 | `01ba4719c80b` |
+| md | `docs/PLACEHOLDER_EMPTY_DOCUMENT.md` | (vazio) | 1 | `01ba4719c80b` |
 | md | `docs/ADMIN.md` | ADMIN.md | 484 | `5588b9429824` |
 | md | `docs/ANALISE_ARTIGO_NATURE_PT.md` | Análise do Artigo Nature: Não-Localidade Fotônica e Cosmologia | 12822 | `1457b4b2e0e5` |
 | md | `docs/ANALISE_DIRETORIOS_E_MDS_SOLTOS.md` | Análise dos diretórios `docs/` e MDs soltos | 2045 | `a902a8294cd2` |
@@ -67,10 +76,10 @@
 | md | `docs/COMPARACAO_DESI_2025.md` | Comparação com Literatura Acadêmica 2025–2026 | 5778 | `22012881a3d4` |
 | md | `docs/COMPLETION_SUMMARY.md` | Task Completion Summary: Nature Article Analysis | 8624 | `30869860de5f` |
 | md | `docs/CONCEPTUAL_FRAMEWORK.md` | Conceptual Framework: Laboratory to Cosmos | 14549 | `36f9f5f68502` |
-| md | `docs/Conclusion.md` | RAFAELIA — Relativity Living Light | 6725 | `3ec0b979953d` |
+| md | `docs/RAFAELIA_UNIFIED_PAPER.md` | RAFAELIA — Relativity Living Light | 6725 | `3ec0b979953d` |
 | md | `docs/DOCUMENTATION_ORGANIZATION_MASTER.md` | Organização Integral de Documentação e Artefatos | 4602 | `4c69b0156bb0` |
 | md | `docs/ESTABILIDADE_GHOST_CHECK.md` | Verificação de Estabilidade — Ausência de Ghosts e Taquiões | 5838 | `de04f5168568` |
-| md | `docs/Easy..md` | (vazio) | 1 | `01ba4719c80b` |
+| md | `docs/EASY_NOTES_EMPTY.md` | (vazio) | 1 | `01ba4719c80b` |
 | md | `docs/IMPACT_REPORT_MULTI.md` | 📊 IMPACT_REPORT_MULTI.md | 20761 | `994ad4bca282` |
 | md | `docs/INDICE_MESTRE.md` | ÍNDICE MESTRE — Pacote de Revisão Científica | 4521 | `3345e1bd1aeb` |
 | md | `docs/LAGRANGIANO_EFT.md` | Lagrangiano Efetivo — EFT da Superposição | 4798 | `85655b0c9429` |
@@ -78,12 +87,12 @@
 | md | `docs/MAPA CIENTIESPIRITUAL.md` | 🔮 MAPA CIENTIESPIRITUAL — Fórmulas → Espírito | 1265 | `575c51616304` |
 | md | `docs/MAPA FRACTAL.md` | 🗺️ MAPA FRACTAL — Fórmulas → Valores | 2149 | `fe78c5c1bdf6` |
 | md | `docs/MAPA_RAFAELIA_TOTAL.md` | Perfeito, Rafael 🌀♾️⚛︎ | 33249 | `a2af691390de` |
-| md | `docs/More.md` | --- | 4357 | `d13eb37552bc` |
+| md | `docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md` | --- | 4357 | `d13eb37552bc` |
 | md | `docs/NATURE_ARTICLE_ANALYSIS.md` | Analysis: Nature Article s41467-025-63981-3 and Relativity Living Light Model | 14923 | `43d3af278239` |
-| md | `docs/New theory and beyond.md` | Comparação com ΛCDM e Previsões | 8042 | `eafb87df1acc` |
-| md | `docs/NewWays.md` | Rafael — aqui está o mapa fractal em camadas (diagrama/flowchart) ligando fórmul | 4186 | `95b5f28258be` |
-| md | `docs/Others in line.md` | Rafael 🌀♾️⚛︎, juntei as duas interações anteriores (mapa fractal + mapa estendid | 8216 | `20f7a6786c62` |
-| md | `docs/Others in open because that.md` | ∴  publicaste o Relativity Living Light como manifesto e artigo, o passo seguint | 2030 | `ebbb4beea9fa` |
+| md | `docs/THEORY_INVENTORY_AND_EXTENSIONS.md` | Comparação com ΛCDM e Previsões | 8042 | `eafb87df1acc` |
+| md | `docs/FRACTAL_LAYERED_MAP.md` | Rafael — aqui está o mapa fractal em camadas (diagrama/flowchart) ligando fórmul | 4186 | `95b5f28258be` |
+| md | `docs/FRACTAL_REPORT_UNIFIED.md` | Rafael 🌀♾️⚛︎, juntei as duas interações anteriores (mapa fractal + mapa estendid | 8216 | `20f7a6786c62` |
+| md | `docs/NEXT_THEORIES_AND_DERIVED_HYPOTHESES.md` | ∴  publicaste o Relativity Living Light como manifesto e artigo, o passo seguint | 2030 | `ebbb4beea9fa` |
 | md | `docs/PERTURBACOES_CRESCIMENTO.md` | Perturbações e Crescimento Estrutural | 6536 | `b23e265c26e2` |
 | md | `docs/README_CIENTIFICO.md` | Relativity Living Light — Modelo Cosmológico de Superposição Dinâmica | 6001 | `a22853efb09d` |
 | md | `docs/README_block_multilang.md` | 📚 Ciência Aplicada — Relativity Living Light | 2232 | `ad9d6b86839e` |
@@ -95,11 +104,11 @@
 | md | `docs/RELEASE_NOTES_HISTORY.md` | Histórico de Updates e Release Notes | 8211 | `013227ae0614` |
 | md | `docs/RESULTADOS_CORRIGIDOS.md` | Resultados Corrigidos — Relativity Living Light | 3755 | `f05cf36808dc` |
 | md | `docs/ROADMAP_VALIDACAO.md` | Roadmap de Validação — Relativity Living Light | 5642 | `4da4778ef15d` |
-| md | `docs/Readme.md` | 📂 Data Descriptor – Relativity Living Light (Bundle V4) | 2452 | `2aa59185f4f9` |
+| md | `docs/DATA_DESCRIPTOR_BUNDLE_V4.md` | 📂 Data Descriptor – Relativity Living Light (Bundle V4) | 2452 | `2aa59185f4f9` |
 | md | `docs/Relativity_Living_Light.md` | Relativity Living Light — Photonic Superposition as Unified Dark Sector (Draft) | 2341 | `174ba4c7aadf` |
 | md | `docs/Results.md` | Resultados – Relativity Living Light | 1092 | `3dd3797c04f3` |
 | md | `docs/SUPREMO UNIFICADO.md` | ✨ Entendido, Rafael 🌀♾️⚛︎ | 6129 | `acea9d684146` |
-| md | `docs/Structure.md` | 📂 Estrutura sugerida do repositório: relativity-living-light | 190 | `beba59557a91` |
+| md | `docs/REPOSITORY_STRUCTURE_SUGGESTION.md` | 📂 Estrutura sugerida do repositório: relativity-living-light | 190 | `beba59557a91` |
 | md | `docs/VELOCIDADE_SOM.md` | Velocidade do Som e Escala de Jeans | 4006 | `f4f545d090cc` |
 | md | `docs/canonicos/00_COMO_LER.md` | 🌀 COMO LER ESTE REPOSITÓRIO | 13012 | `20babdf8d5a3` |
 | md | `docs/canonicos/06_COMPARACOES_DETALHADAS.md` | 🔗 COMPARAÇÕES COM LITERATURA 2025-26 | 24127 | `6696f6942e22` |

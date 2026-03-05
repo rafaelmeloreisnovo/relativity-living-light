@@ -1,8 +1,28 @@
 # Organização Integral de Documentação e Artefatos
 ## Relativity Living Light — estrutura técnica, canônica e auditável
 
-**Versão:** 1.1 (política de canonicidade por basename)
-**Data:** 2026-02-25
+**Versão:** 1.2 (papéis explícitos de índices)
+**Data:** 2026-03-05
+
+---
+
+## Escopo deste arquivo
+
+Este documento define a **organização mestre** da documentação e a governança entre índices.
+
+- Consolida regras de canonicidade e estrutura documental.
+- Define matriz oficial `índice -> finalidade -> público`.
+- Não substitui o conteúdo de cada índice especializado.
+
+---
+
+## Matriz oficial de índices
+
+| Índice | Finalidade | Público principal |
+|---|---|---|
+| [`README.md`](../README.md) | Porta de entrada: visão geral, contexto e encaminhamento inicial. | Novos leitores, colaboradores e revisores externos. |
+| [`docs/INDICE_MESTRE.md`](INDICE_MESTRE.md) | Navegação canônica por trilhas e caminhos oficiais. | Mantenedores, autores de documentação e usuários recorrentes. |
+| [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md) | Inventário bruto completo (`.md`/`.zip`) com metadados de varredura. | Auditoria documental, curadoria e manutenção técnica. |
 
 ---
 

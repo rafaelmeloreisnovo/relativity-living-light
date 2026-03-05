@@ -118,7 +118,7 @@ f(z) = 1/(1+exp((z-z_t)/w_t))
 
 ### Convenção oficial de sinais e limites
 
-Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/canonicos/09_GLOSSARIO_COMPLETO.md).
+Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](09_GLOSSARIO_COMPLETO.md).
 
 - **Fórmula oficial:** `f(z) = 1/(1 + exp((z - z_t)/w_t))`.
 - **Hipótese oficial de sinal/intervalo de `w_t`:** adota-se `w_t < 0`, com `|w_t| ∈ [0.1, 1.0]`.
