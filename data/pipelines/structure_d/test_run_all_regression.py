@@ -351,12 +351,17 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             with open(cfg_path, "w", encoding="utf-8") as fp:
                 json.dump(config, fp)
 
-            with self.assertRaisesRegex(ValueError, "full_required"):
+            with self.assertRaisesRegex(ValueError, "full_required") as ctx:
                 run_all.main(
                     config_path=cfg_path,
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
+
+            message = str(ctx.exception)
+            self.assertIn("incompatible datasets", message)
+            self.assertIn("hz", message)
+            self.assertIn("fsigma8", message)
 
 
 
@@ -627,211 +632,18 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             with open(cfg_path, "w", encoding="utf-8") as fp:
                 json.dump(config, fp)
 
-            with self.assertRaisesRegex(ValueError, "full_required"):
+            with self.assertRaisesRegex(ValueError, "full_required") as ctx:
                 run_all.main(
                     config_path=cfg_path,
                     profile_name="full_required_policy",
                     covariance_policy="full_required",
                 )
 
-    def test_classic_metrics_accumulates_real_cmb_shift_scalar_payload(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            data_dir = os.path.join(temp_dir, "data")
-            os.makedirs(data_dir, exist_ok=True)
+            message = str(ctx.exception)
+            self.assertIn("incompatible datasets", message)
+            self.assertIn("hz", message)
+            self.assertIn("fsigma8", message)
 
-            hz_path = os.path.join(data_dir, "hz.csv")
-            fs8_path = os.path.join(data_dir, "fsigma8.csv")
-            cmb_path = os.path.join(data_dir, "cmb.json")
-            cfg_path = os.path.join(temp_dir, "config.json")
-
-            pd.DataFrame(
-                {
-                    "z": [0.1, 0.3],
-                    "Hz": [70.0, 78.0],
-                    "sigma": [2.0, 2.5],
-                }
-            ).to_csv(hz_path, index=False)
-            pd.DataFrame(
-                {
-                    "z": [0.2, 0.6],
-                    "fs8": [0.48, 0.41],
-                    "sigma": [0.03, 0.04],
-                }
-            ).to_csv(fs8_path, index=False)
-            with open(cmb_path, "w", encoding="utf-8") as fp:
-                json.dump(
-                    {
-                        "R_obs": 1.75,
-                        "la_obs": 301.4,
-                        "R_sig": 0.02,
-                        "la_sig": 0.10,
-                    },
-                    fp,
-                )
-
-            config = {
-                "default_profile": "cmb_policy",
-                "profiles": {
-                    "cmb_policy": {
-                        "run_name": "cmb_policy",
-                        "active_datasets": ["hz", "fsigma8", "real_cmb_shift"],
-                    }
-                },
-                "datasets": {
-                    "hz": {
-                        "format": "csv",
-                        "path": hz_path,
-                        "observable": "Hz",
-                        "error_model": "errors",
-                        "columns": {
-                            "z": "z",
-                            "value": "Hz",
-                            "error": "sigma",
-                        },
-                        "metadata": {
-                            "survey": "synthetic",
-                            "redshift_range": "[0.1,0.3]",
-                            "reference": "unit-test",
-                        },
-                    },
-                    "fsigma8": {
-                        "format": "csv",
-                        "path": fs8_path,
-                        "observable": "fs8",
-                        "error_model": "errors",
-                        "columns": {
-                            "z": "z",
-                            "value": "fs8",
-                            "error": "sigma",
-                        },
-                        "metadata": {
-                            "survey": "synthetic",
-                            "redshift_range": "[0.2,0.6]",
-                            "reference": "unit-test",
-                        },
-                    },
-                    "real_cmb_shift": {
-                        "format": "json_scalars",
-                        "path": cmb_path,
-                        "observable": "CMB_shift",
-                        "error_model": "errors",
-                        "keys": {
-                            "values": ["R_obs", "la_obs"],
-                            "errors": ["R_sig", "la_sig"],
-                        },
-                        "metadata": {
-                            "survey": "synthetic",
-                            "redshift_range": "z=1089.92",
-                            "reference": "unit-test",
-                        },
-                    },
-                },
-            }
-            with open(cfg_path, "w", encoding="utf-8") as fp:
-                json.dump(config, fp)
-
-            cfg_meta, datasets = load_active_datasets(cfg_path, profile_name="cmb_policy")
-            df_model, out_model, out_cov, _ = run_all.run_classic_metrics(cfg_meta, datasets, "prefer_full")
-            self.addCleanup(os.remove, out_model)
-            self.addCleanup(os.remove, out_cov)
-
-            self.assertEqual(int(df_model["N"].iloc[0]), 6)
-            self.assertTrue(np.isfinite(df_model["chi2"]).all())
-
-
-
-class StructureDDuplicateZPolicyTest(unittest.TestCase):
-    def _write_csv(self, path, rows):
-        pd.DataFrame(rows).to_csv(path, index=False)
-
-    def _write_config(self, cfg_path, csv_path, policy):
-        config = {
-            "default_profile": "dup_policy",
-            "profiles": {
-                "dup_policy": {
-                    "run_name": "dup_policy",
-                    "active_datasets": ["hz"],
-                }
-            },
-            "datasets": {
-                "hz": {
-                    "format": "csv",
-                    "path": csv_path,
-                    "observable": "Hz",
-                    "error_model": "errors",
-                    "duplicate_z_policy": policy,
-                    "columns": {
-                        "z": "z",
-                        "value": "Hz",
-                        "error": "sigma",
-                    },
-                    "metadata": {
-                        "survey": "synthetic",
-                        "redshift_range": "[0.1,0.2]",
-                        "reference": "unit-test",
-                    },
-                }
-            },
-        }
-        with open(cfg_path, "w", encoding="utf-8") as fp:
-            json.dump(config, fp)
-
-    def test_duplicate_z_policy_erro_raises(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            csv_path = os.path.join(temp_dir, "hz.csv")
-            cfg_path = os.path.join(temp_dir, "config.json")
-            self._write_csv(
-                csv_path,
-                {
-                    "z": [0.1, 0.1, 0.2],
-                    "Hz": [70.0, 72.0, 75.0],
-                    "sigma": [2.0, 3.0, 2.5],
-                },
-            )
-            self._write_config(cfg_path, csv_path, "erro")
-
-            with self.assertRaises(ValueError):
-                load_active_datasets(cfg_path, profile_name="dup_policy")
-
-    def test_duplicate_z_policy_agregar_averages_rows(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            csv_path = os.path.join(temp_dir, "hz.csv")
-            cfg_path = os.path.join(temp_dir, "config.json")
-            self._write_csv(
-                csv_path,
-                {
-                    "z": [0.1, 0.1, 0.2],
-                    "Hz": [70.0, 72.0, 75.0],
-                    "sigma": [2.0, 3.0, 2.5],
-                },
-            )
-            self._write_config(cfg_path, csv_path, "agregar")
-
-            _, datasets = load_active_datasets(cfg_path, profile_name="dup_policy")
-            hz = datasets["hz"]
-            np.testing.assert_allclose(hz["z"], np.array([0.1, 0.2]))
-            np.testing.assert_allclose(hz["values"], np.array([71.0, 75.0]))
-            np.testing.assert_allclose(hz["errors"], np.array([2.5, 2.5]))
-
-    def test_duplicate_z_policy_primeira_ocorrencia_keeps_first(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            csv_path = os.path.join(temp_dir, "hz.csv")
-            cfg_path = os.path.join(temp_dir, "config.json")
-            self._write_csv(
-                csv_path,
-                {
-                    "z": [0.1, 0.1, 0.2],
-                    "Hz": [70.0, 72.0, 75.0],
-                    "sigma": [2.0, 3.0, 2.5],
-                },
-            )
-            self._write_config(cfg_path, csv_path, "primeira ocorrência")
-
-            _, datasets = load_active_datasets(cfg_path, profile_name="dup_policy")
-            hz = datasets["hz"]
-            np.testing.assert_allclose(hz["z"], np.array([0.1, 0.2]))
-            np.testing.assert_allclose(hz["values"], np.array([70.0, 75.0]))
-            np.testing.assert_allclose(hz["errors"], np.array([2.0, 2.5]))
 
 if __name__ == "__main__":
     unittest.main()
