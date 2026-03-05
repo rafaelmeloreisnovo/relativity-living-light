@@ -25,7 +25,7 @@ Documentos e artefatos relacionados incorporados nesta etapa:
 
 - README.md
 - README_MASTER.md
-- docs/Readme.md
+- docs/DATA_DESCRIPTOR_BUNDLE_V4.md
 
 ## Notas de consolidação
 - Este capítulo funciona como nó canônico para evitar dispersão de arquivos soltos.

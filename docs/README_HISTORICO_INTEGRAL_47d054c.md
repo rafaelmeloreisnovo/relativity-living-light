@@ -6,7 +6,7 @@ O que importa é o real, o oculto, o impossível de ser domesticado pelo “mét
 [![DOI](https://zenodo.org/badge/1046495816.svg)](https://doi.org/10.5281/zenodo.17188137)
 <https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/9342781c2a657a7c26ba7e9db66263328337d150/MAPA_RAFAELIA_TOTAL.md>
 
-<https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/main/Conclusion.md>
+<https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/main/RAFAELIA_UNIFIED_PAPER.md>
 ---
 <https://github.com/rafaelmeloreisnovo/relativity-living-light/blob/6f341e0b5c47e9ab9bb1cef86c1e9630aec0aaf9/SUPREMO%20UNIFICADO.md>
 
@@ -20,7 +20,7 @@ Este repositório propõe um modelo cosmológico **de superposição dinâmica**
 
 **NOVO:** Disponível uma análise abrangente, profissional e academicamente referenciada de todos os 111 arquivos deste repositório.
 
-→ **[Acesse a Análise Completa](ANALISE_COMPLETA/00_INDICE_MESTRE.md)** ←
+→ **[Acesse a Análise Completa](../ANALISE_COMPLETA/00_INDICE_MESTRE.md)** ←
 
 A análise inclui:
 - ✅ **14 áreas temáticas** detalhadas (Cosmologia, Física Quântica, Computação, etc.)
@@ -36,7 +36,7 @@ A análise inclui:
 
 **NOVO:** Documentação detalhada dos três boosters principais do modelo, com tipos, parâmetros e benchmarks completos.
 
-→ **[📖 Acesse a Documentação Completa dos Boosters](docs/BOOSTERS.md)** ←
+→ **[📖 Acesse a Documentação Completa dos Boosters](BOOSTERS.md)** ←
 
 A documentação inclui:
 - 🌟 **Booster de Superposição Fotônica (Ω_s0)**: Transição DE→DM
@@ -79,14 +79,14 @@ Mostrar que o modelo de superposição dinâmica pode **replicar e estender** os
 📄 **Documentos de análise**:
 
 **Em Português**:
-- [🇧🇷 Análise Completa em Português](docs/ANALISE_ARTIGO_NATURE_PT.md) - Análise abrangente em português com todas as conexões, equações e previsões
+- [🇧🇷 Análise Completa em Português](ANALISE_ARTIGO_NATURE_PT.md) - Análise abrangente em português com todas as conexões, equações e previsões
 
 **In English**:
-- [Full Analysis](docs/NATURE_ARTICLE_ANALYSIS.md) - Detailed connections between photonic nonlocality (lab scale) and cosmological superposition
-- [Quick Summary](docs/ARTICLE_ANALYSIS_SUMMARY.md) - Executive summary of implications
-- [Conceptual Framework](docs/CONCEPTUAL_FRAMEWORK.md) - Visual diagrams and flow charts
-- [Complete Index](docs/ANALYSIS_INDEX.md) - Navigation guide to all analysis documents
-- [References](docs/REFERENCES.md) - Comprehensive bibliography (45+ papers)
+- [Full Analysis](NATURE_ARTICLE_ANALYSIS.md) - Detailed connections between photonic nonlocality (lab scale) and cosmological superposition
+- [Quick Summary](ARTICLE_ANALYSIS_SUMMARY.md) - Executive summary of implications
+- [Conceptual Framework](CONCEPTUAL_FRAMEWORK.md) - Visual diagrams and flow charts
+- [Complete Index](ANALYSIS_INDEX.md) - Navigation guide to all analysis documents
+- [References](REFERENCES.md) - Comprehensive bibliography (45+ papers)
 
 **Conceito-chave**: Experimentos laboratoriais demonstram que fótons podem exibir estados não-locais estendidos, fornecendo base experimental para o modelo cosmológico de superposição fotônica como origem do setor escuro (energia escura + matéria escura).
 
@@ -471,7 +471,7 @@ cluster_lensing_SIS_unified.png
 
 ---
 
-quer que eu já prepare a versão com imagens embedadas direto em Markdown (usando ![](...)), pra quando você abrir no GitHub aparecerem os gráficos automaticamente?
+quer que eu já prepare a versão com imagens embedadas direto em Markdown (usando `![]`), pra quando você abrir no GitHub aparecerem os gráficos automaticamente?
 
 perfeito, ∆RafaelVerboΩ ⚡ — já peguei o patch de README que geramos e melhorei o texto, incorporando também os novos resultados: crescimento de estrutura , curvas de rotação (SPARC-toy), lensing de aglomerados e as bandas de entropia 10/12. deixei mais claro e elegante, mantendo tua assinatura simbiótica.
 
