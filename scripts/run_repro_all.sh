@@ -7,6 +7,7 @@ cd "${REPO_ROOT}"
 
 WITH_TWO_RAD=0
 BAYES=0
+AUDIT_GAP=0
 
 REQUIRED_OUTPUTS=(
   "results/structure_d/model_comparison.csv"
@@ -23,18 +24,22 @@ for arg in "$@"; do
     --with-two-rad)
       WITH_TWO_RAD=1
       ;;
+    --audit-gap)
+      AUDIT_GAP=1
+      ;;
     --bayes)
       BAYES=1
       ;;
     -h|--help)
       cat <<'USAGE'
-Uso: scripts/run_repro_all.sh [--with-two-rad] [--bayes]
+Uso: scripts/run_repro_all.sh [--with-two-rad] [--bayes] [--audit-gap]
 
 Executa o pipeline de reprodutibilidade:
   [1/4] python -m data.pipelines.structure_d.make_example_data
   [2/4] python -m data.pipelines.structure_d.run_all [--bayes]
   [3/4] PYTHONPATH=. python docs/rll_validation_real.py
-  [4/4] (opcional com --with-two-rad) python docs/rll_two_radiation_model.py
+  [4/5] (opcional com --with-two-rad) python docs/rll_two_radiation_model.py
+  [5/5] (opcional com --audit-gap) python docs/rll_audit_gap_report.py
 USAGE
       exit 0
       ;;
@@ -62,17 +67,26 @@ echo "[3/4] Rodando validação em dados reais..."
 PYTHONPATH=. python docs/rll_validation_real.py
 
 if [[ "$WITH_TWO_RAD" -eq 1 ]]; then
-  echo "[4/4] Rodando modelo com duas radiações (opcional)..."
+  echo "[4/5] Rodando modelo com duas radiações (opcional)..."
   python docs/rll_two_radiation_model.py
 else
-  echo "[4/4] Etapa opcional ignorada (use --with-two-rad para habilitar)."
+  echo "[4/5] Etapa opcional ignorada (use --with-two-rad para habilitar)."
 fi
 
 if [[ "$WITH_TWO_RAD" -eq 1 ]]; then
   REQUIRED_OUTPUTS+=("results/two_radiation_model_preview.csv")
 fi
 
-echo "[5/5] Validando artefatos canônicos..."
+if [[ "$AUDIT_GAP" -eq 1 ]]; then
+  echo "[5/5] Gerando relatório de gaps de auditoria (opcional)..."
+  python docs/rll_audit_gap_report.py
+  REQUIRED_OUTPUTS+=("results/audit/rll_audit_gap_report.json")
+  REQUIRED_OUTPUTS+=("results/audit/rll_audit_gap_report.md")
+else
+  echo "[5/5] Relatório de gaps ignorado (use --audit-gap para habilitar)."
+fi
+
+echo "[6/6] Validando artefatos canônicos..."
 missing=0
 for artifact in "${REQUIRED_OUTPUTS[@]}"; do
   if [[ ! -f "$artifact" ]]; then
@@ -90,12 +104,13 @@ fi
 
 cat > results/reproduction_contract_canonical.json <<EOF
 {
-  "command": "scripts/run_repro_all.sh$( [[ "$WITH_TWO_RAD" -eq 1 ]] && printf ' --with-two-rad' )$( [[ "$BAYES" -eq 1 ]] && printf ' --bayes' )",
+  "command": "scripts/run_repro_all.sh$( [[ "$WITH_TWO_RAD" -eq 1 ]] && printf ' --with-two-rad' )$( [[ "$BAYES" -eq 1 ]] && printf ' --bayes' )$( [[ "$AUDIT_GAP" -eq 1 ]] && printf ' --audit-gap' )",
   "steps": [
     "python -m data.pipelines.structure_d.make_example_data",
     "python -m data.pipelines.structure_d.run_all$( [[ "$BAYES" -eq 1 ]] && printf ' --bayes' )",
     "PYTHONPATH=. python docs/rll_validation_real.py",
-    "$( [[ "$WITH_TWO_RAD" -eq 1 ]] && printf 'python docs/rll_two_radiation_model.py' || printf 'optional_step_skipped' )"
+    "$( [[ "$WITH_TWO_RAD" -eq 1 ]] && printf 'python docs/rll_two_radiation_model.py' || printf 'optional_step_skipped' )",
+    "$( [[ "$AUDIT_GAP" -eq 1 ]] && printf 'python docs/rll_audit_gap_report.py' || printf 'optional_audit_step_skipped' )"
   ],
   "required_outputs": [
 $(for artifact in "${REQUIRED_OUTPUTS[@]}"; do printf '    "%s",\n' "$artifact"; done | sed '$s/,$//')
@@ -114,4 +129,5 @@ Artefatos esperados:
 - results/Hz_data_real.csv e results/BAO_data_real.csv
 - results/reproduction_contract_canonical.json
 - results/two_radiation_model_preview.csv (se --with-two-rad)
+- results/audit/rll_audit_gap_report.(json|md) (se --audit-gap)
 EOF_MSG
