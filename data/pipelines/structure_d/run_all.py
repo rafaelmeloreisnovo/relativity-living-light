@@ -291,13 +291,58 @@ def _write_real_reproduction_contract(profile_name, covariance_policy):
 
 
 def _assert_required_outputs():
-    missing = []
     for filename in REQUIRED_OUTPUTS:
         path = os.path.join(RESULTS, filename)
         if not os.path.exists(path):
-            missing.append(filename)
-    if missing:
-        raise RuntimeError(f"required outputs were not generated: {missing}")
+            raise RuntimeError(f"arquivo inválido: {filename} (não foi gerado)")
+
+        if filename.endswith(".csv"):
+            _assert_csv_output_has_useful_content(filename, path)
+        elif filename.endswith(".json"):
+            _assert_json_output_has_useful_content(filename, path)
+
+
+def _assert_csv_output_has_useful_content(filename, path):
+    try:
+        df = pd.read_csv(path)
+    except Exception as exc:
+        raise RuntimeError(f"arquivo inválido: {filename} (CSV não parseável)") from exc
+
+    if df.empty:
+        raise RuntimeError(f"arquivo inválido: {filename} (CSV sem linhas de dados)")
+
+    useful_rows = 0
+    for row in df.itertuples(index=False, name=None):
+        has_value = any(
+            value is not None
+            and not pd.isna(value)
+            and str(value).strip() != ""
+            for value in row
+        )
+        if has_value:
+            useful_rows += 1
+            break
+
+    if useful_rows == 0:
+        raise RuntimeError(f"arquivo inválido: {filename} (CSV sem linha útil)")
+
+
+def _assert_json_output_has_useful_content(filename, path):
+    try:
+        with open(path, "r", encoding="utf-8") as fp:
+            content = json.load(fp)
+    except Exception as exc:
+        raise RuntimeError(f"arquivo inválido: {filename} (JSON não parseável)") from exc
+
+    if isinstance(content, dict):
+        has_useful_content = any(value not in (None, "", [], {}) for value in content.values())
+    elif isinstance(content, list):
+        has_useful_content = len(content) > 0
+    else:
+        has_useful_content = content not in (None, "")
+
+    if not has_useful_content:
+        raise RuntimeError(f"arquivo inválido: {filename} (JSON sem conteúdo útil)")
 
 
 def _validate_output_schema(filename, expected_header):
