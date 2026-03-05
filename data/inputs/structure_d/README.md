@@ -6,8 +6,26 @@ colunas: z, Hz, sigma
 ## fsigma8.csv
 colunas: z, fs8, sigma
 
+## Artefatos de covariância (profile `structure_d_synthetic_advanced`)
+- `Hz_cov.csv` (colunas: z, Hz)
+- `Hz_cov_matrix.csv` (matriz N×N)
+- `fsigma8_cov.csv` (colunas: z, fs8)
+- `fsigma8_cov_matrix.csv` (matriz N×N)
+
 Você pode gerar dados exemplo rodando:
 `python -m data.pipelines.structure_d.make_example_data`
+
+A geração padrão cria:
+- `Hz.csv`
+- `fsigma8.csv`
+- `Hz_cov.csv`
+- `Hz_cov_matrix.csv`
+- `fsigma8_cov.csv`
+- `fsigma8_cov_matrix.csv`
+- `mock_data_contract.json`
+
+Se quiser desabilitar os artefatos de covariância:
+`python -m data.pipelines.structure_d.make_example_data --without-covariance`
 
 A geração de exemplos também cria `mock_data_contract.json` com:
 - `seed` utilizado;

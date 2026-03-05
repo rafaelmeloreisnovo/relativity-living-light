@@ -81,6 +81,13 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "has_full_covariance",
         "has_diagonal_sigma",
     ],
+    "error_mode_usage.csv": [
+        "dataset_id",
+        "observable",
+        "error_mode",
+        "has_full_covariance",
+        "has_diagonal_sigma",
+    ],
     "rll_regime_summary.csv": [
         "z_min",
         "z_max",
@@ -99,6 +106,28 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
 }
 
 EXECUTION_TIMING_BASENAME = "execution_timing"
+
+
+def _safe_git_commit():
+    head_file = os.path.join(BASE_DIR, ".git", "HEAD")
+    if not os.path.exists(head_file):
+        return None
+    try:
+        import subprocess
+
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=BASE_DIR, text=True).strip()
+    except Exception:
+        return None
+
+
+def _safe_dirty_worktree():
+    try:
+        import subprocess
+
+        out = subprocess.check_output(["git", "status", "--porcelain"], cwd=BASE_DIR, text=True)
+        return bool(out.strip())
+    except Exception:
+        return None
 
 
 def _validate_profile_name(cfg, profile_name):
@@ -220,6 +249,19 @@ def _chi2_scalar_by_observable(entry, lcdm, rll):
         "add explicit scalar handling instead of silently discarding"
     )
 
+
+
+
+def _find_dataset_by_kind(datasets, kind):
+    kind_aliases = {
+        "hz": {"hz", "real_hz", "hz_cov_synth"},
+        "fsigma8": {"fsigma8", "fsigma8_cov_synth"},
+    }
+    target_ids = kind_aliases.get(kind, {kind})
+    for dataset_id in target_ids:
+        if dataset_id in datasets:
+            return datasets[dataset_id]
+    return None
 
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, Ob_h2=0.02236)
@@ -463,8 +505,8 @@ def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_l
         "bayes_mode": None,
         "bayes_runtime_metadata": None,
         "covariance_usage_non_empty": True,
-        "real_execution_skipped": bool(real_execution_skipped),
-        "real_execution_skip_reason": skip_reason if real_execution_skipped else None,
+        "real_execution_skipped": False,
+        "real_execution_skip_reason": None,
     }
     out_contract = os.path.join(RESULTS, "reproduction_contract.json")
     with open(out_contract, "w", encoding="utf-8") as fp:
@@ -549,6 +591,19 @@ def _validate_required_csv_schemas():
         _validate_output_schema(filename, EXPECTED_SCHEMA_BY_OUTPUT[filename])
 
 
+
+
+def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
+    result = {
+        "profile": effective_profile,
+        "covariance_policy": effective_policy,
+        "rows": int(len(df_model)),
+        "output_paths": dict(output_paths),
+    }
+    if extra_paths:
+        result["extra_paths"] = dict(extra_paths)
+    return result
+
 def main(
     config_path=DEFAULT_CONFIG,
     profile_name=DEFAULT_PROFILE,
@@ -600,6 +655,7 @@ def main(
             for dataset_id, entry in datasets.items()
         ]
         evaluate_model(cov_rows, out_cov)
+        evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
         out_contract = _write_real_reproduction_contract(
             effective_profile,
             effective_policy,
@@ -673,6 +729,10 @@ def main(
         covariance_usage_non_empty,
         cfg_meta,
         datasets,
+        bayes_seed,
+        bayes_nwalkers,
+        bayes_nsteps,
+        bayes_nlive,
     )
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
 

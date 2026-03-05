@@ -124,10 +124,18 @@ def main(seed=42, generate_covariance=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate synthetic Structure-D example datasets.")
     parser.add_argument("--seed", type=int, default=42, help="RNG seed for reproducible mock generation.")
+    parser.set_defaults(generate_covariance=True)
     parser.add_argument(
         "--with-covariance",
+        dest="generate_covariance",
         action="store_true",
-        help="Also generate synthetic covariance matrices and CSVs compatible with error_model='covariance'.",
+        help="Generate synthetic covariance matrices and CSVs compatible with error_model='covariance' (default).",
+    )
+    parser.add_argument(
+        "--without-covariance",
+        dest="generate_covariance",
+        action="store_false",
+        help="Disable covariance artifact generation.",
     )
     parser.add_argument(
         "--without-covariance",

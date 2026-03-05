@@ -15,6 +15,17 @@ from .schema import DEFAULT_MIN_POINTS_WITH_Z, validate_observable_schema
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 
+def _sha256_file(path_abs):
+    digest = hashlib.sha256()
+    with open(path_abs, "rb") as f:
+        while True:
+            block = f.read(1024 * 1024)
+            if not block:
+                break
+            digest.update(block)
+    return digest.hexdigest()
+
+
 def _abs_path(path):
     if os.path.isabs(path):
         return path
@@ -207,13 +218,14 @@ def _parse_scalar_json_dataset(dataset_id, desc, min_points_with_z=DEFAULT_MIN_P
 
     values = np.array([raw[k] for k in keys["values"]], dtype=float)
     errors = np.array([raw[k] for k in keys["errors"]], dtype=float)
+    metadata = dict(desc["metadata"])
 
     entry = {
         "dataset_id": dataset_id,
         "observable": desc["observable"],
         "values": values,
         "errors": errors,
-        "metadata": desc["metadata"],
+        "metadata": metadata,
         "dataset_source": _dataset_source_from_descriptor(desc),
         "z": None,
         "source": source_info,
