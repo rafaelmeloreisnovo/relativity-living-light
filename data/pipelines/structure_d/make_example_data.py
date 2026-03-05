@@ -16,7 +16,18 @@ import pandas as pd
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 DATA = os.path.join(BASE_DIR, "data", "inputs", "structure_d")
 
-def main(seed=42):
+
+def _build_covariance(errors, rng, max_correlation=0.35):
+    std = np.asarray(errors, dtype=float)
+    dim = std.size
+    corr_noise = rng.uniform(-max_correlation, max_correlation, size=(dim, dim))
+    corr = (corr_noise + corr_noise.T) / 2.0
+    np.fill_diagonal(corr, 1.0)
+    cov = np.outer(std, std) * corr
+    return cov
+
+
+def main(seed=42, generate_covariance=False):
     os.makedirs(DATA, exist_ok=True)
     rng = np.random.default_rng(seed)
 
@@ -56,4 +67,12 @@ def main(seed=42):
     print("Example data written: data/inputs/structure_d/Hz.csv, data/inputs/structure_d/fsigma8.csv, data/inputs/structure_d/mock_data_contract.json")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Generate synthetic Structure-D example datasets.")
+    parser.add_argument("--seed", type=int, default=42, help="RNG seed for reproducible mock generation.")
+    parser.add_argument(
+        "--with-covariance",
+        action="store_true",
+        help="Also generate synthetic covariance matrices and CSVs compatible with error_model='covariance'.",
+    )
+    args = parser.parse_args()
+    main(seed=args.seed, generate_covariance=args.with_covariance)
