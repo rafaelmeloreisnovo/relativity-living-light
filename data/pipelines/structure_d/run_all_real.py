@@ -1,4 +1,3 @@
-import json
 import os
 import csv
 import json
@@ -28,10 +27,6 @@ MODEL_LCDM = "lcdm"
 MODEL_RLL_AGN = "rll_like_agn"
 REGIME_REAL = "real"
 
-MODEL_LCDM = "lcdm"
-MODEL_RLL_AGN = "rll_like_agn"
-REGIME_REAL = "real"
-
 C_KMS = 299792.458
 Z_CMB = 1089.92
 
@@ -51,24 +46,6 @@ EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER = ["H0", "Om", "OL", "Ob_h2", "Os0",
 
 
 
-
-def _write_error_mode_usage(datasets):
-    rows = []
-    for dataset_id, entry in datasets.items():
-        has_cov = entry.get("covariance") is not None
-        has_err = entry.get("errors") is not None
-        rows.append(
-            {
-                "dataset_id": dataset_id,
-                "observable": entry.get("observable", dataset_id),
-                "error_mode": "covariance" if has_cov else "errors",
-                "has_full_covariance": bool(has_cov),
-                "has_diagonal_sigma": bool(has_err),
-            }
-        )
-    out_error_mode = os.path.join(RESULTS, "error_mode_usage.csv")
-    evaluate_model(rows, out_error_mode)
-    return out_error_mode
 
 def _expected_model_comparison_header(include_fit_params):
     if include_fit_params:
@@ -266,14 +243,11 @@ def main(
 
     seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
     tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
-    maxiter_lcdm = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
-    maxiter_rll = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
-
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,
         seed=seed,
-        maxiter=maxiter_lcdm,
+        maxiter=lcdm_maxiter,
         tol=tol,
         workers=1,
     )
@@ -282,7 +256,7 @@ def main(
         lambda p: _obj_rll(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_r,
         seed=seed,
-        maxiter=maxiter_rll,
+        maxiter=rll_maxiter,
         tol=tol,
         workers=1,
     )
@@ -370,8 +344,8 @@ def main(
         "datasets_used": cfg_meta["active_datasets"],
         "optimizer": {
             "name": "scipy.optimize.differential_evolution",
-            "seed": 42,
-            "tol": 1e-6,
+            "seed": seed,
+            "tol": tol,
             "workers": 1,
         },
         "fit_models": {
@@ -396,12 +370,15 @@ def main(
         json.dump(fit_metadata, fp, ensure_ascii=False, indent=2)
 
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
-    _write_execution_timing(timing_records)
+    timing_csv_path, timing_json_path = _write_execution_timing(timing_records)
     _validate_model_comparison_header(out, include_fit_params=include_fit_params)
 
     print(df.to_string(index=False))
     print(f"\nWrote: {out}")
     print(f"Wrote: {metadata_out}")
+    print(f"Wrote: {timing_csv_path}")
+    print(f"Wrote: {timing_json_path}")
+    print(f"Wrote: {out_error_mode}")
     return df
 
 
