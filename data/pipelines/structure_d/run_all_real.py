@@ -32,6 +32,7 @@ Z_CMB = 1089.92
 
 EXPECTED_MODEL_COMPARISON_HEADER = [
     "model",
+    "regime",
     "chi2",
     "AIC",
     "BIC",
@@ -48,9 +49,10 @@ EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER = ["H0", "Om", "OL", "Ob_h2", "Os0",
 
 
 def _expected_model_comparison_header(include_fit_params):
-    if include_fit_params:
-        return EXPECTED_MODEL_COMPARISON_HEADER + EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER
-    return EXPECTED_MODEL_COMPARISON_HEADER
+    header = list(EXPECTED_MODEL_COMPARISON_HEADER)
+    if bool(include_fit_params):
+        header.extend(EXPECTED_MODEL_COMPARISON_FIT_PARAMS_HEADER)
+    return header
 
 
 def _validate_model_comparison_header(csv_path, include_fit_params):
@@ -238,9 +240,6 @@ def main(
     bounds_r = [(60.0, 80.0), (0.10, 0.60), (0.50, 0.90), (0.000, 0.250), (0.1, 10.0), (0.1, 1.0), (0.018, 0.026)]
     lcdm_param_order = ["H0", "Om", "OL", "Ob_h2"]
     rll_param_order = ["H0", "Om", "OL", "Os0", "zt", "wt", "Ob_h2"]
-    lcdm_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "120"))
-    rll_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "150"))
-
     seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
     tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
     res_l = differential_evolution(
@@ -337,6 +336,7 @@ def main(
     out = os.path.join(RESULTS, output_filename)
     out_error_mode = _write_error_mode_usage(datasets)
     df = evaluate_model(rows, out)
+    _validate_model_comparison_header(out, include_fit_params=include_fit_params)
     fit_metadata = {
         "output_csv": out,
         "profile_name": profile,
