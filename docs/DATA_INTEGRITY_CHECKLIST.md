@@ -50,6 +50,13 @@ python3 scripts/validate_book_links.py book/12_metodologia_dados_mock.md book/13
 
 ## Rastreabilidade científica crítica
 
+Checklist operacional (marcar todos os itens antes de concluir revisão técnica/editorial):
+
+- [ ] Toda *claim* crítica (resultado observacional, valor de parâmetro, significância estatística, comparação de modelo) possui chave bibliográfica explícita.
+- [ ] Cada chave usada resolve para uma entrada válida na bibliografia unificada.
+- [ ] *Claims* com dados internos citam também artefato interno rastreável (arquivo + caminho + versão/commit).
+- [ ] *Claims* com números (ex.: sigma, χ², AIC/BIC, redshift) possuem fonte primária indicada.
+- [ ] Revisão final: zero *claims* críticas sem referência.
 Checklist operacional (marcar cada item após conferência):
 
 - [ ] Toda claim crítica (resultado observacional, valor de parâmetro, significância estatística, comparação de modelo) possui chave bibliográfica explícita.
@@ -62,4 +69,7 @@ Checklist operacional (marcar cada item após conferência):
 
 | claim | tipo (INT/EXT) | chave | local no documento | status |
 |---|---|---|---|---|
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
 | _preencher_ | _INT/EXT_ | _ex.: Smith2024_ | _arquivo + seção/página_ | _pendente/aprovado_ |
