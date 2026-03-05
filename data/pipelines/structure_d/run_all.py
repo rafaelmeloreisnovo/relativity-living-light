@@ -441,20 +441,36 @@ def _validate_output_schema(filename, expected_header):
         )
 
 
-def _write_execution_timing(records, basename=EXECUTION_TIMING_BASENAME):
-    csv_path = os.path.join(RESULTS, f"{basename}.csv")
-    json_path = os.path.join(RESULTS, f"{basename}.json")
+def _build_main_result(df_model, effective_profile, effective_policy, output_paths, extra_paths=None):
+    models = []
+    key_metrics = {}
 
-    with open(csv_path, "w", encoding="utf-8", newline="") as fp:
-        writer = csv.DictWriter(fp, fieldnames=["block", "duration_seconds"])
-        writer.writeheader()
-        for record in records:
-            writer.writerow(record)
+    for _, row in df_model.iterrows():
+        model_name = str(row["model"])
+        model_metrics = {
+            "chi2": float(row["chi2"]),
+            "aic": float(row["AIC"]),
+            "bic": float(row["BIC"]),
+            "n": int(row["N"]),
+            "k": int(row["k"]),
+        }
+        models.append({"model": model_name, **model_metrics})
+        key_metrics[model_name] = model_metrics
 
-    with open(json_path, "w", encoding="utf-8") as fp:
-        json.dump(records, fp, ensure_ascii=False, indent=2)
+    if models:
+        best_bic = min(models, key=lambda item: item["bic"])
+        key_metrics["best_model_by_bic"] = best_bic["model"]
 
-    return csv_path, json_path
+    result = {
+        "paths": output_paths,
+        "effective_profile": effective_profile,
+        "covariance_policy": effective_policy,
+        "models": models,
+        "key_metrics": key_metrics,
+    }
+    if extra_paths:
+        result["extra_paths"] = extra_paths
+    return result
 
 
 def main(
@@ -525,9 +541,17 @@ def main(
         print(f"[real] wrote: {out_error_mode}")
         print(f"[real] wrote: {os.path.join(RESULTS, 'rll_regime_summary.csv')}")
         print(f"[real] wrote: {out_contract}")
-        print(f"[real] wrote: {out_timing_csv}")
-        print(f"[real] wrote: {out_timing_json}")
-        return
+        return _build_main_result(
+            df_model=df_model,
+            effective_profile=effective_profile,
+            effective_policy=effective_policy,
+            output_paths={
+                "model_comparison": os.path.join(RESULTS, "model_comparison.csv"),
+                "covariance_usage": out_cov,
+                "rll_regime_summary": os.path.join(RESULTS, "rll_regime_summary.csv"),
+                "reproduction_contract": out_contract,
+            },
+        )
 
     fit_t0 = time.perf_counter()
     df_model, out_model, out_cov, covariance_usage_non_empty = run_classic_metrics(cfg_meta, datasets, effective_policy)
@@ -603,6 +627,23 @@ def main(
                 "[bayes] inference hyperparameters: "
                 f"seed={bayes_seed}, nwalkers={bayes_nwalkers}, nsteps={bayes_nsteps}, nlive={bayes_nlive}"
             )
+
+    return _build_main_result(
+        df_model=df_model,
+        effective_profile=effective_profile,
+        effective_policy=effective_policy,
+        output_paths={
+            "model_comparison": out_model,
+            "covariance_usage": out_cov,
+            "rll_regime_summary": os.path.join(RESULTS, "rll_regime_summary.csv"),
+            "reproduction_contract": out_contract,
+        },
+        extra_paths={
+            "bayes": [os.path.join(RESULTS, name) for name in produced_optional],
+        }
+        if bayes
+        else None,
+    )
 
 
 def _build_parser():
