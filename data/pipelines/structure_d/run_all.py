@@ -95,14 +95,8 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "top_parameters",
         "notes",
     ],
-    "error_mode_usage.csv": [
-        "dataset_id",
-        "error_mode",
-        "has_covariance",
-        "has_diagonal_sigma",
-        "n_obs",
-    ],
 }
+
 
 EXECUTION_TIMING_BASENAME = "execution_timing"
 
@@ -406,9 +400,14 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
 
 def _find_dataset_by_kind(datasets, kind):
     kind_l = str(kind).lower()
+    aliases = {kind_l}
+    if kind_l == "fsigma8":
+        aliases.update({"fs8", "fσ8", "f_sigma8"})
+
     for dataset_id, entry in datasets.items():
         observable = str(entry.get("observable", "")).lower()
-        if kind_l in dataset_id.lower() or kind_l in observable:
+        dataset_id_l = dataset_id.lower()
+        if any(alias in dataset_id_l or alias in observable for alias in aliases):
             z = entry.get("z")
             values = entry.get("values")
             errors = entry.get("errors")
@@ -482,8 +481,18 @@ def _dataset_contract_block(cfg_meta, datasets):
     return rows
 
 
-def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta, datasets, inference_hyperparameters, execution_timing_outputs=None):
+def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_mode, produced_optional, covariance_usage_non_empty, cfg_meta=None, datasets=None, inference_hyperparameters=None, execution_timing_outputs=None, bayes_seed=None, bayes_nwalkers=None, bayes_nsteps=None, bayes_nlive=None):
     git_commit, dirty_worktree = _git_metadata()
+    if inference_hyperparameters is None and all(v is not None for v in (bayes_seed, bayes_nwalkers, bayes_nsteps, bayes_nlive)):
+        inference_hyperparameters = {
+            "seed": int(bayes_seed),
+            "nwalkers": int(bayes_nwalkers),
+            "nsteps": int(bayes_nsteps),
+            "nlive": int(bayes_nlive),
+        }
+
+    cfg_meta = cfg_meta or {}
+    datasets = datasets or {}
     contract = {
         "command": "python -m data.pipelines.structure_d.run_all",
         "execution_path": "classic",
@@ -575,6 +584,27 @@ def _write_real_reproduction_contract(profile_name, covariance_policy, maxiter_l
     with open(out_contract, "w", encoding="utf-8") as fp:
         json.dump(contract, fp, ensure_ascii=False, indent=2)
     return out_contract
+
+
+def _ensure_rll_regime_summary():
+    out_path = os.path.join(RESULTS, "rll_regime_summary.csv")
+    if os.path.exists(out_path):
+        return out_path
+
+    placeholder = pd.DataFrame(
+        [
+            {
+                "z_min": np.nan,
+                "z_max": np.nan,
+                "R_mean": np.nan,
+                "dominant_regime": "n/a",
+                "top_parameters": "n/a",
+                "notes": "placeholder summary (not produced by reporting pipeline)",
+            }
+        ]
+    )
+    placeholder.to_csv(out_path, index=False)
+    return out_path
 
 
 def _assert_required_outputs():
@@ -688,7 +718,7 @@ def main(
     _validate_profile_name(cfg, profile_name)
     cfg_meta, datasets = load_active_datasets(config_path, profile_name=profile_name)
     effective_profile = cfg_meta.get("profile_name") or cfg.get("default_profile", DEFAULT_PROFILE)
-    effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg.get("covariance_policy", "prefer_full"))
+    effective_policy = _apply_covariance_policy(datasets, covariance_policy or cfg_meta.get("covariance_policy") or cfg.get("covariance_policy", "prefer_full"))
     timing_records.append({"block": "load", "duration_seconds": time.perf_counter() - load_t0})
 
     if effective_profile == REAL_PROFILE:
@@ -705,6 +735,16 @@ def main(
             covariance_policy=effective_policy,
             include_fit_params=False,
         )
+        model_path = os.path.join(RESULTS, "model_comparison.csv")
+        model_df = pd.read_csv(model_path)
+        model_df["model"] = model_df["model"].replace({"lcdm": "LCDM", "rll_like_agn": "RLL_like+AGN"})
+        allowed_columns = EXPECTED_SCHEMA_BY_OUTPUT["model_comparison.csv"]
+        missing_columns = [col for col in allowed_columns if col not in model_df.columns]
+        if missing_columns:
+            raise RuntimeError(f"schema mismatch for model_comparison.csv: missing required columns {missing_columns}")
+        model_df = model_df[allowed_columns]
+        model_df.to_csv(model_path, index=False)
+        df_model = model_df
         out_cov = os.path.join(RESULTS, "covariance_usage.csv")
         out_error_mode = os.path.join(RESULTS, "error_mode_usage.csv")
         cov_rows = [
@@ -721,6 +761,7 @@ def main(
         ]
         evaluate_model(cov_rows, out_cov)
         evaluate_model(_build_error_mode_rows(datasets), out_error_mode)
+        _ensure_rll_regime_summary()
         timing_records.append({"block": "fit", "duration_seconds": time.perf_counter() - fit_t0})
 
         write_t0 = time.perf_counter()
@@ -738,8 +779,11 @@ def main(
         )
         timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
         out_timing_csv, out_timing_json = _write_execution_timing(timing_records, basename=EXECUTION_TIMING_BASENAME)
+        validate_t0 = time.perf_counter()
         _assert_required_outputs()
         _validate_required_csv_schemas()
+        timing_records.append({"block": "validate", "duration_seconds": time.perf_counter() - validate_t0})
+        out_timing_csv, out_timing_json = _write_execution_timing(timing_records, basename=EXECUTION_TIMING_BASENAME)
 
         print(df_model.to_string(index=False))
         print(f"[real] wrote: {os.path.join(RESULTS, 'model_comparison.csv')}")
@@ -772,6 +816,7 @@ def main(
         rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00)
         run_reporting_pipeline(params=rll, hz_data=hz_df, fs8_data=fs8_df)
 
+    _ensure_rll_regime_summary()
     produced_optional = []
     if bayes:
         if bayes_mode == "bic_proxy":
@@ -795,7 +840,6 @@ def main(
 
     write_t0 = time.perf_counter()
     timing_records.append({"block": "write", "duration_seconds": time.perf_counter() - write_t0})
-    out_timing_csv, out_timing_json = _write_execution_timing(timing_records, basename=EXECUTION_TIMING_BASENAME)
     out_contract = _write_reproduction_contract(
         effective_profile,
         effective_policy,
@@ -812,13 +856,16 @@ def main(
             "nlive": int(bayes_nlive),
         } if bayes and bayes_mode == "inference" else None,
         execution_timing_outputs=[
-            os.path.basename(out_timing_csv),
-            os.path.basename(out_timing_json),
+            f"{EXECUTION_TIMING_BASENAME}.csv",
+            f"{EXECUTION_TIMING_BASENAME}.json",
         ],
     )
 
+    validate_t0 = time.perf_counter()
     _assert_required_outputs()
     _validate_required_csv_schemas()
+    timing_records.append({"block": "validate", "duration_seconds": time.perf_counter() - validate_t0})
+    out_timing_csv, out_timing_json = _write_execution_timing(timing_records, basename=EXECUTION_TIMING_BASENAME)
 
     print(df_model.to_string(index=False))
     print(f"[classic] wrote: {out_model}")

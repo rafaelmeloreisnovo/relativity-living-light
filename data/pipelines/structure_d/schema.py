@@ -8,33 +8,6 @@ import numpy as np
 DEFAULT_MIN_POINTS_WITH_Z = 3
 
 
-def _json_safe_metadata(metadata):
-    if not isinstance(metadata, dict):
-        raise ValueError("metadata must be a dict")
-    clean = {}
-    for key, value in metadata.items():
-        if isinstance(value, (str, int, float, bool)) or value is None:
-            clean[str(key)] = value
-        else:
-            clean[str(key)] = str(value)
-    return clean
-
-
-def _validate_covariance_matrix(covariance, expected_size):
-    if covariance.shape != (expected_size, expected_size):
-        raise ValueError(
-            f"covariance shape must be ({expected_size}, {expected_size}), got {covariance.shape}"
-        )
-    if not np.allclose(covariance, covariance.T, atol=1e-12, rtol=0.0):
-        raise ValueError("covariance matrix must be symmetric")
-    diag = np.diag(covariance)
-    if np.any(diag <= 0):
-        raise ValueError("covariance diagonal must be strictly positive")
-    evals = np.linalg.eigvalsh(covariance)
-    if np.min(evals) < -1e-12:
-        raise ValueError("covariance matrix must be positive semidefinite")
-
-
 def _as_float_array(values, name):
     arr = np.asarray(values, dtype=float)
     if arr.ndim != 1:
@@ -56,22 +29,28 @@ def _as_float_matrix(values, name):
 
 
 def _validate_covariance_matrix(covariance, expected_size):
-    if covariance.shape != (expected_size, expected_size):
-        raise ValueError(
-            f"covariance shape mismatch: expected {(expected_size, expected_size)}, got {covariance.shape}"
-        )
+    if covariance.shape[0] != expected_size:
+        raise ValueError("covariance dimension must match values length")
+    if not np.allclose(covariance, covariance.T, atol=1e-12, rtol=0.0):
+        raise ValueError("covariance matrix must be symmetric")
     diag = np.diag(covariance)
     if np.any(diag <= 0):
         raise ValueError("covariance diagonal must be strictly positive")
+    evals = np.linalg.eigvalsh(covariance)
+    if np.min(evals) < -1e-12:
+        raise ValueError("covariance matrix must be positive semidefinite")
 
 
 def _json_safe_metadata(metadata):
     if not isinstance(metadata, dict):
         raise ValueError("metadata must be a dict")
-    sanitized = {}
+    cleaned = {}
     for key, value in metadata.items():
-        sanitized[str(key)] = str(value)
-    return sanitized
+        if isinstance(value, (str, int, float, bool)) or value is None:
+            cleaned[str(key)] = value
+        else:
+            cleaned[str(key)] = str(value)
+    return cleaned
 
 
 def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_Z):
@@ -110,9 +89,9 @@ def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_
         _validate_covariance_matrix(covariance, expected_size=len(values))
 
     metadata = _json_safe_metadata(entry["metadata"])
-    for k in ["survey", "redshift_range", "reference"]:
-        if k not in metadata:
-            raise ValueError(f"metadata missing key: {k}")
+    for key in ["survey", "redshift_range", "reference"]:
+        if key not in metadata:
+            raise ValueError(f"metadata missing key: {key}")
 
     dataset_source = entry.get("dataset_source")
 
@@ -126,24 +105,3 @@ def validate_observable_schema(entry, min_points_with_z=DEFAULT_MIN_POINTS_WITH_
         "metadata": metadata,
         "dataset_source": str(dataset_source) if dataset_source is not None else "unknown",
     }
-
-
-def _validate_covariance_matrix(covariance, expected_size):
-    if covariance.shape != (expected_size, expected_size):
-        raise ValueError(
-            f"covariance must have shape ({expected_size}, {expected_size})"
-        )
-    if not np.allclose(covariance, covariance.T, rtol=1e-10, atol=1e-12):
-        raise ValueError("covariance must be symmetric")
-    diag = np.diag(covariance)
-    if np.any(diag <= 0):
-        raise ValueError("covariance diagonal must be strictly positive")
-
-
-def _json_safe_metadata(metadata):
-    if not isinstance(metadata, dict):
-        raise ValueError("metadata must be a dict")
-    cleaned = {}
-    for key, value in metadata.items():
-        cleaned[str(key)] = value if isinstance(value, (str, int, float, bool)) or value is None else str(value)
-    return cleaned
