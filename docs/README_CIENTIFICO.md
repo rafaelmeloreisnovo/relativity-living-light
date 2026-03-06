@@ -85,7 +85,7 @@ Os valores abaixo são obtidos do arquivo `data/posterior_unified_synth.csv` (25
 
 - **H(z):** ajuste preliminar em dados sintéticos até z ≈ 2, com transição visível em z_t ≈ 1.16
 - **Supernovas Ia — Δμ:** resíduos consistentes no cenário sintético, sem tendência sistemática
-- **Crescimento estrutural fσ₈(z):** implementação em andamento (ver `teoria/PERTURBACOES_CRESCIMENTO.md`)
+- **Crescimento estrutural fσ₈(z):** implementação em andamento (ver `docs/PERTURBACOES_CRESCIMENTO.md`)
 - **Lentes gravitacionais SIS:** curva unificada consistente com parâmetros observacionais típicos
 - **Curvas de rotação (NGC 2403):** acoplamento fraco testado preliminarmente
 
@@ -106,28 +106,33 @@ Os valores abaixo são obtidos do arquivo `data/posterior_unified_synth.csv` (25
 
 ```
 relativity-living-light/
-├── README_CIENTIFICO.md          ← Este arquivo
+├── docs/
+│   ├── README_CIENTIFICO.md          ← Este arquivo
+│   ├── RESULTADOS_CORRIGIDOS.md      ← Parâmetros reais do CSV
+│   ├── COMPARACAO_DESI_2025.md       ← Cruzamento com literatura
+│   ├── PAPER_CORRIGIDO.tex           ← Preprint LaTeX (valores corretos)
+│   ├── PERTURBACOES_CRESCIMENTO.md   ← Equação D'', fσ₈(z)
+│   ├── crescimento_estrutural.py     ← Solver D''(a)
+│   ├── fisher_forecast.py            ← Matriz de Fisher DESI/Euclid
+│   ├── panteon_likelihood.py         ← Template para dados reais
+│   └── ROADMAP_VALIDACAO.md          ← Próximos passos priorizados
 ├── data/
 │   ├── posterior_unified_synth.csv   ← MCMC sintético (25.000 amostras)
 │   ├── relativity_living_light_models.csv
 │   └── unified_entropy_margin_10_12.csv
-├── docs/
-│   ├── RESULTADOS_CORRIGIDOS.md      ← Parâmetros reais do CSV
-│   ├── COMPARACAO_DESI_2025.md       ← Cruzamento com literatura
-│   └── PAPER_CORRIGIDO.tex           ← Preprint LaTeX (valores corretos)
-├── teoria/
-│   ├── EXTENSAO_ANISOTROPICA.md      ← f(z,θ,φ) — dipolo Böhme
-│   ├── PERTURBACOES_CRESCIMENTO.md   ← Equação D'', fσ₈(z)
-│   ├── VELOCIDADE_SOM.md             ← cs²(z) e escala de Jeans
-│   ├── LAGRANGIANO_EFT.md            ← EFT da superposição
-│   └── ESTABILIDADE_GHOST_CHECK.md   ← Verificação de instabilidades
-├── codigo/
-│   ├── crescimento_estrutural.py     ← Solver D''(a)
-│   ├── fisher_forecast.py            ← Matriz de Fisher DESI/Euclid
-│   └── panteon_likelihood.py         ← Template para dados reais
 ├── figs/paper/                             ← Figuras geradas
-└── ROADMAP_VALIDACAO.md              ← Próximos passos priorizados
+└── README.md
 ```
+
+> Nota de organização: os módulos teóricos e numéricos estão **co-localizados em `docs/` nesta fase de organização**. A migração para diretórios dedicados (ex.: `teoria/` e `codigo/`) permanece planejada após a consolidação da estrutura documental e dos pipelines reais.
+
+Links relativos desta seção (validados):
+
+- [docs/PERTURBACOES_CRESCIMENTO.md](./PERTURBACOES_CRESCIMENTO.md)
+- [docs/crescimento_estrutural.py](./crescimento_estrutural.py)
+- [docs/fisher_forecast.py](./fisher_forecast.py)
+- [docs/panteon_likelihood.py](./panteon_likelihood.py)
+- [docs/ROADMAP_VALIDACAO.md](./ROADMAP_VALIDACAO.md)
 
 ---
 
