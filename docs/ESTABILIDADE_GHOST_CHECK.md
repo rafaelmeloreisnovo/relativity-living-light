@@ -36,12 +36,12 @@ cs²(z) = ∂p/∂ρ|_s = −f(z) · c² / [f(z) + (1-f(z))(1+z)³]
 ### Comportamento assintótico
 
 ```
-z >> z_t:  f → 1,  cs² → −c² / 1 = −c²   ← ATENÇÃO: negativo
+z >> z_t:  f → 0,  cs² → 0 / (1+z)³ = 0   ← limite matter-like
 z = z_t:   f = 0.5, cs² = −c²/2 / [0.5 + 0.5(1+z_t)³]
-z << z_t:  f → 0,  cs² → 0 / (1+z)³ = 0  ← OK (tipo matéria)
+z << z_t:  f → 1,  cs² → −c² / 1 = −c²   ← ATENÇÃO: negativo no adiabático
 ```
 
-**Problema identificado:** Para z >> z_t, cs² → −c², indicando instabilidade de Jeans em escala de Planck. Isso ocorre porque o componente radiativo f(a)·ρ com pressão negativa é fisicamente análogo a um ghost em pressão.
+**Problema identificado:** No limite z << z_t, a forma adiabática retorna cs² → −c², indicando regime não físico para perturbações e motivando prescrição de cs² de repouso.
 
 ### Solução proposta: velocidade do som prescrita
 
@@ -52,8 +52,8 @@ cs²_sup(z) = f(z)   [adimensional, em unidades de c²]
 ```
 
 Isso garante cs² ∈ [0, 1] por construção, com:
-- cs² → 1 para z >> z_t (comportamento relativístico, OK)
-- cs² → 0 para z << z_t (comportamento pressureless, OK)
+- cs² → 0 para z >> z_t (comportamento matter-like, OK)
+- cs² → 1 para z << z_t (comportamento DE-like no componente de superposição)
 
 A escala de Jeans correspondente é:
 

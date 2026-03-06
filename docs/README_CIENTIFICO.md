@@ -6,6 +6,11 @@
 
 ---
 
+**Fonte canônica (fórmulas):** [`docs/FORMULAS_CANONICAS_INDEX.md`](FORMULAS_CANONICAS_INDEX.md)  
+**Convenção de sinais e limites (f(z), w_t, leitura física):** [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
+
+---
+
 ## Resumo
 
 ## Status dos Dados
@@ -42,14 +47,14 @@ f(z) = 1 / (1 + exp((z − z_t) / w_t))
 
 ### Comportamento assintótico
 
-- **z >> z_t** (primordial): f → 1, componente comporta-se como radiação (w ≈ 1/3)
-- **z ≈ z_t** (transição): dinâmica suave parametrizada por w_t
-- **z << z_t** (hoje): f → 0, componente comporta-se como matéria (w ≈ 0)
+- **z >> z_t** (alto redshift): `f → 0`; a componente de superposição entra no ramo tipo matéria (`w_sup → 0`), com dominância relativa do termo `a⁻³`.
+- **z ≈ z_t** (transição): `f = 0.5`; transição suave controlada por `w_t`.
+- **z << z_t** (baixo redshift): `f → 1`; a componente de superposição entra no ramo DE-like (`w_sup → -1`).
 
 ### Equação de estado efetiva
 
 ```
-w_eff,sup(z) = −f(z)
+w_eff,sup(z) ≡ w_sup(z) = −f(z)
 ```
 
 ---

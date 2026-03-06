@@ -33,10 +33,10 @@ Calculando:
     = Ω_s0 ρ_c0 [df/dt (1 − (1+z)³) − 3H(1+z)³(1-f)]
 ```
 
-Para z >> z_t: cs²_ad → −c² (radiação quente com pressão negativa → instável)  
-Para z << z_t: cs²_ad → 0 (matéria pressureless → estável)
+Para z >> z_t: cs²_ad → 0 (ramo tipo matéria no limite canônico)  
+Para z << z_t: cs²_ad → −c² (ramo DE-like no limite canônico; forma adiabática torna-se não física)
 
-**Problema:** cs²_ad < 0 em alto redshift indica instabilidade de gradiente.
+**Problema:** cs²_ad < 0 no limite baixo-redshift (z << z_t) indica instabilidade de gradiente na forma adiabática.
 
 ---
 
@@ -52,9 +52,9 @@ Esta prescrição garante cs² ∈ [0, c²] por construção:
 
 | Regime | f(z) | cs²/c² | Interpretação |
 |--------|------|--------|--------------|
-| z >> z_t | f → 1 | 1 | Relativístico (pressão de radiação) |
+| z >> z_t | f → 0 | 0 | Matter-like (pressureless) |
 | z ≈ z_t | f ≈ 0.5 | 0.5 | Transição |
-| z << z_t | f → 0 | 0 | Pressureless (tipo matéria) |
+| z << z_t | f → 1 | 1 | DE-like (não-clusterizante) |
 
 Esta prescrição é análoga à usada em modelos de matéria escura quente e em modelos de quintessência de campo escalar canônico.
 

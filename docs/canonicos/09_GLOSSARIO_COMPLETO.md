@@ -115,21 +115,13 @@ Definição oficial do fluido cosmológico combinado:
              = (p_sup + p_r + p_m + p_Λ + p_k + ...)
                /[(ρ_sup + ρ_r + ρ_m + ρ_Λ + ρ_k + ...)c²]
 
-Limites corretos por grandeza:
-  z→∞:   w_sup → 0;    w_total tende ao comportamento de matéria se esse for o ramo dominante
-  z→0:   w_sup → -1;   w_total tende ao comportamento DE-like se esse for o ramo dominante
-```
-Definição oficial da componente de superposição:
-  w_sup(z) = p_sup/(ρ_sup c²) = -f(z)
+Convenção assintótica oficial (com w_t > 0):
+  z >> z_t  -> f -> 0  -> w_sup -> 0    (ramo tipo matéria)
+  z << z_t  -> f -> 1  -> w_sup -> -1   (ramo DE-like)
 
-Definição oficial do fluido cosmológico combinado:
-  w_total(z) = p_total/(ρ_total c²)
-             = (p_sup + p_r + p_m + p_Λ + p_k + ...)
-               /[(ρ_sup + ρ_r + ρ_m + ρ_Λ + ρ_k + ...)c²]
-
-Limites corretos por grandeza:
-  z→∞:   w_sup → -1;   w_total depende da componente dominante total
-  z→0:   w_sup → 0;    w_total depende da mistura cosmológica em z=0
+Leitura física oficial:
+  - alto redshift: superposição subdominante, comportamento tipo matéria;
+  - baixo redshift: superposição dominante, comportamento tipo energia escura.
 ```
 
 > **Nota histórica (legado):**
@@ -144,23 +136,9 @@ Limites corretos por grandeza:
 | **w_total(z)** | Equação de estado efetiva do conteúdo cosmológico combinado | `w_total(z) = p_total/(ρ_total c²)` |
 | **w_legacy(z)** | Forma histórica usada em rascunhos antigos | `w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]` (**não usar**) |
 
-> **Nota histórica (legado):**
-> `w_legacy(z) = -f(z)/[f(z) + (1-f)a⁻³]` foi mantida apenas como registro de versões anteriores.
-> **Não usar para inferência física atual.**
-
-### **Tabela canônica curta (símbolo → significado físico → equação válida)**
-
-| Símbolo | Significado físico | Equação válida (canônica) |
-|---|---|---|
-| **w_sup(z)** | Equação de estado interna da componente de superposição | `w_sup(z) = p_sup/(ρ_sup c²) = -f(z)` |
-| **w_total(z)** | Equação de estado efetiva do conteúdo cosmológico combinado | `w_total(z) = p_total/(ρ_total c²)` |
-| **w_legacy(z)** | Forma histórica usada em rascunhos antigos | `w_legacy(z) = -f(z)/[f(z)+(1-f)a⁻³]` (**não usar**) |
-
-Limites:
-  z→∞ (f→0):   comportamento de matéria (w_eff → 0)
-  z→0 (f→1):   comportamento DE-like (w_eff → -1)
-
-estes limites derivam diretamente da forma de `f(z)` adotada.
+Limites derivados de `f(z)=1/(1+exp((z-z_t)/w_t))` com `w_t>0`:
+  z→∞ (f→0): comportamento tipo matéria (w_sup→0)
+  z→0 (f→1): comportamento DE-like (w_sup→−1)
 
 ---
 
