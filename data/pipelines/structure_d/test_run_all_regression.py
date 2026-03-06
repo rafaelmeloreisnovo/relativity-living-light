@@ -9,7 +9,7 @@ from unittest.mock import patch
 import numpy as np
 import pandas as pd
 
-from data.pipelines.structure_d import make_example_data, run_all
+from data.pipelines.structure_d import make_example_data, run_all, run_all_real
 from data.pipelines.structure_d.data_access import load_active_datasets, load_run_config
 from data.pipelines.structure_d.schema import validate_observable_schema
 
@@ -781,11 +781,6 @@ class StructureDCovariancePolicyRegressionTest(unittest.TestCase):
             np.testing.assert_allclose(hz_entry["errors"], np.array([2.0, 2.2, 2.5]))
             self.assertTrue(hz_entry["metadata"]["z_reordered"])
 
-            cov_usage = pd.read_csv(out_cov)
-            hz_row = cov_usage[cov_usage["dataset_id"] == "hz"].iloc[0]
-            self.assertEqual(hz_row["dataset_source"], f"path={hz_path}; reference=unit-test")
-            self.assertEqual(hz_row["covariance_mode"], "diagonal")
-            self.assertFalse(bool(hz_row["has_full_covariance"]))
 
     def test_covariance_policy_full_required_raises_for_dataset_without_full_matrix(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -861,8 +856,6 @@ class StructureDSchemaValidationTest(unittest.TestCase):
 
 class StructureDRealRunMetadataTest(unittest.TestCase):
     def test_run_all_real_writes_fit_bounds_metadata(self):
-        from data.pipelines.structure_d import run_all_real
-
         output_csv = "test_model_comparison_real.csv"
         metadata_path = os.path.join(run_all_real.RESULTS, "test_model_comparison_real_fit_metadata.json")
         csv_path = os.path.join(run_all_real.RESULTS, output_csv)

@@ -66,7 +66,7 @@ def main(seed=42, generate_covariance=False):
     z_hz = np.array([0.1, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0])
     hz_true = 70.0 * np.sqrt(0.3 * (1 + z_hz) ** 3 + 0.7)
     sig_hz = 3.0 + 2.0 * rng.random(len(z_hz))
-    Hz_obs = Hz_true + rng.normal(0, sig_hz)
+    Hz_obs = hz_true + rng.normal(0, sig_hz)
     hz_df = pd.DataFrame({"z": z_hz, "Hz": Hz_obs, "sigma": sig_hz})
     write_csv_checked(hz_df, os.path.join(DATA, "Hz.csv"))
 

@@ -242,6 +242,8 @@ def main(
     rll_param_order = ["H0", "Om", "OL", "Os0", "zt", "wt", "Ob_h2"]
     seed = int(os.environ.get("STRUCTURE_D_SEED", "42"))
     tol = float(os.environ.get("STRUCTURE_D_TOL", "1e-6"))
+    lcdm_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_LCDM", "200"))
+    rll_maxiter = int(os.environ.get("STRUCTURE_D_MAXITER_RLL", "300"))
     res_l = differential_evolution(
         lambda p: _obj_lcdm(p, z_hz, h_obs, s_h, z_bao, dv_obs, s_dv, r_obs, la_obs, r_sig, la_sig),
         bounds_l,

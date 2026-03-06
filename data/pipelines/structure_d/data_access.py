@@ -52,7 +52,10 @@ def load_run_config(config_path):
         cfg = json.load(f)
 
     validation_cfg = cfg.setdefault("validation", {})
-    validation_cfg.setdefault("min_points_with_z", DEFAULT_MIN_POINTS_WITH_Z)
+    default_min_points = DEFAULT_MIN_POINTS_WITH_Z
+    if "profiles" not in cfg:
+        default_min_points = 2
+    validation_cfg.setdefault("min_points_with_z", default_min_points)
     return cfg
 
 

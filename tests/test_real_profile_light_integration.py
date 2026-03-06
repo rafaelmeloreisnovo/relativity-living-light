@@ -50,6 +50,9 @@ def _write_minimal_real_fixture(base_dir: Path) -> Path:
 
     cfg = {
         "default_profile": "structure_d_real_validation",
+        "validation": {
+            "min_points_with_z": 2,
+        },
         "profiles": {
             "structure_d_real_validation": {
                 "run_name": "real_min_fixture",
