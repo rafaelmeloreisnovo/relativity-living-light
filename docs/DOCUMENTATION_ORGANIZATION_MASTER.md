@@ -120,6 +120,27 @@ Recomendação contínua: manter checksum e data de geração para cadeia de cus
 3. Ao adicionar novo documento da série canônica, atualizar `docs/CANONICAL_SOURCES.md`.
 4. Ao incluir novo `.zip`, atualizar este inventário e `docs/ZIP_CONTENT_INDEX.md`.
 
+### Procedimento operacional do inventário completo (`.md`/`.zip`)
+
+1. Regenerar o inventário publicado com o script autoral:
+
+   ```bash
+   python3 tools/docs_inventory.py
+   ```
+
+2. Validar consistência entre contagem publicada e contagem real:
+
+   ```bash
+   python3 tools/docs_inventory.py --check
+   ```
+
+3. Confirmar no cabeçalho de `docs/DOCUMENTATION_FULL_INVENTORY.md`:
+   - data/hora de geração;
+   - commit de referência;
+   - total de arquivos catalogados.
+
+4. Em caso de divergência, publicar novamente o inventário antes de merge/release.
+
 ---
 
 ## 7) Artefatos de varredura integral
@@ -161,4 +182,3 @@ Extração realizada em pasta temporária para inspeção estática e migração
 
 `to_Add/` fica definido como **histórico de ingestão**. Não é diretório operacional do pipeline científico.
 Todo conteúdo com papel ativo deve ser promovido explicitamente para `docs/`, `data/` ou `results/`.
-
