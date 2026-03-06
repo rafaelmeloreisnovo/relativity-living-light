@@ -17,6 +17,26 @@ Este arquivo é a **navegação canônica** da documentação do repositório.
 Encaminhamentos complementares:
 - Porta de entrada: [`README.md`](../README.md)
 - Inventário bruto (`.md` e `.zip`): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
+- Procedimento de atualização: `python3 tools/docs_inventory.py` e validação `python3 tools/docs_inventory.py --check`.
+
+---
+
+
+## Procedimento de atualização do inventário documental
+
+1. Regenerar inventário completo publicado:
+
+   ```bash
+   python3 tools/docs_inventory.py
+   ```
+
+2. Validar contagem publicada vs. varredura real:
+
+   ```bash
+   python3 tools/docs_inventory.py --check
+   ```
+
+3. Confirmar no cabeçalho do inventário: data/hora, commit de referência e total.
 
 ---
 
