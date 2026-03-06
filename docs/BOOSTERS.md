@@ -35,12 +35,12 @@ Onde:
 #### Interpretação Física
 
 1. **Em alto redshift (z >> z_t)**: 
-   - f(z) → 1 (coerência fotônica alta)
-   - Comportamento tipo energia escura (expansivo)
+   - f(z) → 0 (coerência fotônica efetiva baixa)
+   - Comportamento tipo matéria (atrativo)
 
 2. **Em baixo redshift (z << z_t)**:
-   - f(z) → 0 (colapso da coerência)
-   - Comportamento tipo matéria (atrativo)
+   - f(z) → 1 (coerência fotônica efetiva alta)
+   - Comportamento tipo energia escura (expansivo)
 
 #### Parâmetros Testáveis
 
@@ -58,7 +58,7 @@ Para o componente de superposição, a equação de estado efetiva é:
 w_eff,sup(z) = p_sup / (ρ_sup · c²) = -f(z)
 ```
 
-Esta é a equação de estado do componente puro de superposição. Quando f(z) → 1 (alto z), temos w → -1 (energia escura). Quando f(z) → 0 (baixo z), o comportamento é dominado pelo termo a⁻³ (matéria).
+Esta é a equação de estado do componente puro de superposição. Quando f(z) → 0 (alto z), temos w → 0 (tipo matéria). Quando f(z) → 1 (baixo z), temos w → -1 (tipo energia escura).
 
 **Nota técnica**: A fórmula original w_eff = -f/(f + (1-f)a⁻³) representa uma tentativa de normalização mas é fisicamente inconsistente. A equação correta para o componente de superposição é simplesmente w_eff,sup = -f(z), pois este componente tem densidade ρ_sup = Ω_s0 ρ_c0 [f(a) + (1-f)a⁻³] e pressão p_sup = -f(a) · Ω_s0 ρ_c0 · c².
 
@@ -456,12 +456,12 @@ Where:
 #### Physical Interpretation
 
 1. **At high redshift (z >> z_t)**: 
-   - f(z) → 1 (high photonic coherence)
-   - Dark energy-like behavior (expansive)
+   - f(z) → 0 (low effective photonic coherence)
+   - Matter-like behavior (attractive)
 
 2. **At low redshift (z << z_t)**:
-   - f(z) → 0 (coherence collapse)
-   - Matter-like behavior (attractive)
+   - f(z) → 1 (high effective photonic coherence)
+   - Dark-energy-like behavior (expansive)
 
 #### Testable Parameters
 
@@ -479,7 +479,7 @@ For the superposition component, the effective equation of state is:
 w_eff,sup(z) = p_sup / (ρ_sup · c²) = -f(z)
 ```
 
-This is the equation of state of the pure superposition component. When f(z) → 1 (high z), we have w → -1 (dark energy). When f(z) → 0 (low z), the behavior is dominated by the a⁻³ term (matter).
+This is the equation of state of the pure superposition component. When f(z) → 0 (high z), we have w → 0 (matter-like). When f(z) → 1 (low z), we have w → -1 (dark-energy-like).
 
 **Technical note**: The original formula w_eff = -f/(f + (1-f)a⁻³) represents a normalization attempt but is physically inconsistent. The correct equation for the superposition component is simply w_eff,sup = -f(z), since this component has density ρ_sup = Ω_s0 ρ_c0 [f(a) + (1-f)a⁻³] and pressure p_sup = -f(a) · Ω_s0 ρ_c0 · c².
 

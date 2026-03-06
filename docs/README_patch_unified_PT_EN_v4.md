@@ -17,12 +17,12 @@ com f(z) = 1 / (1 + exp((z - z_t)/w_t)).
 Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md).
 
 - **Fórmula oficial / Official formula:** `f(z) = 1/(1 + exp((z - z_t)/w_t))`.
-- **Hipótese oficial de sinal/intervalo de `w_t` / Official sign-range hypothesis for `w_t`:** adota-se `w_t < 0`, com `|w_t| ∈ [0.1, 1.0]`.
-- **Exemplos numéricos / Numerical examples** (referência/reference: `z_t = 1.0`, `w_t = -0.3`):
-  - `z = 0` → `f(0) ≈ 0.034`.
+- **Hipótese oficial de sinal/intervalo de `w_t` / Official sign-range hypothesis for `w_t`:** adota-se `w_t > 0`, com `w_t ∈ [0.1, 1.0]`.
+- **Exemplos numéricos / Numerical examples** (referência/reference: `z_t = 1.0`, `w_t = 0.3`):
+  - `z = 0` → `f(0) ≈ 0.966`.
   - `z = z_t` → `f(z_t) = 0.5`.
-  - `z >> z_t` (ex.: `z = 5`) → `f(5) ≈ 0.999998`.
-- **Interpretação física coerente / Coherent physical interpretation:** nesta convenção `f` cresce com `z`; portanto, o setor de superposição domina em alto redshift (`f→1`) e perde peso em baixo redshift (`f→0`), com transição suave em torno de `z_t`.
+  - `z >> z_t` (ex.: `z = 5`) → `f(5) ≈ 0.000002`.
+- **Interpretação física coerente / Coherent physical interpretation:** nesta convenção `f` decresce com `z`; portanto, o setor de superposição é subdominante em alto redshift (`f→0`) e domina em baixo redshift (`f→1`), com transição suave em torno de `z_t`.
 
 Opcionalmente: **correção magneto-coerente**
 Ω_s0 → Ω_s0 {1 + α_B (Ω_B0 a⁻⁴)^β}.

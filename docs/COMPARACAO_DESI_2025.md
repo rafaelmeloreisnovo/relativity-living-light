@@ -42,8 +42,8 @@ RLL:   w_eff(z) = −f(z) ∈ [−1, 0], transição em z_t ≈ 1.16
 O modelo RLL, via função f(z), produz exatamente esse comportamento para a componente de superposição:
 
 ```
-RLL (z >> z_t): ρ_sup ∝ a^{−4}  →  comportamento relativístico (quente), w ≈ 1/3
-RLL (z << z_t): ρ_sup ∝ a^{−3}  →  comportamento pressureless (frio), w ≈ 0
+RLL (z >> z_t): f→0 e w_sup→0  →  ramo tipo matéria (subdominante para superposição)
+RLL (z << z_t): f→1 e w_sup→−1 →  ramo DE-like (dominante para superposição)
 ```
 
 ### Distinção de contribuição

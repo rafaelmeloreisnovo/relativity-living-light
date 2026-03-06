@@ -121,12 +121,12 @@ f(z) = 1/(1+exp((z-z_t)/w_t))
 Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](09_GLOSSARIO_COMPLETO.md).
 
 - **Fórmula oficial:** `f(z) = 1/(1 + exp((z - z_t)/w_t))`.
-- **Hipótese oficial de sinal/intervalo de `w_t`:** adota-se `w_t < 0`, com `|w_t| ∈ [0.1, 1.0]`.
-- **Exemplos numéricos** (referência: `z_t = 1.0`, `w_t = -0.3`):
-  - `z = 0` → `f(0) ≈ 0.034`.
+- **Hipótese oficial de sinal/intervalo de `w_t`:** adota-se `w_t > 0`, com `w_t ∈ [0.1, 1.0]`.
+- **Exemplos numéricos** (referência: `z_t = 1.0`, `w_t = 0.3`):
+  - `z = 0` → `f(0) ≈ 0.966`.
   - `z = z_t` → `f(z_t) = 0.5`.
-  - `z >> z_t` (ex.: `z = 5`) → `f(5) ≈ 0.999998`.
-- **Interpretação física coerente:** nesta convenção, `f` cresce com `z`; assim, o setor de superposição é dominante em alto redshift (`f→1`) e subdominante em baixo redshift (`f→0`), com transição suave em torno de `z_t`.
+  - `z >> z_t` (ex.: `z = 5`) → `f(5) ≈ 0.000002`.
+- **Interpretação física coerente:** nesta convenção, `f` decresce com `z`; assim, o setor de superposição é subdominante em alto redshift (`f→0`) e dominante em baixo redshift (`f→1`), com transição suave em torno de `z_t`.
 
 Não é uma lei de conservação rigorosa, mas uma **equação fenomenológica** bem parametrizada.
 
