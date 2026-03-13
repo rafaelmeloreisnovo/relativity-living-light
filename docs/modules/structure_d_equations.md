@@ -65,7 +65,8 @@ com \(\gamma\approx0.545\) em GR padrão e construção de \(f\sigma_8(z)\) para
 \]
 \[
 AIC = \chi^2 + 2k
-\quad\quad
+\]
+\[
 BIC = \chi^2 + k\ln N
 \]
 
