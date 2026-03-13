@@ -183,6 +183,15 @@ def is_physically_stable(theta, data=None):
         ("z_peak", lambda v: np.isfinite(v) and v >= 0.0),
         ("width", lambda v: np.isfinite(v) and v > 0.0),
         ("beta", lambda v: np.isfinite(v) and -2.0 <= v <= 2.0),
+        ("A_astro", lambda v: np.isfinite(v) and -2.0 <= v <= 2.0),
+        ("n_astro", lambda v: np.isfinite(v) and -10.0 <= v <= 10.0),
+        ("z_c_astro", lambda v: np.isfinite(v) and v > 0.0),
+        ("Omega_e", lambda v: np.isfinite(v) and -2.0 <= v <= 2.0),
+        ("m_ede", lambda v: np.isfinite(v) and -10.0 <= v <= 10.0),
+        ("beta_topo", lambda v: np.isfinite(v) and -2.0 <= v <= 2.0),
+        ("Omega_nu", lambda v: np.isfinite(v) and 0.0 <= v <= 1.0),
+        ("Omega_q0", lambda v: np.isfinite(v) and -2.0 <= v <= 2.0),
+        ("q_power", lambda v: np.isfinite(v) and -10.0 <= v <= 10.0),
     )
 
     for name, predicate in base_constraints:
