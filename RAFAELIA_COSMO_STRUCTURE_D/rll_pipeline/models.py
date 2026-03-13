@@ -7,12 +7,14 @@ from data.pipelines.structure_d.models import (
     model_LCDM_Hz,
     model_RLL_like_fs8,
     model_RLL_like_Hz,
+    model_RLL_LCDMpp_Hz,
     stability_flags_toy_eft,
 )
 
 __all__ = [
     "model_LCDM_Hz",
     "model_RLL_like_Hz",
+    "model_RLL_LCDMpp_Hz",
     "model_LCDM_fs8",
     "model_RLL_like_fs8",
     "cs2_toy_eft",
