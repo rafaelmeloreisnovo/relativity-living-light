@@ -76,6 +76,24 @@ def model_RLL_like_Hz(z, params):
         z_peak=params.get("z_peak", 2.0),
         width=params.get("width", 1.0),
     )
+    Omega_astro = lambda zz: omega_astro(
+        zz,
+        A=params.get("A_astro", 0.0),
+        n=params.get("n_astro", 0.0),
+        z_c=params.get("z_c_astro", 1.0),
+    )
+    Omega_fund = lambda zz: omega_fundamental(
+        zz,
+        Omega_e=params.get("Omega_e", 0.0),
+        m=params.get("m_ede", 0.0),
+        beta_topo=params.get("beta_topo", 0.0),
+    )
+    Omega_nu = lambda zz: omega_neutrino(zz, Omega_nu=params.get("Omega_nu", 0.0))
+    Omega_q = lambda zz: omega_quantum(
+        zz,
+        Omega_q0=params.get("Omega_q0", 0.0),
+        q_power=params.get("q_power", 0.0),
+    )
     return H_of_z(
         z,
         H0=params["H0"],
@@ -83,6 +101,10 @@ def model_RLL_like_Hz(z, params):
         Or=params.get("Or", 0.0),
         Ol=params["Ol"],
         Omega_f=Omega_f,
+        Omega_astro=Omega_astro,
+        Omega_fund=Omega_fund,
+        Omega_nu=Omega_nu,
+        Omega_q=Omega_q,
     )
 
 
