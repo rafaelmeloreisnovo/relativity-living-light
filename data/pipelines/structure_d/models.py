@@ -1,6 +1,13 @@
 import numpy as np
 
-from .cosmo import H_of_z, omega_astro, omega_fundamental, omega_neutrino, omega_quantum
+from .cosmo import (
+    H_of_z,
+    H_of_z_extended,
+    omega_astro,
+    omega_brane_quadratic,
+    omega_ede,
+    omega_topological,
+)
 from .feedback_agn import Omega_f_from_feedback
 from .growth import f_sigma8_proxy
 
@@ -23,6 +30,33 @@ def _param_float(params, key, default):
     except (TypeError, ValueError):
         return float("nan")
 
+
+
+
+def _omega_q_constant(_z, params):
+    return np.full_like(np.asarray(_z, dtype=float), float(params.get("Omega_q0", 0.0)), dtype=float)
+
+
+def _omega_astro_term(zz, params):
+    return omega_astro(
+        zz,
+        A=params.get("A_astro", 0.0),
+        n=params.get("n_astro", 0.0),
+        z_c=params.get("z_c_astro", 1.0),
+    )
+
+
+def _omega_fund_term(zz, params):
+    ede = omega_ede(zz, Omega_e=params.get("Omega_e", 0.0), m=params.get("m_ede", 0.0))
+    topo = omega_topological(zz, beta=params.get("beta_topo", 0.0))
+    brane = omega_brane_quadratic(
+        zz,
+        lambda_brane=params.get("lambda_brane", np.inf),
+        Om=params["Om"],
+        Or=params.get("Or", 0.0),
+        Ol=params["Ol"],
+    )
+    return ede + topo + brane
 
 def model_LCDM_Hz(z, params):
     return H_of_z(
@@ -71,6 +105,21 @@ def model_RLL_like_Hz(z, params):
         Omega_fund=Omega_fund,
         Omega_nu=Omega_nu,
         Omega_q=Omega_q,
+    )
+
+
+def model_RLL_LCDMpp_Hz(z, params):
+    """Extensão ΛCDM++: separa Ω_astro e Ω_fund com neutrinos e Ω_q."""
+    return H_of_z_extended(
+        z,
+        H0=params["H0"],
+        Om=params["Om"],
+        Or=params.get("Or", 0.0),
+        Ol=params["Ol"],
+        Onu=params.get("Onu", 0.0),
+        Omega_q=lambda zz: _omega_q_constant(zz, params),
+        Omega_astro=lambda zz: _omega_astro_term(zz, params),
+        Omega_fund=lambda zz: _omega_fund_term(zz, params),
     )
 
 
