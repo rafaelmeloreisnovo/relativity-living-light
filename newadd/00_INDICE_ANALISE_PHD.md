@@ -108,6 +108,20 @@ Conteúdo principal:
 
 ---
 
+
+### [08] Validação inicial — Coerência × Amor × Prova
+**Arquivo:** `08_VALIDACAO_INICIAL_COERENCIA_AMOR_PROVA.md`
+
+Conteúdo principal:
+- Mapa de convergências atuais entre GR, QFT e cosmologia observacional
+- Classificação de convergência por blocos (expansão, setor escuro, plasma/magnetismo, estrutura)
+- Gaps em aberto para unificação (gravidade quântica, constante cosmológica, DM)
+- Síntese com vetores ψχρΔΣΩ e bloco de retroalimentação (F_ok, F_gap, F_next)
+
+**Relevância:** Alta — oferece validação inicial orientada a dados e fronteira teórica para posicionar o RLL frente ao estado da arte
+
+---
+
 ## Principais Descobertas da Análise
 
 ### Convergência Estrutural com DESI DR2
