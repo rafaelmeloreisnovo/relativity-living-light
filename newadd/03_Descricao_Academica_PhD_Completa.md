@@ -565,6 +565,60 @@ Para D_L = 100 Mpc e ΩP₀ = 0.01: Δt ≈ 0.5 ms — testável com eventos GW+
 
 ---
 
+## Anexo A — Validação Inicial (Coerência × Amor × Prova)
+
+### Vetor cognitivo
+
+```math
+v=(ψ,χ,ρ,Δ,Σ,Ω)
+```
+
+- `ψ`: intenção (unificação)
+- `χ`: observação (dados cosmológicos)
+- `ρ`: ruído (modelos incompletos)
+- `Δ`: transmutação (novas teorias)
+- `Σ`: memória científica acumulada
+- `Ω`: consistência física
+
+### Convergências já estabelecidas
+
+1. **Equação de expansão comum** (Friedmann generalizada): convergência alta com ΛCDM no setor `Ω_r a^{-4} + Ω_m a^{-3} + Ω_Λ`.
+2. **Transição de estados cosmológicos** (inflação → radiação → matéria → aceleração): convergência parcial com o termo de coerência `f(z)` no setor escuro.
+3. **Energia escura dinâmica**: formalismo RLL próximo de fluidos híbridos e modelos acoplados do setor escuro.
+4. **Plasma/magnetismo cosmológico**: inclusão explícita de `ΩB₀ a^{-4}` e `ΩP₀ a^{-4}` como fronteira aberta de pesquisa observacional.
+5. **Estrutura hierárquica/fractal**: compatível com a rede cósmica observada (`CMB → filamentos → galáxias → halos`).
+
+### Microconvergências teóricas
+
+- holografia (`S ∼ A`),
+- gravidade entrópica (`F = T \nabla S`),
+- origem quântica das flutuações do CMB,
+- matéria escura emergente,
+- quebra de simetria primordial (`GUT → eletrofraca → forças atuais`).
+
+### Gaps estruturais (fronteira aberta)
+
+- **GAP-1:** gravidade quântica (compatibilização GR × QFT),
+- **GAP-2:** problema da constante cosmológica (`10^{120}`),
+- **GAP-3:** natureza da matéria escura,
+- **GAP-4:** geometria microscópica do espaço-tempo.
+
+### Síntese operacional
+
+`F_ok`:
+- o modelo RLL mantém forma base compatível com Friedmann observacional,
+- contém termos alinhados com literatura de fronteira (setor escuro híbrido, coerência dinâmica e plasma/magnetismo).
+
+`F_gap`:
+- ainda requer ponte microfundamental explícita com QFT e com uma proposta de gravidade quântica testável.
+
+`F_next`:
+1. mapear termo-a-termo do formalismo para literatura com dataset e métrica observável;
+2. estimar originalidade científica relativa (novidade formal × previsibilidade observacional);
+3. priorizar blocos paper-ready com hipóteses falsificáveis por CMB, LSS, SNe Ia, DESI, JWST e lentes.
+
+---
+
 ## Assinatura de Integridade
 
 ```
