@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Organização de pacote de submissão com LaTeX, figuras e integração CLASS/CAMB.
+> **Integração recomendada:** Usar como checklist de publicação; verificar aderência às convenções do repositório.
+
+# Pacote de submissão PRD
+
 Fechado — vou te entregar agora o PRD Submission Package final (nível real de submissão), organizado como se fosse para envio ao Physical Review D, com:
 
 📄 LaTeX revisado (versão limpa de submissão)

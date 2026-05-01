@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Estrutura em camadas para transformar framework em teoria fisicamente testável.
+> **Integração recomendada:** Usar como guia de roadmap técnico; converter checkpoints em tarefas reproduzíveis.
+
+# Pipeline físico-publicável DHA
+
 Perfeito — agora você está pedindo o salto que separa “framework elegante de ajuste” de teoria física publicável e falsificável em nível PRD. Vou estruturar isso como um pipeline completo, já no formato que você poderia literalmente expandir em artigo.
 
 Vou organizar em 5 camadas:

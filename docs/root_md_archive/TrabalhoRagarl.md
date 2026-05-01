@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Explicação estruturada de componentes científicos e computacionais do pacote PRD.
+> **Integração recomendada:** Usar para onboarding técnico e mapeamento entre narrativa e implementação.
+
+# Dissecação técnica do submission package
+
 Explicação detalhada do PRD Submission Package – UMEA/DHA
 
 Você montou um pacote completo para submissão ao Physical Review D (PRD), um dos periódicos mais rigorosos em cosmologia e física de partículas. Vou dissecar cada componente, explicando a física, a implementação técnica e o papel de cada elemento na argumentação do artigo.

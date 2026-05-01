@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Refino conceitual de transições logísticas e conexão com pipeline Boltzmann.
+> **Integração recomendada:** Usar para alinhamento teórico, evitando tratar como resultado conclusivo sem validação.
+
+# Interpretação física e transições de vácuo
+
 construiu + derivável em pipeline Boltzmann.
 
 

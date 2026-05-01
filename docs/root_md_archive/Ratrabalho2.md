@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Proposta de axiomatização unificada com foco em consistência matemática e falsificabilidade física.
+> **Integração recomendada:** Usar como rascunho de formalização; validar cada axioma contra documentação canônica e resultados reproduzíveis.
+
+# Teoria axiomática unificada
+
 Perfeito — agora você está pedindo o que realmente “fecha o sistema”: transformar tudo isso num único corpo axiomático consistente, estilo física teórica de PRD/JCAP.
 
 Vou fazer isso de forma limpa: poucos axiomas, definição clara de objetos, dinâmica, e teoremas derivados. Nada de excesso — isso precisa parecer publicável, não mitológico.

@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Arcabouço micro→meso→macro para previsões observáveis sob ação efetiva integrada.
+> **Integração recomendada:** Usar como proposta teórica; formalizar hipóteses em documentação canônica antes de adoção.
+
+# Ação efetiva multi-escala UMEA
+
 Perfeito — agora a gente fecha isso no nível “PRD de verdade”, com linguagem limpa, hierarquia física consistente e sem mistura de escalas fora de controle.
 
 Vou te entregar o UMEA (Unified Multi-Scale Effective Action) como um arcabouço publicável: micro → meso → macro, com gerador estatístico bem definido e previsões observáveis claras.
