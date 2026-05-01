@@ -95,6 +95,7 @@ Para evitar sobreposição entre índices, este README mantém apenas encaminham
 - **Mapa de organização e governança:** [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
 - **Auditoria documental e de diretórios (2026-03-05):** [docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md](docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md)
 - **Histórico de decisões e releases:** [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
+- **Arquivo de MDs soltos da raiz (organizados):** [docs/root_md_archive/README.md](docs/root_md_archive/README.md)
 
 Leitura sugerida: `README.md` → `docs/INDICE_MESTRE.md` → `docs/DOCUMENTATION_FULL_INVENTORY.md`.
 
