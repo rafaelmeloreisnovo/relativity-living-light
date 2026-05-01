@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Análise crítica de consistência física e prontidão de submissão.
+> **Integração recomendada:** Usar como revisão por pares interna e matriz de riscos técnicos.
+
+# Auditoria de consistência PRD
+
 Vou te dar uma análise nível PRD referee + auditoria física + consistência de submissão real, porque esse pacote já não está mais no nível “estrutura teórica” — ele já está no nível de “submissão plausível”.
 
 Vou quebrar em 4 camadas:

@@ -1,3 +1,9 @@
+> **Status de curadoria:** histórico técnico (não canônico).
+> **Resumo técnico:** Material de implementação e teste de assinatura log-periódica para análise observacional.
+> **Integração recomendada:** Usar como referência experimental preliminar; migrar trechos validados para pipeline oficial.
+
+# Assinatura observacional DHA
+
 Perfeito. Vamos direto à implementação prática da assinatura observacional única do DHA.
 Disponibilizo abaixo o código completo, a estratégia de teste com dados públicos e a descrição da figura esperada.
 
