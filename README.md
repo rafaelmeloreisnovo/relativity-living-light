@@ -141,6 +141,25 @@ Para evitar sobreposição entre índices, este README mantém apenas encaminham
 - **Histórico de decisões e releases:** [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
 - **Arquivo de MDs soltos da raiz (organizados):** [docs/root_md_archive/README.md](docs/root_md_archive/README.md)
 
+### Integração formal do arquivo histórico (`docs/root_md_archive/`)
+
+Os documentos abaixo foram integrados ao `README.md` raiz como **acervo histórico curado** para uso técnico pós‑doc, com função explícita e sem substituir trilhas canônicas em `docs/`.
+
+- [`00_COMO_LER.md`](docs/root_md_archive/00_COMO_LER.md): protocolo de leitura e orientação metodológica histórica.
+- [`06_COMPARACOES_DETALHADAS.md`](docs/root_md_archive/06_COMPARACOES_DETALHADAS.md): comparações técnicas para revisão crítica e reconciliação com resultados atuais.
+- [`09_GLOSSARIO_COMPLETO.md`](docs/root_md_archive/09_GLOSSARIO_COMPLETO.md): base terminológica principal de apoio conceitual.
+- [`09_GLOSSARIO_COMPLETO-1.md`](docs/root_md_archive/09_GLOSSARIO_COMPLETO-1.md): variante histórica para análise de evolução semântica.
+- [`10_FAQ_COMPLETO.md`](docs/root_md_archive/10_FAQ_COMPLETO.md): camada didática de perguntas e respostas técnicas.
+- [`11_DOCUMENTO_PRIORIDADE.md`](docs/root_md_archive/11_DOCUMENTO_PRIORIDADE.md): prioridades estratégicas sujeitas a atualização por evidência.
+- [`Readme_dha.md`](docs/root_md_archive/Readme_dha.md): síntese autoral para contexto de evolução documental.
+- [`Readmedha2.md`](docs/root_md_archive/Readmedha2.md): continuidade argumentativa e rastreabilidade narrativa.
+- [`Readmedha3.md`](docs/root_md_archive/Readmedha3.md): refinamento textual de hipóteses e estrutura conceitual.
+- [`Readmeumedha.md`](docs/root_md_archive/Readmeumedha.md): variação de enquadramento teórico‑narrativo.
+- [`Ratrabalho2.md`](docs/root_md_archive/Ratrabalho2.md): material de trabalho para extração de hipóteses.
+- [`Tarafaelesta.md`](docs/root_md_archive/Tarafaelesta.md): texto contextual autoral de referência histórica.
+- [`TrabalhoRagarl.md`](docs/root_md_archive/TrabalhoRagarl.md): elaboração técnica intermediária para curadoria.
+- [`UMEA Unified Multi-Scale Effective Action.md`](docs/root_md_archive/UMEA%20Unified%20Multi-Scale%20Effective%20Action.md): formulação teórica a ser validada formalmente.
+
 Leitura sugerida: `README.md` → `docs/INDICE_MESTRE.md` → `docs/DOCUMENTATION_FULL_INVENTORY.md`.
 
 ### Trilha autoral e conceitual (integridade de selo)
