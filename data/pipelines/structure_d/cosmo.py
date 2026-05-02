@@ -163,18 +163,8 @@ def H_of_z_lcdm_pp(
 
 def Omega_m_z(z, Om=0.3, Or=0.0, Ol=0.7):
     z = np.asarray(z, dtype=float)
-    Ez2 = E2_total(
-        z,
-        Om=Om,
-        Or=Or,
-        Ol=Ol,
-        Omega_f=Omega_f,
-        Omega_astro=Omega_astro,
-        Omega_fund=Omega_fund,
-        Omega_nu=Omega_nu,
-        Omega_q=Omega_q,
-    )
-    return (Om*(1+z)**3) / Ez2
+    Ez2 = E2_total(z, Om=Om, Or=Or, Ol=Ol)
+    return (Om * (1.0 + z) ** 3) / Ez2
 
 
 def omega_astro(z, A=0.0, n=0.0, z_c=1.0):
