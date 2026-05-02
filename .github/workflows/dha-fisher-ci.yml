@@ -23,7 +23,7 @@ jobs:
           pip install -e .
 
       - name: Run DHA Fisher and ln(1+z) extractor tests
-        run: pytest -q tests/test_dha_fisher.py tests/test_ln1pz_extractor.py
+        run: pytest -q tests/test_dha_fisher.py tests/test_ln1pz_extractor.py tests/test_desi_dha_extractor.py
 
       - name: Build mock catalog for ln(1+z) extraction
         run: |
@@ -39,6 +39,10 @@ jobs:
 
       - name: Run ln(1+z) extractor
         run: python scripts/run_ln1pz_extractor.py --input results/dha/mock_catalog.csv --output results/dha/ln1pz_fit.csv --summary results/dha/ln1pz_fit_summary.json
+
+
+      - name: Run DESI/BOSS DHA extractor pipeline
+        run: python scripts/run_desi_dha_pipeline.py --output results/dha/desi_dha_pipeline_summary.json
 
       - name: Generate deterministic DHA forecast artifact
         run: python scripts/export_dha_forecast.py
@@ -56,3 +60,9 @@ jobs:
           path: |
             results/dha/ln1pz_fit.csv
             results/dha/ln1pz_fit_summary.json
+
+      - name: Upload DESI DHA extractor artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: desi-dha-extractor
+          path: results/dha/desi_dha_pipeline_summary.json
