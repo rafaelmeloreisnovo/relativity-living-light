@@ -1,0 +1,35 @@
+name: DHA Fisher Validation
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  dha-fisher:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Run DHA Fisher unit tests
+        run: pytest -q tests/test_dha_fisher.py
+
+      - name: Generate deterministic DHA forecast artifact
+        run: python scripts/export_dha_forecast.py
+
+      - name: Upload DHA forecast artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dha-fisher-forecast
+          path: results/dha/fisher_forecast_reference.json
