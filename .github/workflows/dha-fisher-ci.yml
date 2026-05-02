@@ -22,8 +22,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .
 
-      - name: Run DHA Fisher unit tests
-        run: pytest -q tests/test_dha_fisher.py
+      - name: Run DHA Fisher and ln(1+z) extractor tests
+        run: pytest -q tests/test_dha_fisher.py tests/test_ln1pz_extractor.py
+
+      - name: Build mock catalog for ln(1+z) extraction
+        run: |
+          python - <<'PY2'
+          import numpy as np, pandas as pd
+          z = np.linspace(0.1, 6.0, 500)
+          ln1pz = np.log1p(z)
+          pk_baseline = 1000.0 * np.exp(-z/3.0)
+          residual = 0.02 * np.cos(0.91 * ln1pz + 0.4)
+          pk_obs = pk_baseline * (1.0 + residual)
+          pd.DataFrame({'z': z, 'pk_obs': pk_obs, 'pk_baseline': pk_baseline}).to_csv('results/dha/mock_catalog.csv', index=False)
+          PY2
+
+      - name: Run ln(1+z) extractor
+        run: python scripts/run_ln1pz_extractor.py --input results/dha/mock_catalog.csv --output results/dha/ln1pz_fit.csv --summary results/dha/ln1pz_fit_summary.json
 
       - name: Generate deterministic DHA forecast artifact
         run: python scripts/export_dha_forecast.py
@@ -33,3 +48,11 @@ jobs:
         with:
           name: dha-fisher-forecast
           path: results/dha/fisher_forecast_reference.json
+
+      - name: Upload ln(1+z) extractor artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ln1pz-extractor
+          path: |
+            results/dha/ln1pz_fit.csv
+            results/dha/ln1pz_fit_summary.json
