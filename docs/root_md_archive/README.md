@@ -55,3 +55,29 @@ A integração institucional desta pasta deve ocorrer por:
 - Maior legibilidade para avaliação pós‑doc.
 - Redução de ambiguidade entre conteúdo canônico e histórico.
 - Base documental tecnicamente auditável para integração interdisciplinar (física, matemática, linguagem e sistemas complexos).
+
+## Camada de integração conceitual (álgebra + geometria + topologia + linguagem)
+
+Para atender ao programa interdisciplinar descrito pelo autor (toro \\(\mathbb{T}^7\\), dinâmica informacional, espectro/frequência e tradução multilíngue), este acervo deve ser lido por camadas:
+
+1. **Camada formal**: estruturas matemáticas (mapeamentos, operadores, recorrências, entropia, métricas).
+2. **Camada física**: hipóteses dinâmicas (acoplamentos, transições, observáveis espectrais e correlações).
+3. **Camada computacional**: algoritmos de hash/CRC/árvore de Merkle, simulação e validação reproduzível.
+4. **Camada linguística-cognitiva**: variações de significado entre idiomas (entonação, acentuação, cadência) como transformação de sinal semântico.
+
+### Princípio operacional de leitura
+
+- **Sem abstração excessiva**: converter cada afirmação em objeto verificável (equação, dado, experimento ou script).
+- **Baixo overhead**: preferir passos curtos e mensuráveis de integração documental.
+- **Rastreabilidade**: toda promoção de conteúdo histórico deve indicar origem, revisão e versão canônica de destino.
+
+### O que "carrega o conhecimento" neste contexto
+
+O conhecimento útil é carregado pela combinação de:
+
+- **forma matemática** (estrutura do modelo),
+- **evidência observacional** (dados e testes),
+- **implementação computacional** (reprodutibilidade),
+- **estabilidade semântica** (termos consistentes entre idiomas e domínios).
+
+Sem a convergência dos quatro vetores acima, conteúdo permanece hipótese narrativa; com convergência, torna-se conhecimento técnico integrável.
