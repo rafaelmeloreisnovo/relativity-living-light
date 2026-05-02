@@ -6,6 +6,9 @@ from .cosmo import (
     omega_astro,
     omega_brane_quadratic,
     omega_ede,
+    omega_fundamental,
+    omega_neutrino,
+    omega_quantum,
     omega_topological,
 )
 from .feedback_agn import Omega_f_from_feedback
