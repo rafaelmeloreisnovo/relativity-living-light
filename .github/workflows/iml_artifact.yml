@@ -1,0 +1,46 @@
+name: IML Artifact Generator
+
+on:
+  workflow_dispatch:
+    inputs:
+      daise_input_path:
+        description: "Path do JSON de entrada (DAISE)"
+        required: false
+        default: "data/iml/daise_input.json"
+      steps:
+        description: "Iterações da dinâmica"
+        required: false
+        default: "42"
+
+jobs:
+  build-iml-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ensure input exists
+        run: |
+          mkdir -p data/iml
+          if [ ! -f "${{ github.event.inputs.daise_input_path }}" ]; then
+            cp data/iml/daise_input.example.json data/iml/daise_input.json
+          fi
+
+      - name: Run IML pipeline
+        run: |
+          python tools/iml/iml_pipeline.py \
+            --input "${{ github.event.inputs.daise_input_path }}" \
+            --output "artifacts/iml/iml_artifact.json" \
+            --steps "${{ github.event.inputs.steps }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iml-artifact
+          path: artifacts/iml/iml_artifact.json
