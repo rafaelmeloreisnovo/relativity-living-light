@@ -1,4 +1,4 @@
-O RLL/MCRP passa a separar validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon/Planck testam a camada cosmológica.
+O RLL/MCRP passa a separar validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon+/Planck testam a camada cosmológica.
 
 # README — Edição Técnica Pós‑Doc (2026)
 
@@ -137,8 +137,10 @@ Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/can
 Para evitar sobreposição entre índices, este README mantém apenas encaminhamento:
 
 - **Navegação canônica completa:** [docs/INDICE_MESTRE.md](docs/INDICE_MESTRE.md)
+
+- O RLL/MCRP separa a validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon+/Planck testam a camada cosmológica.
 - **Inventário bruto de arquivos (`.md`/`.zip`):** [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
-- **Caso observacional em preparação:** Anomalia Magnética do Atlântico Sul como teste geofísico local da camada Magnetismo–Radiação–Plasma.
+- **Caso observacional em preparação:** [Anomalia Magnética do Atlântico Sul como teste geofísico local da camada Magnetismo–Radiação–Plasma](docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md).
 - **Mapa de organização e governança:** [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
 - **Auditoria documental e de diretórios (2026-03-05):** [docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md](docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md)
 - **Histórico de decisões e releases:** [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)

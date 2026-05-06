@@ -1,197 +1,180 @@
 # VALIDATION DATA MATRIX — RLL/MCRP
 
-Status geral: **Parcial real em preparação**.
+**Status global:** Sintético com trilha **Parcial real em preparação**.
 
-Este documento organiza a matriz de validação observacional em camadas para a equação:
+Este documento organiza a matriz de validação para as duas camadas:
 
 \[
-\Phi_{\mathrm{eff}}(E,t,\Omega)=\Phi_{\mathrm{ext}}(E,t,\Omega)\cdot T_M(E,\Omega;M(t),m(t),SW)
+\Phi_{eff}(E,t,\Omega)=\Phi_{ext}(E,t,\Omega)\cdot T_M(E,\Omega;M(t),m(t),SW)
 \]
 
-e para a camada cosmológica RLL \(E^2(a), f(z), w(z)\).
+\[
+E^2(a)= \Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_\Lambda
++ \Omega_{s0}[f(a)+(1-f)a^{-3}]
++ \Omega_{B0} a^{-4} + \Omega_{P0} a^{-4}
+\]
 
-## Regras metodológicas transversais
-- Não tratar AMAS/SAA como prova do RLL.
-- Não declarar validação real completa sem download/processamento reproduzível.
-- Separar explicitamente: **Hipótese**, **Dado**, **Modelo**, **Métrica**.
-- Manter cadeia de custódia (fonte, versão, acesso, hash, script).
-- Até execução dos pipelines: status operacional = **Parcial real em preparação**.
+\[
+f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
+\]
+
+## Regras transversais
+- Não afirmar que AMAS/SAA prova o RLL.
+- Não afirmar “Real validado” sem dados reais processados, métricas e reprodutibilidade.
+- Cada camada separa **Hipótese / Dado / Modelo / Métrica**.
+- Cada fonte exige cadeia de custódia (origem, versão, licença, data de acesso, hash, script).
 
 ---
 
 ## A) Campo magnético terrestre
 
-### Fontes primárias
-- IGRF14 (IAGA/NOAA/BGS).
-- WMM2025 (NOAA/NGA/BGS).
-- ESA Swarm (nível de campo e derivados).
+**Fontes**
+- NOAA/NCEI IGRF14.
+- WMM2025.
+- ESA Swarm.
 
-### Variáveis-alvo
-- Intensidade total: \(B\) / \(F\).
-- Componentes: \(X, Y, Z\).
-- Horizontal: \(H\).
-- Inclinação e declinação.
-- Variação secular (SV).
-- Coeficientes de Gauss \(g_n^m, h_n^m\).
+**Variáveis**
+- B total.
+- X, Y, Z.
+- F, H.
+- Inclinação.
+- Declinação.
+- Variação secular.
+- Coeficientes de Gauss.
 
-### Relação com RLL/MCRP
-- \(M(t)\): componente de grande escala (momento dipolar/estrutura global).
-- \(m(t)\): modulação regional/local (assimetria e patches).
-- \(T_M\): função de transmissão magnetoespacial dependente de energia, direção e estado geomagnético.
+**Relação com o modelo**
+- `M(t)`: estrutura de larga escala do campo.
+- `m(t)`: estrutura regional/multipolar.
+- `T_M`: transmissividade magnética dependente de energia, direção e estado geomagnético.
 
-### Estrutura H-D-M-M
-- Hipótese: a transmissão regional responde à evolução conjunta \(M(t),m(t)\).
-- Dado: séries IGRF/WMM + observações Swarm.
-- Modelo: reconstrução espaço-temporal do campo e derivação de \(T_M\).
-- Métrica: RMS, tendência nT/ano, deslocamento espacial, IC.
+**H/D/M/M**
+- Hipótese: a evolução de `M(t)` e `m(t)` modula `T_M`.
+- Dado: IGRF14, WMM2025, Swarm.
+- Modelo: reconstrução espaço-temporal do campo.
+- Métrica: RMS, nT/ano, drift espacial, IC.
 
----
+## B) Anomalia Magnética do Atlântico Sul (AMAS/SAA)
 
-## B) AMAS / South Atlantic Anomaly (SAA)
+**Fontes**
+- ESA Swarm 2014–2025.
+- NASA South Atlantic Anomaly.
+- Artigo científico primário citado pela matéria do G1.
+- Estudos sobre reverse flux patches e core-mantle boundary.
 
-### Fontes primárias
-- ESA Swarm (2014–2025).
-- NASA South Atlantic Anomaly resources.
-- PEPI 2025: *Core field changes from eleven years of Swarm satellite observations*.
-- PEPI 2017: *Relating the South Atlantic Anomaly and geomagnetic flux patches*.
+**Relação com o modelo**
+- Enfraquecimento regional de `M(t)`.
+- Aumento regional de `T_M` para faixas de energia/rigidez.
+- Risco para satélites.
+- Partículas energéticas em LEO.
 
-### Variáveis-alvo
-- Mínimo de intensidade do campo.
-- Área abaixo de limiar (nT).
-- Drift longitudinal/latitudinal do núcleo anômalo.
-- Estrutura de reverse flux patches no CMB.
-
-### Relação com RLL/MCRP
-- Vínculo físico entre flux patches no limite núcleo-manto e geometria da anomalia.
-- Tradução para risco orbital (exposição de satélites) como observável de \(\Phi_{\mathrm{eff}}\), não como prova isolada da teoria completa.
-
-### Estrutura H-D-M-M
-- Hipótese: mudanças de topologia no campo interno alteram \(T_M\) regional da AMAS.
-- Dado: Swarm + referências NASA/PEPI.
-- Modelo: mapas temporais e rastreamento de mínimos/anéis de baixa intensidade.
-- Métrica: drift km/ano, variação nT/ano, área sob limiar e IC.
-
----
+**H/D/M/M**
+- Hipótese: mudanças regionais do campo interno alteram a transmissão local.
+- Dado: Swarm + NASA + literatura primária.
+- Modelo: evolução de mínimo, área e deslocamento da AMAS.
+- Métrica: drift km/ano, variação nT/ano, área sob limiar, IC.
 
 ## C) Forçamento heliosférico
 
-### Fontes primárias
-- NASA OMNI / SPDF.
+**Fontes**
+- NASA OMNI/SPDF.
 
-### Variáveis-alvo
-- IMF total e componentes (incl. \(B_z\)).
+**Variáveis**
+- IMF.
+- Bz.
 - Velocidade do vento solar.
-- Densidade de plasma e pressão dinâmica.
-- Índices geomagnéticos: Kp, Dst, AE.
+- Densidade.
+- Pressão dinâmica.
+- Kp.
+- Dst.
+- AE.
 - F10.7.
-- Fluxo de prótons energéticos.
+- Fluxo de prótons.
 
-### Relação com RLL/MCRP
-- Entrada exógena **SW** na função \(T_M\).
-- Forçante temporal principal de \(\Phi_{\mathrm{ext}}\).
+**Relação com o modelo**
+- `SW` como entrada de `T_M`.
+- Modulação de `\Phi_ext`.
 
-### Estrutura H-D-M-M
-- Hipótese: variações de SW modulam transmissão regional e carga radiativa incidente.
-- Dado: OMNI multi-resolução.
-- Modelo: acoplamento SW→\(\Phi_{\mathrm{ext}}\) com janela temporal sincronizada.
-- Métrica: correlação defasada, erro preditivo de fluxo efetivo, sensibilidade por regime solar.
-
----
+**H/D/M/M**
+- Hipótese: SW modula `\Phi_ext` e parte de `T_M`.
+- Dado: OMNI/SPDF.
+- Modelo: acoplamento temporal SW→fluxo incidente.
+- Métrica: correlação defasada, erro de predição, sensibilidade por regime solar.
 
 ## D) Raios cósmicos
 
-### Fontes primárias
-- NMDB (neutron monitor database).
-
-### Variáveis-alvo
-- Contagens por estação.
+**Fontes**
+- NMDB neutron monitor database.
+- Dados de variação Forbush.
 - Eventos GLE.
-- Quedas Forbush.
-- Histórico e stream quase em tempo real.
 
-### Relação com RLL/MCRP
-- Proxy observacional da modulação heliosférica e de \(\Phi_{\mathrm{ext}}\).
+**Relação com o modelo**
+- Proxy observacional de `\Phi_ext`.
+- Modulação heliosférica.
 
-### Estrutura H-D-M-M
-- Hipótese: oscilações de raios cósmicos rastreiam modulação externa relevante para \(\Phi_{\mathrm{eff}}\).
-- Dado: séries NMDB multi-estação.
-- Modelo: normalização por estação, composição robusta e remoção de offsets.
-- Métrica: coerência inter-estação, resposta a eventos extremos, erro de reconstrução temporal.
-
----
+**H/D/M/M**
+- Hipótese: contagens NMDB rastreiam modulação externa relevante.
+- Dado: séries multiesação, Forbush, GLE.
+- Modelo: normalização por estação e composição robusta.
+- Métrica: coerência inter-estação, resposta a eventos, erro temporal.
 
 ## E) Radiação orbital
 
-### Fontes primárias
+**Fontes**
 - NASA SAA.
 - SPENVIS AE9/AP9.
 - GOES energetic particles.
+- Relatórios públicos de eventos em satélites (quando disponíveis).
 
-### Variáveis-alvo
-- Fluxos de prótons e elétrons.
-- Dose acumulada e taxa de dose.
-- Espectros por energia.
-- Eventos SEU (quando públicos).
+**Relação com o modelo**
+- `T_M`.
+- `\Phi_eff`.
+- Dose orbital.
+- Single event upsets.
 
-### Relação com RLL/MCRP
-- \(T_M\) como transmissividade geomagnética regional por energia e direção orbital.
-- \(\Phi_{\mathrm{eff}}\) comparável a medições de ambiente de radiação em LEO.
-
-### Estrutura H-D-M-M
-- Hipótese: variação de transmissividade explica parte da variabilidade de dose/partículas em órbita.
-- Dado: GOES + modelos AE9/AP9 + referências SAA.
-- Modelo: projeção orbital e integração espectral para fluxo efetivo.
-- Métrica: RMS espectral, skill score de eventos, consistência por inclinação orbital.
-
----
+**H/D/M/M**
+- Hipótese: variabilidade de transmissão explica parte da variabilidade de dose/eventos.
+- Dado: GOES + AE9/AP9 + eventos públicos.
+- Modelo: projeção por órbita/energia.
+- Métrica: RMS espectral, skill score de eventos, taxa de acerto por janela temporal.
 
 ## F) Ionização e química atmosférica
 
-### Fontes primárias
-- IntCal20 (\(^{14}C\)).
-- Proxies \(^{10}Be\).
-- Reanálises atmosféricas (quando disponíveis para janela compatível).
+**Fontes**
+- IntCal20 para 14C.
+- Proxies 10Be.
+- Reanálises atmosféricas.
+- Modelos de ionização.
 
-### Variáveis-alvo
-- Séries de proxy cosmogênico.
-- Indicadores de ionização integrada.
-- Campos auxiliares de composição/química (quando acoplados).
+**Relação com o modelo**
+- `Q_ion`.
+- Química reativa.
+- NOx.
+- HOx.
+- O3.
 
-### Relação com RLL/MCRP
-- Conversão de variações de fluxo em termos de \(Q_{ion}\) e \(X_{chem}\).
-
-### Estrutura H-D-M-M
-- Hipótese: mudanças de fluxo externo efetivo deixam assinatura em proxies cosmogênicos.
-- Dado: séries paleoclimáticas e reanálises.
-- Modelo: mapeamento fluxo→ionização→proxy observável.
-- Métrica: ajuste temporal, robustez a incertezas de datação, IC.
-
----
+**H/D/M/M**
+- Hipótese: variações de fluxo efetivo deixam assinatura em ionização e proxies.
+- Dado: 14C/10Be + reanálises.
+- Modelo: fluxo→ionização→química/proxy.
+- Métrica: ajuste temporal, robustez a incerteza de datação e IC.
 
 ## G) Cosmologia RLL
 
-### Fontes primárias
+**Fontes**
 - DESI DR2 BAO.
 - Pantheon+ SNe Ia.
-- Planck 2018 chains.
+- Planck 2018.
 - H(z) cosmic chronometers.
-- fσ8 (crescimento de estrutura).
+- fσ8/crescimento de estrutura.
 
-### Variáveis-alvo
-- \(E^2(a)\), \(H(z)\), \(\mu(z)\), \(f\sigma_8(z)\), \(w(z)\).
+**Relação com o modelo**
+- `E²(a)`.
+- `f(z)`.
+- `w(z)`.
+- Comparação RLL vs ΛCDM.
 
-### Relação com camada cosmológica RLL
-- Testar consistência de expansão e crescimento para RLL versus \(\Lambda\)CDM e \(w_0w_a\)CDM.
-
-### Estrutura H-D-M-M
-- Hipótese: parametrização RLL oferece ajuste competitivo e fisicamente consistente.
-- Dado: BAO + SNe + CMB + H(z) + crescimento.
-- Modelo: inferência conjunta com likelihoods consistentes e covariâncias.
-- Métrica: \(\chi^2\), AIC, BIC, posterior MCMC, testes de robustez.
-
----
-
-## Governança de validação observacional
-- Estado atual: **Parcial real em preparação**.
-- Condição para upgrade de status: execução integral dos pipelines, artefatos versionados e auditoria cruzada.
-- Cadeia de custódia obrigatória em `data/real/*/README.md`.
+**H/D/M/M**
+- Hipótese: RLL compete com ΛCDM/w0waCDM em expansão + crescimento.
+- Dado: BAO+SNe+CMB+H(z)+fσ8.
+- Modelo: likelihood conjunta com covariâncias.
+- Métrica: χ², AIC, BIC, MCMC e robustez por subamostra.
