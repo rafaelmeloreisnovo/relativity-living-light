@@ -1,12 +1,13 @@
 # Data README — Heliophysics (Real)
 
-Template de cadeia de custódia (preencher por dataset):
-- Fonte:
-- URL/DOI:
-- Versão:
-- Licença:
-- Data de acesso (UTC):
-- Hash SHA-256 (se arquivo baixado):
-- Método de download:
-- Script de processamento:
-- Limitações:
+Status: metadata_only / pending_fetch
+
+## Fontes
+- NASA OMNI/SPDF — https://omniweb.gsfc.nasa.gov/
+- NMDB — https://www.nmdb.eu/
+- GOES energetic particles — https://www.ncei.noaa.gov/products/satellite/goes-space-environment-monitor
+- SPENVIS AE9/AP9 — https://www.spenvis.oma.be/
+
+## Limitações
+- Sem ingestão temporal real neste PR.
+- Fluxos com autenticação/licença podem bloquear fetch automático.

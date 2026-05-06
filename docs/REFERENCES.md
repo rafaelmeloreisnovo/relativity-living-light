@@ -721,3 +721,17 @@ Ponto canônico de consolidação para referências externas e fontes internas d
 - **EXT-058** — IAGA V-MOD. *International Geomagnetic Reference Field (IGRF-14)*.
   - URL: https://www.iaga-aiga.org/igrf/
   - Data de origem (geração vigente): 2024 (validade a partir de 2025.0).
+
+
+## Fontes externas para pipeline RLL/MCRP
+
+- **EXT-RLL-IGRF14** — NOAA/NCEI IGRF14. URL: https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field
+- **EXT-RLL-WMM2025** — NOAA/NCEI WMM2025. URL: https://www.ncei.noaa.gov/products/world-magnetic-model
+- **EXT-RLL-SWARM-SAA** — ESA Swarm (AMAS/SAA contexto observacional). URL: https://swarm-diss.eo.esa.int/
+- **EXT-RLL-NASA-SAA** — NASA South Atlantic Anomaly. URL: https://www.nasa.gov/mission_pages/sunearth/news/gallery/saa.html
+- **EXT-RLL-OMNI** — NASA OMNI/SPDF. URL: https://omniweb.gsfc.nasa.gov/
+- **EXT-RLL-NMDB** — NMDB neutron monitor database. URL: https://www.nmdb.eu/
+- **EXT-RLL-SPENVIS** — SPENVIS AE9/AP9. URL: https://www.spenvis.oma.be/
+- **EXT-RLL-DESI-DR2** — DESI DR2 BAO. URL: https://www.desi.lbl.gov/
+- **EXT-RLL-PLANCK2018** — Planck 2018 chains / PLA. URL: https://pla.esac.esa.int/
+- **EXT-RLL-PANTHEONPLUS** — Pantheon+ SNe Ia. URL: https://github.com/PantheonPlusSH0ES/DataRelease
