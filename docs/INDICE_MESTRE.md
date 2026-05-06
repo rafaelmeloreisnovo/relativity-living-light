@@ -55,6 +55,11 @@ Encaminhamentos complementares:
 - [`docs/REFERENCES.md`](REFERENCES.md)
 - [`docs/FORMULAS_CANONICAS_INDEX.md`](FORMULAS_CANONICAS_INDEX.md) ← referência oficial de fórmulas
 
+
+## 1.1) Casos observacionais
+
+- [`docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md`](cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md)
+
 ## 2) Governança, organização e auditoria
 
 - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
@@ -75,6 +80,17 @@ Encaminhamentos complementares:
 - [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
 - [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
 - [`docs/canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md`](canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md)
+
+---
+
+
+## 4) Validação observacional e matriz de dados reais
+
+- [`docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md`](VALIDATION_DATA_MATRIX_RLL_MCRP.md)
+- [`docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md`](cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md)
+- [`docs/pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md`](pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md)
+- [`docs/pipelines/RADIATION_TRANSMISSION_VALIDATION.md`](pipelines/RADIATION_TRANSMISSION_VALIDATION.md)
+- [`docs/pipelines/COSMOLOGY_VALIDATION_STACK.md`](pipelines/COSMOLOGY_VALIDATION_STACK.md)
 
 ---
 
