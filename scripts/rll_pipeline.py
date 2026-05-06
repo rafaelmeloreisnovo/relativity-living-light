@@ -1,81 +1,263 @@
 #!/usr/bin/env python3
-"""RLL/MCRP manual pipeline artifact generator."""
+"""RLL canonical book/data pipeline artifact generator."""
 from __future__ import annotations
-import argparse, datetime as dt, json, os, subprocess
-from pathlib import Path
 
-VALID_STATUS = ["reference_only","metadata_ready","dry_run","fetched","computed","blocked"]
-GROUPS = {
- "geomagnetic": {
-  "formula_targets":["M(t)","m(t)","T_M"],
-  "sources":[
-   {"name":"NOAA/NCEI IGRF14","url":"https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field","doi":"","version":"IGRF-14","license":"Public domain (US Gov)","method":"metadata_registry","limitations":"Sem download bruto neste PR."},
-   {"name":"NOAA/NCEI WMM2025","url":"https://www.ncei.noaa.gov/products/world-magnetic-model","doi":"","version":"WMM2025","license":"Public domain (US Gov)","method":"metadata_registry","limitations":"Sem download bruto neste PR."},
-   {"name":"ESA Swarm","url":"https://swarm-diss.eo.esa.int/","doi":"","version":"mission archive","license":"ESA terms","method":"metadata_registry","limitations":"Acesso/seleção de produtos pendentes."},
-   {"name":"NASA South Atlantic Anomaly","url":"https://www.nasa.gov/mission_pages/sunearth/news/gallery/saa.html","doi":"","version":"web reference","license":"NASA media usage policy","method":"reference_only","limitations":"Caso observacional local; não prova global do RLL."}
-  ],
-  "dry_run":"AMAS_DRY_RUN.md"
- },
- "heliophysics": {
-  "formula_targets":["Φ_ext","SW","T_M","Φ_eff"],
-  "sources":[
-   {"name":"NASA OMNI/SPDF","url":"https://omniweb.gsfc.nasa.gov/","doi":"","version":"OMNI2/OMNIWeb","license":"NASA/SPDF open data","method":"metadata_registry","limitations":"Sem ingestão temporal real neste PR."},
-   {"name":"NMDB neutron monitor database","url":"https://www.nmdb.eu/","doi":"","version":"NMDB live archive","license":"NMDB terms","method":"metadata_registry","limitations":"Rate limits e seleção de estações pendentes."},
-   {"name":"GOES energetic particles","url":"https://www.ncei.noaa.gov/products/satellite/goes-space-environment-monitor","doi":"","version":"GOES SEM","license":"Public domain (US Gov)","method":"metadata_registry","limitations":"Sem fetch pesado por padrão."},
-   {"name":"SPENVIS AE9/AP9","url":"https://www.spenvis.oma.be/","doi":"","version":"AE9/AP9","license":"SPENVIS terms","method":"reference_only","limitations":"Pode exigir fluxo autenticado/licenciamento."}
-  ],
-  "dry_run":"RADIATION_DRY_RUN.md"
- },
- "cosmology": {
-  "formula_targets":["E²(a)","f(z)","w(z)","RLL vs ΛCDM/w0waCDM"],
-  "sources":[
-   {"name":"DESI DR2 BAO","url":"https://www.desi.lbl.gov/","doi":"","version":"DR2","license":"DESI collaboration policy","method":"metadata_registry","limitations":"Produtos exatos de release devem ser fixados por manifesto."},
-   {"name":"Pantheon+ SNe Ia","url":"https://github.com/PantheonPlusSH0ES/DataRelease","doi":"","version":"Pantheon+","license":"Project terms","method":"metadata_registry","limitations":"Sem fetch automático neste PR."},
-   {"name":"Planck 2018 chains","url":"https://pla.esac.esa.int/","doi":"","version":"2018 Legacy","license":"Planck Legacy terms","method":"metadata_registry","limitations":"Download de chains pode ser pesado."},
-   {"name":"H(z) cosmic chronometers","url":"https://arxiv.org/abs/1604.01410","doi":"10.48550/arXiv.1604.01410","version":"compiled set","license":"Article/license dependent","method":"reference_only","limitations":"Compilação heterogênea por survey."},
-   {"name":"fσ8","url":"https://arxiv.org/abs/1801.01590","doi":"10.48550/arXiv.1801.01590","version":"compiled constraints","license":"Article/license dependent","method":"reference_only","limitations":"Necessita harmonização de convenções."}
-  ],
-  "dry_run":"COSMOLOGY_DRY_RUN.md"
- }
+import argparse
+import datetime as dt
+import json
+import os
+import subprocess
+from pathlib import Path
+from typing import Any
+
+VALID_STATUS = [
+    "reference_only",
+    "metadata_ready",
+    "dry_run",
+    "fetched",
+    "computed",
+    "blocked",
+]
+
+STATUS_BY_MODE = {
+    "metadata_only": "metadata_ready",
+    "dry_run": "dry_run",
+    "fetch": "fetched",
+    "compute": "computed",
 }
 
-def git_sha()->str:
-    try: return subprocess.check_output(["git","rev-parse","HEAD"]).decode().strip()
-    except Exception: return "unknown"
+BOOK_SCOPE_MAP: dict[str, dict[str, Any]] = {
+    "methodology": {
+        "objective": "validar rota metodológica.",
+        "chapters": [
+            "book/11_metodologia_pipeline_validacao.md",
+            "book/12_metodologia_dados_mock.md",
+            "book/13_metodologia_dados_reais.md",
+            "book/14_metodologia_notebooks_scripts.md",
+        ],
+        "documents": [],
+    },
+    "real_data": {
+        "objective": "auditar dados reais e χ² inicial.",
+        "chapters": ["book/13_metodologia_dados_reais.md"],
+        "documents": [
+            "data/real/Hz_data_real.csv",
+            "data/real/BAO_data_real.csv",
+            "results/RLL_chi2_results.csv",
+        ],
+    },
+    "scripts": {
+        "objective": "mapear execução reprodutível.",
+        "chapters": ["book/14_metodologia_notebooks_scripts.md"],
+        "documents": ["scripts/run_repro_all.sh", "scripts/run_desi_dha_pipeline.py"],
+    },
+    "observational_validation": {
+        "objective": "gerar rota de validação observacional completa.",
+        "chapters": [
+            "book/15_validacao_expansao_hz.md",
+            "book/16_validacao_supernovas_dmu.md",
+            "book/17_validacao_fracoes_energia.md",
+            "book/18_validacao_crescimento_fs8.md",
+            "book/19_validacao_lentes_aglomerados.md",
+            "book/20_validacao_rotacao_galaxias.md",
+            "book/21_validacao_desi_boss.md",
+            "book/22_validacao_jwst_agn_smbh.md",
+            "book/23_resultados_estatisticos.md",
+            "book/24_resultados_figuras_painel.md",
+        ],
+        "documents": [],
+    },
+    "desi_boss": {
+        "objective": "gerar manifesto de validação DESI/BOSS/Planck.",
+        "chapters": ["book/21_validacao_desi_boss.md"],
+        "documents": ["DESI DR2", "BOSS DR12", "eBOSS DR16", "Planck 2018"],
+    },
+    "amas_mcrp": {
+        "objective": "ligar AMAS/SAA ao MCRP sem afirmar validação total.",
+        "chapters": [],
+        "documents": [
+            "docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md",
+            "docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md",
+            "docs/pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md",
+            "docs/pipelines/RADIATION_TRANSMISSION_VALIDATION.md",
+        ],
+    },
+}
 
-def status_for(mode:str)->str:
-    return {"metadata_only":"metadata_ready","dry_run":"dry_run","fetch":"fetched","compute":"computed"}.get(mode,"blocked")
+DATASET_GROUP_MAP: dict[str, dict[str, Any]] = {
+    "geomagnetic": {
+        "formula_targets": ["M(t)", "m(t)", "T_M"],
+        "sources": [
+            "NOAA/NCEI IGRF14",
+            "NOAA/NCEI WMM2025",
+            "ESA Swarm",
+            "NASA South Atlantic Anomaly",
+        ],
+    },
+    "heliophysics": {
+        "formula_targets": ["Φ_ext", "SW", "T_M", "Φ_eff"],
+        "sources": ["NASA OMNI/SPDF", "NMDB", "GOES energetic particles", "SPENVIS AE9/AP9"],
+    },
+    "cosmology": {
+        "formula_targets": ["E²(a)", "f(z)", "w(z)", "comparação RLL vs ΛCDM/w0waCDM"],
+        "sources": ["DESI DR2 BAO", "Pantheon+ SNe Ia", "Planck 2018 chains", "H(z)", "fσ8"],
+    },
+}
 
-def write_group(group:str,mode:str,base:Path,run_utc:str,sha:str)->dict:
-    cfg=GROUPS[group]; gdir=base/group; gdir.mkdir(parents=True,exist_ok=True)
-    item_status=status_for(mode)
-    items=[]
-    for s in cfg["sources"]:
-        st = "reference_only" if s["method"]=="reference_only" and mode in {"metadata_only","dry_run"} else item_status
-        if mode=="compute" and st=="computed":
-            st="blocked"
-        items.append({**s,"status":st})
-    manifest={"dataset_group":group,"mode":mode,"run_utc":run_utc,"commit_sha":sha,"formula_targets":cfg["formula_targets"],"claims":{"hypothesis":"RLL/MCRP depende de validação reprodutível com dados reais.","data":"Sem promoção para 'Real validado' sem processamento real.","model":"Cálculo total pode operar como stub até ingestão real.","metric":"Métricas ficam rastreáveis no manifesto e relatório."},"items":items,"allowed_status":VALID_STATUS,"promotion_guard":"forbid_real_validated_without_real_data_and_reproducible_metrics"}
-    (gdir/"MANIFEST.json").write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
-    (gdir/"SOURCES.md").write_text("\n".join([f"# Sources — {group}","",f"Run UTC: {run_utc}",f"Commit: `{sha}`","",*(f"- **{i['name']}** | status: `{i['status']}` | URL: {i['url']} | versão: {i['version']} | licença: {i['license']} | método: {i['method']} | limitações: {i['limitations']}" for i in items)] )+"\n",encoding="utf-8")
-    (gdir/cfg["dry_run"]).write_text(f"# {cfg['dry_run']}\n\n- dataset_group: `{group}`\n- mode: `{mode}`\n- status geral: `{item_status}`\n- Observação: AMAS/SAA permanece caso local observacional quando aplicável.\n",encoding="utf-8")
-    return manifest
 
-def main()->int:
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--dataset-group",required=True,choices=["geomagnetic","heliophysics","cosmology","all"])
-    ap.add_argument("--mode",required=True,choices=["metadata_only","dry_run","fetch","compute"])
-    ap.add_argument("--output-dir",required=True)
-    args=ap.parse_args()
-    out=Path(args.output_dir); out.mkdir(parents=True,exist_ok=True)
-    run_utc=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    sha=os.getenv("GITHUB_SHA") or git_sha()
-    groups=["geomagnetic","heliophysics","cosmology"] if args.dataset_group=="all" else [args.dataset_group]
-    manifests=[write_group(g,args.mode,out,run_utc,sha) for g in groups]
-    (out/"PIPELINE_REPORT.md").write_text(f"# RLL Pipeline Report\n\n- run_utc: `{run_utc}`\n- commit_sha: `{sha}`\n- dataset_group: `{args.dataset_group}`\n- mode: `{args.mode}`\n- guardrail: Nenhuma claim promovida para **Real validado** sem dados reais processados e métricas reproduzíveis.\n",encoding="utf-8")
-    (out/"CLAIM_REFERENCE_AUDIT.md").write_text("# Claim/Reference Audit\n\n## Separação obrigatória\n- Hipótese: declarada, não validada por inferência retórica.\n- Dado: origem externa rastreável por URL/DOI e licença.\n- Modelo: fórmulas-alvo por domínio.\n- Métrica: somente reproduzível com processamento real.\n\n## Resultado desta execução\n- Estado global: **metadata-only / dry-run oriented** quando sem ingestão real.\n- AMAS/SAA: **caso local observacional**, não prova global do RLL.\n",encoding="utf-8")
-    (out/"MANIFEST.json").write_text(json.dumps({"run_utc":run_utc,"commit_sha":sha,"dataset_group":args.dataset_group,"mode":args.mode,"groups":[m["dataset_group"] for m in manifests]},indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
-    (out/"SOURCES.md").write_text("# Aggregated Sources\n\nVeja SOURCES.md em cada subdiretório de dataset_group.\n",encoding="utf-8")
+def git_sha() -> str:
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    except Exception:
+        return "unknown"
+
+
+def resolve_scope(scope: str) -> dict[str, Any]:
+    if scope == "all":
+        chapters: list[str] = []
+        documents: list[str] = []
+        objectives: list[str] = []
+        for key in BOOK_SCOPE_MAP:
+            chapters.extend(BOOK_SCOPE_MAP[key]["chapters"])
+            documents.extend(BOOK_SCOPE_MAP[key]["documents"])
+            objectives.append(f"{key}: {BOOK_SCOPE_MAP[key]['objective']}")
+        return {
+            "scope": "all",
+            "chapters": sorted(set(chapters)),
+            "documents": sorted(set(documents)),
+            "objective": " ; ".join(objectives),
+        }
+    payload = BOOK_SCOPE_MAP[scope]
+    return {
+        "scope": scope,
+        "chapters": payload["chapters"],
+        "documents": payload["documents"],
+        "objective": payload["objective"],
+    }
+
+
+def resolve_groups(group: str) -> list[str]:
+    return list(DATASET_GROUP_MAP.keys()) if group == "all" else [group]
+
+
+def status_for(mode: str) -> str:
+    status = STATUS_BY_MODE[mode]
+    return "blocked" if mode == "compute" else status
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--book-scope", required=True, choices=[*BOOK_SCOPE_MAP.keys(), "all"])
+    parser.add_argument("--dataset-group", required=True, choices=[*DATASET_GROUP_MAP.keys(), "all"])
+    parser.add_argument("--mode", required=True, choices=list(STATUS_BY_MODE.keys()))
+    parser.add_argument("--output-dir", required=True)
+    args = parser.parse_args()
+
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    (output_dir / "book").mkdir(parents=True, exist_ok=True)
+
+    run_utc = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    commit_sha = os.getenv("GITHUB_SHA") or git_sha()
+
+    scope = resolve_scope(args.book_scope)
+    groups = resolve_groups(args.dataset_group)
+    global_status = status_for(args.mode)
+
+    sections = []
+    source_lines = ["# SOURCES", ""]
+    claims_lines = [
+        "# CLAIM_REFERENCE_AUDIT",
+        "",
+        "Status global da execução: `Parcial real em preparação`.",
+        "",
+        "| Hipótese | Dado | Modelo | Métrica | Referência | Status |",
+        "|---|---|---|---|---|---|",
+    ]
+
+    for group in groups:
+        group_cfg = DATASET_GROUP_MAP[group]
+        hypothesis = "Validação depende de dados reais, métricas reproduzíveis e trilha canônica do livro."
+        data = f"Grupo {group} selecionado via dataset_group."
+        model = ", ".join(group_cfg["formula_targets"])
+        metric = "Comparação RLL vs referências externas com rastreabilidade."
+        reference = "; ".join(group_cfg["sources"])
+        row = {
+            "group": group,
+            "Hipótese": hypothesis,
+            "Dado": data,
+            "Modelo": model,
+            "Métrica": metric,
+            "Referência": reference,
+            "Status": global_status,
+        }
+        sections.append(row)
+        source_lines.extend([f"## {group}", *(f"- {src}" for src in group_cfg["sources"]), ""])
+        claims_lines.append(
+            f"| {hypothesis} | {data} | {model} | {metric} | {reference} | {global_status} |"
+        )
+
+    manifest = {
+        "run_utc": run_utc,
+        "commit_sha": commit_sha,
+        "book_scope": args.book_scope,
+        "dataset_group": args.dataset_group,
+        "mode": args.mode,
+        "status": "Parcial real em preparação",
+        "scope_objective": scope["objective"],
+        "chapters_used": scope["chapters"],
+        "scientific_inputs": ["docs/", "data/", "data/pipelines/structure_d/"],
+        "results_outputs": ["results/"],
+        "ingestion_history_only": ["to_Add/"],
+        "records": sections,
+        "allowed_status": VALID_STATUS,
+        "promotion_guard": "pipeline não promove status para Real validado sem execução real com dados, métricas e reprodutibilidade",
+    }
+
+    report = [
+        "# PIPELINE_REPORT",
+        "",
+        f"- run_utc: `{run_utc}`",
+        f"- commit_sha: `{commit_sha}`",
+        f"- book_scope: `{args.book_scope}`",
+        f"- dataset_group: `{args.dataset_group}`",
+        f"- mode: `{args.mode}`",
+        f"- status editorial: `Parcial real em preparação`",
+        f"- objetivo: {scope['objective']}",
+        "",
+        "## Separação obrigatória",
+        "- Hipótese",
+        "- Dado",
+        "- Modelo",
+        "- Métrica",
+        "- Referência",
+        f"- Status: `{global_status}`",
+    ]
+
+    book_route = [
+        "# BOOK_ROUTE",
+        "",
+        "Ordem editorial guiada por `book/README.md`.",
+        "",
+        f"Escopo selecionado: `{args.book_scope}`.",
+        "",
+        "## Capítulos priorizados",
+        *(f"- {chapter}" for chapter in scope["chapters"]),
+        "",
+        "## Documentos e ativos relacionados",
+        *(f"- {doc}" for doc in scope["documents"]),
+    ]
+
+    chapters_used = ["# CHAPTERS_USED", "", *(f"- {chapter}" for chapter in scope["chapters"])]
+
+    (output_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (output_dir / "SOURCES.md").write_text("\n".join(source_lines) + "\n", encoding="utf-8")
+    (output_dir / "PIPELINE_REPORT.md").write_text("\n".join(report) + "\n", encoding="utf-8")
+    (output_dir / "CLAIM_REFERENCE_AUDIT.md").write_text("\n".join(claims_lines) + "\n", encoding="utf-8")
+    (output_dir / "book" / "BOOK_ROUTE.md").write_text("\n".join(book_route) + "\n", encoding="utf-8")
+    (output_dir / "book" / "CHAPTERS_USED.md").write_text("\n".join(chapters_used) + "\n", encoding="utf-8")
     return 0
-if __name__=='__main__':
+
+
+if __name__ == "__main__":
     raise SystemExit(main())

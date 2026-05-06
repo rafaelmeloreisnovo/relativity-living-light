@@ -65,3 +65,10 @@ Referência de organização obrigatória: `../docs/DOCUMENTATION_ORGANIZATION_M
 Os módulos Structure D utilizados pelo fluxo ficam em `../data/pipelines/structure_d/`.
 `../to_Add/` permanece somente como histórico de ingestão.
 
+
+## Execução por GitHub Actions
+
+- Workflow: `.github/workflows/rll-book-data-pipeline.yml`
+- A trilha do livro pode ser executada por `book_scope`.
+- Os artifacts gerados conectam capítulos, dados, fontes, claims e resultados.
+- Status permanece “Parcial real em preparação” até execução real com dados, métricas e reprodutibilidade.
