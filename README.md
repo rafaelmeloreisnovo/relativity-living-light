@@ -138,6 +138,7 @@ Para evitar sobreposição entre índices, este README mantém apenas encaminham
 
 - **Navegação canônica completa:** [docs/INDICE_MESTRE.md](docs/INDICE_MESTRE.md)
 - **Inventário bruto de arquivos (`.md`/`.zip`):** [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
+- **Caso observacional em preparação:** Anomalia Magnética do Atlântico Sul como teste geofísico local da camada Magnetismo–Radiação–Plasma.
 - **Mapa de organização e governança:** [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
 - **Auditoria documental e de diretórios (2026-03-05):** [docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md](docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md)
 - **Histórico de decisões e releases:** [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
