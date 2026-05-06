@@ -249,6 +249,7 @@ def main() -> int:
     ]
 
     chapters_used = ["# CHAPTERS_USED", "", *(f"- {chapter}" for chapter in scope["chapters"])]
+    files_used = ["# FILES_USED", "", *(f"- {doc}" for doc in scope["documents"])]
 
     (output_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (output_dir / "SOURCES.md").write_text("\n".join(source_lines) + "\n", encoding="utf-8")
@@ -256,6 +257,7 @@ def main() -> int:
     (output_dir / "CLAIM_REFERENCE_AUDIT.md").write_text("\n".join(claims_lines) + "\n", encoding="utf-8")
     (output_dir / "book" / "BOOK_ROUTE.md").write_text("\n".join(book_route) + "\n", encoding="utf-8")
     (output_dir / "book" / "CHAPTERS_USED.md").write_text("\n".join(chapters_used) + "\n", encoding="utf-8")
+    (output_dir / "book" / "FILES_USED.md").write_text("\n".join(files_used) + "\n", encoding="utf-8")
     return 0
 
 
