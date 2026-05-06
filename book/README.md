@@ -72,3 +72,12 @@ Os módulos Structure D utilizados pelo fluxo ficam em `../data/pipelines/struct
 - A trilha do livro pode ser executada por `book_scope`.
 - Os artifacts gerados conectam capítulos, dados, fontes, claims e resultados.
 - Status permanece “Parcial real em preparação” até execução real com dados, métricas e reprodutibilidade.
+
+
+## Execução canônica por GitHub Actions
+
+- workflow: `.github/workflows/rll-real-data-orchestrator.yml`
+- o usuário escolhe `pipeline_scope`, `dataset_group`, `book_scope` e `mode` via combo box;
+- o usuário ativa fontes reais via checkboxes;
+- artifact conecta dados reais, fórmulas, IML, livro, gráficos, tabelas e checksums;
+- status permanece **Parcial real** até haver dados reais processados, métricas e reprodutibilidade.
