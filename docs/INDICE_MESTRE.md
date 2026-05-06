@@ -78,6 +78,17 @@ Encaminhamentos complementares:
 
 ---
 
+
+## 4) Validação observacional e matriz de dados reais
+
+- [`docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md`](VALIDATION_DATA_MATRIX_RLL_MCRP.md)
+- [`docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md`](cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md)
+- [`docs/pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md`](pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md)
+- [`docs/pipelines/RADIATION_TRANSMISSION_VALIDATION.md`](pipelines/RADIATION_TRANSMISSION_VALIDATION.md)
+- [`docs/pipelines/COSMOLOGY_VALIDATION_STACK.md`](pipelines/COSMOLOGY_VALIDATION_STACK.md)
+
+---
+
 ## Arquivo/Legacy
 
 > Materiais abaixo são preservados por histórico/rastreabilidade e **não** são a fonte oficial.

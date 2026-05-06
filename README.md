@@ -1,3 +1,5 @@
+O RLL/MCRP passa a separar validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon/Planck testam a camada cosmológica.
+
 # README — Edição Técnica Pós‑Doc (2026)
 
 > **Status**: revisão ultra formal com indexação semântica, rastreabilidade metodológica e atualização conceitual alinhada a práticas de mercado (MLOps científico, FAIR data, reproducibility-by-design e governança de evidência).
