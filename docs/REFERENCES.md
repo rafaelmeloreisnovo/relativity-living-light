@@ -692,3 +692,32 @@ Ponto canônico de consolidação para referências externas e fontes internas d
 | `[41]` | `EXT-041` |
 | `[42]` | `EXT-042` |
 
+
+
+## Referências primárias adicionadas — Caso AMAS/SAA (com data de origem)
+
+- **EXT-053** — G1 (2026-05-05). *Estudo desvenda como surgiu a anomalia magnética que coloca em risco satélites sobre o Atlântico Sul*. 
+  - Tipo: referência jornalística inicial (não primária científica).
+  - URL: https://g1.globo.com/ciencia/noticia/2026/05/05/estudo-desvenda-como-surgiu-a-anomalia-magnetica-que-coloca-em-risco-satelites-sobre-o-atlantico-sul.ghtml
+  - Data de origem: 2026-05-05.
+
+- **EXT-054** — Finlay, C. C., et al. (2024). *Long-term persistency of a strong non-dipole field in the South Atlantic*. Nature Communications.
+  - DOI: 10.1038/s41467-024-53688-2
+  - URL: https://www.nature.com/articles/s41467-024-53688-2
+  - Data de origem: 2024-11-05.
+
+- **EXT-055** — ESA Swarm (2020-05-20). *Swarm probes weakening of Earth’s magnetic field*.
+  - URL: https://www.esa.int/Applications/Observing_the_Earth/Swarm/Swarm_probes_weakening_of_Earth_s_magnetic_field
+  - Data de origem: 2020-05-20.
+
+- **EXT-056** — NASA (2020-08-17). *NASA Researchers Track Slowly Splitting ‘Dent’ in Earth’s Magnetic Field*.
+  - URL: https://www.nasa.gov/missions/icon/nasa-researchers-track-slowly-splitting-dent-in-earths-magnetic-field/
+  - Data de origem: 2020-08-17.
+
+- **EXT-057** — NOAA/NCEI + BGS (WMM2025). *World Magnetic Model*.
+  - URL: https://www.ncei.noaa.gov/products/world-magnetic-model
+  - Data de origem (modelo): 2024-12 (validade 2025.0–2030.0).
+
+- **EXT-058** — IAGA V-MOD. *International Geomagnetic Reference Field (IGRF-14)*.
+  - URL: https://www.iaga-aiga.org/igrf/
+  - Data de origem (geração vigente): 2024 (validade a partir de 2025.0).

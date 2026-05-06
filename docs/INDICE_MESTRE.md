@@ -55,6 +55,11 @@ Encaminhamentos complementares:
 - [`docs/REFERENCES.md`](REFERENCES.md)
 - [`docs/FORMULAS_CANONICAS_INDEX.md`](FORMULAS_CANONICAS_INDEX.md) ← referência oficial de fórmulas
 
+
+## 1.1) Casos observacionais
+
+- [`docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md`](cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md)
+
 ## 2) Governança, organização e auditoria
 
 - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
