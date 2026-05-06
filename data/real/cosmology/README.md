@@ -1,12 +1,14 @@
 # Data README — Cosmology (Real)
 
-Template de cadeia de custódia (preencher por dataset):
-- Fonte:
-- URL/DOI:
-- Versão:
-- Licença:
-- Data de acesso (UTC):
-- Hash SHA-256 (se arquivo baixado):
-- Método de download:
-- Script de processamento:
-- Limitações:
+Status: metadata_only / pending_fetch
+
+## Fontes
+- DESI DR2 BAO — https://www.desi.lbl.gov/
+- Pantheon+ SNe Ia — https://github.com/PantheonPlusSH0ES/DataRelease
+- Planck 2018 chains (PLA) — https://pla.esac.esa.int/
+- H(z) cosmic chronometers — doi:10.48550/arXiv.1604.01410
+- fσ8 constraints — doi:10.48550/arXiv.1801.01590
+
+## Limitações
+- Sem download de chains/dados pesados por padrão.
+- Modo compute permanece stub até processamento reproduzível real.
