@@ -1,3 +1,44 @@
+# Relativity Living Light (RLL/MCRP)
+
+[![DOI](https://zenodo.org/badge/1046495816.svg)](https://doi.org/10.5281/zenodo.17188137)
+[![License](https://img.shields.io/github/license/instituto-Rafael/relativity-living-light)](./LICENSE.md)
+[![Last Commit](https://img.shields.io/github/last-commit/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light/commits)
+[![Open Issues](https://img.shields.io/github/issues/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light/issues)
+[![Open PRs](https://img.shields.io/github/issues-pr/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light/pulls)
+[![Repo Size](https://img.shields.io/github/repo-size/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light)
+
+> **Edição profissional (2026):** organização formal para leitura acadêmica, rastreabilidade metodológica e elegância editorial, **sem remoção de acervo**.
+
+## Carta de apresentação institucional
+Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um formato adequado para pós-PhD: verificável, citável, multilíngue e com governança documental.
+
+### Objetivos desta refatoração
+- Preservar integralmente dados, trilhas autorais e histórico técnico.
+- Elevar o padrão de forma para revisão por pares, bancas e colaborações internacionais.
+- Conectar fundamentos matemáticos, física, cognição linguística e validação observacional em uma navegação coerente.
+
+## Painel de governança GitHub (selos)
+- **Licença e conformidade**: badge de licença + `LICENSE.md`.
+- **Ritmo de manutenção**: badge de último commit.
+- **Abertura colaborativa**: badges de issues e pull requests abertas.
+- **Escala de acervo**: badge de tamanho do repositório para transparência operacional.
+
+## Formalidades acadêmicas e “selos” GitHub
+- **Citação científica**: `data/CITATION.cff`
+- **Licença**: `LICENSE.md`
+- **Template de PR**: `.github/pull_request_template.md`
+- **Resumo de segurança**: `SECURITY_SUMMARY.md`
+- **Pacote reprodutível (artefatos)**: `results/manifest.json`, `data/zenodo.json`
+
+## Leitura recomendada (ordem canônica)
+1. `README.md` (este documento)
+2. `docs/INDICE_MESTRE.md`
+3. `docs/ACADEMIC_TAXONOMY_INDEX.md`
+4. `docs/REFERENCES.md`
+5. `docs/DOCUMENTATION_FULL_INVENTORY.md`
+
+---
+
 O RLL/MCRP passa a separar validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon+/Planck testam a camada cosmológica.
 
 # README — Edição Técnica Pós‑Doc (2026)
