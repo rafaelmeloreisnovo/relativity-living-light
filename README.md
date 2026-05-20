@@ -187,6 +187,17 @@ Os documentos abaixo foram integrados ao `README.md` raiz como **acervo históri
 
 Leitura sugerida: `README.md` → `docs/INDICE_MESTRE.md` → `docs/DOCUMENTATION_FULL_INVENTORY.md`.
 
+
+### Pós‑PhD — Dossiê formal de validação cosmológica (novo material)
+
+- [Síntese cosmológica pós‑doc (formal)](docs/rll_cosmology_postdoc_synthesis.md)
+- [Ponte operacional: tempo fraco negativo](docs/rll_negative_weak_time_bridge.md)
+- [Matriz de validação RLL × DESI/BAO](docs/rll_desi_bao_validation_matrix.md)
+- [Índice de robustez para SMBH errante](docs/rll_runaway_black_hole_anomaly_index.md)
+- [Catálogo bibliográfico observacional (YAML)](data/observational_sources.yml)
+- [Matriz YAML de validação cosmológica](data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml)
+- [Artefatos matemáticos YAML para DESI/BAO](data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml)
+
 ### Trilha autoral e conceitual (integridade de selo)
 
 - [docs/MANIFESTO.md](docs/MANIFESTO.md)
