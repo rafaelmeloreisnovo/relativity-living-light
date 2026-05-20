@@ -1,0 +1,51 @@
+title: DESI BAO Mathematical Artifacts for RLL
+status: metadata_ready
+updated_utc: "2026-05-20"
+source:
+  survey: DESI
+  channel: BAO
+  note: "Dataset values must be ingested from official DESI release tables before fitting."
+
+conventions:
+  flat_universe: true
+  c_km_s: 299792.458
+  scale_factor: "a = 1/(1+z)"
+
+rll_background:
+  E2_of_z: >-
+    E^2(z)=Omega_r(1+z)^4+Omega_m(1+z)^3+Omega_lambda+
+    Omega_s0[f(z)+(1-f(z))(1+z)^3]+Omega_B0(1+z)^4+Omega_P0(1+z)^4
+  transition_f_of_z: "f(z)=1/(1+exp((z-z_t)/w_t))"
+  H_of_z: "H(z)=H0*sqrt(E2(z))"
+
+bao_observables:
+  DM_over_rd: "D_M(z)/r_d"
+  DH_over_rd: "D_H(z)/r_d = c/(H(z)r_d)"
+  DV_over_rd: "D_V(z)/r_d"
+  DM_of_z: "D_M(z)=c*integral_0^z dz'/H(z')"
+
+likelihood:
+  chi2: "(D_obs - D_model)^T C^{-1} (D_obs - D_model)"
+  blocks_expected: [BAO]
+  fit_mode: [RLL_1_transition_only, RLL_2_transition_plus_radiative_terms, LCDM]
+
+selection_penalties:
+  AIC: "AIC = 2K + chi2"
+  BIC: "BIC = K*ln(N) + chi2"
+
+artifact_schema:
+  required_columns:
+    - z
+    - observable
+    - value
+    - sigma
+    - covariance_block
+  allowed_observables:
+    - DM_over_rd
+    - DH_over_rd
+    - DV_over_rd
+
+next_actions:
+  - "Populate data/real/cosmology/desi_bao_points.csv from official DESI tables"
+  - "Attach covariance matrix in data/real/cosmology/desi_bao_cov.csv"
+  - "Run fit script and store chi2/AIC/BIC in results/"
