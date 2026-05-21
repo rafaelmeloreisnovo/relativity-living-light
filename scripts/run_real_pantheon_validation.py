@@ -20,24 +20,55 @@ def _run(cmd: list[str], env: dict[str, str]) -> subprocess.CompletedProcess[str
 
 
 def _normalize_model_comparison(summary: dict) -> dict:
+    source = str(PANTHEON_SUMMARY_JSON.relative_to(ROOT))
+    rll = summary.get("rll", {})
+    lcdm = summary.get("lcdm", {})
+
+    def _metric(model_block: dict, *keys: str) -> float | None:
+        for key in keys:
+            if key in model_block:
+                return model_block[key]
+        return None
+
+    rll_chi2 = _metric(rll, "chi2")
+    lcdm_chi2 = _metric(lcdm, "chi2")
+    rll_aic = _metric(rll, "aic", "AIC")
+    lcdm_aic = _metric(lcdm, "aic", "AIC")
+    rll_bic = _metric(rll, "bic", "BIC")
+    lcdm_bic = _metric(lcdm, "bic", "BIC")
+
     return {
         "pipeline": summary.get("pipeline", "pantheon_oficial_prova_observacional"),
-        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        "source_summary": str(PANTHEON_SUMMARY_JSON.relative_to(ROOT)),
-        "n_obs": summary["n_obs"],
-        "rll": {
-            "chi2": summary["rll"]["chi2"],
-            "AIC": summary["rll"]["AIC"],
-            "BIC": summary["rll"]["BIC"],
-            "best_fit": summary["rll"].get("best_fit", {}),
-            "n_params": 5,
+        "dataset": summary.get("dataset", "pantheon+"),
+        "generated_at": summary.get("generated_at") or summary.get("timestamp_utc") or datetime.now(timezone.utc).isoformat(),
+        "source": source,
+        "source_summary": source,
+        "n_obs": summary.get("n_obs"),
+        "covariance_used": True,
+        "models": {
+            "rll": {
+                "k_params": 5,
+                "chi2": rll_chi2,
+                "aic": rll_aic,
+                "bic": rll_bic,
+                "log_likelihood": _metric(rll, "log_likelihood"),
+                "best_fit_params": rll.get("best_fit_params", rll.get("best_fit")),
+            },
+            "lcdm": {
+                "k_params": 2,
+                "chi2": lcdm_chi2,
+                "aic": lcdm_aic,
+                "bic": lcdm_bic,
+                "log_likelihood": _metric(lcdm, "log_likelihood"),
+                "best_fit_params": lcdm.get("best_fit_params", lcdm.get("best_fit")),
+            },
         },
-        "lcdm": {
-            "chi2": summary["lcdm"]["chi2"],
-            "AIC": summary["lcdm"]["AIC"],
-            "BIC": summary["lcdm"]["BIC"],
-            "best_fit": summary["lcdm"].get("best_fit", {}),
-            "n_params": 2,
+        "delta": {
+            "delta_chi2_rll_minus_lcdm": (rll_chi2 - lcdm_chi2) if (rll_chi2 is not None and lcdm_chi2 is not None) else None,
+            "delta_aic_rll_minus_lcdm": (rll_aic - lcdm_aic) if (rll_aic is not None and lcdm_aic is not None) else None,
+            "delta_bic_rll_minus_lcdm": (rll_bic - lcdm_bic) if (rll_bic is not None and lcdm_bic is not None) else None,
+            "interpretation_guardrail": "Quantitative comparison only; do not infer model superiority from these deltas alone.",
+            "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
         },
     }
 

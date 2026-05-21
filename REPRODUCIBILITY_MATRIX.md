@@ -12,7 +12,7 @@
 | `python -m rll.cli preflight-real --json` | Same as above | JSON payload with `passed/missing/required`; exit `0` or `2` | Implemented (added in this hardening pass) |
 | `python scripts/verify_pantheon_inputs.py` | Same required Pantheon+ files | Human-readable file status + SHA256 for existing files; exit `0` or `2` | Implemented (added in this hardening pass) |
 | `python scripts/verify_pantheon_inputs.py --json` | Same required Pantheon+ files | JSON verification report including SHA256 and size; exit `0` or `2` | Implemented (added in this hardening pass) |
-| `python scripts/run_real_pantheon_validation.py` | Pantheon+ required files + scipy/numpy runtime | Executes verify+preflight+real run and writes `data/results/model_comparison.json` | Implemented; requires real data files |
+| `python scripts/run_real_pantheon_validation.py` | `data/pantheon/*` + scipy/numpy runtime | Executes verify+preflight+real run and writes `data/results/model_comparison.json` | Infrastructure-ready; real-data conclusion pending metric interpretation. |
 | `pytest -q` | Test dependencies + local source tree | Test report with pass/fail summary | Executed in this hardening pass |
 
 ## Status legend
