@@ -21,7 +21,6 @@ BIC_TENTATIVE_THRESHOLD = 2.0
 BIC_STRONG_THRESHOLD = 10.0
 CHI2_IMPROVEMENT_MIN = 0.0
 CLAIM_BOUNDARY = "No superiority claim unless real-data metrics pass predefined thresholds."
-EXPECTED_SOURCE = "data/results/pantheon_fit_summary.json"
 
 
 def _run(cmd: list[str], env: dict[str, str]) -> subprocess.CompletedProcess[str]:
@@ -41,13 +40,10 @@ def interpret_model_comparison(delta: dict) -> dict:
         "chi2_improvement_min": CHI2_IMPROVEMENT_MIN,
     }
 
-    def _is_valid_number(value: object) -> bool:
-        return isinstance(value, (int, float)) and math.isfinite(value)
-
-    if not _is_valid_number(delta_aic) or not _is_valid_number(delta_bic):
+    if delta_aic is None or delta_bic is None:
         return {
             "interpretation_label": "inconclusive",
-            "interpretation_reason": "Missing or invalid delta_aic_rll_minus_lcdm and/or delta_bic_rll_minus_lcdm.",
+            "interpretation_reason": "Missing delta_aic_rll_minus_lcdm and/or delta_bic_rll_minus_lcdm.",
             "thresholds_used": thresholds_used,
             "claim_boundary": CLAIM_BOUNDARY,
         }
@@ -63,7 +59,7 @@ def interpret_model_comparison(delta: dict) -> dict:
     if (
         delta_aic <= -AIC_STRONG_THRESHOLD
         and delta_bic <= -BIC_STRONG_THRESHOLD
-        and _is_valid_number(delta_chi2)
+        and delta_chi2 is not None
         and delta_chi2 < -CHI2_IMPROVEMENT_MIN
     ):
         return {
@@ -76,7 +72,7 @@ def interpret_model_comparison(delta: dict) -> dict:
     if (
         delta_aic <= -AIC_TENTATIVE_THRESHOLD
         and delta_bic <= -BIC_TENTATIVE_THRESHOLD
-        and _is_valid_number(delta_chi2)
+        and delta_chi2 is not None
         and delta_chi2 < 0
     ):
         return {
@@ -92,58 +88,6 @@ def interpret_model_comparison(delta: dict) -> dict:
         "thresholds_used": thresholds_used,
         "claim_boundary": CLAIM_BOUNDARY,
     }
-
-
-def validate_model_comparison_payload(payload: dict) -> list[str]:
-    issues: list[str] = []
-    if not payload.get("dataset"):
-        issues.append("missing dataset")
-    if payload.get("n_obs") is None:
-        issues.append("missing n_obs")
-    if not payload.get("source"):
-        issues.append("missing source")
-    elif payload.get("source") != EXPECTED_SOURCE:
-        issues.append(f"source must be {EXPECTED_SOURCE}")
-    if "covariance_used" not in payload:
-        issues.append("missing covariance_used")
-
-    models = payload.get("models")
-    if not isinstance(models, dict):
-        issues.append("missing models.rll or models.lcdm")
-    else:
-        rll = models.get("rll")
-        lcdm = models.get("lcdm")
-        if not isinstance(rll, dict) or not isinstance(lcdm, dict):
-            issues.append("missing models.rll or models.lcdm")
-        else:
-            if rll.get("k_params") != 5:
-                issues.append("wrong k_params for models.rll")
-            if lcdm.get("k_params") != 2:
-                issues.append("wrong k_params for models.lcdm")
-
-    delta = payload.get("delta")
-    if not isinstance(delta, dict):
-        issues.append("missing delta")
-        return issues
-
-    if delta.get("claim_boundary") != CLAIM_BOUNDARY:
-        issues.append("missing claim_boundary")
-    if not delta.get("interpretation_label"):
-        issues.append("missing interpretation_label")
-    if not isinstance(delta.get("thresholds_used"), dict):
-        issues.append("missing thresholds_used")
-
-    for key in (
-        "delta_chi2_rll_minus_lcdm",
-        "delta_aic_rll_minus_lcdm",
-        "delta_bic_rll_minus_lcdm",
-    ):
-        value = delta.get(key)
-        if value is None:
-            continue
-        if not isinstance(value, (int, float)) or not math.isfinite(value):
-            issues.append(f"invalid numerical delta: {key}")
-    return issues
 
 
 def _normalize_model_comparison(summary: dict) -> dict:

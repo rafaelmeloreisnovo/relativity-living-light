@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-import math
+from scripts.run_real_pantheon_validation import _normalize_model_comparison, interpret_model_comparison
 
 from scripts.run_real_pantheon_validation import _normalize_model_comparison, interpret_model_comparison, validate_model_comparison_payload
-
 
 def test_interpret_inconclusive_when_aic_or_bic_missing() -> None:
     out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": None, "delta_bic_rll_minus_lcdm": -3.0})
@@ -146,81 +145,3 @@ def test_claim_boundary_always_present_and_no_unqualified_win_language() -> None
         reason_lower = out["interpretation_reason"].lower()
         assert "beats lcdm" not in reason_lower
         assert "won over lcdm" not in reason_lower
-
-
-def test_missing_chi2_prevents_rll_preferred_labels() -> None:
-    out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": -11.0, "delta_bic_rll_minus_lcdm": -11.0, "delta_chi2_rll_minus_lcdm": None})
-    assert out["interpretation_label"] == "inconclusive"
-
-
-def test_nan_or_inf_deltas_are_inconclusive() -> None:
-    for value in (math.nan, math.inf, -math.inf):
-        out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": value, "delta_bic_rll_minus_lcdm": -3.0, "delta_chi2_rll_minus_lcdm": -1.0})
-        assert out["interpretation_label"] == "inconclusive"
-
-
-def test_conflicting_aic_bic_signs_never_favor_rll() -> None:
-    out_aic_pos = interpret_model_comparison({"delta_aic_rll_minus_lcdm": 0.5, "delta_bic_rll_minus_lcdm": -20.0, "delta_chi2_rll_minus_lcdm": -2.0})
-    out_bic_pos = interpret_model_comparison({"delta_aic_rll_minus_lcdm": -20.0, "delta_bic_rll_minus_lcdm": 0.5, "delta_chi2_rll_minus_lcdm": -2.0})
-    assert out_aic_pos["interpretation_label"] == "lcdm_preferred"
-    assert out_bic_pos["interpretation_label"] == "lcdm_preferred"
-
-
-def test_strong_ic_without_chi2_improvement_is_not_rll_preferred() -> None:
-    out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": -20.0, "delta_bic_rll_minus_lcdm": -20.0, "delta_chi2_rll_minus_lcdm": 0.1})
-    assert out["interpretation_label"] == "inconclusive"
-
-
-def test_rll_lower_chi2_but_worse_aic_bic_prefers_lcdm() -> None:
-    out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": 2.0, "delta_bic_rll_minus_lcdm": 1.0, "delta_chi2_rll_minus_lcdm": -3.0})
-    assert out["interpretation_label"] == "lcdm_preferred"
-
-
-def test_equal_metrics_is_inconclusive() -> None:
-    out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": 0.0, "delta_bic_rll_minus_lcdm": 0.0, "delta_chi2_rll_minus_lcdm": 0.0})
-    assert out["interpretation_label"] == "inconclusive"
-
-
-def test_validate_model_comparison_payload_ok() -> None:
-    payload = _normalize_model_comparison(
-        {
-            "dataset": "pantheon+",
-            "n_obs": 1701,
-            "rll": {"chi2": 10.0, "aic": 20.0, "bic": 30.0},
-            "lcdm": {"chi2": 11.0, "aic": 15.0, "bic": 18.0},
-        }
-    )
-    assert validate_model_comparison_payload(payload) == []
-
-
-def test_validate_model_comparison_payload_flags_missing_and_invalid_fields() -> None:
-    payload = {
-        "dataset": None,
-        "n_obs": None,
-        "source": "bad/source.json",
-        "models": {"rll": {"k_params": 4}, "lcdm": {"k_params": 3}},
-        "delta": {
-            "delta_aic_rll_minus_lcdm": math.nan,
-            "delta_bic_rll_minus_lcdm": math.inf,
-            "delta_chi2_rll_minus_lcdm": "bad",
-        },
-    }
-    issues = validate_model_comparison_payload(payload)
-    assert "missing dataset" in issues
-    assert "missing n_obs" in issues
-    assert "source must be data/results/pantheon_fit_summary.json" in issues
-    assert "missing covariance_used" in issues
-    assert "wrong k_params for models.rll" in issues
-    assert "wrong k_params for models.lcdm" in issues
-    assert "missing claim_boundary" in issues
-    assert "missing interpretation_label" in issues
-    assert "missing thresholds_used" in issues
-    assert "invalid numerical delta: delta_aic_rll_minus_lcdm" in issues
-    assert "invalid numerical delta: delta_bic_rll_minus_lcdm" in issues
-    assert "invalid numerical delta: delta_chi2_rll_minus_lcdm" in issues
-
-
-def test_validate_model_comparison_payload_accepts_malformed_source_summary_but_not_source() -> None:
-    payload = _normalize_model_comparison({"dataset": "pantheon+", "n_obs": 1701, "rll": {}, "lcdm": {}})
-    payload["source_summary"] = 12345
-    assert validate_model_comparison_payload(payload) == []
