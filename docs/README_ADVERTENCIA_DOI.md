@@ -47,6 +47,7 @@ Cálculo linear indiciário:
 - Não afirmar como fato absoluto: data oficial exata sem retorno direto de metadado Zenodo/DataCite.
 
 
+
 ## Prova adicional por commit assinado (GitHub Verified)
 Quando houver commit/tag com assinatura verificada no GitHub, isso constitui **evidência direta de cronologia do repositório** (Git), independente da disponibilidade pública imediata do metadado do DOI.
 
