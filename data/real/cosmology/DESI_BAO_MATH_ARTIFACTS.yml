@@ -1,6 +1,17 @@
-title: DESI BAO Mathematical Artifacts for RLL
-status: metadata_ready
-updated_utc: "2026-05-20"
+meta:
+  schema: rll.unified.math_artifacts.v2
+  title: DESI BAO Mathematical Artifacts for RLL
+  status: metadata_ready
+  updated_utc: "2026-05-21"
+  family: math_artifacts
+  purpose: "Definições matemáticas uniformes para ingestão e ajuste BAO."
+
+orchestration:
+  orchestrator: rll_pipeline
+  pipeline_stage: bao_ingestion_and_fit
+  module_compatibility: backward_compatible
+  fit_modes: [RLL_1_transition_only, RLL_2_transition_plus_radiative_terms, LCDM]
+
 source:
   survey: DESI
   channel: BAO
@@ -27,7 +38,6 @@ bao_observables:
 likelihood:
   chi2: "(D_obs - D_model)^T C^{-1} (D_obs - D_model)"
   blocks_expected: [BAO]
-  fit_mode: [RLL_1_transition_only, RLL_2_transition_plus_radiative_terms, LCDM]
 
 selection_penalties:
   AIC: "AIC = 2K + chi2"
@@ -49,3 +59,7 @@ next_actions:
   - "Populate data/real/cosmology/desi_bao_points.csv from official DESI tables"
   - "Attach covariance matrix in data/real/cosmology/desi_bao_cov.csv"
   - "Run fit script and store chi2/AIC/BIC in results/"
+
+mapping:
+  artifact_diff_log: "results/mapping_logs/desi_bao_artifacts_diff.log"
+  ingestion_trace_log: "results/mapping_logs/desi_bao_ingestion_trace.log"
