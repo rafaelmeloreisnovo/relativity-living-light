@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from argparse import Namespace
 from pathlib import Path
+import os
 import subprocess
 import sys
 
@@ -101,11 +102,14 @@ def test_preflight_real_fails_when_pantheon_files_missing(
 
 
 def test_cli_smoke_synthetic_run() -> None:
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(Path.cwd() / "src")
     completed = subprocess.run(
         [sys.executable, "-m", "rll.cli", "run", "--data", "synthetic", "--model", "rll"],
         capture_output=True,
         text=True,
         check=False,
+        env=env,
     )
     assert completed.returncode == 0, completed.stderr
     assert "[rll] Executando fluxo" in completed.stdout
