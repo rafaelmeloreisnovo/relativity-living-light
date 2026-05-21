@@ -8,6 +8,7 @@ from data.pipelines.structure_d.cosmo import (
     omega_neutrino,
     omega_quantum,
 )
+from data.pipelines.structure_d.likelihood import is_physically_stable, log_prior
 
 
 def test_component_terms_are_finite_on_physical_grid():
@@ -47,3 +48,33 @@ def test_omega_m_z_accepts_extended_components():
     )
     assert np.all(np.isfinite(out))
     assert np.all(out > 0.0)
+
+
+def test_likelihood_stability_rejects_negative_lcdmpp_e2():
+    params = {
+        "H0": 70.0,
+        "Om": 0.3,
+        "Or": 0.0,
+        "Ol": 0.7,
+        "Omega_e": -2.0,
+        "m_ede": 0.0,
+    }
+
+    assert not is_physically_stable(params)
+    assert log_prior(params) == -np.inf
+
+
+def test_likelihood_stability_accepts_positive_lcdmpp_e2_grid():
+    params = {
+        "H0": 70.0,
+        "Om": 0.3,
+        "Or": 0.0,
+        "Ol": 0.7,
+        "Omega_e": 0.02,
+        "m_ede": 1.0,
+        "Omega_nu": 0.001,
+    }
+
+    assert is_physically_stable(
+        params, data={"stability_z_grid": np.linspace(0.0, 3.0, 16)}
+    )
