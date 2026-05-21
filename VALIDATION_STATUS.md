@@ -6,6 +6,13 @@ Date (UTC): 2026-05-21
 
 - **Unit/integration tests**: `pytest -q` runs successfully after compatibility fix for NumPy 2.x (`48 passed`).
 - **CLI synthetic flow**: `rll run --data synthetic --model rll` runs end-to-end and writes artifacts in `results/structure_d/`.
+- **Synthetic artifact set (exact paths)**:
+  - `results/structure_d/model_comparison.csv`
+  - `results/structure_d/covariance_usage.csv`
+  - `results/structure_d/error_mode_usage.csv`
+  - `results/structure_d/rll_regime_summary.csv`
+  - `results/structure_d/reproduction_contract.json`
+  - `results/model_comparison.csv` (canonical copy)
 - **Editable install (offline-compatible)**: `pip install -e . --no-build-isolation` works in restricted-network environments.
 
 ## What fails

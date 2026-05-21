@@ -33,6 +33,20 @@ def _select_real_flow(with_bayes: bool, with_covariance: bool) -> Path:
     return root / "docs" / "rll_validation_real.py"
 
 
+def _pantheon_required_files() -> list[Path]:
+    root = _repo_root()
+    return [
+        root / "data" / "pantheon" / "lcparam_full_long_zhel.txt",
+        root / "data" / "pantheon" / "Pantheon+SH0ES_STAT+SYS.cov",
+    ]
+
+
+def _check_pantheon_files() -> tuple[list[Path], list[Path]]:
+    required = _pantheon_required_files()
+    missing = [path for path in required if not path.exists()]
+    return required, missing
+
+
 @dataclass(frozen=True)
 class ExecutionPlan:
     script: Path
@@ -92,6 +106,17 @@ def cmd_run(args: argparse.Namespace) -> None:
         _run_script(plan.script)
 
 
+def cmd_preflight_real(_: argparse.Namespace) -> None:
+    required, missing = _check_pantheon_files()
+    print("[rll] Preflight real-data validation (Pantheon+)")
+    for path in required:
+        status = "OK" if path.exists() else "MISSING"
+        print(f" - {status}: {path}")
+    if missing:
+        raise SystemExit(2)
+    print("[rll] Preflight passed.")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="rll",
@@ -123,6 +148,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="No fluxo real, prioriza pipeline Pantheon+ com matriz de covariância",
     )
     run_parser.set_defaults(func=cmd_run)
+
+    preflight_parser = subparsers.add_parser(
+        "preflight-real",
+        help="Valida presença dos arquivos Pantheon+ necessários para execução real",
+    )
+    preflight_parser.set_defaults(func=cmd_preflight_real)
 
     return parser
 
