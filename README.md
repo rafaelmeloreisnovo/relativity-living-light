@@ -9,6 +9,19 @@
 
 > **Edição profissional (2026):** organização formal para leitura acadêmica, rastreabilidade metodológica e elegância editorial, **sem remoção de acervo**.
 
+
+## Aviso de cronologia, DOI e prova técnica (referência 10.5281/zenodo.17188137)
+
+- Este repositório GitHub é a trilha primária de versionamento contínuo de trabalho.
+- O DOI de referência `10.5281/zenodo.17188137` foi usado para citação e preservação de artefatos após publicação de conteúdo no GitHub, compondo uma camada complementar de arquivamento científico.
+- Em termos probatórios, a data exata do DOI deve ser confirmada por metadado oficial do Zenodo/DataCite quando disponível publicamente em estado *Findable*.
+- Enquanto não houver metadado direto acessível, a leitura correta é: o DOI está associado ao ecossistema Zenodo e pode ser tratado como evidência de preservação/citação, sem substituir a trilha de commits do GitHub.
+
+Para formalização adicional, consulte `docs/README_ADVERTENCIA_DOI.md`.
+- Janela indiciária (não oficial) para o DOI citado: entre **11/09/2025** e **29/10/2025**, com estimativa central em **~22/09/2025**.
+
+---
+
 ## Carta de apresentação institucional
 Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um formato adequado para pós-PhD: verificável, citável, multilíngue e com governança documental.
 
