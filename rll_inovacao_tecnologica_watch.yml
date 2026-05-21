@@ -1,0 +1,28 @@
+source:
+  name: "Inovação Tecnológica"
+  role: "radar_divulgacao_cientifica"
+  academic_weight: "secondary_source"
+
+vectors:
+  - id: desi_dark_energy
+    rll_module: "model_comparison"
+    datasets: ["DESI_DR2_BAO", "Pantheon+", "CMB"]
+    required_metrics: ["chi2", "AIC", "BIC", "delta_AIC", "delta_BIC"]
+    claim_boundary: "No superiority claim without real-data thresholds"
+
+  - id: photon_negative_time
+    rll_module: "photon_logistics"
+    variables: ["tau_effective", "weak_value", "phase_delay", "atom_excitation_time"]
+    warning: "not time travel; quantum weak-measurement/interation-time effect"
+
+  - id: photonic_topology
+    rll_module: "light_matter_topology"
+    variables: ["chern_index", "hall_drift", "frequency_lattice", "coherence"]
+
+  - id: thermodynamic_cosmology
+    rll_module: "entropy_coherence_field"
+    variables: ["entropy", "temperature", "coherence", "expansion_rate"]
+
+  - id: laptop_cosmology
+    rll_module: "low_resource_cosmo_emulator"
+    targets: ["Termux", "ARM32", "Python", "Julia", "C_freestanding"]
