@@ -1,0 +1,216 @@
+name: START MANUAL HERE - YML Interoperability Orchestrator
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_profile:
+        description: Perfil de execução para clareza operacional
+        required: true
+        default: full_validation
+        type: choice
+        options: [quick_yaml_only, interoperability_only, full_validation]
+      pipeline_scope:
+        description: Escopo de pipeline para formalizar seleção de run
+        required: true
+        default: all
+        type: choice
+        options: [rll, iml, formulas, book, all]
+      dataset_group:
+        description: Grupo de dados principal para análise
+        required: true
+        default: all
+        type: choice
+        options: [geomagnetic, heliophysics, cosmology, all]
+      book_scope:
+        description: Escopo do livro para o pipeline canônico
+        required: true
+        default: all
+        type: choice
+        options: [methodology, real_data, scripts, observational_validation, desi_boss, amas_mcrp, all]
+      mode:
+        description: Modo de preparação de dados/cálculo
+        required: true
+        default: metadata_only
+        type: choice
+        options: [metadata_only, dry_run, fetch, compute, full]
+      validate_workflows:
+        description: Validar todos os YAML em .github/workflows
+        required: true
+        default: true
+        type: boolean
+      validate_data_yml:
+        description: Validar YAML de dados e contratos de interoperabilidade
+        required: true
+        default: true
+        type: boolean
+      run_data_preparation_probe:
+        description: Executar sonda de preparação (fetch/compute) sem commit
+        required: true
+        default: true
+        type: boolean
+      strict_mode:
+        description: Falhar se encontrar inconsistências de contrato
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  manual-start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml numpy pandas scipy matplotlib requests astropy
+
+      - name: Build selected execution plan
+        run: |
+          mkdir -p artifacts/manual-start
+          cat > artifacts/manual-start/SELECTION_PLAN.md <<PLAN
+          # START MANUAL HERE - Selection Plan
+
+          - run_profile: ${{ inputs.run_profile }}
+          - pipeline_scope: ${{ inputs.pipeline_scope }}
+          - dataset_group: ${{ inputs.dataset_group }}
+          - book_scope: ${{ inputs.book_scope }}
+          - mode: ${{ inputs.mode }}
+          - validate_workflows: ${{ inputs.validate_workflows }}
+          - validate_data_yml: ${{ inputs.validate_data_yml }}
+          - run_data_preparation_probe: ${{ inputs.run_data_preparation_probe }}
+          - strict_mode: ${{ inputs.strict_mode }}
+
+          ## Methodology Angle
+          1. Parse YAML syntax safety.
+          2. Validate interoperability contracts.
+          3. Probe data preparation pathway (metadata/fetch/compute) for selected scope.
+          4. Persist summary for reproducible audit.
+          PLAN
+
+      - name: Validate YAML parse (workflows + data)
+        if: ${{ inputs.run_profile == 'quick_yaml_only' || inputs.run_profile == 'full_validation' }}
+        run: |
+          python - <<'PY'
+          import glob
+          import yaml
+
+          files = []
+          if "${{ inputs.validate_workflows }}" == "true":
+              files.extend(sorted(glob.glob('.github/workflows/*.[Yy][Aa][Mm][Ll]') + glob.glob('.github/workflows/*.yml') + glob.glob('.github/workflows/*.yaml')))
+          if "${{ inputs.validate_data_yml }}" == "true":
+              files.extend([
+                  'data/observational_sources.yml',
+                  'data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml',
+                  'data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml',
+              ])
+
+          files = sorted(set(files))
+          if not files:
+              print('No files selected for validation.')
+              raise SystemExit(0)
+
+          for path in files:
+              with open(path, 'r', encoding='utf-8') as fh:
+                  yaml.safe_load(fh)
+              print(f'OK YAML: {path}')
+          PY
+
+      - name: Validate interoperability contracts
+        if: ${{ inputs.run_profile == 'interoperability_only' || inputs.run_profile == 'full_validation' }}
+        run: |
+          python - <<'PY'
+          import yaml
+          from pathlib import Path
+
+          strict = "${{ inputs.strict_mode }}" == "true"
+
+          def load(path):
+              with open(path, 'r', encoding='utf-8') as fh:
+                  return yaml.safe_load(fh)
+
+          src = load('data/observational_sources.yml')
+          matrix = load('data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml')
+          math = load('data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml')
+
+          errors = []
+
+          for name, doc in [('sources', src), ('matrix', matrix), ('math', math)]:
+              orch = doc.get('orchestration', {}) or {}
+              if orch.get('orchestrator') != 'rll_pipeline':
+                  errors.append(f"{name}: orchestrator must be 'rll_pipeline'")
+
+          for name, doc in [('sources', src), ('matrix', matrix), ('math', math)]:
+              mapping = doc.get('mapping', {}) or {}
+              if not mapping:
+                  errors.append(f'{name}: missing mapping block')
+              for k, v in mapping.items():
+                  if not str(v).startswith('results/mapping_logs/'):
+                      errors.append(f"{name}: mapping '{k}' must point to results/mapping_logs/")
+
+          candidates = [m.get('id') for m in (matrix.get('model_family', {}) or {}).get('candidate', []) if isinstance(m, dict)]
+          fit_modes = (math.get('orchestration', {}) or {}).get('fit_modes', []) or []
+          for expected in ['RLL_1_transition_only', 'RLL_2_transition_plus_radiative_terms', 'LCDM']:
+              if expected not in fit_modes:
+                  errors.append(f"math: missing fit mode '{expected}'")
+          for c in candidates:
+              if c and c not in fit_modes:
+                  errors.append(f"candidate '{c}' not represented in math fit_modes")
+
+          if not Path('results/mapping_logs').exists():
+              errors.append('missing directory results/mapping_logs')
+
+          if errors:
+              print('Interoperability validation FAILED:')
+              for e in errors:
+                  print('-', e)
+              if strict:
+                  raise SystemExit(1)
+          else:
+              print('Interoperability validation OK.')
+          PY
+
+      - name: Data preparation probe for analysis formalization
+        if: ${{ inputs.run_data_preparation_probe }}
+        run: |
+          mkdir -p artifacts/manual-start/probe
+          python3 scripts/rll_pipeline.py \
+            --book-scope "${{ inputs.book_scope }}" \
+            --dataset-group "${{ inputs.dataset_group }}" \
+            --mode "${{ inputs.mode == 'full' && 'compute' || inputs.mode }}" \
+            --output-dir artifacts/manual-start/probe
+
+      - name: Build methodology summary
+        run: |
+          cat > artifacts/manual-start/METHODOLOGY_SUMMARY.md <<EOF_SUM
+          # Methodology Summary
+
+          This run formalized YAML and pipeline selection with explicit controls:
+          - Scope: ${{ inputs.pipeline_scope }}
+          - Book scope: ${{ inputs.book_scope }}
+          - Dataset group: ${{ inputs.dataset_group }}
+          - Mode: ${{ inputs.mode }}
+          - Profile: ${{ inputs.run_profile }}
+
+          Output probe path:
+          - artifacts/manual-start/probe
+
+          This supports reproducibility and clearer run selection semantics.
+          EOF_SUM
+
+      - name: Upload manual-start audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: start-manual-here-${{ github.run_id }}
+          path: artifacts/manual-start/
+          retention-days: 14
+
+      - name: Final summary
+        run: |
+          echo "START_MANUAL_HERE.YML finished with validation + methodology formalization."
