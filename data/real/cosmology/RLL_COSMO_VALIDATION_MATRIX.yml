@@ -1,22 +1,34 @@
-title: RLL Cosmological Validation Matrix
-status: partial_real_preparation
-version: 0.1.0
-updated_utc: "2026-05-20"
-models:
-  - id: LCDM
-    class: baseline
-    free_parameters: [H0, Omega_m, Omega_b, Omega_r, Omega_lambda]
-  - id: w0waCDM
-    class: comparator
-    free_parameters: [H0, Omega_m, w0, wa]
-  - id: RLL_1_transition_only
-    class: candidate
-    free_parameters: [H0, Omega_m, Omega_lambda, Omega_s0, z_t, w_t]
-  - id: RLL_2_transition_plus_radiative_terms
-    class: candidate
-    free_parameters: [H0, Omega_m, Omega_lambda, Omega_s0, z_t, w_t, Omega_B0, Omega_P0]
+meta:
+  schema: rll.unified.validation_matrix.v2
+  title: RLL Cosmological Validation Matrix
+  status: partial_real_preparation
+  version: 0.2.0
+  updated_utc: "2026-05-21"
+  family: validation_matrix
+  purpose: "Matriz unificada para validação cosmológica e seleção de modelos."
 
-datasets:
+orchestration:
+  orchestrator: rll_pipeline
+  pipeline_stage: model_validation
+  module_compatibility: backward_compatible
+  non_breaking_contracts:
+    - "Model IDs legados preservados"
+    - "Métricas centrais preservadas"
+
+model_family:
+  baseline:
+    - id: LCDM
+      free_parameters: [H0, Omega_m, Omega_b, Omega_r, Omega_lambda]
+  comparator:
+    - id: w0waCDM
+      free_parameters: [H0, Omega_m, w0, wa]
+  candidate:
+    - id: RLL_1_transition_only
+      free_parameters: [H0, Omega_m, Omega_lambda, Omega_s0, z_t, w_t]
+    - id: RLL_2_transition_plus_radiative_terms
+      free_parameters: [H0, Omega_m, Omega_lambda, Omega_s0, z_t, w_t, Omega_B0, Omega_P0]
+
+dataset_family:
   expansion:
     - DESI_BAO
     - PantheonPlus
@@ -31,7 +43,7 @@ datasets:
   anomaly_stress:
     - JWST_runaway_SMBH_catalog
 
-metrics:
+metric_family:
   fit:
     - chi2_total
     - chi2_by_block
@@ -45,17 +57,22 @@ metrics:
     - anomaly_penalty
     - covariance_usage_completeness
 
-claims_allowed:
-  - "RLL is a testable effective extension"
-  - "RLL contains LCDM as limiting case"
-  - "RLL can be compared against BAO/SNe/CMB"
-claims_forbidden_until_validation:
-  - "RLL is confirmed"
-  - "negative time proves RLL"
-  - "runaway black holes prove dark energy dynamics"
+claims:
+  allowed:
+    - "RLL is a testable effective extension"
+    - "RLL contains LCDM as limiting case"
+    - "RLL can be compared against BAO/SNe/CMB"
+  forbidden_until_validation:
+    - "RLL is confirmed"
+    - "negative time proves RLL"
+    - "runaway black holes prove dark energy dynamics"
 
 acceptance_criteria:
   - "RLL reproduces LCDM limit when Omega_s0, Omega_B0, Omega_P0 -> 0"
   - "No material degradation against CMB priors"
   - "AIC/BIC not worse than LCDM by publication-threshold margins"
   - "All used covariance blocks recorded with traceability"
+
+mapping:
+  matrix_diff_log: "results/mapping_logs/validation_matrix_diff.log"
+  execution_trace_log: "results/mapping_logs/validation_execution_trace.log"
