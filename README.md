@@ -18,6 +18,7 @@
 - Enquanto não houver metadado direto acessível, a leitura correta é: o DOI está associado ao ecossistema Zenodo e pode ser tratado como evidência de preservação/citação, sem substituir a trilha de commits do GitHub.
 
 Para formalização adicional, consulte `docs/README_ADVERTENCIA_DOI.md`.
+- Janela indiciária (não oficial) para o DOI citado: entre **11/09/2025** e **29/10/2025**, com estimativa central em **~22/09/2025**.
 
 ---
 
