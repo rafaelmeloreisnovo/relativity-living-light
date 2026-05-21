@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import runpy
 import sys
 from dataclasses import dataclass
@@ -106,15 +107,27 @@ def cmd_run(args: argparse.Namespace) -> None:
         _run_script(plan.script)
 
 
-def cmd_preflight_real(_: argparse.Namespace) -> None:
+def cmd_preflight_real(args: argparse.Namespace) -> None:
     required, missing = _check_pantheon_files()
-    print("[rll] Preflight real-data validation (Pantheon+)")
-    for path in required:
-        status = "OK" if path.exists() else "MISSING"
-        print(f" - {status}: {path}")
+    payload = {
+        "check": "preflight-real",
+        "required": [str(path) for path in required],
+        "missing": [str(path) for path in missing],
+        "passed": not missing,
+    }
+
+    if getattr(args, "json", False):
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        print("[rll] Preflight real-data validation (Pantheon+)")
+        for path in required:
+            status = "OK" if path.exists() else "MISSING"
+            print(f" - {status}: {path}")
+        if not missing:
+            print("[rll] Preflight passed.")
+
     if missing:
         raise SystemExit(2)
-    print("[rll] Preflight passed.")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -152,6 +165,11 @@ def build_parser() -> argparse.ArgumentParser:
     preflight_parser = subparsers.add_parser(
         "preflight-real",
         help="Valida presença dos arquivos Pantheon+ necessários para execução real",
+    )
+    preflight_parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emite resultado em JSON para automação",
     )
     preflight_parser.set_defaults(func=cmd_preflight_real)
 
