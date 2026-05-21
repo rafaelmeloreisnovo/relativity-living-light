@@ -5,6 +5,18 @@
 ## Aviso formal
 Este arquivo representa a declaração de licenciamento e proteção intelectual definida pelo autor. Para uso institucional, recomenda-se leitura conjunta com políticas internas de compliance e avaliação jurídica local.
 
+
+## Cláusula de referência técnico-documental (DOI e GitHub)
+
+Para fins de rastreabilidade científica e coerência documental deste repositório:
+
+1. O DOI de referência `10.5281/zenodo.17188137` identifica artefato de preservação/citação no ecossistema Zenodo/DataCite.
+2. A cronologia de desenvolvimento é primariamente demonstrada pelo histórico de commits e tags no GitHub deste repositório.
+3. Ausência temporária de metadado público (*Findable*) para um DOI não invalida a cadeia de autoria técnica já documentada no versionamento Git.
+4. Declarações de data exata de DOI devem usar metadado oficial direto quando disponível, distinguindo prova direta de inferência indiciária.
+
+---
+
 ## Estrutura de leitura
 1. Preâmbulo supraconstitucional
 2. Blindagem jurídica
