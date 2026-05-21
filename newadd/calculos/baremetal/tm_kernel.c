@@ -6,6 +6,8 @@
 
 typedef unsigned long long u64;
 typedef long long i64;
+typedef unsigned int u32;
+typedef unsigned char u8;
 
 typedef struct {
     double rc0_gv;
@@ -14,6 +16,28 @@ typedef struct {
     double kappa_gv_inv;
     double m0;
 } TMParams;
+
+typedef struct {
+    u32 generation;
+    u32 tick;
+    u32 watchdog_limit;
+    u32 watchdog_counter;
+    u32 rollback_count;
+    u32 failsafe_code;
+    u32 crc32_sw;
+    u32 crc32_hw_hint;
+    u8 route_idx[4];
+    u8 lane_mask;
+    u8 reserved[3];
+} TMControlState;
+
+typedef struct {
+    u8 cpu_class;
+    u8 simd_class;
+    u8 kvm_hint;
+    u8 gpu_hint;
+    u8 route_matrix[10][10][10][4];
+} TMRouteMap;
 
 static double absd(double x) {
     return (x < 0.0) ? -x : x;
@@ -59,6 +83,97 @@ static double ratio_pow_beta(double ratio, double beta) {
     double core = powi(ratio, (ibeta > 0) ? ibeta : 1);
     /* linearização: ratio^(ibeta+delta) ≈ core * (1 + delta*(ratio-1)) */
     return core * (1.0 + delta * (ratio - 1.0));
+}
+
+static u32 tm_crc32_step(u32 crc, u8 byte) {
+    u32 c = crc ^ (u32)byte;
+    u32 i = 0;
+    while (i < 8U) {
+        u32 mask = (u32)(-(i64)(c & 1U));
+        c = (c >> 1) ^ (0xEDB88320U & mask);
+        i++;
+    }
+    return c;
+}
+
+static u32 tm_crc32_buf(const u8* buf, u32 len) {
+    u32 crc = 0xFFFFFFFFU;
+    u32 i = 0;
+    while (i < len) {
+        crc = tm_crc32_step(crc, buf[i]);
+        i++;
+    }
+    return ~crc;
+}
+
+static void tm_control_checkpoint(const TMControlState* in, TMControlState* out) {
+    *out = *in;
+}
+
+static void tm_control_restore(const TMControlState* from, TMControlState* to) {
+    *to = *from;
+}
+
+static u32 tm_route_compose_id(const TMControlState* s) {
+    u32 a = (u32)s->route_idx[0] % 10U;
+    u32 b = (u32)s->route_idx[1] % 10U;
+    u32 c = (u32)s->route_idx[2] % 10U;
+    u32 d = (u32)s->route_idx[3] % 4U;
+    return (((a * 10U) + b) * 10U + c) * 4U + d;
+}
+
+static u32 tm_route_next_prime_stride(u32 route_id, u32 step) {
+    const u32 dr = 7U;
+    const u32 dc = 3U;
+    return (route_id + dr * step + dc) % 4000U;
+}
+
+static u32 tm_failsafe_watchdog(TMControlState* cur, const TMControlState* stable) {
+    u32 crc = tm_crc32_buf((const u8*)cur, (u32)sizeof(TMControlState));
+    if (crc != cur->crc32_sw) {
+        tm_control_restore(stable, cur);
+        cur->rollback_count = stable->rollback_count + 1U;
+        cur->failsafe_code = 0xE001U;
+        cur->crc32_sw = tm_crc32_buf((const u8*)cur, (u32)sizeof(TMControlState));
+        return 1U;
+    }
+    if (cur->watchdog_counter > cur->watchdog_limit) {
+        tm_control_restore(stable, cur);
+        cur->rollback_count = stable->rollback_count + 1U;
+        cur->failsafe_code = 0xE002U;
+        cur->crc32_sw = tm_crc32_buf((const u8*)cur, (u32)sizeof(TMControlState));
+        return 1U;
+    }
+    return 0U;
+}
+
+u32 tm_control_tick(TMControlState* state, const TMRouteMap* route, u32 input_entropy) {
+    TMControlState snapshot;
+    u32 route_id;
+    u32 next_id;
+
+    tm_control_checkpoint(state, &snapshot);
+
+    state->tick += 1U;
+    state->watchdog_counter += 1U;
+    route_id = tm_route_compose_id(state);
+    next_id = tm_route_next_prime_stride(route_id, (state->tick ^ input_entropy) & 0x3FU);
+
+    state->route_idx[0] = (u8)((next_id / 400U) % 10U);
+    state->route_idx[1] = (u8)((next_id / 40U) % 10U);
+    state->route_idx[2] = (u8)((next_id / 4U) % 10U);
+    state->route_idx[3] = (u8)(next_id % 4U);
+
+    state->lane_mask = route->route_matrix
+        [state->route_idx[0]][state->route_idx[1]][state->route_idx[2]][state->route_idx[3]];
+
+    state->crc32_hw_hint = (u32)route->simd_class;
+    state->crc32_sw = tm_crc32_buf((const u8*)state, (u32)sizeof(TMControlState));
+    if (tm_failsafe_watchdog(state, &snapshot)) {
+        return 0U;
+    }
+    state->watchdog_counter = 0U;
+    return 1U;
 }
 
 double tm_rc_gv(double m, double sw, const TMParams* p) {
