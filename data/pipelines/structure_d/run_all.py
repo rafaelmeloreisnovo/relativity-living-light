@@ -2,6 +2,7 @@ import argparse
 import csv
 import json
 import os
+import shutil
 import subprocess
 import time
 import subprocess
@@ -42,6 +43,7 @@ REAL_PROFILE = "structure_d_real_validation"
 MODEL_LCDM = "lcdm"
 MODEL_RLL_AGN = "rll_like_agn"
 REGIME_SYNTHETIC = "synthetic"
+REGIME_PARTIAL_REAL = "partial_real"
 REGIME_REAL = "real"
 
 REQUIRED_OUTPUTS = [
@@ -68,6 +70,7 @@ EXPECTED_SCHEMA_BY_OUTPUT = {
         "BIC",
         "N",
         "k",
+        "dof",
         "datasets_used",
         "run_name",
         "profile_name",
@@ -278,6 +281,8 @@ def _find_dataset_by_kind(datasets, kind):
     return None
 
 def run_classic_metrics(cfg_meta, datasets, covariance_policy):
+    profile_name = str(cfg_meta.get("profile_name", DEFAULT_PROFILE))
+    regime = REGIME_PARTIAL_REAL if "partial_real" in profile_name else REGIME_SYNTHETIC
     lcdm = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, Ob_h2=0.02236)
     rll = dict(H0=70.0, Om=0.3, Ol=0.7, sigma8=0.8, gamma=0.55, alpha=0.06, z_peak=2.0, width=1.2, beta=0.00, Ob_h2=0.02236)
     fit_params_lcdm = ["H0", "Om", "sigma8", "gamma"]
@@ -355,12 +360,13 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     rows.append(
         {
             "model": MODEL_LCDM,
-            "regime": REGIME_SYNTHETIC,
+            "regime": regime,
             "chi2": float(chi2_lcdm),
             "AIC": aic(chi2_lcdm, N_FREE_PARAMS_LCDM),
             "BIC": bic(chi2_lcdm, N_FREE_PARAMS_LCDM, n_obs),
             "N": int(n_obs),
             "k": N_FREE_PARAMS_LCDM,
+            "dof": int(n_obs - N_FREE_PARAMS_LCDM),
             "fit_params": ",".join(fit_params_lcdm),
             "fixed_params": ",".join(fixed_params_lcdm),
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
@@ -372,12 +378,13 @@ def run_classic_metrics(cfg_meta, datasets, covariance_policy):
     rows.append(
         {
             "model": MODEL_RLL_AGN,
-            "regime": REGIME_SYNTHETIC,
+            "regime": regime,
             "chi2": float(chi2_rll),
             "AIC": aic(chi2_rll, N_FREE_PARAMS_RLL),
             "BIC": bic(chi2_rll, N_FREE_PARAMS_RLL, n_obs),
             "N": int(n_obs),
             "k": N_FREE_PARAMS_RLL,
+            "dof": int(n_obs - N_FREE_PARAMS_RLL),
             "fit_params": ",".join(fit_params_rll),
             "fixed_params": ",".join(fixed_params_rll),
             "datasets_used": ",".join(cfg_meta["active_datasets"]),
@@ -744,6 +751,7 @@ def main(
             raise RuntimeError(f"schema mismatch for model_comparison.csv: missing required columns {missing_columns}")
         model_df = model_df[allowed_columns]
         model_df.to_csv(model_path, index=False)
+        shutil.copyfile(model_path, os.path.join(BASE_DIR, "results", "model_comparison.csv"))
         df_model = model_df
         out_cov = os.path.join(RESULTS, "covariance_usage.csv")
         out_error_mode = os.path.join(RESULTS, "error_mode_usage.csv")
@@ -882,6 +890,7 @@ def main(
                 "[bayes] inference hyperparameters: "
                 f"seed={bayes_seed}, nwalkers={bayes_nwalkers}, nsteps={bayes_nsteps}, nlive={bayes_nlive}"
             )
+    shutil.copyfile(out_model, os.path.join(BASE_DIR, "results", "model_comparison.csv"))
 
     return _build_main_result(
         df_model=df_model,
