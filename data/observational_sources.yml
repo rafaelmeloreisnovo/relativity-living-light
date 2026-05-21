@@ -1,51 +1,97 @@
-version: 1
-updated_utc: "2026-05-20"
+meta:
+  schema: rll.unified.catalog.v2
+  version: 2
+  updated_utc: "2026-05-21"
+  family: source_catalog
+  purpose: "Catálogo unificado de fontes observacionais com foco em rastreabilidade."
 
-sources:
+orchestration:
+  orchestrator: rll_pipeline
+  pipeline_stage: source_selection
+  module_compatibility: backward_compatible
+  selection_keys: [domain, modality, release_status, language_scope]
+
+catalog:
   desi_2025:
     label: "DESI collaboration updates (dark-energy evolution hints)"
     type: collaboration_release
+    domain: cosmology
+    modality: bao
+    release_status: active
+    language_scope: [en]
     url: "https://www.desi.lbl.gov/"
     usage: "BAO expansion constraints and survey context"
 
   pantheon_plus:
     label: "Pantheon+ Type Ia supernova release"
     type: data_release
+    domain: cosmology
+    modality: supernovae
+    release_status: active
+    language_scope: [en]
     url: "https://github.com/PantheonPlusSH0ES/DataRelease"
     usage: "SN distance-modulus likelihood block"
 
   planck_2018_parameters:
     label: "Planck 2018 cosmological parameters"
     type: journal
+    domain: cosmology
+    modality: cmb
+    release_status: stable
+    language_scope: [en]
     url: "https://arxiv.org/abs/1807.06209"
     usage: "ΛCDM baseline and early-universe consistency priors"
 
   act_dr6:
     label: "ACT DR6 cosmological parameters"
     type: journal
+    domain: cosmology
+    modality: cmb
+    release_status: active
+    language_scope: [en]
     url: "https://arxiv.org/abs/2307.01258"
     usage: "Independent CMB consistency check with Planck"
 
   negative_weak_time:
     label: "Negative weak value of dwell time in light-matter system"
     type: journal
+    domain: quantum_concepts
+    modality: conceptual_bridge
+    release_status: exploratory
+    language_scope: [en]
     url: "https://arxiv.org/abs/2509.03152"
     usage: "Operational-time conceptual bridge only"
 
   euclid_mission:
     label: "Euclid mission public portal"
     type: mission
+    domain: cosmology
+    modality: growth_lensing
+    release_status: upcoming
+    language_scope: [en]
     url: "https://www.euclid-ec.org/"
     usage: "Forthcoming growth/lensing constraints"
 
   rubin_observatory:
     label: "Vera C. Rubin Observatory"
     type: observatory
+    domain: cosmology
+    modality: lsst_transients
+    release_status: upcoming
+    language_scope: [en]
     url: "https://rubinobservatory.org/"
     usage: "LSST-era growth, transients, and lensing"
 
   jwst_runaway_smbh:
     label: "Runaway SMBH candidate with JWST/NIRSpec"
     type: journal
+    domain: anomaly_stress
+    modality: astrophysical_anomaly
+    release_status: active
+    language_scope: [en]
     url: "https://arxiv.org/abs/2303.12788"
     usage: "Anomaly-robustness stress testing"
+
+mapping:
+  catalog_diff_log: "results/mapping_logs/observational_sources_diff.log"
+  selection_trace_log: "results/mapping_logs/source_selection_trace.log"
