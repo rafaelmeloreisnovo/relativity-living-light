@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from scripts.run_real_pantheon_validation import _normalize_model_comparison, interpret_model_comparison
 
+from scripts.run_real_pantheon_validation import _normalize_model_comparison, interpret_model_comparison, validate_model_comparison_payload
 
 def test_interpret_inconclusive_when_aic_or_bic_missing() -> None:
     out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": None, "delta_bic_rll_minus_lcdm": -3.0})

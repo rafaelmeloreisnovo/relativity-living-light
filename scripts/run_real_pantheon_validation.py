@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import subprocess
 import sys
@@ -90,7 +91,7 @@ def interpret_model_comparison(delta: dict) -> dict:
 
 
 def _normalize_model_comparison(summary: dict) -> dict:
-    source = str(PANTHEON_SUMMARY_JSON.relative_to(ROOT))
+    source = EXPECTED_SOURCE
     rll = summary.get("rll", {})
     lcdm = summary.get("lcdm", {})
 
