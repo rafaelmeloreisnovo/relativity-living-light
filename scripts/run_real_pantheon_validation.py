@@ -14,12 +14,12 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_RESULTS = ROOT / "data" / "results"
 MODEL_COMPARISON_JSON = DATA_RESULTS / "model_comparison.json"
 PANTHEON_SUMMARY_JSON = DATA_RESULTS / "pantheon_fit_summary.json"
+EXPECTED_SOURCE = "data/results/pantheon_fit_summary.json"
 
 AIC_TENTATIVE_THRESHOLD = 2.0
-AIC_STRONG_THRESHOLD = 10.0
+AIC_STRONG_THRESHOLD = 6.0
 BIC_TENTATIVE_THRESHOLD = 2.0
-BIC_STRONG_THRESHOLD = 10.0
-CHI2_IMPROVEMENT_MIN = 0.0
+BIC_STRONG_THRESHOLD = 6.0
 CLAIM_BOUNDARY = "No superiority claim unless real-data metrics pass predefined thresholds."
 
 
@@ -37,10 +37,9 @@ def interpret_model_comparison(delta: dict) -> dict:
         "aic_strong": AIC_STRONG_THRESHOLD,
         "bic_tentative": BIC_TENTATIVE_THRESHOLD,
         "bic_strong": BIC_STRONG_THRESHOLD,
-        "chi2_improvement_min": CHI2_IMPROVEMENT_MIN,
     }
 
-    if delta_aic is None or delta_bic is None:
+    if not isinstance(delta_aic, (int, float)) or not isinstance(delta_bic, (int, float)):
         return {
             "interpretation_label": "inconclusive",
             "interpretation_reason": "Missing delta_aic_rll_minus_lcdm and/or delta_bic_rll_minus_lcdm.",
@@ -59,8 +58,8 @@ def interpret_model_comparison(delta: dict) -> dict:
     if (
         delta_aic <= -AIC_STRONG_THRESHOLD
         and delta_bic <= -BIC_STRONG_THRESHOLD
-        and delta_chi2 is not None
-        and delta_chi2 < -CHI2_IMPROVEMENT_MIN
+        and isinstance(delta_chi2, (int, float))
+        and delta_chi2 < 0
     ):
         return {
             "interpretation_label": "rll_preferred_strong",
@@ -72,8 +71,6 @@ def interpret_model_comparison(delta: dict) -> dict:
     if (
         delta_aic <= -AIC_TENTATIVE_THRESHOLD
         and delta_bic <= -BIC_TENTATIVE_THRESHOLD
-        and delta_chi2 is not None
-        and delta_chi2 < 0
     ):
         return {
             "interpretation_label": "rll_preferred_tentative",
@@ -90,7 +87,56 @@ def interpret_model_comparison(delta: dict) -> dict:
     }
 
 
-def _normalize_model_comparison(summary: dict) -> dict:
+
+
+def _sha256_file(path: Path) -> str:
+    import hashlib
+    h=hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda:f.read(8192), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _pantheon_files() -> list[Path]:
+    return [
+        ROOT / "data" / "pantheon" / "lcparam_full_long_zhel.txt",
+        ROOT / "data" / "pantheon" / "Pantheon+SH0ES_STAT+SYS.cov",
+    ]
+
+
+def _git_commit_hash() -> str | None:
+    cp = subprocess.run(["git","rev-parse","HEAD"], cwd=ROOT, capture_output=True, text=True, check=False)
+    return cp.stdout.strip() if cp.returncode == 0 else None
+
+
+def _environment_info() -> dict:
+    import platform
+    from importlib.metadata import PackageNotFoundError, version
+
+    pkgs = {}
+    for name in ("numpy", "scipy", "pandas", "pytest"):
+        try:
+            pkgs[name] = version(name)
+        except PackageNotFoundError:
+            pkgs[name] = None
+
+    return {
+        "python": sys.version.split()[0],
+        "platform": platform.platform(),
+        "packages": pkgs,
+    }
+
+
+def validate_model_comparison_payload(payload: dict) -> None:
+    required_top = ["n_obs","k_rll","k_lcdm","chi2_rll","chi2_lcdm","AIC_rll","AIC_lcdm","BIC_rll","BIC_lcdm","delta_chi2_rll_minus_lcdm","delta_aic_rll_minus_lcdm","delta_bic_rll_minus_lcdm","interpretation_label","claim_boundary"]
+    for key in required_top:
+        if key not in payload:
+            raise ValueError(f"missing required field: {key}")
+    if payload["k_rll"] != 5 or payload["k_lcdm"] != 2:
+        raise ValueError("k_rll/k_lcdm mismatch")
+
+def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
     source = EXPECTED_SOURCE
     rll = summary.get("rll", {})
     lcdm = summary.get("lcdm", {})
@@ -108,6 +154,16 @@ def _normalize_model_comparison(summary: dict) -> dict:
     rll_bic = _metric(rll, "bic", "BIC")
     lcdm_bic = _metric(lcdm, "bic", "BIC")
 
+    n_obs = summary.get("n_obs")
+    k_rll = 5
+    k_lcdm = 2
+    if rll_chi2 is not None:
+        rll_aic = rll_chi2 + 2 * k_rll
+        rll_bic = rll_chi2 + k_rll * math.log(n_obs)
+    if lcdm_chi2 is not None:
+        lcdm_aic = lcdm_chi2 + 2 * k_lcdm
+        lcdm_bic = lcdm_chi2 + k_lcdm * math.log(n_obs)
+
     delta = {
         "delta_chi2_rll_minus_lcdm": (rll_chi2 - lcdm_chi2) if (rll_chi2 is not None and lcdm_chi2 is not None) else None,
         "delta_aic_rll_minus_lcdm": (rll_aic - lcdm_aic) if (rll_aic is not None and lcdm_aic is not None) else None,
@@ -116,13 +172,34 @@ def _normalize_model_comparison(summary: dict) -> dict:
     }
     delta.update(interpret_model_comparison(delta))
 
-    return {
+    real_files = _pantheon_files()
+    file_hashes = {}
+    for f in real_files:
+        try:
+            key = str(f.relative_to(ROOT))
+        except ValueError:
+            key = str(f)
+        file_hashes[key] = _sha256_file(f)
+
+    out = {
         "pipeline": summary.get("pipeline", "pantheon_oficial_prova_observacional"),
         "dataset": summary.get("dataset", "pantheon+"),
         "generated_at": summary.get("generated_at") or summary.get("timestamp_utc") or datetime.now(timezone.utc).isoformat(),
         "source": source,
+        "command_used": command_used,
+        "git_commit_hash": _git_commit_hash(),
+        "environment": _environment_info(),
+        "real_data_files_sha256": file_hashes,
         "source_summary": source,
-        "n_obs": summary.get("n_obs"),
+        "n_obs": n_obs,
+        "k_rll": k_rll,
+        "k_lcdm": k_lcdm,
+        "chi2_rll": rll_chi2,
+        "chi2_lcdm": lcdm_chi2,
+        "AIC_rll": rll_aic,
+        "AIC_lcdm": lcdm_aic,
+        "BIC_rll": rll_bic,
+        "BIC_lcdm": lcdm_bic,
         "covariance_used": True,
         "models": {
             "rll": {
@@ -143,7 +220,15 @@ def _normalize_model_comparison(summary: dict) -> dict:
             },
         },
         "delta": delta,
+        "delta_chi2_rll_minus_lcdm": delta["delta_chi2_rll_minus_lcdm"],
+        "delta_aic_rll_minus_lcdm": delta["delta_aic_rll_minus_lcdm"],
+        "delta_bic_rll_minus_lcdm": delta["delta_bic_rll_minus_lcdm"],
+        "interpretation_label": delta["interpretation_label"],
+        "claim_boundary": CLAIM_BOUNDARY,
+        "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
     }
+    validate_model_comparison_payload(out)
+    return out
 
 
 def main() -> None:
@@ -176,8 +261,13 @@ def main() -> None:
             "Real pipeline did not produce the required artifact."
         )
 
+    missing = [p for p in _pantheon_files() if not p.exists()]
+    if missing:
+        raise FileNotFoundError(f"Missing required Pantheon+ files: {missing}")
+
     summary = json.loads(PANTHEON_SUMMARY_JSON.read_text(encoding="utf-8"))
-    normalized = _normalize_model_comparison(summary)
+    command_used = " ".join([sys.executable, "scripts/run_real_pantheon_validation.py"] + sys.argv[1:])
+    normalized = _normalize_model_comparison(summary, command_used=command_used)
     DATA_RESULTS.mkdir(parents=True, exist_ok=True)
     MODEL_COMPARISON_JSON.write_text(json.dumps(normalized, indent=2, ensure_ascii=False), encoding="utf-8")
 

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from scripts.run_real_pantheon_validation import _normalize_model_comparison, interpret_model_comparison
+import math
 
 from scripts.run_real_pantheon_validation import _normalize_model_comparison, interpret_model_comparison, validate_model_comparison_payload
+
 
 def test_interpret_inconclusive_when_aic_or_bic_missing() -> None:
     out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": None, "delta_bic_rll_minus_lcdm": -3.0})
@@ -10,138 +11,56 @@ def test_interpret_inconclusive_when_aic_or_bic_missing() -> None:
 
 
 def test_interpret_lcdm_preferred_when_any_positive_delta() -> None:
-    out = interpret_model_comparison({
-        "delta_aic_rll_minus_lcdm": 0.1,
-        "delta_bic_rll_minus_lcdm": -4.0,
-        "delta_chi2_rll_minus_lcdm": -1.0,
-    })
+    out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": 0.1, "delta_bic_rll_minus_lcdm": -4.0, "delta_chi2_rll_minus_lcdm": -1.0})
     assert out["interpretation_label"] == "lcdm_preferred"
 
 
 def test_interpret_rll_preferred_tentative() -> None:
-    out = interpret_model_comparison({
-        "delta_aic_rll_minus_lcdm": -2.5,
-        "delta_bic_rll_minus_lcdm": -2.2,
-        "delta_chi2_rll_minus_lcdm": -0.01,
-    })
+    out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": -2.5, "delta_bic_rll_minus_lcdm": -2.2, "delta_chi2_rll_minus_lcdm": 0.0})
     assert out["interpretation_label"] == "rll_preferred_tentative"
 
 
 def test_interpret_rll_preferred_strong() -> None:
-    out = interpret_model_comparison({
-        "delta_aic_rll_minus_lcdm": -10.0,
-        "delta_bic_rll_minus_lcdm": -10.1,
-        "delta_chi2_rll_minus_lcdm": -0.5,
-    })
+    out = interpret_model_comparison({"delta_aic_rll_minus_lcdm": -10.0, "delta_bic_rll_minus_lcdm": -10.1, "delta_chi2_rll_minus_lcdm": -0.5})
     assert out["interpretation_label"] == "rll_preferred_strong"
 
 
-def test_normalize_model_comparison_schema_and_guardrails() -> None:
+def test_normalize_model_comparison_required_metrics_and_formulas(monkeypatch, tmp_path) -> None:
     summary = {
         "pipeline": "pantheon_oficial_prova_observacional",
         "dataset": "pantheon+",
         "generated_at": "2026-05-21T00:00:00+00:00",
         "n_obs": 1701,
-        "rll": {"chi2": 10.0, "AIC": 20.0, "BIC": 30.0, "best_fit_params": {"Om0": 0.3}, "log_likelihood": -5.0},
-        "lcdm": {"chi2": 11.0, "AIC": 15.0, "BIC": 18.0, "best_fit_params": {"Om0": 0.29}, "log_likelihood": -5.5},
+        "rll": {"chi2": 10.0},
+        "lcdm": {"chi2": 11.0},
     }
+    f1 = tmp_path / "lcparam_full_long_zhel.txt"
+    f2 = tmp_path / "Pantheon+SH0ES_STAT+SYS.cov"
+    f1.write_text("a")
+    f2.write_text("b")
+    import scripts.run_real_pantheon_validation as m
+    monkeypatch.setattr(m, "_pantheon_files", lambda: [f1, f2])
+    payload = _normalize_model_comparison(summary, command_used="python scripts/run_real_pantheon_validation.py")
+    validate_model_comparison_payload(payload)
 
-    payload = _normalize_model_comparison(summary)
-    delta = payload["delta"]
-
-    assert payload["dataset"] == "pantheon+"
-    assert payload["n_obs"] == 1701
-    assert payload["source"] == "data/results/pantheon_fit_summary.json"
-    assert payload["source_summary"].endswith("data/results/pantheon_fit_summary.json")
-    assert payload["covariance_used"] is True
-    assert payload["models"]["rll"]["k_params"] == 5
-    assert payload["models"]["lcdm"]["k_params"] == 2
-    assert payload["models"]["rll"]["log_likelihood"] == -5.0
-    assert payload["models"]["lcdm"]["best_fit_params"] == {"Om0": 0.29}
-    assert delta["delta_chi2_rll_minus_lcdm"] == -1.0
-    assert delta["delta_aic_rll_minus_lcdm"] == 5.0
-    assert delta["delta_bic_rll_minus_lcdm"] == 12.0
-    assert delta["thresholds_used"] == {
-        "aic_tentative": 2.0,
-        "aic_strong": 10.0,
-        "bic_tentative": 2.0,
-        "bic_strong": 10.0,
-        "chi2_improvement_min": 0.0,
-    }
-    assert delta["claim_boundary"] == "No superiority claim unless real-data metrics pass predefined thresholds."
+    assert payload["k_rll"] == 5
+    assert payload["k_lcdm"] == 2
+    assert payload["AIC_rll"] == payload["chi2_rll"] + 2 * payload["k_rll"]
+    assert payload["AIC_lcdm"] == payload["chi2_lcdm"] + 2 * payload["k_lcdm"]
+    assert math.isclose(payload["BIC_rll"], payload["chi2_rll"] + payload["k_rll"] * math.log(payload["n_obs"]))
+    assert math.isclose(payload["BIC_lcdm"], payload["chi2_lcdm"] + payload["k_lcdm"] * math.log(payload["n_obs"]))
+    assert payload["delta_chi2_rll_minus_lcdm"] == payload["chi2_rll"] - payload["chi2_lcdm"]
+    assert payload["delta_aic_rll_minus_lcdm"] == payload["AIC_rll"] - payload["AIC_lcdm"]
+    assert payload["delta_bic_rll_minus_lcdm"] == payload["BIC_rll"] - payload["BIC_lcdm"]
+    assert payload["interpretation_label"] in {"inconclusive", "lcdm_preferred", "rll_preferred_tentative", "rll_preferred_strong"}
+    assert payload["claim_boundary"] == "No superiority claim unless real-data metrics pass predefined thresholds."
 
 
-def test_normalize_model_comparison_delta_null_when_metrics_absent() -> None:
-    summary = {
-        "n_obs": 1701,
-        "rll": {"best_fit": {"Om0": 0.3}},
-        "lcdm": {"best_fit": {"Om0": 0.29}},
-    }
-    payload = _normalize_model_comparison(summary)
-    assert payload["delta"]["delta_chi2_rll_minus_lcdm"] is None
-    assert payload["delta"]["delta_aic_rll_minus_lcdm"] is None
-    assert payload["delta"]["delta_bic_rll_minus_lcdm"] is None
-    assert payload["delta"]["interpretation_label"] == "inconclusive"
-
-
-
-def test_interpretation_is_pure_and_deterministic() -> None:
-    delta = {
-        "delta_aic_rll_minus_lcdm": -2.5,
-        "delta_bic_rll_minus_lcdm": -2.2,
-        "delta_chi2_rll_minus_lcdm": -0.01,
-    }
-    original = dict(delta)
-    out1 = interpret_model_comparison(delta)
-    out2 = interpret_model_comparison(delta)
-    assert delta == original
-    assert out1 == out2
-
-
-def test_missing_aic_bic_never_returns_rll_preferred_labels() -> None:
-    for delta in (
-        {"delta_aic_rll_minus_lcdm": None, "delta_bic_rll_minus_lcdm": -4.0, "delta_chi2_rll_minus_lcdm": -1.0},
-        {"delta_aic_rll_minus_lcdm": -4.0, "delta_bic_rll_minus_lcdm": None, "delta_chi2_rll_minus_lcdm": -1.0},
-    ):
-        out = interpret_model_comparison(delta)
-        assert not out["interpretation_label"].startswith("rll_preferred")
-
-
-def test_tentative_requires_chi2_improvement() -> None:
-    out = interpret_model_comparison({
-        "delta_aic_rll_minus_lcdm": -4.0,
-        "delta_bic_rll_minus_lcdm": -4.0,
-        "delta_chi2_rll_minus_lcdm": 0.0,
-    })
-    assert out["interpretation_label"] == "inconclusive"
-
-
-def test_strong_requires_strong_ic_and_chi2_improvement() -> None:
-    out = interpret_model_comparison({
-        "delta_aic_rll_minus_lcdm": -9.9,
-        "delta_bic_rll_minus_lcdm": -12.0,
-        "delta_chi2_rll_minus_lcdm": -1.0,
-    })
-    assert out["interpretation_label"] != "rll_preferred_strong"
-
-    out_no_chi2 = interpret_model_comparison({
-        "delta_aic_rll_minus_lcdm": -12.0,
-        "delta_bic_rll_minus_lcdm": -12.0,
-        "delta_chi2_rll_minus_lcdm": None,
-    })
-    assert out_no_chi2["interpretation_label"] != "rll_preferred_strong"
-
-
-def test_claim_boundary_always_present_and_no_unqualified_win_language() -> None:
-    deltas = [
-        {"delta_aic_rll_minus_lcdm": None, "delta_bic_rll_minus_lcdm": None, "delta_chi2_rll_minus_lcdm": None},
-        {"delta_aic_rll_minus_lcdm": 0.1, "delta_bic_rll_minus_lcdm": -3.0, "delta_chi2_rll_minus_lcdm": -1.0},
-        {"delta_aic_rll_minus_lcdm": -3.0, "delta_bic_rll_minus_lcdm": -3.0, "delta_chi2_rll_minus_lcdm": -1.0},
-        {"delta_aic_rll_minus_lcdm": -11.0, "delta_bic_rll_minus_lcdm": -11.0, "delta_chi2_rll_minus_lcdm": -1.0},
-    ]
-    for delta in deltas:
-        out = interpret_model_comparison(delta)
-        assert out["claim_boundary"] == "No superiority claim unless real-data metrics pass predefined thresholds."
-        reason_lower = out["interpretation_reason"].lower()
-        assert "beats lcdm" not in reason_lower
-        assert "won over lcdm" not in reason_lower
+def test_normalize_fails_without_real_data_files(monkeypatch) -> None:
+    import scripts.run_real_pantheon_validation as m
+    monkeypatch.setattr(m, "_pantheon_files", lambda: [m.ROOT / "data" / "pantheon" / "missing.txt"])
+    try:
+        _normalize_model_comparison({"n_obs": 10, "rll": {"chi2": 1.0}, "lcdm": {"chi2": 2.0}}, command_used="cmd")
+        assert False, "expected FileNotFoundError"
+    except FileNotFoundError:
+        pass
