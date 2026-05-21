@@ -23,3 +23,6 @@
 - Keep archival and historical content immutable for traceability.
 - Treat `src/`, `tests/`, `scripts/`, and `data/` reproducibility docs as the **core execution boundary** for scientific validation.
 - Treat broad narrative corpora (`newadd/`, `RMR/`, duplicate archives, exploratory notebooks) as **archive/reference boundary** unless promoted with reproducibility metadata.
+
+
+> Note: `data/results/model_comparison.json` now includes conservative threshold-based delta interpretation fields (`interpretation_label`, `interpretation_reason`, `thresholds_used`, `claim_boundary`) and does **not** produce automatic cosmological conclusions.
