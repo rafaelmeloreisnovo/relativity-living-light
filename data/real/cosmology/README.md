@@ -1,6 +1,6 @@
 # Data README — Cosmology (Real)
 
-Status: metadata_only / pending_fetch
+Status: metadata_only / fetch-ready via orchestrator
 
 ## Fontes
 - DESI DR2 BAO — https://www.desi.lbl.gov/
@@ -12,3 +12,13 @@ Status: metadata_only / pending_fetch
 ## Limitações
 - Sem download de chains/dados pesados por padrão.
 - Modo compute permanece stub até processamento reproduzível real.
+
+## Orquestração GitHub Actions
+- Workflow: `.github/workflows/rll-real-data-orchestrator.yml`
+- Script de ingestão: `scripts/fetch_real_sources.py`
+- Artefatos principais:
+  - `artifacts/rll-real-run/raw/SOURCES.json`
+  - `artifacts/rll-real-run/raw/cosmology_curated/CURATED_SOURCES.json`
+  - `artifacts/rll-real-run/raw/cosmology_curated/Hz_data_real.csv`
+  - `artifacts/rll-real-run/raw/cosmology_curated/BAO_data_real.csv`
+  - `artifacts/rll-real-run/raw/cosmology_curated/CMB_shift_real.json`
