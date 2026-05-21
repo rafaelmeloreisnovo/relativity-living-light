@@ -30,3 +30,16 @@ This document hardens claim boundaries for the repository and separates claim ty
 - Always label outputs as conceptual, mathematical, synthetic, partial-real, or real-validated.
 - Prefer conservative wording when evidence is incomplete.
 - Keep historical/archive files intact, while routing core conclusions through reproducible real-data artifacts.
+
+
+## 7) Threshold-based Pantheon interpretation boundary
+- The `model_comparison.json` thresholds classify **model-comparison evidence only** (AIC/BIC/chi2 deltas under explicit guardrails).
+- These thresholds do **not** establish a new cosmological model or a definitive replacement of ΛCDM.
+- Any broader cosmological conclusion requires external validation across independent datasets and reproducible cross-checks.
+
+## 8) Direct Model Attack / Falsifiability Checks
+- For this repository, ΛCDM is the baseline comparator and default reference model for stress tests.
+- RLL is only conditionally preferred when predefined Pantheon+ thresholds are passed under complete and valid metrics.
+- Mixed, conflicting, invalid, or incomplete evidence is classified as inconclusive or LCDM-preferred.
+- Passing Pantheon+ alone is insufficient to establish a cosmological replacement claim.
+- External datasets are required for broader claims, including BAO, CMB, DESI, H(z), and independent supernova compilations.
