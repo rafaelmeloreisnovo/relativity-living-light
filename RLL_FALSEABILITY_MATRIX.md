@@ -1,52 +1,74 @@
 # RLL Falseability Matrix (RLL × GR/ΛCDM)
 
-> Status: **test program**, not proof claim.
+> Status: **programa de teste falsificável**, não reivindicação de prova.
 
-## Core falsifiable residual
+## 1) Núcleo científico mínimo (operacional)
 
 \[
-\epsilon_{RLL}(\mathcal{O}, z, t) = \mathcal{O}_{obs}(z,t) - \mathcal{O}_{GR+\Lambda CDM}(z,t)
+\Phi_{\gamma}^{obs}=\mathcal{L}_{multi}\!\left[\Phi_{\gamma}^{fonte}\right]+\epsilon_{RLL}
 \]
 
-Where \(\mathcal{O}\in\{H(z), D_L(z), \mu(z), f\sigma_8(z), C_\ell^{lens}, h(f)\}\).
+\[
+\epsilon_{RLL}(\mathcal{O},z,t)=\mathcal{O}_{obs}(z,t)-\mathcal{O}_{GR+\Lambda CDM}(z,t)
+\]
 
-The RLL hypothesis is only physically meaningful when it predicts **sign, amplitude, scale, and uncertainty** for \(\epsilon_{RLL}\).
+com \(\mathcal{O}\in\{H(z), D_L(z), \mu(z), w(z), f\sigma_8(z), C_\ell^{lens}, h(f)\}\).
 
-## External data baselines (public)
+Interpretação:
+- se \(\epsilon_{RLL}\approx 0\) dentro dos erros, GR/ΛCDM explicam;
+- se \(\epsilon_{RLL}\neq 0\), RLL precisa prever **sinal, amplitude, escala, erro e condição observacional**.
 
-- DESI BAO DR2 / collaboration releases (BAO distances and expansion constraints).
-- Planck 2018 legacy CMB parameters.
-- Pantheon+ SN Ia distance moduli.
-- JWST/COSMOS-Web lensing and large-scale structure mapping products.
-- LIGO/Virgo/KAGRA GW strain catalogs.
-- QGEM literature for laboratory entanglement-by-gravity protocols.
+## 2) Vetores principais e critérios de refutação
 
-## Matrix
-
-| Vector | Observable(s) | Public baseline | RLL required prediction | Falsification condition |
+| Vetor | Observáveis | Base pública | Exigência RLL | Como falsifica |
 |---|---|---|---|---|
-| Precision expansion | \(H(z)\) | DESI BAO + cosmic chronometers | \(H_{RLL}(z)\) with posterior | Worse fit than ΛCDM after AIC/BIC penalty |
-| Luminosity distance | \(D_L(z), \mu(z)\) | Pantheon+ | Residual law \(\Delta\mu_{RLL}(z)\) | \(\chi^2\) degradation without complexity gain |
-| Dynamic DE | \(w(z)\) | DESI+Planck+SNe combined constraints | \(w_{RLL}(z)\) mapped to effective EOS | Excluded credible intervals |
-| CMB anchor | \(\Omega_m, H_0, r_s\)-linked projections | Planck 2018 | Consistent projected parameter region | Breaks CMB consistency envelope |
-| Growth | \(f\sigma_8(z)\) | RSD (DESI/eBOSS/Euclid path) | Growth curve under same priors | Incompatible structure growth trend |
-| Weak lensing | \(\gamma(\theta),\kappa(\theta), C_\ell^{lens}\) | COSMOS-Web, DES, HSC, Euclid | Shear/convergence residual pattern | No coherent non-GR residual after errors |
-| Wandering BH lensing | \(\theta_{obs}(t)\) astrometric residual | HST/Gaia/JWST follow-up streams | Temporal residual \(\epsilon^{lens}_{RLL}(t)\) | GR moving-lens model fully explains signal |
-| Gravitational waves | \(h(f)\) | LIGO/Virgo/KAGRA catalogs | Phase/amplitude/dispersion signature | Predicted signature absent |
-| Quantum gravity lab | Entanglement witness | QGEM protocol literature | Directional effect on entanglement | Experimental outcome contradicts forecast |
+| A. Cosmologia de precisão | \(H(z), D_L(z),\mu(z), f\sigma_8(z)\) | DESI BAO, Planck 2018, Pantheon+ | Curvas e \(\chi^2\) com penalidade justa | Pior que ΛCDM em AIC/BIC |
+| B. Energia escura dinâmica | \(w_{RLL}(z)\), mapeamento CPL \(w_0,w_a\) | DESI+Planck+SNe | Curva efetiva consistente | Intervalos credíveis excluem modelo |
+| C. \(\sum m_\nu\), \(H_0\), \(\Omega_m\), \(\sigma_8\) | parâmetros acoplados | análises DESI DR2 | não “resolver” DE quebrando neutrinos/H0 | melhora parcial com quebra de pilar |
+| D. Lenteamento dinâmico / BH errante | \(\theta_{obs}(t)\), \(\epsilon^{lens}_{RLL}(t)\) | HST/Gaia/JWST/Roman | assinatura temporal prevista | GR móvel explica tudo |
+| E. Rede cósmica + lenteamento fraco | \(P(k), C_\ell^{lens},\gamma(\theta),\kappa(\theta)\) | COSMOS-Web, DES, HSC, Euclid, KiDS | mapas e resíduos coerentes | padrão não reproduzido |
+| F. Ondas gravitacionais | \(h_{obs}(f)=h_{GR}(f)+\epsilon^{GW}_{RLL}(f)\) | LIGO/Virgo/KAGRA | fase/amplitude/eco/dispersão | assinatura ausente |
+| G. QGEM / laboratório | testemunha de emaranhamento \(E_N\) | literatura QGEM | direção do efeito (aumenta/reduz/neutro) | resultado contradiz previsão |
 
-## Implementation bridge in this repo
+## 3) Camadas de escrita científica (antiplágio)
 
-- Programmatic comparator: `rll_vs_lcdm.py`
-- Outputs (default): `results/rll_vs_lcdm_summary.json`, `results/rll_vs_lcdm_predictions.csv`
-- Initial local inputs:
-  - `data/real/Hz_data_real.csv`
-  - `data/real/BAO_data_real.csv`
+1. **Base bibliográfica** (DESI, Planck, Pantheon+, JWST, LIGO, QGEM).
+2. **Formulação própria** (equações residuais e multi-lenteamento).
+3. **Regra de refutação** (AIC/BIC + intervalos + resíduos observacionais).
 
-## Method discipline
+## 4) Ponte com as fórmulas autorais (T7 / coerência informacional)
 
-1. Keep GR/ΛCDM as null model.
-2. Fit RLL extension with explicit extra parameters.
-3. Compare using fair complexity penalty (AIC/BIC).
-4. Publish residuals and error bars, not narrative claims.
+As fórmulas enviadas (1..50) podem ser tratadas como **camada de estado latente** de um modelo de geração de hipóteses:
+- espaço toroidal \(\mathbb{T}^7\) e estado \(\mathbf{s}\in[0,1)^7\);
+- dinâmica de coerência/entropia \((C_t,H_t,\alpha)\);
+- termos espectrais \(S(\omega), R_L\);
+- camada de hashing/integridade (CRC/Merkle);
+- operador informacional \(\mathcal{I}=\Phi(\mathbf{s},S,H,C,G)\).
 
+Para manter falsificabilidade física, essa camada deve projetar previsões em observáveis cosmológicos mensuráveis (seção 2), evitando inferências não observáveis.
+
+## 5) Implementação mínima no repositório
+
+- Script: `rll_vs_lcdm.py`
+- Entradas atuais: `data/real/Hz_data_real.csv`, `data/real/BAO_data_real.csv`
+- Saídas: `results/rll_vs_lcdm_predictions.csv`, `results/rll_vs_lcdm_summary.json`
+- Métricas: \(\chi^2\), AIC, BIC (ΛCDM vs RLL-CPL efetivo)
+
+## 6) Referências-base iniciais (cabeçalho bibliográfico)
+
+1. Planck Collaboration (2018 results VI; publ. 2020).
+2. Pantheon+ SN Ia dataset (2022/2023).
+3. DESI BAO / DR2-era analyses (2025).
+4. DESI dynamic dark energy / neutrino-mass tension analyses (2025).
+5. Astrometric microlensing PBH/BH studies (Gaia/HST).
+6. JWST COSMOS-Web structure/lensing products.
+7. LIGO/Virgo/KAGRA GW catalogs and DM-environment tests.
+8. QGEM protocol literature.
+
+## 7) Critério final (síntese)
+
+\[
+\text{observação} - \text{GR/}\Lambda\text{CDM} = \text{resíduo}
+\]
+
+Se o resíduo é ruído, hipótese descartada. Se é coerente e **predito antes** com erro quantificado, hipótese ganha conteúdo científico.
