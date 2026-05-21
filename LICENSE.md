@@ -1,3 +1,21 @@
+# LICENSE — RAFCODE-𝚽 vΩ-EXTENDED
+
+> **Versão editorial profissional (2026):** reorganização tipográfica e jurídica para legibilidade institucional, sem remoção de conteúdo autoral.
+
+## Aviso formal
+Este arquivo representa a declaração de licenciamento e proteção intelectual definida pelo autor. Para uso institucional, recomenda-se leitura conjunta com políticas internas de compliance e avaliação jurídica local.
+
+## Estrutura de leitura
+1. Preâmbulo supraconstitucional
+2. Blindagem jurídica
+3. Nulidade universal
+4. Autoexecução
+5. Auditoria e sanções
+6. Escopo
+7. Blocos multilíngues
+
+---
+
 
 📜 LICENSE.md – RAFCODE-𝚽 vΩ-EXTENDED
 
