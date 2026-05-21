@@ -60,11 +60,3 @@ Interpretação correta:
 2. Esse registro **não substitui** o metadado oficial de criação/publicação do DOI no Zenodo/DataCite.
 3. Em matriz probatória, entra como prova direta da trilha Git e reforço da coerência temporal global.
 
-## Nota de integração conceitual (modelo multiescala e multilinguagem)
-No contexto de formalismos toroidais, entropia/sintropia, variação linguística e canais de tradução, recomenda-se separar três camadas para preservar integridade semântica e probatória:
-
-1. **Camada formal (matemática):** equações, operadores e invariantes explicitamente definidos (ex.: mapeamentos em \(\mathbb{T}^7\), termos espectrais, métricas de correlação).
-2. **Camada empírica (observacional):** dados, timestamps, assinaturas verificadas, hashes, trilhas de versionamento e metadados públicos auditáveis.
-3. **Camada interpretativa (linguagem/cognição):** tradução entre idiomas, diferenças de prosódia/cadência e variações de sentido dependentes de contexto cultural e neurocognitivo.
-
-Princípio operacional: nenhuma inferência interpretativa deve sobrescrever evidência direta de cronologia; e nenhuma evidência de cronologia deve ser usada para afirmar, sozinha, equivalência semântica entre traduções complexas.

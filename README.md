@@ -19,6 +19,7 @@
 
 Para formalização adicional, consulte `docs/README_ADVERTENCIA_DOI.md`.
 - Janela indiciária (não oficial) para o DOI citado: entre **11/09/2025** e **29/10/2025**, com estimativa central em **~22/09/2025**.
+- Evidência direta complementar: commit/tag com assinatura **GitHub Verified** em **19/09/2025 03:58** (GPG `B5690EEEBB952194`) reforça a cronologia da trilha Git.
 
 ---
 
