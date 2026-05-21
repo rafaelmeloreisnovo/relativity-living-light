@@ -26,6 +26,8 @@ typedef struct {
     u32 failsafe_code;
     u32 crc32_sw;
     u32 crc32_hw_hint;
+    u32 bittrail_head;
+    u32 bittrail_hash;
     u8 route_idx[4];
     u8 lane_mask;
     u8 reserved[3];
@@ -48,6 +50,33 @@ typedef struct {
     u8 gpu_hint;
     u8 route_matrix[10][10][10][4];
 } TMRouteMap;
+
+typedef struct {
+    u32 seq;
+    u32 event_code;
+    u32 route_id;
+    u32 hash_chain;
+} TMAuditEvent;
+
+typedef struct {
+    u32 version;
+    u32 abi_flags;
+    u32 route_cap;
+    u32 audit_cap;
+    u32 crc_mode;
+    u32 interoperability_tag;
+} TMBootstrapConfig;
+
+typedef struct {
+    u32 ticks_total;
+    u32 ticks_ok;
+    u32 ticks_fail;
+    u32 rollback_total;
+    u32 audit_events;
+    u32 route_entropy_xor;
+    u32 reliability_ppm;
+    u32 interoperability_score;
+} TMKernelMetrics;
 
 static double absd(double x) {
     return (x < 0.0) ? -x : x;
@@ -121,6 +150,60 @@ static u32 tm_control_crc(const TMControlState* s) {
     return ~crc;
 }
 
+static u32 tm_fnv1a_step(u32 h, u32 x) {
+    h ^= x;
+    h *= 0x01000193U;
+    return h;
+}
+
+static void tm_audit_event_write(TMAuditEvent* trail, u32 cap, TMControlState* s, u32 event_code, u32 route_id) {
+    u32 pos;
+    TMAuditEvent e;
+    u32 h;
+    if (cap == 0U) return;
+    pos = s->bittrail_head % cap;
+    e.seq = s->tick;
+    e.event_code = event_code;
+    e.route_id = route_id;
+    h = s->bittrail_hash;
+    h = tm_fnv1a_step(h, e.seq);
+    h = tm_fnv1a_step(h, e.event_code);
+    h = tm_fnv1a_step(h, e.route_id);
+    e.hash_chain = h;
+    trail[pos] = e;
+    s->bittrail_hash = h;
+    s->bittrail_head += 1U;
+}
+
+u32 tm_bootstrap_config(TMBootstrapConfig* cfg, TMControlState* state, TMKernelMetrics* metrics) {
+    if (cfg == (void*)0 || state == (void*)0 || metrics == (void*)0) return 0U;
+    cfg->version = 1U;
+    cfg->abi_flags = 0x01U;
+    cfg->crc_mode = 1U;
+    cfg->interoperability_tag = 0x524C4C31U; /* "RLL1" */
+    if (cfg->route_cap == 0U) cfg->route_cap = 4000U;
+    if (cfg->audit_cap == 0U) cfg->audit_cap = 256U;
+
+    state->generation += 1U;
+    state->tick = 0U;
+    state->watchdog_counter = 0U;
+    state->rollback_count = 0U;
+    state->failsafe_code = 0U;
+    state->bittrail_head = 0U;
+    state->bittrail_hash = 0x811C9DC5U;
+    state->crc32_sw = tm_control_crc(state);
+
+    metrics->ticks_total = 0U;
+    metrics->ticks_ok = 0U;
+    metrics->ticks_fail = 0U;
+    metrics->rollback_total = 0U;
+    metrics->audit_events = 0U;
+    metrics->route_entropy_xor = 0U;
+    metrics->reliability_ppm = 1000000U;
+    metrics->interoperability_score = 100U;
+    return 1U;
+}
+
 static double tm_wrap01(double x) {
     double y = x;
     while (y >= 1.0) y -= 1.0;
@@ -192,7 +275,7 @@ static u32 tm_failsafe_watchdog(TMControlState* cur, const TMControlState* stabl
     return 0U;
 }
 
-u32 tm_control_tick(TMControlState* state, const TMRouteMap* route, u32 input_entropy) {
+u32 tm_control_tick(TMControlState* state, const TMRouteMap* route, u32 input_entropy, TMAuditEvent* trail, u32 trail_cap) {
     TMControlState snapshot;
     u32 route_id;
     u32 next_id;
@@ -215,10 +298,43 @@ u32 tm_control_tick(TMControlState* state, const TMRouteMap* route, u32 input_en
     state->crc32_hw_hint = (u32)route->simd_class;
     state->crc32_sw = tm_control_crc(state);
     if (tm_failsafe_watchdog(state, &snapshot)) {
+        tm_audit_event_write(trail, trail_cap, state, state->failsafe_code, route_id);
         return 0U;
     }
+    tm_audit_event_write(trail, trail_cap, state, 0x9000U, next_id);
     state->watchdog_counter = 0U;
     return 1U;
+}
+
+u32 tm_benchmark_ticks(TMControlState* state,
+                       const TMRouteMap* route,
+                       TMAuditEvent* trail,
+                       u32 trail_cap,
+                       u32 iterations,
+                       TMKernelMetrics* metrics) {
+    u32 i = 0;
+    u32 ok = 0;
+    u32 fail = 0;
+    if (state == (void*)0 || route == (void*)0 || metrics == (void*)0) return 0U;
+    while (i < iterations) {
+        u32 entropy = (i * 2654435761U) ^ state->bittrail_hash ^ state->generation;
+        u32 step_ok = tm_control_tick(state, route, entropy, trail, trail_cap);
+        metrics->ticks_total += 1U;
+        metrics->route_entropy_xor ^= tm_route_compose_id(state) ^ entropy;
+        if (step_ok) {
+            ok += 1U;
+            metrics->ticks_ok += 1U;
+        } else {
+            fail += 1U;
+            metrics->ticks_fail += 1U;
+        }
+        metrics->rollback_total = state->rollback_count;
+        i++;
+    }
+    metrics->audit_events = state->bittrail_head;
+    metrics->reliability_ppm = (iterations == 0U) ? 0U : (ok * 1000000U) / iterations;
+    metrics->interoperability_score = (fail == 0U) ? 100U : (100U - ((fail * 100U) / (iterations ? iterations : 1U)));
+    return ok;
 }
 
 double tm_rc_gv(double m, double sw, const TMParams* p) {
