@@ -16,6 +16,13 @@
         "real_cmb_shift"
       ]
     },
+    "structure_d_partial_real": {
+      "run_name": "structure_d_partial_real",
+      "active_datasets": [
+        "real_hz",
+        "real_bao"
+      ]
+    },
     "structure_d_synthetic_advanced": {
       "run_name": "structure_d_synthetic_advanced",
       "active_datasets": [
