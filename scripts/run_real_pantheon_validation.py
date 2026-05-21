@@ -14,9 +14,79 @@ DATA_RESULTS = ROOT / "data" / "results"
 MODEL_COMPARISON_JSON = DATA_RESULTS / "model_comparison.json"
 PANTHEON_SUMMARY_JSON = DATA_RESULTS / "pantheon_fit_summary.json"
 
+AIC_TENTATIVE_THRESHOLD = 2.0
+AIC_STRONG_THRESHOLD = 10.0
+BIC_TENTATIVE_THRESHOLD = 2.0
+BIC_STRONG_THRESHOLD = 10.0
+CHI2_IMPROVEMENT_MIN = 0.0
+CLAIM_BOUNDARY = "No superiority claim unless real-data metrics pass predefined thresholds."
+
 
 def _run(cmd: list[str], env: dict[str, str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, check=False, env=env)
+
+
+def interpret_model_comparison(delta: dict) -> dict:
+    delta_aic = delta.get("delta_aic_rll_minus_lcdm")
+    delta_bic = delta.get("delta_bic_rll_minus_lcdm")
+    delta_chi2 = delta.get("delta_chi2_rll_minus_lcdm")
+
+    thresholds_used = {
+        "aic_tentative": AIC_TENTATIVE_THRESHOLD,
+        "aic_strong": AIC_STRONG_THRESHOLD,
+        "bic_tentative": BIC_TENTATIVE_THRESHOLD,
+        "bic_strong": BIC_STRONG_THRESHOLD,
+        "chi2_improvement_min": CHI2_IMPROVEMENT_MIN,
+    }
+
+    if delta_aic is None or delta_bic is None:
+        return {
+            "interpretation_label": "inconclusive",
+            "interpretation_reason": "Missing delta_aic_rll_minus_lcdm and/or delta_bic_rll_minus_lcdm.",
+            "thresholds_used": thresholds_used,
+            "claim_boundary": CLAIM_BOUNDARY,
+        }
+
+    if delta_aic > 0 or delta_bic > 0:
+        return {
+            "interpretation_label": "lcdm_preferred",
+            "interpretation_reason": "At least one information-criterion delta is positive (RLL worse than LCDM).",
+            "thresholds_used": thresholds_used,
+            "claim_boundary": CLAIM_BOUNDARY,
+        }
+
+    if (
+        delta_aic <= -AIC_STRONG_THRESHOLD
+        and delta_bic <= -BIC_STRONG_THRESHOLD
+        and delta_chi2 is not None
+        and delta_chi2 < -CHI2_IMPROVEMENT_MIN
+    ):
+        return {
+            "interpretation_label": "rll_preferred_strong",
+            "interpretation_reason": "AIC/BIC exceed strong thresholds and chi2 improves beyond minimum guardrail.",
+            "thresholds_used": thresholds_used,
+            "claim_boundary": CLAIM_BOUNDARY,
+        }
+
+    if (
+        delta_aic <= -AIC_TENTATIVE_THRESHOLD
+        and delta_bic <= -BIC_TENTATIVE_THRESHOLD
+        and delta_chi2 is not None
+        and delta_chi2 < 0
+    ):
+        return {
+            "interpretation_label": "rll_preferred_tentative",
+            "interpretation_reason": "AIC/BIC exceed tentative thresholds and chi2 improves.",
+            "thresholds_used": thresholds_used,
+            "claim_boundary": CLAIM_BOUNDARY,
+        }
+
+    return {
+        "interpretation_label": "inconclusive",
+        "interpretation_reason": "Deltas do not satisfy conservative preference thresholds.",
+        "thresholds_used": thresholds_used,
+        "claim_boundary": CLAIM_BOUNDARY,
+    }
 
 
 def _normalize_model_comparison(summary: dict) -> dict:
@@ -36,6 +106,14 @@ def _normalize_model_comparison(summary: dict) -> dict:
     lcdm_aic = _metric(lcdm, "aic", "AIC")
     rll_bic = _metric(rll, "bic", "BIC")
     lcdm_bic = _metric(lcdm, "bic", "BIC")
+
+    delta = {
+        "delta_chi2_rll_minus_lcdm": (rll_chi2 - lcdm_chi2) if (rll_chi2 is not None and lcdm_chi2 is not None) else None,
+        "delta_aic_rll_minus_lcdm": (rll_aic - lcdm_aic) if (rll_aic is not None and lcdm_aic is not None) else None,
+        "delta_bic_rll_minus_lcdm": (rll_bic - lcdm_bic) if (rll_bic is not None and lcdm_bic is not None) else None,
+        "interpretation_guardrail": "Quantitative comparison only; do not infer model superiority from these deltas alone.",
+    }
+    delta.update(interpret_model_comparison(delta))
 
     return {
         "pipeline": summary.get("pipeline", "pantheon_oficial_prova_observacional"),
@@ -63,13 +141,7 @@ def _normalize_model_comparison(summary: dict) -> dict:
                 "best_fit_params": lcdm.get("best_fit_params", lcdm.get("best_fit")),
             },
         },
-        "delta": {
-            "delta_chi2_rll_minus_lcdm": (rll_chi2 - lcdm_chi2) if (rll_chi2 is not None and lcdm_chi2 is not None) else None,
-            "delta_aic_rll_minus_lcdm": (rll_aic - lcdm_aic) if (rll_aic is not None and lcdm_aic is not None) else None,
-            "delta_bic_rll_minus_lcdm": (rll_bic - lcdm_bic) if (rll_bic is not None and lcdm_bic is not None) else None,
-            "interpretation_guardrail": "Quantitative comparison only; do not infer model superiority from these deltas alone.",
-            "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
-        },
+        "delta": delta,
     }
 
 
