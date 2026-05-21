@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import runpy
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -10,7 +11,18 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
-def _run_script(path: Path) -> None:
+def _run_script(path: Path, module: str | None = None) -> None:
+    if module:
+        repo = str(_repo_root())
+        if repo not in sys.path:
+            sys.path.insert(0, repo)
+        original_argv = sys.argv[:]
+        sys.argv = [str(path)]
+        try:
+            runpy.run_module(module, run_name="__main__", alter_sys=True)
+        finally:
+            sys.argv = original_argv
+        return
     runpy.run_path(str(path), run_name="__main__")
 
 
@@ -25,6 +37,7 @@ def _select_real_flow(with_bayes: bool, with_covariance: bool) -> Path:
 class ExecutionPlan:
     script: Path
     model: str
+    module: str | None = None
     warning_message: str | None = None
 
 
@@ -33,8 +46,10 @@ def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
 
     if args.data == "synthetic":
         script = root / "data" / "pipelines" / "structure_d" / "run_all.py"
+        module = "data.pipelines.structure_d.run_all"
     else:
         script = _select_real_flow(args.with_bayes, args.with_covariance)
+        module = None
 
     warning_message = None
     if args.model != "rll":
@@ -42,7 +57,7 @@ def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
             f"Aviso: --model={args.model} será tratado no fluxo comparativo já existente."
         )
 
-    return ExecutionPlan(script=script, model=args.model, warning_message=warning_message)
+    return ExecutionPlan(script=script, model=args.model, module=module, warning_message=warning_message)
 
 
 def _validar_plano_execucao(plan: ExecutionPlan) -> None:
@@ -51,10 +66,13 @@ def _validar_plano_execucao(plan: ExecutionPlan) -> None:
 
 
 def _persistir_execucao(plan: ExecutionPlan) -> dict[str, str]:
-    return {
+    payload = {
         "script": str(plan.script),
         "model": plan.model,
     }
+    if plan.module:
+        payload["module"] = plan.module
+    return payload
 
 
 def _logar_execucao(plan: ExecutionPlan) -> None:
@@ -68,7 +86,10 @@ def cmd_run(args: argparse.Namespace) -> None:
     _validar_plano_execucao(plan)
     _persistir_execucao(plan)
     _logar_execucao(plan)
-    _run_script(plan.script)
+    if plan.module:
+        _run_script(plan.script, plan.module)
+    else:
+        _run_script(plan.script)
 
 
 def build_parser() -> argparse.ArgumentParser:

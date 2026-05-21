@@ -239,7 +239,7 @@ def _comoving_distance_mpc(z, hz_model, params, n_steps=2048):
     hz = np.asarray(hz_model(grid, params), dtype=float)
     if np.any(~np.isfinite(hz)) or np.any(hz <= 0.0):
         return float("nan")
-    return float(np.trapz(C_KMS / hz, grid))
+    return float(np.trapezoid(C_KMS / hz, grid))
 
 
 def _cmb_shift_prediction(params, hz_model):
