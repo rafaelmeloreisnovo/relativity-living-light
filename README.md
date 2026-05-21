@@ -243,6 +243,35 @@ Os documentos abaixo foram integrados ao `README.md` raiz como **acervo históri
 Leitura sugerida: `README.md` → `docs/INDICE_MESTRE.md` → `docs/DOCUMENTATION_FULL_INVENTORY.md`.
 
 
+### Índice estruturado de documentos `.md` da raiz (anti-documentos soltos)
+
+Para evitar documentos Markdown “soltos” na raiz, esta seção amarra explicitamente os arquivos de primeiro nível.
+
+- [COMPREHENSIVE_REPOSITORY_ANALYSIS.md](COMPREHENSIVE_REPOSITORY_ANALYSIS.md)
+- [FALSIFIABILITY_PROTOCOL.md](FALSIFIABILITY_PROTOCOL.md)
+- [GOVERNANCE_REORG_DRAFT.md](GOVERNANCE_REORG_DRAFT.md)
+- [LICENSE.md](LICENSE.md)
+- [MANIFESTO_MIGRATION_FILES.md](MANIFESTO_MIGRATION_FILES.md)
+- [Matemática.md](Matemática.md)
+- [NEXT_RLL_VALIDATION_STEP.md](NEXT_RLL_VALIDATION_STEP.md)
+- [Numprimod.md](Numprimod.md)
+- [Provaw.md](Provaw.md)
+- [README_MASTER.md](README_MASTER.md)
+- [REFORM_LOG.md](REFORM_LOG.md)
+- [REPRODUCIBILITY_MATRIX.md](REPRODUCIBILITY_MATRIX.md)
+- [RESUMO_REFORMA.md](RESUMO_REFORMA.md)
+- [RLL_FALSEABILITY_MATRIX.md](RLL_FALSEABILITY_MATRIX.md)
+- [RLL_REAL_VALIDATION_REPORT_TARGET.md](RLL_REAL_VALIDATION_REPORT_TARGET.md)
+- [RLL_WANDERING_BLACK_HOLE_TEST.md](RLL_WANDERING_BLACK_HOLE_TEST.md)
+- [Rafael te.md](Rafael%20te.md)
+- [SCIENTIFIC_CLAIMS.md](SCIENTIFIC_CLAIMS.md)
+- [SCIENTIFIC_CORE_SCOPE.md](SCIENTIFIC_CORE_SCOPE.md)
+- [SECURITY_SUMMARY.md](SECURITY_SUMMARY.md)
+- [VALIDATION_STATUS.md](VALIDATION_STATUS.md)
+- [docs_toroidal_knowledge.md](docs_toroidal_knowledge.md)
+
+Observação: o inventário completo de `.md` no repositório (todos os diretórios) permanece em [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md).
+
 ### Pós‑PhD — Dossiê formal de validação cosmológica (novo material)
 
 - [Síntese cosmológica pós‑doc (formal)](docs/rll_cosmology_postdoc_synthesis.md)
