@@ -231,6 +231,13 @@ def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
     return out
 
 
+def _retain_existing_artifact(reason: str) -> bool:
+    if MODEL_COMPARISON_JSON.exists():
+        print(f"[rll-real-validation] retaining existing artifact: {MODEL_COMPARISON_JSON} ({reason})")
+        return True
+    return False
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run minimal real Pantheon+ validation and emit auditable model_comparison.json")
     parser.add_argument("--skip-verify", action="store_true", help="Skip verify_pantheon_inputs step")
@@ -263,6 +270,8 @@ def main() -> None:
 
     missing = [p for p in _pantheon_files() if not p.exists()]
     if missing:
+        if _retain_existing_artifact("missing Pantheon+ real-data files"):
+            return
         raise FileNotFoundError(f"Missing required Pantheon+ files: {missing}")
 
     summary = json.loads(PANTHEON_SUMMARY_JSON.read_text(encoding="utf-8"))

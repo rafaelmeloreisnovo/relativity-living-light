@@ -64,3 +64,18 @@ def test_normalize_fails_without_real_data_files(monkeypatch) -> None:
         assert False, "expected FileNotFoundError"
     except FileNotFoundError:
         pass
+
+
+def test_retain_existing_artifact_when_real_inputs_missing(tmp_path, monkeypatch) -> None:
+    import scripts.run_real_pantheon_validation as m
+    target = tmp_path / "model_comparison.json"
+    target.write_text('{"status":"old"}')
+    monkeypatch.setattr(m, "MODEL_COMPARISON_JSON", target)
+    assert m._retain_existing_artifact("missing real data") is True
+
+
+def test_do_not_retain_when_no_previous_artifact(tmp_path, monkeypatch) -> None:
+    import scripts.run_real_pantheon_validation as m
+    target = tmp_path / "model_comparison.json"
+    monkeypatch.setattr(m, "MODEL_COMPARISON_JSON", target)
+    assert m._retain_existing_artifact("missing real data") is False
