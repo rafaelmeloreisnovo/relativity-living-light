@@ -24,6 +24,10 @@ dataset:
   name: "Pantheon+ / SH0ES"
   type: "real_observational_cosmology_data"
   role: "primary real-data validation dataset for RLL vs LCDM"
+  origin:
+    repository: "https://github.com/PantheonPlusSH0ES/DataRelease"
+    branch: "main"
+    release_scope: "Pantheon+SH0ES/Data"
   files:
     - name: "pantheon_lightcurve_table"
       source_url: "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+SH0ES/Data/lcparam_full_long_zhel.txt"
@@ -38,6 +42,10 @@ outputs:
   provenance_manifest: "data/real_sources/pantheon_real_data_manifest.json"
   academic_status: "data/real_sources/pantheon_academic_validation_status.json"
   model_comparison: "data/results/model_comparison.json"
+  output_contract:
+    - "provenance_manifest must include SHA256 for each required input file"
+    - "academic_status must include pass/fail against declared falsifiability checks"
+    - "model_comparison must include all required_metrics with LCDM and RLL values"
 
 validation:
   baseline_model: "LCDM"
