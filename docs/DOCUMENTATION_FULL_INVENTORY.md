@@ -12,15 +12,17 @@ Este arquivo é o **inventário bruto** do acervo documental.
 
 **Critério:** todos os `.md` e `.zip` encontrados por varredura recursiva no repositório, com título detectado, tamanho e hash SHA-256 abreviado.
 
-**Gerado em:** 2026-05-06T03:10:16+00:00
-**Commit de referência:** `fc76803`
-**Total de arquivos catalogados:** 256
+**Gerado em:** 2026-05-22T01:42:47+00:00
+**Commit de referência:** `4083f2b`
+**Total de arquivos catalogados:** 290
 
 ---
 
 | Tipo | Caminho | Título/Conteúdo detectado | Tamanho (bytes) | SHA-256 (12) |
 |---|---|---:|---:|---|
 | md | `.github/pull_request_template.md` | Resumo | 593 | `fc1b9dc5164e` |
+| zip | `.github/workflows/RAFAELIA_SESSION_COMPLETA.zip` | 59 entradas | 196556 | `542b7516bd44` |
+| zip | `.github/workflows/rll-real-run-26196483666.zip` | 39 entradas | 164810 | `0565761a18d3` |
 | md | `ANALISE_COMPLETA/00_INDICE_MESTRE.md` | Análise Completa do Repositório Relativity Living Light | 7866 | `5a1e9b973172` |
 | md | `ANALISE_COMPLETA/01_14_Areas_Tematicas_Detalhadas.md` | Análise Detalhada das 14 Áreas Temáticas | 30879 | `3e4bc5643d87` |
 | md | `ANALISE_COMPLETA/Bibliografia_Completa.md` | Bibliografia Completa e Referências Externas | 15695 | `2eee96447134` |
@@ -29,9 +31,15 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `ANALISE_COMPLETA/Metricas_Conservadoras.md` | Métricas e Avaliações Conservadoras | 13107 | `e7d5b339b1a9` |
 | md | `ANALISE_COMPLETA/README.md` | ANALISE_COMPLETA / Comprehensive Repository Analysis | 6482 | `fe7b2c694d57` |
 | md | `COMPREHENSIVE_REPOSITORY_ANALYSIS.md` | COMPREHENSIVE REPOSITORY ANALYSIS — Edição Técnica Pós‑Doc (2026) | 26386 | `cbb32750c5aa` |
+| md | `FALSIFIABILITY_PROTOCOL.md` | FALSIFIABILITY_PROTOCOL | 1952 | `ecb7add00a24` |
 | md | `GOVERNANCE_REORG_DRAFT.md` | GOVERNANCE REORG DRAFT — Edição Técnica Pós‑Doc (2026) | 16551 | `2774dfc47e9c` |
-| md | `LICENSE.md` | (sem heading) | 8176 | `cb9eb2d7b6cd` |
+| md | `LICENSE.md` | LICENSE — RAFCODE-𝚽 vΩ-EXTENDED | 9514 | `8c5b8b569856` |
 | md | `MANIFESTO_MIGRATION_FILES.md` | MANIFESTO MIGRATION FILES — Edição Técnica Pós‑Doc (2026) | 3125 | `f5bfff34b30c` |
+| md | `Matemática.md` | (sem heading) | 7670 | `16e0699c9a8b` |
+| md | `MathRaf.md` | (sem heading) | 4424 | `6b306bca5483` |
+| md | `NEXT_RLL_VALIDATION_STEP.md` | Próximo salto RLL | 720 | `cc1d073f99f9` |
+| md | `Numprimod.md` | (sem heading) | 233 | `5dcf55662f10` |
+| md | `Provaw.md` | !/usr/bin/env python3 | 7653 | `c1ba139adcb8` |
 | md | `RAFAELIA_COSMO_STRUCTURE_D/README.md` | RAFAELIA · Cosmology Structure (D) — legado compatível | 569 | `bdc2040e1d3b` |
 | md | `RAFAELIA_COSMO_STRUCTURE_D/core/agn_feedback_bridge.md` | Ponte AGN Feedback ↔ Cosmologia (para “ganhar” do ΛCDM) | 1167 | `a9c7a29410cb` |
 | md | `RAFAELIA_COSMO_STRUCTURE_D/core/equations.md` | Equações (esqueleto) | 1111 | `be7c52021f9e` |
@@ -39,10 +47,15 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `RAFAELIA_COSMO_STRUCTURE_D/paper/draft.md` | Draft (paper skeleton) | 7007 | `9f44abb7e404` |
 | md | `RAFAELIA_COSMO_STRUCTURE_D/paper/evidence_traceability.md` | Evidence Traceability — Structure D | 5022 | `f3cc20514489` |
 | md | `RAFAELIA_COSMO_STRUCTURE_D/results/README.md` | Legado (não canônico) | 227 | `88994e7c206f` |
-| md | `README.md` | README — Edição Técnica Pós‑Doc (2026) | 43625 | `9c47ce23ea0d` |
+| md | `README.md` | Relativity Living Light (RLL/MCRP) | 49562 | `8788d4df1510` |
 | md | `README_MASTER.md` | README MASTER — Edição Técnica Pós‑Doc (2026) | 18563 | `54adb929a34d` |
 | md | `REFORM_LOG.md` | REFORM LOG — Edição Técnica Pós‑Doc (2026) | 17616 | `926aba362ff6` |
+| md | `REPRODUCIBILITY_MATRIX.md` | REPRODUCIBILITY_MATRIX | 2918 | `00831848f1a6` |
 | md | `RESUMO_REFORMA.md` | RESUMO REFORMA — Edição Técnica Pós‑Doc (2026) | 12664 | `b0302a29238a` |
+| md | `RLL_FALSEABILITY_MATRIX.md` | RLL Falseability Matrix (RLL × GR/ΛCDM) | 3948 | `d78bbdf1afd6` |
+| md | `RLL_REAL_VALIDATION_PROMPT.md` | RLL Real Validation — Operational Coherence Prompt | 2835 | `1e9e90ec8c49` |
+| md | `RLL_REAL_VALIDATION_REPORT_TARGET.md` | RLL Real Validation Report — Target | 695 | `049b91dcfa6b` |
+| md | `RLL_WANDERING_BLACK_HOLE_TEST.md` | RLL Wandering Black Hole Lensing Test | 1682 | `55ac19878750` |
 | md | `RMR/00_COMO_LER-1.md` | (sem heading) | 134 | `a541720961e3` |
 | md | `RMR/00_COMO_LER-2.md` | (sem heading) | 134 | `a541720961e3` |
 | md | `RMR/00_COMO_LER.md` | (sem heading) | 266 | `92d6c9e9b1fc` |
@@ -65,8 +78,11 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `RMR/11_DOCUMENTO_PRIORIDADE-1.md` | (sem heading) | 146 | `9a46279da476` |
 | md | `RMR/11_DOCUMENTO_PRIORIDADE.md` | (sem heading) | 290 | `066855e2edc1` |
 | md | `RMR/INDICE_MAESTRO.md` | 🗺️ ÍNDICE MAESTRO — Mapa Completo do Repositório | 9911 | `a8339ecd364b` |
+| md | `Rafael te.md` | !/usr/bin/env python3 | 28321 | `5ee6c5341c4d` |
+| md | `SCIENTIFIC_CLAIMS.md` | SCIENTIFIC_CLAIMS | 2604 | `72fc2f145939` |
 | md | `SCIENTIFIC_CORE_SCOPE.md` | SCIENTIFIC CORE SCOPE — Edição Técnica Pós‑Doc (2026) | 3275 | `e4f7ef8b7cd4` |
 | md | `SECURITY_SUMMARY.md` | SECURITY SUMMARY — Edição Técnica Pós‑Doc (2026) | 9738 | `126a1983986c` |
+| md | `VALIDATION_STATUS.md` | VALIDATION STATUS — Relativity Living Light (RLL) | 3164 | `8652811eff3e` |
 | md | `artifacts/formulas/FORMAL_ACADEMIC_REPORT.md` | Catálogo Formal de Expressões Matemáticas | 25858 | `5a88eb906a59` |
 | md | `book/01_fundamentos_visao_geral.md` | 01. Fundamentos — Visão Geral | 1283 | `9ac7fcad56ec` |
 | md | `book/02_fundamentos_status_dados.md` | 02. Fundamentos — Status de Dados e Maturidade | 736 | `912d0dda1bdd` |
@@ -107,12 +123,12 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `book/37_apendice_trilha_autoral.md` | 37. Apêndice — Trilha Autoral RAFAELIA | 709 | `847943a7861a` |
 | md | `book/38_apendice_numeros_rafaelianos.md` | 38. Apêndice — Números Rafaelianos | 3372 | `143e805dd5bc` |
 | md | `book/39_apendice_referencias_fontes.md` | 39. Apêndice — Referências e Fontes Canônicas | 3126 | `331a91be3cef` |
-| md | `book/README.md` | Livro Canônico — Relativity Living Light | 4187 | `c7bf444dfd1b` |
-| md | `core/lowlevel_runtime/README.md` | lowlevel_runtime (Java → C → ASM) | 829 | `3ff5d3f974b0` |
+| md | `book/README.md` | Livro Canônico — Relativity Living Light | 10899 | `c14de5f52d8e` |
+| md | `core/lowlevel_runtime/README.md` | lowlevel_runtime (Java → C → ASM) | 2236 | `2acf589e514d` |
 | zip | `data/RelativityLivingLight_v4_bundle.zip` | 20 entradas | 4096271 | `957575ff422f` |
 | md | `data/inputs/structure_d/README.md` | Hz.csv | 3047 | `024d5a5d1fba` |
-| md | `data/pantheon/README.md` | Pantheon+ inputs (offline-ready placeholder) | 504 | `e8d20b224d15` |
-| md | `data/real/cosmology/README.md` | Data README — Cosmology (Real) | 511 | `10800beda4ac` |
+| md | `data/pantheon/README.md` | Pantheon+ Required Inputs | 1336 | `d952b1eba377` |
+| md | `data/real/cosmology/README.md` | Data README — Cosmology (Real) | 1028 | `ae91f474e30c` |
 | md | `data/real/geomagnetic/README.md` | Data README — Geomagnetic (Real) | 528 | `f656779671e2` |
 | md | `data/real/heliophysics/README.md` | Data README — Heliophysics (Real) | 457 | `b578454c041f` |
 | zip | `data/relativity_bundle_results.zip` | 19 entradas | 4095297 | `5c0cca457927` |
@@ -136,7 +152,7 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/DATA_INTEGRITY_CHECKLIST.md` | Checklist de Integridade de Dados e Documentação | 3567 | `5032099181a4` |
 | md | `docs/DESCOBERTAS_EMERGENTES.md` | Descobertas Emergentes (RLL) | 12493 | `abe40879996f` |
 | md | `docs/DHA_POSTDOC_VALIDATION_FRAMEWORK.md` | DHA: Framework Pós-doc para Validação Quantitativa e Publicação | 2716 | `51573d6d7dad` |
-| md | `docs/DOCUMENTATION_FULL_INVENTORY.md` | Inventário Completo de Documentação e Bundles | 25787 | `0d0e8633f1a3` |
+| md | `docs/DOCUMENTATION_FULL_INVENTORY.md` | Inventário Completo de Documentação e Bundles | 29642 | `d1cc1c5a5c81` |
 | md | `docs/DOCUMENTATION_ORGANIZATION_MASTER.md` | Organização Integral de Documentação e Artefatos | 8660 | `bd1dcd6bf708` |
 | md | `docs/DOCUMENTO_MESTRE_FRENTES.md` | Documento Mestre de Frentes — Structure D | 9021 | `0794871a3365` |
 | md | `docs/EASY_NOTES_EMPTY.md` | (sem heading) | 1 | `01ba4719c80b` |
@@ -161,13 +177,14 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/NATURE_ARTICLE_ANALYSIS.md` | Analysis: Nature Article s41467-025-63981-3 and Relativity Living Light Model | 14965 | `ce983364d33d` |
 | md | `docs/NEXT_THEORIES_AND_DERIVED_HYPOTHESES.md` | (sem heading) | 2030 | `ebbb4beea9fa` |
 | md | `docs/PERTURBACOES_CRESCIMENTO.md` | Perturbações e Crescimento Estrutural | 6542 | `3fc7c18ca6ef` |
-| md | `docs/PIPELINE_ARTIFACTS_GUIDE.md` | Guia de Artefatos do Pipeline RLL/MCRP | 1474 | `b9e7153e9901` |
+| md | `docs/PIPELINE_ARTIFACTS_GUIDE.md` | PIPELINE_ARTIFACTS_GUIDE | 1612 | `7516fa030b2e` |
 | md | `docs/PLACEHOLDER_EMPTY_DOCUMENT.md` | (sem heading) | 1 | `01ba4719c80b` |
 | md | `docs/PLANO_ABCD_JWST_AGN_SMBH.md` | Plano A→B→C→D — Organização de Dados, Documentos e Roteiro Científico | 29280 | `6d1e280c0a0d` |
 | md | `docs/PLANO_AD_AGN_JWST.md` | Plano A→B→C→D — AGN/JWST para Paper e Fechamento do Modelo | 4033 | `f3147e3d9beb` |
 | md | `docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md` | Política do Repositório — Texto e Artefatos | 3687 | `09f7951e7147` |
 | md | `docs/POST_PHD_FORMAL_GAP_ANALYSIS.md` | Análise de Lacunas — RLL para padrão pós-PhD formal/profissional | 6232 | `dfd96e557ee2` |
 | md | `docs/RAFAELIA_UNIFIED_PAPER.md` | RAFAELIA — Relativity Living Light | 6725 | `3ec0b979953d` |
+| md | `docs/README_ADVERTENCIA_DOI.md` | README de Advertência — DOI, Cronologia e Integridade Probatória | 2948 | `4818423d59fb` |
 | md | `docs/README_CIENTIFICO.md` | Relativity Living Light — Modelo Cosmológico de Superposição Dinâmica | 7708 | `de834a162633` |
 | md | `docs/README_HISTORICO_INTEGRAL_47d054c.md` | Relativity Living Light | 74684 | `5a1bcce2417a` |
 | md | `docs/README_ROOT_LEGACY_ARCHIVE.md` | Relativity Living Light | 74684 | `5a1bcce2417a` |
@@ -182,6 +199,9 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/RESULTADOS_CORRIGIDOS.md` | Resultados Corrigidos — Relativity Living Light | 4211 | `2ac4f45316a1` |
 | md | `docs/REVIEW_COMMITS_ULTIMOS_3_DIAS.md` | Revisão técnica — últimos 3 dias de commits | 3782 | `fc975c4d65d9` |
 | md | `docs/RLL_AUDIT_2026-03-14_FRONTEIRA_FISICA.md` | RLL-AUDIT-2026-03-14 — Diagnóstico Profundo + Fronteira da Física (2025–2026) | 7817 | `f836b45edb0b` |
+| md | `docs/RLL_CLAIM_BOUNDARIES.md` | RLL Claim Boundaries and Validation Discipline | 1655 | `9fd4a1e6e86e` |
+| md | `docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md` | RLL as Medium-Response Inference Framework | 12495 | `b602fdf64001` |
+| md | `docs/RLL_STATISTICAL_FINANCIAL_METRICS.md` | RLL Statistical and Financial Metrics | 1556 | `6dd5e1c79adb` |
 | md | `docs/ROADMAP_VALIDACAO.md` | ROADMAP_VALIDACAO — Pipeline oficial de prova observacional | 3869 | `d1e974f6c5a9` |
 | md | `docs/Relativity_Living_Light.md` | Relativity Living Light — Photonic Superposition as Unified Dark Sector (Draft) | 2498 | `3ac2e9b590d3` |
 | md | `docs/Results.md` | Resultados – Relativity Living Light | 1624 | `33f50c0608ec` |
@@ -213,7 +233,11 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/pipelines/COSMOLOGY_VALIDATION_STACK.md` | COSMOLOGY VALIDATION STACK (RLL) | 1402 | `e7f9bc6816f7` |
 | md | `docs/pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md` | GEOMAGNETIC VALIDATION PIPELINE (RLL/MCRP) | 1548 | `71a51043b08b` |
 | md | `docs/pipelines/RADIATION_TRANSMISSION_VALIDATION.md` | RADIATION TRANSMISSION VALIDATION (RLL/MCRP) | 1602 | `0ebb3d6ec8c4` |
+| md | `docs/rll_cosmology_postdoc_synthesis.md` | RLL Cosmology Postdoctoral Synthesis (Formal Technical Draft) | 1817 | `1c9cc20cde81` |
+| md | `docs/rll_desi_bao_validation_matrix.md` | RLL × DESI BAO Validation Matrix | 991 | `4ac5a7e122a3` |
+| md | `docs/rll_negative_weak_time_bridge.md` | RLL and Negative Weak Time: Operational Bridge (Non-Cosmological Proof) | 987 | `600ab1c4e3d0` |
 | zip | `docs/rll_revisado_v2.zip` | 22 entradas | 40801 | `aa61125ad94d` |
+| md | `docs/rll_runaway_black_hole_anomaly_index.md` | Runaway SMBH as Robustness Stress-Test Index (RLL) | 750 | `7fa7732d2db7` |
 | md | `docs/root_md_archive/00_COMO_LER.md` | (sem heading) | 266 | `92d6c9e9b1fc` |
 | md | `docs/root_md_archive/06_COMPARACOES_DETALHADAS.md` | (sem heading) | 426 | `fcf3b896acc5` |
 | md | `docs/root_md_archive/09_GLOSSARIO_COMPLETO-1.md` | (sem heading) | 286 | `5ff16bbb10ae` |
@@ -229,6 +253,7 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/root_md_archive/Tarafaelesta.md` | Auditoria de consistência PRD | 6761 | `42200ed9acda` |
 | md | `docs/root_md_archive/TrabalhoRagarl.md` | Dissecação técnica do submission package | 11813 | `e60a484e2e43` |
 | md | `docs/root_md_archive/UMEA Unified Multi-Scale Effective Action.md` | Ação efetiva multi-escala UMEA | 5480 | `93ac6e2f9d7c` |
+| md | `docs_toroidal_knowledge.md` | O que carrega o conhecimento? (Síntese operacional) | 2402 | `0dee08af51ce` |
 | md | `newadd/00_INDEX.md` | RAFAELIA — Academic Documentation Index | 2854 | `3de4b5e9e433` |
 | md | `newadd/00_INDICE_ANALISE_PHD.md` | ÍNDICE MESTRE — Análise PhD do Repositório RLL | 7487 | `556028f3f2f5` |
 | md | `newadd/01_MATHEMATICS.md` | RAFAELIA — Domain I: Mathematics | 8241 | `fa13a1596b34` |
@@ -244,6 +269,8 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `newadd/06_ETHICS_SYSTEMS.md` | RAFAELIA — Domain VI: Ethics & Systems Theory | 11939 | `25a9b84aaa67` |
 | md | `newadd/07_SYNTHESIS.md` | RAFAELIA — Domain VII: Unified Synthesis | 12189 | `fa1c2ac9a9f9` |
 | md | `newadd/08_VALIDACAO_INICIAL_COERENCIA_AMOR_PROVA.md` | Validação inicial | 6218 | `98081c34ddc4` |
+| md | `newadd/09_FRAMEWORK_RAPPORT_360.md` | Framework RAPPORT 360° para Organização Científica Multivetorial | 4869 | `b6e6e6629dd5` |
+| md | `newadd/10_TIMELINE_ESTRUTURAL_E_ANTIPLAGIO.md` | Timeline Estrutural do Repositório + Protocolo Antiplágio | 9081 | `860ef18e0216` |
 | md | `newadd/12H_REFATORACAO_PLANO.md` | Plano de Refatoração Profissional em 12 Horas | 5785 | `a6eb49e5df9e` |
 | md | `newadd/calculos/baremetal/phoenix_lowlevel/README.md` | phoenix_lowlevel | 701 | `b3125490e193` |
 | md | `newadd/duplicates_archive/06_ETHICS_SYSTEMS (1).md` | RAFAELIA — Domain VI: Ethics & Systems Theory | 10429 | `98f198a20807` |
@@ -260,6 +287,13 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `results/OUTPUTS_TEXTUAIS_INDEX.md` | Índice Canônico de Artefatos Textuais ('results/') | 2738 | `23a51e54ff44` |
 | md | `results/README.md` | Organização de artefatos em 'results/' | 427 | `52d3fe9eed33` |
 | md | `results/audit/rll_audit_gap_report.md` | RLL — Audit Gap Report | 597 | `fba2312e6dc4` |
+| md | `results/mapping_logs/README.md` | Mapping logs | 284 | `068c75a5fb3a` |
+| md | `results/pipeline-runs/26247839757/CLAIM_REFERENCE_AUDIT.md` | CLAIM_REFERENCE_AUDIT | 1145 | `9cdd7972cda1` |
+| md | `results/pipeline-runs/26247839757/PIPELINE_REPORT.md` | PIPELINE_REPORT | 677 | `3deff43c9dcc` |
+| md | `results/pipeline-runs/26247839757/SOURCES.md` | SOURCES | 277 | `c22ede9fa387` |
+| md | `results/pipeline-runs/26247839757/book/BOOK_ROUTE.md` | BOOK_ROUTE | 1097 | `363c947d499b` |
+| md | `results/pipeline-runs/26247839757/book/CHAPTERS_USED.md` | CHAPTERS_USED | 556 | `7c2f2fae7125` |
+| md | `results/pipeline-runs/26247839757/book/FILES_USED.md` | FILES_USED | 421 | `72ddcafeaae0` |
 | md | `results/structure_d/README.md` | Perfil padrão | 1952 | `f262b8ac9100` |
 | zip | `rll_reproducivel.zip` | 16 entradas | 381763 | `fd61741209ef` |
 | md | `to_Add/AUDIT_REPORT.md` | Auditoria técnica-científica — Relativity Living Light (RLL) | 4789 | `3513f5d48b40` |

@@ -1,7 +1,7 @@
 # ÍNDICE MESTRE — Documentação Oficial
 ## Relativity Living Light
 
-**Atualizado em:** 2026-03-05
+**Atualizado em:** 2026-05-22
 **Regra:** seção principal lista apenas caminhos canônicos oficiais.
 
 ---
@@ -54,6 +54,10 @@ Encaminhamentos complementares:
 - [`docs/MODELO_COSMOLOGICO_UNIFICADO_MAGNETISMO_RADIACAO_PLASMA.md`](MODELO_COSMOLOGICO_UNIFICADO_MAGNETISMO_RADIACAO_PLASMA.md)
 - [`docs/REFERENCES.md`](REFERENCES.md)
 - [`docs/FORMULAS_CANONICAS_INDEX.md`](FORMULAS_CANONICAS_INDEX.md) ← referência oficial de fórmulas
+- [`docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md`](RLL_RESPONSE_MEDIUM_EQUATIONS.md)
+- [`docs/RLL_STATISTICAL_FINANCIAL_METRICS.md`](RLL_STATISTICAL_FINANCIAL_METRICS.md)
+- [`docs/RLL_CLAIM_BOUNDARIES.md`](RLL_CLAIM_BOUNDARIES.md)
+- [`rll_equation_registry.yml`](../rll_equation_registry.yml)
 
 
 ## 1.1) Casos observacionais
