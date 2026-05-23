@@ -69,6 +69,7 @@ Encaminhamentos complementares:
 - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
 - [`docs/CANONICAL_SOURCES.md`](CANONICAL_SOURCES.md)
 - [`docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md`](POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) **(fonte oficial para formatos no core e publicação de artefatos externos)**
+- [`docs/RAFAELIA_REGIME_INDEX.md`](RAFAELIA_REGIME_INDEX.md) **(classificação de regimes: fórmula, hipótese, dado, validação, legado e simbólico)**
 - [`docs/RELEASE_NOTES_HISTORY.md`](RELEASE_NOTES_HISTORY.md)
 - [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
 - [`docs/ZIP_CONTENT_INDEX.md`](ZIP_CONTENT_INDEX.md) *(inventário histórico; não normativo para armazenamento no core)*
