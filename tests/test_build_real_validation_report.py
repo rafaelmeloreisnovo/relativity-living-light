@@ -12,8 +12,23 @@ def test_build_real_validation_report_generates_outputs(tmp_path: Path) -> None:
         json.dumps(
             {
                 "n_obs": 10,
-                "rll": {"chi2": 12.0, "AIC": 22.0, "BIC": 24.0},
-                "lcdm": {"chi2": 13.0, "AIC": 17.0, "BIC": 18.0},
+                "k_rll": 5,
+                "k_lcdm": 2,
+                "chi2_rll": 12.0,
+                "chi2_lcdm": 13.0,
+                "AIC_rll": 22.0,
+                "AIC_lcdm": 17.0,
+                "BIC_rll": 24.0,
+                "BIC_lcdm": 18.0,
+                "delta_chi2_rll_minus_lcdm": -1.0,
+                "delta_aic_rll_minus_lcdm": 5.0,
+                "delta_bic_rll_minus_lcdm": 6.0,
+                "interpretation_label": "lcdm_preferred",
+                "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+                "models": {
+                    "rll": {"chi2": 12.0, "aic": 22.0, "bic": 24.0},
+                    "lcdm": {"chi2": 13.0, "aic": 17.0, "bic": 18.0},
+                },
             }
         ),
         encoding="utf-8",
@@ -42,4 +57,5 @@ def test_build_real_validation_report_generates_outputs(tmp_path: Path) -> None:
     payload = json.loads(out_json.read_text(encoding="utf-8"))
     assert payload["rll"]["chi2"] == 12.0
     assert payload["lcdm"]["n_params"] == 2
+    assert payload["claim_boundary"] == "No superiority claim unless real-data metrics pass predefined thresholds."
     assert "| RLL |" in out_table.read_text(encoding="utf-8")
