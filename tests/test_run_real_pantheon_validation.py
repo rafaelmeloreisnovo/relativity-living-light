@@ -56,6 +56,27 @@ def test_normalize_model_comparison_required_metrics_and_formulas(monkeypatch, t
     assert payload["claim_boundary"] == "No superiority claim unless real-data metrics pass predefined thresholds."
 
 
+def test_aic_bic_use_distinct_parameter_counts_for_models(monkeypatch, tmp_path) -> None:
+    summary = {
+        "n_obs": 1701,
+        "rll": {"chi2": 100.0},
+        "lcdm": {"chi2": 100.0},
+    }
+    f1 = tmp_path / "lcparam_full_long_zhel.txt"
+    f2 = tmp_path / "Pantheon+SH0ES_STAT+SYS.cov"
+    f1.write_text("a")
+    f2.write_text("b")
+    import scripts.run_real_pantheon_validation as m
+    monkeypatch.setattr(m, "_pantheon_files", lambda: [f1, f2])
+
+    payload = _normalize_model_comparison(summary, command_used="python scripts/run_real_pantheon_validation.py")
+    expected_delta_aic = 2 * (5 - 2)
+    expected_delta_bic = (5 - 2) * math.log(summary["n_obs"])
+
+    assert payload["AIC_rll"] - payload["AIC_lcdm"] == expected_delta_aic
+    assert math.isclose(payload["BIC_rll"] - payload["BIC_lcdm"], expected_delta_bic)
+
+
 def test_normalize_fails_without_real_data_files(monkeypatch) -> None:
     import scripts.run_real_pantheon_validation as m
     monkeypatch.setattr(m, "_pantheon_files", lambda: [m.ROOT / "data" / "pantheon" / "missing.txt"])
