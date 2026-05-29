@@ -1,7 +1,7 @@
 # INDICE MESTRE - Documentacao Oficial
 ## Relativity Living Light
 
-**Atualizado em:** 2026-05-27
+**Atualizado em:** 2026-05-29
 **Regra:** secao principal lista apenas caminhos canonicos oficiais.
 
 ---
@@ -60,6 +60,7 @@ Encaminhamentos complementares:
 
 ## 1.1) Casos observacionais
 
+- [`docs/cases/OBSERVATIONAL_ASTROPHYSICAL_CASES_INDEX.md`](cases/OBSERVATIONAL_ASTROPHYSICAL_CASES_INDEX.md)
 - [`docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md`](cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md)
 - [`docs/cases/SN2017egm_SUPERLUMINOUS_SUPERNOVA_MAGNETAR_ENGINE_RLL.md`](cases/SN2017egm_SUPERLUMINOUS_SUPERNOVA_MAGNETAR_ENGINE_RLL.md)
 
@@ -90,6 +91,7 @@ Encaminhamentos complementares:
 ## 4) Validacao observacional e matriz de dados reais
 
 - [`docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md`](VALIDATION_DATA_MATRIX_RLL_MCRP.md)
+- [`docs/cases/OBSERVATIONAL_ASTROPHYSICAL_CASES_INDEX.md`](cases/OBSERVATIONAL_ASTROPHYSICAL_CASES_INDEX.md)
 - [`docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md`](cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md)
 - [`docs/cases/SN2017egm_SUPERLUMINOUS_SUPERNOVA_MAGNETAR_ENGINE_RLL.md`](cases/SN2017egm_SUPERLUMINOUS_SUPERNOVA_MAGNETAR_ENGINE_RLL.md)
 - [`docs/pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md`](pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md)
