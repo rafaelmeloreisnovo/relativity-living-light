@@ -1,0 +1,186 @@
+meta:
+  schema: rll.latentes.observation_catalog.v1
+  version: 1
+  updated_utc: "2026-05-31"
+  maintainer: "Sistema RLL"
+  purpose: "Catálogo de fontes reais e recentes para testar RLL-LATENTES com falsificabilidade, proveniência e rollback."
+  claim_policy: "Nenhum item declara descoberta; cada entrada é alvo de coleta, controle nulo e validação independente."
+
+orchestration:
+  pipeline_root: "data/rll_latentes"
+  docs_root: "docs/rll_latentes"
+  artifact_root: "artifacts/rll_latentes"
+  results_root: "results/rll_latentes"
+  schema_path: "schemas/rll_latentes_observations.schema.json"
+  stages:
+    - id: ingest
+      output: "artifacts/rll_latentes/raw/{source_id}/"
+      rollback: "Remover somente artefatos da fonte afetada e manter log de falha."
+    - id: normalize
+      output: "artifacts/rll_latentes/normalized/{source_id}/"
+      rollback: "Retornar ao artefato raw com checksum validado."
+    - id: null_model
+      output: "artifacts/rll_latentes/null_models/{source_id}.json"
+      rollback: "Invalidar score quando hipótese nula estiver ausente."
+    - id: score
+      output: "results/rll_latentes/scores/{source_id}.csv"
+      rollback: "Marcar score como provisional quando sensibilidade não for calculada."
+    - id: report
+      output: "results/rll_latentes/reports/{source_id}.md"
+      rollback: "Publicar relatório negativo se a fonte for insuficiente."
+  common_fields:
+    matrix_variables: [matrix_id, row, col, cell_id, value, layer, state, tag14, rafbit10, epoch, cycle, timestamp]
+    combinatorial_variables: [pair_id, source_a, source_b, ordered, block_2x2_id, permutation_id, stride, modulo, orbit_id]
+    geometric_variables: [x, y, z, radius, theta, phi, distance, angle, torsion, curvature, topology_class, torus_index]
+    statistical_variables: [mean, median, variance, std, covariance, pearson, spearman, kendall, mutual_information, entropy, fractal_entropy, hurst, zscore]
+    temporal_variables: [time, lag, lead, window, rolling_mean, rolling_std, autocorrelation, crosscorrelation, granger_score, regime]
+
+sources:
+  - source_id: desi_dr2_bao_supplement_2025
+    domain: cosmology
+    modality: baryon_acoustic_oscillations
+    title: "DESI DR2 Results II supplementary data"
+    release_date: "2025-08-20"
+    url: "https://zenodo.org/records/16644577"
+    doi: "10.5281/zenodo.16644577"
+    license: "CC-BY-4.0"
+    current_relevance: "Reproduces figures and numerical results for DESI DR2 BAO cosmological constraints."
+    falsifiable_latent_tests:
+      - "Compare RLL-LATENTES scores under DESI DR2 covariance vs. independent likelihood choices."
+      - "Break redshift-bin ordering and require score collapse under permutation."
+    suggested_command: "python3 scripts/fetch_real_sources.py --source desi_dr2_bao_supplement_2025"
+    local_target: "artifacts/rll_latentes/raw/desi_dr2_bao_supplement_2025/"
+
+  - source_id: desi_dr2_publications_2025_2026
+    domain: cosmology
+    modality: survey_publications
+    title: "DESI DR2 publications and validation papers"
+    release_date: "2025-03-19"
+    url: "https://data.desi.lbl.gov/doc/papers/dr2/"
+    doi: null
+    license: "DESI data/publication terms"
+    current_relevance: "Lists first-three-year DR2 cosmology papers and supporting validation works."
+    falsifiable_latent_tests:
+      - "Require candidate residuals to survive documented DR2 validation and synthetic-dataset checks."
+    suggested_command: "python3 scripts/fetch_real_sources.py --source desi_dr2_publications_2025_2026"
+    local_target: "artifacts/rll_latentes/raw/desi_dr2_publications_2025_2026/"
+
+  - source_id: atlas_open_data_research_2015_2016_release_2024
+    domain: particle_physics
+    modality: proton_proton_collisions
+    title: "ATLAS 13 TeV open data for research"
+    release_date: "2024-07-04"
+    url: "https://openscience.cern/node/439"
+    doi: null
+    license: "CC0 waiver for released open data"
+    current_relevance: "Approximately 65 TB and more than 7 billion collision events from 2015-2016 pp operation, plus simulated Monte Carlo events."
+    falsifiable_latent_tests:
+      - "Reject low-energy anomaly claims that do not survive sideband, detector-quality and Monte Carlo background checks."
+      - "Treat simplified educational formats separately from research-grade release products."
+    suggested_command: "cernopendata-client search --experiment ATLAS --type Dataset"
+    local_target: "artifacts/rll_latentes/raw/atlas_open_data_research_2015_2016_release_2024/"
+
+  - source_id: atlas_13tev_education_2020
+    domain: particle_physics
+    modality: reconstructed_objects
+    title: "ATLAS 13 TeV 2020 educational open data"
+    release_date: "2020-02-11"
+    url: "https://opendata.atlas.cern/docs/data/for_education/13TeV_details"
+    doi: null
+    license: "ATLAS Open Data terms"
+    current_relevance: "Simplified ROOT tuple release from 2016 13 TeV data with object preselection documented for education."
+    falsifiable_latent_tests:
+      - "Do not infer sub-threshold physics from variables removed by simplification."
+      - "Score candidates only as pedagogical unless full reconstruction metadata are available."
+    suggested_command: "python3 scripts/fetch_real_sources.py --source atlas_13tev_education_2020"
+    local_target: "artifacts/rll_latentes/raw/atlas_13tev_education_2020/"
+
+  - source_id: lvk_gwtc_5_2026
+    domain: gravitational_wave_physics
+    modality: compact_binary_catalog
+    title: "LIGO-Virgo-KAGRA GWTC-5.0 catalog announcement"
+    release_date: "2026-05-27"
+    url: "https://ligo.org/gwtc-5-0-updated-ligo-virgo-kagra-catalog-sets-new-records-in-precision-gravitational-wave-astronomy/"
+    doi: null
+    license: "GWOSC/LVK terms for associated data products"
+    current_relevance: "Updated catalog reports 161 added events from part of O4b and 390 total confirmed gravitational-wave signals."
+    falsifiable_latent_tests:
+      - "Candidate residuals must collapse under time-slide background estimation."
+      - "Require detector-network consistency and sky-localization uncertainty propagation."
+    suggested_command: "python3 scripts/fetch_real_sources.py --source lvk_gwtc_5_2026"
+    local_target: "artifacts/rll_latentes/raw/lvk_gwtc_5_2026/"
+
+  - source_id: euclid_q1_data_release_2025
+    domain: cosmology
+    modality: weak_lensing_galaxy_clustering_deep_fields
+    title: "Euclid Q1 public data release"
+    release_date: "2025-03-19"
+    url: "https://euclid.caltech.edu/page/euclid-q1-data-release"
+    doi: null
+    license: "ESA/Euclid/NASA-IPAC archive terms"
+    current_relevance: "Q1 exposes Level 2 single-visit products over Euclid Deep Fields through ESA and NASA/IPAC access paths."
+    falsifiable_latent_tests:
+      - "Weak-lensing or clustering residuals must survive mask, PSF, depth and field-edge systematics."
+      - "Require cross-field recurrence across EDF South, Fornax and North before raising R_c."
+    suggested_command: "python3 scripts/fetch_real_sources.py --source euclid_q1_data_release_2025"
+    local_target: "artifacts/rll_latentes/raw/euclid_q1_data_release_2025/"
+
+  - source_id: nasa_exoplanet_archive_2026_snapshot
+    domain: astrobiology_exoplanets
+    modality: exoplanet_catalog_and_light_curves
+    title: "NASA Exoplanet Archive snapshot"
+    release_date: "2026-05-21"
+    url: "https://exoplanetarchive.ipac.caltech.edu/"
+    doi: null
+    license: "NASA/IPAC public data terms"
+    current_relevance: "Archive lists confirmed planets, TESS confirmed planets, TESS project candidates and transit-survey light curves."
+    falsifiable_latent_tests:
+      - "Separate confirmed planets, candidates and threshold-crossing events before any astrobiology score."
+      - "Require stellar-activity and instrument-systematic controls for weak transit signals."
+    suggested_command: "curl -L 'https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+top+10+pl_name+from+ps&format=csv'"
+    local_target: "artifacts/rll_latentes/raw/nasa_exoplanet_archive_2026_snapshot/"
+
+  - source_id: human_cell_atlas_portal_2026
+    domain: biology_biomedicine
+    modality: single_cell_multiomics
+    title: "Human Cell Atlas Data Portal"
+    release_date: "2026-05-31"
+    url: "https://data.humancellatlas.org/"
+    doi: null
+    license: "HCA portal/project-specific terms"
+    current_relevance: "Community-generated multi-omic open data with project, donor, lab and cell-scale metadata."
+    falsifiable_latent_tests:
+      - "Batch-effect correction must reduce spurious latent scores."
+      - "Subphenotype claims require independent cohort or assay validation."
+    suggested_command: "python3 scripts/fetch_real_sources.py --source human_cell_atlas_portal_2026"
+    local_target: "artifacts/rll_latentes/raw/human_cell_atlas_portal_2026/"
+
+  - source_id: wwpdb_core_archive_2026
+    domain: chemistry_structural_biology
+    modality: macromolecular_structures
+    title: "Worldwide Protein Data Bank core archive"
+    release_date: "2026-05-31"
+    url: "https://www.wwpdb.org/"
+    doi: null
+    license: "wwPDB public archive terms"
+    current_relevance: "Global public archive for 3D structures of proteins, nucleic acids and complexes with validation and deposition resources."
+    falsifiable_latent_tests:
+      - "Conformational anomaly scores must be checked against validation reports, resolution and experimental method."
+      - "Reject chemical claims violating charge, geometry or stereochemical constraints."
+    suggested_command: "python3 scripts/fetch_real_sources.py --source wwpdb_core_archive_2026"
+    local_target: "artifacts/rll_latentes/raw/wwpdb_core_archive_2026/"
+
+  - source_id: openneuro_bids_portal_2026
+    domain: neuroscience
+    modality: bids_neuroimaging
+    title: "OpenNeuro BIDS data platform"
+    release_date: "2026-05-31"
+    url: "https://docs.openneuro.org/"
+    doi: null
+    license: "dataset-specific OpenNeuro terms"
+    current_relevance: "Open platform for sharing neuroimaging datasets with BIDS organization and dataset DOI metadata."
+    falsifiable_latent_tests:
+      - "Residual neural signatures must survive motion, physiology, batch, task and demographic controls."
+      - "Language or prosody hypotheses require preregistered contrasts and acoustic feature extraction."
+    suggested_command: "openneuro download --dataset <dataset_id> --target artifacts/rll_latentes/raw/openneuro_bids_portal_2026/"
+    local_target: "artifacts/rll_latentes/raw/openneuro_bids_portal_2026/"
