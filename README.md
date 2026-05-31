@@ -204,6 +204,7 @@ Para evitar sobreposição entre índices, este README mantém apenas encaminham
 - **RLL-LATENTES (Coerência × Amor × Prova):** [diretório técnico formal para sementes ignoradas e catálogo YAML de observações recentes](docs/rll_latentes/README.md).
   - Catálogo operacional: [`data/rll_latentes/observations.yml`](data/rll_latentes/observations.yml)
   - Schema de validação: [`schemas/rll_latentes_observations.schema.json`](schemas/rll_latentes_observations.schema.json)
+  - Próximos 7 passos integrados: [`docs/rll_latentes/FUTURE_STEPS.md`](docs/rll_latentes/FUTURE_STEPS.md)
 
 ### Integração formal do arquivo histórico (`docs/root_md_archive/`)
 

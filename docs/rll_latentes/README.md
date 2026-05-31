@@ -13,6 +13,7 @@
 - [5. Pipeline e dados catalogados](#5-pipeline-e-dados-catalogados)
 - [6. Testes estruturais e falsificabilidade](#6-testes-estruturais-e-falsificabilidade)
 - [7. Limites de linguagem, analogia e prova](#7-limites-de-linguagem-analogia-e-prova)
+- [8. Sete passos futuros integrados](#8-sete-passos-futuros-integrados)
 
 ## 1. Fronteira epistemológica
 
@@ -108,3 +109,10 @@ Metáforas, parábolas e pontes culturais podem auxiliar a descoberta de pergunt
 ```
 
 Quando qualquer componente faltar, o item deve permanecer como `conceptual_note`, não como `evidence_claim`.
+
+
+## 8. Sete passos futuros integrados
+
+As sugestões futuras foram consolidadas em [`FUTURE_STEPS.md`](FUTURE_STEPS.md), com uma rota de sete passos para endurecimento de schema, coleta reprodutível, núcleo determinístico de score, modelos nulos, proveniência criptográfica, orquestração fullstack e pacote acadêmico de validação.
+
+A versão YAML desses passos está registrada em [`data/rll_latentes/observations.yml`](../../data/rll_latentes/observations.yml) no bloco `future_steps`, permitindo que automações futuras leiam os mesmos marcos de aceite sem depender apenas do texto narrativo.

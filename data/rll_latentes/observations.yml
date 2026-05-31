@@ -35,6 +35,57 @@ orchestration:
     statistical_variables: [mean, median, variance, std, covariance, pearson, spearman, kendall, mutual_information, entropy, fractal_entropy, hurst, zscore]
     temporal_variables: [time, lag, lead, window, rolling_mean, rolling_std, autocorrelation, crosscorrelation, granger_score, regime]
 
+future_steps:
+  - step: 1
+    id: contract_hardening
+    title: "Endurecer contrato de dados e schema"
+    deliverable: "Schema ampliado, exemplos válidos/ inválidos e teste de rejeição para fonte sem falsificador."
+    acceptance: "Validação automática aprova o catálogo principal e reprova exemplo inválido."
+    failsafe: "Bloquear ingestão quando campo crítico, licença, URL ou falsificador estiver ausente."
+    rollback: "Manter última versão válida do catálogo e registrar diff da versão rejeitada."
+  - step: 2
+    id: reproducible_fetch
+    title: "Materializar coletor reprodutível"
+    deliverable: "Manifestos por fonte com comando, URL, data, checksum, bytes e status."
+    acceptance: "Cada fonte produz manifest.json ou failure.json auditável."
+    failsafe: "Não sobrescrever raw anterior quando download parcial ocorrer."
+    rollback: "Retornar ao último manifesto íntegro e preservar falha em arquivo separado."
+  - step: 3
+    id: deterministic_score_core
+    title: "Criar núcleo determinístico de score"
+    deliverable: "Implementação pura de S_L, suavização alpha=0.25, entropia e projeção toroidal."
+    acceptance: "Testes de borda validam domínio, ruído alto, zero, um e rejeição de NaN."
+    failsafe: "Emitir score_status=invalid para entradas fora de domínio."
+    rollback: "Não publicar score quando contrato de entrada falhar."
+  - step: 4
+    id: null_models_negative_controls
+    title: "Adicionar modelos nulos e controles negativos"
+    deliverable: "Permutação, bootstrap e controles negativos por domínio científico."
+    acceptance: "Relatório marca provisional quando controle negativo estiver ausente."
+    failsafe: "Rebaixar candidatos que sobrevivem apenas sem controle adversarial."
+    rollback: "Mover saída para rejected_noise quando controle anular recorrência."
+  - step: 5
+    id: cryptographic_provenance
+    title: "Emitir proveniência criptográfica"
+    deliverable: "Manifesto Merkle para raw, normalized, null_models, scores e reports."
+    acceptance: "Verificação reproduz hashes de todos os artefatos publicados."
+    failsafe: "Bloquear release quando hash de schema, catálogo ou executor divergir."
+    rollback: "Restaurar último manifesto íntegro sem apagar versão falha."
+  - step: 6
+    id: fullstack_orchestration
+    title: "Conectar CLI, CI, relatórios e visualização estática"
+    deliverable: "Comandos validate, fetch, normalize, score, report e verify em modo dry-run."
+    acceptance: "Execução local seca gera plano completo sem baixar dados grandes."
+    failsafe: "Degradar para relatório Markdown quando visualização ou API falhar."
+    rollback: "Preservar artefatos textuais mínimos mesmo se camada fullstack falhar."
+  - step: 7
+    id: academic_release_review
+    title: "Preparar pacote acadêmico de validação e revisão externa"
+    deliverable: "Relatório FAIR, matriz de falsificabilidade, limitações, release e citação."
+    acceptance: "Pacote declara o que foi refutado, inconclusivo ou suportado."
+    failsafe: "Impedir linguagem de descoberta sem replicação independente."
+    rollback: "Publicar resultado negativo quando a validação não sustentar a hipótese."
+
 sources:
   - source_id: desi_dr2_bao_supplement_2025
     domain: cosmology

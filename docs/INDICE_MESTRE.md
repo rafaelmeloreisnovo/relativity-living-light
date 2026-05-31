@@ -56,6 +56,7 @@ Encaminhamentos complementares:
 - [`docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md`](RLL_RESPONSE_MEDIUM_EQUATIONS.md)
 - [`docs/RLL_STATISTICAL_FINANCIAL_METRICS.md`](RLL_STATISTICAL_FINANCIAL_METRICS.md)
 - [`docs/rll_latentes/README.md`](rll_latentes/README.md) - formalismo RLL-LATENTES para triagem falsificável de sementes ignoradas
+- [`docs/rll_latentes/FUTURE_STEPS.md`](rll_latentes/FUTURE_STEPS.md) - sete passos futuros integrados para pipeline, failover, rollback, validação e release
 - [`data/rll_latentes/observations.yml`](../data/rll_latentes/observations.yml) - catálogo YAML de fontes recentes, caminhos de pipeline e controles de rollback
 - [`schemas/rll_latentes_observations.schema.json`](../schemas/rll_latentes_observations.schema.json) - schema estrutural do catálogo RLL-LATENTES
 - [`docs/RLL_CLAIM_BOUNDARIES.md`](RLL_CLAIM_BOUNDARIES.md)
