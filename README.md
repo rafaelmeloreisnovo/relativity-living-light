@@ -201,6 +201,9 @@ Para evitar sobreposição entre índices, este README mantém apenas encaminham
 - **Histórico de decisões e releases:** [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
 - **Arquivo de MDs soltos da raiz (organizados):** [docs/root_md_archive/README.md](docs/root_md_archive/README.md)
 - **Guia de integração interdisciplinar do acervo histórico:** seção "Camada de integração conceitual" em `docs/root_md_archive/README.md`.
+- **RLL-LATENTES (Coerência × Amor × Prova):** [diretório técnico formal para sementes ignoradas e catálogo YAML de observações recentes](docs/rll_latentes/README.md).
+  - Catálogo operacional: [`data/rll_latentes/observations.yml`](data/rll_latentes/observations.yml)
+  - Schema de validação: [`schemas/rll_latentes_observations.schema.json`](schemas/rll_latentes_observations.schema.json)
 
 ### Integração formal do arquivo histórico (`docs/root_md_archive/`)
 

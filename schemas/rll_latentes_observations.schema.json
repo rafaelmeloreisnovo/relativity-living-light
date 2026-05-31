@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RLL-LATENTES observation catalog",
+  "type": "object",
+  "required": ["meta", "orchestration", "sources"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["schema", "version", "updated_utc", "purpose", "claim_policy"],
+      "additionalProperties": true,
+      "properties": {
+        "schema": {"const": "rll.latentes.observation_catalog.v1"},
+        "version": {"type": "integer", "minimum": 1},
+        "updated_utc": {"type": "string"},
+        "purpose": {"type": "string", "minLength": 1},
+        "claim_policy": {"type": "string", "minLength": 1}
+      }
+    },
+    "orchestration": {
+      "type": "object",
+      "required": ["pipeline_root", "docs_root", "artifact_root", "results_root", "schema_path", "stages", "common_fields"],
+      "additionalProperties": true,
+      "properties": {
+        "pipeline_root": {"type": "string"},
+        "docs_root": {"type": "string"},
+        "artifact_root": {"type": "string"},
+        "results_root": {"type": "string"},
+        "schema_path": {"type": "string"},
+        "stages": {"type": "array", "minItems": 1},
+        "common_fields": {"type": "object"}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_id", "domain", "modality", "title", "release_date", "url", "license", "current_relevance", "falsifiable_latent_tests", "suggested_command", "local_target"],
+        "additionalProperties": false,
+        "properties": {
+          "source_id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "domain": {"type": "string", "minLength": 1},
+          "modality": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "release_date": {"type": "string", "minLength": 4},
+          "url": {"type": "string", "format": "uri"},
+          "doi": {"type": ["string", "null"]},
+          "license": {"type": "string", "minLength": 1},
+          "current_relevance": {"type": "string", "minLength": 1},
+          "falsifiable_latent_tests": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "suggested_command": {"type": "string", "minLength": 1},
+          "local_target": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}
