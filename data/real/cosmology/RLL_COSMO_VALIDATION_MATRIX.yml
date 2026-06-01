@@ -3,7 +3,7 @@ meta:
   title: RLL Cosmological Validation Matrix
   status: partial_real_preparation
   version: 0.2.0
-  updated_utc: "2026-05-21"
+  updated_utc: "2026-06-01"
   family: validation_matrix
   purpose: "Matriz unificada para validação cosmológica e seleção de modelos."
 
@@ -30,6 +30,7 @@ model_family:
 
 dataset_family:
   expansion:
+    - DESI_DR2_BAO_2025
     - DESI_BAO
     - PantheonPlus
     - CosmicChronometers_Hz
@@ -72,7 +73,18 @@ acceptance_criteria:
   - "No material degradation against CMB priors"
   - "AIC/BIC not worse than LCDM by publication-threshold margins"
   - "All used covariance blocks recorded with traceability"
+  - "DESI_DR2_BAO_2025 primary points load with 13 rows and redshift range 0.295 <= z <= 2.330"
 
 mapping:
   matrix_diff_log: "results/mapping_logs/validation_matrix_diff.log"
   execution_trace_log: "results/mapping_logs/validation_execution_trace.log"
+
+
+real_data_materialization:
+  desi_dr2_bao_2025:
+    status: primary_points_materialized
+    points_path: "data/real/cosmology/desi_dr2_bao_primary_points.csv"
+    covariance_summary_path: "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
+    source_registry_key: desi_dr2_bao_2025
+    zenodo_registry_key: desi_dr2_zenodo_supplement_2025
+    claim_boundary: "Use as observed compressed distance-ratio constraints; do not claim model confirmation without full covariance likelihood, posterior checks, and external CMB/SN consistency."
