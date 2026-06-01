@@ -1,8 +1,8 @@
 meta:
   schema: rll.unified.math_artifacts.v2
   title: DESI BAO Mathematical Artifacts for RLL
-  status: metadata_ready
-  updated_utc: "2026-05-21"
+  status: primary_points_materialized
+  updated_utc: "2026-06-01"
   family: math_artifacts
   purpose: "Definições matemáticas uniformes para ingestão e ajuste BAO."
 
@@ -15,7 +15,14 @@ orchestration:
 source:
   survey: DESI
   channel: BAO
-  note: "Dataset values must be ingested from official DESI release tables before fitting."
+  release: DESI_DR2_BAO_2025
+  paper: "DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints"
+  paper_url: "https://arxiv.org/abs/2503.14738"
+  zenodo_doi: "10.5281/zenodo.16644577"
+  zenodo_url: "https://zenodo.org/records/16644577"
+  local_primary_points: "data/real/cosmology/desi_dr2_bao_primary_points.csv"
+  local_covariance_summary: "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
+  note: "Primary compressed DESI DR2 BAO values have been materialized from the official Results II distance table; full-chain reproduction remains delegated to the external DESI/Zenodo supplement."
 
 conventions:
   flat_universe: true
@@ -55,10 +62,18 @@ artifact_schema:
     - DH_over_rd
     - DV_over_rd
 
+materialized_data_products:
+  - path: "data/real/cosmology/desi_dr2_bao_primary_points.csv"
+    rows: 13
+    description: "Primary compressed DESI DR2 BAO likelihood points: BGS DV/rd plus paired DM/rd and DH/rd for LRG1, LRG2, LRG3+ELG1, ELG2, QSO, and Ly-alpha."
+  - path: "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
+    rows: 6
+    description: "Per-bin correlation and covariance terms computed from published sigma values and r_M,H coefficients."
+
 next_actions:
-  - "Populate data/real/cosmology/desi_bao_points.csv from official DESI tables"
-  - "Attach covariance matrix in data/real/cosmology/desi_bao_cov.csv"
-  - "Run fit script and store chi2/AIC/BIC in results/"
+  - "Replace covariance_summary with the full official covariance matrix when a lightweight machine-readable DESI extract is vendored or generated from Zenodo."
+  - "Run fit script and store chi2/AIC/BIC in results/ with explicit DESI_DR2_BAO_2025 provenance."
+  - "Keep DR1 and DR2 likelihoods separated because DR1 is a subset of DR2."
 
 mapping:
   artifact_diff_log: "results/mapping_logs/desi_bao_artifacts_diff.log"
