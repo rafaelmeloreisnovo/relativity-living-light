@@ -116,3 +116,18 @@ Quando qualquer componente faltar, o item deve permanecer como `conceptual_note`
 As sugestões futuras foram consolidadas em [`FUTURE_STEPS.md`](FUTURE_STEPS.md), com uma rota de sete passos para endurecimento de schema, coleta reprodutível, núcleo determinístico de score, modelos nulos, proveniência criptográfica, orquestração fullstack e pacote acadêmico de validação.
 
 A versão YAML desses passos está registrada em [`data/rll_latentes/observations.yml`](../../data/rll_latentes/observations.yml) no bloco `future_steps`, permitindo que automações futuras leiam os mesmos marcos de aceite sem depender apenas do texto narrativo.
+
+
+## 9. Implementação materializada nesta revisão
+
+Os sete passos deixaram de ser apenas recomendações narrativas e passaram a ter artefatos executáveis mínimos:
+
+1. **Contrato de dados:** `schemas/rll_latentes_observations.schema.json` valida catálogo, fontes e `future_steps`.
+2. **Coletor reprodutível:** `rll-latentes fetch --dry-run` materializa manifestos sem rede e sem sobrescrever evidência bruta.
+3. **Score determinístico:** `src/rll/latentes.py` implementa `S_L`, suavização `alpha=0.25`, entropia, FNV-1a e mapa toroidal `T^7`.
+4. **Modelos nulos:** o pipeline gera plano de controle negativo por fonte e rebaixa candidatos quando o nulo não é rejeitado.
+5. **Proveniência:** o modo `report` emite manifesto Merkle para artefatos criados.
+6. **Orquestração fullstack:** há CLI dedicada `rll-latentes` e delegação por `rll latentes`.
+7. **Pacote acadêmico:** relatórios Markdown declaram limites, estado de controle e proíbem linguagem de descoberta sem replicação.
+
+Todos os comandos são finitos e orientados a `dry-run` por padrão para evitar ciclos abertos, downloads grandes ou avanço sem falsificador.

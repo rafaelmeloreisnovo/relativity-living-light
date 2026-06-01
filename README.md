@@ -205,6 +205,7 @@ Para evitar sobreposição entre índices, este README mantém apenas encaminham
   - Catálogo operacional: [`data/rll_latentes/observations.yml`](data/rll_latentes/observations.yml)
   - Schema de validação: [`schemas/rll_latentes_observations.schema.json`](schemas/rll_latentes_observations.schema.json)
   - Próximos 7 passos integrados: [`docs/rll_latentes/FUTURE_STEPS.md`](docs/rll_latentes/FUTURE_STEPS.md)
+  - CLI executável: `rll-latentes` ou `rll latentes validate|plan|fetch|score|report|verify`
 
 ### Integração formal do arquivo histórico (`docs/root_md_archive/`)
 

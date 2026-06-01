@@ -59,6 +59,7 @@ Encaminhamentos complementares:
 - [`docs/rll_latentes/FUTURE_STEPS.md`](rll_latentes/FUTURE_STEPS.md) - sete passos futuros integrados para pipeline, failover, rollback, validação e release
 - [`data/rll_latentes/observations.yml`](../data/rll_latentes/observations.yml) - catálogo YAML de fontes recentes, caminhos de pipeline e controles de rollback
 - [`schemas/rll_latentes_observations.schema.json`](../schemas/rll_latentes_observations.schema.json) - schema estrutural do catálogo RLL-LATENTES
+- [`src/rll/latentes.py`](../src/rll/latentes.py) - implementação determinística da validação, score, dry-run, Merkle e relatórios RLL-LATENTES
 - [`docs/RLL_CLAIM_BOUNDARIES.md`](RLL_CLAIM_BOUNDARIES.md)
 - [`rll_equation_registry.yml`](../rll_equation_registry.yml)
 

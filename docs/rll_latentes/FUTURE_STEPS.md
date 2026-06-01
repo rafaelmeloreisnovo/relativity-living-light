@@ -79,3 +79,15 @@
 - Tratar failover como rota explícita de dados: fonte primária, fonte espelho, cache local, relatório negativo.
 - Tratar rollback como versionamento imutável: nunca apagar o erro sem deixar manifesto.
 - Tratar token vazio como estado legítimo: `VOID`, `unknown`, `not_applicable` e `insufficient_metadata` devem ser diferentes de falso positivo.
+
+
+## Estado de materialização v0.2
+
+Esta revisão implementa uma versão mínima, testada e não destrutiva dos sete passos:
+
+- `scripts/validate_rll_latentes_catalog.py` valida o catálogo principal e confirma que o exemplo inválido é rejeitado.
+- `scripts/rll_latentes_pipeline.py` expõe a mesma CLI de `python -m rll.latentes`.
+- `src/rll/latentes.py` implementa validação, plano, fetch seco, score, controle negativo, Merkle, relatório e verificação.
+- `tests/test_rll_latentes.py` cobre contrato, exemplo inválido, cálculo `S_L`, domínio inválido, mapa toroidal, pipeline seco e CLI.
+
+A implementação permanece conservadora: coleta real de dados, API, dashboard e kernels de baixo nível continuam bloqueados até haver perfilamento, contrato de dados endurecido e política explícita de armazenamento de artefatos grandes.
