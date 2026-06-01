@@ -1,10 +1,26 @@
 {
   "input": {
     "hz": "data/real/Hz_data_real.csv",
-    "bao": "data/real/BAO_data_real.csv",
+    "bao": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+    "bao_format": "auto",
     "n_hz": 33,
-    "n_bao": 10,
-    "n_total": 43
+    "n_bao": 13,
+    "n_total": 46
+  },
+  "bao_covariance": {
+    "mode": "block_covariance_summary",
+    "path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+    "correlated_blocks": [
+      "DESI_DR2_ELG2_DM_DH",
+      "DESI_DR2_LRG1_DM_DH",
+      "DESI_DR2_LRG2_DM_DH",
+      "DESI_DR2_LRG3_ELG1_DM_DH",
+      "DESI_DR2_LYA_DM_DH",
+      "DESI_DR2_QSO_DM_DH"
+    ],
+    "n_correlated_blocks": 6,
+    "diagonal_approximation": false,
+    "missing_covariance_blocks": []
   },
   "params": {
     "lcdm": {
@@ -25,14 +41,14 @@
   "metrics": {
     "chi2_hz_lcdm": 22.76412215721358,
     "chi2_hz_rll": 21.902419509904686,
-    "chi2_bao_lcdm": 121.58420409981716,
-    "chi2_bao_rll": 123.10550653126786,
-    "chi2_lcdm": 144.34832625703075,
-    "chi2_rll": 145.00792604117254,
-    "delta_chi2": 0.6595997841417898,
-    "aic_lcdm": 150.34832625703075,
-    "aic_rll": 155.00792604117254,
-    "bic_lcdm": 155.63192660411144,
-    "bic_rll": 163.81392661964034
+    "chi2_bao_lcdm": 32.94932772765375,
+    "chi2_bao_rll": 25.297467496071278,
+    "chi2_lcdm": 55.71344988486733,
+    "chi2_rll": 47.19988700597597,
+    "delta_chi2": -8.513562878891364,
+    "aic_lcdm": 61.71344988486733,
+    "aic_rll": 57.19988700597597,
+    "bic_lcdm": 67.19937407433461,
+    "bic_rll": 66.34309398842144
   }
 }
