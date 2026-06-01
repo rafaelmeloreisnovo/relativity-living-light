@@ -1,5 +1,7 @@
 # RLL-LATENTES — sete passos futuros integrados
 
+**Pré-etapa obrigatória:** aplicar [`RAW_TEXT_FIRST.md`](RAW_TEXT_FIRST.md) antes de qualquer score, vetor, métrica ou inferência. Claims sem âncora literal devem permanecer em `raw_preserved`, `insufficient_metadata` ou `rejected`, sem promoção estatística.
+
 **Finalidade:** consolidar as sugestões futuras em uma rota única, verificável e executável para transformar o formalismo RLL-LATENTES em um módulo de pesquisa mais automatizado, auditável e preparado para revisão externa.
 
 **Regra de segurança científica:** cada passo abaixo deve preservar a distinção entre `candidate`, `validated_control`, `rejected_noise` e `evidence_claim`. Nenhum artefato gerado por pipeline deve elevar uma semente latente para reivindicação científica sem hipótese nula, incerteza, controle negativo e replicação independente.

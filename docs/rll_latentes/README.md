@@ -6,6 +6,7 @@
 
 ## Navegação interna
 
+- [Protocolo RAW_TEXT_FIRST](RAW_TEXT_FIRST.md) — preservação literal antes de claims, vetores, métricas, inferência e prova.
 - [1. Fronteira epistemológica](#1-fronteira-epistemológica)
 - [2. Definição matemática mínima](#2-definição-matemática-mínima)
 - [3. Dois ciclos de operação](#3-dois-ciclos-de-operação)
