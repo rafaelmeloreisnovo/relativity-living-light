@@ -12,9 +12,9 @@ Este arquivo é o **inventário bruto** do acervo documental.
 
 **Critério:** todos os `.md` e `.zip` encontrados por varredura recursiva no repositório, com título detectado, tamanho e hash SHA-256 abreviado.
 
-**Gerado em:** 2026-06-01T00:18:26+00:00
-**Commit de referência:** `6598983`
-**Total de arquivos catalogados:** 307
+**Gerado em:** 2026-06-01T01:26:23+00:00
+**Commit de referência:** `ad8a1b4`
+**Total de arquivos catalogados:** 308
 
 ---
 
@@ -153,7 +153,7 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/DATA_INTEGRITY_CHECKLIST.md` | Checklist de Integridade de Dados e Documentação | 3567 | `5032099181a4` |
 | md | `docs/DESCOBERTAS_EMERGENTES.md` | Descobertas Emergentes (RLL) | 12493 | `abe40879996f` |
 | md | `docs/DHA_POSTDOC_VALIDATION_FRAMEWORK.md` | DHA: Framework Pós-doc para Validação Quantitativa e Publicação | 2716 | `51573d6d7dad` |
-| md | `docs/DOCUMENTATION_FULL_INVENTORY.md` | Inventário Completo de Documentação e Bundles | 35471 | `26ca8c6570fb` |
+| md | `docs/DOCUMENTATION_FULL_INVENTORY.md` | Inventário Completo de Documentação e Bundles | 35471 | `07a4727d752f` |
 | md | `docs/DOCUMENTATION_ORGANIZATION_MASTER.md` | Organização Integral de Documentação e Artefatos | 8660 | `bd1dcd6bf708` |
 | md | `docs/DOCUMENTO_MESTRE_FRENTES.md` | Documento Mestre de Frentes — Structure D | 9021 | `0794871a3365` |
 | md | `docs/EASY_NOTES_EMPTY.md` | (sem heading) | 1 | `01ba4719c80b` |
@@ -167,7 +167,7 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/FRONTS_CLASSCAMB_VS_LN1PZ.md` | Frentes práticas: CLASS/CAMB vs extrator observacional em ln(1+z) | 1494 | `4c190f57e68a` |
 | md | `docs/HOTFIX_REAL_VALIDATION_DATA_CONTRACT_2026-05-22.md` | HOTFIX — Real Validation Data Contract | 3687 | `27b194661d17` |
 | md | `docs/IMPACT_REPORT_MULTI.md` | 📊 IMPACT_REPORT_MULTI.md | 20761 | `994ad4bca282` |
-| md | `docs/INDICE_MESTRE.md` | INDICE MESTRE - Documentacao Oficial | 8211 | `ae1f12958daf` |
+| md | `docs/INDICE_MESTRE.md` | INDICE MESTRE - Documentacao Oficial | 8391 | `32097467b66d` |
 | md | `docs/LAGRANGIANO_EFT.md` | Lagrangiano Efetivo — EFT da Superposição | 4798 | `85655b0c9429` |
 | md | `docs/MANIFESTO.md` | MANIFESTO.md (multilingue) | 6364 | `71db6191732e` |
 | md | `docs/MAPA CIENTIESPIRITUAL.md` | 🔮 MAPA CIENTIESPIRITUAL — Fórmulas → Espírito | 1265 | `575c51616304` |
@@ -250,8 +250,9 @@ Este arquivo é o **inventário bruto** do acervo documental.
 | md | `docs/pipelines/RADIATION_TRANSMISSION_VALIDATION.md` | RADIATION TRANSMISSION VALIDATION (RLL/MCRP) | 1602 | `0ebb3d6ec8c4` |
 | md | `docs/rll_cosmology_postdoc_synthesis.md` | RLL Cosmology Postdoctoral Synthesis (Formal Technical Draft) | 1817 | `1c9cc20cde81` |
 | md | `docs/rll_desi_bao_validation_matrix.md` | RLL × DESI BAO Validation Matrix | 991 | `4ac5a7e122a3` |
-| md | `docs/rll_latentes/FUTURE_STEPS.md` | RLL-LATENTES — sete passos futuros integrados | 7158 | `e29ce8e4e8ab` |
-| md | `docs/rll_latentes/README.md` | RLL-LATENTES — matriz técnica para sementes ignoradas em dados científicos | 10697 | `aae741eb1d02` |
+| md | `docs/rll_latentes/FUTURE_STEPS.md` | RLL-LATENTES — sete passos futuros integrados | 7426 | `950c1641e7fc` |
+| md | `docs/rll_latentes/RAW_TEXT_FIRST.md` | RAW_TEXT_FIRST — protocolo anti-inferência sem âncora literal | 7399 | `4988dbbbbd3f` |
+| md | `docs/rll_latentes/README.md` | RLL-LATENTES — matriz técnica para sementes ignoradas em dados científicos | 10829 | `24e69dda5ccf` |
 | md | `docs/rll_negative_weak_time_bridge.md` | RLL and Negative Weak Time: Operational Bridge (Non-Cosmological Proof) | 987 | `600ab1c4e3d0` |
 | zip | `docs/rll_revisado_v2.zip` | 22 entradas | 40801 | `aa61125ad94d` |
 | md | `docs/rll_runaway_black_hole_anomaly_index.md` | Runaway SMBH as Robustness Stress-Test Index (RLL) | 750 | `7fa7732d2db7` |
