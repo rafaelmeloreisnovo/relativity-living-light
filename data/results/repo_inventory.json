@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-04T20:42:31.791745+00:00",
-  "git_commit": "1ee5d375c885e5cc2892f66667970ef2b3d84af2",
+  "generated_at": "2026-06-04T20:49:40.643444+00:00",
+  "git_commit": "6a831abb7e56ff3617affce97236c661dbf157f3",
   "summary": {
-    "tracked_files_total": 731,
-    "cataloged_files": 713,
+    "tracked_files_total": 732,
+    "cataloged_files": 714,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33922496,
-    "total_text_lines": 116191,
-    "markdown_files": 369,
+    "total_bytes": 33926156,
+    "total_text_lines": 116305,
+    "markdown_files": 370,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 71
   },
   "counts_by_ext": {
-    ".md": 369,
+    ".md": 370,
     ".yml": 31,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 369,
+    "documentation_md": 370,
     "github_workflow_yml": 13,
     "config_yml": 18,
     "other": 120,
@@ -47,7 +47,7 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 337,
+    "cosmology_validation_marker": 338,
     "mentions_mock_or_placeholder": 62,
     "mentions_synthetic": 44,
     "token_vazio_declared": 10,
@@ -2938,11 +2938,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 238962,
+      "size_bytes": 239266,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "b495dad3d953f95bb0f3ece913bb817801dd1e6af155692cc9801e5fd02b5aac",
-      "line_count": 8142,
+      "sha256": "f284fe7d9a6ea001cafff0b520fd01afde3cac1980626c7b21f4d1f6b237d7b7",
+      "line_count": 8152,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2954,11 +2954,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 110440,
+      "size_bytes": 110581,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "fccf4368afaf7776131cc09e99800fb7e922153527bce69a8941d2b0272712f7",
-      "line_count": 713,
+      "sha256": "51e80c75b0f2cac9e71487be7f529168b22f481eba2f65d8d2a1d7c95ca763c0",
+      "line_count": 714,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2973,7 +2973,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "982f2f0eaa8c4abc38a2a2115fdd1da0f2b619ca6121336e7273cdb9f52e426f",
+      "sha256": "484bb6c6415d0244fa49e1faf48565b0f0b612ae42583bdcb4a31326555f1ef8",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3286,6 +3286,18 @@
       ]
     },
     {
+      "path": "docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md",
+      "size_bytes": 3054,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "ad3ba6f5fc1b2c3d3432d680a017dfced6dc8a316c28065478a1d9bb7afa565f",
+      "line_count": 102,
+      "is_text": true,
+      "risk_flags": [
+        "cosmology_validation_marker"
+      ]
+    },
+    {
       "path": "docs/DARKMATTER_RLL_LINK_MAP.md",
       "size_bytes": 5537,
       "ext": ".md",
@@ -3351,11 +3363,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 127159,
+      "size_bytes": 127320,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3625b4873a3168d1f47aa66a74ed776409530267c6264389c9f940f5baa3e465",
-      "line_count": 756,
+      "sha256": "1a4ecc0cdd3e97ada071ab0fea433a93100cd23dc5bbb85e089488b5a824d261",
+      "line_count": 757,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3893,7 +3905,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a9645cc1c013f19272df0d7fe221b044f0797ae5b666156cced1c5913fda143a",
+      "sha256": "fdc8dc6130b8a66879704f738516977ec7a6969ce63a034c54e9673efde6e9d0",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4149,7 +4161,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "0c618f09190a32e9c3ac32c5de8bcd317ea1f268c7ca4177178026ef28d983a9",
+      "sha256": "036f4b3c2c7f831225cea08303639824006a077c5245b9bb6a39bdf7012e071f",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [
