@@ -1,0 +1,30 @@
+meta:
+  schema: rll.validacao_real.sources.v1
+  version: 1
+  updated_utc: "2026-06-01"
+  principle: "Minimo que ja valida. Marca-se a regiao onde a regua cai; nao se calcula a imensidao."
+  claim_policy: "Nenhuma fonte declara descoberta. Cada fonte e ancora real para a prova RLL vs LCDM."
+
+sources:
+  - id: desi_dr2_bao
+    domain: cosmology_bao
+    method: baryon_acoustic_oscillation
+    embedded_fallback: data/desi_dr2_bao.yml
+    remote:
+      portal: "https://arxiv.org/abs/2503.14738"
+      note: "DESI DR2 Results II. Table IV. Fetch tenta o portal; se falhar, usa fallback embutido."
+    falsifier: "Se RLL nao reproduzir DM/rd, DH/rd, DV/rd dentro das barras DESI, o setor de superposicao e rejeitado nesse regime."
+
+  - id: hz_cosmic_chronometers
+    domain: cosmology_expansion
+    method: cosmic_chronometers
+    embedded_fallback: data/hz_cosmic_chronometers.yml
+    remote:
+      portal: "https://gitlab.com/mmoresco/CCcovariance"
+      note: "Compilacao de cronometros cosmicos (Moresco et al.), independente de modelo."
+    falsifier: "Se RLL desviar sistematicamente de H(z) observado alem das barras, a transicao logistica e rejeitada."
+
+regiao_de_validade:
+  z_min: 0.0
+  z_max: 2.4
+  note: "Regiao onde os dados reais existem. Fora disso e extrapolacao, nao prova."
