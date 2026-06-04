@@ -21,10 +21,10 @@
     },
     {
       "axis": "growth_fsigma8",
-      "path": "data/inputs/structure_d/fsigma8.csv",
+      "path": "data/real/cosmology/fsigma8_growth_real.csv",
       "observable": "fs8",
       "error_policy": "diagonal_sigma",
-      "notes": "Seven-point growth table already used by the Structure-D validation tests."
+      "notes": "Real fσ8/RSD compilation materialized from literature tables; replaces synthetic smooth growth fixture in the joint real route."
     },
     {
       "axis": "cmb_shift",

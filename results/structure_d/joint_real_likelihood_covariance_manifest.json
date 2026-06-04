@@ -9,7 +9,7 @@
     "data/real/Hz_data_real.csv": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
     "data/real/cosmology/desi_dr2_bao_primary_points.csv": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
     "data/real/cosmology/desi_dr2_bao_covariance_summary.csv": "e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e",
-    "data/inputs/structure_d/fsigma8.csv": "fe19ff5f82b967af7ea065c8ee17c5a22e639ec8364d2f266dfa18ed7d9aa4cf",
+    "data/real/cosmology/fsigma8_growth_real.csv": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
     "data/real/CMB_shift_real.json": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc"
   },
   "failsafe": {

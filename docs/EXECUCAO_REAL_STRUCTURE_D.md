@@ -112,7 +112,7 @@ As rotas de alimentação estão fixadas em `data/inputs/cosmology_joint/joint_r
 - `data/real/Hz_data_real.csv`
 - `data/real/cosmology/desi_dr2_bao_primary_points.csv`
 - `data/real/cosmology/desi_dr2_bao_covariance_summary.csv`
-- `data/inputs/structure_d/fsigma8.csv`
+- `data/real/cosmology/fsigma8_growth_real.csv`
 - `data/real/CMB_shift_real.json`
 
 ### O que mudou em relação ao script real anterior
@@ -132,3 +132,27 @@ As rotas de alimentação estão fixadas em `data/inputs/cosmology_joint/joint_r
 ### Interpretação disciplinada
 
 A saída deve ser lida como comparação operacional por `χ²`, AIC e BIC. Ela não autoriza, sozinha, afirmar superioridade do RLL sobre ΛCDM. Se o ajuste RLL reduzir `χ²`, a redução ainda precisa compensar a penalidade dos parâmetros extras em AIC/BIC e sobreviver a testes com produtos externos completos quando eles forem materializados.
+
+## 8) Varredura sintético → real, failover e rollback
+
+Antes de uma execução científica, rode a auditoria de materialização para garantir que datasets de fixture/sintéticos estejam roteados para uma contraparte real ou explicitamente marcados como inventário pendente:
+
+```bash
+python tools/real_data_materialization_audit.py
+```
+
+A auditoria varre a configuração `Structure-D` e arquivos em `data/` até cinco níveis de caminho procurando marcadores como `synthetic`, `synth`, `mock`, `example`, `fixture` e `local_input`. Ela não apaga fixtures: elas permanecem como rollback/regressão, enquanto rotas produtivas devem apontar para `data/real/**` ou URL externa documentada.
+
+Artefatos esperados:
+
+- `results/audit/real_data_materialization_audit.csv`
+- `results/audit/real_data_materialization_audit.json`
+- `results/audit/real_data_materialization_audit.md`
+
+Na versão atual, as rotas configuradas cobertas são:
+
+- `hz` e `hz_cov_synth` → `real_hz` (`data/real/Hz_data_real.csv`)
+- `fsigma8` e `fsigma8_cov_synth` → `real_fsigma8` (`data/real/cosmology/fsigma8_growth_real.csv`)
+- `real_bao` legado → `real_desi_dr2_bao` (`data/real/cosmology/desi_dr2_bao_primary_points.csv`)
+
+Se uma rota real falhar, a política é **não preencher com número inventado**: manter o fixture como fallback de teste, marcar a rota como pendente e restaurar o `*.bak` do artefato se a escrita anterior tiver sido substituída.

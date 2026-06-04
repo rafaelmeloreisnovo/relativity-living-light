@@ -5,7 +5,7 @@ This directory is the lightweight routing layer for the four-axis real-data like
 1. `H(z)` expansion data from `data/real/Hz_data_real.csv`.
 2. DESI DR2 BAO primary points from `data/real/cosmology/desi_dr2_bao_primary_points.csv`.
 3. DESI DR2 BAO covariance summary from `data/real/cosmology/desi_dr2_bao_covariance_summary.csv`.
-4. Growth `fσ8` points from `data/inputs/structure_d/fsigma8.csv`.
+4. Growth `fσ8` points from `data/real/cosmology/fsigma8_growth_real.csv` (real RSD/growth compilation).
 5. Planck 2018 CMB shift summary from `data/real/CMB_shift_real.json`.
 
 The manifest here does **not** duplicate the data. It pins the intended feeding paths so the executable joint likelihood can remain local-first, reproducible, and rollback-safe.
