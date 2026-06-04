@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-04T20:31:22.967430+00:00",
-  "git_commit": "82f17b304b4c35ddfd8ec8f2dc9e4b1726e10de7",
+  "generated_at": "2026-06-04T20:31:39.251392+00:00",
+  "git_commit": "d825e0b7c0c1972ba7e078eb162e8347d36bbcda",
   "summary": {
-    "tracked_files_total": 726,
-    "cataloged_files": 708,
+    "tracked_files_total": 727,
+    "cataloged_files": 709,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33948676,
-    "total_text_lines": 116592,
-    "markdown_files": 364,
+    "total_bytes": 33952146,
+    "total_text_lines": 116687,
+    "markdown_files": 365,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 71
   },
   "counts_by_ext": {
-    ".md": 364,
+    ".md": 365,
     ".yml": 31,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 364,
+    "documentation_md": 365,
     "github_workflow_yml": 13,
     "config_yml": 18,
     "other": 120,
@@ -2939,11 +2939,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 237268,
+      "size_bytes": 237621,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "6e1e6572f428cbd9fe3129d7e5c0887014046544f230b3c6c7731166e201fd57",
-      "line_count": 8086,
+      "sha256": "cb2282a045a2e4a1eab88c717cf4d6e34fcb45034e5cd4339f659b76c02a95dc",
+      "line_count": 8098,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2955,11 +2955,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 109616,
+      "size_bytes": 109788,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "fb65945cc46af79791f340526c039369bedb282fb1fdee5e1ba77f9c4f382191",
-      "line_count": 708,
+      "sha256": "a6464dc9eeac093ebf07a3dec5600dd8ece97eb0339a3c2bd0021e35e8eea38b",
+      "line_count": 709,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2974,7 +2974,7 @@
       "size_bytes": 3286,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "789c3b2732e9b0ecd9a4954813900ec5d3fb97fe2dc753e7d7f712cfd6446a88",
+      "sha256": "d95438bfabacbc11713348f09f1cda98f44474ee808f7fa37487d0f0907f6b04",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3352,11 +3352,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 126235,
+      "size_bytes": 126427,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "644d26a1520df30af583666775747827875ec24826830f9ef8886a144bc663b4",
-      "line_count": 751,
+      "sha256": "b20b83680fd1ac7836cc8863d0d603c2eb7b9c2f50d7cda00bfa77324dd30de0",
+      "line_count": 752,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3883,7 +3883,7 @@
       "size_bytes": 1468,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "538119f17582acd29d75283c4a9d9e41e7bcff6a61bec0cc3314b84330e0a0da",
+      "sha256": "5d405711c30d333dda94b0fd2e5d244744dba54ef0aa66d1ca83c413d5d9571c",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4139,7 +4139,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7f31890dac9da2398a58c7c954f276462e8549a305993e9d28fa2e512402b398",
+      "sha256": "0faa92abc836b13cd080ea6a4bc3bf9edebee9c13f298ae9a2af410ba1e7b597",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [
@@ -4277,6 +4277,16 @@
       "risk_flags": [
         "cosmology_validation_marker"
       ]
+    },
+    {
+      "path": "docs/canonicos/17_ONDA_VERBO_FISICA_NEURO_LINGUAGEM.md",
+      "size_bytes": 2753,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "3b64e3acf7435af0dcbd25e40974b4829a33123a7a5e8dd965252dcd8d604434",
+      "line_count": 81,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md",
