@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-04T20:49:40.643444+00:00",
-  "git_commit": "6a831abb7e56ff3617affce97236c661dbf157f3",
+  "generated_at": "2026-06-04T20:50:57.982381+00:00",
+  "git_commit": "df8881f231bd832ce1e7ea999259fb8afc77e72e",
   "summary": {
     "tracked_files_total": 732,
     "cataloged_files": 714,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33926156,
-    "total_text_lines": 116305,
+    "total_bytes": 33927548,
+    "total_text_lines": 116324,
     "markdown_files": 370,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
@@ -2938,11 +2938,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 239266,
+      "size_bytes": 239621,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "f284fe7d9a6ea001cafff0b520fd01afde3cac1980626c7b21f4d1f6b237d7b7",
-      "line_count": 8152,
+      "sha256": "dbbdbfc40d7e48338fa0fc591dfa4483a62ef8bd216f52c66a7127158f72f426",
+      "line_count": 8164,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2954,11 +2954,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 110581,
+      "size_bytes": 110755,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "51e80c75b0f2cac9e71487be7f529168b22f481eba2f65d8d2a1d7c95ca763c0",
-      "line_count": 714,
+      "sha256": "c16188598875f4174348187d232d35f554eac7725463366202c1440cded2a7ea",
+      "line_count": 715,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2973,7 +2973,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "484bb6c6415d0244fa49e1faf48565b0f0b612ae42583bdcb4a31326555f1ef8",
+      "sha256": "09e5e8ee36811c2d8f1ef09ee379c994f763f567fb836990669be1f27ed5963a",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3363,11 +3363,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 127320,
+      "size_bytes": 127514,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1a4ecc0cdd3e97ada071ab0fea433a93100cd23dc5bbb85e089488b5a824d261",
-      "line_count": 757,
+      "sha256": "c269e4d322ee84f4d48b2386a7c87ecfa5cdfa25b152d1b42f4cd6e611a3be39",
+      "line_count": 758,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3532,11 +3532,11 @@
     },
     {
       "path": "docs/INDICE_MESTRE.md",
-      "size_bytes": 8241,
+      "size_bytes": 8910,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "cd0895359a2f6ba7ad77d1ee54683a2154667d0e7452eb4d5332db369d1a9819",
-      "line_count": 132,
+      "sha256": "c2247e64a1f7acd53a8987f47beec55494ae29801e7b2ddcaec01bab3fd1cd0e",
+      "line_count": 137,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared",
@@ -3905,7 +3905,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "fdc8dc6130b8a66879704f738516977ec7a6969ce63a034c54e9673efde6e9d0",
+      "sha256": "80d3e60663ac50df3a6483d17a0aabb20171a9e04f585e58a93c3db0cfaaf27c",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4161,7 +4161,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "036f4b3c2c7f831225cea08303639824006a077c5245b9bb6a39bdf7012e071f",
+      "sha256": "7a2ff5289877902e5a42f95d7bc1f007d74315b3d0067bd05c8eeec12e937fc3",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [
