@@ -1,23 +1,27 @@
 # Dark Matter / RLL — Mapa de Links Documentais
 
-Este documento liga o arquivo de raiz [` darkmatter.md`](../%20darkmatter.md) aos pontos técnicos do repositório que precisam permanecer rastreáveis em `docs`, dados reais, workflows e pipelines.
+Este documento liga o arquivo de raiz [`darkmatter.md`](../darkmatter.md) aos pontos técnicos do repositório que precisam permanecer rastreáveis em `docs`, dados reais, workflows e pipelines.
 
 ## Arquivo-fonte
 
-- [` darkmatter.md`](../%20darkmatter.md) — pacote de validação cosmológica real para RLL, contendo dados, fórmulas, DESI DR2 BAO, Planck, cronômetros cósmicos, fσ8, mapeamento logístico para `w_eff(a)` e critérios `chi2/AIC/BIC/Bayes`.
+- [`darkmatter.md`](../darkmatter.md) — pacote de validação cosmológica real para RLL, contendo dados, fórmulas, DESI DR2 BAO, Planck, cronômetros cósmicos, fσ8, mapeamento logístico para `w_eff(a)` e critérios `chi2/AIC/BIC/Bayes`.
+
+## Nota de normalização
+
+O arquivo existia anteriormente como ` darkmatter.md`, com espaço inicial no nome. Esse nome dificultava busca, shell, links Markdown, GitHub Actions e inventários. O caminho canônico agora é `darkmatter.md`. Qualquer referência histórica ao nome com espaço deve ser tratada como legado de rastreabilidade, não como caminho atual.
 
 ## Pontos-link principais
 
 | Ponto | Significado | Link documental / técnico |
 |---|---|---|
-| `r_d` | Horizonte sonoro de arrasto, pivô BAO/CMB usado para converter distância em `D/rd`. | [` darkmatter.md`](../%20darkmatter.md#1-horizonte-sonoro-de-arrasto-r_d) |
-| `DESI_DR2_BAO` | 13 observáveis BAO: BGS, LRG, ELG, QSO, Lyα; base para validação com dados reais. | [`darkmatter DESI`](../%20darkmatter.md#2-desi-dr2-bao--13-observ%C3%A1veis-e-correla%C3%A7%C3%B5es) · [`data/real/desi_dr2_bao_measurements.csv`](../data/real/desi_dr2_bao_measurements.csv) · [`data/real/desi_dr2_bao_covariance.csv`](../data/real/desi_dr2_bao_covariance.csv) |
-| `w0_wa` | Linguagem acadêmica de energia escura dinâmica para comparação com DESI/CMB/SN. | [`darkmatter w0-wa`](../%20darkmatter.md#3-w0wa-desi-dr2-modelo-w0wacdm) |
-| `H_z` | Cronômetros cósmicos; mede expansão cósmica sem supernovas. | [`darkmatter cronômetros`](../%20darkmatter.md#4-cron%C3%B4metros-c%C3%B3smicos-hz) |
-| `CMB_DISTANCE_PRIORS` | Priors Planck 2018: `R`, `lA`, `obh2`, `ns`, `z*`. | [`darkmatter CMB`](../%20darkmatter.md#5-distance-priors-cmb-planck-2018) |
-| `fsigma8` | Crescimento de estrutura, ligação observacional com matéria escura e gravitação efetiva. | [`darkmatter fσ8`](../%20darkmatter.md#6-f%CF%838-crescimento-de-estrutura) |
-| `RLL_w_eff` | Tradução do setor logístico/superposição RLL para equação de estado efetiva. | [`darkmatter w_eff`](../%20darkmatter.md#7-tradu%C3%A7%C3%A3o-wz%E2%86%94cpl-e-mapeamento-log%C3%ADstico%E2%86%92w_eff) |
-| `MODEL_COMPARISON` | Régua de prova: `chi2`, `AIC`, `AICc`, `BIC`, Bayes/Jeffreys. | [`darkmatter comparação`](../%20darkmatter.md#8-compara%C3%A7%C3%A3o-de-modelos) · [`data/results/desi_dr2_bao_model_comparison.json`](../data/results/desi_dr2_bao_model_comparison.json) |
+| `r_d` | Horizonte sonoro de arrasto, pivô BAO/CMB usado para converter distância em `D/rd`. | [`darkmatter.md`](../darkmatter.md#1-horizonte-sonoro-de-arrasto-r_d) |
+| `DESI_DR2_BAO` | 13 observáveis BAO: BGS, LRG, ELG, QSO, Lyα; base para validação com dados reais. | [`darkmatter DESI`](../darkmatter.md#2-desi-dr2-bao--13-observ%C3%A1veis-e-correla%C3%A7%C3%B5es) · [`data/real/desi_dr2_bao_measurements.csv`](../data/real/desi_dr2_bao_measurements.csv) · [`data/real/desi_dr2_bao_covariance.csv`](../data/real/desi_dr2_bao_covariance.csv) |
+| `w0_wa` | Linguagem acadêmica de energia escura dinâmica para comparação com DESI/CMB/SN. | [`darkmatter w0-wa`](../darkmatter.md#3-w0wa-desi-dr2-modelo-w0wacdm) |
+| `H_z` | Cronômetros cósmicos; mede expansão cósmica sem supernovas. | [`darkmatter cronômetros`](../darkmatter.md#4-cron%C3%B4metros-c%C3%B3smicos-hz) |
+| `CMB_DISTANCE_PRIORS` | Priors Planck 2018: `R`, `lA`, `obh2`, `ns`, `z*`. | [`darkmatter CMB`](../darkmatter.md#5-distance-priors-cmb-planck-2018) |
+| `fsigma8` | Crescimento de estrutura, ligação observacional com matéria escura e gravitação efetiva. | [`darkmatter fσ8`](../darkmatter.md#6-f%CF%838-crescimento-de-estrutura) |
+| `RLL_w_eff` | Tradução do setor logístico/superposição RLL para equação de estado efetiva. | [`darkmatter w_eff`](../darkmatter.md#7-tradu%C3%A7%C3%A3o-wz%E2%86%94cpl-e-mapeamento-log%C3%ADstico%E2%86%92w_eff) |
+| `MODEL_COMPARISON` | Régua de prova: `chi2`, `AIC`, `AICc`, `BIC`, Bayes/Jeffreys. | [`darkmatter comparação`](../darkmatter.md#8-compara%C3%A7%C3%A3o-de-modelos) · [`data/results/desi_dr2_bao_model_comparison.json`](../data/results/desi_dr2_bao_model_comparison.json) |
 | `DESI_ZML` | Saída ZML para leitura operacional dos pontos DESI e comparação. | [`data/results/desi_dr2_bao_zml.yml`](../data/results/desi_dr2_bao_zml.yml) · [`scripts/compute_desi_dr2_bao_zml.py`](../scripts/compute_desi_dr2_bao_zml.py) |
 | `REAL_ORCHESTRATOR_IML` | Amarra IML, Doc Inventory, Real Data Complete, Structure-D, Pantheon e DESI. | [`data/real_sources/rll_real_orchestrator_inventory.iml.yml`](../data/real_sources/rll_real_orchestrator_inventory.iml.yml) |
 | `PANTHEON_IML` | Contrato IML de validação Pantheon+ / SH0ES. | [`data/real_sources/rll_pantheon_real_validation.iml.yml`](../data/real_sources/rll_pantheon_real_validation.iml.yml) |
