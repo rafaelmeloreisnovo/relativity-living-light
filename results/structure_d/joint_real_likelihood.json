@@ -1,0 +1,66 @@
+{
+  "schema": "rll.joint_real_likelihood.v1",
+  "created_utc": "2026-06-04T05:48:32Z",
+  "runtime_seconds": 10.25965913999994,
+  "optimizer": {
+    "name": "scipy.optimize.differential_evolution",
+    "seed": 42,
+    "tol": 1e-06,
+    "maxiter_lcdm": 1,
+    "maxiter_rll": 1
+  },
+  "datasets": {
+    "Hz": "data/real/Hz_data_real.csv",
+    "DESI_DR2_BAO_primary": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+    "DESI_DR2_BAO_covariance_summary": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+    "fsigma8": "data/real/cosmology/fsigma8_growth_real.csv",
+    "CMB_shift": "data/real/CMB_shift_real.json"
+  },
+  "rd_policy": "derived_power_law_from_H0_Om_Ob_h2",
+  "bao_covariance_policy": "block_covariance_from_committed_DESI_DR2_DM_DH_correlations; diagonal for unpaired BGS DV",
+  "claim_boundary": "AIC/BIC comparison only; no superiority claim is implied by this artifact.",
+  "rows": [
+    {
+      "model": "LCDM_joint_real",
+      "chi2": 82.91624704223676,
+      "AIC": 92.91624704223676,
+      "BIC": 103.71066245903512,
+      "N": 64,
+      "k": 5,
+      "dof": 59,
+      "chi2_Hz": 19.713549449611268,
+      "chi2_DESI_DR2_BAO": 24.38662516557451,
+      "chi2_fsigma8": 23.26424920531354,
+      "chi2_CMB_shift": 15.551823221737429,
+      "H0": 60.0,
+      "Om": 0.3779151346048469,
+      "OL": 0.9615405103473186,
+      "Os0": null,
+      "zt": null,
+      "wt": null,
+      "Ob_h2": 0.026,
+      "sigma8": 0.611203735757336
+    },
+    {
+      "model": "RLL_joint_real",
+      "chi2": 256.0005236651908,
+      "AIC": 272.0005236651908,
+      "BIC": 289.2715883320682,
+      "N": 64,
+      "k": 8,
+      "dof": 56,
+      "chi2_Hz": 111.2716896145343,
+      "chi2_DESI_DR2_BAO": 41.27474388332092,
+      "chi2_fsigma8": 73.18321486196484,
+      "chi2_CMB_shift": 30.270875305370794,
+      "H0": 66.5568409004156,
+      "Om": 0.2471745953233254,
+      "OL": 0.6204620946476802,
+      "Os0": 0.0035490361923275738,
+      "zt": 6.798102506266104,
+      "wt": 0.7376085236096501,
+      "Ob_h2": 0.018,
+      "sigma8": 0.7415758287968826
+    }
+  ]
+}

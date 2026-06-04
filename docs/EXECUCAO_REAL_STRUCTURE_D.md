@@ -96,3 +96,63 @@ Problemas comuns:
 
 - Configuração de datasets e profiles: `data/pipelines/structure_d/datasets_config.json`
 - Execução real e escrita do CSV final: `data/pipelines/structure_d/run_all_real.py`
+
+## 7) Verossimilhança conjunta de quatro eixos reais
+
+Para a conta pedida como próximo passo científico — `H(z) + DESI DR2 BAO + fσ8 + CMB shift` no mesmo vetor de parâmetros — use o novo consumidor local-first:
+
+```bash
+python -m data.pipelines.structure_d.joint_real_likelihood
+```
+
+### Entradas usadas
+
+As rotas de alimentação estão fixadas em `data/inputs/cosmology_joint/joint_real_inputs_manifest.json` e apontam para:
+
+- `data/real/Hz_data_real.csv`
+- `data/real/cosmology/desi_dr2_bao_primary_points.csv`
+- `data/real/cosmology/desi_dr2_bao_covariance_summary.csv`
+- `data/real/cosmology/fsigma8_growth_real.csv`
+- `data/real/CMB_shift_real.json`
+
+### O que mudou em relação ao script real anterior
+
+- O BAO DESI DR2 usa `DV/rd`, `DM/rd` e `DH/rd`, em vez de reduzir tudo a `DV/rs`.
+- A matriz de covariância DESI é materializada como uma matriz `13×13` a partir dos erros diagonais e dos blocos `DM/DH` correlacionados já presentes no repositório. O ponto isotrópico BGS permanece diagonal porque não há par `DM/DH` para ele na tabela primária local.
+- `r_d` é derivado dos parâmetros `H0`, `Ωm` e `Ωb h²` por uma aproximação calibrada leve, em vez de ficar fixo como constante global.
+- O bloco de crescimento `fσ8` entra junto com expansão, BAO e CMB no mesmo `χ²`.
+- Os resultados são escritos com substituição atômica e backup `*.bak` quando já existe saída anterior.
+
+### Artefatos esperados
+
+- `results/structure_d/joint_real_likelihood.csv`
+- `results/structure_d/joint_real_likelihood.json`
+- `results/structure_d/joint_real_likelihood_covariance_manifest.json`
+
+### Interpretação disciplinada
+
+A saída deve ser lida como comparação operacional por `χ²`, AIC e BIC. Ela não autoriza, sozinha, afirmar superioridade do RLL sobre ΛCDM. Se o ajuste RLL reduzir `χ²`, a redução ainda precisa compensar a penalidade dos parâmetros extras em AIC/BIC e sobreviver a testes com produtos externos completos quando eles forem materializados.
+
+## 8) Varredura sintético → real, failover e rollback
+
+Antes de uma execução científica, rode a auditoria de materialização para garantir que datasets de fixture/sintéticos estejam roteados para uma contraparte real ou explicitamente marcados como inventário pendente:
+
+```bash
+python tools/real_data_materialization_audit.py
+```
+
+A auditoria varre a configuração `Structure-D` e arquivos em `data/` até cinco níveis de caminho procurando marcadores como `synthetic`, `synth`, `mock`, `example`, `fixture` e `local_input`. Ela não apaga fixtures: elas permanecem como rollback/regressão, enquanto rotas produtivas devem apontar para `data/real/**` ou URL externa documentada.
+
+Artefatos esperados:
+
+- `results/audit/real_data_materialization_audit.csv`
+- `results/audit/real_data_materialization_audit.json`
+- `results/audit/real_data_materialization_audit.md`
+
+Na versão atual, as rotas configuradas cobertas são:
+
+- `hz` e `hz_cov_synth` → `real_hz` (`data/real/Hz_data_real.csv`)
+- `fsigma8` e `fsigma8_cov_synth` → `real_fsigma8` (`data/real/cosmology/fsigma8_growth_real.csv`)
+- `real_bao` legado → `real_desi_dr2_bao` (`data/real/cosmology/desi_dr2_bao_primary_points.csv`)
+
+Se uma rota real falhar, a política é **não preencher com número inventado**: manter o fixture como fallback de teste, marcar a rota como pendente e restaurar o `*.bak` do artefato se a escrita anterior tiver sido substituída.
