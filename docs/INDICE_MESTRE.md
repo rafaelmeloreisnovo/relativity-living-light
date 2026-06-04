@@ -94,6 +94,18 @@ Encaminhamentos complementares:
 - [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
 - [`docs/canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md`](canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md)
 
+### 3.1) Pacote RAFAELIA/RLL de conhecimento, publicacao e validacao
+
+- [`docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`](canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md) - documento-mae consolidado
+- [`docs/canonicos/13_EPISTEMOLOGIA_RAFAELIA_RLL.md`](canonicos/13_EPISTEMOLOGIA_RAFAELIA_RLL.md) - sistema [E]/[C]/[H]/[VAZIO], RAW_TEXT_FIRST e integridade epistemica
+- [`docs/canonicos/14_MODELO_COSMOLOGICO_RLL.md`](canonicos/14_MODELO_COSMOLOGICO_RLL.md) - equacao-mae, EoS efetiva, adversario w0waCDM e falsificadores
+- [`docs/canonicos/15_DADOS_EXTERNOS_REAIS_RLL.md`](canonicos/15_DADOS_EXTERNOS_REAIS_RLL.md) - DESI, CMB, H(z), fσ8, metricas e pendencias
+- [`docs/canonicos/16_PIPELINE_VALIDACAO_RLL.md`](canonicos/16_PIPELINE_VALIDACAO_RLL.md) - estrutura executavel, funcoes-nucleo e reprodutibilidade
+- [`docs/canonicos/17_ONDA_VERBO_FISICA_NEURO_LINGUAGEM.md`](canonicos/17_ONDA_VERBO_FISICA_NEURO_LINGUAGEM.md) - som, onda, neuro, linguagem, metafora e limites
+- [`docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md`](canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md) - matriz ASCII/UTF, hashes, C_eff e TOKEN_VAZIO
+- [`docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`](canonicos/19_ROADMAP_FALSIFICADORES_RLL.md) - roadmap de testes e criterios de falsificacao
+- [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md) - checklist publico de documentos, governanca, seguranca e citabilidade
+
 ---
 
 ## 4) Validacao observacional e matriz de dados reais
@@ -118,25 +130,3 @@ Encaminhamentos complementares:
 - Fonte official unica para consulta e citacao:
   - [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
   - [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
-  - [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
-  - [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
-  - [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
-  - [`docs/canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md`](canonicos/12_DOCUMENTO_CANONICO_RLL_PREPRINT_PTBR.md)
-- 00_COMO_LER.md -> [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
-- 06_COMPARACOES_DETALHADAS.md -> [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
-- 09_GLOSSARIO_COMPLETO.md -> [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
-- 09_GLOSSARIO_COMPLETO-1.md -> [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
-- 10_FAQ_COMPLETO.md -> [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
-- 11_DOCUMENTO_PRIORIDADE.md -> [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
-- RMR/00_COMO_LER.md -> [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
-- RMR/06_COMPARACOES_DETALHADAS.md -> [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
-- RMR/09_GLOSSARIO_COMPLETO.md -> [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
-- RMR/09_GLOSSARIO_COMPLETO-1.md -> [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
-- RMR/10_FAQ_COMPLETO.md -> [`docs/canonicos/10_FAQ_COMPLETO.md`](canonicos/10_FAQ_COMPLETO.md)
-- RMR/11_DOCUMENTO_PRIORIDADE.md -> [`docs/canonicos/11_DOCUMENTO_PRIORIDADE.md`](canonicos/11_DOCUMENTO_PRIORIDADE.md)
-
-### Arquivos de arquivo estendido
-- [`news/archive_legacy/`](../news/archive_legacy/)
-- [`docs/README_ROOT_LEGACY_ARCHIVE.md`](README_ROOT_LEGACY_ARCHIVE.md)
-- Referencia canonica central desta navegacao: secao principal deste arquivo.
-- Inventario bruto e completo (inclui historico/legado): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md).
