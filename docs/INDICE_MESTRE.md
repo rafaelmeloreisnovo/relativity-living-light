@@ -1,7 +1,7 @@
 # INDICE MESTRE - Documentacao Oficial
 ## Relativity Living Light
 
-**Atualizado em:** 2026-05-29
+**Atualizado em:** 2026-06-04
 **Regra:** secao principal lista apenas caminhos canonicos oficiais.
 
 ---
@@ -17,6 +17,7 @@ Este arquivo e a **navegacao canonica** da documentacao do repositorio.
 Encaminhamentos complementares:
 - Porta de entrada: [`README.md`](../README.md)
 - Inventario bruto (`.md` e `.zip`): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
+- Mapa Dark Matter/RLL: [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md)
 - Procedimento de atualizacao: `python3 tools/docs_inventory.py` e validacao `python3 tools/docs_inventory.py --check`.
 
 ---
@@ -43,6 +44,7 @@ Encaminhamentos complementares:
 
 - [`README.md`](../README.md)
 - [`docs/Relativity_Living_Light.md`](Relativity_Living_Light.md)
+- [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md) - mapa de links entre ` darkmatter.md`, dados reais, workflows, IML, DESI/Pantheon e documentacao
 - [`docs/BOOSTERS.md`](BOOSTERS.md)
 - [`docs/Results.md`](Results.md)
 - [`docs/RESULTADOS_CORRIGIDOS.md`](RESULTADOS_CORRIGIDOS.md)
@@ -96,6 +98,7 @@ Encaminhamentos complementares:
 
 ## 4) Validacao observacional e matriz de dados reais
 
+- [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md) - links de validacao cosmologica real: DESI, Pantheon, CMB, H(z), fσ8, ZML e workflows
 - [`docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md`](VALIDATION_DATA_MATRIX_RLL_MCRP.md)
 - [`docs/cases/OBSERVATIONAL_ASTROPHYSICAL_CASES_INDEX.md`](cases/OBSERVATIONAL_ASTROPHYSICAL_CASES_INDEX.md)
 - [`docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md`](cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md)
@@ -112,7 +115,7 @@ Encaminhamentos complementares:
 
 ### Duplicatas historicas da serie canonica
 - Duplicatas historicas mantidas para rastreabilidade (raiz, `RMR/` e `news/archive_legacy/`).
-- Fonte oficial unica para consulta e citacao:
+- Fonte official unica para consulta e citacao:
   - [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
   - [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
   - [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](canonicos/09_GLOSSARIO_COMPLETO.md)
