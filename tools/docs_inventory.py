@@ -12,6 +12,7 @@ from pathlib import Path
 from zipfile import BadZipFile, ZipFile
 
 COUNT_PATTERN = re.compile(r"\*\*Total de arquivos catalogados:\*\*\s*(\d+)")
+TABLE_SEPARATOR = "|---|---|---|---:|---|"
 
 
 def repo_root() -> Path:
@@ -107,8 +108,18 @@ def render_inventory(root: Path, items: list[dict[str, str | int]]) -> str:
     lines.append("")
     lines.append("- Registra a varredura completa de arquivos `.md` e `.zip` com metadados técnicos.")
     lines.append("- Não define prioridade de leitura nem trilha canônica.")
+    lines.append("- Não substitui o índice mestre, o README, os relatórios de validação nem as matrizes canônicas.")
     lines.append("- Para navegação oficial, use [`docs/INDICE_MESTRE.md`](INDICE_MESTRE.md).")
     lines.append("- Para porta de entrada do projeto, use [`README.md`](../README.md).")
+    lines.append("")
+    lines.append("## Contrato de atualização")
+    lines.append("")
+    lines.append("Este arquivo é **gerado por ferramenta**. Evite edição manual da tabela, exceto em hotfix documental explícito.")
+    lines.append("")
+    lines.append("```bash")
+    lines.append("python3 tools/docs_inventory.py")
+    lines.append("python3 tools/docs_inventory.py --check")
+    lines.append("```")
     lines.append("")
     lines.append("**Critério:** todos os `.md` e `.zip` encontrados por varredura recursiva no repositório, com título detectado, tamanho e hash SHA-256 abreviado.")
     lines.append("")
@@ -119,7 +130,7 @@ def render_inventory(root: Path, items: list[dict[str, str | int]]) -> str:
     lines.append("---")
     lines.append("")
     lines.append("| Tipo | Caminho | Título/Conteúdo detectado | Tamanho (bytes) | SHA-256 (12) |")
-    lines.append("|---|---|---:|---:|---|")
+    lines.append(TABLE_SEPARATOR)
 
     for item in items:
         detected = str(item["conteudo"]).replace("|", "\\|").replace("`", "'")
@@ -147,12 +158,22 @@ def read_published_count(path: Path) -> int:
 def run_check(root: Path, output: Path) -> int:
     actual = len(collect_items(root))
     published = read_published_count(output)
+    text = output.read_text(encoding="utf-8", errors="replace")
+
+    errors: list[str] = []
     if actual != published:
-        print(
-            f"ERRO: contagem divergente em {rel_posix(output, root)} -> publicada={published}, real={actual}",
+        errors.append(
+            f"contagem divergente em {rel_posix(output, root)} -> publicada={published}, real={actual}"
         )
+    if TABLE_SEPARATOR not in text:
+        errors.append("separador de tabela Markdown ausente ou desalinhado")
+
+    if errors:
+        for error in errors:
+            print(f"ERRO: {error}")
         return 1
-    print(f"OK: contagem publicada={published} e real={actual}.")
+
+    print(f"OK: contagem publicada={published}, real={actual}, tabela=coerente.")
     return 0
 
 
@@ -166,7 +187,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Valida se a contagem publicada confere com a varredura atual.",
+        help="Valida se a contagem publicada confere com a varredura atual e se a tabela tem contrato correto.",
     )
     return parser.parse_args()
 
