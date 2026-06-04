@@ -1,0 +1,5 @@
+source_id,domain,probe,z,observable,value,err_minus,err_plus,units,year,reference,claim_status,notes
+cc_borghi_2021_lega_c,cosmology_expansion_Hz,cosmic_chronometers,0.75,H(z),98.8,33.6,33.6,km/s/Mpc,2021,arXiv:2110.04304,observed_seed,"LEGA-C cosmic chronometer point from published abstract; single-point seed, not complete compilation."
+cc_jiao_2022_lega_c_full_spectrum,cosmology_expansion_Hz,cosmic_chronometers,0.80,H(z),113.1,19.188,32.773,km/s/Mpc,2022,arXiv:2205.05701,observed_seed,"LEGA-C full-spectrum fitting point; err_minus/err_plus combine statistical and asymmetric systematic in quadrature."
+cc_tomasetti_2025_clusters,cosmology_expansion_Hz,cosmic_chronometers_clusters,0.542,H(z),66.0,31.780,82.037,km/s/Mpc,2025,arXiv:2512.02109,observed_seed,"Galaxy-cluster cosmic chronometer seed; weak precision due to broad uncertainty; use as low-weight independent control."
+desi_dr2_bao_2025,cosmology_BAO,BAO,,,14e6,,,objects,2025,arXiv:2503.14738,source_summary,"DESI DR2 BAO source uses >14 million galaxies and quasars; full BAO distance table/covariance still required before chi2."
