@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-04T15:03:23.747914+00:00",
-  "git_commit": "f5a2c7973dcef13d25d385aaf2e5dc557139f069",
+  "generated_at": "2026-06-04T20:24:40.339690+00:00",
+  "git_commit": "ae5a9f5f64a9f790c7e33522a9a66865024977fa",
   "summary": {
-    "tracked_files_total": 721,
-    "cataloged_files": 703,
+    "tracked_files_total": 722,
+    "cataloged_files": 704,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33918907,
-    "total_text_lines": 115825,
-    "markdown_files": 359,
+    "total_bytes": 33936838,
+    "total_text_lines": 116235,
+    "markdown_files": 360,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 71
   },
   "counts_by_ext": {
-    ".md": 359,
+    ".md": 360,
     ".yml": 31,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 359,
+    "documentation_md": 360,
     "github_workflow_yml": 13,
     "config_yml": 18,
     "other": 120,
@@ -47,7 +47,7 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 332,
+    "cosmology_validation_marker": 333,
     "mentions_mock_or_placeholder": 63,
     "mentions_synthetic": 44,
     "token_vazio_declared": 8,
@@ -2942,7 +2942,7 @@
       "size_bytes": 235886,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "a704ea72fbbe25f4c45ff4f597b106dea7ef56864bf291ff774a3e80c45d93bf",
+      "sha256": "3fc6522ac18128d21cb39aa7a3d77d438c5fcf022b2bffc7f431c9df5395f290",
       "line_count": 8040,
       "is_text": true,
       "risk_flags": [
@@ -2958,7 +2958,7 @@
       "size_bytes": 108940,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "5565661d2a1a8739efb408e4ffaa703c0b1a782832c05d15e798799fa9d0598b",
+      "sha256": "d911df6101adf487aeda97e803480604bb59aa4a26981137ca02e23ba592823c",
       "line_count": 704,
       "is_text": true,
       "risk_flags": [
@@ -2974,7 +2974,7 @@
       "size_bytes": 3286,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "31038eb25ff19e14c17f9bc1bb8456872b9a214bde52a4b7455605eeb8daae00",
+      "sha256": "4a30556fe9733bc0b9cbb5b3e98bdd945dfee42bb5a67423184496ad3cb94cfb",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3355,7 +3355,7 @@
       "size_bytes": 125479,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ff337dec669fb2a68ca35e4526d6181b4451334f3a2dd648bd9ef49247407cfa",
+      "sha256": "c0f874becadd741362b8d8e82a89f13f5b380618a2047a7aac1686121c96c76a",
       "line_count": 747,
       "is_text": true,
       "risk_flags": [
@@ -3883,7 +3883,7 @@
       "size_bytes": 1468,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a8fbfeae9f0e45dd7b8b7e9cb00e92bab2dc773c90124246e1778d4b203b76eb",
+      "sha256": "28b33e91a978a3fc7be8e2c283b0322b0ed8217d63d9b320feb63053bd1a6430",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4139,7 +4139,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1bef5d08514ccbee6258f5030676cff7ce6d0f80f51e2b2dfc26eb0b4bafe26f",
+      "sha256": "6cb27e53ac4e5192975d82ce197680da6b4adc0228d604880f102bb8646b0d1f",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [
@@ -4227,6 +4227,18 @@
       "kind": "documentation_md",
       "sha256": "6449f739bd69599f3eb510e57951e8f8996154ee658e65636cf20b5d97c1971d",
       "line_count": 373,
+      "is_text": true,
+      "risk_flags": [
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md",
+      "size_bytes": 17931,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "5f4ad6734b3e6b38503541ef1af599b7149764cdeed2f093bf645cadd292450c",
+      "line_count": 410,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
