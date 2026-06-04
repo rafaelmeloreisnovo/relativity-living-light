@@ -1,0 +1,17 @@
+z,fs8,sigma,survey,method,reference,source_url,notes
+0.020,0.360,0.040,2M++/local_velocity,PV,Hudson_Turnbull_2013,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table; replaces synthetic smooth growth fixture for real-data routing
+0.067,0.423,0.055,6dFGS,RSD,Beutler_2012,https://arxiv.org/abs/1204.4725,6dF Galaxy Survey measurement at z_eff=0.067
+0.100,0.370,0.130,2MASS/RSD,RSD,Feix_Nusser_Branchini_2015,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.170,0.510,0.060,2dFGRS,RSD,Percival_2004,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.220,0.420,0.070,WiggleZ,RSD,Blake_2011,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.250,0.351,0.058,SDSS_LRG,RSD,Samushia_2012,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.300,0.407,0.055,SDSS_MGS/RSD,RSD,Tojeiro_2012,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.350,0.440,0.050,SDSS_LRG,RSD,Song_Percival_2009_Tegmark_2006,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.370,0.460,0.038,SDSS_LRG,RSD,Samushia_2012,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.400,0.419,0.041,SDSS_MGS/RSD,RSD,Tojeiro_2012,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.410,0.450,0.040,WiggleZ,RSD,Blake_2011,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.570,0.427,0.066,BOSS_CMASS,RSD/BAO,Reid_2012,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.600,0.430,0.040,WiggleZ,RSD,Blake_2011,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table; duplicated redshift retained because survey/reference differs from adjacent row
+0.600,0.433,0.067,BOSS/SDSS,RSD,Tojeiro_2012,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table; duplicated redshift retained because survey/reference differs from adjacent row
+0.770,0.490,0.180,VVDS,RSD,Guzzo_2008_Song_Percival_2009,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table
+0.780,0.380,0.040,WiggleZ,RSD,Blake_2011,https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209,compiled fσ8 table

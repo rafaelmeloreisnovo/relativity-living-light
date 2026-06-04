@@ -1,0 +1,226 @@
+{
+  "schema": "rll.real_source_signatures.v1",
+  "generated_utc": "2026-06-04T05:59:09Z",
+  "fetch_limit_bytes": 65536,
+  "rows": [
+    {
+      "dataset_id": "real_hz",
+      "local_path": "data/real/Hz_data_real.csv",
+      "source_url": "https://arxiv.org/abs/2205.05701",
+      "required_terms": [
+        "H(z=0.8)",
+        "Moresco"
+      ],
+      "provenance_note": "Cosmic-chronometer H(z) source check for the materialized expansion table.",
+      "local_exists": true,
+      "local_sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+      "verified_utc": "2026-06-04T05:59:07Z",
+      "source_signature": {
+        "ok": true,
+        "status_code": 206,
+        "final_url": "https://arxiv.org/abs/2205.05701",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": "51176",
+        "etag": "",
+        "last_modified": "Mon, 10 Apr 2023 00:11:49 GMT",
+        "sample_bytes": 51176,
+        "sample_sha256": "b931b3d395fe8920c86be2f3e7fcd5187bd41235cd731111452ab2a573051327",
+        "terms_found": [
+          "H(z=0.8)",
+          "Moresco"
+        ],
+        "required_terms": [
+          "H(z=0.8)",
+          "Moresco"
+        ],
+        "required_terms_ok": true,
+        "elapsed_seconds": 0.18087448599999334,
+        "error": ""
+      },
+      "status": "source_verified",
+      "failover_policy": "keep committed local file and previous output; do not replace with partial download; inspect status/error before promotion"
+    },
+    {
+      "dataset_id": "real_desi_dr2_bao",
+      "local_path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "source_url": "https://arxiv.org/abs/2503.14738",
+      "required_terms": [
+        "DESI DR2",
+        "Baryon Acoustic Oscillations"
+      ],
+      "provenance_note": "DESI DR2 BAO paper source check for primary BAO measurements.",
+      "local_exists": true,
+      "local_sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
+      "verified_utc": "2026-06-04T05:59:07Z",
+      "source_signature": {
+        "ok": true,
+        "status_code": 206,
+        "final_url": "https://arxiv.org/abs/2503.14738",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": "65536",
+        "etag": "",
+        "last_modified": "Fri, 10 Oct 2025 01:08:47 GMT",
+        "sample_bytes": 65536,
+        "sample_sha256": "0708c7d1f1523cc55b399db21266cd87fc2d01849460cc8bedcf4f4751b59487",
+        "terms_found": [
+          "DESI DR2",
+          "Baryon Acoustic Oscillations"
+        ],
+        "required_terms": [
+          "DESI DR2",
+          "Baryon Acoustic Oscillations"
+        ],
+        "required_terms_ok": true,
+        "elapsed_seconds": 0.17549688700000843,
+        "error": ""
+      },
+      "status": "source_verified",
+      "failover_policy": "keep committed local file and previous output; do not replace with partial download; inspect status/error before promotion"
+    },
+    {
+      "dataset_id": "real_desi_dr2_bao_supplement",
+      "local_path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+      "source_url": "https://zenodo.org/records/16644577",
+      "required_terms": [
+        "10.5281/zenodo.16644577",
+        "DESI DR2"
+      ],
+      "provenance_note": "DESI DR2 supplementary archive check for covariance/supporting data.",
+      "local_exists": true,
+      "local_sha256": "e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e",
+      "verified_utc": "2026-06-04T05:59:08Z",
+      "source_signature": {
+        "ok": true,
+        "status_code": 200,
+        "final_url": "https://zenodo.org/records/16644577",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": "67510",
+        "etag": "",
+        "last_modified": "",
+        "sample_bytes": 65536,
+        "sample_sha256": "f0926332265a537265b587f37cf2588464c221c32958b5131d336f7e731ccb72",
+        "terms_found": [
+          "10.5281/zenodo.16644577",
+          "DESI DR2"
+        ],
+        "required_terms": [
+          "10.5281/zenodo.16644577",
+          "DESI DR2"
+        ],
+        "required_terms_ok": true,
+        "elapsed_seconds": 0.9276091539995832,
+        "error": ""
+      },
+      "status": "source_verified",
+      "failover_policy": "keep committed local file and previous output; do not replace with partial download; inspect status/error before promotion"
+    },
+    {
+      "dataset_id": "real_fsigma8_6dfgs_anchor",
+      "local_path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "source_url": "https://arxiv.org/abs/1204.4725",
+      "required_terms": [
+        "6dF",
+        "growth"
+      ],
+      "provenance_note": "6dFGS fσ8 anchor source check for growth materialization.",
+      "local_exists": true,
+      "local_sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
+      "verified_utc": "2026-06-04T05:59:08Z",
+      "source_signature": {
+        "ok": true,
+        "status_code": 206,
+        "final_url": "https://arxiv.org/abs/1204.4725",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": "50470",
+        "etag": "",
+        "last_modified": "Thu, 04 Jun 2015 15:43:47 GMT",
+        "sample_bytes": 50470,
+        "sample_sha256": "61af6dfb4595d14fa188d98221204602684e63dd8a95ee63524b0906b4bf4f1c",
+        "terms_found": [
+          "6dF",
+          "growth"
+        ],
+        "required_terms": [
+          "6dF",
+          "growth"
+        ],
+        "required_terms_ok": true,
+        "elapsed_seconds": 0.16218738399993526,
+        "error": ""
+      },
+      "status": "source_verified",
+      "failover_policy": "keep committed local file and previous output; do not replace with partial download; inspect status/error before promotion"
+    },
+    {
+      "dataset_id": "real_fsigma8_compilation",
+      "local_path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "source_url": "https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209",
+      "required_terms": [
+        "Growth",
+        "Cosmic Structure"
+      ],
+      "provenance_note": "Compilation/source-page check; HTTP failures are retained as explicit provenance risk.",
+      "local_exists": true,
+      "local_sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
+      "verified_utc": "2026-06-04T05:59:08Z",
+      "source_signature": {
+        "ok": false,
+        "status_code": 403,
+        "final_url": "https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209",
+        "content_type": "text/html; charset=UTF-8",
+        "content_length": "5743",
+        "etag": "",
+        "last_modified": "",
+        "sample_bytes": 0,
+        "sample_sha256": "",
+        "terms_found": [],
+        "required_terms": [
+          "Growth",
+          "Cosmic Structure"
+        ],
+        "required_terms_ok": false,
+        "elapsed_seconds": 0.19586736300016128,
+        "error": "HTTPError: 403"
+      },
+      "status": "source_needs_review",
+      "failover_policy": "keep committed local file and previous output; do not replace with partial download; inspect status/error before promotion"
+    },
+    {
+      "dataset_id": "real_cmb_shift",
+      "local_path": "data/real/CMB_shift_real.json",
+      "source_url": "https://arxiv.org/abs/1807.06209",
+      "required_terms": [
+        "Planck",
+        "cosmological parameters"
+      ],
+      "provenance_note": "Planck 2018 source check for CMB-shift summary values.",
+      "local_exists": true,
+      "local_sha256": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc",
+      "verified_utc": "2026-06-04T05:59:09Z",
+      "source_signature": {
+        "ok": true,
+        "status_code": 206,
+        "final_url": "https://arxiv.org/abs/1807.06209",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": "65536",
+        "etag": "",
+        "last_modified": "Tue, 10 Aug 2021 00:30:47 GMT",
+        "sample_bytes": 65536,
+        "sample_sha256": "e1753a5c1c50b216e64cecd36a833d912734617e49d32f11ec16383bddfafe10",
+        "terms_found": [
+          "Planck",
+          "cosmological parameters"
+        ],
+        "required_terms": [
+          "Planck",
+          "cosmological parameters"
+        ],
+        "required_terms_ok": true,
+        "elapsed_seconds": 0.10080074699999386,
+        "error": ""
+      },
+      "status": "source_verified",
+      "failover_policy": "keep committed local file and previous output; do not replace with partial download; inspect status/error before promotion"
+    }
+  ]
+}
