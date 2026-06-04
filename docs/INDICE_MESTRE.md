@@ -18,6 +18,8 @@ Encaminhamentos complementares:
 - Porta de entrada: [`README.md`](../README.md)
 - Inventario bruto (`.md` e `.zip`): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
 - Mapa Dark Matter/RLL: [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md)
+- Nota Dark Matter/nome/inventario: [`docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md`](DARKMATTER_NAMING_AND_INVENTORY_NOTE.md)
+- Normatizacao de nomes: [`docs/NORMATIZACAO_NOMES_ARQUIVOS_RLL.md`](NORMATIZACAO_NOMES_ARQUIVOS_RLL.md)
 - Procedimento de atualizacao: `python3 tools/docs_inventory.py` e validacao `python3 tools/docs_inventory.py --check`.
 
 ---
@@ -43,8 +45,9 @@ Encaminhamentos complementares:
 ## 1) Nucleo cientifico oficial
 
 - [`README.md`](../README.md)
+- [`darkmatter.md`](../darkmatter.md) - pacote de validacao cosmologica real RLL, normalizado sem espaco inicial no nome
 - [`docs/Relativity_Living_Light.md`](Relativity_Living_Light.md)
-- [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md) - mapa de links entre ` darkmatter.md`, dados reais, workflows, IML, DESI/Pantheon e documentacao
+- [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md) - mapa de links entre `darkmatter.md`, dados reais, workflows, IML, DESI/Pantheon e documentacao
 - [`docs/BOOSTERS.md`](BOOSTERS.md)
 - [`docs/Results.md`](Results.md)
 - [`docs/RESULTADOS_CORRIGIDOS.md`](RESULTADOS_CORRIGIDOS.md)
@@ -84,6 +87,8 @@ Encaminhamentos complementares:
 - [`docs/DATA_INTEGRITY_CHECKLIST.md`](DATA_INTEGRITY_CHECKLIST.md)
 - [`docs/ADMIN.md`](ADMIN.md)
 - [`docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md`](AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md)
+- [`docs/NORMATIZACAO_NOMES_ARQUIVOS_RLL.md`](NORMATIZACAO_NOMES_ARQUIVOS_RLL.md) - regras para nomes de arquivos, normalizacao e contagens
+- [`docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md`](DARKMATTER_NAMING_AND_INVENTORY_NOTE.md) - explicacao do caso `darkmatter.md`, divergencias 308/335/368/388 e caminho canonico
 
 ## 3) Serie canonica consolidada (`docs/canonicos/`)
 
