@@ -1,0 +1,24 @@
+{
+  "schema": "rll.real_data_provenance.v1",
+  "generated_at_utc": "2026-06-04T00:00:00+00:00",
+  "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+  "publication_boundary": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
+  "inputs": {
+    "data/real/rll_real_sources_manifest_2026.yml": {
+      "sha256": "REGENERATE_WITH_SCRIPT_AFTER_CHECKOUT",
+      "bytes": null
+    }
+  },
+  "outputs": {
+    "data/real/cosmology_observational_seed_2026.csv": {
+      "sha256": "REGENERATE_WITH_SCRIPT_AFTER_CHECKOUT",
+      "bytes": null,
+      "rows": 4
+    }
+  },
+  "row_counts_by_claim_status": {
+    "observed_seed": 3,
+    "source_summary": 1
+  },
+  "note": "Execute scripts/ingest_real_cosmology_sources.py to regenerate exact hashes after checkout."
+}
