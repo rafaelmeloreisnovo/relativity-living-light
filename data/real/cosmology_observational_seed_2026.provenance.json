@@ -5,20 +5,26 @@
   "publication_boundary": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
   "inputs": {
     "data/real/rll_real_sources_manifest_2026.yml": {
-      "sha256": "REGENERATE_WITH_SCRIPT_AFTER_CHECKOUT",
-      "bytes": null
+      "github_blob_sha": "6d38215081fbe6c4e7e891cd04bb587d7a38e373",
+      "sha256": null,
+      "bytes": null,
+      "hash_status": "not_computed_in_connector_session",
+      "reason": "The GitHub connector returned the committed blob SHA; exact raw-file SHA256 and byte count must be produced by running scripts/ingest_real_cosmology_sources.py in a checked-out working tree. No placeholder value is asserted."
     }
   },
   "outputs": {
     "data/real/cosmology_observational_seed_2026.csv": {
-      "sha256": "REGENERATE_WITH_SCRIPT_AFTER_CHECKOUT",
+      "github_blob_sha": "2a8bc74d1406ce8d3a378e44bed064ad466d8393",
+      "sha256": null,
       "bytes": null,
-      "rows": 4
+      "rows": 4,
+      "hash_status": "not_computed_in_connector_session",
+      "reason": "The GitHub connector returned the committed blob SHA; exact raw-file SHA256 and byte count must be produced by running scripts/ingest_real_cosmology_sources.py in a checked-out working tree. No placeholder value is asserted."
     }
   },
   "row_counts_by_claim_status": {
     "observed_seed": 3,
     "source_summary": 1
   },
-  "note": "Execute scripts/ingest_real_cosmology_sources.py to regenerate exact hashes after checkout."
+  "anti_placeholder_policy": "Do not use REGENERATE_WITH_SCRIPT_AFTER_CHECKOUT, TO_BE_REGENERATED_BY_SCRIPT, dummy hashes, guessed bytes, guessed covariance or synthetic measurements. Use real observed values, committed Git blob SHAs, or explicit null with reason."
 }
