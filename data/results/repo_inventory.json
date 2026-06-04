@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-04T20:36:47.557014+00:00",
-  "git_commit": "32f90642c2bca0b6f82372a54b5e9aba94eb48e4",
+  "generated_at": "2026-06-04T20:41:04.141399+00:00",
+  "git_commit": "5c21df22938957037244afb8970d09e7f42897f6",
   "summary": {
-    "tracked_files_total": 730,
-    "cataloged_files": 712,
+    "tracked_files_total": 731,
+    "cataloged_files": 713,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33919740,
-    "total_text_lines": 116092,
-    "markdown_files": 368,
+    "total_bytes": 33940472,
+    "total_text_lines": 116426,
+    "markdown_files": 369,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 71
   },
   "counts_by_ext": {
-    ".md": 368,
+    ".md": 369,
     ".yml": 31,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 368,
+    "documentation_md": 369,
     "github_workflow_yml": 13,
     "config_yml": 18,
     "other": 120,
@@ -47,7 +47,7 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 337,
+    "cosmology_validation_marker": 338,
     "mentions_mock_or_placeholder": 62,
     "mentions_synthetic": 44,
     "token_vazio_declared": 10,
@@ -2142,6 +2142,18 @@
       "risk_flags": []
     },
     {
+      "path": "darkmatter.md",
+      "size_bytes": 20833,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "b81611fbd5b2179abd09e6527f0d54ef80bdf72039a3ad4c6e4bd8b3fca29cbc",
+      "line_count": 335,
+      "is_text": true,
+      "risk_flags": [
+        "cosmology_validation_marker"
+      ]
+    },
+    {
       "path": "data/CITATION.cff",
       "size_bytes": 239,
       "ext": ".cff",
@@ -2938,11 +2950,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 239004,
+      "size_bytes": 238963,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "47d29e0063e425ca40ff0b5ef1549eacad538aaba9a7620f5c2b3d83f0230506",
-      "line_count": 8143,
+      "sha256": "f858286fa9ce9705a11908b4105fc65f241a0c0f6a150f442243c49ea22d241d",
+      "line_count": 8142,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2954,10 +2966,10 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 110471,
+      "size_bytes": 110441,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "7dc60ad27e1e1889adaaa8488f4404823bcfd018dc3ad888577d86d21182f594",
+      "sha256": "e7ab73d6ff209749d072d8767414f18c2c5d8724917fbfd7f2ddd6e99b1b5967",
       "line_count": 713,
       "is_text": true,
       "risk_flags": [
@@ -2973,7 +2985,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "f579faa875cbf2119811954b1a3dbba2090aeda339f7919b96975f169cf868c5",
+      "sha256": "c7d9d915690d561fe43fd3b6d48488ba982bd439c0c3c65c9921124659f42b24",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3351,10 +3363,10 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 127190,
+      "size_bytes": 127160,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c4126d9354cfb0ba9b8dba61fee378dd778d91ec17666b71b55bad95d435666f",
+      "sha256": "bfab5acccb7962bd689d464f7817735393fea18f41d3c614674c8bbc2092ddb7",
       "line_count": 756,
       "is_text": true,
       "risk_flags": [
@@ -3883,7 +3895,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "cf552f0bbab3ac33b3a0a2aa5039c7a403239bfa7f7192737c2d248424b0c4bf",
+      "sha256": "d0e8d29b2bc36a22982c03b7ccad6c279bf9c4fe87451e1f74a6d75a48d733fd",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4139,7 +4151,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "797e206b08baddfb29244371c1f5875631c4aeed7badbca3b558f8581c9ab27c",
+      "sha256": "c39be1964bec10f41dcd3bc46ffbeff3cfbe270c7eb9686eeef5f1479510b403",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [
