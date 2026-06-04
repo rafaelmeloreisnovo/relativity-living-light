@@ -1,0 +1,110 @@
+# RLL — Required Real Cosmology Inputs
+
+## Regra científica
+
+O repositório só deve chamar algo de **dado real** quando houver origem primária, arquivo materializado, checksum e papel claro no teste. Lacuna não deve ser preenchida com mock, chute, interpolação ou dado sintético.
+
+> Claim boundary: `No superiority claim unless real-data metrics pass predefined thresholds.`
+
+## 1. Pantheon+SH0ES — supernovas Tipo Ia
+
+**Status:** pronto para download automatizado.
+
+**Fonte primária:** `PantheonPlusSH0ES/DataRelease`, repositório público oficial da colaboração Pantheon+SH0ES.
+
+**Arquivos necessários no RLL:**
+
+| caminho local | função | origem |
+|---|---|---|
+| `data/pantheon/Pantheon+SH0ES.dat` | tabela real SN/Cepheid-host distances | `Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat` |
+| `data/pantheon/Pantheon+SH0ES_STAT+SYS.cov` | matriz de covariância estatística+sistemática | `Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov` |
+| `data/pantheon/lcparam_full_long_zhel.txt` | compatibilidade com runner atual | cópia byte-for-byte de `Pantheon+SH0ES.dat` |
+
+**Comando:**
+
+```bash
+bash scripts/download_real_cosmology_inputs.sh
+python scripts/run_real_pantheon_validation.py
+```
+
+**Critério de validação:** gerar `data/results/model_comparison.json` com `n_obs`, `chi2`, `AIC`, `BIC`, deltas e hashes dos arquivos reais.
+
+## 2. DESI DR2 BAO — BAO 2025
+
+**Status:** fonte real registrada, mas ainda não chi2-ready no repositório.
+
+**Fonte primária:** DESI DR2 BAO, paper `arXiv:2503.14738`, publicado como `Phys. Rev. D 112, 083515 (2025)`.
+
+**Necessário antes de usar em fit:**
+
+| arquivo local requerido | conteúdo obrigatório |
+|---|---|
+| `data/real/desi_dr2_bao_measurements.csv` | tabela oficial de medidas BAO: tracer, z_eff, observável (`DM/rd`, `DH/rd`, `DV/rd` ou equivalente), valor, erro |
+| `data/real/desi_dr2_bao_covariance.csv` | matriz/correlação oficial compatível com a tabela |
+| `data/real/desi_dr2_bao_provenance.json` | URL/fonte, data, checksum, versão e notas de licença |
+
+**Critério de bloqueio:** sem tabela oficial e sem covariância, DESI fica como fonte real registrada, não como dado usado em chi2.
+
+## 3. Cosmic Chronometers — H(z)
+
+**Status:** seed real inicial já materializado.
+
+**Arquivo atual:** `data/real/cosmology_observational_seed_2026.csv`
+
+**Pontos reais já registrados:**
+
+| fonte | z | H(z) |
+|---|---:|---:|
+| `arXiv:2110.04304` | 0.75 | `98.8 ± 33.6 km/s/Mpc` |
+| `arXiv:2205.05701` | 0.80 | `113.1 km/s/Mpc` com erro assimétrico |
+| `arXiv:2512.02109` | 0.542 | `66.0 km/s/Mpc` com erro amplo |
+
+**Necessário para virar compilação forte:** coletar tabela completa de cronômetros cósmicos com referência por linha, método, erro estatístico/sistemático e política de covariância.
+
+## 4. Planck 2018 / CMB
+
+**Status:** referência/prior, não dado bruto ingerido.
+
+**Fonte primária aceitável:** Planck Legacy Archive / ESA ou produtos oficiais Planck 2018.
+
+**Necessário antes de usar:** declarar exatamente se o RLL usa:
+
+- prior comprimido (`Omega_b h^2`, `Omega_c h^2`, `theta_*`, etc.);
+- likelihood oficial;
+- cadeia MCMC;
+- ou apenas comparação bibliográfica.
+
+**Critério de bloqueio:** não usar Planck como número solto sem versão, likelihood/prior e arquivo verificável.
+
+## 5. Política anti-sintética
+
+- `mock`, `synthetic`, `demo`, `example`, `placeholder`, `TO_BE_REGENERATED`, `REGENERATE_WITH_SCRIPT` não podem entrar como dado real.
+- Se o arquivo oficial não foi baixado, registrar lacuna.
+- Se a matriz de covariância falta, não calcular chi2 completo.
+- Se a fonte é resumo de artigo, marcar como `source_summary` ou `observed_seed`, nunca `validated_dataset`.
+
+## 6. Ordem operacional correta
+
+```bash
+# 1. Baixar Pantheon+ oficial
+bash scripts/download_real_cosmology_inputs.sh
+
+# 2. Verificar inputs Pantheon+ e gerar comparação real
+python scripts/run_real_pantheon_validation.py
+
+# 3. Conferir artefato final
+cat data/results/model_comparison.json
+```
+
+## 7. Forma correta de resposta científica
+
+Uma resposta correta deve dizer:
+
+1. qual arquivo real foi usado;
+2. de qual fonte primária veio;
+3. qual checksum foi calculado;
+4. qual métrica foi gerada;
+5. qual conclusão é permitida;
+6. qual conclusão ainda é proibida.
+
+Sem isso, é só narrativa, não validação científica.
