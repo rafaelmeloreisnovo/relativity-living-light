@@ -38,5 +38,10 @@
     "no_network_required_for_default_run": true,
     "atomic_result_writes": "data.pipelines.structure_d.joint_real_likelihood._atomic_write_text",
     "rollback": "If a downstream check fails after output replacement, restore the paired *.bak artifact written beside the output file."
-  }
+  },
+  "source_signature_manifest": "data/real/cosmology/real_source_signatures.json",
+  "source_signature_outputs": [
+    "results/audit/real_source_signature_verification.json",
+    "results/audit/real_source_signature_verification.md"
+  ]
 }

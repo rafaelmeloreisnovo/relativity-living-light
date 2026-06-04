@@ -31,3 +31,19 @@ The consumer writes through a temporary file and replaces outputs atomically. If
 ## Boundary
 
 This directory only routes real, locally committed inputs. It does not claim that RLL is superior to ΛCDM; the output AIC/BIC table is the decision artifact.
+
+## Live source-signature verification
+
+Run:
+
+```bash
+python tools/verify_real_source_signatures.py
+```
+
+The verifier records bounded HTTP source signatures, required-term matches, local SHA256 hashes, and explicit failover status in:
+
+- `data/real/cosmology/real_source_signatures.json`
+- `results/audit/real_source_signature_verification.json`
+- `results/audit/real_source_signature_verification.md`
+
+A blocked source is not silently replaced; the committed local file remains the fallback until manual review.

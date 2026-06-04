@@ -28,3 +28,9 @@ Status: metadata_only / fetch-ready via orchestrator
 - `fsigma8_growth_real.csv` contém uma compilação real de medições de crescimento/RSD com colunas de proveniência por linha (`survey`, `method`, `reference`, `source_url`).
 - O arquivo substitui a fixture suave `data/inputs/structure_d/fsigma8.csv` apenas nas rotas de validação real/joint; a fixture continua no repositório para testes e rollback.
 - A auditoria `python tools/real_data_materialization_audit.py` registra essa rota como `fsigma8 → real_fsigma8` e `fsigma8_cov_synth → real_fsigma8`.
+
+## Assinaturas/proveniência viva de fontes
+
+- `real_source_signatures.json` é gerado por `python tools/verify_real_source_signatures.py`.
+- O arquivo registra SHA256 local, amostra HTTP limitada, termos obrigatórios encontrados e status de revisão/failover por fonte.
+- Uma fonte bloqueada permanece marcada como revisão necessária; isso não autoriza preencher dados ausentes.

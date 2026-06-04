@@ -156,3 +156,19 @@ Na versão atual, as rotas configuradas cobertas são:
 - `real_bao` legado → `real_desi_dr2_bao` (`data/real/cosmology/desi_dr2_bao_primary_points.csv`)
 
 Se uma rota real falhar, a política é **não preencher com número inventado**: manter o fixture como fallback de teste, marcar a rota como pendente e restaurar o `*.bak` do artefato se a escrita anterior tiver sido substituída.
+
+## 9) Verificação viva de assinaturas das fontes reais
+
+Depois da auditoria sintético → real, valide as assinaturas HTTP/proveniência das fontes externas usadas pelos arquivos locais:
+
+```bash
+python tools/verify_real_source_signatures.py
+```
+
+O verificador baixa apenas uma amostra limitada por URL, registra `status_code`, `content_type`, `etag`/`last_modified` quando disponíveis, SHA256 da amostra, termos obrigatórios encontrados e SHA256 do arquivo local. Ele grava:
+
+- `data/real/cosmology/real_source_signatures.json`
+- `results/audit/real_source_signature_verification.json`
+- `results/audit/real_source_signature_verification.md`
+
+Se uma fonte externa bloquear acesso ou não contiver os termos esperados, a linha fica como `source_needs_review`; a política de failover é manter o arquivo local versionado e não substituir por download parcial.
