@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-04T13:42:25.785795+00:00",
-  "git_commit": "28d5e116d4e5e78a2a442999ebabebe02f5c0900",
+  "generated_at": "2026-06-04T13:51:39.132871+00:00",
+  "git_commit": "fc4368caec277c3d730c05fdc6eea00197a1a736",
   "summary": {
-    "tracked_files_total": 707,
-    "cataloged_files": 689,
+    "tracked_files_total": 713,
+    "cataloged_files": 695,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33425534,
-    "total_text_lines": 105481,
-    "markdown_files": 355,
+    "total_bytes": 33859342,
+    "total_text_lines": 114645,
+    "markdown_files": 357,
     "yml_yaml_files": 29,
     "github_workflow_yml_files": 13,
-    "data_or_result_files": 64
+    "data_or_result_files": 68
   },
   "counts_by_ext": {
-    ".md": 355,
+    ".md": 357,
     ".yml": 29,
     "NO_EXT": 12,
     ".txt": 8,
     ".py": 102,
     ".sh": 6,
-    ".json": 28,
-    ".csv": 53,
+    ".json": 30,
+    ".csv": 54,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -28,6 +28,7 @@
     ".cff": 1,
     ".ipynb": 5,
     ".zip": 6,
+    ".tsv": 1,
     ".png": 63,
     ".tex": 3,
     ".pdf": 2,
@@ -36,21 +37,21 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 355,
+    "documentation_md": 357,
     "github_workflow_yml": 13,
     "config_yml": 16,
     "other": 120,
     "source_code": 114,
     "archive": 6,
-    "data_or_result": 64,
+    "data_or_result": 68,
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 322,
-    "mentions_mock_or_placeholder": 59,
-    "mentions_synthetic": 38,
-    "token_vazio_declared": 2,
-    "result_artifact": 54
+    "cosmology_validation_marker": 325,
+    "mentions_mock_or_placeholder": 63,
+    "mentions_synthetic": 43,
+    "token_vazio_declared": 7,
+    "result_artifact": 57
   },
   "files": [
     {
@@ -2774,6 +2775,16 @@
       ]
     },
     {
+      "path": "data/real/desi_dr2_bao_measurements.csv",
+      "size_bytes": 718,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "ed83affed17413bbd12fc27e028a8d70a9039aa8e2468bd5513fcd5bf1bb70c7",
+      "line_count": 14,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/geomagnetic/README.md",
       "size_bytes": 528,
       "ext": ".md",
@@ -2851,6 +2862,53 @@
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "data/results/repo_inventory.json",
+      "size_bytes": 230564,
+      "ext": ".json",
+      "kind": "data_or_result",
+      "sha256": "82c44ac7650ff1ae363b7cf24ead93a7d0feb46ac665b2baf6dfa59895e8a0dc",
+      "line_count": 7856,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared",
+        "cosmology_validation_marker",
+        "result_artifact"
+      ]
+    },
+    {
+      "path": "data/results/repo_inventory.tsv",
+      "size_bytes": 106340,
+      "ext": ".tsv",
+      "kind": "data_or_result",
+      "sha256": "a27de2ebfdee363e9c35e84807242023fea1ed8a12551915cace6d543646457e",
+      "line_count": 690,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared",
+        "cosmology_validation_marker",
+        "result_artifact"
+      ]
+    },
+    {
+      "path": "data/results/repo_inventory_summary.json",
+      "size_bytes": 3286,
+      "ext": ".json",
+      "kind": "data_or_result",
+      "sha256": "fce9f75d8fac1a1da2312e0c652e1c684bc58224d08558cbbd1da600a461df1b",
+      "line_count": 96,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared",
+        "result_artifact"
       ]
     },
     {
@@ -3209,14 +3267,16 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 35610,
+      "size_bytes": 122599,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "57f6cac74ddea7bafe9973976e114ec39ece88cd443aa0c33faaa37df6c5ce4c",
-      "line_count": 330,
+      "sha256": "9cd9f1304fbd1d35572efc236b2c1d1e5a32bd208c2289e213adebfa3d7219cb",
+      "line_count": 733,
       "is_text": true,
       "risk_flags": [
+        "mentions_synthetic",
         "mentions_mock_or_placeholder",
+        "token_vazio_declared",
         "cosmology_validation_marker"
       ]
     },
@@ -3734,6 +3794,20 @@
       ]
     },
     {
+      "path": "docs/REAL_NUMBERS_REPORT.md",
+      "size_bytes": 1453,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "30bd0b1dca7505a300e51327bf453d28e29a064fda71e07be20db2f38f7f817b",
+      "line_count": 69,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared"
+      ]
+    },
+    {
       "path": "docs/REFERENCES.md",
       "size_bytes": 46569,
       "ext": ".md",
@@ -3974,6 +4048,18 @@
       "line_count": 127,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "docs/YML_WORKFLOWS_INDEX.md",
+      "size_bytes": 4458,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "892ea78166fd3e076a78df97441d230ae683977be94b597473a8ae6d18895b12",
+      "line_count": 36,
+      "is_text": true,
+      "risk_flags": [
+        "cosmology_validation_marker"
+      ]
     },
     {
       "path": "docs/ZIP_CONTENT_INDEX.md",
