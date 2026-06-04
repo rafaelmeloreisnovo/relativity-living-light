@@ -1,0 +1,42 @@
+{
+  "schema": "rll.cosmology_joint_inputs.v1",
+  "status": "local_real_inputs_manifest",
+  "purpose": "Canonical feeding manifest for the joint H(z)+DESI DR2 BAO+fσ8+CMB-shift likelihood.",
+  "claim_boundary": "Only committed, traceable local inputs are listed. Missing external full products are not fabricated.",
+  "inputs": [
+    {
+      "axis": "expansion_Hz",
+      "path": "data/real/Hz_data_real.csv",
+      "observable": "H_obs",
+      "error_policy": "diagonal_sigma_H",
+      "notes": "Materialized H(z) table with source tags per row."
+    },
+    {
+      "axis": "bao_DESI_DR2",
+      "path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "covariance_summary_path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+      "observable": "DV_over_rd, DM_over_rd, DH_over_rd",
+      "error_policy": "13x13 covariance reconstructed from committed diagonal errors plus same-bin DM/DH correlations; BGS DV remains diagonal.",
+      "notes": "Full external DESI supplement remains an external heavy archive; this manifest uses the committed primary likelihood table and committed covariance summary."
+    },
+    {
+      "axis": "growth_fsigma8",
+      "path": "data/inputs/structure_d/fsigma8.csv",
+      "observable": "fs8",
+      "error_policy": "diagonal_sigma",
+      "notes": "Seven-point growth table already used by the Structure-D validation tests."
+    },
+    {
+      "axis": "cmb_shift",
+      "path": "data/real/CMB_shift_real.json",
+      "observable": "R_obs, la_obs",
+      "error_policy": "diagonal_R_la_sigma",
+      "notes": "Planck 2018 shift-parameter summary stored locally."
+    }
+  ],
+  "failsafe": {
+    "no_network_required_for_default_run": true,
+    "atomic_result_writes": "data.pipelines.structure_d.joint_real_likelihood._atomic_write_text",
+    "rollback": "If a downstream check fails after output replacement, restore the paired *.bak artifact written beside the output file."
+  }
+}

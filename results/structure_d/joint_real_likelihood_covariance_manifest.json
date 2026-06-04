@@ -1,0 +1,20 @@
+{
+  "schema": "rll.joint_real_likelihood.covariance_manifest.v1",
+  "desi_covariance_shape": [
+    13,
+    13
+  ],
+  "desi_covariance_sha256": "e40089445abcf624c49f2d7540c5680621d70530ef82a2b84d58adb242ff0b9d",
+  "input_sha256": {
+    "data/real/Hz_data_real.csv": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+    "data/real/cosmology/desi_dr2_bao_primary_points.csv": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
+    "data/real/cosmology/desi_dr2_bao_covariance_summary.csv": "e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e",
+    "data/inputs/structure_d/fsigma8.csv": "fe19ff5f82b967af7ea065c8ee17c5a22e639ec8364d2f266dfa18ed7d9aa4cf",
+    "data/real/CMB_shift_real.json": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc"
+  },
+  "failsafe": {
+    "atomic_write": true,
+    "backup_before_replace": true,
+    "rollback_instruction": "copy any non-empty *.bak file over the corresponding output if a downstream check fails"
+  }
+}

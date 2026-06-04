@@ -1,0 +1,66 @@
+{
+  "schema": "rll.joint_real_likelihood.v1",
+  "created_utc": "2026-06-04T05:28:44Z",
+  "runtime_seconds": 35.06210432,
+  "optimizer": {
+    "name": "scipy.optimize.differential_evolution",
+    "seed": 42,
+    "tol": 1e-06,
+    "maxiter_lcdm": 1,
+    "maxiter_rll": 1
+  },
+  "datasets": {
+    "Hz": "data/real/Hz_data_real.csv",
+    "DESI_DR2_BAO_primary": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+    "DESI_DR2_BAO_covariance_summary": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+    "fsigma8": "data/inputs/structure_d/fsigma8.csv",
+    "CMB_shift": "data/real/CMB_shift_real.json"
+  },
+  "rd_policy": "derived_power_law_from_H0_Om_Ob_h2",
+  "bao_covariance_policy": "block_covariance_from_committed_DESI_DR2_DM_DH_correlations; diagonal for unpaired BGS DV",
+  "claim_boundary": "AIC/BIC comparison only; no superiority claim is implied by this artifact.",
+  "rows": [
+    {
+      "model": "LCDM_joint_real",
+      "chi2": 60.19347484652296,
+      "AIC": 70.19347484652296,
+      "BIC": 80.23014077268532,
+      "N": 55,
+      "k": 5,
+      "dof": 50,
+      "chi2_Hz": 19.677042750942213,
+      "chi2_DESI_DR2_BAO": 23.833676592586894,
+      "chi2_fsigma8": 0.5582522850653563,
+      "chi2_CMB_shift": 16.1245032179285,
+      "H0": 60.0,
+      "Om": 0.3776063614523331,
+      "OL": 0.9633660179610464,
+      "Os0": null,
+      "zt": null,
+      "wt": null,
+      "Ob_h2": 0.026,
+      "sigma8": 0.8198545975937243
+    },
+    {
+      "model": "RLL_joint_real",
+      "chi2": 60.193474842099846,
+      "AIC": 76.19347484209985,
+      "BIC": 92.25214032395962,
+      "N": 55,
+      "k": 8,
+      "dof": 47,
+      "chi2_Hz": 19.67705448672934,
+      "chi2_DESI_DR2_BAO": 23.83385713180576,
+      "chi2_fsigma8": 0.5582555037316894,
+      "chi2_CMB_shift": 16.124307719833052,
+      "H0": 60.0,
+      "Om": 0.3776064559692,
+      "OL": 0.9633654133967567,
+      "Os0": 0.0,
+      "zt": 9.943784298125786,
+      "wt": 0.06201788456172794,
+      "Ob_h2": 0.026,
+      "sigma8": 0.8198543366590417
+    }
+  ]
+}
