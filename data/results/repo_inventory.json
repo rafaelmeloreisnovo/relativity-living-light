@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-04T13:51:39.132871+00:00",
-  "git_commit": "fc4368caec277c3d730c05fdc6eea00197a1a736",
+  "generated_at": "2026-06-04T13:52:13.392597+00:00",
+  "git_commit": "044952e6a19de0a750815ef7d36840f03643218d",
   "summary": {
-    "tracked_files_total": 713,
-    "cataloged_files": 695,
+    "tracked_files_total": 714,
+    "cataloged_files": 696,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33859342,
-    "total_text_lines": 114645,
+    "total_bytes": 33867099,
+    "total_text_lines": 114758,
     "markdown_files": 357,
     "yml_yaml_files": 29,
     "github_workflow_yml_files": 13,
-    "data_or_result_files": 68
+    "data_or_result_files": 69
   },
   "counts_by_ext": {
     ".md": 357,
@@ -20,7 +20,7 @@
     ".py": 102,
     ".sh": 6,
     ".json": 30,
-    ".csv": 54,
+    ".csv": 55,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -43,7 +43,7 @@
     "other": 120,
     "source_code": 114,
     "archive": 6,
-    "data_or_result": 68,
+    "data_or_result": 69,
     "test_or_validation": 1
   },
   "flags": {
@@ -2775,6 +2775,16 @@
       ]
     },
     {
+      "path": "data/real/desi_dr2_bao_covariance.csv",
+      "size_bytes": 2606,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "4c95c45bf14f8eb49bf03fa512984448428920f7a2ba0a846dae30ed1da08658",
+      "line_count": 14,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/desi_dr2_bao_measurements.csv",
       "size_bytes": 718,
       "ext": ".csv",
@@ -2866,11 +2876,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 230564,
+      "size_bytes": 233068,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "82c44ac7650ff1ae363b7cf24ead93a7d0feb46ac665b2baf6dfa59895e8a0dc",
-      "line_count": 7856,
+      "sha256": "745b4434a5aa14fd2dcfafe83e26b46d06d2a9fb9f6ab8331c940390a16828b6",
+      "line_count": 7942,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2882,11 +2892,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 106340,
+      "size_bytes": 107596,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "a27de2ebfdee363e9c35e84807242023fea1ed8a12551915cace6d543646457e",
-      "line_count": 690,
+      "sha256": "cbcff7b9d52ec734e14e8b3b19bd9b745192d435553761e17bbbe8dc4e330bbe",
+      "line_count": 696,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2901,7 +2911,7 @@
       "size_bytes": 3286,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "fce9f75d8fac1a1da2312e0c652e1c684bc58224d08558cbbd1da600a461df1b",
+      "sha256": "ef8200c1639fad8ed49f41af6140714d027c8cfe72cab9a7e12a62fa5ead2b48",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3267,11 +3277,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 122599,
+      "size_bytes": 123975,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9cd9f1304fbd1d35572efc236b2c1d1e5a32bd208c2289e213adebfa3d7219cb",
-      "line_count": 733,
+      "sha256": "a652221b5a6af427055ab71d5c17345d8df16139ef87119813b203692203c38b",
+      "line_count": 739,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3795,11 +3805,11 @@
     },
     {
       "path": "docs/REAL_NUMBERS_REPORT.md",
-      "size_bytes": 1453,
+      "size_bytes": 1468,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "30bd0b1dca7505a300e51327bf453d28e29a064fda71e07be20db2f38f7f817b",
-      "line_count": 69,
+      "sha256": "84f724fb5f2b8cec9b3b5f42e920f0cdde7785d391afcdd05b60de97dc0dd4a7",
+      "line_count": 70,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4054,7 +4064,7 @@
       "size_bytes": 4458,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "892ea78166fd3e076a78df97441d230ae683977be94b597473a8ae6d18895b12",
+      "sha256": "1bda61e9d56052ce26af33ba86b5c23b83c06f4d3e88f2d4ba18c9089e86b3bd",
       "line_count": 36,
       "is_text": true,
       "risk_flags": [
