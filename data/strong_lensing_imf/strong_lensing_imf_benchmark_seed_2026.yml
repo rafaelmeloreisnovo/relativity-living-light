@@ -1,0 +1,12 @@
+schema: strong_lensing_imf_benchmark_seed_2026
+formula_policy: canonical_RLL_formula_unchanged
+claim_boundary: >
+  These sources add observational validation targets only.
+  They do not prove RLL and do not modify the RLL equation.
+  Superiority claims require predefined real-data thresholds.
+observables:
+  - lens_redshift
+  - source_redshift
+  - einstein_radius_arcsec
+  - einstein_mass_msun
+  - stellar_mass_by
