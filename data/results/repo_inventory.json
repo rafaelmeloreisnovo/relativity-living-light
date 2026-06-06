@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-06T23:38:57.206282+00:00",
-  "git_commit": "6b616cdff967ae2c3a910805c84c851c0541d4dc",
+  "generated_at": "2026-06-06T23:40:05.771923+00:00",
+  "git_commit": "fdad76be1bbef7b0e556d132bc6ca5c35f64b909",
   "summary": {
     "tracked_files_total": 738,
     "cataloged_files": 720,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33934203,
-    "total_text_lines": 116445,
+    "total_bytes": 33934200,
+    "total_text_lines": 116439,
     "markdown_files": 372,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
@@ -2941,7 +2941,7 @@
       "size_bytes": 241561,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "e39ce4591e18e37f0b308e2c6fcfbb48ab8a63d9fb53f15171bc474956dd19ee",
+      "sha256": "d7c75afe24fd94ef3058dbe2c185faeb38cce69961a997d6c2bb1a4bcfa422a4",
       "line_count": 8224,
       "is_text": true,
       "risk_flags": [
@@ -2957,7 +2957,7 @@
       "size_bytes": 111717,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "8dc54b526e5e7ecfd25ea4bb2b3366aae000919a5e4547fb2417367c4fd24e18",
+      "sha256": "58beb7d194a647899e3d7473f66c2f1f5d8b8edbb90469820f567bab53abd4a0",
       "line_count": 721,
       "is_text": true,
       "risk_flags": [
@@ -2973,7 +2973,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "89d6e0986e960ac31ffcae673d8f1cb4f84b31e4dbe5c671cbde2010163bc20a",
+      "sha256": "5a5b9ff8f0ce2c1fd74f150c8b82d5e2bed4dd913cf92af50e3e3fa4e64a27d5",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3406,7 +3406,7 @@
       "size_bytes": 128596,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "6453d116260614601f614dbb3b2261a70ab0263a76abb04262ba5a61569bd195",
+      "sha256": "bc1b5b83d37c60876d0f270c66b1fae000220dd7b47e6ff22eff80207010c4fb",
       "line_count": 764,
       "is_text": true,
       "risk_flags": [
@@ -3945,7 +3945,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b6c4b66b14346ca72ea73b4065c144c8a362f52c25bd490dc7af24d09dcb10b1",
+      "sha256": "31ffacb70282a8e57d4eecb6948f2214598dc56acd1339f2e44fc091b90bc84e",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4049,11 +4049,11 @@
     },
     {
       "path": "docs/RLL_ENERGY_MOMENTUM_BRIDGE.md",
-      "size_bytes": 415,
+      "size_bytes": 412,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8c7c071631d3bba4234b88b5eb97bfef29cbe9aaaa7a813788e44989a0444ef3",
-      "line_count": 17,
+      "sha256": "3cd6820ff9ef8b4bb0d739a08fdf6d5f0bb044974ce3b3bda0933a8e330bf9a2",
+      "line_count": 11,
       "is_text": true,
       "risk_flags": []
     },
@@ -4211,7 +4211,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "10256d9f3f2a0448d27fddded88172a62397180d3e76e7a1e95f7fa30c9e4d0a",
+      "sha256": "f8e553269241111d879e19f26fac9068de5fd6323dd9f1fccbb525f101c70c18",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
