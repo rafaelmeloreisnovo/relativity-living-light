@@ -1,17 +1,11 @@
-# RLL Energy-Momentum Bridge — SGP/FNext Operational Note
+# RLL Energy-Momentum Bridge — SGP/FNext
 
-Status: operational research note, not a superiority claim.
+Status: operational research note. Not a superiority claim.
 
-Publication-safe sentence:
+Publication language: RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.
 
-> RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.
+Claim boundary: No superiority claim unless real-data metrics pass predefined thresholds.
 
-Claim boundary:
+## Core correction
 
-> No superiority claim unless real-data metrics pass predefined thresholds.
-
----
-
-## 1. Purpose
-
-This document records the operational bridge requested for the
+RLL must not say that converted rest mass stops gravitating. The correct bridge is that
