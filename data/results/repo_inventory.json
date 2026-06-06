@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-06T12:28:24.945727+00:00",
-  "git_commit": "cbd6520c5ceb98e7f7ef6b58cbce1bcf25535dac",
+  "generated_at": "2026-06-06T12:29:16.467920+00:00",
+  "git_commit": "50168101fa6165ba0c8ecbefef7f2c99a75e64b8",
   "summary": {
     "tracked_files_total": 735,
     "cataloged_files": 717,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33930200,
-    "total_text_lines": 116356,
+    "total_bytes": 33930870,
+    "total_text_lines": 116368,
     "markdown_files": 370,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
@@ -2938,11 +2938,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 240273,
+      "size_bytes": 240604,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "9e6eae758616960ee68e54214ec3b5fee9538e3170462b949d381c20b777b72a",
-      "line_count": 8184,
+      "sha256": "6267910e13e0eaa4ff0bfe3dfe4e0475ef4efd0a1c819d734158431b7b39dbcc",
+      "line_count": 8194,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2954,11 +2954,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 111081,
+      "size_bytes": 111249,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "adbac2e34856193149111645d5ca56b36db4b2089793f7e2dcc68c08b767f164",
-      "line_count": 717,
+      "sha256": "798767a852b4f21f007aa46aaa832b6ded369ef13853ac756c049e44c307391a",
+      "line_count": 718,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2973,7 +2973,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "89a74e25491c1e19932b8b5b006c498a9c2926c73cb7e38b07692393b61e8896",
+      "sha256": "98343e168afc61dcbe1d6001465ac5e9476ff8517c4182ff4c2da9651ef7900e",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3038,10 +3038,10 @@
     },
     {
       "path": "data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026_v2.csv",
-      "size_bytes": 466,
+      "size_bytes": 449,
       "ext": ".csv",
       "kind": "data_or_result",
-      "sha256": "50ded0b609200bd1ad49eead445fdcb7f8b0f2bc796c83912844dec2eb6e3eae",
+      "sha256": "effd7231c6097f16ef8e2e5e4679d3fa24b5b9f1dd2b34b4648ad2b86277f02a",
       "line_count": 2,
       "is_text": true,
       "risk_flags": []
@@ -3393,11 +3393,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 127880,
+      "size_bytes": 128068,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "355e887e1c39d34af8f15a1bd23c2127ec93d0da538f2f40c12235224980c93d",
-      "line_count": 760,
+      "sha256": "105f016e40bcec659d8b321e288a9a9ccc4d6a8c5b696abde58f2950dfecab6e",
+      "line_count": 761,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3935,7 +3935,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "95729b9993accc379b065e06333783641ec3ee8968f3020af17801b0860a0ca2",
+      "sha256": "eba8cb85f391ba67e2186f8a5b709804439f6eeae365a070b44e5a49f66c546a",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4191,7 +4191,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d8bc48db12dbed1ba2b35695da656890347c9f9b1f1f5a87b0e808d609c9276e",
+      "sha256": "c3ba262cc4aa3dd4421bb3a8d6f3cf3d0977983c6fa9b7b0030f68824a937c98",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [
