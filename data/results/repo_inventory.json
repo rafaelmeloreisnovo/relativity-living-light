@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-04T20:50:57.982381+00:00",
-  "git_commit": "df8881f231bd832ce1e7ea999259fb8afc77e72e",
+  "generated_at": "2026-06-06T12:26:07.214435+00:00",
+  "git_commit": "001597c4197a1da168a578db2aa8b11f00d05cad",
   "summary": {
-    "tracked_files_total": 732,
-    "cataloged_files": 714,
+    "tracked_files_total": 733,
+    "cataloged_files": 715,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33927548,
-    "total_text_lines": 116324,
+    "total_bytes": 33927949,
+    "total_text_lines": 116325,
     "markdown_files": 370,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
-    "data_or_result_files": 71
+    "data_or_result_files": 72
   },
   "counts_by_ext": {
     ".md": 370,
@@ -20,7 +20,7 @@
     ".py": 103,
     ".sh": 6,
     ".json": 32,
-    ".csv": 55,
+    ".csv": 56,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -43,7 +43,7 @@
     "other": 120,
     "source_code": 115,
     "archive": 6,
-    "data_or_result": 71,
+    "data_or_result": 72,
     "test_or_validation": 1
   },
   "flags": {
@@ -2941,7 +2941,7 @@
       "size_bytes": 239621,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "dbbdbfc40d7e48338fa0fc591dfa4483a62ef8bd216f52c66a7127158f72f426",
+      "sha256": "8165f0aa5cffbaea07b0e741b5f6debbb4f6944acd62440a750a9775047cc828",
       "line_count": 8164,
       "is_text": true,
       "risk_flags": [
@@ -2957,7 +2957,7 @@
       "size_bytes": 110755,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "c16188598875f4174348187d232d35f554eac7725463366202c1440cded2a7ea",
+      "sha256": "6ed942bf3f44e398d64abfcf1336b4cf38bb1516df3fce43d19ded0ce3d2753e",
       "line_count": 715,
       "is_text": true,
       "risk_flags": [
@@ -2973,7 +2973,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "09e5e8ee36811c2d8f1ef09ee379c994f763f567fb836990669be1f27ed5963a",
+      "sha256": "8794c3503cbf5df22dae961a090adbd2a7c60e889fa5421c2ad6d5116a0ed0e8",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3023,6 +3023,16 @@
       "kind": "other",
       "sha256": "e26376ab8edc0ed352e8ac54add5f58cf5d696e93d24724c4e4ddfd083b10fea",
       "line_count": 78,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026.csv",
+      "size_bytes": 401,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "bb2a0fe7bc26bbf002bdcca3f89ff8e01aa7f4c9cfeda545b3b26dcd4c66cc45",
+      "line_count": 1,
       "is_text": true,
       "risk_flags": []
     },
@@ -3366,7 +3376,7 @@
       "size_bytes": 127514,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c269e4d322ee84f4d48b2386a7c87ecfa5cdfa25b152d1b42f4cd6e611a3be39",
+      "sha256": "1bdffbc03a2ab4a87444655476029e9a18d673e08dc413801bf30801b1bf87fe",
       "line_count": 758,
       "is_text": true,
       "risk_flags": [
@@ -3905,7 +3915,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "80d3e60663ac50df3a6483d17a0aabb20171a9e04f585e58a93c3db0cfaaf27c",
+      "sha256": "1d72829c6d24314dd6c93ec2e669f2e741b273626183f88d3caceaa7d1363f11",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4161,7 +4171,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7a2ff5289877902e5a42f95d7bc1f007d74315b3d0067bd05c8eeec12e937fc3",
+      "sha256": "b4982ab46308f8310a7edf8576134add4ce481d7a468c98fa21a13dd39de452e",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [

@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-04T20:50:57.982381+00:00",
-  "git_commit": "df8881f231bd832ce1e7ea999259fb8afc77e72e",
+  "generated_at": "2026-06-06T12:26:07.214435+00:00",
+  "git_commit": "001597c4197a1da168a578db2aa8b11f00d05cad",
   "summary": {
-    "tracked_files_total": 732,
-    "cataloged_files": 714,
+    "tracked_files_total": 733,
+    "cataloged_files": 715,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33927548,
-    "total_text_lines": 116324,
+    "total_bytes": 33927949,
+    "total_text_lines": 116325,
     "markdown_files": 370,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
-    "data_or_result_files": 71
+    "data_or_result_files": 72
   },
   "flags": {
     "cosmology_validation_marker": 338,
