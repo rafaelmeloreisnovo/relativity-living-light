@@ -14,4 +14,4 @@ Claim boundary:
 
 ## 1. Purpose
 
-This document records an
+This document records the operational bridge requested for the
