@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-06T12:26:53.736935+00:00",
-  "git_commit": "1141f3f8e07776e49d40608d00b31969b2f75092",
+  "generated_at": "2026-06-06T12:28:24.945727+00:00",
+  "git_commit": "cbd6520c5ceb98e7f7ef6b58cbce1bcf25535dac",
   "summary": {
-    "tracked_files_total": 734,
-    "cataloged_files": 716,
+    "tracked_files_total": 735,
+    "cataloged_files": 717,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33929068,
-    "total_text_lines": 116342,
+    "total_bytes": 33930200,
+    "total_text_lines": 116356,
     "markdown_files": 370,
     "yml_yaml_files": 31,
     "github_workflow_yml_files": 13,
-    "data_or_result_files": 73
+    "data_or_result_files": 74
   },
   "counts_by_ext": {
     ".md": 370,
@@ -20,7 +20,7 @@
     ".py": 103,
     ".sh": 6,
     ".json": 33,
-    ".csv": 56,
+    ".csv": 57,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -43,7 +43,7 @@
     "other": 120,
     "source_code": 115,
     "archive": 6,
-    "data_or_result": 73,
+    "data_or_result": 74,
     "test_or_validation": 1
   },
   "flags": {
@@ -2938,11 +2938,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 239949,
+      "size_bytes": 240273,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "a967d4232a721931944928b356d944f08379c2e4dc0ddb69cd099114f21f66f7",
-      "line_count": 8174,
+      "sha256": "9e6eae758616960ee68e54214ec3b5fee9538e3170462b949d381c20b777b72a",
+      "line_count": 8184,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2954,11 +2954,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 110920,
+      "size_bytes": 111081,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "a7863e1aa5d9cc63d5fe6f7245d35ea68b40933954bb84123b812aebc83dbc25",
-      "line_count": 716,
+      "sha256": "adbac2e34856193149111645d5ca56b36db4b2089793f7e2dcc68c08b767f164",
+      "line_count": 717,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2973,7 +2973,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "198425cedac641249b5a08e7181c5ceae79c368f34e6a7ff62c7f52b56dcad52",
+      "sha256": "89a74e25491c1e19932b8b5b006c498a9c2926c73cb7e38b07692393b61e8896",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3033,6 +3033,16 @@
       "kind": "data_or_result",
       "sha256": "bb2a0fe7bc26bbf002bdcca3f89ff8e01aa7f4c9cfeda545b3b26dcd4c66cc45",
       "line_count": 1,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026_v2.csv",
+      "size_bytes": 466,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "50ded0b609200bd1ad49eead445fdcb7f8b0f2bc796c83912844dec2eb6e3eae",
+      "line_count": 2,
       "is_text": true,
       "risk_flags": []
     },
@@ -3383,11 +3393,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 127699,
+      "size_bytes": 127880,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f016e93e6157de7c88f3466cd2821b1293d6013dc3b21078bd11053de4a280c1",
-      "line_count": 759,
+      "sha256": "355e887e1c39d34af8f15a1bd23c2127ec93d0da538f2f40c12235224980c93d",
+      "line_count": 760,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3925,7 +3935,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "798e8573486a865b89eac5e313638dd8ad1678c8ede73a07d8deb36085d6b02d",
+      "sha256": "95729b9993accc379b065e06333783641ec3ee8968f3020af17801b0860a0ca2",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4181,7 +4191,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3785b49507f18bd9529cd95e8ce38054064ed9f8f48b410acdeade254310b155",
+      "sha256": "d8bc48db12dbed1ba2b35695da656890347c9f9b1f1f5a87b0e808d609c9276e",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [
