@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-06T12:32:00.444513+00:00",
-  "git_commit": "8fbaf96d736da9e2c80845d18de607662c3f5905",
+  "generated_at": "2026-06-06T23:37:36.415392+00:00",
+  "git_commit": "de583b5965a940da799d81f74f34d83d018fe893",
   "summary": {
-    "tracked_files_total": 737,
-    "cataloged_files": 719,
+    "tracked_files_total": 738,
+    "cataloged_files": 720,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33932504,
-    "total_text_lines": 116404,
-    "markdown_files": 371,
+    "total_bytes": 33933577,
+    "total_text_lines": 116433,
+    "markdown_files": 372,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 74
