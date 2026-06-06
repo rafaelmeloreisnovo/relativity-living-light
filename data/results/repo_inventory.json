@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-06T12:29:16.467920+00:00",
-  "git_commit": "50168101fa6165ba0c8ecbefef7f2c99a75e64b8",
+  "generated_at": "2026-06-06T12:29:55.798744+00:00",
+  "git_commit": "ade270d5fd10ed9944ac70c963f4707e06e2b034",
   "summary": {
-    "tracked_files_total": 735,
-    "cataloged_files": 717,
+    "tracked_files_total": 736,
+    "cataloged_files": 718,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33930870,
-    "total_text_lines": 116368,
+    "total_bytes": 33931284,
+    "total_text_lines": 116380,
     "markdown_files": 370,
-    "yml_yaml_files": 31,
+    "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 74
   },
   "counts_by_ext": {
     ".md": 370,
-    ".yml": 31,
+    ".yml": 32,
     "NO_EXT": 12,
     ".txt": 8,
     ".py": 103,
@@ -39,7 +39,7 @@
   "counts_by_kind": {
     "documentation_md": 370,
     "github_workflow_yml": 13,
-    "config_yml": 18,
+    "config_yml": 19,
     "other": 120,
     "source_code": 115,
     "archive": 6,
@@ -2941,7 +2941,7 @@
       "size_bytes": 240604,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "6267910e13e0eaa4ff0bfe3dfe4e0475ef4efd0a1c819d734158431b7b39dbcc",
+      "sha256": "fae59cd79680b98c51a40572f645ae4322f5ebfc1fe3ab11fe0692e8fdb373e7",
       "line_count": 8194,
       "is_text": true,
       "risk_flags": [
@@ -2957,7 +2957,7 @@
       "size_bytes": 111249,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "798767a852b4f21f007aa46aaa832b6ded369ef13853ac756c049e44c307391a",
+      "sha256": "a21d3bf0513949976500d746df50659c502f7208262dd9f0d1baecf6b9627837",
       "line_count": 718,
       "is_text": true,
       "risk_flags": [
@@ -2973,7 +2973,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "98343e168afc61dcbe1d6001465ac5e9476ff8517c4182ff4c2da9651ef7900e",
+      "sha256": "f111051fe52fbe9273e670932b8a56d5f2fd72901e20f62367cf0326981f144e",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3033,6 +3033,16 @@
       "kind": "data_or_result",
       "sha256": "bb2a0fe7bc26bbf002bdcca3f89ff8e01aa7f4c9cfeda545b3b26dcd4c66cc45",
       "line_count": 1,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026.yml",
+      "size_bytes": 414,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "0c903f80d9db20ab9cf58b212517bdf546e611afa3a98ce44e090581ed087c66",
+      "line_count": 12,
       "is_text": true,
       "risk_flags": []
     },
@@ -3396,7 +3406,7 @@
       "size_bytes": 128068,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "105f016e40bcec659d8b321e288a9a9ccc4d6a8c5b696abde58f2950dfecab6e",
+      "sha256": "a0e25d3befbbcdb00e6119177daf5e3318e4503db2b6bcd0cff0e800499f790b",
       "line_count": 761,
       "is_text": true,
       "risk_flags": [
@@ -3935,7 +3945,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "eba8cb85f391ba67e2186f8a5b709804439f6eeae365a070b44e5a49f66c546a",
+      "sha256": "9a47beb2486623b0916bfa6f8862858b97f0ca3f823c0f9a4eb5b5bffec1f007",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4191,7 +4201,7 @@
       "size_bytes": 4755,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c3ba262cc4aa3dd4421bb3a8d6f3cf3d0977983c6fa9b7b0030f68824a937c98",
+      "sha256": "1b57469f15f19d0be17ca12abd4f93ad95642a1fd3663ca44e4369cdc7a76787",
       "line_count": 38,
       "is_text": true,
       "risk_flags": [

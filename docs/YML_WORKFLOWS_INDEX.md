@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-06T12:29:16.467920+00:00`  
-Commit: `50168101fa6165ba0c8ecbefef7f2c99a75e64b8`
+Gerado em: `2026-06-06T12:29:55.798744+00:00`  
+Commit: `ade270d5fd10ed9944ac70c963f4707e06e2b034`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -29,6 +29,7 @@ Commit: `50168101fa6165ba0c8ecbefef7f2c99a75e64b8`
 | `data/rll_latentes/examples/invalid_missing_falsifier.yml` | `config_yml` | 2625 | 54 | `aaa9313b8de599f4d3c7b65438b10aff1e92472c2a85376f4e911904e7214cde` |
 | `data/rll_latentes/examples/valid_minimal.yml` | `config_yml` | 2690 | 55 | `f3266b086ca9a324398cb4cf9909559c42d46a48b6a8d72f6d98a17f01d94bf8` |
 | `data/rll_latentes/observations.yml` | `config_yml` | 13713 | 237 | `73e933b62a1f4b8811d407614a8ff5d845f34ee3dd8d413393c4d180bef40bd6` |
+| `data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026.yml` | `config_yml` | 414 | 12 | `0c903f80d9db20ab9cf58b212517bdf546e611afa3a98ce44e090581ed087c66` |
 | `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `rll_equation_registry.yml` | `config_yml` | 2162 | 64 | `88122f0b0c79c6cb24867f1c8c15587c93756610f35b6d7e072ef0b1c3fdd55b` |
 | `rll_inovacao_tecnologica_watch.yml` | `config_yml` | 1510 | 41 | `bb3b76a4bbbdf55a3cf6d381721e9a01bf2ddac54bb4779e0f0b48a647237ef3` |
