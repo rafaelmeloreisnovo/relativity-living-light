@@ -62,5 +62,26 @@
       "Ob_h2": 0.018,
       "sigma8": 0.7415758287968826
     }
-  ]
+  ],
+  "fnext": {
+    "schema": "rll.energy_momentum_bridge.fnext.v1",
+    "status": "waiting_for_measured_F_gap",
+    "claim_boundary": "Diagnostic gate only; no superiority claim is implied.",
+    "formula": "FNext = delta_chi2 + delta_AIC + delta_BIC + F_gap",
+    "baseline_model": "LCDM_joint_real",
+    "candidate_model": "RLL_joint_real",
+    "delta_chi2_candidate_minus_baseline": 173.08427662295406,
+    "delta_AIC_candidate_minus_baseline": 179.08427662295406,
+    "delta_BIC_candidate_minus_baseline": 185.56092587303306,
+    "F_gap": null,
+    "F_gap_status": "not_measured",
+    "F_gap_rows_used": 0,
+    "score": null,
+    "gap_detail": {
+      "status": "not_measured",
+      "rows_used": 0,
+      "F_gap": null,
+      "note": "No transition ledger supplied; missing bridge term must be measured, not invented."
+    }
+  }
 }
