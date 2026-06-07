@@ -29,6 +29,7 @@ except ImportError as exc:  # pragma: no cover - exercised by environment setup
         "joint_real_likelihood requires SciPy. Install with `pip install -r requirements.txt`."
     ) from exc
 
+from .energy_momentum_bridge import build_fnext_gate
 from .likelihood import aic, bic, chi2_with_covariance
 
 TEXTUAL_OUTPUTS = [
@@ -366,6 +367,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         "rd_policy": "derived_power_law_from_H0_Om_Ob_h2",
         "bao_covariance_policy": "block_covariance_from_committed_DESI_DR2_DM_DH_correlations; diagonal for unpaired BGS DV",
         "claim_boundary": "AIC/BIC comparison only; no superiority claim is implied by this artifact.",
+        "fnext": _json_safe(build_fnext_gate(rows, MODEL_LCDM, MODEL_RLL)),
         "rows": _json_safe(rows),
     }
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.json", json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n"))
