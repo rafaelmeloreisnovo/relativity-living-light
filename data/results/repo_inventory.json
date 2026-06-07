@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-07T00:57:21.370230+00:00",
-  "git_commit": "03c4a60bb558ea07506146bddcd442ad5fd18f43",
+  "generated_at": "2026-06-07T01:25:05.832439+00:00",
+  "git_commit": "8a4a0f99ad9cc0935cafc2c61eca0ea9c6cf9480",
   "summary": {
-    "tracked_files_total": 752,
-    "cataloged_files": 734,
+    "tracked_files_total": 753,
+    "cataloged_files": 735,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33980459,
-    "total_text_lines": 117497,
+    "total_bytes": 34009405,
+    "total_text_lines": 118054,
     "markdown_files": 378,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
-    "data_or_result_files": 77
+    "data_or_result_files": 78
   },
   "counts_by_ext": {
     ".md": 378,
@@ -19,7 +19,7 @@
     ".txt": 8,
     ".py": 108,
     ".sh": 6,
-    ".json": 36,
+    ".json": 37,
     ".csv": 57,
     ".s": 4,
     ".c": 4,
@@ -43,13 +43,13 @@
     "other": 120,
     "source_code": 120,
     "archive": 6,
-    "data_or_result": 77,
+    "data_or_result": 78,
     "test_or_validation": 1
   },
   "flags": {
     "cosmology_validation_marker": 345,
-    "mentions_mock_or_placeholder": 66,
-    "mentions_synthetic": 55,
+    "mentions_mock_or_placeholder": 68,
+    "mentions_synthetic": 57,
     "token_vazio_declared": 12,
     "result_artifact": 62
   },
@@ -2595,11 +2595,11 @@
     },
     {
       "path": "data/pipelines/structure_d/synthetic_real_boundary.py",
-      "size_bytes": 6007,
+      "size_bytes": 9418,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "ca2274f216122647335528e94fb29dd352397408ee5bd8c5cc3a5e9e77ed611e",
-      "line_count": 157,
+      "sha256": "726a77eea0b4c0722da82f8041007a64e60977e58bf1fa23bc78be9c9dd7c943",
+      "line_count": 241,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3002,11 +3002,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 242306,
+      "size_bytes": 246767,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "afc1700470a8a8bd9bb26a5033128defa5c286b34b33a1b9d3d52448ede85fca",
-      "line_count": 8250,
+      "sha256": "0745ac4d44ffb9fad8fc81f207836528deb1ca793b12de7e18cbc2281d868457",
+      "line_count": 8403,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3018,11 +3018,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 112082,
+      "size_bytes": 114260,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "df72717d49018ed023d48d44b5d2a8d32bb9c41ec156991edccecd9ec5814f11",
-      "line_count": 723,
+      "sha256": "24a0e9a59bc3e7e6723b9e21b2b1f9b309bc736c57ad9d3d66cf2f5cb0c88ffb",
+      "line_count": 735,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3037,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "549a7dd3c43d47c70432aadc39569c928638004a21f80365278c5c11a1adc5e6",
+      "sha256": "d720ae26d0fec3f3f6fe9156b26c85efd4e9c66f54e3ff178dd3608fc10bf6b9",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3131,15 +3131,29 @@
       "risk_flags": []
     },
     {
-      "path": "data/synthetic/README.md",
-      "size_bytes": 153,
-      "ext": ".md",
-      "kind": "documentation_md",
-      "sha256": "fa314988d42bec531751fb7a18804508d455b8dc61c78f53c540591930ec294e",
-      "line_count": 3,
+      "path": "data/synthetic/LEGACY_SYNTHETIC_MANIFEST.json",
+      "size_bytes": 9072,
+      "ext": ".json",
+      "kind": "data_or_result",
+      "sha256": "c5a0f215514a059a2feeef73367670983fc349d7ed3126af858648ee3dbb5190",
+      "line_count": 166,
       "is_text": true,
       "risk_flags": [
-        "mentions_synthetic"
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder"
+      ]
+    },
+    {
+      "path": "data/synthetic/README.md",
+      "size_bytes": 943,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "a06f8c7d196429fee916ead91e9accb70b6c523696befdc4da947fb783e0fd9e",
+      "line_count": 17,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder"
       ]
     },
     {
@@ -3479,11 +3493,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 129001,
+      "size_bytes": 131419,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b8a5bf184b95e3a031d336cd4bdecd6412ed1ddcfef3f0519bc4a643864ed82c",
-      "line_count": 766,
+      "sha256": "906afa621fe5eb0553e249cffae4c8e70263d64e40486dceb133a73fdded4f0e",
+      "line_count": 778,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4021,7 +4035,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "838e9f68a040dd04a01a605b984642f978223aae1a30190576e6dd47e3df8601",
+      "sha256": "16869c0ce3ed5a7644b146c4b1e50e3948463e82e79df22d5f9bf66c7f776915",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4238,11 +4252,11 @@
     },
     {
       "path": "docs/SYNTHETIC_VS_REAL_DATA_BOUNDARY.md",
-      "size_bytes": 2553,
+      "size_bytes": 4594,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f843f64caf379e2cd2942e61690296d8e115f96fa97da39d5bb390265683c683",
-      "line_count": 53,
+      "sha256": "0920f256613d8a82b535240a2ee8ae64becdecab2f5ae689bb3fd0fc7617e8d8",
+      "line_count": 69,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4313,7 +4327,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ab02ddd19e87fcd2577366afc82f77d58dc4d7468e06463ff891be2049c2cd11",
+      "sha256": "13b35bd31072e86c230ff39bb2c8ed22694422658ac83dea90c48a3584cff9fc",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
@@ -7055,11 +7069,11 @@
     },
     {
       "path": "results/synthetic/README.md",
-      "size_bytes": 173,
+      "size_bytes": 583,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d1012f59a7f6a30514bcdf2d39bedba8b53291da74ebc6ed978834e1f22844c1",
-      "line_count": 3,
+      "sha256": "62457eebc8913d430c2720bbe5bb4a5187047feaf2f296a5b1301ccd9043e97c",
+      "line_count": 12,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -7499,13 +7513,15 @@
     },
     {
       "path": "tests/fixtures/README.md",
-      "size_bytes": 99,
+      "size_bytes": 491,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c405414003eedeaff6739ad32edb6d19df2d34d2097456cccec80f5e1afb866d",
-      "line_count": 3,
+      "sha256": "2ae35ecafd77bf44d737805b62a0aa2e0693b0a4474e0630f72c38e209731bb4",
+      "line_count": 7,
       "is_text": true,
-      "risk_flags": []
+      "risk_flags": [
+        "mentions_synthetic"
+      ]
     },
     {
       "path": "tests/test_bh_flux_calc.py",
@@ -7781,11 +7797,11 @@
     },
     {
       "path": "tests/test_synthetic_real_boundary.py",
-      "size_bytes": 2333,
+      "size_bytes": 6106,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "1fdf54ce4168f25e53d80660a73a322ccc5bb0b6897657b94d4cfb3b3804db86",
-      "line_count": 53,
+      "sha256": "8635aaf75e5dd2e489eae100f03bded515ce29cb9c6104241331382f3e2eefa0",
+      "line_count": 140,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
