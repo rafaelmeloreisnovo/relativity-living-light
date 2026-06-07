@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import json
 import math
 from collections.abc import Mapping, Sequence
+from pathlib import Path
 from typing import Any
 
 CLAIM_BOUNDARY = "No superiority claim unless real-data metrics pass predefined thresholds."
@@ -15,6 +17,10 @@ DATASET_TYPES = {
     "mixed_forbidden",
     "unknown_forbidden",
 }
+APPROVED_SYNTHETIC_ROOTS = ("data/synthetic/", "results/synthetic/", "tests/fixtures/")
+LEGACY_SYNTHETIC_MANIFEST_PATH = Path("data/synthetic/LEGACY_SYNTHETIC_MANIFEST.json")
+SYNTHETIC_PATH_TOKENS = ("synthetic", "synth", "mock", "demo", "fixture", "example")
+
 INTERPRETATION_LABELS = {
     "inconclusive",
     "lcdm_preferred",
@@ -22,6 +28,84 @@ INTERPRETATION_LABELS = {
     "rll_preferred_strong",
     "blocked_non_real_dataset",
 }
+
+
+def normalize_repo_path(path: str | Path) -> str:
+    """Return a stable POSIX-style relative repository path."""
+
+    return str(path).replace("\\", "/").lstrip("./")
+
+
+def is_approved_synthetic_path(path: str | Path) -> bool:
+    """Return True when a path lives inside an approved synthetic/fixture root."""
+
+    normalized = normalize_repo_path(path)
+    return any(normalized.startswith(root) for root in APPROVED_SYNTHETIC_ROOTS)
+
+
+def looks_like_synthetic_path(path: str | Path) -> bool:
+    """Detect path names that carry synthetic/mock/demo/fixture/example semantics."""
+
+    normalized = normalize_repo_path(path).lower()
+    return any(token in normalized for token in SYNTHETIC_PATH_TOKENS)
+
+
+def load_legacy_synthetic_manifest(manifest_path: str | Path = LEGACY_SYNTHETIC_MANIFEST_PATH) -> dict[str, Any]:
+    """Load the legacy synthetic manifest used for compatibility exceptions."""
+
+    with Path(manifest_path).open(encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def legacy_synthetic_paths(manifest_path: str | Path = LEGACY_SYNTHETIC_MANIFEST_PATH) -> set[str]:
+    """Return legacy paths already cataloged behind the synthetic claim boundary."""
+
+    manifest = load_legacy_synthetic_manifest(manifest_path)
+    return {normalize_repo_path(entry["original_path"]) for entry in manifest.get("entries", [])}
+
+
+def find_unapproved_synthetic_paths(
+    paths: Sequence[str | Path],
+    *,
+    manifest_path: str | Path = LEGACY_SYNTHETIC_MANIFEST_PATH,
+) -> list[str]:
+    """List synthetic-looking paths outside approved roots and outside the manifest."""
+
+    cataloged = legacy_synthetic_paths(manifest_path)
+    violations: list[str] = []
+    for path in paths:
+        normalized = normalize_repo_path(path)
+        if is_approved_synthetic_path(normalized):
+            continue
+        if normalized in cataloged:
+            continue
+        if looks_like_synthetic_path(normalized):
+            violations.append(normalized)
+    return sorted(violations)
+
+
+def enforce_real_validation_input_boundary(metadata: Mapping[str, Any]) -> dict[str, Any]:
+    """Block real-validation inputs that route through synthetic/mock artifacts."""
+
+    dataset_type = classify_dataset_type(dict(metadata))
+    paths = [normalize_repo_path(path) for path in _as_sequence(metadata.get("path")) + _as_sequence(metadata.get("paths"))]
+    violating_paths = [
+        path
+        for path in paths
+        if looks_like_synthetic_path(path)
+        and not (is_approved_synthetic_path(path) and _truthy(metadata.get("regression_fixture")))
+    ]
+    allowed = dataset_type == "real_observational" and not violating_paths
+    return {
+        "real_validation_input_allowed": allowed,
+        "dataset_type": dataset_type,
+        "violating_paths": violating_paths,
+        "reason": (
+            "Real validation input paths are observational and contain no synthetic/mock/fixture markers."
+            if allowed
+            else "Real validation cannot consume synthetic/mock/demo/example/fixture artifacts unless they are explicit test fixtures."
+        ),
+    }
 
 
 def _as_sequence(value: Any) -> list[Any]:
@@ -66,7 +150,7 @@ def classify_dataset_type(metadata: dict) -> str:
         for key in ("synthetic", "mock", "fixture", "regression_fixture", "sanity_check")
     ) or _contains_token(
         all_values,
-        {"synthetic", "synth", "mock", "fixture", "tests/fixtures", "data/synthetic", "results/synthetic"},
+        {"synthetic", "synth", "mock", "demo", "example", "fixture", "tests/fixtures", "data/synthetic", "results/synthetic"},
     )
     real_flag = any(
         _truthy(metadata.get(key)) for key in ("real", "observational", "measured", "real_observational")
