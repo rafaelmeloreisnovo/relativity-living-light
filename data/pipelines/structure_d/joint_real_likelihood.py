@@ -31,6 +31,7 @@ except ImportError as exc:  # pragma: no cover - exercised by environment setup
 
 from .energy_momentum_bridge import build_fnext_gate
 from .likelihood import aic, bic, chi2_with_covariance
+from .synthetic_real_boundary import CLAIM_BOUNDARY, enforce_claim_boundary, interpret_model_comparison
 
 TEXTUAL_OUTPUTS = [
     "results/structure_d/joint_real_likelihood.csv",
@@ -366,8 +367,35 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         },
         "rd_policy": "derived_power_law_from_H0_Om_Ob_h2",
         "bao_covariance_policy": "block_covariance_from_committed_DESI_DR2_DM_DH_correlations; diagonal for unpaired BGS DV",
-        "claim_boundary": "AIC/BIC comparison only; no superiority claim is implied by this artifact.",
-        "fnext": _json_safe(build_fnext_gate(rows, MODEL_LCDM, MODEL_RLL)),
+        "dataset_type": "real_observational",
+        "claim_boundary": CLAIM_BOUNDARY,
+        "claim_allowed": False,
+        "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
+        "interpretation_label": interpret_model_comparison(
+            {
+                "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
+                "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
+                "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
+            },
+            "real_observational",
+        )["interpretation_label"],
+        "claim_policy": enforce_claim_boundary(
+            "real_observational",
+            {
+                "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
+                "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
+                "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
+            },
+        ),
+        "fnext": _json_safe(
+            build_fnext_gate(
+                {
+                    "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
+                    "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
+                    "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
+                }
+            )
+        ),
         "rows": _json_safe(rows),
     }
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.json", json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n"))
