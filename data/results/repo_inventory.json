@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-06-07T00:21:21.987017+00:00",
-  "git_commit": "eceb7f4ad8172cf487ab3a8870aac5204d8558ed",
+  "generated_at": "2026-06-07T00:57:21.370230+00:00",
+  "git_commit": "03c4a60bb558ea07506146bddcd442ad5fd18f43",
   "summary": {
-    "tracked_files_total": 740,
-    "cataloged_files": 722,
+    "tracked_files_total": 752,
+    "cataloged_files": 734,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 33944475,
-    "total_text_lines": 116758,
-    "markdown_files": 372,
+    "total_bytes": 33980459,
+    "total_text_lines": 117497,
+    "markdown_files": 378,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
-    "data_or_result_files": 74
+    "data_or_result_files": 77
   },
   "counts_by_ext": {
-    ".md": 372,
+    ".md": 378,
     ".yml": 32,
     "NO_EXT": 12,
     ".txt": 8,
-    ".py": 105,
+    ".py": 108,
     ".sh": 6,
-    ".json": 33,
+    ".json": 36,
     ".csv": 57,
     ".s": 4,
     ".c": 4,
@@ -37,21 +37,21 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 372,
+    "documentation_md": 378,
     "github_workflow_yml": 13,
     "config_yml": 19,
     "other": 120,
-    "source_code": 117,
+    "source_code": 120,
     "archive": 6,
-    "data_or_result": 74,
+    "data_or_result": 77,
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 341,
-    "mentions_mock_or_placeholder": 62,
-    "mentions_synthetic": 44,
-    "token_vazio_declared": 10,
-    "result_artifact": 59
+    "cosmology_validation_marker": 345,
+    "mentions_mock_or_placeholder": 66,
+    "mentions_synthetic": 55,
+    "token_vazio_declared": 12,
+    "result_artifact": 62
   },
   "files": [
     {
@@ -2349,6 +2349,28 @@
       "risk_flags": []
     },
     {
+      "path": "data/ledgers/energy_momentum_observational_ledger.schema.json",
+      "size_bytes": 2527,
+      "ext": ".json",
+      "kind": "data_or_result",
+      "sha256": "cce81163e08bf80970f7644ffcea561b0d6807427244afa69592c1608a38cb5b",
+      "line_count": 66,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "data/ledgers/energy_momentum_observational_ledger.template.json",
+      "size_bytes": 2080,
+      "ext": ".json",
+      "kind": "data_or_result",
+      "sha256": "44eb41316c61e6c695bdf99b9bc0984bf42e444b8a592a6837e1cf29b57a6954",
+      "line_count": 15,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
       "path": "data/observational_sources.yml",
       "size_bytes": 4312,
       "ext": ".yml",
@@ -2421,13 +2443,14 @@
     },
     {
       "path": "data/pipelines/structure_d/energy_momentum_bridge.py",
-      "size_bytes": 4771,
+      "size_bytes": 11162,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "eb48803d3c8b01d81ba1bc568b41a6f2c9cc97cf9c7b5811c9e8100445f82746",
-      "line_count": 142,
+      "sha256": "bd1ff7cf6c59ac894b1a0e8dfec8f0759dee0e481ccf56d87c072fc31f9ea367",
+      "line_count": 277,
       "is_text": true,
       "risk_flags": [
+        "mentions_synthetic",
         "cosmology_validation_marker"
       ]
     },
@@ -2467,13 +2490,14 @@
     },
     {
       "path": "data/pipelines/structure_d/joint_real_likelihood.py",
-      "size_bytes": 16352,
+      "size_bytes": 17631,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "266dfef88e51ea11560bb34a57e85d1c3e2aa9d82e482f89845a4fcf6500f11a",
-      "line_count": 408,
+      "sha256": "35868e62dfb8cf83f688cea3383361246874fc3e6b0044f1940482bb966ec8e5",
+      "line_count": 436,
       "is_text": true,
       "risk_flags": [
+        "mentions_synthetic",
         "cosmology_validation_marker"
       ]
     },
@@ -2568,6 +2592,20 @@
       "line_count": 165,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "data/pipelines/structure_d/synthetic_real_boundary.py",
+      "size_bytes": 6007,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "ca2274f216122647335528e94fb29dd352397408ee5bd8c5cc3a5e9e77ed611e",
+      "line_count": 157,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "cosmology_validation_marker"
+      ]
     },
     {
       "path": "data/pipelines/structure_d/systematics.py",
@@ -2949,12 +2987,26 @@
       ]
     },
     {
-      "path": "data/results/repo_inventory.json",
-      "size_bytes": 241560,
+      "path": "data/results/model_comparison.json",
+      "size_bytes": 3763,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "51418a238cdf77cba9e3013c82c835eed0f649148dfb1c4e7602828ab8ed65ae",
-      "line_count": 8224,
+      "sha256": "5ca3013b6e90d99ab031c185bec0ca78d3901f12ff09db2686988609acd806c3",
+      "line_count": 81,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "cosmology_validation_marker",
+        "result_artifact"
+      ]
+    },
+    {
+      "path": "data/results/repo_inventory.json",
+      "size_bytes": 242306,
+      "ext": ".json",
+      "kind": "data_or_result",
+      "sha256": "afc1700470a8a8bd9bb26a5033128defa5c286b34b33a1b9d3d52448ede85fca",
+      "line_count": 8250,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2966,11 +3018,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 111716,
+      "size_bytes": 112082,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "56379a09772cabb2515235fc3ff953c49bea4579bf00600e3fba3494fbb16c60",
-      "line_count": 721,
+      "sha256": "df72717d49018ed023d48d44b5d2a8d32bb9c41ec156991edccecd9ec5814f11",
+      "line_count": 723,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -2985,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "e379e7ce0b3c5e444ca2e5d8e89f758de893aa290811c640bd97c4fa09d07150",
+      "sha256": "549a7dd3c43d47c70432aadc39569c928638004a21f80365278c5c11a1adc5e6",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3077,6 +3129,18 @@
       "line_count": 5,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "data/synthetic/README.md",
+      "size_bytes": 153,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "fa314988d42bec531751fb7a18804508d455b8dc61c78f53c540591930ec294e",
+      "line_count": 3,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic"
+      ]
     },
     {
       "path": "data/unified_entropy_margin_10_12.csv",
@@ -3415,11 +3479,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 128595,
+      "size_bytes": 129001,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a11fb87a4f5d0e4b528d3c21aa142f03d4580226f02cd025a61549132755c8fe",
-      "line_count": 764,
+      "sha256": "b8a5bf184b95e3a031d336cd4bdecd6412ed1ddcfef3f0519bc4a643864ed82c",
+      "line_count": 766,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3957,7 +4021,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c4cc9b52b2bf6b9cbbf5b4106d16f9c5dd1be1e4dc5237d9f3260d61390f39a8",
+      "sha256": "838e9f68a040dd04a01a605b984642f978223aae1a30190576e6dd47e3df8601",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4061,15 +4125,25 @@
     },
     {
       "path": "docs/RLL_ENERGY_MOMENTUM_BRIDGE.md",
-      "size_bytes": 2437,
+      "size_bytes": 1155,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5bcd846fdb65821bf2626469571e966b8564f89a9893dcc0f27d00c152ec56a1",
-      "line_count": 82,
+      "sha256": "7207460129cb7464194dc3dee1467d181fed62c2a9e0aac5425d34288f879b4d",
+      "line_count": 14,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
       ]
+    },
+    {
+      "path": "docs/RLL_ENERGY_MOMENTUM_LEDGER.md",
+      "size_bytes": 2310,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "4b119e884e4545a60a10926333bd155a6aea1833add604026fe42e6e9b9a72da",
+      "line_count": 47,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md",
@@ -4163,6 +4237,20 @@
       ]
     },
     {
+      "path": "docs/SYNTHETIC_VS_REAL_DATA_BOUNDARY.md",
+      "size_bytes": 2553,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "f843f64caf379e2cd2942e61690296d8e115f96fa97da39d5bb390265683c683",
+      "line_count": 53,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared"
+      ]
+    },
+    {
       "path": "docs/TASK_UNICA_RLL_59_ITENS.csv",
       "size_bytes": 37175,
       "ext": ".csv",
@@ -4225,7 +4313,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "2ccebe4abec4107483e97cd6212d16e72b28f88d1709697a6c98f3498341b4cc",
+      "sha256": "ab02ddd19e87fcd2577366afc82f77d58dc4d7468e06463ff891be2049c2cd11",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
@@ -6656,6 +6744,18 @@
       ]
     },
     {
+      "path": "results/real/README.md",
+      "size_bytes": 178,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "283169e39549a6c30004f22c22eef04858fc2dc68ec086d3f0d90bc8a1f94ea3",
+      "line_count": 3,
+      "is_text": true,
+      "risk_flags": [
+        "result_artifact"
+      ]
+    },
+    {
       "path": "results/reproducivel_RLL_relatorio_simulacao.txt",
       "size_bytes": 3175,
       "ext": ".txt",
@@ -6842,11 +6942,11 @@
     },
     {
       "path": "results/structure_d/joint_real_likelihood.json",
-      "size_bytes": 2912,
+      "size_bytes": 3326,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "846376ec82308eb41add9a07a73e270f858fc12829c92bc1f54b1d543fe4481e",
-      "line_count": 87,
+      "sha256": "a9e48272bb16d2e29f072f43c7376f226f8d876942ef79545e543113d0cea961",
+      "line_count": 92,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker",
@@ -6950,6 +7050,20 @@
       "line_count": 181,
       "is_text": true,
       "risk_flags": [
+        "result_artifact"
+      ]
+    },
+    {
+      "path": "results/synthetic/README.md",
+      "size_bytes": 173,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "d1012f59a7f6a30514bcdf2d39bedba8b53291da74ebc6ed978834e1f22844c1",
+      "line_count": 3,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
         "result_artifact"
       ]
     },
@@ -7384,6 +7498,16 @@
       ]
     },
     {
+      "path": "tests/fixtures/README.md",
+      "size_bytes": 99,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "c405414003eedeaff6739ad32edb6d19df2d34d2097456cccec80f5e1afb866d",
+      "line_count": 3,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "tests/test_bh_flux_calc.py",
       "size_bytes": 2379,
       "ext": ".py",
@@ -7454,25 +7578,27 @@
     },
     {
       "path": "tests/test_energy_momentum_bridge.py",
-      "size_bytes": 2520,
+      "size_bytes": 5737,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "08fd4771fa2f6ff903da1206d5679a723a324276b86a9b397718e5aef8d9c622",
-      "line_count": 83,
+      "sha256": "0ff0a06f4053b6c65351ea73c4746720f3f6fcc021bbc9ebf8b91d08918a9f83",
+      "line_count": 167,
       "is_text": true,
       "risk_flags": [
+        "mentions_synthetic",
         "cosmology_validation_marker"
       ]
     },
     {
       "path": "tests/test_joint_real_likelihood.py",
-      "size_bytes": 1484,
+      "size_bytes": 2393,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "a21b9ecff4e3cb2361bab4a5821826595d1e8f4bd7f6c35a11be91ba9966d56a",
-      "line_count": 40,
+      "sha256": "d9e1b2171aa8c38d321fd9efa67fa4eb51c648ede8d9b1637547659fbc6b1225",
+      "line_count": 56,
       "is_text": true,
       "risk_flags": [
+        "mentions_synthetic",
         "cosmology_validation_marker"
       ]
     },
@@ -7509,6 +7635,19 @@
       "line_count": 32,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "tests/test_model_comparison_artifact.py",
+      "size_bytes": 1362,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "29fbad3f571118a48bb17419feed1ae0b0f0f951792cb7f4e52b6eb893759180",
+      "line_count": 25,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "cosmology_validation_marker"
+      ]
     },
     {
       "path": "tests/test_panteon_likelihood_covariance.py",
@@ -7637,6 +7776,20 @@
       "line_count": 25,
       "is_text": true,
       "risk_flags": [
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "tests/test_synthetic_real_boundary.py",
+      "size_bytes": 2333,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "1fdf54ce4168f25e53d80660a73a322ccc5bb0b6897657b94d4cfb3b3804db86",
+      "line_count": 53,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
         "cosmology_validation_marker"
       ]
     },
