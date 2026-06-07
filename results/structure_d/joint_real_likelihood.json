@@ -18,7 +18,7 @@
   },
   "rd_policy": "derived_power_law_from_H0_Om_Ob_h2",
   "bao_covariance_policy": "block_covariance_from_committed_DESI_DR2_DM_DH_correlations; diagonal for unpaired BGS DV",
-  "claim_boundary": "AIC/BIC comparison only; no superiority claim is implied by this artifact.",
+  "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
   "rows": [
     {
       "model": "LCDM_joint_real",
@@ -65,23 +65,28 @@
   ],
   "fnext": {
     "schema": "rll.energy_momentum_bridge.fnext.v1",
-    "status": "waiting_for_measured_F_gap",
-    "claim_boundary": "Diagnostic gate only; no superiority claim is implied.",
-    "formula": "FNext = delta_chi2 + delta_AIC + delta_BIC + F_gap",
-    "baseline_model": "LCDM_joint_real",
-    "candidate_model": "RLL_joint_real",
-    "delta_chi2_candidate_minus_baseline": 173.08427662295406,
-    "delta_AIC_candidate_minus_baseline": 179.08427662295406,
-    "delta_BIC_candidate_minus_baseline": 185.56092587303306,
+    "status": "not_measured",
     "F_gap": null,
-    "F_gap_status": "not_measured",
-    "F_gap_rows_used": 0,
+    "F_gap_uncertainty": null,
+    "uncertainty_status": "incomplete",
+    "delta_chi2_rll_minus_lcdm": 173.08427662295406,
+    "delta_aic_rll_minus_lcdm": 179.08427662295406,
+    "delta_bic_rll_minus_lcdm": 185.56092587303306,
     "score": null,
-    "gap_detail": {
-      "status": "not_measured",
-      "rows_used": 0,
-      "F_gap": null,
-      "note": "No transition ledger supplied; missing bridge term must be measured, not invented."
-    }
+    "score_status": "not_computable",
+    "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+    "claim_allowed": false,
+    "reason": "ledger absent"
+  },
+  "dataset_type": "real_observational",
+  "claim_allowed": false,
+  "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
+  "interpretation_label": "lcdm_preferred",
+  "interpretation_reason": "At least one information-criterion delta is positive for RLL minus LCDM.",
+  "claim_policy": {
+    "claim_allowed": false,
+    "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+    "reason": "At least one information-criterion delta is positive for RLL minus LCDM.",
+    "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation."
   }
 }

@@ -38,3 +38,19 @@ def test_rd_drag_is_derived_from_parameter_changes() -> None:
     assert np.isfinite(baseline)
     assert np.isfinite(shifted)
     assert baseline != shifted
+
+
+def test_committed_joint_real_json_exposes_dataset_type_claim_boundary_and_fnext() -> None:
+    import json
+    from pathlib import Path
+
+    payload = json.loads(Path("results/structure_d/joint_real_likelihood.json").read_text(encoding="utf-8"))
+    assert payload["dataset_type"] == "real_observational"
+    assert payload["claim_boundary"] == "No superiority claim unless real-data metrics pass predefined thresholds."
+    assert payload["claim_allowed"] is False
+    assert payload["publication_language"] == "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation."
+    assert payload["fnext"]["status"] == "not_measured"
+    assert payload["fnext"]["F_gap"] is None
+    assert payload["fnext"]["score"] is None
+    assert payload["fnext"]["claim_allowed"] is False
+    assert not any("synthetic" in value or "fixtures" in value for value in payload["datasets"].values())
