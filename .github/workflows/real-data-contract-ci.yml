@@ -1,0 +1,105 @@
+name: Real Data Contract CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+      - 'scripts/compute_rll_real_pipeline.py'
+      - 'scripts/fetch_real_sources.py'
+      - 'tools/docs_inventory.py'
+      - 'data/real/**'
+      - 'docs/real_data/**'
+      - 'docs/DOCUMENTATION_FULL_INVENTORY.md'
+      - 'docs/REAL_NUMBERS_REPORT.md'
+      - 'docs/YML_WORKFLOWS_INDEX.md'
+      - 'data/results/repo_inventory.*'
+      - 'requirements.txt'
+      - 'tests/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+      - 'scripts/compute_rll_real_pipeline.py'
+      - 'scripts/fetch_real_sources.py'
+      - 'tools/docs_inventory.py'
+      - 'data/real/**'
+      - 'docs/real_data/**'
+      - 'docs/DOCUMENTATION_FULL_INVENTORY.md'
+      - 'docs/REAL_NUMBERS_REPORT.md'
+      - 'docs/YML_WORKFLOWS_INDEX.md'
+      - 'data/results/repo_inventory.*'
+      - 'requirements.txt'
+      - 'tests/**'
+  workflow_dispatch:
+    inputs:
+      real_data_source:
+        description: Source contract to validate for real-data compute
+        required: true
+        default: repo
+        type: choice
+        options: [repo, auto]
+
+jobs:
+  real-data-contract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install contract dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest pyyaml
+
+      - name: Check generated inventory is current
+        run: python3 tools/docs_inventory.py --check
+
+      - name: Compute pipeline from committed real data
+        run: |
+          set -euo pipefail
+          SOURCE="${{ github.event.inputs.real_data_source || 'repo' }}"
+          python3 scripts/compute_rll_real_pipeline.py \
+            --output-dir artifacts/real-data-contract \
+            --real-data-dir data/real \
+            --data-source "$SOURCE"
+
+      - name: Validate contract outputs
+        run: |
+          set -euo pipefail
+          test -s artifacts/real-data-contract/MANIFEST.json
+          test -s artifacts/real-data-contract/COMPUTE_REPORT.md
+          test -s artifacts/real-data-contract/tables/Hz_processed.csv
+          test -s artifacts/real-data-contract/tables/BAO_processed.csv
+          test -s artifacts/real-data-contract/tables/model_comparison.csv
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path('artifacts/real-data-contract/MANIFEST.json').read_text(encoding='utf-8'))
+          if manifest.get('status') != 'Real data computed from non-synthetic inputs':
+              raise SystemExit(f"unexpected status: {manifest.get('status')!r}")
+          inputs = manifest.get('input_files') or []
+          if len(inputs) != 3:
+              raise SystemExit(f'expected 3 real input files, got {len(inputs)}')
+          if any(row.get('status') != 'used_real_non_synthetic' for row in inputs):
+              raise SystemExit('all inputs must be marked used_real_non_synthetic')
+          print('real-data compute manifest contract OK')
+          PY
+
+      - name: Run focused real-data tests
+        run: python -m pytest -q tests/test_compute_rll_real_pipeline_contract.py tests/test_desi_dr2_bao_materialized.py
+
+      - name: Upload real-data contract artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: real-data-contract-${{ github.run_id }}
+          path: artifacts/real-data-contract/
+          retention-days: 14
