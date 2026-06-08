@@ -67,6 +67,7 @@ Encaminhamentos complementares:
 - [`schemas/rll_latentes_observations.schema.json`](../schemas/rll_latentes_observations.schema.json) - schema estrutural do catálogo RLL-LATENTES
 - [`src/rll/latentes.py`](../src/rll/latentes.py) - implementação determinística da validação, score, dry-run, Merkle e relatórios RLL-LATENTES
 - [`docs/RLL_CLAIM_BOUNDARIES.md`](RLL_CLAIM_BOUNDARIES.md)
+- [`docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md`](RLL_PRE_MOVEMENT_SCALE_BRIDGE.md) - ponte de escala para pre-movimento, impactos vetoriais, memoria dinamica e limites de promocao cosmologica
 - [`rll_equation_registry.yml`](../rll_equation_registry.yml)
 
 ## 1.1) Casos observacionais

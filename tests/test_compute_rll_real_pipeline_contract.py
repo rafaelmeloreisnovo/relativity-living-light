@@ -95,7 +95,12 @@ def test_validation_status_payload_separates_background_growth_and_local_dynamic
     assert "Phi_pre" in status["local_dynamic_layer"]
     assert "G_pre" in status["local_dynamic_layer"]
     assert "neighbouring_orbital_ellipses" in status["local_dynamic_layer"]
+    assert "E_kin" in status["impact_vector_layer"]
+    assert "E_ejecta" in status["impact_vector_layer"]
+    assert "beta_momentum" in status["impact_vector_layer"]
     assert "binary_stars_or_black_holes_with_converging_vector_motion" in status["scale_bridge_examples"]
     assert "apollo_lunar_impact_dynamic_memory_without_cosmological_promotion" in status["scale_bridge_examples"]
+    assert "chicxulub_scale_energy_as_impact_vector_not_background_parameter" in status["scale_bridge_examples"]
+    assert "dart_ejecta_recoil_momentum_amplification" in status["scale_bridge_examples"]
     assert "non-operational until dimensions" in status["symbolic_complexity_marker"]
     assert status["claim_boundary"] == "local dynamic layer cannot be promoted to background cosmology without scale bridge"
