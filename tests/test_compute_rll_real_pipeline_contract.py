@@ -79,6 +79,18 @@ def test_main_writes_manifest_and_tables_from_repo_inputs(tmp_path: Path, monkey
     assert manifest["data_source_mode"] == "repo"
     assert manifest["status"] == "Real data computed from non-synthetic inputs"
     assert {row["status"] for row in manifest["input_files"]} == {"used_real_non_synthetic"}
+    assert manifest["validation_status"]["claim_boundary"] == "local dynamic layer cannot be promoted to background cosmology without scale bridge"
+    assert "Phi_pre" in manifest["validation_status"]["local_dynamic_layer"]
     assert (out / "tables" / "Hz_processed.csv").exists()
     assert (out / "tables" / "BAO_processed.csv").exists()
     assert (out / "tables" / "model_comparison.csv").exists()
+
+
+def test_validation_status_payload_separates_background_growth_and_local_dynamic_layers() -> None:
+    status = compute.validation_status_payload()
+
+    assert "Omega_b_h2" in status["background_parameters"]
+    assert "fsigma8" in status["growth_parameters"]
+    assert "Phi_pre" in status["local_dynamic_layer"]
+    assert "binary_stars_or_black_holes_with_converging_vector_motion" in status["scale_bridge_examples"]
+    assert status["claim_boundary"] == "local dynamic layer cannot be promoted to background cosmology without scale bridge"

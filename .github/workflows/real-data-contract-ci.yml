@@ -90,6 +90,11 @@ jobs:
               raise SystemExit(f'expected 3 real input files, got {len(inputs)}')
           if any(row.get('status') != 'used_real_non_synthetic' for row in inputs):
               raise SystemExit('all inputs must be marked used_real_non_synthetic')
+          validation_status = manifest.get('validation_status') or {}
+          if validation_status.get('claim_boundary') != 'local dynamic layer cannot be promoted to background cosmology without scale bridge':
+              raise SystemExit('missing scale-bridge claim boundary')
+          if 'Phi_pre' not in validation_status.get('local_dynamic_layer', []):
+              raise SystemExit('missing Phi_pre local dynamic layer marker')
           print('real-data compute manifest contract OK')
           PY
 

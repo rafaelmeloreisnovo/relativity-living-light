@@ -1,7 +1,4 @@
-# YML Workflows Index
-
-Gerado em: `2026-06-08T06:12:53.468343+00:00`  
-Commit: `d673d3629281a4c14a777580362970b2747eaa1f`
+# YML Workflows and Config Index
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -12,7 +9,7 @@ Commit: `d673d3629281a4c14a777580362970b2747eaa1f`
 | `.github/workflows/iml_artifact.yml` | `github_workflow_yml` | 1235 | 46 | `265b5d4637656fd8c686a079314615cf4695662a272168d19de7320eebe46401` |
 | `.github/workflows/python-tests.yml` | `github_workflow_yml` | 534 | 27 | `0ad2f96fda2df19f7b563cfde7b4588112e7c2129c2685bac8c10b8ef433f0fd` |
 | `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12251 | 269 | `b96d92cbbc9c67a50b372626fe8be9f0f2dc266d3880bef0750dbccfae84cd99` |
-| `.github/workflows/real-data-contract-ci.yml` | `github_workflow_yml` | 3701 | 105 | `fc301a27cce7652c5b0b51c7fa2052f1e0fea69fcb01022c415b97deee9b7f24` |
+| `.github/workflows/real-data-contract-ci.yml` | `github_workflow_yml` | 4141 | 110 | `ec56874d6e657e226ae0cee551a5f9789f5403221258a252afc4c0acafd5f1fd` |
 | `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 9106 | 176 | `e51e6b27be3e3cedff088f481d1d505fd47eea91964857c311d008933316f2e9` |
 | `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 3878 | 121 | `7fe171319ced298b38c604b1a4ce40b668b32d1fdec5e4c259959b3fec0f9866` |
 | `.github/workflows/rll-data-pipeline.yml` | `github_workflow_yml` | 3184 | 82 | `6f9df5055ae59b2d8403f6ade8d0bbdfe6891243e230b0c32736592437e1087a` |
