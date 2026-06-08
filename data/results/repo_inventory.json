@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-08T18:13:36.425714+00:00",
-  "git_commit": "314f8f89df20d981f50a9e7d80499b8ddff40e47",
+  "generated_at": "2026-06-08T18:14:52.396574+00:00",
+  "git_commit": "4248067abe27924885b5fc41dde0d0dd430e3ff1",
   "summary": {
     "tracked_files_total": 779,
     "cataloged_files": 761,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34371417,
-    "total_text_lines": 120289,
+    "total_bytes": 34371672,
+    "total_text_lines": 120297,
     "markdown_files": 392,
     "yml_yaml_files": 34,
     "github_workflow_yml_files": 13,
@@ -3053,10 +3053,10 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 256372,
+      "size_bytes": 256371,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "53837bbd6d56969016b93da5ca8e4bf025697b3bf0681e7e427a09594d0c59ab",
+      "sha256": "67c2b1b71631aec4b1ce21280172c82afdcbe479141e65e76a0a526f90d8a1fb",
       "line_count": 8726,
       "is_text": true,
       "risk_flags": [
@@ -3069,10 +3069,10 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 118948,
+      "size_bytes": 118947,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "f831ef8e3088540734e42ca1a49fbaabc499064126135c94b9972498f9ea37aa",
+      "sha256": "7de57651a978d8998374007aace2e61be04ea10c8f73e700a9182dfe9187f3c6",
       "line_count": 762,
       "is_text": true,
       "risk_flags": [
@@ -3088,7 +3088,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "7d30f8bf9d84142fa313b67f06b246df8123a7ec28d7c0581b3be7d9dd0c060f",
+      "sha256": "0c971ace45490dcf77cb54f498a3afebb48b4de0db3050d2f75f08ffc9853899",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3544,10 +3544,10 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 136647,
+      "size_bytes": 136646,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "555304bb7018b1a08341588fa4ba8d2e344fe031416c3486fc5fdb9effa99947",
+      "sha256": "03bd2ea05b396cc739bba7b82b242bb227f6f0ef430a6ef35ca5dc762225dd2b",
       "line_count": 805,
       "is_text": true,
       "risk_flags": [
@@ -4086,7 +4086,7 @@
       "size_bytes": 1485,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c707459b48c82bed8e3c02988a73c1509c90acbbd05066243519eb43a4b0a1f4",
+      "sha256": "5aafa48a69b1b98421e01f3ee1946a61f347b0c2704daf5fd450f85335883df6",
       "line_count": 71,
       "is_text": true,
       "risk_flags": [
@@ -4415,7 +4415,7 @@
       "size_bytes": 5218,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "781966a20ea7647dd183e4ba2817c116dbe33ba231672a408e343baac273b822",
+      "sha256": "0e5f67d5f24c2781eb218ceb424224b9c4c6e0e33a74df64e9ae4470f5ec685f",
       "line_count": 41,
       "is_text": true,
       "risk_flags": [
@@ -4886,11 +4886,11 @@
     },
     {
       "path": "docs/observational_records/2026-06-08_STAR_QCD_VACUUM_SPIN_CORRELATION_REGISTRO.md",
-      "size_bytes": 333,
+      "size_bytes": 591,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1f010851e1e05a49c23149d113d7419a8c3c615956ad3c9e65d84e5e6cf372a3",
-      "line_count": 6,
+      "sha256": "9b732699a82cbe393a54cb420e7b7693e9e6c1c6ca0d7f4d542d45baaae1c0a5",
+      "line_count": 14,
       "is_text": true,
       "risk_flags": []
     },
