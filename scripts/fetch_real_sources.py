@@ -255,7 +255,7 @@ def main(argv: list[str] | None = None) -> int:
         curated_dir.mkdir(parents=True, exist_ok=True)
         curated_urls = {
             "pantheon_readme.md": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/README.md",
-            "desi_homepage.html": "https://www.desi.lbl.gov/",
+            "desi_dr2_results_i_arxiv.html": "https://arxiv.org/abs/2503.14738",
         }
         for fname, url in curated_urls.items():
             target = curated_dir / fname
