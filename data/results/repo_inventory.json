@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-08T04:26:03.552926+00:00",
-  "git_commit": "e0e7670d7deb263b892d0bdb079c86f846de1a11",
+  "generated_at": "2026-06-08T04:26:36.563510+00:00",
+  "git_commit": "017e4b95c6b521c9e558121cc2f6b4a6a34b1d74",
   "summary": {
-    "tracked_files_total": 762,
-    "cataloged_files": 744,
+    "tracked_files_total": 763,
+    "cataloged_files": 745,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34018559,
-    "total_text_lines": 118303,
-    "markdown_files": 387,
+    "total_bytes": 34019548,
+    "total_text_lines": 118333,
+    "markdown_files": 388,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 78
   },
   "counts_by_ext": {
-    ".md": 387,
+    ".md": 388,
     ".yml": 32,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 387,
+    "documentation_md": 388,
     "github_workflow_yml": 13,
     "config_yml": 19,
     "other": 120,
@@ -50,7 +50,7 @@
     "cosmology_validation_marker": 348,
     "mentions_mock_or_placeholder": 68,
     "mentions_synthetic": 57,
-    "token_vazio_declared": 17,
+    "token_vazio_declared": 18,
     "result_artifact": 62
   },
   "files": [
@@ -3002,11 +3002,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 249962,
+      "size_bytes": 250265,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2a3faa79e39693c19c5f50c70697bf0b55b93097dfe47b084b785f936f9befe3",
-      "line_count": 8514,
+      "sha256": "a8f12f5e96711a8773244bc30f488c43462ed2cee42838e93c2e693ceb04bfd6",
+      "line_count": 8524,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3018,11 +3018,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 115793,
+      "size_bytes": 115933,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "b747d650d52e048f59521c737b908143e06b455d35cc13dda2f31192f6b75335",
-      "line_count": 744,
+      "sha256": "97c1929db1ec99600de8740a137792bd5fc21d915436043df873c96f5dc5e397",
+      "line_count": 745,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3037,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "079446ecc0a0934e38e2f6c54a7131d829b778605d85e87f4ba9d93887a91c68",
+      "sha256": "c1121b96510a10d2bbc61954307b3d7b3ef3abf8e68f21e600ccd5c732380159",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3493,11 +3493,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 133132,
+      "size_bytes": 133292,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b0bc53b96f0ede4a988a2323a1aad0a7aa18ea6f994c3d85eea8be18d532ed88",
-      "line_count": 787,
+      "sha256": "913f637a6c390f91e4ae2bb4329b5c1a1a237776a10da0a4822180e720aa624f",
+      "line_count": 788,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4035,7 +4035,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "4724033350fcea7fed3ddb78010a096c51cc862bd713e2590c82352ea0479316",
+      "sha256": "07db0551c7772f55e4a037e206d87050fb1b2e87b79ff087ab1c9234ddceb3d9",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4364,7 +4364,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ca617a5051e831fd637564e9b114a6eaa81dc5751902433b727e79644f92fd50",
+      "sha256": "7a938f620884e8bf6c4e89a944a396c2149fd5ccc48d5338ecd43201d844364e",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
@@ -5122,6 +5122,18 @@
       "kind": "documentation_md",
       "sha256": "501e0feff710ba9925e059922fdc06ef861e926ee5c1f3e40cfa5c9831e2be2c",
       "line_count": 12,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "docs/rll_multimedium/06_LEDGER_TEMPLATE.md",
+      "size_bytes": 386,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "13af426df2525281a02d433801af3350305411b087fd004b8b736cb01f28aacf",
+      "line_count": 18,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"
