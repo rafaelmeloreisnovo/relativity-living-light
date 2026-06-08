@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-08T04:08:17.623118+00:00",
-  "git_commit": "619324c3005815168ec96e65033eb50132e05503",
+  "generated_at": "2026-06-08T04:12:14.308302+00:00",
+  "git_commit": "e324d4d0454e4935cd32edf3172f2d47487aca3b",
   "summary": {
-    "tracked_files_total": 760,
-    "cataloged_files": 742,
+    "tracked_files_total": 761,
+    "cataloged_files": 743,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34016932,
-    "total_text_lines": 118246,
-    "markdown_files": 385,
+    "total_bytes": 34017707,
+    "total_text_lines": 118270,
+    "markdown_files": 386,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 78
   },
   "counts_by_ext": {
-    ".md": 385,
+    ".md": 386,
     ".yml": 32,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 385,
+    "documentation_md": 386,
     "github_workflow_yml": 13,
     "config_yml": 19,
     "other": 120,
@@ -50,7 +50,7 @@
     "cosmology_validation_marker": 348,
     "mentions_mock_or_placeholder": 68,
     "mentions_synthetic": 57,
-    "token_vazio_declared": 16,
+    "token_vazio_declared": 17,
     "result_artifact": 62
   },
   "files": [
@@ -3002,11 +3002,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 249328,
+      "size_bytes": 249628,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "5266f38d3a8d6f1d5a1d8fcb3c56091b5aea8edff31131fdf2757920eaa331ee",
-      "line_count": 8492,
+      "sha256": "cdc43997e9763f8f1babbfde9dd652d6b73c02f29317556da9e9a50acf5e96f3",
+      "line_count": 8502,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3018,11 +3018,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 115503,
+      "size_bytes": 115640,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "2e90c01477e544b927e2697216f0233b37761dbedad6ed67b97bcd32993485d3",
-      "line_count": 742,
+      "sha256": "33286eb39a085bf1e382b947258ac4a0054d2f40f040fe536a09523d14916af5",
+      "line_count": 743,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3037,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "cd0908d8d64ed28df5d86805a56bb0b6527dd7cbc983207266bdc907b86c3bdf",
+      "sha256": "3bc8be1d36578622046f2849a344d310a230b2dd0ca0892f8f2a6fd7bb455a14",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3493,11 +3493,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 132802,
+      "size_bytes": 132959,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a0e011fffc0d82ad6142b16b7c0c814aef360869967f1a6412f8693c58d2d62a",
-      "line_count": 785,
+      "sha256": "071e1bd51179b462254e985e56dc5ac11c752d2b9c198e28261d0eb4762b4d7c",
+      "line_count": 786,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4035,7 +4035,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1830d7a7c9531a0dac101ceec853150e4a5df4b8e54aef1f9e994fd598434133",
+      "sha256": "ecc28118f88dc98ab63eef6f8509d629752c273cb7cee44e35523c60a1bb820e",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4364,7 +4364,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8ccc39c544e98034f7f9741cf07c3b5b43c704f14f156919188b006709dc2d0a",
+      "sha256": "5fca7878fa39b2bf0707e12bbe2c9073d2e392dcc45b3d7fc51f1a4a86a9169a",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
@@ -5104,6 +5104,18 @@
       "line_count": 16,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "docs/rll_multimedium/05_TRACE.md",
+      "size_bytes": 181,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "501e0feff710ba9925e059922fdc06ef861e926ee5c1f3e40cfa5c9831e2be2c",
+      "line_count": 12,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
     },
     {
       "path": "docs/rll_negative_weak_time_bridge.md",
