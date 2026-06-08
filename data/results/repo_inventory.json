@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-08T03:02:00.224708+00:00",
-  "git_commit": "ab4459f6b61567d6901df8407312a3e8107bf8e0",
+  "generated_at": "2026-06-08T03:02:14.836066+00:00",
+  "git_commit": "45ec83b2f8b2c5bbc31b3ed86da5f6692fef995b",
   "summary": {
-    "tracked_files_total": 755,
-    "cataloged_files": 737,
+    "tracked_files_total": 756,
+    "cataloged_files": 738,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34012394,
-    "total_text_lines": 118120,
-    "markdown_files": 380,
+    "total_bytes": 34012915,
+    "total_text_lines": 118134,
+    "markdown_files": 381,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 78
   },
   "counts_by_ext": {
-    ".md": 380,
+    ".md": 381,
     ".yml": 32,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 380,
+    "documentation_md": 381,
     "github_workflow_yml": 13,
     "config_yml": 19,
     "other": 120,
@@ -47,7 +47,7 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 347,
+    "cosmology_validation_marker": 348,
     "mentions_mock_or_placeholder": 68,
     "mentions_synthetic": 57,
     "token_vazio_declared": 13,
@@ -3002,11 +3002,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 247914,
+      "size_bytes": 247959,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ea6fa4d00419ff26a09f7074a5e9266be5e5db7b5d0440ed3ff2d9030a1b2538",
-      "line_count": 8442,
+      "sha256": "7b454e8c60169e70f4dd2f212b203f72cfc06fac36f5b2b4b491e2a6f4788571",
+      "line_count": 8444,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3018,10 +3018,10 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 114831,
+      "size_bytes": 114858,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "a8d69c9a5c68a62b0e54b154b5fa545084eefaa09021950f880e2d4c1db7b960",
+      "sha256": "59385699fc5e79d95730c80780a5f962f296608e2e383fc8147899b5f97f0a62",
       "line_count": 738,
       "is_text": true,
       "risk_flags": [
@@ -3037,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "17d4d396ab86426011b17c8c049ade8c70422c712b96ae196d138c92b8820be1",
+      "sha256": "ab460b27543f9fd7e78b350cb7ef1233648c441e8900680a887ea406f8502ec7",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3493,10 +3493,10 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 132050,
+      "size_bytes": 132077,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "6727db852507a41186f4a346c4f1fc0795c746793ca901a9053a6ef12acbbb26",
+      "sha256": "cde1b36b66f0e80094c226eef362cc229a71d5f2e114131b5d7a2e910d07978d",
       "line_count": 781,
       "is_text": true,
       "risk_flags": [
@@ -4035,7 +4035,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1361bd4bcb40daa17507879af434097db953b79f4e4121570c4742d5545ebee1",
+      "sha256": "ed3bc1d835affe7955cb5473ec632ac6e9bc378e960741b7eaf347768f847ceb",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4208,6 +4208,18 @@
       "risk_flags": []
     },
     {
+      "path": "docs/RLL_TOROIDAL_TRANSPORT_LAYER.md",
+      "size_bytes": 422,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "6f01bb1df85f3d924e0a3bcd46e51e97a90722ec69adfd86b62472eb33ea10d4",
+      "line_count": 12,
+      "is_text": true,
+      "risk_flags": [
+        "cosmology_validation_marker"
+      ]
+    },
+    {
       "path": "docs/ROADMAP_VALIDACAO.md",
       "size_bytes": 3869,
       "ext": ".md",
@@ -4352,7 +4364,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "442a3369eab891c067f6fbc1d00810f004432ff8ff0c7af89c6ccf7976cd9b18",
+      "sha256": "5447a348a25a72aa877e6cc58d7ea600f31aca220b964965dea4b1b5b24ea18d",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
