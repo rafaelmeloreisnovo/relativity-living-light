@@ -162,3 +162,278 @@ perturbacoes = crescimento de estrutura
 eventos locais = astrofisica, sismologia, dinamica orbital
 observaveis = dados medidos
 ```
+
+
+## Inclusão revisada — nota Rafael completa operacionalizada
+
+### 1. Variáveis básicas do ΛCDM que precisam aparecer no comparador
+
+O ΛCDM mínimo usado em análises tipo Planck não é só:
+
+```text
+H0
+Omega_m
+Omega_Lambda
+```
+
+A leitura operacional de seis parâmetros base deve ser preservada como contrato de comparação:
+
+| Parâmetro | Função |
+|---|---|
+| `Omega_b_h2` / `Ωb h²` | densidade física de bárions |
+| `Omega_c_h2` / `Ωc h²` | densidade física de matéria escura fria |
+| `theta_star` / `θ*` / `100theta_MC` | escala angular acústica |
+| `tau` / `τ` | profundidade óptica de reionização |
+| `ln10_10_As` / `ln(10¹⁰As)` | amplitude primordial |
+| `n_s` / `ns` | inclinação espectral primordial |
+
+Extensões e nuisance terms não devem ser apagados: curvatura, massa de neutrinos, tensor/scalar, equação de estado da energia escura, running espectral, covariâncias reais e parâmetros específicos de cada dataset entram como contrato de análise, não como decoração.
+
+Se o RLL coloca `H0`, `Omega_m`, `Omega_Lambda`, `Os0`, `zt` e `wt`, ele está especificando principalmente expansão/fundo. Para não comparar de forma incompleta, precisa declarar também:
+
+```text
+barions separados de materia escura
+radiacao/fotons/neutrinos
+amplitude primordial As
+inclinacao primordial ns
+reionizacao tau
+crescimento sigma8/S8/fsigma8
+escala acustica theta_star
+covariancias reais dos datasets
+parametros nuisance dos datasets
+```
+
+### 2. Onde a equação de fundo termina
+
+No fundo homogêneo, a forma-guia é:
+
+```text
+H^2(a)=H_0^2[Omega_r a^-4 + Omega_m a^-3 + Omega_k a^-2 + Omega_Lambda]
+```
+
+Essa equação descreve o comportamento médio global da expansão. Ela não descreve diretamente duas estrelas se juntando, buracos negros entrando em fusão, a Lua vibrando depois de impacto, nem elipses locais reorganizando energia. Esses fenômenos entram em:
+
+```text
+perturbacoes sobre o fundo
+formacao de estruturas
+sistemas ligados gravitacionalmente
+ondas gravitacionais
+relaxacao pos-impacto
+resposta elastica/sismica
+observaveis locais
+```
+
+### 3. Pré-movimento como pré-estado físico
+
+A tradução limpa da intuição é:
+
+> Antes do evento visível, existe uma energia/configuração de campo já acumulada. O evento é a liberação ou reorganização dessa configuração.
+
+Para fusão de estrelas ou buracos negros, antes do evento observável já existem:
+
+```text
+massa total
+momento angular
+energia orbital
+excentricidade
+spin
+separacao orbital
+perda por ondas gravitacionais
+campo gravitacional ligado
+potencial pre-evento
+```
+
+A fusão final não aparece do nada: ela resulta de um sistema que já carregava energia ligada e perdia energia orbital. Isso é astrofísica local/relativística, não variável de fundo ΛCDM. A camada RLL pode chamar esse bloco de `G_pre` ou pré-estado gravitacional ligado, desde que fique local:
+
+```text
+G_pre = E_bound + L_orbital + gradiente_de_campo + tau_relax
+```
+
+### 4. Lua, impacto e memória dinâmica
+
+A metáfora da Lua precisa ser usada com causa correta. Impactos conhecidos em experimentos Apollo serviram como fontes sísmicas externas para estudar a estrutura interna lunar. A explicação forte não é “campos gravitacionais cosmológicos”; é:
+
+```text
+estrutura interna da Lua
+baixa atenuacao sismica
+regolito/fratura
+resposta elastica
+propagacao de ondas
+dissipacao lenta
+```
+
+Formulação frágil a evitar:
+
+> A Lua vibrou por causa dos campos gravitacionais.
+
+Formulação forte:
+
+> A Lua mostrou memória dinâmica de impacto: a energia injetada demorou a dissipar por causa da estrutura interna, baixa atenuação sísmica e condições mecânicas do corpo.
+
+Isso preserva a intuição `FinitoComInteriorInfinito`: um corpo finito pode guardar dinâmica interna complexa.
+
+### 5. Cinco blocos que o RLL precisa declarar
+
+**Bloco A — parâmetros ΛCDM base**
+
+```text
+Omega_b_h2
+Omega_c_h2
+theta_star
+tau
+A_s
+n_s
+```
+
+**Bloco B — radiação e neutrinos**
+
+```text
+Omega_r
+N_eff
+sum_m_nu
+Omega_gamma
+Omega_nu
+```
+
+**Bloco C — crescimento de estrutura**
+
+```text
+sigma8
+S8
+fsigma8
+P_k
+delta_m
+D_z
+```
+
+**Bloco D — condições iniciais**
+
+```text
+A_s
+n_s
+alpha_s
+perturbacoes_primordiais
+condicoes_iniciais_inflacionarias
+escala_acustica
+```
+
+**Bloco E — camada astrofísica local**
+
+```text
+fusoes
+buracos_negros
+ondas_gravitacionais
+relaxacao
+impactos
+memoria_dinamica
+sistemas_ligados
+```
+
+### 6. Tese sem colapso de escala
+
+A tese preservada é:
+
+> Sistemas físicos possuem pré-estados de campo e energia ligados que condicionam o evento observável; em modelos cosmológicos/astrofísicos, esses pré-estados devem ser separados por escala para não confundir dinâmica local com expansão global.
+
+A separação obrigatória é:
+
+```text
+fundo homogeneo = LambdaCDM/RLL background
+perturbacoes = crescimento de estrutura
+eventos locais = astrofisica, sismologia, dinamica orbital
+observaveis = dados medidos
+```
+
+### 7. Escalas e resposta direta
+
+Fusão de duas estrelas ou buracos negros afeta fortemente:
+
+```text
+sistema local
+ondas gravitacionais
+massa final
+momento angular
+energia irradiada
+```
+
+Mas não deve ser promovida diretamente para:
+
+```text
+H(z)
+Omega_m global
+Omega_Lambda global
+CMB
+BAO
+```
+
+Campo gravitacional de grande escala, por outro lado, pode afetar cosmologia observacional via:
+
+```text
+lensing
+crescimento de estrutura
+potenciais gravitacionais
+ISW
+peculiar velocities
+```
+
+### 8. Duas estrelas, elipses, avalanches locais e linguagem simbólica
+
+A solicitação sobre “duas estrelas no mesmo movimento” entra como cenário local vetorial: dois corpos podem ter direções de movimento convergentes, divergentes ou quase tangenciais; seus resultados vetoriais podem alterar elipses vizinhas, limpar regiões orbitais, transferir momento angular e modificar campos gravitacionais remanescentes.
+
+Em sistemas planetários, estelares ou galácticos caóticos, isso pode aparecer como avalanches locais de efeito dominó: uma elipse perturbada muda o campo efetivo, que muda outras trajetórias, que redistribuem energia e momento angular em cascata. Essa leitura pode ser usada para pares galácticos como Via Láctea-Andromeda, aglomerados, discos e subestruturas, mas continua sendo dinâmica local/grupal.
+
+A expressão simbólica recebida:
+
+```text
+n^n + n*x = y^x + n + x + z + omega + alpha + tesseract
+```
+
+fica registrada apenas como marcador autoral de complexidade combinatória e dimensional. Ela não é equação física validada, não entra em likelihood e não deve aparecer como claim quantitativo até ganhar definição dimensional, unidades, domínio, observáveis e teste de falsificação.
+
+### 9. Payload mínimo do pipeline
+
+O bloco operacional mínimo no `VALIDATION_STATUS` e no `MANIFEST.json` é:
+
+```json
+{
+  "background_parameters": [
+    "H0",
+    "Omega_m",
+    "Omega_Lambda",
+    "Omega_b_h2",
+    "Omega_c_h2",
+    "theta_star",
+    "tau",
+    "ln10_10_As",
+    "n_s"
+  ],
+  "growth_parameters": [
+    "sigma8",
+    "S8",
+    "fsigma8",
+    "D_z"
+  ],
+  "local_dynamic_layer": [
+    "Phi_pre",
+    "E_bound",
+    "tau_relax",
+    "Q_diss",
+    "M_dyn"
+  ],
+  "claim_boundary": "local dynamic layer cannot be promoted to background cosmology without scale bridge"
+}
+```
+
+Essa última linha é obrigatória: camada dinâmica local não pode ser promovida para cosmologia de fundo sem ponte de escala.
+
+### 10. Avaliação final
+
+É uma boa tese se formulada assim: eventos observáveis são precedidos por pré-estados físicos mensuráveis. Isso pode ser diferencial RLL porque explicita camadas de pré-estado, relaxação e memória dinâmica que o ΛCDM de fundo deixa fora por construção.
+
+Mas a frase de segurança também é obrigatória:
+
+```text
+fora por construcao != erro do LambdaCDM
+```
+
+O ΛCDM não tenta descrever tudo; ele descreve o fundo cosmológico e perturbações estatísticas. RLL só ganha força se mantiver a ponte de escala auditável, com dados reais, covariâncias e métricas reproduzíveis.

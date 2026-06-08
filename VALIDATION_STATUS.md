@@ -36,7 +36,7 @@ O repositório agora registra `docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md` como contr
 
 Esse bloco cobre a leitura de duas estrelas ou buracos negros em movimento vetorial convergente, elipses orbitais vizinhas, campos gravitacionais remanescentes, cascatas locais em sistemas planetários/estelares e dinâmica de pares galácticos como Via Láctea-Andromeda. Ele não autoriza promover efeito dominó local a parâmetro cosmológico de fundo sem validação observacional e covariâncias apropriadas.
 
-O `MANIFEST.json` gerado por `scripts/compute_rll_real_pipeline.py` agora inclui `validation_status` com `background_parameters`, `radiation_neutrino_parameters`, `growth_parameters`, `initial_condition_layer`, `local_dynamic_layer`, `scale_bridge_examples` e o boundary: `local dynamic layer cannot be promoted to background cosmology without scale bridge`.
+O `MANIFEST.json` gerado por `scripts/compute_rll_real_pipeline.py` agora inclui `validation_status` com `background_parameters`, `radiation_neutrino_parameters`, `growth_parameters`, `initial_condition_layer`, `local_dynamic_layer`, `scale_bridge_examples`, `symbolic_complexity_marker` e o boundary: `local dynamic layer cannot be promoted to background cosmology without scale bridge`. A versão expandida do documento inclui a nota Rafael completa operacionalizada: parâmetros ΛCDM base, blocos de radiação/neutrinos/crescimento/condições iniciais, Lua como memória dinâmica de impacto, `G_pre`, duas estrelas em convergência vetorial, elipses vizinhas, cascatas locais, Via Láctea-Andromeda e o marcador simbólico `n^n + n*x = y^x + n + x + z + omega + alpha + tesseract` como não operacional até ganhar dimensões, unidades e teste.
 
 ## What still needs external validation
 

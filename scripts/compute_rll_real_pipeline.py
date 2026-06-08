@@ -153,6 +153,7 @@ def validation_status_payload() -> dict[str, object]:
             "fsigma8",
             "D_z",
             "P_k",
+            "delta_m",
         ],
         "initial_condition_layer": [
             "A_s",
@@ -172,13 +173,20 @@ def validation_status_payload() -> dict[str, object]:
             "eccentricity",
             "separation_orbital",
             "gravitational_wave_loss",
+            "G_pre",
+            "field_gradient",
+            "vector_convergence",
+            "neighbouring_orbital_ellipses",
         ],
         "scale_bridge_examples": [
             "binary_stars_or_black_holes_with_converging_vector_motion",
             "planet_star_orbit_groups_in_neighbouring_ellipses",
             "chaotic_galactic_cascades_and_domino_like_field_relaxation",
             "milky_way_and_andromeda_large_scale_local_group_dynamics",
+            "apollo_lunar_impact_dynamic_memory_without_cosmological_promotion",
+            "local_domino_cascade_in_orbital_or_galactic_subsystems",
         ],
+        "symbolic_complexity_marker": "n^n + n*x = y^x + n + x + z + omega + alpha + tesseract is non-operational until dimensions, units, observables, and falsification tests are defined",
         "claim_boundary": "local dynamic layer cannot be promoted to background cosmology without scale bridge",
         "interpretation": (
             "Pre-movement is modeled as scale-indexed initial/bound-state dynamics: "
