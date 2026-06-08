@@ -1,13 +1,16 @@
-# RLL Multi-Medium Modular Index
+# RLL Multi-Medium Index
 
-Status: exploratory documentation.
-Null model: GR/Lambda-CDM remains the reference.
+Status: exploratory.
+Null model: GR/Lambda-CDM.
 Rule: no superiority claim without reproducible evidence.
-Integrity rule: each module must be small, auditable, and independently readable.
 
 ## Modules
 
-1. `01_EPISTEMIC_BOUNDARY.md` - claim boundary, TOKEN_VAZIO, evidence rules.
-2. `02_PARADOX_THERMODYNAMICS.md` - Mpemba/Frost as non-equilibrium relaxation analogy.
-3. `03_TOROIDAL_TRANSPORT.md` - toroidal state-space and transport semantics.
-4. `04_SHOCK_PLASMA_MEDIUM.md` - shock, plasma, absorption
+- 01_EPISTEMIC_BOUNDARY.md
+- 02_RELAXATION_MAP.md
+- 03_TORUS_MAP.md
+- 04_MEDIA_FIELDS.md
+- 05_TRACE.md
+- 06_LEDGER_TEMPLATE.md
+
+Integrity rule: small files, auditable claims, TOKEN_VAZIO for gaps.
