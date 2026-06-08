@@ -1,16 +1,16 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-08T04:30:09.578684+00:00`  
-Commit: `1021be8fd65546a74e431d5004ccba2e00ac66bc`
+Gerado em: `2026-06-08T04:13:09.114530+00:00`  
+Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 
 | Métrica | Valor |
 |---|---:|
 | `tracked_files_total` | 763 |
 | `cataloged_files` | 745 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 34020238 |
-| `total_text_lines` | 118347 |
-| `markdown_files` | 388 |
+| `total_bytes` | 34018367 |
+| `total_text_lines` | 118284 |
+| `markdown_files` | 386 |
 | `yml_yaml_files` | 32 |
 | `github_workflow_yml_files` | 13 |
 | `data_or_result_files` | 78 |
