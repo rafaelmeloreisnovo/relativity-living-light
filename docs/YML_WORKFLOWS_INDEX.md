@@ -1,7 +1,7 @@
-# YML Workflows Index
+# YML Workflows and Config Index
 
-Gerado em: `2026-06-08T07:26:08.832661+00:00`  
-Commit: `b473151eb1c73a2ed801b81ad636ddabdb6d7038`
+Gerado por: `tools/docs_inventory.py`
+Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e commit não são materializados para reduzir conflitos entre branches.
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -13,7 +13,7 @@ Commit: `b473151eb1c73a2ed801b81ad636ddabdb6d7038`
 | `.github/workflows/python-tests.yml` | `github_workflow_yml` | 534 | 27 | `0ad2f96fda2df19f7b563cfde7b4588112e7c2129c2685bac8c10b8ef433f0fd` |
 | `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12251 | 269 | `b96d92cbbc9c67a50b372626fe8be9f0f2dc266d3880bef0750dbccfae84cd99` |
 | `.github/workflows/real-data-contract-ci.yml` | `github_workflow_yml` | 4141 | 110 | `ec56874d6e657e226ae0cee551a5f9789f5403221258a252afc4c0acafd5f1fd` |
-| `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 9106 | 176 | `e51e6b27be3e3cedff088f481d1d505fd47eea91964857c311d008933316f2e9` |
+| `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 1896 | 59 | `24987efc9757a0132932bef6c1d1d8d10def61f885a932d6a22c8f3544951081` |
 | `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 3878 | 121 | `7fe171319ced298b38c604b1a4ce40b668b32d1fdec5e4c259959b3fec0f9866` |
 | `.github/workflows/rll-data-pipeline.yml` | `github_workflow_yml` | 3184 | 82 | `6f9df5055ae59b2d8403f6ade8d0bbdfe6891243e230b0c32736592437e1087a` |
 | `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 5954 | 87 | `1a42f5d682c8286e890c78901fc869111ef2e1e5b68551c89da336bf27bba39e` |
