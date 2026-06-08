@@ -30,6 +30,14 @@ Date (UTC): 2026-05-21
 - `docs/panteon_likelihood.py` is intended for **real Pantheon+** validation and requires external files under `data/pantheon/`.
 - `docs/rll_validation_real.py` is intended for **real-data validation** workflows; execution completeness depends on local dataset/materialization conditions.
 
+## Scale bridge: pré-movimento sem promoção indevida
+
+O repositório agora registra `docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md` como contrato conceitual-operacional para a intuição de pré-movimento. A regra é explícita: `Phi_pre`, `E_bound`, `tau_relax`, `Q_diss`, `M_dyn`, momento angular orbital, spin, excentricidade, separação orbital e perda por ondas gravitacionais pertencem à camada local/perturbativa enquanto não houver ponte quantitativa de escala.
+
+Esse bloco cobre a leitura de duas estrelas ou buracos negros em movimento vetorial convergente, elipses orbitais vizinhas, campos gravitacionais remanescentes, cascatas locais em sistemas planetários/estelares e dinâmica de pares galácticos como Via Láctea-Andromeda. Ele não autoriza promover efeito dominó local a parâmetro cosmológico de fundo sem validação observacional e covariâncias apropriadas.
+
+O `MANIFEST.json` gerado por `scripts/compute_rll_real_pipeline.py` agora inclui `validation_status` com `background_parameters`, `radiation_neutrino_parameters`, `growth_parameters`, `initial_condition_layer`, `local_dynamic_layer`, `scale_bridge_examples` e o boundary: `local dynamic layer cannot be promoted to background cosmology without scale bridge`.
+
 ## What still needs external validation
 
 1. Full Pantheon+ ingestion and successful run with documented data provenance/hash.
