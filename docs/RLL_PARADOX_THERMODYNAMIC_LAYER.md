@@ -1,12 +1,10 @@
 # RLL Paradox Thermodynamic Layer
 
 Status: exploratory.
-Rule: Mpemba/Frost are treated as non-equilibrium analogies, not cosmological proof.
-
-Purpose: map paradox-like relaxation into falsifiable residual terms.
+Rule: Mpemba/Frost are non-equilibrium analogies, not cosmological proof.
 
 Variables: T, P, rho, eta, kappa, chi_i, tau_relax, tau_half.
 
-Operational form: epsilon_thermo(z) = residual linked to relaxation, phase change, opacity, absorption, and transport.
+Term: epsilon_thermo = residual linked to relaxation, phase change, opacity, absorption, and transport.
 
-Observable targets
+Targets: H(z), BAO, SNe, CMB foregrounds, spectra.
