@@ -1,0 +1,7 @@
+covariance_block,tracer,z_eff,observable_a,sigma_a,observable_b,sigma_b,correlation_coefficient,covariance
+DESI_DR2_LRG1_DM_DH,LRG1,0.510,DM_over_rd,0.167,DH_over_rd,0.425,-0.459,-0.032577525
+DESI_DR2_LRG2_DM_DH,LRG2,0.706,DM_over_rd,0.177,DH_over_rd,0.330,-0.404,-0.023597640
+DESI_DR2_LRG3_ELG1_DM_DH,LRG3_PLUS_ELG1,0.934,DM_over_rd,0.152,DH_over_rd,0.193,-0.416,-0.012203776
+DESI_DR2_ELG2_DM_DH,ELG2,1.321,DM_over_rd,0.318,DH_over_rd,0.221,-0.434,-0.030500652
+DESI_DR2_QSO_DM_DH,QSO,1.484,DM_over_rd,0.760,DH_over_rd,0.516,-0.500,-0.196080000
+DESI_DR2_LYA_DM_DH,Lya,2.330,DM_over_rd,0.531,DH_over_rd,0.101,-0.431,-0.023114961

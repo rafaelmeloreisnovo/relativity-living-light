@@ -85,14 +85,49 @@ def mu_from_e2(z_vals, e2_func, *params, M_abs=-19.3):
     return mu + M_abs
 
 
-def load_pantheon(data_dir='data/pantheon'):
+PANTHEON_COVARIANCE_FILENAME = 'Pantheon+SH0ES_STAT+SYS.cov'
+
+
+def _load_pantheon_plus_covariance(cov_file, n_obs):
+    values = np.fromfile(cov_file, dtype=float, sep=' ')
+    expected_elements = int(n_obs) * int(n_obs)
+
+    if values.size == expected_elements + 1:
+        header_n = int(values[0])
+        if not np.isclose(values[0], header_n):
+            raise ValueError(
+                f"Cabeçalho inválido em {os.path.basename(cov_file)}: "
+                f"primeiro valor deve ser dimensão inteira, recebido {values[0]}."
+            )
+        if header_n != n_obs:
+            raise ValueError(
+                f"{os.path.basename(cov_file)} incompatível: cabeçalho declara {header_n} observações, "
+                f"mas lcparam tem {n_obs}."
+            )
+        values = values[1:]
+    elif values.size != expected_elements:
+        raise ValueError(
+            f"{os.path.basename(cov_file)} incompatível: esperado {expected_elements} elementos "
+            f"(ou {expected_elements + 1} com cabeçalho Pantheon+), recebido {values.size}."
+        )
+
+    if not np.all(np.isfinite(values)):
+        raise ValueError(f"{os.path.basename(cov_file)} contém NaN/inf.")
+
+    return values.reshape(n_obs, n_obs)
+
+
+def load_pantheon(data_dir='data/pantheon', require_covariance=True):
     lc_file = os.path.join(data_dir, 'lcparam_full_long_zhel.txt')
-    sys_file = os.path.join(data_dir, 'sys_full_long.txt')
+    cov_file = os.path.join(data_dir, PANTHEON_COVARIANCE_FILENAME)
     sanity_checks = []
     input_meta = {
         'lc_file': lc_file,
-        'sys_file': sys_file,
+        'cov_file': cov_file,
+        'sys_file': cov_file,
         'has_systematics': False,
+        'covariance_used': False,
+        'require_covariance': bool(require_covariance),
         'sanity_checks': sanity_checks,
     }
 
@@ -157,38 +192,46 @@ def load_pantheon(data_dir='data/pantheon'):
 
         c_stat = np.diag(mu_err ** 2)
 
-        has_systematics = os.path.exists(sys_file)
-        input_meta['has_systematics'] = has_systematics
-        if has_systematics:
-            c_sys_raw = np.loadtxt(sys_file)
-            sys_shape_ok = bool(c_sys_raw.size == n_obs * n_obs)
+        has_covariance = os.path.exists(cov_file)
+        input_meta['has_systematics'] = has_covariance
+        if has_covariance:
+            c_total = _load_pantheon_plus_covariance(cov_file, n_obs)
+            input_meta['covariance_used'] = PANTHEON_COVARIANCE_FILENAME
             sanity_checks.append({
-                'name': 'sys_full_long_dimensional_compatibility',
-                'passed': sys_shape_ok,
-                'details': {
-                    'has_systematics': True,
-                    'n_obs': int(n_obs),
-                    'expected_elements': int(n_obs * n_obs),
-                    'received_elements': int(c_sys_raw.size),
-                },
-            })
-            if not sys_shape_ok:
-                raise ValueError(
-                    f"sys_full_long.txt incompatível: esperado {n_obs*n_obs} elementos, "
-                    f"recebido {c_sys_raw.size}."
-                )
-            c_sys = c_sys_raw.reshape(n_obs, n_obs)
-            c_total = c_stat + c_sys
-        else:
-            print('⚠️ Matriz sistemática ausente; usando apenas covariância estatística.')
-            sanity_checks.append({
-                'name': 'sys_full_long_dimensional_compatibility',
+                'name': 'pantheon_plus_covariance_dimensional_compatibility',
                 'passed': True,
                 'details': {
-                    'has_systematics': False,
+                    'covariance_file': PANTHEON_COVARIANCE_FILENAME,
+                    'has_covariance': True,
                     'n_obs': int(n_obs),
                     'expected_elements': int(n_obs * n_obs),
-                    'received_elements': None,
+                    'received_elements': int(n_obs * n_obs),
+                },
+            })
+        elif require_covariance:
+            sanity_checks.append({
+                'name': 'pantheon_plus_covariance_presence',
+                'passed': False,
+                'details': {
+                    'covariance_file': PANTHEON_COVARIANCE_FILENAME,
+                    'has_covariance': False,
+                    'fallback': 'disabled',
+                },
+            })
+            raise FileNotFoundError(
+                f"Arquivo de covariância obrigatório não encontrado: {cov_file}. "
+                "O fluxo --with-covariance não usa fallback diagonal silencioso."
+            )
+        else:
+            print('⚠️ Matriz Pantheon+ STAT+SYS ausente; usando fallback explícito de covariância estatística diagonal.')
+            sanity_checks.append({
+                'name': 'pantheon_plus_covariance_presence',
+                'passed': True,
+                'details': {
+                    'covariance_file': PANTHEON_COVARIANCE_FILENAME,
+                    'has_covariance': False,
+                    'fallback': 'statistical_diagonal',
+                    'n_obs': int(n_obs),
                 },
             })
             c_total = c_stat
@@ -199,7 +242,7 @@ def load_pantheon(data_dir='data/pantheon'):
             'passed': True,
             'details': {
                 'n_obs': int(n_obs),
-                'has_systematics': has_systematics,
+                'has_systematics': has_covariance,
             },
         })
 
@@ -329,7 +372,7 @@ def fit_models(z_hel, mu_obs, c_inv):
     }
 
 
-def export_results(results, out_dir='data/results'):
+def export_results(results, input_meta=None, out_dir='data/results'):
     ensure_dir(out_dir)
 
     comp_rows = [
@@ -377,6 +420,7 @@ def export_results(results, out_dir='data/results'):
         'pipeline': 'pantheon_oficial_prova_observacional',
         'timestamp_utc': datetime.now(timezone.utc).isoformat(),
         'n_obs': results['n_obs'],
+        'covariance_used': (input_meta or {}).get('covariance_used', False),
         'rll': results['rll'],
         'lcdm': results['lcdm'],
         'comparativo': comp_rows,
@@ -392,9 +436,9 @@ def export_run_manifest(input_meta, out_dir='data/results'):
     ensure_dir(out_dir)
 
     lc_path = input_meta['lc_file']
-    sys_path = input_meta['sys_file']
+    cov_path = input_meta['cov_file']
     lc_exists = os.path.exists(lc_path)
-    sys_exists = os.path.exists(sys_path)
+    cov_exists = os.path.exists(cov_path)
 
     manifest = {
         'timestamp_utc': datetime.now(timezone.utc).isoformat(),
@@ -407,12 +451,13 @@ def export_run_manifest(input_meta, out_dir='data/results'):
                 'exists': lc_exists,
                 'sha256': hash_file_sha256(lc_path) if lc_exists else None,
             },
-            'sys_full_long.txt': {
-                'path': sys_path,
-                'exists': sys_exists,
-                'sha256': hash_file_sha256(sys_path) if sys_exists else None,
+            PANTHEON_COVARIANCE_FILENAME: {
+                'path': cov_path,
+                'exists': cov_exists,
+                'sha256': hash_file_sha256(cov_path) if cov_exists else None,
             },
         },
+        'covariance_used': input_meta.get('covariance_used', False),
         'sanity_checks': input_meta.get('sanity_checks', []),
         'load_error': input_meta.get('load_error'),
     }
@@ -461,7 +506,7 @@ def main():
     print(f'Dados carregados: {len(z_hel)} supernovas')
 
     results = fit_models(z_hel, mu_obs, c_inv)
-    csv_path, json_path = export_results(results)
+    csv_path, json_path = export_results(results, input_meta=input_meta)
     manifest_path = export_run_manifest(input_meta)
     fig_path = maybe_export_figure(z_hel, mu_obs, results)
 

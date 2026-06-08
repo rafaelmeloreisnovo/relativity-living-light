@@ -1,0 +1,112 @@
+{
+  "run_utc": "2026-06-08T07:21:09Z",
+  "status": "Real data computed from non-synthetic inputs",
+  "data_source_mode": "repo",
+  "input_files": [
+    {
+      "name": "Hz_data_real.csv",
+      "path": "data/real/Hz_data_real.csv",
+      "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+      "status": "used_real_non_synthetic"
+    },
+    {
+      "name": "BAO_data_real.csv",
+      "path": "data/real/BAO_data_real.csv",
+      "sha256": "1decb159dd8c276e356e1f2ca45028da0079302a0b7b279797d8e40aab0c9527",
+      "status": "used_real_non_synthetic"
+    },
+    {
+      "name": "CMB_shift_real.json",
+      "path": "data/real/CMB_shift_real.json",
+      "sha256": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc",
+      "status": "used_real_non_synthetic"
+    }
+  ],
+  "fallback_policy": "fail if required real inputs are absent; repo real data allowed only as explicit fallback/source",
+  "validation_status": {
+    "background_parameters": [
+      "H0",
+      "Omega_m",
+      "Omega_Lambda",
+      "Omega_b_h2",
+      "Omega_c_h2",
+      "theta_star",
+      "tau",
+      "ln10_10_As",
+      "n_s"
+    ],
+    "radiation_neutrino_parameters": [
+      "Omega_r",
+      "N_eff",
+      "sum_m_nu",
+      "Omega_gamma",
+      "Omega_nu"
+    ],
+    "growth_parameters": [
+      "sigma8",
+      "S8",
+      "fsigma8",
+      "D_z",
+      "P_k",
+      "delta_m"
+    ],
+    "initial_condition_layer": [
+      "A_s",
+      "n_s",
+      "alpha_s",
+      "primordial_perturbations",
+      "acoustic_scale"
+    ],
+    "local_dynamic_layer": [
+      "Phi_pre",
+      "E_bound",
+      "tau_relax",
+      "Q_diss",
+      "M_dyn",
+      "L_orbital",
+      "spin",
+      "eccentricity",
+      "separation_orbital",
+      "gravitational_wave_loss",
+      "G_pre",
+      "field_gradient",
+      "vector_convergence",
+      "neighbouring_orbital_ellipses"
+    ],
+    "impact_vector_layer": [
+      "M_body",
+      "v_impact",
+      "theta_impact",
+      "rho_body",
+      "N_frag",
+      "M_frag",
+      "p_vec",
+      "L_orb",
+      "E_kin",
+      "E_ejecta",
+      "beta_momentum",
+      "tau_relax",
+      "S_scale"
+    ],
+    "scale_bridge_examples": [
+      "binary_stars_or_black_holes_with_converging_vector_motion",
+      "planet_star_orbit_groups_in_neighbouring_ellipses",
+      "chaotic_galactic_cascades_and_domino_like_field_relaxation",
+      "milky_way_and_andromeda_large_scale_local_group_dynamics",
+      "apollo_lunar_impact_dynamic_memory_without_cosmological_promotion",
+      "local_domino_cascade_in_orbital_or_galactic_subsystems",
+      "chicxulub_scale_energy_as_impact_vector_not_background_parameter",
+      "dart_ejecta_recoil_momentum_amplification"
+    ],
+    "symbolic_complexity_marker": "n^n + n*x = y^x + n + x + z + omega + alpha + tesseract is non-operational until dimensions, units, observables, and falsification tests are defined",
+    "claim_boundary": "local dynamic layer cannot be promoted to background cosmology without scale bridge",
+    "interpretation": "Pre-movement is modeled as scale-indexed initial/bound-state dynamics: it can condition local events, mergers, vector impacts, ejecta recoil, relaxation, and structure growth, but it is not an extra global LCDM background parameter by itself."
+  },
+  "outputs": [
+    "tables/Hz_processed.csv",
+    "tables/BAO_processed.csv",
+    "tables/model_comparison.csv",
+    "tables/rll_components.csv",
+    "tables/geomagnetic_metadata.csv"
+  ]
+}

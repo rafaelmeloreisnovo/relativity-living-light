@@ -1,0 +1,110 @@
+schema_version: "2026-06-04"
+name: "rll.real_orchestrator_inventory"
+purpose: "Unificar IML/ML, Doc Inventory, Real Data Complete, Structure-D, Pantheon, DESI e pipelines sem criar rota paralela ou fake-fill."
+claim_boundary: "No superiority claim unless real-data metrics pass predefined thresholds; prior formulas may be valuable as timestamped predictions, but require separate timestamp/hash comparison."
+
+canonical_routes:
+  iml_artifact:
+    workflow: ".github/workflows/iml_artifact.yml"
+    input: "data/iml/daise_input.json"
+    example_input: "data/iml/daise_input.example.json"
+    engine: "tools/iml/iml_pipeline.py"
+    output: "artifacts/iml/iml_artifact.json"
+    status: "input_materialized"
+
+  manual_orchestrator:
+    workflow: ".github/workflows/START_MANUAL_HERE.yml"
+    profiles:
+      - quick_yaml_only
+      - workflow_audit
+      - interoperability_only
+      - full_validation
+    scopes:
+      - rll
+      - iml
+      - formulas
+      - book
+      - real_validation
+      - validation_paths
+      - all
+    status: "merged_and_routable"
+
+  real_data_complete:
+    workflow: ".github/workflows/real-data-complete-execution.yml"
+    modes:
+      - audit_only
+      - materialize
+      - validate
+      - full
+    expected_artifact_root: "artifacts/real-data-complete"
+    optional_commit_root: "results/pipeline-runs/<run_id>"
+    status: "merged_manual_trigger"
+
+  structure_d_joint_likelihood:
+    engine: "data/pipelines/structure_d/joint_real_likelihood.py"
+    runner: "data.pipelines.structure_d.run_all_real"
+    config: "data/pipelines/structure_d/datasets_config.json"
+    outputs:
+      - "results/structure_d/model_comparison_real.csv"
+      - "results/structure_d/model_comparison_real_fit_metadata.json"
+      - "results/structure_d/joint_real_likelihood.json"
+      - "results/structure_d/joint_real_likelihood.csv"
+    status: "merged_real_data_axis"
+
+  pantheon_real_validation:
+    iml: "data/real_sources/rll_pantheon_real_validation.iml.yml"
+    downloader: "scripts/download_real_cosmology_inputs.sh"
+    verifier: "scripts/verify_pantheon_inputs.py"
+    runner: "scripts/run_real_pantheon_validation.py"
+    expected_inputs:
+      - "data/pantheon/lcparam_full_long_zhel.txt"
+      - "data/pantheon/Pantheon+SH0ES_STAT+SYS.cov"
+    expected_output: "data/results/model_comparison.json"
+    status: "external_large_input_required_until_materialized"
+
+  desi_dr2_bao:
+    primary_points: "data/real/cosmology/desi_dr2_bao_primary_points.csv"
+    covariance_summary: "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
+    cobaya_dir: "data/real/cosmology/desi_bao_dr2_cobaya"
+    lightweight_measurements: "data/real/desi_dr2_bao_measurements.csv"
+    lightweight_covariance: "data/real/desi_dr2_bao_covariance.csv"
+    zml_runner: "scripts/compute_desi_dr2_bao_zml.py"
+    zml_output: "data/results/desi_dr2_bao_zml.yml"
+    comparison_output: "data/results/desi_dr2_bao_model_comparison.json"
+    status: "materialized_for_bao_validation"
+
+  doc_inventory:
+    config: "tools/inventory_config.yml"
+    workflow: ".github/workflows/repo-real-inventory.yml"
+    outputs:
+      - "docs/DOCUMENTATION_FULL_INVENTORY.md"
+      - "docs/REAL_NUMBERS_REPORT.md"
+      - "docs/YML_WORKFLOWS_INDEX.md"
+      - "data/results/repo_inventory.json"
+      - "data/results/repo_inventory.tsv"
+      - "data/results/repo_inventory_summary.json"
+    invariant: "tracked_files_total must be separated from cataloged_files; uncataloged_or_error_files must be explicit."
+    status: "route_defined"
+
+acceptance_checks:
+  - id: "iml_input_exists"
+    path: "data/iml/daise_input.json"
+    must_exist: true
+  - id: "workflow_directory_hygiene"
+    command: "python3 tools/audit_github_workflows.py --strict"
+  - id: "real_data_policy"
+    command: "python tools/real_data_materialization_audit.py"
+  - id: "signature_verification"
+    command: "python tools/verify_real_source_signatures.py"
+  - id: "structure_d_real"
+    command: "python -m data.pipelines.structure_d.run_all_real"
+  - id: "pantheon_when_materialized"
+    command: "python scripts/run_real_pantheon_validation.py"
+  - id: "desi_zml"
+    command: "python scripts/compute_desi_dr2_bao_zml.py"
+
+interpretation_policy:
+  prediction_value: "Formula/calculation produced before later observation is epistemically stronger than post-hoc fitting, but must be represented as prior_prediction_vs_observation with timestamp/hash evidence."
+  fit_value: "Model fit against already materialized data remains useful for falsifiability, AIC/BIC, chi2 and reproducibility."
+  no_erasure: "A current fit result must not erase the scientific value of earlier timestamped mathematical predictions."
+  no_fake_fill: "Missing data remains TOKEN_VAZIO/lacuna instead of invented value."

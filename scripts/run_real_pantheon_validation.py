@@ -172,6 +172,9 @@ def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
     }
     delta.update(interpret_model_comparison(delta))
 
+    summary_covariance_used = summary.get("covariance_used", False)
+    covariance_used = summary_covariance_used if isinstance(summary_covariance_used, str) else False
+
     real_files = _pantheon_files()
     file_hashes = {}
     for f in real_files:
@@ -200,7 +203,7 @@ def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
         "AIC_lcdm": lcdm_aic,
         "BIC_rll": rll_bic,
         "BIC_lcdm": lcdm_bic,
-        "covariance_used": True,
+        "covariance_used": covariance_used,
         "models": {
             "rll": {
                 "k_params": 5,

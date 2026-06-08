@@ -7,6 +7,8 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from rll import latentes
+
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
@@ -130,6 +132,25 @@ def cmd_preflight_real(args: argparse.Namespace) -> None:
         raise SystemExit(2)
 
 
+def cmd_latentes(args: argparse.Namespace) -> None:
+    forwarded = [
+        "--catalog",
+        str(args.catalog),
+        "--schema",
+        str(args.schema),
+        "--root",
+        str(args.root),
+        args.latentes_command,
+    ]
+    if args.latentes_json:
+        forwarded.append("--json")
+    if args.dry_run:
+        forwarded.append("--dry-run")
+    if args.source_id:
+        forwarded.extend(["--source-id", args.source_id])
+    raise SystemExit(latentes.main(forwarded))
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="rll",
@@ -172,6 +193,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="Emite resultado em JSON para automação",
     )
     preflight_parser.set_defaults(func=cmd_preflight_real)
+
+    latentes_parser = subparsers.add_parser(
+        "latentes",
+        help="Executa validação/orquestração seca do catálogo RLL-LATENTES",
+    )
+    latentes_parser.add_argument(
+        "latentes_command",
+        choices=["validate", "plan", "fetch", "score", "report", "verify"],
+        help="Subcomando RLL-LATENTES",
+    )
+    latentes_parser.add_argument("--catalog", type=Path, default=latentes.DEFAULT_CATALOG)
+    latentes_parser.add_argument("--schema", type=Path, default=latentes.DEFAULT_SCHEMA)
+    latentes_parser.add_argument("--root", type=Path, default=Path("."))
+    latentes_parser.add_argument("--source-id", default=None)
+    latentes_parser.add_argument("--json", dest="latentes_json", action="store_true")
+    latentes_parser.add_argument("--dry-run", action="store_true")
+    latentes_parser.set_defaults(func=cmd_latentes)
 
     return parser
 

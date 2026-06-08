@@ -1,6 +1,10 @@
 Outputs (CSVs e plots) do fluxo Structure D aparecem aqui após rodar:
 `python -m data.pipelines.structure_d.run_all`
 
+## Status de contrato (real-validation RLL)
+- Os CSVs históricos de comparação (`model_comparison.csv` e `model_comparison_real.csv`) devem ser tratados como **preliminares/legados** para comparação Pantheon+.
+- O artefato canônico para o contrato normalizado atual é `data/results/model_comparison.json`, com `k_rll=5`, `k_lcdm=2`, `AIC = chi2 + 2k`, `BIC = chi2 + k*ln(n_obs)` e deltas definidos como `RLL - LCDM`.
+
 ## Perfil padrão
 - Perfil: `structure_d_default`
 - Datasets ativos: `hz`, `fsigma8`

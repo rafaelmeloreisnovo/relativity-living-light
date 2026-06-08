@@ -1,0 +1,81 @@
+{
+  "schema": "rll.model_comparison.real_auditable.v1",
+  "dataset_type": "real_observational",
+  "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+  "claim_allowed": false,
+  "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
+  "command_exact": "python -m data.pipelines.structure_d.joint_real_likelihood",
+  "git_commit_hash": "61f0515bdf2936f4bf5c465f82cf4ee7eaa8b191",
+  "python_version": "3.14.4",
+  "package_versions": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.3"
+  },
+  "inputs": [
+    {
+      "name": "Hz",
+      "path": "data/real/Hz_data_real.csv",
+      "dataset_type": "real_observational",
+      "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+      "doi_or_url": "https://doi.org/10.1093/mnras/stw757",
+      "license": "not redistributed here; see source terms and repository data manifest",
+      "source": "local materialized real observational input"
+    },
+    {
+      "name": "DESI_DR2_BAO_primary",
+      "path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "dataset_type": "real_observational",
+      "sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
+      "doi_or_url": "https://doi.org/10.48550/arXiv.2503.14738",
+      "license": "not redistributed here; see source terms and repository data manifest",
+      "source": "local materialized real observational input"
+    },
+    {
+      "name": "DESI_DR2_BAO_covariance_summary",
+      "path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+      "dataset_type": "real_observational",
+      "sha256": "e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e",
+      "doi_or_url": "https://doi.org/10.48550/arXiv.2503.14738",
+      "license": "not redistributed here; see source terms and repository data manifest",
+      "source": "local materialized real observational input"
+    },
+    {
+      "name": "fsigma8",
+      "path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "dataset_type": "real_observational",
+      "sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
+      "doi_or_url": "https://doi.org/10.1093/mnras/stw1614",
+      "license": "not redistributed here; see source terms and repository data manifest",
+      "source": "local materialized real observational input"
+    },
+    {
+      "name": "CMB_shift",
+      "path": "data/real/CMB_shift_real.json",
+      "dataset_type": "real_observational",
+      "sha256": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc",
+      "doi_or_url": "https://doi.org/10.1051/0004-6361/201833910",
+      "license": "not redistributed here; see source terms and repository data manifest",
+      "source": "local materialized real observational input"
+    }
+  ],
+  "n_obs": 64,
+  "k_rll": 5,
+  "k_lcdm": 2,
+  "chi2_rll": 256.0005236651908,
+  "chi2_lcdm": 82.91624704223676,
+  "AIC_rll": 266.0005236651908,
+  "AIC_lcdm": 86.91624704223676,
+  "BIC_rll": 276.7949390819892,
+  "BIC_lcdm": 91.2340132089561,
+  "delta_chi2_rll_minus_lcdm": 173.08427662295406,
+  "delta_aic_rll_minus_lcdm": 179.08427662295406,
+  "delta_bic_rll_minus_lcdm": 185.56092587303309,
+  "interpretation_label": "lcdm_preferred",
+  "interpretation_reason": "At least one information-criterion delta is positive for RLL minus LCDM.",
+  "reason": "At least one information-criterion delta is positive for RLL minus LCDM.",
+  "notes": [
+    "Synthetic for code truth. Real observational data for world truth.",
+    "This artifact reuses committed real joint-likelihood chi2 totals and applies the required k_rll=5, k_lcdm=2 information-criterion contract; it does not refit or tune parameters."
+  ]
+}

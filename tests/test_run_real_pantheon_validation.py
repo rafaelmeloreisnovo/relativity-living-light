@@ -31,6 +31,7 @@ def test_normalize_model_comparison_required_metrics_and_formulas(monkeypatch, t
         "dataset": "pantheon+",
         "generated_at": "2026-05-21T00:00:00+00:00",
         "n_obs": 1701,
+        "covariance_used": "Pantheon+SH0ES_STAT+SYS.cov",
         "rll": {"chi2": 10.0},
         "lcdm": {"chi2": 11.0},
     }
@@ -54,6 +55,28 @@ def test_normalize_model_comparison_required_metrics_and_formulas(monkeypatch, t
     assert payload["delta_bic_rll_minus_lcdm"] == payload["BIC_rll"] - payload["BIC_lcdm"]
     assert payload["interpretation_label"] in {"inconclusive", "lcdm_preferred", "rll_preferred_tentative", "rll_preferred_strong"}
     assert payload["claim_boundary"] == "No superiority claim unless real-data metrics pass predefined thresholds."
+    assert payload["covariance_used"] == "Pantheon+SH0ES_STAT+SYS.cov"
+
+
+def test_aic_bic_use_distinct_parameter_counts_for_models(monkeypatch, tmp_path) -> None:
+    summary = {
+        "n_obs": 1701,
+        "rll": {"chi2": 100.0},
+        "lcdm": {"chi2": 100.0},
+    }
+    f1 = tmp_path / "lcparam_full_long_zhel.txt"
+    f2 = tmp_path / "Pantheon+SH0ES_STAT+SYS.cov"
+    f1.write_text("a")
+    f2.write_text("b")
+    import scripts.run_real_pantheon_validation as m
+    monkeypatch.setattr(m, "_pantheon_files", lambda: [f1, f2])
+
+    payload = _normalize_model_comparison(summary, command_used="python scripts/run_real_pantheon_validation.py")
+    expected_delta_aic = 2 * (5 - 2)
+    expected_delta_bic = (5 - 2) * math.log(summary["n_obs"])
+
+    assert payload["AIC_rll"] - payload["AIC_lcdm"] == expected_delta_aic
+    assert math.isclose(payload["BIC_rll"] - payload["BIC_lcdm"], expected_delta_bic)
 
 
 def test_normalize_fails_without_real_data_files(monkeypatch) -> None:
@@ -79,3 +102,40 @@ def test_do_not_retain_when_no_previous_artifact(tmp_path, monkeypatch) -> None:
     target = tmp_path / "model_comparison.json"
     monkeypatch.setattr(m, "MODEL_COMPARISON_JSON", target)
     assert m._retain_existing_artifact("missing real data") is False
+
+
+def test_normalize_model_comparison_does_not_invent_covariance_flag(monkeypatch, tmp_path) -> None:
+    summary = {
+        "n_obs": 1701,
+        "rll": {"chi2": 100.0},
+        "lcdm": {"chi2": 101.0},
+    }
+    f1 = tmp_path / "lcparam_full_long_zhel.txt"
+    f2 = tmp_path / "Pantheon+SH0ES_STAT+SYS.cov"
+    f1.write_text("a")
+    f2.write_text("b")
+    import scripts.run_real_pantheon_validation as m
+    monkeypatch.setattr(m, "_pantheon_files", lambda: [f1, f2])
+
+    payload = _normalize_model_comparison(summary, command_used="cmd")
+
+    assert payload["covariance_used"] is False
+
+
+def test_normalize_model_comparison_rejects_legacy_true_covariance_flag(monkeypatch, tmp_path) -> None:
+    summary = {
+        "n_obs": 1701,
+        "covariance_used": True,
+        "rll": {"chi2": 100.0},
+        "lcdm": {"chi2": 101.0},
+    }
+    f1 = tmp_path / "lcparam_full_long_zhel.txt"
+    f2 = tmp_path / "Pantheon+SH0ES_STAT+SYS.cov"
+    f1.write_text("a")
+    f2.write_text("b")
+    import scripts.run_real_pantheon_validation as m
+    monkeypatch.setattr(m, "_pantheon_files", lambda: [f1, f2])
+
+    payload = _normalize_model_comparison(summary, command_used="cmd")
+
+    assert payload["covariance_used"] is False

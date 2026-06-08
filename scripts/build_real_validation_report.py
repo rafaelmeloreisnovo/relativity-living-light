@@ -14,6 +14,31 @@ def _load_model_comparison(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _extract_model_metrics(model: dict, model_key: str) -> dict:
+    nested_models = model.get("models", {}) if isinstance(model.get("models"), dict) else {}
+    nested_block = nested_models.get(model_key, {}) if isinstance(nested_models.get(model_key), dict) else {}
+
+    legacy_block = model.get(model_key, {}) if isinstance(model.get(model_key), dict) else {}
+
+    chi2 = model.get(f"chi2_{model_key}")
+    if chi2 is None:
+        chi2 = nested_block.get("chi2", legacy_block.get("chi2"))
+
+    aic = model.get(f"AIC_{model_key}")
+    if aic is None:
+        aic = nested_block.get("aic", nested_block.get("AIC", legacy_block.get("AIC", legacy_block.get("aic"))))
+
+    bic = model.get(f"BIC_{model_key}")
+    if bic is None:
+        bic = nested_block.get("bic", nested_block.get("BIC", legacy_block.get("BIC", legacy_block.get("bic"))))
+
+    return {
+        "chi2": chi2,
+        "AIC": aic,
+        "BIC": bic,
+    }
+
+
 def _render_table(report: dict) -> str:
     rows = [
         ("RLL", report["rll"]),
@@ -63,23 +88,36 @@ def main() -> None:
 
     model = _load_model_comparison(args.input_json)
 
+    rll_metrics = _extract_model_metrics(model, "rll")
+    lcdm_metrics = _extract_model_metrics(model, "lcdm")
+
     report = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "source": str(args.input_json),
         "dataset": args.dataset,
         "rerun_tolerance": args.rerun_tolerance,
         "n_obs": model["n_obs"],
+        "k_rll": model.get("k_rll", 5),
+        "k_lcdm": model.get("k_lcdm", 2),
+        "delta_chi2_rll_minus_lcdm": model.get("delta_chi2_rll_minus_lcdm"),
+        "delta_aic_rll_minus_lcdm": model.get("delta_aic_rll_minus_lcdm"),
+        "delta_bic_rll_minus_lcdm": model.get("delta_bic_rll_minus_lcdm"),
+        "interpretation_label": model.get("interpretation_label"),
+        "claim_boundary": model.get(
+            "claim_boundary",
+            "No superiority claim unless real-data metrics pass predefined thresholds.",
+        ),
         "rll": {
-            "chi2": model["rll"]["chi2"],
-            "AIC": model["rll"]["AIC"],
-            "BIC": model["rll"]["BIC"],
-            "n_params": 5,
+            "chi2": rll_metrics["chi2"],
+            "AIC": rll_metrics["AIC"],
+            "BIC": rll_metrics["BIC"],
+            "n_params": model.get("k_rll", 5),
         },
         "lcdm": {
-            "chi2": model["lcdm"]["chi2"],
-            "AIC": model["lcdm"]["AIC"],
-            "BIC": model["lcdm"]["BIC"],
-            "n_params": 2,
+            "chi2": lcdm_metrics["chi2"],
+            "AIC": lcdm_metrics["AIC"],
+            "BIC": lcdm_metrics["BIC"],
+            "n_params": model.get("k_lcdm", 2),
         },
     }
 

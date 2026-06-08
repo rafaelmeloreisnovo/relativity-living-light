@@ -5,6 +5,7 @@ on:
       pipeline_scope: {type: choice, required: true, default: all, options: [rll, iml, formulas, book, all]}
       dataset_group: {type: choice, required: true, default: all, options: [geomagnetic, heliophysics, cosmology, all]}
       mode: {type: choice, required: true, default: full, options: [metadata_only, fetch, compute, plots, full]}
+      real_data_source: {type: choice, required: true, default: auto, options: [auto, materialized, repo]}
       book_scope: {type: choice, required: true, default: all, options: [methodology, real_data, scripts, observational_validation, desi_boss, amas_mcrp, all]}
       retention_days: {type: choice, required: true, default: '14', options: ['7','14','30','90']}
       fetch_igrf14: {type: boolean, required: true, default: true}
@@ -30,7 +31,7 @@ jobs:
         with: {python-version: '3.11'}
       - run: |
           python -m pip install --upgrade pip
-          pip install numpy pandas scipy matplotlib requests astropy
+          pip install numpy pandas scipy matplotlib requests astropy pyyaml
       - run: mkdir -p artifacts/rll-real-run/{raw,processed,plots,tables,book,iml,formulas}
       - run: python3 tools/docs_inventory.py --check
       - run: |
@@ -47,7 +48,7 @@ jobs:
             ${{ inputs.fetch_planck && '--fetch-planck' || '--no-fetch-planck' }} \
             ${{ inputs.fetch_spenvis_reference && '--fetch-spenvis-reference' || '--no-fetch-spenvis-reference' }}
       - if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' }}
-        run: python3 scripts/compute_rll_real_pipeline.py
+        run: python3 scripts/compute_rll_real_pipeline.py --output-dir artifacts/rll-real-run --data-source "${{ inputs.real_data_source }}"
       - if: ${{ inputs.run_plots && (inputs.mode == 'plots' || inputs.mode == 'full' || inputs.mode == 'compute') }}
         run: python3 scripts/generate_rll_plots.py
       - if: ${{ inputs.pipeline_scope == 'book' || inputs.pipeline_scope == 'all' || inputs.pipeline_scope == 'rll' }}
