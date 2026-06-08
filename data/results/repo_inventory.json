@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-08T02:59:38.007969+00:00",
-  "git_commit": "43a668905b7ced3b54083cb00144227976bedc58",
+  "generated_at": "2026-06-08T03:01:29.612117+00:00",
+  "git_commit": "33f3cf96baba563c21646ae415816a0671acf88b",
   "summary": {
-    "tracked_files_total": 754,
-    "cataloged_files": 736,
+    "tracked_files_total": 755,
+    "cataloged_files": 737,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34011442,
-    "total_text_lines": 118098,
-    "markdown_files": 379,
+    "total_bytes": 34011856,
+    "total_text_lines": 118110,
+    "markdown_files": 380,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 78
   },
   "counts_by_ext": {
-    ".md": 379,
+    ".md": 380,
     ".yml": 32,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 379,
+    "documentation_md": 380,
     "github_workflow_yml": 13,
     "config_yml": 19,
     "other": 120,
@@ -3005,7 +3005,7 @@
       "size_bytes": 247611,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "b5229fd9aca3a50440955119838745bbd60bce6ad74f64e07ec6c75534052b66",
+      "sha256": "bc35a4b2a4f0527444e070cf9191d6f42dc09f6d67631a90e1be35434a30234a",
       "line_count": 8432,
       "is_text": true,
       "risk_flags": [
@@ -3021,7 +3021,7 @@
       "size_bytes": 114691,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "97e3bc282b8d2ba401892b1e411e126d3f03a57a402a69cd67269b3013c79f82",
+      "sha256": "25f81ab5a754f4b17020f036530f8cee36ac333d39c0beb34ffc162a0409c17f",
       "line_count": 737,
       "is_text": true,
       "risk_flags": [
@@ -3037,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2564845ed62e0e6bb1229a597831976e5a1d1ac191d948f4937f787fb93c6110",
+      "sha256": "e72c75edce866f37f8a368330cfac75b30d18ca83f7f58a23d8c43f8bcd0e582",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3496,7 +3496,7 @@
       "size_bytes": 131890,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e82a76dce5f48382c512c351cb42db4595acf6dc21a28cb651518d0adb82ea41",
+      "sha256": "8848a0bce7aa87687c267f67cc15f3868db2e083dced6ffc2bd5c796e8401ddf",
       "line_count": 780,
       "is_text": true,
       "risk_flags": [
@@ -4035,7 +4035,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "aca5e23d3bf69948151d90f211c5a982bb3542a3ff401b802c9a3b9951bd20a8",
+      "sha256": "dc2db6b7dda5111d7e36ab813db91fd05ac13e0316a3c61272c6cbc21cc101f9",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4171,6 +4171,16 @@
         "token_vazio_declared",
         "cosmology_validation_marker"
       ]
+    },
+    {
+      "path": "docs/RLL_PARADOX_THERMODYNAMIC_LAYER.md",
+      "size_bytes": 414,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "a7a707656866c813643e71ba91256c54357e9d54df7b17235367275b47aa99c8",
+      "line_count": 12,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md",
@@ -4340,7 +4350,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5f628186b27d74740bbf8497a29103652febe0bfb49f47bce95567b28c6c7388",
+      "sha256": "fa85898665466584243a47caf854a682032a898ad7f03661bab94d01b29ba086",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
