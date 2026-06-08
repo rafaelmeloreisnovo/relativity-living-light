@@ -1,10 +1,11 @@
-# RLL Multi-Medium Convergence Framework
+# RLL Multi-Medium Convergence
 
-**Status:** exploratory framework.
-**Claim boundary:** no confirmation claim and no superiority claim over LCDM without reproducible statistical support.
-**Null model:** LCDM / GR remains the reference hypothesis.
-**TOKEN_VAZIO:** unknown values remain explicit gaps, not inferred numbers.
+Status: exploratory.
+Null: LCDM/GR.
+Rule: TOKEN_VAZIO for missing data.
 
-## Purpose
+Equation: epsilon_RLL = O_obs - O_LCDM.
 
-This
+Layers: geo, thermo, plasma, shock, magnetism, transport, information, noise.
+
+Claim: no confirmation or superiority without reproducible tests.
