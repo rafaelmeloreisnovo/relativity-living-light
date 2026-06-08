@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from argparse import Namespace
 from pathlib import Path
+import os
+import subprocess
+import sys
 
 import pytest
 
@@ -87,3 +90,26 @@ def test_cmd_run_uses_orchestration_hooks(monkeypatch: pytest.MonkeyPatch, tmp_p
     cli.cmd_run(args)
 
     assert calls == ["calcular", "validar", "persistir", "logar", "run_script"]
+
+
+def test_preflight_real_fails_when_pantheon_files_missing(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(cli, "_repo_root", lambda: tmp_path)
+    with pytest.raises(SystemExit) as exc:
+        cli.cmd_preflight_real(Namespace())
+    assert exc.value.code == 2
+
+
+def test_cli_smoke_synthetic_run() -> None:
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(Path.cwd() / "src")
+    completed = subprocess.run(
+        [sys.executable, "-m", "rll.cli", "run", "--data", "synthetic", "--model", "rll"],
+        capture_output=True,
+        text=True,
+        check=False,
+        env=env,
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert "[rll] Executando fluxo" in completed.stdout

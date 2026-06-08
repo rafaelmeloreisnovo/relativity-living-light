@@ -6,6 +6,9 @@ from .cosmo import (
     omega_astro,
     omega_brane_quadratic,
     omega_ede,
+    omega_fundamental,
+    omega_neutrino,
+    omega_quantum,
     omega_topological,
 )
 from .feedback_agn import Omega_f_from_feedback
@@ -158,7 +161,7 @@ def _comoving_distance_mpc(z, params, hz_fn, n_steps=512):
     hz = np.asarray(hz_fn(grid, params), dtype=float)
     if np.any(~np.isfinite(hz)) or np.any(hz <= 0.0):
         return np.nan
-    return float(np.trapz(C_KMS / hz, grid))
+    return float(np.trapezoid(C_KMS / hz, grid))
 
 
 def _rs_drag_mpc(params):

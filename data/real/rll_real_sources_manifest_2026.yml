@@ -1,0 +1,118 @@
+meta:
+  schema: rll.real_sources_manifest.v1
+  created_utc: "2026-06-04"
+  maintainer: "Sistema RLL"
+  status: "real_source_registry"
+  claim_policy: "Dados reais aqui listados são entrada observacional e bibliográfica; não autorizam superioridade RLL vs LCDM sem fit reproduzível, covariância e model_comparison.json."
+  publication_boundary: "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation."
+  no_superiority_boundary: "No superiority claim unless real-data metrics pass predefined thresholds."
+
+purpose:
+  - "Popular o repositório com fontes reais rastreáveis para H(z), BAO/DESI, Pantheon+ e CMB/Planck."
+  - "Separar dado real observado de inferência estatística e de hipótese RLL."
+  - "Permitir que scripts futuros baixem, verifiquem hashes e normalizem cada dataset sem fake-fill."
+
+sources:
+  - id: cc_borghi_2021_lega_c
+    domain: cosmology_expansion_Hz
+    probe: cosmic_chronometers
+    title: "Toward a Better Understanding of Cosmic Chronometers: A new measurement of H(z) at z~0.7"
+    authors: "Borghi, Moresco, Cimatti"
+    year: 2021
+    arxiv: "2110.04304"
+    doi: "10.48550/arXiv.2110.04304"
+    real_observation_seed:
+      z: 0.75
+      H_km_s_Mpc: 98.8
+      sigma_total_km_s_Mpc: 33.6
+      note: "Valor publicado no resumo do artigo; usar como seed de expansão, não como dataset completo."
+    falsifier: "Comparar H_RLL(z=0.75) e H_LCDM(z=0.75) com chi2 usando erro total declarado."
+    status: seed_observed_value
+
+  - id: cc_jiao_2022_lega_c_full_spectrum
+    domain: cosmology_expansion_Hz
+    probe: cosmic_chronometers
+    title: "New Observational H(z) Data from Full-Spectrum Fitting of Cosmic Chronometers in the LEGA-C Survey"
+    authors: "Jiao, Borghi, Moresco, Zhang"
+    year: 2022
+    arxiv: "2205.05701"
+    doi: "10.48550/arXiv.2205.05701"
+    real_observation_seed:
+      z: 0.80
+      H_km_s_Mpc: 113.1
+      sigma_stat_km_s_Mpc: 15.1
+      sigma_syst_plus_km_s_Mpc: 29.1
+      sigma_syst_minus_km_s_Mpc: 11.3
+      note: "Valor publicado no resumo do artigo; incerteza assimétrica deve ser preservada."
+    falsifier: "Comparar H_RLL(z=0.80) e H_LCDM(z=0.80) com tratamento explícito de erro estatístico+sistemático assimétrico."
+    status: seed_observed_value
+
+  - id: cc_tomasetti_2025_clusters
+    domain: cosmology_expansion_Hz
+    probe: cosmic_chronometers_clusters
+    title: "Cosmic chronometers with galaxy clusters: a new avenue for multi-probe cosmology"
+    authors: "Tomasetti, Moresco, Granata, D'Addona, Bergamini, Grillo, Mercurio, Rosati, Cimatti, Tortorelli, Schuldt, Meneghetti"
+    year: 2025
+    arxiv: "2512.02109"
+    doi: "10.48550/arXiv.2512.02109"
+    real_observation_seed:
+      z: 0.542
+      H_km_s_Mpc: 66.0
+      sigma_stat_plus_km_s_Mpc: 81.0
+      sigma_stat_minus_km_s_Mpc: 29.0
+      sigma_syst_km_s_Mpc: 13.0
+      note: "Valor publicado no resumo do artigo; seed recente, baixa precisão, útil como controle fraco/multi-probe."
+    falsifier: "Usar como ponto de controle independente, sem peso excessivo por causa da incerteza alta."
+    status: seed_observed_value
+
+  - id: desi_dr2_bao_2025
+    domain: cosmology_BAO
+    probe: BAO_galaxy_quasar_lya
+    title: "DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints"
+    collaboration: DESI
+    year: 2025
+    arxiv: "2503.14738"
+    doi: "10.48550/arXiv.2503.14738"
+    journal_reference: "Phys. Rev. D 112, 083515, 2025"
+    release_summary:
+      galaxies_and_quasars_used: ">14 million"
+      tracers: [BGS, LRG, ELG, QSO, Lya]
+      declared_relation: "DR2 BAO distance-redshift relation is consistent with DESI DR1 and SDSS and with recent SNe compilations over the same redshift range."
+      dynamic_dark_energy_context: "DESI BAO plus CMB favors w0-wa over LCDM at 3.1 sigma; with SNe the preference ranges from 2.8 to 4.2 sigma depending on sample, per DESI abstract."
+    status: source_ready_for_full_table_ingest
+    required_next_files:
+      - "data/real/desi_dr2_bao_measurements.csv"
+      - "data/real/desi_dr2_bao_covariance.csv"
+    falsifier: "RLL só pode ser comparado após ingestão das razões DM/rd, DH/rd ou DV/rd e matriz/correlações."
+
+  - id: pantheon_plus_shoes
+    domain: cosmology_supernovae
+    probe: SNe_Ia
+    title: "Pantheon+ / Pantheon+SH0ES supernova light-curve and covariance inputs"
+    expected_local_files:
+      - "data/pantheon/lcparam_full_long_zhel.txt"
+      - "data/pantheon/Pantheon+SH0ES_STAT+SYS.cov"
+    connected_runner: "scripts/run_real_pantheon_validation.py"
+    connected_artifact: "data/results/model_comparison.json"
+    status: external_large_input_required
+    falsifier: "Executar RLL e LCDM no mesmo arquivo de luz/covariância; publicar chi2/AIC/BIC/deltas."
+
+  - id: planck_2018_cmb_reference
+    domain: cosmology_CMB
+    probe: CMB_priors
+    title: "Planck 2018 cosmological parameters and CMB likelihood reference"
+    collaboration: Planck
+    year: 2018
+    status: reference_prior_not_yet_ingested
+    falsifier: "Não usar Planck como dado bruto sem declarar qual prior/likelihood e versão."
+
+next_actions:
+  - id: materialize_pantheon_files
+    command: "Obter arquivos oficiais Pantheon+SH0ES e colocar em data/pantheon/ preservando nomes esperados pelo runner."
+    produces: ["data/results/pantheon_fit_summary.json", "data/results/model_comparison.json"]
+  - id: materialize_desi_dr2_table
+    command: "Transcrever/baixar tabela oficial DESI DR2 BAO com covariance/correlation e gerar data/real/desi_dr2_bao_measurements.csv."
+    produces: ["data/real/desi_dr2_bao_measurements.csv", "data/real/desi_dr2_bao_covariance.csv"]
+  - id: normalize_cc_seeds
+    command: "Converter seeds H(z) deste manifesto em data/real/cosmology_observational_seed_2026.csv e depois expandir para compilação CC completa."
+    produces: ["data/real/cosmology_observational_seed_2026.csv"]

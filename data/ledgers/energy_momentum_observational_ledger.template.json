@@ -1,0 +1,15 @@
+{
+  "schema": "rll.energy_momentum_observational_ledger.v1",
+  "dataset_type": "real_observational",
+  "status": "not_measured",
+  "notes": "TOKEN_VAZIO: values remain null until measured observational inputs and provenance are supplied.",
+  "fields": {
+    "rho_before": {"name": "rho_before", "value": null, "uncertainty": null, "unit": "J/m^3", "source": null, "doi_or_url": null, "sha256": null, "local_path": null, "license": null, "measured": false, "notes": "Required before F_gap can be computed."},
+    "rho_rest_after": {"name": "rho_rest_after", "value": null, "uncertainty": null, "unit": "J/m^3", "source": null, "doi_or_url": null, "sha256": null, "local_path": null, "license": null, "measured": false, "notes": "Required before F_gap can be computed."},
+    "rho_radiation": {"name": "rho_radiation", "value": null, "uncertainty": null, "unit": "J/m^3", "source": null, "doi_or_url": null, "sha256": null, "local_path": null, "license": null, "measured": false, "notes": "Required before F_gap can be computed."},
+    "rho_kinetic": {"name": "rho_kinetic", "value": null, "uncertainty": null, "unit": "J/m^3", "source": null, "doi_or_url": null, "sha256": null, "local_path": null, "license": null, "measured": false, "notes": "Required before F_gap can be computed."},
+    "rho_thermal": {"name": "rho_thermal", "value": null, "uncertainty": null, "unit": "J/m^3", "source": null, "doi_or_url": null, "sha256": null, "local_path": null, "license": null, "measured": false, "notes": "Required before F_gap can be computed."},
+    "pressure": {"name": "pressure", "value": null, "uncertainty": null, "unit": "Pa", "source": null, "doi_or_url": null, "sha256": null, "local_path": null, "license": null, "measured": false, "notes": "Enters A_transition as P/c^2 only after measured provenance is supplied."},
+    "rho_field": {"name": "rho_field", "value": null, "uncertainty": null, "unit": "J/m^3", "source": null, "doi_or_url": null, "sha256": null, "local_path": null, "license": null, "measured": false, "notes": "Required before F_gap can be computed."}
+  }
+}

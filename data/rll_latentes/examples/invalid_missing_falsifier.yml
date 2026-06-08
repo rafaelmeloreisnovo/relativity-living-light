@@ -1,0 +1,54 @@
+meta:
+  schema: rll.latentes.observation_catalog.v1
+  version: 1
+  updated_utc: "2026-06-01"
+  purpose: "Minimal valid RLL-LATENTES fixture."
+  claim_policy: "Fixture only; no discovery claim."
+
+orchestration:
+  pipeline_root: "data/rll_latentes"
+  docs_root: "docs/rll_latentes"
+  artifact_root: "artifacts/rll_latentes"
+  results_root: "results/rll_latentes"
+  schema_path: "schemas/rll_latentes_observations.schema.json"
+  stages:
+    - id: ingest
+      output: "artifacts/rll_latentes/raw/{source_id}/"
+      rollback: "Remove only affected dry-run artifact."
+    - id: normalize
+      output: "artifacts/rll_latentes/normalized/{source_id}/"
+      rollback: "Return to raw manifest."
+    - id: null_model
+      output: "artifacts/rll_latentes/null_models/{source_id}.json"
+      rollback: "Invalidate score without null model."
+    - id: score
+      output: "results/rll_latentes/scores/{source_id}.csv"
+      rollback: "Mark score provisional."
+    - id: report
+      output: "results/rll_latentes/reports/{source_id}.md"
+      rollback: "Publish negative report."
+  common_fields:
+    matrix_variables: [matrix_id, row, col]
+
+future_steps:
+  - {step: 1, id: contract_hardening, title: "Contract", deliverable: "Schema", acceptance: "Validates", failsafe: "Block", rollback: "Revert"}
+  - {step: 2, id: reproducible_fetch, title: "Fetch", deliverable: "Manifest", acceptance: "Manifest", failsafe: "No overwrite", rollback: "Previous"}
+  - {step: 3, id: deterministic_score_core, title: "Score", deliverable: "S_L", acceptance: "Deterministic", failsafe: "Invalid", rollback: "No publish"}
+  - {step: 4, id: null_models_negative_controls, title: "Nulls", deliverable: "Controls", acceptance: "Control status", failsafe: "Downgrade", rollback: "Reject"}
+  - {step: 5, id: cryptographic_provenance, title: "Provenance", deliverable: "Merkle", acceptance: "Verify", failsafe: "Block", rollback: "Restore"}
+  - {step: 6, id: fullstack_orchestration, title: "CLI", deliverable: "Dry-run", acceptance: "Plan", failsafe: "Markdown", rollback: "Text"}
+  - {step: 7, id: academic_release_review, title: "Review", deliverable: "Report", acceptance: "FAIR", failsafe: "No discovery", rollback: "Negative"}
+
+sources:
+  - source_id: fixture_source
+    domain: fixture
+    modality: dry_run
+    title: "Minimal fixture source"
+    release_date: "2026-06-01"
+    url: "https://example.org/rll-latentes-fixture"
+    doi: null
+    license: "fixture"
+    current_relevance: "Schema validation fixture."
+    falsifiable_latent_tests: []
+    suggested_command: "echo fixture"
+    local_target: "artifacts/rll_latentes/raw/fixture_source/"

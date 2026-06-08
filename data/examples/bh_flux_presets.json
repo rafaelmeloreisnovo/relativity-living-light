@@ -1,0 +1,27 @@
+{
+  "schema": "rll_bh_flux_presets_v1",
+  "claim_boundary": "benchmark only; not cosmological proof",
+  "unit_mass_kg_default": 3e-25,
+  "presets": {
+    "sgr-a-star": {
+      "m_bh_solar": 4300000.0,
+      "mdot_solar_year": 1e-8,
+      "description": "Approximate quiet Galactic Center black-hole benchmark."
+    },
+    "m87-star-low": {
+      "m_bh_solar": 6500000000.0,
+      "mdot_solar_year": 0.0003,
+      "description": "Low-order M87* EHT-style accretion benchmark."
+    },
+    "quasar-demo": {
+      "m_bh_solar": 1000000000.0,
+      "mdot_solar_year": 1.0,
+      "description": "Illustrative active quasar-scale benchmark."
+    }
+  },
+  "notes": [
+    "Use measured/inferred Mdot values when available.",
+    "The Schwarzschild horizon area is an approximation; Kerr corrections belong in S_Kerr.",
+    "The RLL index is diagnostic bookkeeping, not a replacement for GRMHD."
+  ]
+}

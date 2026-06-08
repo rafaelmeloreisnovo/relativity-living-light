@@ -1,16 +1,31 @@
 from __future__ import annotations
 
 import argparse
+import json
 import runpy
+import sys
 from dataclasses import dataclass
 from pathlib import Path
+
+from rll import latentes
 
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
-def _run_script(path: Path) -> None:
+def _run_script(path: Path, module: str | None = None) -> None:
+    if module:
+        repo = str(_repo_root())
+        if repo not in sys.path:
+            sys.path.insert(0, repo)
+        original_argv = sys.argv[:]
+        sys.argv = [str(path)]
+        try:
+            runpy.run_module(module, run_name="__main__", alter_sys=True)
+        finally:
+            sys.argv = original_argv
+        return
     runpy.run_path(str(path), run_name="__main__")
 
 
@@ -21,10 +36,25 @@ def _select_real_flow(with_bayes: bool, with_covariance: bool) -> Path:
     return root / "docs" / "rll_validation_real.py"
 
 
+def _pantheon_required_files() -> list[Path]:
+    root = _repo_root()
+    return [
+        root / "data" / "pantheon" / "lcparam_full_long_zhel.txt",
+        root / "data" / "pantheon" / "Pantheon+SH0ES_STAT+SYS.cov",
+    ]
+
+
+def _check_pantheon_files() -> tuple[list[Path], list[Path]]:
+    required = _pantheon_required_files()
+    missing = [path for path in required if not path.exists()]
+    return required, missing
+
+
 @dataclass(frozen=True)
 class ExecutionPlan:
     script: Path
     model: str
+    module: str | None = None
     warning_message: str | None = None
 
 
@@ -33,8 +63,10 @@ def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
 
     if args.data == "synthetic":
         script = root / "data" / "pipelines" / "structure_d" / "run_all.py"
+        module = "data.pipelines.structure_d.run_all"
     else:
         script = _select_real_flow(args.with_bayes, args.with_covariance)
+        module = None
 
     warning_message = None
     if args.model != "rll":
@@ -42,7 +74,7 @@ def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
             f"Aviso: --model={args.model} será tratado no fluxo comparativo já existente."
         )
 
-    return ExecutionPlan(script=script, model=args.model, warning_message=warning_message)
+    return ExecutionPlan(script=script, model=args.model, module=module, warning_message=warning_message)
 
 
 def _validar_plano_execucao(plan: ExecutionPlan) -> None:
@@ -51,10 +83,13 @@ def _validar_plano_execucao(plan: ExecutionPlan) -> None:
 
 
 def _persistir_execucao(plan: ExecutionPlan) -> dict[str, str]:
-    return {
+    payload = {
         "script": str(plan.script),
         "model": plan.model,
     }
+    if plan.module:
+        payload["module"] = plan.module
+    return payload
 
 
 def _logar_execucao(plan: ExecutionPlan) -> None:
@@ -68,7 +103,52 @@ def cmd_run(args: argparse.Namespace) -> None:
     _validar_plano_execucao(plan)
     _persistir_execucao(plan)
     _logar_execucao(plan)
-    _run_script(plan.script)
+    if plan.module:
+        _run_script(plan.script, plan.module)
+    else:
+        _run_script(plan.script)
+
+
+def cmd_preflight_real(args: argparse.Namespace) -> None:
+    required, missing = _check_pantheon_files()
+    payload = {
+        "check": "preflight-real",
+        "required": [str(path) for path in required],
+        "missing": [str(path) for path in missing],
+        "passed": not missing,
+    }
+
+    if getattr(args, "json", False):
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        print("[rll] Preflight real-data validation (Pantheon+)")
+        for path in required:
+            status = "OK" if path.exists() else "MISSING"
+            print(f" - {status}: {path}")
+        if not missing:
+            print("[rll] Preflight passed.")
+
+    if missing:
+        raise SystemExit(2)
+
+
+def cmd_latentes(args: argparse.Namespace) -> None:
+    forwarded = [
+        "--catalog",
+        str(args.catalog),
+        "--schema",
+        str(args.schema),
+        "--root",
+        str(args.root),
+        args.latentes_command,
+    ]
+    if args.latentes_json:
+        forwarded.append("--json")
+    if args.dry_run:
+        forwarded.append("--dry-run")
+    if args.source_id:
+        forwarded.extend(["--source-id", args.source_id])
+    raise SystemExit(latentes.main(forwarded))
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -102,6 +182,34 @@ def build_parser() -> argparse.ArgumentParser:
         help="No fluxo real, prioriza pipeline Pantheon+ com matriz de covariância",
     )
     run_parser.set_defaults(func=cmd_run)
+
+    preflight_parser = subparsers.add_parser(
+        "preflight-real",
+        help="Valida presença dos arquivos Pantheon+ necessários para execução real",
+    )
+    preflight_parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emite resultado em JSON para automação",
+    )
+    preflight_parser.set_defaults(func=cmd_preflight_real)
+
+    latentes_parser = subparsers.add_parser(
+        "latentes",
+        help="Executa validação/orquestração seca do catálogo RLL-LATENTES",
+    )
+    latentes_parser.add_argument(
+        "latentes_command",
+        choices=["validate", "plan", "fetch", "score", "report", "verify"],
+        help="Subcomando RLL-LATENTES",
+    )
+    latentes_parser.add_argument("--catalog", type=Path, default=latentes.DEFAULT_CATALOG)
+    latentes_parser.add_argument("--schema", type=Path, default=latentes.DEFAULT_SCHEMA)
+    latentes_parser.add_argument("--root", type=Path, default=Path("."))
+    latentes_parser.add_argument("--source-id", default=None)
+    latentes_parser.add_argument("--json", dest="latentes_json", action="store_true")
+    latentes_parser.add_argument("--dry-run", action="store_true")
+    latentes_parser.set_defaults(func=cmd_latentes)
 
     return parser
 

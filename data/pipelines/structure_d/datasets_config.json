@@ -16,6 +16,13 @@
         "real_cmb_shift"
       ]
     },
+    "structure_d_partial_real": {
+      "run_name": "structure_d_partial_real",
+      "active_datasets": [
+        "real_hz",
+        "real_bao"
+      ]
+    },
     "structure_d_synthetic_advanced": {
       "run_name": "structure_d_synthetic_advanced",
       "active_datasets": [
@@ -148,6 +155,44 @@
         "redshift_range": "[0.0, 3.0]",
         "reference": "local_input_covariance"
       }
+    },
+    "real_fsigma8": {
+      "format": "csv",
+      "path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "observable": "fs8",
+      "error_model": "errors",
+      "columns": {
+        "z": "z",
+        "value": "fs8",
+        "error": "sigma"
+      },
+      "metadata": {
+        "survey": "RSD_growth_compilation",
+        "redshift_range": "[0.02, 0.78]",
+        "reference": "Hudson_Turnbull_2013+Beutler_2012+compiled_fsigma8_table",
+        "real_data_status": "materialized_real"
+      },
+      "duplicate_z_policy": "primeira_ocorrencia"
+    },
+    "real_desi_dr2_bao": {
+      "format": "csv",
+      "path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "observable": "DESI_DR2_BAO_ratio",
+      "error_model": "errors",
+      "columns": {
+        "z": "z_eff",
+        "value": "value",
+        "error": "sigma"
+      },
+      "metadata": {
+        "survey": "DESI_DR2_BAO_2025",
+        "redshift_range": "[0.295, 2.330]",
+        "reference": "DESI_DR2_Results_II_Table_IV",
+        "real_data_status": "materialized_real",
+        "covariance_summary": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
+      },
+      "duplicate_z_policy": "primeira_ocorrencia",
+      "z_order_policy": "sort"
     }
   },
   "validation": {

@@ -1,0 +1,17 @@
+{
+  "dados": [144, 963, 999, 42, 69, 64, 13, 147, 315, 674, 2025, 2026],
+  "estado": "ACTIVE",
+  "coerencia0": 0.62,
+  "entropia0": 0.38,
+  "coerencia_in": 0.84,
+  "contexto": "rll_real_orchestrator_inventory_bridge",
+  "routes": [
+    "doc_inventory",
+    "iml_artifact",
+    "start_manual_here",
+    "real_data_complete",
+    "structure_d",
+    "pantheon_real_validation",
+    "desi_dr2_bao_zml"
+  ]
+}

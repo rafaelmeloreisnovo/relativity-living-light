@@ -1,0 +1,82 @@
+name: RLL Data Pipeline
+on:
+  workflow_dispatch:
+    inputs:
+      dataset_group:
+        description: Dataset group to process
+        required: true
+        default: all
+        type: choice
+        options: [geomagnetic, heliophysics, cosmology, all]
+      mode:
+        description: Pipeline mode
+        required: true
+        default: metadata_only
+        type: choice
+        options: [metadata_only, dry_run, fetch, compute]
+      flush_artifact:
+        description: Recreate artifacts/rll-pipeline before run
+        required: true
+        default: true
+        type: boolean
+      commit_artifacts:
+        description: Commit only small manifests/results under results/pipeline-runs/<run_id>
+        required: true
+        default: false
+        type: boolean
+      retention_days:
+        description: Artifact retention days
+        required: true
+        default: '14'
+        type: choice
+        options: ['7','14','30','90']
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare artifact directory
+        run: |
+          if [ "${{ inputs.flush_artifact }}" = "true" ]; then rm -rf artifacts/rll-pipeline; fi
+          mkdir -p artifacts/rll-pipeline
+      - name: Docs inventory
+        run: |
+          python3 tools/docs_inventory.py
+          python3 tools/docs_inventory.py --check
+      - name: Execute RLL pipeline
+        run: |
+          python3 scripts/rll_pipeline.py --dataset-group "${{ inputs.dataset_group }}" --mode "${{ inputs.mode }}" --output-dir artifacts/rll-pipeline
+      - name: Runtime metadata
+        run: |
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-pipeline/RUN_UTC.txt
+          echo "${GITHUB_SHA}" > artifacts/rll-pipeline/COMMIT_SHA.txt
+          (cd artifacts/rll-pipeline && find . -type f ! -name CHECKSUMS.sha256 -print0 | sort -z | xargs -0 sha256sum) > artifacts/rll-pipeline/CHECKSUMS.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rll-pipeline-${{ github.run_id }}-${{ inputs.dataset_group }}-${{ inputs.mode }}
+          path: artifacts/rll-pipeline/
+          retention-days: ${{ fromJSON(inputs.retention_days) }}
+      - name: Commit lightweight artifacts
+        if: ${{ inputs.commit_artifacts }}
+        run: |
+          RUN_DIR="results/pipeline-runs/${{ github.run_id }}"
+          mkdir -p "$RUN_DIR"
+          rsync -av --prune-empty-dirs \
+            --include='*/' \
+            --include='*.md' --include='*.json' --include='*.txt' --include='*.sha256' \
+            --exclude='*' \
+            artifacts/rll-pipeline/ "$RUN_DIR/"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$RUN_DIR"
+          if git diff --cached --quiet; then
+            echo "No lightweight artifact changes to commit."
+          else
+            git commit -m "ci(rll): pipeline artifacts run ${{ github.run_id }} (${{ inputs.dataset_group }}/${{ inputs.mode }})"
+            git push
+          fi

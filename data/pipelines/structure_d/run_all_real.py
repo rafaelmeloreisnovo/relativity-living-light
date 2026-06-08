@@ -26,6 +26,7 @@ EXECUTION_TIMING_BASENAME = "execution_timing_real"
 MODEL_LCDM = "lcdm"
 MODEL_RLL_AGN = "rll_like_agn"
 REGIME_REAL = "real"
+REGIME_PARTIAL_REAL = "partial_real"
 
 C_KMS = 299792.458
 Z_CMB = 1089.92
@@ -38,6 +39,7 @@ EXPECTED_MODEL_COMPARISON_HEADER = [
     "BIC",
     "N",
     "k",
+    "dof",
     "datasets_used",
     "run_name",
     "profile_name",
@@ -275,14 +277,18 @@ def main(
     run_name = cfg_meta["run_name"]
     profile = cfg_meta["profile_name"]
 
+    has_cmb = "real_cmb_shift" in cfg_meta.get("active_datasets", [])
+    effective_regime = REGIME_REAL if has_cmb else REGIME_PARTIAL_REAL
+
     row_lcdm = dict(
         model=MODEL_LCDM,
-        regime=REGIME_REAL,
+        regime=effective_regime,
         chi2=c2_l,
         AIC=aic(c2_l, k_l),
         BIC=bic(c2_l, k_l, n_obs),
         N=n_obs,
         k=k_l,
+        dof=n_obs - k_l,
         fit_params="H0,Om,OL,Ob_h2",
         fixed_params="",
         datasets_used=datasets_used,
@@ -292,12 +298,13 @@ def main(
     )
     row_rll = dict(
         model=MODEL_RLL_AGN,
-        regime=REGIME_REAL,
+        regime=effective_regime,
         chi2=c2_r,
         AIC=aic(c2_r, k_r),
         BIC=bic(c2_r, k_r, n_obs),
         N=n_obs,
         k=k_r,
+        dof=n_obs - k_r,
         fit_params="H0,Om,OL,Os0,zt,wt,Ob_h2",
         fixed_params="",
         datasets_used=datasets_used,

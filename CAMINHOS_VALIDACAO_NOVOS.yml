@@ -1,0 +1,126 @@
+meta:
+  schema: rll.validacao_real.caminhos_novos.v1
+  generated_utc: "2026-06-04"
+  principle: >
+    Apenas caminhos AINDA NAO presentes no repositorio, cada um ancorado em
+    dataset publico real e com falsificador explicito. Adversario padrao = w0waCDM
+    (nao LCDM puro), pois a literatura 2025-2026 ja desafia LCDM.
+  claim_boundary: >
+    Nenhum caminho afirma descoberta. Cada um e uma porta de teste com criterio
+    de refutacao. O numero de caminhos e definido pela ciencia verificavel
+    disponivel, nao por uma meta numerica.
+  ja_existe_no_repo_NAO_DUPLICAR:
+    - "H(z) expansao (book/15)"
+    - "supernovas dmu (book/16)"
+    - "fracoes de energia (book/17)"
+    - "crescimento fsigma8 (book/18)"
+    - "lentes em aglomerados (book/19)"
+    - "rotacao de galaxias (book/20)"
+    - "DESI/BOSS BAO (book/21)"
+    - "JWST/AGN/SMBH (book/22)"
+    - "anomalia magnetica Atlantico Sul (cases/AMAS)"
+    - "GW190728 setor escuro (cases/LVK)"
+    - "no de lente escura (cases/DARK_LENSING)"
+    - "SN2017egm magnetar (cases/SN2017egm)"
+    - "buraco negro errante (RLL_WANDERING_BLACK_HOLE_TEST)"
+
+caminhos:
+  - id: C01_w0wa_mapping
+    domain: cosmology_background
+    discrimina_RLL: baixo
+    observavel: "traducao f(z) <-> w(z) = w0 + wa(1-a)"
+    dataset_publico: "DESI DR2 (arXiv 2503.14738) + Pantheon+ + Planck 2018"
+    fonte_recente: "Nature Astronomy 2025 s41550-025-02669-6; arXiv 2502.12667"
+    confirma_se: "f(z) reproduz w0>-1 em z~0 e w<-1 em z>0.5 (cruzamento phantom)"
+    refuta_se: "f(z) nao consegue cruzar w=-1 sem instabilidade"
+    nota: "Pre-requisito. Sem isto o RLL nao fala a lingua do DESI."
+
+  - id: C02_phantom_crossing_stability
+    domain: dark_energy_theory
+    discrimina_RLL: medio
+    observavel: "estabilidade da perturbacao ao cruzar w=-1"
+    dataset_publico: "derivado de DESI DR2 + CMB"
+    fonte_recente: "arXiv 2404.05722 (quintessencia/phantom)"
+    confirma_se: "setor de superposicao cruza w=-1 sem divergencia de som c_s^2"
+    refuta_se: "cruzamento gera instabilidade de gradiente (c_s^2<0)"
+    nota: "Teste teorico interno, sem dado novo necessario."
+
+  - id: C03_sidm_halo_collapse
+    domain: dark_matter_structure
+    discrimina_RLL: alto
+    observavel: "perfil de densidade de halo em colapso (core->cusp)"
+    dataset_publico: "simulacoes SIDM publicas; perfis de clusters (DES Y6)"
+    fonte_recente: "ScienceDaily 2026-01-19 (KiSS-SIDM); PIRSA:26040113"
+    confirma_se: "termo plasmatico Omega_P0 modula taxa de colapso observada"
+    refuta_se: "colapso de halo independe de qualquer setor magneto-coerente"
+    nota: "Liga setor plasmatico ao ambiente denso. Impressao digital RLL."
+
+  - id: C04_des_y6_weak_lensing
+    domain: weak_lensing
+    discrimina_RLL: medio
+    observavel: "S8 = sigma8 sqrt(Om/0.3) via lente fraca"
+    dataset_publico: "DES Year 6 (arXiv 2026, Abbott et al.)"
+    fonte_recente: "phys.org 2026-01-22; constraints 2x mais apertados"
+    confirma_se: "RLL alivia tensao S8 sem piorar H(z)"
+    refuta_se: "RLL exige S8 fora das barras DES Y6"
+    nota: "Dataset novissimo, 6 anos completos. Ainda nao no repo."
+
+  - id: C05_hubble_tension_evolving_de
+    domain: cosmology_tension
+    discrimina_RLL: alto
+    observavel: "H0 inferido local vs CMB sob energia escura evolutiva"
+    dataset_publico: "SH0ES + Planck + DESI"
+    fonte_recente: "ApJ 2026 DOI 10.3847/1538-4357/ae4738; phys.org 2026-03-26"
+    confirma_se: "transicao f(z) reduz tensao H0 abaixo de 3 sigma"
+    refuta_se: "f(z) deixa tensao H0 inalterada ou pior"
+    nota: "Framework recente liga energia escura evolutiva a tensao de Hubble."
+
+  - id: C06_gamma_ray_dm_complexity
+    domain: dark_matter_indirect
+    discrimina_RLL: medio
+    observavel: "excesso gamma do centro galactico vs ausencia em dwarfs"
+    dataset_publico: "Fermi-LAT publico; JCAP 2026"
+    fonte_recente: "ScienceDaily 2026-04-10 (duas formas de DM); JCAP"
+    confirma_se: "setor escuro multi-componente do RLL preve assimetria centro/dwarf"
+    refuta_se: "RLL preve sinais identicos em ambos (contradito pela ausencia)"
+    nota: "Conecta as permutacoes de configuracao da fonte que voce descreveu."
+
+  - id: C07_modified_gravity_competitor
+    domain: gravity_alternative
+    discrimina_RLL: alto
+    observavel: "aceleracao sem energia escura (Finsler-Friedmann)"
+    dataset_publico: "mesmos H(z)+BAO+SNe"
+    fonte_recente: "JCAP 2025 (10):050; ScienceDaily 2026-01-11"
+    confirma_se: "RLL preve residuo ambiental que gravidade modificada NAO preve"
+    refuta_se: "Finsler ajusta tudo que RLL ajusta, sem setor extra"
+    nota: "O competidor honesto. Define onde o RLL precisa ser distinto."
+
+  - id: C08_gw_direct_wave_merger
+    domain: gravitational_waves
+    discrimina_RLL: medio
+    observavel: "componente 'direct wave' na fase de merger BH-BH"
+    dataset_publico: "LVK GWTC catalogues"
+    fonte_recente: "PIRSA:26040063 (2026-04-27, direct wave)"
+    confirma_se: "termo de plasma/superposicao deixa marca na fase de merger"
+    refuta_se: "direct wave totalmente explicada por GR de vacuo"
+    nota: "Componente recem-identificada. Liga ao seu caso LVK existente, mas e novo."
+
+  - id: C09_photon_massless_dispersion
+    domain: quantum_photon
+    discrimina_RLL: medio
+    observavel: "dispersao de foton em meio de plasma (E=pc + termo de meio)"
+    dataset_publico: "FRB dispersion measures publicos (CHIME/FRB)"
+    fonte_recente: "relativistic energy E^2=(mc^2)^2+(pc)^2; plasma dispersion"
+    confirma_se: "logistica fotonica preve atraso dependente de ambiente magnetico"
+    refuta_se: "atraso totalmente explicado por dispersao de plasma padrao"
+    nota: "Liga E=pc do foton sem massa ao setor de superposicao. Testavel via FRB."
+
+  - id: C10_big_crunch_fate
+    domain: cosmology_fate
+    discrimina_RLL: baixo
+    observavel: "sinal de wa que implica recolapso futuro"
+    dataset_publico: "DESI + axion DE models"
+    fonte_recente: "JCAP 2025 (09):055 (Luu, Qiu, Tye); ScienceDaily 2026-02-16"
+    confirma_se: "f(z) do RLL implica destino consistente com dados de wa<0"
+    refuta_se: "f(z) so admite expansao eterna, contra preferencia de wa<0"
+    nota: "Consequencia de longo prazo, baixa prioridade de teste imediato."
