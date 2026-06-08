@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-08T03:02:14.836066+00:00",
-  "git_commit": "45ec83b2f8b2c5bbc31b3ed86da5f6692fef995b",
+  "generated_at": "2026-06-08T03:02:39.002668+00:00",
+  "git_commit": "ed282e044b423d4b60ba586763d94f6848ba69a5",
   "summary": {
     "tracked_files_total": 756,
     "cataloged_files": 738,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34012915,
-    "total_text_lines": 118134,
+    "total_bytes": 34013566,
+    "total_text_lines": 118148,
     "markdown_files": 381,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
@@ -3002,11 +3002,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 247959,
+      "size_bytes": 248304,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "7b454e8c60169e70f4dd2f212b203f72cfc06fac36f5b2b4b491e2a6f4788571",
-      "line_count": 8444,
+      "sha256": "a8cc1b9fefa2e7e14c4c26d59f44da5a52e9c985ac847253eb59d6ed30468f53",
+      "line_count": 8456,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3018,11 +3018,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 114858,
+      "size_bytes": 115022,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "59385699fc5e79d95730c80780a5f962f296608e2e383fc8147899b5f97f0a62",
-      "line_count": 738,
+      "sha256": "a076b16de3cbc0c4b9deedb52f3afcccd7d8197fbd064c5a66cd99b0ec9ce226",
+      "line_count": 739,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3037,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ab460b27543f9fd7e78b350cb7ef1233648c441e8900680a887ea406f8502ec7",
+      "sha256": "ec22f8e0225c8fb89c893b77dd26bcc49771dec3203be10239a544b16c7e58f5",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3493,11 +3493,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 132077,
+      "size_bytes": 132261,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "cde1b36b66f0e80094c226eef362cc229a71d5f2e114131b5d7a2e910d07978d",
-      "line_count": 781,
+      "sha256": "0d4847dce6eb2020332369ed9ce2c65750a435b6cb2a9674c53710961d123de1",
+      "line_count": 782,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4035,7 +4035,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ed3bc1d835affe7955cb5473ec632ac6e9bc378e960741b7eaf347768f847ceb",
+      "sha256": "7b91b327567f13831ed0b2e281a1682548000ce9590ff762d963aea419354ad0",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4209,10 +4209,10 @@
     },
     {
       "path": "docs/RLL_TOROIDAL_TRANSPORT_LAYER.md",
-      "size_bytes": 422,
+      "size_bytes": 380,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "6f01bb1df85f3d924e0a3bcd46e51e97a90722ec69adfd86b62472eb33ea10d4",
+      "sha256": "8540cdb1daee165fe22ef512a3a014e9cafc9f2cb5a9743359ec1d47e72a0780",
       "line_count": 12,
       "is_text": true,
       "risk_flags": [
@@ -4364,7 +4364,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5447a348a25a72aa877e6cc58d7ea600f31aca220b964965dea4b1b5b24ea18d",
+      "sha256": "b46f6f4446dcf02c114a3d7e6f9996e0b4ca275f967714a2d38446092ab1eb18",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
