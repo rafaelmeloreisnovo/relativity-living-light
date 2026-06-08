@@ -31,7 +31,7 @@ jobs:
         with: {python-version: '3.11'}
       - run: |
           python -m pip install --upgrade pip
-          pip install numpy pandas scipy matplotlib requests astropy
+          pip install numpy pandas scipy matplotlib requests astropy pyyaml
       - run: mkdir -p artifacts/rll-real-run/{raw,processed,plots,tables,book,iml,formulas}
       - run: python3 tools/docs_inventory.py --check
       - run: |
