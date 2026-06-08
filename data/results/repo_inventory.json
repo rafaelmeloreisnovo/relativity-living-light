@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-08T02:59:10.247938+00:00",
-  "git_commit": "7a7018f99234e65f4bd554a96508bd3a6555f153",
+  "generated_at": "2026-06-08T02:59:38.007969+00:00",
+  "git_commit": "43a668905b7ced3b54083cb00144227976bedc58",
   "summary": {
     "tracked_files_total": 754,
     "cataloged_files": 736,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34011497,
-    "total_text_lines": 118097,
+    "total_bytes": 34011442,
+    "total_text_lines": 118098,
     "markdown_files": 379,
     "yml_yaml_files": 32,
     "github_workflow_yml_files": 13,
@@ -3002,10 +3002,10 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 247610,
+      "size_bytes": 247611,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "0b85e9c3b1af399b2176b7b696e8581551016e61ec2aadb0c63ec2cc79d557ff",
+      "sha256": "b5229fd9aca3a50440955119838745bbd60bce6ad74f64e07ec6c75534052b66",
       "line_count": 8432,
       "is_text": true,
       "risk_flags": [
@@ -3018,10 +3018,10 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 114690,
+      "size_bytes": 114691,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "40269389ed6736150aea99014b9b2fc5c4310b5aadc75ed7e680ccd1df7f59d1",
+      "sha256": "97e3bc282b8d2ba401892b1e411e126d3f03a57a402a69cd67269b3013c79f82",
       "line_count": 737,
       "is_text": true,
       "risk_flags": [
@@ -3037,7 +3037,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "cc2c119d03e59c8fb4e0f9cfdd7d11da2cf2284739ee3790259f098e13840528",
+      "sha256": "2564845ed62e0e6bb1229a597831976e5a1d1ac191d948f4937f787fb93c6110",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3493,10 +3493,10 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 131889,
+      "size_bytes": 131890,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d5a88da4a936037a63f93356f1acad3dd54de78b14ec59f96f9cb21cd281ed46",
+      "sha256": "e82a76dce5f48382c512c351cb42db4595acf6dc21a28cb651518d0adb82ea41",
       "line_count": 780,
       "is_text": true,
       "risk_flags": [
@@ -4035,7 +4035,7 @@
       "size_bytes": 1469,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "0c17934d8353cad2b3017bca2588df369104404828ad759fe2153fb92c7cefe1",
+      "sha256": "aca5e23d3bf69948151d90f211c5a982bb3542a3ff401b802c9a3b9951bd20a8",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -4161,11 +4161,11 @@
     },
     {
       "path": "docs/RLL_MULTI_MEDIUM_CONVERGENCE.md",
-      "size_bytes": 349,
+      "size_bytes": 291,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "242042164273dc3f80ffa58fd860277a54d47c414e977eab97c75e9d1e427b4c",
-      "line_count": 10,
+      "sha256": "06640b559534f6b7d6125ac7f6329e8aed00ec45f76efcbf02798f9d192ad61f",
+      "line_count": 11,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared",
@@ -4340,7 +4340,7 @@
       "size_bytes": 4923,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "48101995245127d7dfcdcd2471bc7fc2761ded4a2217a6f35d04f00fa013725a",
+      "sha256": "5f628186b27d74740bbf8497a29103652febe0bfb49f47bce95567b28c6c7388",
       "line_count": 39,
       "is_text": true,
       "risk_flags": [
