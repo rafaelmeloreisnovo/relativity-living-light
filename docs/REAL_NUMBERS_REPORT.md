@@ -5,8 +5,8 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 761 |
-| `cataloged_files` | 743 |
+| `tracked_files_total` | 763 |
+| `cataloged_files` | 745 |
 | `uncataloged_or_error_files` | 18 |
 | `total_bytes` | 34018367 |
 | `total_text_lines` | 118284 |
@@ -19,7 +19,7 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 
 | Categoria | Arquivos |
 |---|---:|
-| `documentation_md` | 386 |
+| `documentation_md` | 388 |
 | `other` | 120 |
 | `source_code` | 120 |
 | `data_or_result` | 78 |
@@ -32,7 +32,7 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 
 | Extensão | Arquivos |
 |---|---:|
-| `.md` | 386 |
+| `.md` | 388 |
 | `.py` | 108 |
 | `.png` | 63 |
 | `.csv` | 57 |
@@ -63,7 +63,7 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 | `mentions_mock_or_placeholder` | 68 |
 | `result_artifact` | 62 |
 | `mentions_synthetic` | 57 |
-| `token_vazio_declared` | 17 |
+| `token_vazio_declared` | 18 |
 
 ## Fronteira
 

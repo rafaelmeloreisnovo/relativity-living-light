@@ -2,8 +2,8 @@
   "generated_at": "2026-06-08T04:13:09.114530+00:00",
   "git_commit": "1b6eb4f58d7c68f682dbfda26b02daa19d3ab882",
   "summary": {
-    "tracked_files_total": 761,
-    "cataloged_files": 743,
+    "tracked_files_total": 763,
+    "cataloged_files": 745,
     "uncataloged_or_error_files": 18,
     "total_bytes": 34018367,
     "total_text_lines": 118284,
@@ -13,7 +13,7 @@
     "data_or_result_files": 78
   },
   "counts_by_ext": {
-    ".md": 386,
+    ".md": 388,
     ".yml": 32,
     "NO_EXT": 12,
     ".txt": 8,
@@ -37,7 +37,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 386,
+    "documentation_md": 388,
     "github_workflow_yml": 13,
     "config_yml": 19,
     "other": 120,
@@ -50,7 +50,7 @@
     "cosmology_validation_marker": 348,
     "mentions_mock_or_placeholder": 68,
     "mentions_synthetic": 57,
-    "token_vazio_declared": 17,
+    "token_vazio_declared": 18,
     "result_artifact": 62
   },
   "files": [
@@ -5061,11 +5061,11 @@
     },
     {
       "path": "docs/rll_multimedium/00_INDEX.md",
-      "size_bytes": 572,
+      "size_bytes": 342,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "018cdf4e5b074aed4ce4b0061594b5c8986a5eb0044731512f3ac128f225a236",
-      "line_count": 13,
+      "sha256": "e52ffda5fe91972489ce153a1b4b181073e608ceb6d2b43fcef5ff6ba93d728f",
+      "line_count": 16,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"
@@ -5106,12 +5106,34 @@
       "risk_flags": []
     },
     {
+      "path": "docs/rll_multimedium/04_MEDIA_FIELDS.md",
+      "size_bytes": 422,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "dd4ef27326bfadf489bf5dce88bda101bf1ca161352c69f5c26271e6aed22e75",
+      "line_count": 16,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "docs/rll_multimedium/05_TRACE.md",
       "size_bytes": 181,
       "ext": ".md",
       "kind": "documentation_md",
       "sha256": "501e0feff710ba9925e059922fdc06ef861e926ee5c1f3e40cfa5c9831e2be2c",
       "line_count": 12,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "docs/rll_multimedium/06_LEDGER_TEMPLATE.md",
+      "size_bytes": 386,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "13af426df2525281a02d433801af3350305411b087fd004b8b736cb01f28aacf",
+      "line_count": 18,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"

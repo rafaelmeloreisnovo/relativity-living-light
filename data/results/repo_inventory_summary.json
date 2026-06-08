@@ -2,8 +2,8 @@
   "generated_at": "2026-06-08T04:13:09.114530+00:00",
   "git_commit": "1b6eb4f58d7c68f682dbfda26b02daa19d3ab882",
   "summary": {
-    "tracked_files_total": 761,
-    "cataloged_files": 743,
+    "tracked_files_total": 763,
+    "cataloged_files": 745,
     "uncataloged_or_error_files": 18,
     "total_bytes": 34018367,
     "total_text_lines": 118284,
@@ -16,7 +16,7 @@
     "cosmology_validation_marker": 348,
     "mentions_mock_or_placeholder": 68,
     "mentions_synthetic": 57,
-    "token_vazio_declared": 17,
+    "token_vazio_declared": 18,
     "result_artifact": 62
   },
   "errors": [
