@@ -120,6 +120,81 @@ def validate_bao(df: pd.DataFrame) -> pd.DataFrame:
     return out.sort_values("z_eff").reset_index(drop=True)
 
 
+
+def validation_status_payload() -> dict[str, object]:
+    """Return the scale-separated validation contract for RLL pre-movement terms.
+
+    The local dynamic layer records Rafael's "pre-movement" intuition without
+    promoting it to a homogeneous-background cosmology parameter.
+    """
+
+    return {
+        "background_parameters": [
+            "H0",
+            "Omega_m",
+            "Omega_Lambda",
+            "Omega_b_h2",
+            "Omega_c_h2",
+            "theta_star",
+            "tau",
+            "ln10_10_As",
+            "n_s",
+        ],
+        "radiation_neutrino_parameters": [
+            "Omega_r",
+            "N_eff",
+            "sum_m_nu",
+            "Omega_gamma",
+            "Omega_nu",
+        ],
+        "growth_parameters": [
+            "sigma8",
+            "S8",
+            "fsigma8",
+            "D_z",
+            "P_k",
+            "delta_m",
+        ],
+        "initial_condition_layer": [
+            "A_s",
+            "n_s",
+            "alpha_s",
+            "primordial_perturbations",
+            "acoustic_scale",
+        ],
+        "local_dynamic_layer": [
+            "Phi_pre",
+            "E_bound",
+            "tau_relax",
+            "Q_diss",
+            "M_dyn",
+            "L_orbital",
+            "spin",
+            "eccentricity",
+            "separation_orbital",
+            "gravitational_wave_loss",
+            "G_pre",
+            "field_gradient",
+            "vector_convergence",
+            "neighbouring_orbital_ellipses",
+        ],
+        "scale_bridge_examples": [
+            "binary_stars_or_black_holes_with_converging_vector_motion",
+            "planet_star_orbit_groups_in_neighbouring_ellipses",
+            "chaotic_galactic_cascades_and_domino_like_field_relaxation",
+            "milky_way_and_andromeda_large_scale_local_group_dynamics",
+            "apollo_lunar_impact_dynamic_memory_without_cosmological_promotion",
+            "local_domino_cascade_in_orbital_or_galactic_subsystems",
+        ],
+        "symbolic_complexity_marker": "n^n + n*x = y^x + n + x + z + omega + alpha + tesseract is non-operational until dimensions, units, observables, and falsification tests are defined",
+        "claim_boundary": "local dynamic layer cannot be promoted to background cosmology without scale bridge",
+        "interpretation": (
+            "Pre-movement is modeled as scale-indexed initial/bound-state dynamics: "
+            "it can condition local events, mergers, relaxation, and structure growth, "
+            "but it is not an extra global LCDM background parameter by itself."
+        ),
+    }
+
 def chi2_from_pulls(pulls: pd.Series) -> float:
     return float(np.square(pulls.astype(float)).sum())
 
@@ -199,6 +274,7 @@ def main() -> int:
     for label, path in input_paths.items():
         source_records.append({"name": label, "path": str(path), "sha256": sha256_file(path), "status": "used_real_non_synthetic"})
 
+    validation_status = validation_status_payload()
     report = [
         "# COMPUTE_REPORT",
         "",
@@ -210,6 +286,7 @@ def main() -> int:
         f"- CMB reference: {cmb.get('survey', 'unknown')} ({cmb.get('reference', 'no reference')})",
         f"- best_by_bic: {min(models, key=lambda row: row['BIC'])['model']}",
         "- geomagnetic: pending_real_parser, not fabricated",
+        "- scale_bridge_claim_boundary: " + str(validation_status["claim_boundary"]),
     ]
     (root / "COMPUTE_REPORT.md").write_text("\n".join(report) + "\n", encoding="utf-8")
     manifest = {
@@ -218,6 +295,7 @@ def main() -> int:
         "data_source_mode": args.data_source,
         "input_files": source_records,
         "fallback_policy": "fail if required real inputs are absent; repo real data allowed only as explicit fallback/source",
+        "validation_status": validation_status,
         "outputs": [
             "tables/Hz_processed.csv",
             "tables/BAO_processed.csv",

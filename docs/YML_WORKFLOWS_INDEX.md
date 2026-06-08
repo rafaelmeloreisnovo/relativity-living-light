@@ -1,7 +1,4 @@
-# YML Workflows Index
-
-Gerado em: `2026-06-08T05:13:42.996451+00:00`  
-Commit: `d3b52bdcd22640925789b4c3c0cddd2eaacc3b0f`
+# YML Workflows and Config Index
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -10,12 +7,13 @@ Commit: `d3b52bdcd22640925789b4c3c0cddd2eaacc3b0f`
 | `.github/workflows/dha-fisher-ci.yml` | `github_workflow_yml` | 2250 | 69 | `576fa63966f96e85ed6006ddb3eaab3e523627944947f23a781b7e8246da3e6d` |
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 717 | 30 | `2e009f61aca9d856a051ee036a0cdeff3bb9a2ed5127d0e6b2e5b6e413b0aa8a` |
 | `.github/workflows/iml_artifact.yml` | `github_workflow_yml` | 1235 | 46 | `265b5d4637656fd8c686a079314615cf4695662a272168d19de7320eebe46401` |
-| `.github/workflows/python-tests.yml` | `github_workflow_yml` | 507 | 27 | `fab7aeb88b2d081bea49003fe8f1cf26624749a859baffc6810a220ad5fdc327` |
+| `.github/workflows/python-tests.yml` | `github_workflow_yml` | 534 | 27 | `0ad2f96fda2df19f7b563cfde7b4588112e7c2129c2685bac8c10b8ef433f0fd` |
 | `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12251 | 269 | `b96d92cbbc9c67a50b372626fe8be9f0f2dc266d3880bef0750dbccfae84cd99` |
+| `.github/workflows/real-data-contract-ci.yml` | `github_workflow_yml` | 4141 | 110 | `ec56874d6e657e226ae0cee551a5f9789f5403221258a252afc4c0acafd5f1fd` |
 | `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 9106 | 176 | `e51e6b27be3e3cedff088f481d1d505fd47eea91964857c311d008933316f2e9` |
 | `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 3878 | 121 | `7fe171319ced298b38c604b1a4ce40b668b32d1fdec5e4c259959b3fec0f9866` |
 | `.github/workflows/rll-data-pipeline.yml` | `github_workflow_yml` | 3184 | 82 | `6f9df5055ae59b2d8403f6ade8d0bbdfe6891243e230b0c32736592437e1087a` |
-| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 5947 | 87 | `da64d52b331e3bbfc8663a815f77b366bcb8f24f260186eacc094f962fa1d98f` |
+| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 5954 | 87 | `1a42f5d682c8286e890c78901fc869111ef2e1e5b68551c89da336bf27bba39e` |
 | `.github/workflows/unified-geometry.yml` | `github_workflow_yml` | 745 | 27 | `3c8921774788c29e61a77e63a4b0847267a236cd355fb0dbd0b82e3d97be80ef` |
 | `.github/workflows/validacao_real.yml` | `github_workflow_yml` | 1703 | 59 | `18c565a60e6f9f6b775064d6aef3ca54cc71c347b0de79cb3af26e1bd33d5480` |
 | `CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
