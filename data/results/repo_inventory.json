@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-08T07:01:11.600647+00:00",
-  "git_commit": "01e157eefe5e082513d0518942170c131007282a",
+  "generated_at": "2026-06-08T07:26:08.832661+00:00",
+  "git_commit": "b473151eb1c73a2ed801b81ad636ddabdb6d7038",
   "summary": {
-    "tracked_files_total": 782,
-    "cataloged_files": 764,
+    "tracked_files_total": 789,
+    "cataloged_files": 771,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34339538,
-    "total_text_lines": 119498,
-    "markdown_files": 393,
+    "total_bytes": 34436066,
+    "total_text_lines": 121868,
+    "markdown_files": 394,
     "yml_yaml_files": 35,
     "github_workflow_yml_files": 14,
     "data_or_result_files": 82
   },
   "counts_by_ext": {
-    ".md": 393,
+    ".md": 394,
     ".yml": 35,
     "NO_EXT": 12,
     ".txt": 8,
     ".py": 109,
     ".sh": 6,
-    ".json": 40,
-    ".csv": 59,
+    ".json": 41,
+    ".csv": 64,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -38,20 +38,20 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 393,
+    "documentation_md": 394,
     "github_workflow_yml": 14,
     "config_yml": 21,
-    "other": 126,
+    "other": 132,
     "source_code": 121,
     "archive": 6,
     "data_or_result": 82,
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 363,
-    "mentions_mock_or_placeholder": 69,
-    "mentions_synthetic": 60,
-    "token_vazio_declared": 17,
+    "cosmology_validation_marker": 369,
+    "mentions_mock_or_placeholder": 70,
+    "mentions_synthetic": 67,
+    "token_vazio_declared": 19,
     "result_artifact": 62
   },
   "files": [
@@ -1634,6 +1634,93 @@
       ]
     },
     {
+      "path": "artifacts/rll-real-run-impact-vector/COMPUTE_REPORT.md",
+      "size_bytes": 426,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "352c5578a7f954d8e7def016b711e30432d7ceed5330e0a02c99f1838dbfa20a",
+      "line_count": 11,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "artifacts/rll-real-run-impact-vector/MANIFEST.json",
+      "size_bytes": 3467,
+      "ext": ".json",
+      "kind": "other",
+      "sha256": "60164322fa4c5d80a3f73ce836bb751205f5f1d9872d9b5f3ab1d955d79e01d9",
+      "line_count": 112,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "artifacts/rll-real-run-impact-vector/tables/BAO_processed.csv",
+      "size_bytes": 1442,
+      "ext": ".csv",
+      "kind": "other",
+      "sha256": "b7e590168ac0a12d51b2349c468300ed659e6a8ba6d422fb915a39b04cf39874",
+      "line_count": 11,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "artifacts/rll-real-run-impact-vector/tables/Hz_processed.csv",
+      "size_bytes": 4774,
+      "ext": ".csv",
+      "kind": "other",
+      "sha256": "19a25807c714ba5f18a819063effbb9a8415404cfe0a202a30960b20117ebc99",
+      "line_count": 34,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "artifacts/rll-real-run-impact-vector/tables/geomagnetic_metadata.csv",
+      "size_bytes": 216,
+      "ext": ".csv",
+      "kind": "other",
+      "sha256": "188f12d90d8747685c150f410066a8b4bb7a7392824fbd7b91e855d97072db6f",
+      "line_count": 3,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "artifacts/rll-real-run-impact-vector/tables/model_comparison.csv",
+      "size_bytes": 225,
+      "ext": ".csv",
+      "kind": "other",
+      "sha256": "d1945ae07c1e12f5536e370b34d96ec5d7a07c302a2c83be0abfd2e3a94f1e40",
+      "line_count": 3,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_synthetic",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "artifacts/rll-real-run-impact-vector/tables/rll_components.csv",
+      "size_bytes": 5552,
+      "ext": ".csv",
+      "kind": "other",
+      "sha256": "6684d89f39d2eff1852347709e5af3705e84a7281b0e4c15514113320998a67e",
+      "line_count": 49,
+      "is_text": true,
+      "risk_flags": [
+        "cosmology_validation_marker"
+      ]
+    },
+    {
       "path": "book/01_fundamentos_visao_geral.md",
       "size_bytes": 1283,
       "ext": ".md",
@@ -3066,11 +3153,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 196894,
+      "size_bytes": 257303,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "82b2424e1f8649663bf5427de33e2290d6d1f0586a4724b73e9ded778ad9ce0c",
-      "line_count": 6824,
+      "sha256": "91e8186a24916a06b7ef7c6b6a10b4ecaee7457598156a6eb30c2f51a0a5ba22",
+      "line_count": 8761,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3082,11 +3169,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 110965,
+      "size_bytes": 119351,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "d3f862557083b2e31495cc21b059cfbb04f2bd20b9a25acacb1d542891704fdf",
-      "line_count": 759,
+      "sha256": "26ee826da4c6b2aa5de0ab5b99e7b485c46d1e6597dacaf7d724b25acf330aae",
+      "line_count": 765,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3098,13 +3185,16 @@
     },
     {
       "path": "data/results/repo_inventory_summary.json",
-      "size_bytes": 267,
+      "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "aedf866389bd337de5c86c883b4161783c818edd16e3f43e9db6c350b92c2fff",
-      "line_count": 11,
+      "sha256": "5b72dbe14bdbe899dc68383ab7fa1849263ac27ed50da34d1fc36c66a51fa201",
+      "line_count": 96,
       "is_text": true,
       "risk_flags": [
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared",
         "result_artifact"
       ]
     },
@@ -3554,11 +3644,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 132688,
+      "size_bytes": 137110,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a7c940dfac440fb50d7a81902fbc10fcd1bd963b3854982cf10cfbcf4d4f0bbb",
-      "line_count": 803,
+      "sha256": "2ec05fe967742b4848416a32d552ad324fee3276f02c2c66b8d5806e724d176a",
+      "line_count": 808,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3651,11 +3741,11 @@
     },
     {
       "path": "docs/FORMULAS_CANONICAS_INDEX.md",
-      "size_bytes": 3414,
+      "size_bytes": 4386,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7bd864a1741196a7383f434f5bb52223b6870ee877df45861d3bc0d4d92e4700",
-      "line_count": 19,
+      "sha256": "452ee8fa3af005b23981ad48595c2559a71f2658810bb8a19450d85330d95af4",
+      "line_count": 21,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -3723,11 +3813,11 @@
     },
     {
       "path": "docs/INDICE_MESTRE.md",
-      "size_bytes": 8910,
+      "size_bytes": 9097,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c2247e64a1f7acd53a8987f47beec55494ae29801e7b2ddcaec01bab3fd1cd0e",
-      "line_count": 137,
+      "sha256": "fc15d7869beaa6ab1381d8da462abaad39251f08e9efc05ef21424e4c2e1bc9a",
+      "line_count": 138,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared",
@@ -4093,14 +4183,16 @@
     },
     {
       "path": "docs/REAL_NUMBERS_REPORT.md",
-      "size_bytes": 2400,
+      "size_bytes": 1485,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "dc74ba548e781fd4d331abe8ff9bcd8b7bb734907fe0189ddec6ac17b3f6f6d1",
-      "line_count": 37,
+      "sha256": "6fc565a1f97e348b37ed1c4bb7513c7df1fe8d91b8cec6992e88b52d8a9da367",
+      "line_count": 71,
       "is_text": true,
       "risk_flags": [
-        "mentions_mock_or_placeholder"
+        "mentions_synthetic",
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared"
       ]
     },
     {
@@ -4245,11 +4337,11 @@
     },
     {
       "path": "docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md",
-      "size_bytes": 13638,
+      "size_bytes": 16591,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ff2af1d12b45d2d5a934ae49f39b5494d782cfccba998c37a651ed266f7c6c27",
-      "line_count": 439,
+      "sha256": "675e6dcc9aece82de1b29fc9b24eb521c3f8f64bae145a2893d739f29fc1eab7",
+      "line_count": 490,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -4432,11 +4524,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 5285,
+      "size_bytes": 5374,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1dfcecb78aef038f688b01d9a0dbac9e94484fb30e821608449cb19d24c16537",
-      "line_count": 39,
+      "sha256": "719b980f13f87b04c03471449fca71bcdb975386a8e9cc3e32cab2164dcb5deb",
+      "line_count": 42,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -7417,11 +7509,11 @@
     },
     {
       "path": "scripts/compute_rll_real_pipeline.py",
-      "size_bytes": 12007,
+      "size_bytes": 12540,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "12243edac2a13038e7caab604f01a896a0207cf25f1f911e683c44c589a050fe",
-      "line_count": 312,
+      "sha256": "dd16ed6eddfc8fdd864eab20a909c9438f23b645efeb5a64c06c4cfadbd6b0ee",
+      "line_count": 330,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -7761,11 +7853,11 @@
     },
     {
       "path": "tests/test_compute_rll_real_pipeline_contract.py",
-      "size_bytes": 4498,
+      "size_bytes": 4868,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "c901f132512d96a97a801852c77013eaf79aed07c5f221cf5ced65cd1daffdd1",
-      "line_count": 101,
+      "sha256": "7e8566a08f2e9375d895a942f0c35de933a23f68547660d523aae6168915ae22",
+      "line_count": 106,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
