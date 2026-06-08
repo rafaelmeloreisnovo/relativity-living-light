@@ -437,3 +437,54 @@ fora por construcao != erro do LambdaCDM
 ```
 
 O ΛCDM não tenta descrever tudo; ele descreve o fundo cosmológico e perturbações estatísticas. RLL só ganha força se mantiver a ponte de escala auditável, com dados reais, covariâncias e métricas reproduzíveis.
+
+### 11. Impacto vetorial derivativo: cometas, asteroides, fragmentação e ejecta
+
+A comparação entre impacto natural e bomba nuclear deve permanecer como régua de energia, não como equivalência física completa. Uma bomba nuclear descreve uma liberação local concentrada; um cometa ou asteroide é um corpo vetorial em movimento, com massa, velocidade, direção, trajetória, fragmentação, transferência de momento e acoplamento mecânico com o corpo-alvo.
+
+A variável operacional mínima é a energia cinética de impacto:
+
+```text
+E_impact = 1/2 * M_body * v_impact^2
+```
+
+Essa energia, porém, não fecha o evento. O contrato RLL para impacto precisa registrar também:
+
+```text
+M_body      massa do corpo impactor
+v_impact    velocidade de impacto
+theta_impact angulo de impacto
+rho_body    densidade do corpo
+N_frag      numero de fragmentos
+M_frag      massa fragmentada
+p_vec       momento linear vetorial
+L_orb       momento angular/orbital
+E_kin       energia cinetica primária
+E_ejecta    energia/momento do material ejetado
+beta_momentum fator de amplificacao de momento por ejecta
+tau_relax   tempo de relaxacao do alvo
+S_scale     escala do evento
+```
+
+A leitura correta é:
+
+> bombas medem energia local; cometas e asteroides derivam dinâmica orbital, impacto, fragmentação, ejecta, relaxação e memória sistêmica.
+
+No caso de Chicxulub, Durand-Manterola e Cordero-Tercero estimam energia cinética entre `1.3e24 J` e `5.8e25 J`, massa entre `1.0e15 kg` e `4.6e17 kg`, diâmetro entre `10.6 km` e `80.9 km`, e concluem que a melhor estimativa composicional do impactor seria cometária. Essa escala justifica usar bombas nucleares apenas como unidade humana de comparação energética, mantendo o objeto físico como evento vetorial composto.
+
+No caso DART/Dimorphos, Cheng et al. relatam redução instantânea de velocidade orbital de `2.70 +/- 0.10 mm/s` e fator de amplificação de momento `beta` entre `2.2` e `4.9` para a faixa de densidade analisada. Isso torna explícito que o impacto deriva estados secundários: material ejetado, recoil e nova configuração orbital.
+
+A fronteira de escala continua obrigatória:
+
+```text
+S_scale = planetario/local
+claim_scope = impacto + fragmentacao + ejecta + relaxacao + memoria dinamica
+not_background_cosmology = true
+```
+
+Portanto, o bloco `impact_vector_layer` pode entrar no `VALIDATION_STATUS` e no `MANIFEST.json` como camada local/planetária de pré-movimento e memória dinâmica, mas não deve ser promovido diretamente para `H(z)`, BAO, CMB ou parâmetros de fundo sem uma ponte quantitativa de escala.
+
+Referências:
+
+- Durand-Manterola, H. J.; Cordero-Tercero, G. (2014). *Assessments of the energy, mass and size of the Chicxulub Impactor*. arXiv:1403.6391. https://arxiv.org/abs/1403.6391
+- Cheng, A. F. et al. (2023). *Momentum Transfer from the DART Mission Kinetic Impact on Asteroid Dimorphos*. arXiv:2303.03464. https://arxiv.org/abs/2303.03464

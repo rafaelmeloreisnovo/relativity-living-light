@@ -178,6 +178,21 @@ def validation_status_payload() -> dict[str, object]:
             "vector_convergence",
             "neighbouring_orbital_ellipses",
         ],
+        "impact_vector_layer": [
+            "M_body",
+            "v_impact",
+            "theta_impact",
+            "rho_body",
+            "N_frag",
+            "M_frag",
+            "p_vec",
+            "L_orb",
+            "E_kin",
+            "E_ejecta",
+            "beta_momentum",
+            "tau_relax",
+            "S_scale",
+        ],
         "scale_bridge_examples": [
             "binary_stars_or_black_holes_with_converging_vector_motion",
             "planet_star_orbit_groups_in_neighbouring_ellipses",
@@ -185,13 +200,16 @@ def validation_status_payload() -> dict[str, object]:
             "milky_way_and_andromeda_large_scale_local_group_dynamics",
             "apollo_lunar_impact_dynamic_memory_without_cosmological_promotion",
             "local_domino_cascade_in_orbital_or_galactic_subsystems",
+            "chicxulub_scale_energy_as_impact_vector_not_background_parameter",
+            "dart_ejecta_recoil_momentum_amplification",
         ],
         "symbolic_complexity_marker": "n^n + n*x = y^x + n + x + z + omega + alpha + tesseract is non-operational until dimensions, units, observables, and falsification tests are defined",
         "claim_boundary": "local dynamic layer cannot be promoted to background cosmology without scale bridge",
         "interpretation": (
             "Pre-movement is modeled as scale-indexed initial/bound-state dynamics: "
-            "it can condition local events, mergers, relaxation, and structure growth, "
-            "but it is not an extra global LCDM background parameter by itself."
+            "it can condition local events, mergers, vector impacts, ejecta recoil, "
+            "relaxation, and structure growth, but it is not an extra global LCDM "
+            "background parameter by itself."
         ),
     }
 
