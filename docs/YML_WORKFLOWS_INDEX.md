@@ -1,11 +1,11 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-08T04:13:09.114530+00:00`  
-Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
+Gerado em: `2026-06-08T04:42:51.916794+00:00`  
+Commit: `5f8d24e33976af8bbd7034b05ee22cd118f137c7`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
-| `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11143 | 255 | `db5df272c100e92eeac48e35af1c32c77d070718917e30fef1ecf077e4bb3ca8` |
+| `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11412 | 262 | `56c187fd3213633d267b3732a111836730417704f3e468e5baf1c6583c9819d4` |
 | `.github/workflows/convention-check.yml` | `github_workflow_yml` | 747 | 22 | `3d93068999f0004517b0c700055256b10244e29cfe8acaa6b5b4a5c6d167f437` |
 | `.github/workflows/dha-fisher-ci.yml` | `github_workflow_yml` | 2250 | 69 | `576fa63966f96e85ed6006ddb3eaab3e523627944947f23a781b7e8246da3e6d` |
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 717 | 30 | `2e009f61aca9d856a051ee036a0cdeff3bb9a2ed5127d0e6b2e5b6e413b0aa8a` |
@@ -15,7 +15,7 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 | `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 9106 | 176 | `e51e6b27be3e3cedff088f481d1d505fd47eea91964857c311d008933316f2e9` |
 | `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 3878 | 121 | `7fe171319ced298b38c604b1a4ce40b668b32d1fdec5e4c259959b3fec0f9866` |
 | `.github/workflows/rll-data-pipeline.yml` | `github_workflow_yml` | 3184 | 82 | `6f9df5055ae59b2d8403f6ade8d0bbdfe6891243e230b0c32736592437e1087a` |
-| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 5757 | 86 | `2b532c561b2e3a1ed9fa1c4282eeb832199a8c204e7de1b6ff46b745a65ac562` |
+| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 5947 | 87 | `da64d52b331e3bbfc8663a815f77b366bcb8f24f260186eacc094f962fa1d98f` |
 | `.github/workflows/unified-geometry.yml` | `github_workflow_yml` | 745 | 27 | `3c8921774788c29e61a77e63a4b0847267a236cd355fb0dbd0b82e3d97be80ef` |
 | `.github/workflows/validacao_real.yml` | `github_workflow_yml` | 1703 | 59 | `18c565a60e6f9f6b775064d6aef3ca54cc71c347b0de79cb3af26e1bd33d5480` |
 | `CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
@@ -36,4 +36,6 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 | `tools/inventory_config.yml` | `config_yml` | 1050 | 56 | `66629d935fd917fc3e6bcd20d9a0f761e71fe2e59e8b30e03fd313a54a1fd1d8` |
 | `validacao_real/data/desi_dr2_bao.yml` | `config_yml` | 2502 | 99 | `86d80d1290c039175e2b524b92111fa365b7cccb689cd16ba396ed883a21b690` |
 | `validacao_real/data/hz_cosmic_chronometers.yml` | `config_yml` | 1589 | 41 | `0d37ddd2a24f51eb43ee196e8d2d33313e4662c730070cfadfa22537ff25d4a7` |
+| `validacao_real/fetched/desi_dr2_bao.yml` | `config_yml` | 2305 | 98 | `d7eea61898fbf62b489aa244c7dc201b1e6f84f3dc5e95996d27735868c4e661` |
+| `validacao_real/fetched/hz_cosmic_chronometers.yml` | `config_yml` | 1475 | 105 | `d780c26dced451af32e91435d70710a0a210a13aa0422eb0d925fba76cdb6a45` |
 | `validacao_real/sources.yml` | `config_yml` | 1289 | 30 | `ef38522ef37bb78d394b9844183936d48c3a61d7072c53f8abf8c76411fcae5b` |

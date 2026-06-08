@@ -1,29 +1,29 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-08T04:13:09.114530+00:00`  
-Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
+Gerado em: `2026-06-08T04:42:51.916794+00:00`  
+Commit: `5f8d24e33976af8bbd7034b05ee22cd118f137c7`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 763 |
-| `cataloged_files` | 745 |
+| `tracked_files_total` | 778 |
+| `cataloged_files` | 760 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 34018367 |
-| `total_text_lines` | 118284 |
-| `markdown_files` | 386 |
-| `yml_yaml_files` | 32 |
+| `total_bytes` | 34349208 |
+| `total_text_lines` | 119801 |
+| `markdown_files` | 391 |
+| `yml_yaml_files` | 34 |
 | `github_workflow_yml_files` | 13 |
-| `data_or_result_files` | 78 |
+| `data_or_result_files` | 82 |
 
 ## Categorias
 
 | Categoria | Arquivos |
 |---|---:|
-| `documentation_md` | 388 |
-| `other` | 120 |
+| `documentation_md` | 391 |
+| `other` | 126 |
 | `source_code` | 120 |
-| `data_or_result` | 78 |
-| `config_yml` | 19 |
+| `data_or_result` | 82 |
+| `config_yml` | 21 |
 | `github_workflow_yml` | 13 |
 | `archive` | 6 |
 | `test_or_validation` | 1 |
@@ -32,12 +32,12 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 
 | Extensão | Arquivos |
 |---|---:|
-| `.md` | 388 |
+| `.md` | 391 |
 | `.py` | 108 |
-| `.png` | 63 |
-| `.csv` | 57 |
-| `.json` | 37 |
-| `.yml` | 32 |
+| `.png` | 67 |
+| `.csv` | 59 |
+| `.json` | 40 |
+| `.yml` | 34 |
 | `NO_EXT` | 12 |
 | `.txt` | 8 |
 | `.sh` | 6 |
@@ -50,6 +50,7 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 | `.h` | 2 |
 | `.pdf` | 2 |
 | `.cff` | 1 |
+| `.html` | 1 |
 | `.tsv` | 1 |
 | `.toml` | 1 |
 | `.ini` | 1 |
@@ -59,10 +60,10 @@ Commit: `1b6eb4f58d7c68f682dbfda26b02daa19d3ab882`
 
 | Flag | Ocorrências |
 |---|---:|
-| `cosmology_validation_marker` | 348 |
-| `mentions_mock_or_placeholder` | 68 |
+| `cosmology_validation_marker` | 359 |
+| `mentions_mock_or_placeholder` | 69 |
 | `result_artifact` | 62 |
-| `mentions_synthetic` | 57 |
+| `mentions_synthetic` | 59 |
 | `token_vazio_declared` | 18 |
 
 ## Fronteira
