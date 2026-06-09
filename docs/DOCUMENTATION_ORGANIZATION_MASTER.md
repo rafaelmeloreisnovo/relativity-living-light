@@ -135,11 +135,13 @@ Recomendação contínua: manter checksum e data de geração para cadeia de cus
    ```
 
 3. Confirmar no cabeçalho de `docs/DOCUMENTATION_FULL_INVENTORY.md`:
-   - data/hora de geração;
-   - commit de referência;
+   - origem canônica `tools/docs_inventory.py`;
+   - fronteira medida por `git ls-files`;
    - total de arquivos catalogados.
 
-4. Em caso de divergência, publicar novamente o inventário antes de merge/release.
+4. Em caso de conflito nos seis artefatos gerados (`docs/DOCUMENTATION_FULL_INVENTORY.md`, `docs/REAL_NUMBERS_REPORT.md`, `docs/YML_WORKFLOWS_INDEX.md`, `data/results/repo_inventory.json`, `data/results/repo_inventory.tsv`, `data/results/repo_inventory_summary.json`), resolver aceitando a árvore de código/documentação desejada e regenerar o inventário uma única vez com `python3 tools/docs_inventory.py`. Não editar os artefatos gerados manualmente.
+
+5. Em caso de divergência, publicar novamente o inventário antes de merge/release.
 
 ---
 
