@@ -5,8 +5,8 @@ Commit: `c88bf08ecc15369fcbd045b2688c98597adbf43d`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 779 |
-| `cataloged_files` | 761 |
+| `tracked_files_total` | 780 |
+| `cataloged_files` | 762 |
 | `uncataloged_or_error_files` | 18 |
 | `total_bytes` | 34371456 |
 | `total_text_lines` | 120292 |
@@ -19,7 +19,7 @@ Commit: `c88bf08ecc15369fcbd045b2688c98597adbf43d`
 
 | Categoria | Arquivos |
 |---|---:|
-| `documentation_md` | 392 |
+| `documentation_md` | 393 |
 | `other` | 126 |
 | `source_code` | 120 |
 | `data_or_result` | 82 |
@@ -32,7 +32,7 @@ Commit: `c88bf08ecc15369fcbd045b2688c98597adbf43d`
 
 | Extensão | Arquivos |
 |---|---:|
-| `.md` | 392 |
+| `.md` | 393 |
 | `.py` | 108 |
 | `.png` | 67 |
 | `.csv` | 59 |

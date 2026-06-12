@@ -7,8 +7,8 @@ Commit: `c88bf08ecc15369fcbd045b2688c98597adbf43d`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 779 |
-| `cataloged_files` | 761 |
+| `tracked_files_total` | 780 |
+| `cataloged_files` | 762 |
 | `uncataloged_or_error_files` | 18 |
 | `total_bytes` | 34371456 |
 | `total_text_lines` | 120292 |
@@ -368,6 +368,7 @@ Commit: `c88bf08ecc15369fcbd045b2688c98597adbf43d`
 | `docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md` | 3687 | `.md` | `documentation_md` | 121 | `09f7951e7147b3c5296c6cf78ea954f4961321eb759a65e35c78996b9d430036` | `` |
 | `docs/POSTDOC_ACADEMIC_PRESENTATION_REFERENCE_2026.md` | 7579 | `.md` | `documentation_md` | 128 | `604331a623983389c690dd10704e1ab767fd3e9f32bcda87560c5a7d738e2680` | `cosmology_validation_marker` |
 | `docs/POST_PHD_FORMAL_GAP_ANALYSIS.md` | 6232 | `.md` | `documentation_md` | 100 | `dfd96e557ee242934a3e4f2d052f3a6b77b76daa54b377b07b88a8b81c716ff4` | `cosmology_validation_marker` |
+| `docs/RAFAELIA_PRIORITY_MATRIX.md` | 2424 | `.md` | `documentation_md` | 60 | `017690d0498b682df99b75369e62a30272d97d5d173e4b959838a4e7a9f2efc0` | `` |
 | `docs/RAFAELIA_REGIME_INDEX.md` | 7367 | `.md` | `documentation_md` | 165 | `7f43740b93bfe2400baa8dc0b99813fe6528eacc0ce0d41959412b4be1e6f722` | `cosmology_validation_marker` |
 | `docs/RAFAELIA_UNIFIED_PAPER.md` | 6725 | `.md` | `documentation_md` | 197 | `3ec0b979953df3e2a0ac250ece9e97271853dcfa1cb57afd1dc1f7f46a211e95` | `` |
 | `docs/README_ADVERTENCIA_DOI.md` | 2948 | `.md` | `documentation_md` | 62 | `4818423d59fbcc03ccf1e498066df9185f4218a79e634d9298e3d065717d324f` | `` |

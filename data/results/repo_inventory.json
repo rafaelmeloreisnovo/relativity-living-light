@@ -2,8 +2,8 @@
   "generated_at": "2026-06-09T14:26:12.923822+00:00",
   "git_commit": "c88bf08ecc15369fcbd045b2688c98597adbf43d",
   "summary": {
-    "tracked_files_total": 779,
-    "cataloged_files": 761,
+    "tracked_files_total": 780,
+    "cataloged_files": 762,
     "uncataloged_or_error_files": 18,
     "total_bytes": 34371456,
     "total_text_lines": 120292,
@@ -13,7 +13,7 @@
     "data_or_result_files": 82
   },
   "counts_by_ext": {
-    ".md": 392,
+    ".md": 393,
     ".yml": 34,
     "NO_EXT": 12,
     ".txt": 8,
@@ -38,7 +38,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 392,
+    "documentation_md": 393,
     "github_workflow_yml": 13,
     "config_yml": 21,
     "other": 126,
@@ -3948,6 +3948,16 @@
       "risk_flags": [
         "cosmology_validation_marker"
       ]
+    },
+    {
+      "path": "docs/RAFAELIA_PRIORITY_MATRIX.md",
+      "size_bytes": 2424,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "017690d0498b682df99b75369e62a30272d97d5d173e4b959838a4e7a9f2efc0",
+      "line_count": 60,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/RAFAELIA_REGIME_INDEX.md",
