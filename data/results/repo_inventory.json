@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-08T06:07:59.643179+00:00",
-  "git_commit": "ca1bf83d226d012327e71f78e82999c5a4b3c272",
+  "generated_at": "2026-06-08T18:16:38.320141+00:00",
+  "git_commit": "a5d4e39e79278a5ce88714b6ba60053571566e61",
   "summary": {
-    "tracked_files_total": 778,
-    "cataloged_files": 760,
+    "tracked_files_total": 779,
+    "cataloged_files": 761,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34369967,
-    "total_text_lines": 120266,
-    "markdown_files": 391,
+    "total_bytes": 34371459,
+    "total_text_lines": 120292,
+    "markdown_files": 392,
     "yml_yaml_files": 34,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 82
   },
   "counts_by_ext": {
-    ".md": 391,
+    ".md": 392,
     ".yml": 34,
     "NO_EXT": 12,
     ".txt": 8,
@@ -38,7 +38,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 391,
+    "documentation_md": 392,
     "github_workflow_yml": 13,
     "config_yml": 21,
     "other": 126,
@@ -3053,11 +3053,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 255861,
+      "size_bytes": 256372,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2d5fd04c3b55bda4f41a5f238aba1dcf38b700ded0c31e0b6293ad7548dbb8fe",
-      "line_count": 8711,
+      "sha256": "25be8d88319e1c92d9a7beef644b01ad35b0daea6e75ba6767c495019e81e66b",
+      "line_count": 8726,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3069,11 +3069,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 118655,
+      "size_bytes": 118948,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "d7d87666718a5d3f744f0101a2fb1756d76b3c69de355e1a849f28b766167b54",
-      "line_count": 761,
+      "sha256": "cf5c131f7f2a02ccfaa080a453906d5515e423f563393c4fa9ae45ba6f7a11c2",
+      "line_count": 762,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3088,7 +3088,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "3205b74ecaad5a4081998a5954f9fd721627f2fbbbbd8ec784a466359543fbfc",
+      "sha256": "3ff609a6ccd43a61d1f30074268386af4cb8fdcbdf123e272fb607c71cfa2379",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3544,11 +3544,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 136334,
+      "size_bytes": 136647,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5916364cb2a6b29c3bcb39b4eaab0b77b69cf8200ecd239d8df245758b548582",
-      "line_count": 804,
+      "sha256": "1f1f4480fa3873015bb08039afe6180ce149f738b9d07eb0818ae00daf98304e",
+      "line_count": 805,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4086,7 +4086,7 @@
       "size_bytes": 1485,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "184dbfb99c0ff0caa2a3538d315aaae2b60c0b4d84ac74ebd5894b6afdbe5ed5",
+      "sha256": "6b52bb2781f542f5ffdfee7ac04de17dbb4cd161b1212720866265bd0229fd02",
       "line_count": 71,
       "is_text": true,
       "risk_flags": [
@@ -4415,7 +4415,7 @@
       "size_bytes": 5218,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7c30bddbe0e30cd58870cf85626610fbae822d8509cce0922523864392009afc",
+      "sha256": "49879e5d1dd25f3ee42448517936fcd96e1bcf82b4e3d3328d3efbad94c1dd35",
       "line_count": 41,
       "is_text": true,
       "risk_flags": [
@@ -4881,6 +4881,16 @@
       "kind": "documentation_md",
       "sha256": "78b69b066e16e10ee53670fee53bce21cd1a80b858eeae26dc49634879e932a1",
       "line_count": 55,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "docs/observational_records/2026-06-08_STAR_QCD_VACUUM_SPIN_CORRELATION_REGISTRO.md",
+      "size_bytes": 375,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "7132be40b1c17b5497577fad744caaf89569001aa2e1e46bc69e418a4cd8eb62",
+      "line_count": 9,
       "is_text": true,
       "risk_flags": []
     },
