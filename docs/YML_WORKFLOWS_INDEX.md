@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T08:15:36.693087+00:00`  
-Commit: `2eda2ad42b9ed29f8974341eeec65154f093c8ad`
+Gerado em: `2026-06-13T08:15:53.171669+00:00`  
+Commit: `52ff25a2733f8f5fc02bd3623e960ea799804ff7`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -36,6 +36,7 @@ Commit: `2eda2ad42b9ed29f8974341eeec65154f093c8ad`
 | `data/real/kinematics/hypervelocity_sources.yml` | `config_yml` | 4189 | 129 | `00b7da1d4142a0acedd15bc5ce496b60f3075683c109032be9ef10e1180d74e8` |
 | `data/real/lensing/dark_lens_sources.yml` | `config_yml` | 4895 | 151 | `76e62fbad83495c18f74c8dc7b94bdf5f18d158eae57bbc28188da0f67366026` |
 | `data/real/orbital_dynamics/angular_momentum_shape_sources.yml` | `config_yml` | 4306 | 126 | `e3c2a733031507562657751041b7049008d256a0ef2ca0f9615ae2082ee2099a` |
+| `data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.yml` | `config_yml` | 3908 | 112 | `a23fac026a389a53607dcedf2e6721ecea4881010c8b73f4b0cb93f4157a69fb` |
 | `data/real/rll_real_sources_manifest_2026.yml` | `config_yml` | 5897 | 118 | `45501ad4d4a0c11ad79ca6213c450bc3f9dd291697d0a385eb16474e62d74c36` |
 | `data/real/structure/residual_gravity_sources.yml` | `config_yml` | 3762 | 115 | `9bcd53bb0da0d89e61c111433e45a154d5f5f615e052f2b0df98c3bd1273301d` |
 | `data/real_sources/rll_pantheon_real_validation.iml.yml` | `config_yml` | 3121 | 79 | `656edde4040a24f48b59fb04fbb51f11aad73909ea4c243808a0b3ddd4fb3cd8` |
