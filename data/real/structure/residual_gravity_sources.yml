@@ -1,0 +1,115 @@
+# Residual Gravity / Disrupted Structure Source Ledger
+# Status: TOKEN_VAZIO protected source ledger
+# Purpose: map missing observational data needed to test residual gravitational structures, orphan halos, disrupted galaxies, stellar streams, and historical gravitational memory.
+
+schema_version: 0.1
+claim_allowed: false
+status: TOKEN_VAZIO
+module: gravitational_residual_memory_and_compact_gaps
+linked_docs:
+  - docs/science/GRAVITATIONAL_RESIDUAL_MEMORY_AND_COMPACT_GAPS.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+
+required_evidence_channels:
+  - stellar_velocities
+  - stellar_streams
+  - weak_lensing
+  - strong_lensing
+  - gas_or_xray_maps
+  - proper_motions
+  - dark_matter_halo_inference
+  - merger_or_disruption_simulations
+
+source_records:
+  - id: TOKEN_VAZIO_RES_GRAV_001
+    candidate_type: residual_gravitational_structure
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - stellar_velocities
+      - stellar_streams_or_tidal_debris
+      - mass_model
+      - lensing_or_kinematic_evidence
+      - environmental_context
+      - baseline_alternative
+    candidate_variables:
+      Phi_res: null
+      M_res: null
+      C_orb: null
+      tau_relax: null
+      M_dyn: null
+      H_orphan: null
+    validation_link:
+      script_expected: scripts/validation/validate_residual_gravity_structures.py
+      metric_expected: TOKEN_VAZIO
+      baseline_model: TOKEN_VAZIO
+    claim_boundary:
+      visible_form_disappeared_not_equal_gravity_disappeared: true
+      mass_energy_carrier_required: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_ORPHAN_HALO_001
+    candidate_type: orphan_halo_or_dark_residual
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - lensing_mass_without_luminous_counterpart
+      - velocity_dispersion_or_kinematic_mass
+      - luminous_counterpart_search
+      - foreground_background_separation
+      - alternative_dark_matter_or_group_model
+    validation_link:
+      script_expected: scripts/validation/validate_residual_gravity_structures.py
+      metric_expected: TOKEN_VAZIO
+      baseline_model: TOKEN_VAZIO
+    claim_boundary:
+      invisible_center_requires_mass_evidence: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_HIST_IMPULSE_001
+    candidate_type: historical_gravitational_impulse
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - proper_motion
+      - radial_velocity
+      - traceback_origin
+      - Delta_v
+      - t_enc
+      - encounter_model
+      - present_field_status
+    validation_link:
+      script_expected: scripts/validation/validate_residual_gravity_structures.py
+      metric_expected: TOKEN_VAZIO
+      baseline_model: TOKEN_VAZIO
+    claim_boundary:
+      current_field_not_required_if_historical_impulse_verified: true
+      vanished_field_cannot_keep_pulling_without_mass_energy: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_lensing_or_kinematics_before_claim: true
+  require_mass_carrier_before_memory_claim: true
+  require_baseline_before_interpretation: true
