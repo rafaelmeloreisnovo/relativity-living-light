@@ -1,30 +1,30 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-13T05:04:59.832273+00:00`  
-Commit: `f6c2f1c813190f94dfeb74c6d5d37b133247c5d6`
+Gerado em: `2026-06-13T05:31:55.198997+00:00`  
+Commit: `875723bc996586e866c3d8db3da5bfc2ce92385d`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 808 |
-| `cataloged_files` | 790 |
+| `tracked_files_total` | 817 |
+| `cataloged_files` | 799 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 34544463 |
-| `total_text_lines` | 123924 |
-| `markdown_files` | 413 |
-| `yml_yaml_files` | 34 |
-| `github_workflow_yml_files` | 13 |
+| `total_bytes` | 34578750 |
+| `total_text_lines` | 124572 |
+| `markdown_files` | 420 |
+| `yml_yaml_files` | 35 |
+| `github_workflow_yml_files` | 14 |
 | `data_or_result_files` | 86 |
 
 ## Categorias
 
 | Categoria | Arquivos |
 |---|---:|
-| `documentation_md` | 413 |
-| `other` | 128 |
+| `documentation_md` | 420 |
+| `other` | 129 |
 | `source_code` | 122 |
 | `data_or_result` | 86 |
 | `config_yml` | 21 |
-| `github_workflow_yml` | 13 |
+| `github_workflow_yml` | 14 |
 | `archive` | 6 |
 | `test_or_validation` | 1 |
 
@@ -32,12 +32,12 @@ Commit: `f6c2f1c813190f94dfeb74c6d5d37b133247c5d6`
 
 | Extensão | Arquivos |
 |---|---:|
-| `.md` | 413 |
+| `.md` | 420 |
 | `.py` | 110 |
 | `.png` | 67 |
 | `.csv` | 59 |
 | `.json` | 42 |
-| `.yml` | 34 |
+| `.yml` | 35 |
 | `NO_EXT` | 12 |
 | `.txt` | 10 |
 | `.sh` | 6 |
@@ -48,11 +48,11 @@ Commit: `f6c2f1c813190f94dfeb74c6d5d37b133247c5d6`
 | `.java` | 3 |
 | `.tex` | 3 |
 | `.h` | 2 |
+| `.tsv` | 2 |
 | `.pdf` | 2 |
 | `.sha256` | 2 |
 | `.cff` | 1 |
 | `.html` | 1 |
-| `.tsv` | 1 |
 | `.svg` | 1 |
 | `.toml` | 1 |
 | `.ini` | 1 |
@@ -61,11 +61,11 @@ Commit: `f6c2f1c813190f94dfeb74c6d5d37b133247c5d6`
 
 | Flag | Ocorrências |
 |---|---:|
-| `cosmology_validation_marker` | 380 |
-| `mentions_mock_or_placeholder` | 74 |
+| `cosmology_validation_marker` | 387 |
+| `mentions_mock_or_placeholder` | 79 |
 | `result_artifact` | 73 |
-| `mentions_synthetic` | 61 |
-| `token_vazio_declared` | 33 |
+| `mentions_synthetic` | 63 |
+| `token_vazio_declared` | 36 |
 
 ## Fronteira
 
