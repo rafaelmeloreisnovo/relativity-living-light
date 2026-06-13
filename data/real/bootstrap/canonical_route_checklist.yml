@@ -1,0 +1,168 @@
+schema_version: 0.1
+status: canonical_route_checklist
+claim_allowed: false
+
+purpose: >
+  Canonical checkbox-style control file for route execution, artifact packaging,
+  and claim-boundary governance.
+
+checkbox_policy:
+  checked_value: true
+  unchecked_value: false
+  claim_allowed_default: false
+  route_complete_requires:
+    - raw_data_or_seed_registered
+    - sha256_or_token_vazio_declared
+    - result_artifact_declared
+    - report_artifact_declared
+    - claim_allowed_false_or_review_gate
+
+artifact_export:
+  supports_combined_zip: true
+  supports_separated_artifacts: true
+  combined_artifact_name: canonical-route-artifacts
+  separated_artifact_prefix: route-artifact-
+
+routes:
+  - route_id: raw_data_custody_governance
+    label: Raw data custody governance
+    priority: P0
+    enabled: true
+    checkbox:
+      raw_or_seed_present: true
+      sha256_present: true
+      schema_present: false
+      tests_present: false
+      ci_present: true
+      baseline_present: false
+      uncertainty_present: false
+      negative_ledger_updated: false
+      report_present: true
+      ready_for_review: false
+    artifacts:
+      include_in_combined_zip: true
+      include_as_separated_artifact: true
+      paths:
+        - data/raw/RAW_DATA_MANIFEST.yml
+        - data/results/bootstrap/raw_data_manifest_status.json
+        - data/results/bootstrap/raw_data_manifest_status.tsv
+        - docs/science/RAW_DATA_MANIFEST_STATUS.md
+        - docs/science/RAW_DATA_MANIFEST_GUIDE.md
+
+  - route_id: orbital_shape_angular_momentum
+    label: Orbital shape angular momentum
+    priority: P0
+    enabled: true
+    checkbox:
+      raw_or_seed_present: true
+      sha256_present: true
+      schema_present: false
+      tests_present: false
+      ci_present: true
+      baseline_present: false
+      uncertainty_present: false
+      negative_ledger_updated: false
+      report_present: true
+      ready_for_review: false
+    artifacts:
+      include_in_combined_zip: true
+      include_as_separated_artifact: true
+      paths:
+        - data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv
+        - data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv
+        - data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml
+        - data/results/orbital_dynamics/orbital_state_vector_v2_validation.json
+        - docs/science/ORBITAL_STATE_VECTOR_V2_REPORT.md
+
+  - route_id: compact_remnant_boundary
+    label: Compact remnant boundary
+    priority: P0
+    enabled: true
+    checkbox:
+      raw_or_seed_present: true
+      sha256_present: false
+      schema_present: false
+      tests_present: false
+      ci_present: false
+      baseline_present: false
+      uncertainty_present: false
+      negative_ledger_updated: true
+      report_present: true
+      ready_for_review: false
+    artifacts:
+      include_in_combined_zip: true
+      include_as_separated_artifact: true
+      paths:
+        - data/results/compact_objects/remnant_boundary_validation.json
+        - docs/science/NEGATIVE_RESULTS_LEDGER.md
+
+  - route_id: high_z_smbh_seeds
+    label: High-z SMBH seeds
+    priority: P1
+    enabled: true
+    checkbox:
+      raw_or_seed_present: true
+      sha256_present: false
+      schema_present: false
+      tests_present: false
+      ci_present: false
+      baseline_present: false
+      uncertainty_present: false
+      negative_ledger_updated: true
+      report_present: false
+      ready_for_review: false
+    artifacts:
+      include_in_combined_zip: true
+      include_as_separated_artifact: false
+      paths:
+        - data/results/high_z_smbh/seed_validation.json
+
+  - route_id: wandering_dark_compact_mass
+    label: Wandering dark compact mass
+    priority: P1
+    enabled: true
+    checkbox:
+      raw_or_seed_present: true
+      sha256_present: false
+      schema_present: false
+      tests_present: false
+      ci_present: false
+      baseline_present: false
+      uncertainty_present: false
+      negative_ledger_updated: true
+      report_present: false
+      ready_for_review: false
+    artifacts:
+      include_in_combined_zip: true
+      include_as_separated_artifact: false
+      paths:
+        - data/results/compact_objects/wandering_bh_validation.json
+
+  - route_id: publication_and_product_packaging
+    label: Publication and product packaging
+    priority: P1
+    enabled: true
+    checkbox:
+      raw_or_seed_present: true
+      sha256_present: false
+      schema_present: false
+      tests_present: false
+      ci_present: false
+      baseline_present: false
+      uncertainty_present: false
+      negative_ledger_updated: false
+      report_present: true
+      ready_for_review: false
+    artifacts:
+      include_in_combined_zip: true
+      include_as_separated_artifact: true
+      paths:
+        - docs/science/PEER_REVIEW_READINESS_STATUS.md
+        - docs/science/TACTICAL_ROUTE_ORCHESTRATOR.md
+        - docs/science/ROUTE_DEFIBRILLATION_POLICY.md
+        - docs/science/ROADMAP_NEXT_ACTIONS.md
+
+safe_conclusion: >
+  This checklist controls execution and packaging only. It does not authorize
+  scientific claims. Review-ready remains false until baselines, uncertainty,
+  tests, and external reproduction exist.
