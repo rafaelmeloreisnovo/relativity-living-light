@@ -1,0 +1,63 @@
+name: YAML Syntax Validation Gate
+
+on:
+  pull_request:
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-yaml:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PyYAML
+        run: python -m pip install --upgrade pip pyyaml
+
+      - name: Validate every YAML file with a real parser
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml, sys, hashlib
+
+          files = sorted(
+              p for p in [*Path('.').rglob('*.yml'), *Path('.').rglob('*.yaml')]
+              if '.git/' not in str(p)
+          )
+          failed = 0
+          for p in files:
+              raw = p.read_bytes()
+              sha = hashlib.sha256(raw).hexdigest()[:12]
+              try:
+                  list(yaml.safe_load_all(raw.decode('utf-8')))
+                  print(f'OK   {sha}  {p}')
+              except Exception as e:
+                  failed += 1
+                  print(f'FAIL {sha}  {p}  {e}')
+          print(f'\nTOTAL={len(files)} FAILED={failed}')
+          sys.exit(1 if failed else 0)
+          PY
+
+      - name: Validate workflow isolation (repo audit tool)
+        run: python3 tools/audit_github_workflows.py --strict
