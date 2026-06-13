@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T08:38:03.089865+00:00",
-  "git_commit": "62bca1e357d8ab59382794bd4a9433e8c4eb150c",
+  "generated_at": "2026-06-13T08:38:16.809558+00:00",
+  "git_commit": "34cd829334a728d4335c2e77e2692804aba71be9",
   "summary": {
-    "tracked_files_total": 867,
-    "cataloged_files": 849,
+    "tracked_files_total": 868,
+    "cataloged_files": 850,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34890332,
-    "total_text_lines": 131758,
-    "markdown_files": 432,
+    "total_bytes": 34893530,
+    "total_text_lines": 131858,
+    "markdown_files": 433,
     "yml_yaml_files": 51,
     "github_workflow_yml_files": 18,
     "data_or_result_files": 98
   },
   "counts_by_ext": {
-    ".md": 432,
+    ".md": 433,
     ".yml": 51,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 432,
+    "documentation_md": 433,
     "github_workflow_yml": 18,
     "config_yml": 33,
     "other": 129,
@@ -49,10 +49,10 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 394,
+    "cosmology_validation_marker": 395,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 64,
+    "token_vazio_declared": 65,
     "result_artifact": 81
   },
   "files": [
@@ -3397,11 +3397,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 287602,
+      "size_bytes": 287951,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "e526d74c4afec0aabb7d3f691635cd5b6174041658f5716463ce169aaa98b5ac",
-      "line_count": 9775,
+      "sha256": "9a51217e3ff02c5365dea74f8004555d8660864169fc2e724d719d4725341918",
+      "line_count": 9787,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3412,11 +3412,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 134287,
+      "size_bytes": 134455,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "f96c06987685abf0ef8a9533c16b20c1003c20239515d87b0f9d5d5b68e2c076",
-      "line_count": 849,
+      "sha256": "690292744cc057a274f674a8f1855c01fcad48de66b1cf44faa3ff69a802444f",
+      "line_count": 850,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3431,7 +3431,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2943cb6ad9c0fc26d1ad0307e4476e075e1567da665b82cb35e7aa7c6844c92d",
+      "sha256": "b4c4f524b906e33dbc9e1d4b85f438f9baac0baa10e1cc95f2298f988a0f5895",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3887,11 +3887,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 153726,
+      "size_bytes": 153914,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e8688b1870ed1339410d923e2b7872187de8166ce832a34bdb84b6cdc6380938",
-      "line_count": 892,
+      "sha256": "0fbe1605fe332f05a48110310ec7e2d70a54c6cbef5764606e7c285774efecdc",
+      "line_count": 893,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4439,7 +4439,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c96686c07c4b02bf081ceb052881b126792348d118f2bccc27d3db176d97a679",
+      "sha256": "ad371a4ea0af35221c41489ad6d257651bda7e7c6c2f81df63e828432d55c8c5",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4910,7 +4910,7 @@
       "size_bytes": 7907,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d0c385546be09e9295fc2436f9e948e117a04be1c9f85265fbc36cbda0cac613",
+      "sha256": "eef142fe5dcccea9103c5642ee372725df1a2f28ea3edbff04d87c9201c60aaa",
       "line_count": 58,
       "is_text": true,
       "risk_flags": [
@@ -6081,6 +6081,19 @@
       "kind": "documentation_md",
       "sha256": "36d2708df4ff87ef3f3111276e2811035f39119f05a62793aab3c2ca825f34ef",
       "line_count": 70,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/science/VALIDATION_DASHBOARD.md",
+      "size_bytes": 2493,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "98a5c80126fc4d029e5382d1035e5434495cc7b56710acf0fda5302ff4bebd1f",
+      "line_count": 86,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared",
