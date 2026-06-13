@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T04:43:38.022968+00:00`  
-Commit: `54db629703edfcebbb99a7dfe7d291cd332e1e7d`
+Gerado em: `2026-06-13T04:50:48.484066+00:00`  
+Commit: `bb453c2d07d1bf14cabad2803a5b8f5901d27baa`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
