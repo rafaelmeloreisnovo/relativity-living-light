@@ -31,10 +31,10 @@
       },
       "calculations_v1": {
         "specific_orbital_angular_momentum_km2_s": 4455104465.588514,
-        "mean_orbital_speed_proxy_km_s": 29.780535280584926,
-        "spin_angular_momentum_proxy_kg_m2_s": 5.858815005749695e33,
-        "rotation_rate_rad_s": 0.00007292115857915991,
-        "computed_flattening_from_radii": 0.0033528599338647005
+        "mean_orbital_speed_proxy_km_s": 29.78053393903363,
+        "spin_angular_momentum_proxy_kg_m2_s": 5.858815005749695e+33,
+        "rotation_rate_rad_s": 7.292115857915991e-05,
+        "computed_flattening_from_radii": 0.0033528599338645926
       },
       "source_reference": "NASA/JPL/IAU/WGS84 reference seed pointers",
       "source_reference_url": "https://science.nasa.gov/earth/facts/",
@@ -59,10 +59,10 @@
       },
       "calculations_v1": {
         "specific_orbital_angular_momentum_km2_s": 393241.84769543464,
-        "mean_orbital_speed_proxy_km_s": 1.0230016859922857,
-        "spin_angular_momentum_proxy_kg_m2_s": 2.3182784189835273e29,
-        "rotation_rate_rad_s": 0.0000026616995272150692,
-        "computed_flattening_from_radii": 0.0012082164432424975
+        "mean_orbital_speed_proxy_km_s": 1.023001684951703,
+        "spin_angular_momentum_proxy_kg_m2_s": 2.3182784189835273e+29,
+        "rotation_rate_rad_s": 2.6616995272150692e-06,
+        "computed_flattening_from_radii": 0.0012082158679016795
       },
       "source_reference": "NASA/JPL lunar reference seed pointers",
       "source_reference_url": "https://science.nasa.gov/moon/facts/",
@@ -87,10 +87,10 @@
       },
       "calculations_v1": {
         "specific_orbital_angular_momentum_km2_s": 5475990916.542538,
-        "mean_orbital_speed_proxy_km_s": 24.024783405115697,
-        "spin_angular_momentum_proxy_kg_m2_s": 1.9212356171174232e32,
-        "rotation_rate_rad_s": 0.00007088216383964472,
-        "computed_flattening_from_radii": 0.005888934691714272
+        "mean_orbital_speed_proxy_km_s": 24.02391039602902,
+        "spin_angular_momentum_proxy_kg_m2_s": 1.9212356171174232e+32,
+        "rotation_rate_rad_s": 7.088216383964474e-05,
+        "computed_flattening_from_radii": 0.005888934691714269
       },
       "source_reference": "NASA/JPL planetary reference seed pointers",
       "source_reference_url": "https://science.nasa.gov/mars/facts/",
@@ -115,10 +115,10 @@
       },
       "calculations_v1": {
         "specific_orbital_angular_momentum_km2_s": 10152182154.879894,
-        "mean_orbital_speed_proxy_km_s": 13.041048304683098,
-        "spin_angular_momentum_proxy_kg_m2_s": 4.503967245909879e38,
+        "mean_orbital_speed_proxy_km_s": 13.041048191254863,
+        "spin_angular_momentum_proxy_kg_m2_s": 4.503967245909879e+38,
         "rotation_rate_rad_s": 0.00017585327063385654,
-        "computed_flattening_from_radii": 0.06487439153975214
+        "computed_flattening_from_radii": 0.0648743915403122
       },
       "source_reference": "NASA/JPL planetary reference seed pointers",
       "source_reference_url": "https://science.nasa.gov/jupiter/facts/",
