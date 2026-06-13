@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:47:26.975448+00:00",
-  "git_commit": "e941fa3f90084051347e6f48d894b000b2430895",
+  "generated_at": "2026-06-13T08:47:59.634839+00:00",
+  "git_commit": "2da6bca7e9da6a2adc5e190cdaa12e5aef6bc85f",
   "summary": {
-    "tracked_files_total": 880,
-    "cataloged_files": 862,
+    "tracked_files_total": 881,
+    "cataloged_files": 863,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34926580,
-    "total_text_lines": 132697,
+    "total_bytes": 34936611,
+    "total_text_lines": 132935,
     "markdown_files": 436,
     "yml_yaml_files": 53,
     "github_workflow_yml_files": 19,
@@ -17,7 +17,7 @@
     ".yml": 53,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 124,
+    ".py": 125,
     ".sh": 6,
     ".json": 53,
     ".csv": 63,
@@ -43,7 +43,7 @@
     "github_workflow_yml": 19,
     "config_yml": 34,
     "other": 129,
-    "source_code": 136,
+    "source_code": 137,
     "archive": 6,
     "data_or_result": 101,
     "test_or_validation": 1
@@ -52,7 +52,7 @@
     "cosmology_validation_marker": 396,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 67,
+    "token_vazio_declared": 68,
     "result_artifact": 82
   },
   "files": [
@@ -3430,11 +3430,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 291828,
+      "size_bytes": 292186,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "85ac1ddf8e415715a83638aab72afeacf72d14cea905f870208b60c33ed0469d",
-      "line_count": 9915,
+      "sha256": "cba013969239c6d77918d02951edb1a46712a3ed7535534d5839d561c3997f2b",
+      "line_count": 9927,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3445,11 +3445,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 136298,
+      "size_bytes": 136475,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "44f7fea35252f00868dfc0e78f6eea97b82a8cd81a397b4036058625f645ce3c",
-      "line_count": 862,
+      "sha256": "8d1cb8c2f361997d7f4f976a714d25df32ece7d357bfb8f2daa1cc1708a47bc2",
+      "line_count": 863,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3464,7 +3464,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "9a6f6e642f57d513671ab3ced74597f601e68009d57404ea08b26196375d3300",
+      "sha256": "8b3eaad2ed21d2161e254d0a43924ae5f813b568c6c2917a45310c8f27b22778",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3940,11 +3940,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 155998,
+      "size_bytes": 156195,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9bb6247e41091aac0121147fc80d647f968498d477d889a275dde649c3385242",
-      "line_count": 905,
+      "sha256": "c02ad0b4554bd544e73fb1814b3e93aea61fed4e0533b8a86a7556bfeea536aa",
+      "line_count": 906,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4492,7 +4492,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "748b1bfd07467ab562ee0634a720b4302b6e3e695c8422c3dbc4c740ba3b66c6",
+      "sha256": "ede0152d5b32a2d2cc449dbe7523360d0c6759e23a8b7514ff56a3e1a7998776",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4960,11 +4960,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 8069,
+      "size_bytes": 8232,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c80ac8fae6cad84cd580923f47f6d9b1e591210081eb2e9eb81b9c628fcd0b6b",
-      "line_count": 59,
+      "sha256": "1095d40262691338e20e2bb5362c54b2b7359b8b42db1d4810200f04108b112c",
+      "line_count": 60,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -8436,6 +8436,18 @@
       "risk_flags": [
         "mentions_synthetic",
         "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "scripts/data_scan/build_dense_behavior_features.py",
+      "size_bytes": 9136,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "3713cde17ecc3f14e20876ffc16868a96f92c161bb9f69964458e6ea7245cde8",
+      "line_count": 223,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
       ]
     },
     {
