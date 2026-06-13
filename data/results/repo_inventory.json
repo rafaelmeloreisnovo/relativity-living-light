@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T09:35:05.935861+00:00",
-  "git_commit": "f1dfb3c6474fa1271dbb5a2e03a5159ccbf57da4",
+  "generated_at": "2026-06-13T09:35:23.071965+00:00",
+  "git_commit": "2e7d562327b365dbb08b8acbc903d9e8aefa8544",
   "summary": {
     "tracked_files_total": 910,
     "cataloged_files": 892,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35056433,
-    "total_text_lines": 135477,
+    "total_bytes": 35056520,
+    "total_text_lines": 135481,
     "markdown_files": 447,
     "yml_yaml_files": 59,
     "github_workflow_yml_files": 22,
@@ -3631,7 +3631,7 @@
       "size_bytes": 302505,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "0cd23346625b79bd915c4f108f99a1c3dd9508c72599b7d11d75a99914d17a09",
+      "sha256": "d5d52209e8b7a48103246fde03e272284c156218499d4d05f6e29b6d7dafe9b9",
       "line_count": 10266,
       "is_text": true,
       "risk_flags": [
@@ -3646,7 +3646,7 @@
       "size_bytes": 141539,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "a45c5a18f3b5fd4372bc6bcb141c1479b25404b15596b33411bb82b572b7b570",
+      "sha256": "97a3327ac42e4616cce82a06a768cd69d515aa5f491e806431010b7354f150fd",
       "line_count": 893,
       "is_text": true,
       "risk_flags": [
@@ -3662,7 +3662,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "d4014d720d26a46db28b7d722838ffae778a6b5065f0a1bded588ee81b8223f3",
+      "sha256": "2110383e2b97153f8ab19ba5772c343979d743f7c8d7641bdc59ab42fc27ef81",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4141,7 +4141,7 @@
       "size_bytes": 161859,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8ff85552c8e3a46f86329ebeb5830b920034b51781bfb706ffa04eafc2330eda",
+      "sha256": "d979d4a79769e1ad7a282d50ac8f00eb26b4c83a6f4ce7287cdf4ec6032a1589",
       "line_count": 936,
       "is_text": true,
       "risk_flags": [
@@ -4690,7 +4690,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "6bcce905ed4103606a74e29b49d2521f56d2e2a52ea1773a4ad680ffc22ae5e3",
+      "sha256": "2223f1669f0c1ec7e601cd54116d0ca8cb66fc2658a0f6a3b142ff562ad56ff3",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5161,7 +5161,7 @@
       "size_bytes": 9210,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "508b43a4acab65d3ba2b84eed93c942414beec56b8a4b2aeba27124b60db5695",
+      "sha256": "9f1b696158c97e251740767ac567140c6a6a134b336011a0419f677742cb2b9e",
       "line_count": 66,
       "is_text": true,
       "risk_flags": [
@@ -6367,11 +6367,11 @@
     },
     {
       "path": "docs/science/RAW_DATA_MANIFEST_STATUS.md",
-      "size_bytes": 1699,
+      "size_bytes": 1786,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "72d1011b21b9020cf0d4fc20f88e8a584508676a15d00b0ca56a9043756ede58",
-      "line_count": 38,
+      "sha256": "e488a92086a107202aab175deb6f8dd3b94bec0ba2fe85823ade3e6eaf3ce173",
+      "line_count": 42,
       "is_text": true,
       "risk_flags": []
     },
