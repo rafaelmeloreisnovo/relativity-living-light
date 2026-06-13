@@ -1,0 +1,64 @@
+name: Orbital State Vector V2
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv"
+      - "scripts/data_scan/fetch_horizons_mars_state_vector.py"
+      - "scripts/validation/validate_orbital_state_vector_v2.py"
+      - ".github/workflows/orbital-state-vector-v2.yml"
+  push:
+    paths:
+      - "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv"
+      - "scripts/data_scan/fetch_horizons_mars_state_vector.py"
+      - "scripts/validation/validate_orbital_state_vector_v2.py"
+      - ".github/workflows/orbital-state-vector-v2.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orbital-state-vector-v2-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  orbital-state-vector-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile scripts
+        run: |
+          python -m py_compile scripts/data_scan/fetch_horizons_mars_state_vector.py
+          python -m py_compile scripts/validation/validate_orbital_state_vector_v2.py
+
+      - name: Fetch Horizons Mars vectors
+        run: |
+          python scripts/data_scan/fetch_horizons_mars_state_vector.py
+
+      - name: Validate orbital state-vector v2
+        run: |
+          python scripts/validation/validate_orbital_state_vector_v2.py
+
+      - name: Display orbital v2 report
+        run: |
+          cat docs/science/ORBITAL_STATE_VECTOR_V2_REPORT.md
+
+      - name: Upload orbital state-vector v2 artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orbital-state-vector-v2
+          path: |
+            data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv
+            data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml
+            data/results/orbital_dynamics/orbital_state_vector_v2_validation.json
+            docs/science/ORBITAL_STATE_VECTOR_V2_REPORT.md
