@@ -91,7 +91,11 @@ def main() -> int:
         raise RuntimeError("No vector rows parsed from Horizons response")
 
     with RAW_CSV.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=["jd_tdb", "calendar_tdb", "x_km", "y_km", "z_km", "vx_km_s", "vy_km_s", "vz_km_s"])
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=["jd_tdb", "calendar_tdb", "x_km", "y_km", "z_km", "vx_km_s", "vy_km_s", "vz_km_s"],
+            lineterminator="\n",
+        )
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
@@ -122,7 +126,7 @@ def main() -> int:
         "  baseline_required_for_metric_claim: true\n"
         "  uncertainty_required_for_metric_claim: true\n"
         "  claim_allowed: false\n"
-        "safe_conclusion: Raw Horizons vector sample is locally present and checksummed, but claims remain blocked pending baseline and uncertainty model.\n",
+        "safe_conclusion: Raw Horizons vector sample is locally present and checksummed against the canonical LF-normalized repository artifact, but claims remain blocked pending baseline and uncertainty model.\n",
         encoding="utf-8",
     )
 
