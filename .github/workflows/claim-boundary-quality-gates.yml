@@ -36,7 +36,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.11"
+
+      - name: Install package and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install pytest
 
       - name: Compile validation scripts
         run: |
@@ -52,11 +58,6 @@ jobs:
       - name: Run artifact contract checks
         run: |
           python scripts/validation/check_seed_artifact_contracts.py
-
-      - name: Install pytest
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install pytest
 
       - name: Run unit tests
         run: |
