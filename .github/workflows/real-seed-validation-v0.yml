@@ -1,0 +1,73 @@
+name: Real Seed Validation v0
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "data/real/bootstrap/real_observational_seed_v0.*"
+      - "scripts/validation/**"
+      - "docs/science/REAL_OBSERVATIONAL_SEED_V0_REPORT.md"
+      - ".github/workflows/real-seed-validation-v0.yml"
+  push:
+    paths:
+      - "data/real/bootstrap/real_observational_seed_v0.*"
+      - "scripts/validation/**"
+      - "docs/science/REAL_OBSERVATIONAL_SEED_V0_REPORT.md"
+      - ".github/workflows/real-seed-validation-v0.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: real-seed-validation-v0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  real-seed-validation-v0:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show repository state
+        run: |
+          git rev-parse HEAD
+          git status --short
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile validation scripts
+        run: |
+          python -m py_compile scripts/validation/real_seed_utils.py
+          python -m py_compile scripts/validation/validate_compact_remnant_boundary.py
+          python -m py_compile scripts/validation/validate_dark_lens_candidates.py
+          python -m py_compile scripts/validation/validate_historical_impulse_candidates.py
+          python -m py_compile scripts/validation/validate_high_z_smbh_seeds.py
+          python -m py_compile scripts/validation/run_real_seed_validations.py
+
+      - name: Run all real seed validations
+        run: |
+          python scripts/validation/run_real_seed_validations.py
+
+      - name: Display real seed validation index
+        run: |
+          cat data/results/bootstrap/real_seed_validation_index.json
+          echo "---"
+          cat docs/science/REAL_SEED_VALIDATION_V0_INDEX.md
+
+      - name: Upload real seed validation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-seed-validation-v0
+          path: |
+            data/results/compact_objects/remnant_boundary_validation.json
+            data/results/compact_objects/wandering_bh_validation.json
+            data/results/kinematics/historical_impulse_validation.json
+            data/results/high_z_smbh/seed_validation.json
+            data/results/bootstrap/real_seed_validation_index.json
+            docs/science/REAL_SEED_VALIDATION_V0_INDEX.md
