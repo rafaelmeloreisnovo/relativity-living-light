@@ -20,6 +20,7 @@ SEED_CSVS = [
     Path("data/real/bootstrap/real_observational_seed_v0.csv"),
     Path("data/real/bootstrap/real_observational_seed_v1.csv"),
     Path("data/real/bootstrap/real_observational_seed_v2_orbital_shape.csv"),
+    Path("data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv"),
 ]
 
 OUT_JSON = Path("data/results/bootstrap/real_seed_ingestion_plan.json")
@@ -99,16 +100,24 @@ def read_rows(path: Path) -> list[dict[str, str]]:
     return rows
 
 
+def first_nonempty(row: dict[str, str], *keys: str, default: str = "TOKEN_VAZIO") -> str:
+    for key in keys:
+        value = (row.get(key, "") or "").strip()
+        if value:
+            return value
+    return default
+
+
 def build_item(row: dict[str, str]) -> IngestionItem:
     module = row.get("module", "TOKEN_VAZIO")
     route = MODULE_ROUTE.get(module, {})
     return IngestionItem(
-        record_id=row.get("record_id", "TOKEN_VAZIO"),
+        record_id=first_nonempty(row, "record_id"),
         module=module,
-        object_or_event=row.get("object_or_event", "TOKEN_VAZIO"),
-        source_type=row.get("source_type", "TOKEN_VAZIO"),
-        reference=row.get("reference", "TOKEN_VAZIO"),
-        reference_url=row.get("reference_url", "TOKEN_VAZIO"),
+        object_or_event=first_nonempty(row, "object_or_event", "body_system"),
+        source_type=first_nonempty(row, "source_type", default="reference_seed"),
+        reference=first_nonempty(row, "reference", "source_reference"),
+        reference_url=first_nonempty(row, "reference_url", "source_reference_url"),
         route_id=route.get("route_id", "TOKEN_VAZIO_ROUTE"),
         target_ledger=row.get("target_ledger") or route.get("target_ledger", "TOKEN_VAZIO_LEDGER"),
         validator=route.get("validator", "TOKEN_VAZIO_VALIDATOR"),
