@@ -1,0 +1,112 @@
+# Orbital Shape Angular Momentum Seed Data v1
+# Status: external_only_seed
+# Purpose: provide first computable seed parameters for orbital-shape-angular-momentum route.
+# Claim policy: values are seed/reference constants only. Raw source files, checksums, uncertainty, and baselines remain required.
+
+schema_version: 0.1
+module: orbital_shape_angular_momentum
+status: external_only_seed
+claim_allowed: false
+source_policy:
+  raw_data_local: false
+  checksum_sha256: not_applicable_external_only
+  require_future_raw_ephemeris_ingestion: true
+  require_future_gravity_shape_rotation_model_ingestion: true
+  require_future_baseline_comparison: true
+  global_claim_allowed: false
+
+constants:
+  mu_sun_km3_s2: 132712440041.939
+  formula_specific_orbital_angular_momentum: h = sqrt(mu_central * a * (1 - e^2))
+  formula_spin_angular_momentum_proxy: S = Cbar * M * R^2 * omega
+  omega_formula: omega = 2*pi/rotation_period_seconds
+
+seed_records:
+  - record_id: REAL_ORBIT_EARTH_HELIOCENTRIC_SHAPE_AM_V1
+    body_system: Earth
+    central_body: Sun
+    orbit_frame: heliocentric
+    mu_central_km3_s2: 132712440041.939
+    semi_major_axis_km: 149597870.7
+    eccentricity: 0.0167086
+    body_mass_kg: 5.9722e24
+    body_mu_km3_s2: 398600.435507
+    radius_reference_km: 6378.137
+    equatorial_radius_km: 6378.137
+    polar_radius_km: 6356.752
+    flattening: 0.0033528106647474805
+    j2: 0.00108262668
+    rotation_period_s: 86164.0905
+    normalized_moment_inertia: 0.3307
+    source_reference: NASA/JPL/IAU/WGS84 reference seed pointers
+    source_reference_url: https://science.nasa.gov/earth/facts/
+    status: external_only_seed
+    claim_allowed: false
+
+  - record_id: REAL_ORBIT_MOON_GEOCENTRIC_SHAPE_AM_V1
+    body_system: Moon
+    central_body: Earth-Moon barycentric context
+    orbit_frame: geocentric
+    mu_central_km3_s2: 403503.235573
+    semi_major_axis_km: 384400
+    eccentricity: 0.0549
+    body_mass_kg: 7.342e22
+    body_mu_km3_s2: 4902.800066
+    radius_reference_km: 1737.4
+    equatorial_radius_km: 1738.1
+    polar_radius_km: 1736.0
+    flattening: 0.0012082164432424975
+    j2: null
+    rotation_period_s: 2360591.5104
+    normalized_moment_inertia: 0.393
+    source_reference: NASA/JPL lunar reference seed pointers
+    source_reference_url: https://science.nasa.gov/moon/facts/
+    status: external_only_seed
+    claim_allowed: false
+
+  - record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+    body_system: Mars
+    central_body: Sun
+    orbit_frame: heliocentric
+    mu_central_km3_s2: 132712440041.939
+    semi_major_axis_km: 227939200
+    eccentricity: 0.0934
+    body_mass_kg: 6.4171e23
+    body_mu_km3_s2: 42828.375214
+    radius_reference_km: 3396.2
+    equatorial_radius_km: 3396.2
+    polar_radius_km: 3376.2
+    flattening: 0.005888934691714272
+    j2: 0.00196045
+    rotation_period_s: 88642.6848
+    normalized_moment_inertia: 0.3662
+    source_reference: NASA/JPL planetary reference seed pointers
+    source_reference_url: https://science.nasa.gov/mars/facts/
+    status: external_only_seed
+    claim_allowed: false
+
+  - record_id: REAL_ORBIT_JUPITER_HELIOCENTRIC_SHAPE_AM_V1
+    body_system: Jupiter
+    central_body: Sun
+    orbit_frame: heliocentric
+    mu_central_km3_s2: 132712440041.939
+    semi_major_axis_km: 778479000
+    eccentricity: 0.0489
+    body_mass_kg: 1.89813e27
+    body_mu_km3_s2: 126686534
+    radius_reference_km: 71492
+    equatorial_radius_km: 71492
+    polar_radius_km: 66854
+    flattening: 0.06487439153975214
+    j2: 0.01469643
+    rotation_period_s: 35729.704
+    normalized_moment_inertia: 0.264
+    source_reference: NASA/JPL planetary reference seed pointers
+    source_reference_url: https://science.nasa.gov/jupiter/facts/
+    status: external_only_seed
+    claim_allowed: false
+
+validation_boundary:
+  these_records_are_reference_seeds_not_raw_ephemerides: true
+  these_records_are_not_final_metrics: true
+  global_claim_allowed: false
