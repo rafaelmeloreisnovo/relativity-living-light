@@ -1,0 +1,180 @@
+# Real Seed Pipeline Orchestration Map
+# Status: orchestration scaffold
+# Purpose: define how real observational seed records are routed into ledgers, validation scripts, expected outputs, and future raw-catalog ingestion.
+
+schema_version: 0.1
+status: orchestration_scaffold
+claim_allowed: false
+created_context: real_data_pipeline_and_path_inclusion_orchestration
+
+inputs:
+  seed_catalogs:
+    - path: data/real/bootstrap/real_observational_seed_v0.csv
+      role: validated_seed_v0
+      required: true
+    - path: data/real/bootstrap/real_observational_seed_v1.csv
+      role: mapped_seed_v1_supplement
+      required: true
+
+pipeline_outputs:
+  ingestion_plan_json: data/results/bootstrap/real_seed_ingestion_plan.json
+  ingestion_plan_tsv: data/results/bootstrap/real_seed_ingestion_plan.tsv
+  ingestion_plan_report: docs/science/REAL_SEED_INGESTION_PLAN.md
+
+claim_boundary:
+  global_claim_allowed: false
+  seed_records_are_not_raw_catalogs: true
+  seed_records_are_not_final_validation: true
+  raw_catalog_required_for_claim: true
+  checksum_required_for_local_data: true
+  baseline_required_for_metric_claim: true
+
+routes:
+  - route_id: compact_remnant_boundary
+    modules:
+      - compact_remnant_boundary
+    seed_patterns:
+      - GW230529
+      - GW190814
+      - PSR J0740
+      - PSR J0952
+    target_ledgers:
+      - data/real/compact_objects/remnant_boundary_sources.yml
+    validation_scripts:
+      - scripts/validation/validate_compact_remnant_boundary.py
+    current_outputs:
+      - data/results/compact_objects/remnant_boundary_validation.json
+    next_raw_data_paths:
+      - data/raw/compact_objects/gw/posteriors/
+      - data/raw/compact_objects/pulsars/
+      - data/raw/compact_objects/eos_baselines/
+    future_metrics:
+      - mass_gap_overlap_probability
+      - posterior_classification_probability
+      - EOS_minimum_maximum_mass_constraint
+      - uncertainty_overlap
+    required_baselines:
+      - neutron_star_EOS_limits
+      - low_mass_black_hole_population
+      - gravitational_wave_catalog_baseline
+    status: seed_ready_raw_ingestion_needed
+
+  - route_id: wandering_dark_compact_mass
+    modules:
+      - wandering_black_holes
+      - wandering_black_holes_dark_lens
+    seed_patterns:
+      - OGLE-2011-BLG-0462
+      - Gaia BH1
+      - Gaia BH2
+    target_ledgers:
+      - data/real/compact_objects/wandering_black_hole_sources.yml
+      - data/real/lensing/dark_lens_sources.yml
+    validation_scripts:
+      - scripts/validation/validate_dark_lens_candidates.py
+    current_outputs:
+      - data/results/compact_objects/wandering_bh_validation.json
+    next_raw_data_paths:
+      - data/raw/lensing/microlensing/
+      - data/raw/astrometry/gaia_bh/
+      - data/raw/spectroscopy/radial_velocity/
+    future_metrics:
+      - astrometric_binary_dark_mass_consistency
+      - microlensing_mass_consistency
+      - luminous_counterpart_exclusion_score
+      - alternative_model_comparison
+    required_baselines:
+      - non_black_hole_lens_model
+      - luminous_binary_alternative
+      - dormant_BH_population_model
+    status: seed_ready_raw_ingestion_needed
+
+  - route_id: residual_gravity_structures
+    modules:
+      - residual_gravity_structures
+    seed_patterns:
+      - Gaia BH3
+      - ED-2
+    target_ledgers:
+      - data/real/structure/residual_gravity_sources.yml
+    validation_scripts:
+      - scripts/validation/validate_residual_gravity_structures.py
+    current_outputs:
+      - data/results/structure/residual_gravity_validation.json
+    next_raw_data_paths:
+      - data/raw/structure/stellar_streams/
+      - data/raw/astrometry/gaia_bh3/
+      - data/raw/metallicity/low_metallicity_stars/
+    future_metrics:
+      - stream_membership_probability
+      - compact_mass_stream_context_consistency
+      - low_metallicity_origin_consistency
+      - residual_mass_carrier_check
+    required_baselines:
+      - disrupted_cluster_stream_model
+      - isolated_binary_evolution_model
+      - dynamical_interaction_model
+    status: seed_mapped_validator_needed
+
+  - route_id: historical_impulse_slingshot
+    modules:
+      - historical_impulse_slingshot
+    seed_patterns:
+      - S5-HVS1
+      - LMC hypervelocity
+    target_ledgers:
+      - data/real/kinematics/hypervelocity_sources.yml
+    validation_scripts:
+      - scripts/validation/validate_historical_impulse_candidates.py
+    current_outputs:
+      - data/results/kinematics/historical_impulse_validation.json
+    next_raw_data_paths:
+      - data/raw/kinematics/hypervelocity_stars/
+      - data/raw/astrometry/gaia_hvs/
+      - data/raw/models/galactic_potential/
+    future_metrics:
+      - traceback_probability
+      - escape_velocity_consistency
+      - Hills_mechanism_energy_consistency
+      - origin_model_comparison
+    required_baselines:
+      - Hills_mechanism
+      - three_body_scattering
+      - Galactic_potential_model
+      - LMC_potential_model
+    status: seed_ready_raw_ingestion_needed
+
+  - route_id: high_z_smbh_seeds
+    modules:
+      - high_z_smbh_seeds
+    seed_patterns:
+      - UHZ1
+      - CEERS 1019
+    target_ledgers:
+      - data/real/high_z_smbh/high_z_seed_sources.yml
+    validation_scripts:
+      - scripts/validation/validate_high_z_smbh_seeds.py
+    current_outputs:
+      - data/results/high_z_smbh/seed_validation.json
+    next_raw_data_paths:
+      - data/raw/high_z_smbh/jwst/
+      - data/raw/high_z_smbh/chandra/
+      - data/raw/high_z_smbh/photometry_spectroscopy/
+    future_metrics:
+      - Eddington_growth_feasibility_grid
+      - seed_mass_requirement
+      - light_seed_vs_heavy_seed_comparison
+      - magnification_and_selection_context_check
+    required_baselines:
+      - light_seed_model
+      - heavy_seed_model
+      - direct_collapse_model
+      - super_Eddington_growth_model
+    status: seed_ready_raw_ingestion_needed
+
+orchestration_rules:
+  - every_seed_must_map_to_route
+  - every_route_must_have_target_ledger
+  - every_route_must_have_expected_output
+  - every_route_must_preserve_claim_allowed_false_until_raw_data_and_baselines_exist
+  - raw_data_paths_are_planned_paths_not_existing_data_until_checksummed
