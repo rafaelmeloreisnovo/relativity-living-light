@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T06:17:43.211648+00:00",
-  "git_commit": "8b72a5af1034f4b767705738a862201923bd98bb",
+  "generated_at": "2026-06-13T06:21:40.870796+00:00",
+  "git_commit": "ff53ad9a259eca0785cced84d274a08b6412b98b",
   "summary": {
-    "tracked_files_total": 818,
-    "cataloged_files": 800,
+    "tracked_files_total": 819,
+    "cataloged_files": 801,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34596732,
-    "total_text_lines": 125019,
-    "markdown_files": 421,
+    "total_bytes": 34607285,
+    "total_text_lines": 125307,
+    "markdown_files": 422,
     "yml_yaml_files": 35,
     "github_workflow_yml_files": 14,
     "data_or_result_files": 86
   },
   "counts_by_ext": {
-    ".md": 421,
+    ".md": 422,
     ".yml": 35,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 421,
+    "documentation_md": 422,
     "github_workflow_yml": 14,
     "config_yml": 21,
     "other": 129,
@@ -49,10 +49,10 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 388,
+    "cosmology_validation_marker": 389,
     "mentions_mock_or_placeholder": 79,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 37,
+    "token_vazio_declared": 38,
     "result_artifact": 73
   },
   "files": [
@@ -3077,11 +3077,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 270522,
+      "size_bytes": 270928,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "b86a5d3869da5694079f9654de397bcb5898c93a8503d8bed043ca9a9fc44e78",
-      "line_count": 9210,
+      "sha256": "f7efcddfb9a7134e1a0310bace61a3c6b8d691cf1f655e15b64f10d54dad388c",
+      "line_count": 9223,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3093,11 +3093,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 125895,
+      "size_bytes": 126109,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "370f5f8f73d34d86ad4ca5160bb350636d532ac8750ddb2341fcd59f77ea3b38",
-      "line_count": 800,
+      "sha256": "e2591d8aa7957bf4cbcb04769a97f7c9ff24920919ecde8cf892353e5731fa5d",
+      "line_count": 801,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3112,7 +3112,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "7822cec0a33dd43547116df8947307f4de1fa825746c21aff04adb2851540102",
+      "sha256": "5cddbbd7bdd24c8b999d5a0be0b8304fbd16927e510078303e7a7efc116eced3",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3568,11 +3568,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 144354,
+      "size_bytes": 144588,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "6082c4c7cc6697311ea4c111e7b90f15fdcd7d69558fbf6b1ad053427ba35451",
-      "line_count": 843,
+      "sha256": "ec010a53dca77a103b33eca8220afdc8eda924549c3e7efd3845e853efb19c15",
+      "line_count": 844,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4120,7 +4120,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "2f1345e02e9b4bba4608fc6c5ca118c64020ae81315391dec3f9c6260e45a513",
+      "sha256": "d33cf6c01eb96198fb6290e101b7007e396dd13cca8a78efda65d51cc8ffabf8",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4591,7 +4591,7 @@
       "size_bytes": 5373,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7eeca0c91c148b7cd69fa74cc3c7f892a4e67f59aa4070832df3efa3ba0eb5a3",
+      "sha256": "bfc860f135aec74938c6e61522f02a4a9d3abcb5c95882323024f1fc95d89b1f",
       "line_count": 42,
       "is_text": true,
       "risk_flags": [
@@ -5645,6 +5645,19 @@
       "kind": "documentation_md",
       "sha256": "a1d129a66af0c59b55f976a25ba75eb48a9e1cae1de78c0bad5d242d3ffae06a",
       "line_count": 313,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md",
+      "size_bytes": 9699,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "fa467011bd839bc849c49bf669527c1fddcce47de1b215fed4b0ce3b67285c82",
+      "line_count": 273,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared",
