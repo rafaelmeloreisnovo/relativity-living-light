@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-13T08:13:22.623615+00:00",
-  "git_commit": "68eed14b56904e1c0c66c1e8977ad33ab5aee24b",
+  "generated_at": "2026-06-13T08:15:36.693087+00:00",
+  "git_commit": "2eda2ad42b9ed29f8974341eeec65154f093c8ad",
   "summary": {
-    "tracked_files_total": 858,
-    "cataloged_files": 840,
+    "tracked_files_total": 859,
+    "cataloged_files": 841,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34847996,
-    "total_text_lines": 130850,
+    "total_bytes": 34850353,
+    "total_text_lines": 130869,
     "markdown_files": 429,
     "yml_yaml_files": 49,
     "github_workflow_yml_files": 17,
-    "data_or_result_files": 94
+    "data_or_result_files": 95
   },
   "counts_by_ext": {
     ".md": 429,
@@ -20,7 +20,7 @@
     ".py": 120,
     ".sh": 6,
     ".json": 47,
-    ".csv": 62,
+    ".csv": 63,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -45,7 +45,7 @@
     "other": 129,
     "source_code": 132,
     "archive": 6,
-    "data_or_result": 94,
+    "data_or_result": 95,
     "test_or_validation": 1
   },
   "flags": {
@@ -3142,6 +3142,16 @@
       ]
     },
     {
+      "path": "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv",
+      "size_bytes": 1637,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "d5b5b26bec52b59aaf4352fba6751d01f73b4120b7320574cdc048df29dced58",
+      "line_count": 5,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/rll_real_sources_manifest_2026.yml",
       "size_bytes": 5897,
       "ext": ".yml",
@@ -3328,11 +3338,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 284416,
+      "size_bytes": 284770,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2813f604c8f9d4f7e2bfba64296dbe1ac7728a5d074d9350581d0b6a02c153cd",
-      "line_count": 9673,
+      "sha256": "95c2a6fdc1a2358115f4bd8f1004ab4d2353d1b3c485f3c55cc717c103a85883",
+      "line_count": 9685,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3343,11 +3353,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 132684,
+      "size_bytes": 132857,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "591c9451066968bb8a72f1885677af7f61eeed3e2daed1e24cb99cacbe3e6aa5",
-      "line_count": 840,
+      "sha256": "08c83c37399b87301c734a888ba97843119bae8c16784992d40f2e9d299d07e4",
+      "line_count": 841,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3362,7 +3372,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "576d470e7217e6ba3bacffc8a826cb158418236d6c565f9883cec53a7ef6e19e",
+      "sha256": "fee85e1283328b256a4f111c90cdac42162fb4a56a356948c558675f83ab8933",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3818,11 +3828,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 151943,
+      "size_bytes": 152136,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "36600156839aa15d6f997af65df9bc0dfdc88f0bcec3cc37b2212b4e7d37f11a",
-      "line_count": 883,
+      "sha256": "3b7833edbcf3725f68fcdc0d5cdda9c18893a275d027e27f2c607aa4fcc054ac",
+      "line_count": 884,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4370,7 +4380,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f48bd793c8a0714d22aea39d8ffbaebf904859142427caea83662b5d8830cf1d",
+      "sha256": "b10a98b2f2d883521141a76d2f8f5f0c011f1df27eb109896aeeae1f87956a3c",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4841,7 +4851,7 @@
       "size_bytes": 7559,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "968ff57b8a969f931c838be0cf9bfe7560958cc49cdaf0f34a131da333796717",
+      "sha256": "8e6fc205acc8ea94366a3df662789aef2bea0a88ad1fcc9611579182cbb11ac3",
       "line_count": 56,
       "is_text": true,
       "risk_flags": [
