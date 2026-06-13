@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T10:09:59.008171+00:00",
-  "git_commit": "2a0bf63cb3aa1e2e89eee9968a9b619d53f2e589",
+  "generated_at": "2026-06-13T10:10:10.609898+00:00",
+  "git_commit": "e95e4b9bdb92e1ff05bb882476295f7f218e3173",
   "summary": {
-    "tracked_files_total": 913,
-    "cataloged_files": 895,
+    "tracked_files_total": 914,
+    "cataloged_files": 896,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35068337,
-    "total_text_lines": 135840,
-    "markdown_files": 449,
+    "total_bytes": 35072218,
+    "total_text_lines": 135999,
+    "markdown_files": 450,
     "yml_yaml_files": 60,
     "github_workflow_yml_files": 22,
     "data_or_result_files": 110
   },
   "counts_by_ext": {
-    ".md": 449,
+    ".md": 450,
     ".yml": 60,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 449,
+    "documentation_md": 450,
     "github_workflow_yml": 22,
     "config_yml": 38,
     "other": 129,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 396,
-    "token_vazio_declared": 80,
+    "token_vazio_declared": 81,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 63,
     "result_artifact": 91
@@ -3640,11 +3640,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 303205,
+      "size_bytes": 303553,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "30d413acf1df04bcb01f436925dc88b0a31d242951550d6b47c2d7066008044d",
-      "line_count": 10290,
+      "sha256": "4ef5b197a783f1dee8770f768bb17e67197e5f13971496bd6d76dbb26a261880",
+      "line_count": 10302,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3655,11 +3655,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 141877,
+      "size_bytes": 142044,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "d24d18368a3fd1f272273690030b93e371e69f86b4ecd5eb223c4469d85a6520",
-      "line_count": 895,
+      "sha256": "b834b714b3d61ae0eda9c1fd344bed4ae96514df0a3c02973f88b87c02f6dabc",
+      "line_count": 896,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3674,7 +3674,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "60b1835021ec5e308efa1a847fe61158731f0bd83f04101879a0acd23ac9a2f4",
+      "sha256": "fe342c2c258e493032ce0bc7fa947382d4bf56935ef966fdc1a5aba0b935989c",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4150,11 +4150,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 162237,
+      "size_bytes": 162424,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "60b509134fa006f8b3fc97c200eacfbf21a44a36f4fd7edf0db5c2e11546dd2b",
-      "line_count": 938,
+      "sha256": "621ad53f379815ea2c34dbecb05da1ebf2acd467aa956e5438dbd1d4ad84cf63",
+      "line_count": 939,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4702,7 +4702,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "227328bf00812b5a722ac39f8e8b1be73586fdbc1da0b662238e7d4021df7174",
+      "sha256": "8a1514836f1221e12ae79f972ced14a5ccc7dce95c86da7679a55d4d50aecfcd",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5170,11 +5170,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 9210,
+      "size_bytes": 9363,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ec6e3572575d9f0e2e9a49e6354fe553d3a32144f4e325b32452836b1d8c7a22",
-      "line_count": 66,
+      "sha256": "60a2dfc5caced3007b0926787f096f77f56376b927de795615be5ba8dcaba339",
+      "line_count": 67,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -6218,6 +6218,18 @@
       "risk_flags": [
         "mentions_mock_or_placeholder",
         "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/science/CANONICAL_ROUTE_CHECKLIST.md",
+      "size_bytes": 3026,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "5a5a9a94fcb19b02ab2fdecd0cd0800813ec5ff3cf3cbb4911e861c0a8de60cc",
+      "line_count": 144,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
       ]
     },
     {
