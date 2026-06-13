@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:17:52.849035+00:00",
-  "git_commit": "90cb589edaff3a2323b53b38f6e803886a3b5df9",
+  "generated_at": "2026-06-13T08:25:59.034875+00:00",
+  "git_commit": "3e303b04fed120e097067ca5c6b0848436cf3e75",
   "summary": {
     "tracked_files_total": 863,
     "cataloged_files": 845,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34870953,
-    "total_text_lines": 131397,
+    "total_bytes": 34871814,
+    "total_text_lines": 131410,
     "markdown_files": 430,
     "yml_yaml_files": 51,
     "github_workflow_yml_files": 18,
@@ -3358,10 +3358,10 @@
     },
     {
       "path": "data/results/orbital_dynamics/angular_momentum_shape_validation.json",
-      "size_bytes": 5822,
+      "size_bytes": 5818,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "75039a6cac2f8b40ce3905b3efa53c2d0ba7dd56b83c915b44f11718ca3b63e6",
+      "sha256": "2c988bc8923e5b4dc7d711cbf809f02441cdc493cc8dbb469e63e48666a93b3a",
       "line_count": 139,
       "is_text": true,
       "risk_flags": [
@@ -3370,11 +3370,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 286083,
+      "size_bytes": 286415,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "5f20874b2cc1a5a49e595c522f0bde641248f14a5d437738e2b96a060873c84c",
-      "line_count": 9725,
+      "sha256": "5d35b28fa435a3331cfcb733554ebdeef4ad949996ba0d407a129cf7ffd46d91",
+      "line_count": 9735,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3385,11 +3385,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 133518,
+      "size_bytes": 133687,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "e84efefb58012c88d4ff80359b1072ed7ec0d815e0c5064497ae67f1e846989d",
-      "line_count": 845,
+      "sha256": "7e6ff37bd78d442df50611c4c8080dc190ec14e6c2f321deb12971288859a1ee",
+      "line_count": 846,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3404,7 +3404,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "c7b7cfe545ad173e2c2f0d9bc1ff0bd714e67183edbbe6aadc9733cf793b5267",
+      "sha256": "87c1c490418b8eab46895851f4015b31539a72b643d2c9f043370fd614c9de1d",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3860,11 +3860,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 152877,
+      "size_bytes": 153066,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5f74d2e72206d98b4d4b1f94ed832aa511cba07e39209e980dc8a6359e22ada9",
-      "line_count": 888,
+      "sha256": "888c8fddfbdc7b037445ee4d5f43802614cf088016731a77c593607a6a506583",
+      "line_count": 889,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4412,7 +4412,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "13f9fea5f3f09401bd8b98392c0bf2d4410b27503e68c297bbc5bc652f2c607f",
+      "sha256": "59f52a8ecaddc74eeafbfffedcca8eaa4ca01dc6b015828f95c85dede9ad7d45",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4880,11 +4880,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 7732,
+      "size_bytes": 7907,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "bd5d0aa5439f0bab94d678807e35fa7f54a1bff7900fad5ef6edebc6dbe29aa7",
-      "line_count": 57,
+      "sha256": "fa071b2a34962bb97c5853596746c0fc267eab3d392410acee519e214084fdd7",
+      "line_count": 58,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
