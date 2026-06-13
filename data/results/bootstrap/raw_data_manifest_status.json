@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "status": "raw_data_manifest_status_generated",
+  "claim_allowed": false,
+  "manifest": "data/raw/RAW_DATA_MANIFEST.yml",
+  "total_records": 6,
+  "raw_files_present": 0,
+  "raw_files_missing": 6,
+  "items": [
+    {"raw_id":"RAW_PENDING_GW190814_POSTERIOR","route_id":"compact_remnant_boundary","record_id":"REAL_SEED_GW190814","local_path":"data/raw/compact_objects/gw/posteriors/TOKEN_VAZIO_GW190814_posterior.dat","declared_sha256":"TOKEN_VAZIO","actual_sha256":"TOKEN_VAZIO","sha256_matches_manifest":false,"bytes":null,"raw_file_present":false,"raw_data_local":false,"claim_allowed":false,"next_metric":"mass_gap_overlap_probability","status":"pending_raw_ingestion"},
+    {"raw_id":"RAW_PENDING_GW230529_POSTERIOR","route_id":"compact_remnant_boundary","record_id":"REAL_SEED_GW230529_181500","local_path":"data/raw/compact_objects/gw/posteriors/TOKEN_VAZIO_GW230529_posterior.dat","declared_sha256":"TOKEN_VAZIO","actual_sha256":"TOKEN_VAZIO","sha256_matches_manifest":false,"bytes":null,"raw_file_present":false,"raw_data_local":false,"claim_allowed":false,"next_metric":"mass_gap_overlap_probability","status":"pending_raw_ingestion"},
+    {"raw_id":"RAW_PENDING_EARTH_STATE_VECTOR","route_id":"orbital_shape_angular_momentum","record_id":"REAL_ORBIT_EARTH_HELIOCENTRIC_SHAPE_AM_V1","local_path":"data/raw/orbital_dynamics/ephemerides/TOKEN_VAZIO_earth_state_vectors.csv","declared_sha256":"TOKEN_VAZIO","actual_sha256":"TOKEN_VAZIO","sha256_matches_manifest":false,"bytes":null,"raw_file_present":false,"raw_data_local":false,"claim_allowed":false,"next_metric":"state_vector_vs_reference_h_residual","status":"pending_raw_ingestion"},
+    {"raw_id":"RAW_PENDING_MARS_STATE_VECTOR","route_id":"orbital_shape_angular_momentum","record_id":"REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1","local_path":"data/raw/orbital_dynamics/ephemerides/TOKEN_VAZIO_mars_state_vectors.csv","declared_sha256":"TOKEN_VAZIO","actual_sha256":"TOKEN_VAZIO","sha256_matches_manifest":false,"bytes":null,"raw_file_present":false,"raw_data_local":false,"claim_allowed":false,"next_metric":"state_vector_vs_reference_h_residual","status":"pending_raw_ingestion"},
+    {"raw_id":"RAW_PENDING_GAIA_BH1_ASTROMETRY","route_id":"wandering_dark_compact_mass","record_id":"REAL_SEED_GAIA_BH1","local_path":"data/raw/astrometry/gaia_bh/TOKEN_VAZIO_gaia_bh1_astrometry.csv","declared_sha256":"TOKEN_VAZIO","actual_sha256":"TOKEN_VAZIO","sha256_matches_manifest":false,"bytes":null,"raw_file_present":false,"raw_data_local":false,"claim_allowed":false,"next_metric":"astrometric_dark_mass_consistency","status":"pending_raw_ingestion"},
+    {"raw_id":"RAW_PENDING_UHZ1_HIGHZ_CONTEXT","route_id":"high_z_smbh_seeds","record_id":"REAL_SEED_UHZ1_HIGHZ_SMBH","local_path":"data/raw/high_z_smbh/TOKEN_VAZIO_uhz1_context_table.csv","declared_sha256":"TOKEN_VAZIO","actual_sha256":"TOKEN_VAZIO","sha256_matches_manifest":false,"bytes":null,"raw_file_present":false,"raw_data_local":false,"claim_allowed":false,"next_metric":"Eddington_growth_feasibility_grid","status":"pending_raw_ingestion"}
+  ],
+  "safe_conclusion": "Raw data custody is scaffolded. Missing files remain TOKEN_VAZIO and cannot support claims."
+}
