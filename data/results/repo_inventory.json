@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-13T06:40:01.382942+00:00",
-  "git_commit": "4d592cddff8538d65982aa471e14477e239ee49b",
+  "generated_at": "2026-06-13T07:03:38.838081+00:00",
+  "git_commit": "57477328662d1511bbe874d1b3e0ee65f663b713",
   "summary": {
-    "tracked_files_total": 831,
-    "cataloged_files": 813,
+    "tracked_files_total": 833,
+    "cataloged_files": 815,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34735906,
-    "total_text_lines": 127744,
+    "total_bytes": 34745492,
+    "total_text_lines": 127935,
     "markdown_files": 424,
-    "yml_yaml_files": 43,
+    "yml_yaml_files": 44,
     "github_workflow_yml_files": 15,
-    "data_or_result_files": 86
+    "data_or_result_files": 87
   },
   "counts_by_ext": {
     ".md": 424,
-    ".yml": 43,
+    ".yml": 44,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 112,
     ".sh": 6,
     ".json": 42,
-    ".csv": 59,
+    ".csv": 60,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -41,11 +41,11 @@
   "counts_by_kind": {
     "documentation_md": 424,
     "github_workflow_yml": 15,
-    "config_yml": 28,
+    "config_yml": 29,
     "other": 129,
     "source_code": 124,
     "archive": 6,
-    "data_or_result": 86,
+    "data_or_result": 87,
     "test_or_validation": 1
   },
   "flags": {
@@ -2773,6 +2773,26 @@
       ]
     },
     {
+      "path": "data/real/bootstrap/real_observational_seed_v0.csv",
+      "size_bytes": 1542,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "12640cc7c8f4a9a17128ef1f0f7f8c71847d36e8a73a6eb549368acf55e15246",
+      "line_count": 6,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "data/real/bootstrap/real_observational_seed_v0.yml",
+      "size_bytes": 7163,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "40e1b78031f51708aee616db5b341a806f4f0ffe490fec955b05c94894b0be88",
+      "line_count": 169,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/compact_objects/remnant_boundary_sources.yml",
       "size_bytes": 4817,
       "ext": ".yml",
@@ -3172,11 +3192,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 275259,
+      "size_bytes": 275684,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "93e906e7cb2b8c9e0251ddd2aa31d031cbfa7cd973f9a1afd84b3b673a3d71f1",
-      "line_count": 9369,
+      "sha256": "59c867a49131ec7e9279c1dac4200c3d73fc8d2c74d57a14f683ec77bd7d556d",
+      "line_count": 9383,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3187,11 +3207,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 128242,
+      "size_bytes": 128460,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "2ed6d503660c908f6baaf44d34bca77d9c7ca479dc71a9bf8617f6ee2df08608",
-      "line_count": 813,
+      "sha256": "afc88bdc5ae79531f3119afca367d666c07c6f73b70d1f4e177ad9ba049b92ee",
+      "line_count": 814,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3206,7 +3226,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "02c74b664fbcef5e88fa6fa212b08e93315940fe8a57f0b40559afb859319b9b",
+      "sha256": "0360b2bdf629cecbadebb63351b9a530c79218e0b80a0a41b67378fe4ad7d2f3",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3662,11 +3682,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 146961,
+      "size_bytes": 147199,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e0e4e0d8f13c4c7d23d0774c5a01b318046c5ac4e804e88263f505a4beb2db37",
-      "line_count": 856,
+      "sha256": "b1a462c8b2058432480650619463cf75d169a585e49d5c2a98d316710c95aa18",
+      "line_count": 857,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4214,7 +4234,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "0de2e61bd8a2875090bb43b1f443191f258a9af2d058bf3c44ddc185fe5792c4",
+      "sha256": "e705c08b1598b374a3c9c49a2a2247625f55dff37104f61719f8f3634cb8240d",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4685,7 +4705,7 @@
       "size_bytes": 6611,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "82d638631a8846666f2202e06be29c181564700b65a2321a680ebe0f305111b3",
+      "sha256": "606824c51d6e3c28d8a6c77f45076c6abeb827ff2dfe09d228a7ecc6c860a198",
       "line_count": 50,
       "is_text": true,
       "risk_flags": [
@@ -9121,7 +9141,7 @@
       "size_bytes": 583,
       "ext": ".json",
       "kind": "other",
-      "sha256": "7b7486dbe7a504784e4997281a0e35b3c3187d6c4376944be4fca438113c8ed2",
+      "sha256": "f0f9b56535423db3a74b64f446ebc297cda5683dcb2a910b3a9715cb1340238e",
       "line_count": 21,
       "is_text": true,
       "risk_flags": [
@@ -9209,7 +9229,7 @@
       "size_bytes": 1645,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ae36d7860b9627e0d06de5ee77f0407e7ac2b7dd153777adab4fbc3730da0b40",
+      "sha256": "1dd18a8cb541a8720c26c5a897fca035c1588ef4de9fb2bd3b082e145f8e1cfe",
       "line_count": 47,
       "is_text": true,
       "risk_flags": [
@@ -9285,7 +9305,7 @@
       "size_bytes": 1500,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "efa15f1440018a3cb9dafaff0f7a7cf465e1180347b7b386369f884ebc2d2fde",
+      "sha256": "40dca879e4b241dfdc7b1da5804b2bcafc4e169112fd684983a3d110ff0a4500",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
