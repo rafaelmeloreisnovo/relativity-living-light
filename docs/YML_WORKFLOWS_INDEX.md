@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T06:25:27.385291+00:00`  
-Commit: `af683e37cf98a6f56206fb4f77ca7d2a244b66c9`
+Gerado em: `2026-06-13T06:25:39.295169+00:00`  
+Commit: `8b83e70c80ffc6574919b97af5f867f0122289d6`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -25,6 +25,7 @@ Commit: `af683e37cf98a6f56206fb4f77ca7d2a244b66c9`
 | `data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml` | `config_yml` | 2964 | 80 | `f0ba4a4b4581a2acea9dcba3fef79b8775205b59631944a96139f38c2db4107a` |
 | `data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml` | `config_yml` | 2907 | 90 | `1e5381d57d932427f952e48883b58a0c99b1f42d077e2e66c1d40afb5bc2d7e2` |
 | `data/real/rll_real_sources_manifest_2026.yml` | `config_yml` | 5897 | 118 | `45501ad4d4a0c11ad79ca6213c450bc3f9dd291697d0a385eb16474e62d74c36` |
+| `data/real/structure/residual_gravity_sources.yml` | `config_yml` | 3762 | 115 | `9bcd53bb0da0d89e61c111433e45a154d5f5f615e052f2b0df98c3bd1273301d` |
 | `data/real_sources/rll_pantheon_real_validation.iml.yml` | `config_yml` | 3121 | 79 | `656edde4040a24f48b59fb04fbb51f11aad73909ea4c243808a0b3ddd4fb3cd8` |
 | `data/real_sources/rll_real_orchestrator_inventory.iml.yml` | `config_yml` | 4763 | 110 | `f3fbda51e10c27100f2c3e2fe1464b29410a55ab5df2f301c3798475fba679b8` |
 | `data/results/desi_dr2_bao_zml.yml` | `config_yml` | 2193 | 91 | `8a2847f60ab2ca102f0f0f9effb4f743f86cbf912bb23a088ea059728b6f50ee` |
