@@ -32,11 +32,19 @@ def find_seed(record_id: str, rows: list[dict[str, str]] | None = None) -> dict[
 
 
 def extract_value(row: dict[str, str], key: str) -> str | None:
-    prefix = f"{key}="
+    """Extract key values from compact seed CSV fields.
+
+    Accepts both strict forms such as `mass=1.0` and approximate forms
+    such as `mass≈1.0` or `mass~1.0`. This avoids losing real seed
+    values that are explicitly approximate.
+    """
+    separators = ("=", "≈", "~", ":")
     for field in ("key_observable_1", "key_observable_2", "key_observable_3"):
-        value = row.get(field, "")
-        if value.startswith(prefix):
-            return value[len(prefix):]
+        value = (row.get(field, "") or "").strip()
+        for sep in separators:
+            prefix = f"{key}{sep}"
+            if value.startswith(prefix):
+                return value[len(prefix):].strip()
     return None
 
 
@@ -86,7 +94,7 @@ def ensure_parent(path: Path) -> None:
 
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     ensure_parent(path)
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
 
 
 def base_payload(module: str, records: list[str]) -> dict[str, Any]:
