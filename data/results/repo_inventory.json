@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T09:10:34.003186+00:00",
-  "git_commit": "39260d942fa73329ac62c586ae1f6742f51ff100",
+  "generated_at": "2026-06-13T09:11:02.900350+00:00",
+  "git_commit": "3e5afcbdd974e7962ba0a43c08a211da754099f7",
   "summary": {
-    "tracked_files_total": 895,
-    "cataloged_files": 877,
+    "tracked_files_total": 897,
+    "cataloged_files": 879,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35010673,
-    "total_text_lines": 134270,
-    "markdown_files": 441,
-    "yml_yaml_files": 55,
-    "github_workflow_yml_files": 20,
+    "total_bytes": 35015878,
+    "total_text_lines": 134452,
+    "markdown_files": 442,
+    "yml_yaml_files": 56,
+    "github_workflow_yml_files": 21,
     "data_or_result_files": 107
   },
   "counts_by_ext": {
-    ".md": 441,
-    ".yml": 55,
+    ".md": 442,
+    ".yml": 56,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 126,
@@ -39,8 +39,8 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 441,
-    "github_workflow_yml": 20,
+    "documentation_md": 442,
+    "github_workflow_yml": 21,
     "config_yml": 35,
     "other": 129,
     "source_code": 138,
@@ -160,6 +160,16 @@
       "kind": "github_workflow_yml",
       "sha256": "c97938a8150e31602504255839a0ccecb0f05eb6eab4e7c1c215890effcff08b",
       "line_count": 36,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": ".github/workflows/raw-data-manifest-status.yml",
+      "size_bytes": 1702,
+      "ext": ".yml",
+      "kind": "github_workflow_yml",
+      "sha256": "fd81e390c43987d931f296589c2426379cd12ce17edf9d176dd84fedc74e573a",
+      "line_count": 60,
       "is_text": true,
       "risk_flags": []
     },
@@ -3544,11 +3554,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 296524,
+      "size_bytes": 297628,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "412093cf03c206fab1a9446a3456612924a11baca79815d870a7d4d7d9a73f52",
-      "line_count": 10076,
+      "sha256": "0deef216b54a6f1190831a9d6836fc21e5c3568f04b80b40949d37e0a512a254",
+      "line_count": 10114,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3559,11 +3569,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 138586,
+      "size_bytes": 139125,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "54897ed4f974e0189bcedcb42250671e9a5ea8adcda1228a533e9d1ae4cb418b",
-      "line_count": 875,
+      "sha256": "d9c2c2723910debfcd77c997a5c001bc391f75952a1b220ba302c8e902c5e414",
+      "line_count": 878,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3578,7 +3588,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "377acfbe1a91d923f3fe3e97d42c95ed8a7285545096539de10e38d3c19e1002",
+      "sha256": "271b427abdfd3de59f989a9358de806d834b29f52f073f613b05d27738de4262",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4054,11 +4064,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 158546,
+      "size_bytes": 159145,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9225e53147d595f9a33c367ac2e314335ce1e70d6362dfd6328c8142a3da052b",
-      "line_count": 918,
+      "sha256": "03609d401ebd1961e435d9a38add84c916e5537919854f2a86f5057047297471",
+      "line_count": 921,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4606,7 +4616,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9ed5ad3135a5b7b8e4f205f8e0910ddbd1734bcf78fd51bff871ed8909bfe090",
+      "sha256": "98ec038d94b012de1b22f02775afa1f4fa5156fca4b31d5e256c321a0e04b12c",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5077,7 +5087,7 @@
       "size_bytes": 8520,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3127316e8d0a640ec117cf6bbb8bf0223d7bf2d60909f86ade89f2cfd4d7382e",
+      "sha256": "dab5b09fbffed864fc464e1ebe49e40100a464f750be3890bb2b95495280e964",
       "line_count": 62,
       "is_text": true,
       "risk_flags": [
@@ -6228,6 +6238,16 @@
       "kind": "documentation_md",
       "sha256": "1ece5b1100f201cd49efbe48b4d38c0add6b5f6f9c0ba17c0684fec521ce0050",
       "line_count": 17,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "docs/science/RAW_DATA_MANIFEST_GUIDE.md",
+      "size_bytes": 1261,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "8201441f19af8a34437648bdd71c5f46c204669a8ef4ea14b7f8994d8050c3b9",
+      "line_count": 78,
       "is_text": true,
       "risk_flags": []
     },
