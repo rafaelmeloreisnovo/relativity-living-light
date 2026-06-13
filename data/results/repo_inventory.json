@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T10:03:41.441650+00:00",
-  "git_commit": "5ac130ce765ebc5bdb97848acc96d23f1be80650",
+  "generated_at": "2026-06-13T10:03:55.260904+00:00",
+  "git_commit": "4a3baf47c615eb9c689f03580bb63f04db6fe077",
   "summary": {
-    "tracked_files_total": 911,
-    "cataloged_files": 893,
+    "tracked_files_total": 912,
+    "cataloged_files": 894,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35059512,
-    "total_text_lines": 135561,
-    "markdown_files": 448,
+    "total_bytes": 35062423,
+    "total_text_lines": 135658,
+    "markdown_files": 449,
     "yml_yaml_files": 59,
     "github_workflow_yml_files": 22,
     "data_or_result_files": 110
   },
   "counts_by_ext": {
-    ".md": 448,
+    ".md": 449,
     ".yml": 59,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 448,
+    "documentation_md": 449,
     "github_workflow_yml": 22,
     "config_yml": 37,
     "other": 129,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 396,
-    "token_vazio_declared": 78,
+    "token_vazio_declared": 79,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 63,
     "result_artifact": 91
@@ -3628,11 +3628,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 302505,
+      "size_bytes": 302859,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "02f08d958058c0ab8b56503d6f502b7c996e7d7f407d4b0f9a09b0f876ee8a8e",
-      "line_count": 10266,
+      "sha256": "bee09c82798d6c4d5f3e8d1c4fdd250c4d6ac393025bfc1336e316beb28184d4",
+      "line_count": 10278,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3643,11 +3643,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 141539,
+      "size_bytes": 141712,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "6d261befa4eb1363d7f6830784ee1799cbf0ae89b13fa9b68463c32433788c27",
-      "line_count": 893,
+      "sha256": "36230e539c6ba10e2d6e89121db8a0a0003043fc4980b1bd2d19414327e4984c",
+      "line_count": 894,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3662,7 +3662,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ef63c667f49978c602640e3544fac593719076872444c6138f0a27246d80ca8b",
+      "sha256": "00d84de88041c8f3520e3415923a63f64ab163432537dd61bd182c37741d5051",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4138,11 +4138,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 161859,
+      "size_bytes": 162052,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ab760736b0f59ae71a5bcbf385211d07a46f0cfd4ec83e1b28f5a837ea015972",
-      "line_count": 936,
+      "sha256": "d04796d0477e35c634999bacfdf2ba3b72425ff72d8b792d152811d7900e37cc",
+      "line_count": 937,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4690,7 +4690,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7d408455f5550c41bf70d6781d66d37b48aa7aa22edfced8439bf77b07e32044",
+      "sha256": "b506c7a4c819dc22e7a07a4bf7d0dc0465312094a2628f8346809ebf675f796f",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5161,7 +5161,7 @@
       "size_bytes": 9210,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b00109b470eac3d9f68a50f0c7093f82ea05c4a3768741267a35d3a861332c81",
+      "sha256": "3eaa8eceba62424f42cf0601a46558ed91e5dd8427efea4172df58c227dfc9a7",
       "line_count": 66,
       "is_text": true,
       "risk_flags": [
@@ -6452,6 +6452,18 @@
       "is_text": true,
       "risk_flags": [
         "mentions_mock_or_placeholder"
+      ]
+    },
+    {
+      "path": "docs/science/ROUTE_DEFIBRILLATION_POLICY.md",
+      "size_bytes": 2191,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "b93c8b2e514c03bedc59f5944c32094e0d191111de042740886f6e713634a817",
+      "line_count": 83,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
       ]
     },
     {
