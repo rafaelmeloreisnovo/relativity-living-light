@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T10:21:51.701996+00:00",
-  "git_commit": "72e9a86c59e79fbeafeef4a03ed73ab5c7da4f6a",
+  "generated_at": "2026-06-13T10:22:12.118354+00:00",
+  "git_commit": "56bddbcc5633377749d711039be5efe2476edd2c",
   "summary": {
     "tracked_files_total": 915,
     "cataloged_files": 897,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35077954,
-    "total_text_lines": 136135,
+    "total_bytes": 35078078,
+    "total_text_lines": 136139,
     "markdown_files": 450,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
@@ -3653,7 +3653,7 @@
       "size_bytes": 304215,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "04d8d3fa48a0ff951ab2929c47f0d3822fcbd10344d570d6e67fc1e8b10178b2",
+      "sha256": "a3f589266e396f7f12f4933eabe780b093dd3012c18d9e6f50ab07fc1a913102",
       "line_count": 10324,
       "is_text": true,
       "risk_flags": [
@@ -3668,7 +3668,7 @@
       "size_bytes": 142362,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "bc84f1e1c5ffcd31d5d20e757573130a23347c5775969e63426a51acff1ca186",
+      "sha256": "59ce7e9466616ce7c34354d1c87805055edf10c8922f494dd1ff862375d3ab9e",
       "line_count": 898,
       "is_text": true,
       "risk_flags": [
@@ -3684,7 +3684,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "1fcfcae691788d0eecdd392997f972556bf0dbc4816e76d3bfc226419f15d890",
+      "sha256": "101e641898b61c6b67ad1ccea8d33117857f4bd218ea24d51ee91f576f62d64b",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4163,7 +4163,7 @@
       "size_bytes": 162782,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8d8e223d7d31a6c7a3b5166af48f55515db08b624aaabe9abf19002921e481aa",
+      "sha256": "6dd0780c89f9177e0afac9953b720f1736a0d719fbe5820b4b77e25e8493ae7b",
       "line_count": 941,
       "is_text": true,
       "risk_flags": [
@@ -4712,7 +4712,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9e2a876fb3c9a12a5af1e37d8ec5f90af4023995cc56d7832f8c07506219c706",
+      "sha256": "55676a10e837fc37d58e29174be52d358e4e83fb718818891974984a2d20619e",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5183,7 +5183,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8178dc82791712fb94fc053212cc86c62e196e8c6424ae2859fa9e974d34417e",
+      "sha256": "ca10ca5e068c529eb6d1ad584afd8dbc3e779c9e663639e200fd796550677ddb",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
@@ -8829,11 +8829,11 @@
     },
     {
       "path": "scripts/data_scan/fetch_horizons_mars_state_vector.py",
-      "size_bytes": 4620,
+      "size_bytes": 4744,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "aa37d465f73a6d6dffc821bd689246a62571fb87e9bcb2f371b2ce12870eb1bf",
-      "line_count": 136,
+      "sha256": "31d21ead694019cfd415d0867c2a94d14611d39cc68346cc4e9c50b78c68f77a",
+      "line_count": 140,
       "is_text": true,
       "risk_flags": []
     },
