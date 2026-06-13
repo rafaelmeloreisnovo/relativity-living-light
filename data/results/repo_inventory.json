@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T10:10:10.609898+00:00",
-  "git_commit": "e95e4b9bdb92e1ff05bb882476295f7f218e3173",
+  "generated_at": "2026-06-13T10:10:23.505203+00:00",
+  "git_commit": "40a922b0a905dce77b7a45d2bcfe074fc5b70831",
   "summary": {
-    "tracked_files_total": 914,
-    "cataloged_files": 896,
+    "tracked_files_total": 915,
+    "cataloged_files": 897,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35072218,
-    "total_text_lines": 135999,
+    "total_bytes": 35077093,
+    "total_text_lines": 136122,
     "markdown_files": 450,
-    "yml_yaml_files": 60,
-    "github_workflow_yml_files": 22,
+    "yml_yaml_files": 61,
+    "github_workflow_yml_files": 23,
     "data_or_result_files": 110
   },
   "counts_by_ext": {
     ".md": 450,
-    ".yml": 60,
+    ".yml": 61,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 128,
@@ -40,7 +40,7 @@
   },
   "counts_by_kind": {
     "documentation_md": 450,
-    "github_workflow_yml": 22,
+    "github_workflow_yml": 23,
     "config_yml": 38,
     "other": 129,
     "source_code": 140,
@@ -77,6 +77,16 @@
       "risk_flags": [
         "cosmology_validation_marker"
       ]
+    },
+    {
+      "path": ".github/workflows/canonical-route-artifacts.yml",
+      "size_bytes": 4182,
+      "ext": ".yml",
+      "kind": "github_workflow_yml",
+      "sha256": "2c1dd21882168cf7d87dbbcce338a317a41a60741a6459a577e74567316d022a",
+      "line_count": 109,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": ".github/workflows/claim-boundary-quality-gates.yml",
@@ -3640,11 +3650,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 303553,
+      "size_bytes": 303898,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "4ef5b197a783f1dee8770f768bb17e67197e5f13971496bd6d76dbb26a261880",
-      "line_count": 10302,
+      "sha256": "137ea2bf507db4c297f9a836751f336319161612f3e4a2b28fb9e154c5ce1c55",
+      "line_count": 10314,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3655,11 +3665,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 142044,
+      "size_bytes": 142208,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "b834b714b3d61ae0eda9c1fd344bed4ae96514df0a3c02973f88b87c02f6dabc",
-      "line_count": 896,
+      "sha256": "1d92264c3be9c76b6edc6364176e738c89f2a0a5d7f223df8b87fa3d2e64f105",
+      "line_count": 897,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3674,7 +3684,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "fe342c2c258e493032ce0bc7fa947382d4bf56935ef966fdc1a5aba0b935989c",
+      "sha256": "2bde7cf38a6b4383cfd5221a086cd05a8746a9af8022d604935fcca69770a398",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4150,11 +4160,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 162424,
+      "size_bytes": 162608,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "621ad53f379815ea2c34dbecb05da1ebf2acd467aa956e5438dbd1d4ad84cf63",
-      "line_count": 939,
+      "sha256": "34fd71740799ee714b0eba0537e7518dc3d470e7729d8cd0b1ac42f1145beb68",
+      "line_count": 940,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4702,7 +4712,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8a1514836f1221e12ae79f972ced14a5ccc7dce95c86da7679a55d4d50aecfcd",
+      "sha256": "a45268d3c73ac5234205c01bf175530ab6b260db070c4dd77899ec0c1fb93ee6",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5173,7 +5183,7 @@
       "size_bytes": 9363,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "60a2dfc5caced3007b0926787f096f77f56376b927de795615be5ba8dcaba339",
+      "sha256": "a438eb23a618530aabcba19991e5618266ce64759f81bc1be606910c3dfcfa87",
       "line_count": 67,
       "is_text": true,
       "risk_flags": [
