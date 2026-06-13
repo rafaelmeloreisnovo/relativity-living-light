@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T05:58:20.007345+00:00",
-  "git_commit": "0ab46f887b21d2b0e33cf49a23642bfc0c238dd5",
+  "generated_at": "2026-06-13T06:17:43.211648+00:00",
+  "git_commit": "8b72a5af1034f4b767705738a862201923bd98bb",
   "summary": {
-    "tracked_files_total": 817,
-    "cataloged_files": 799,
+    "tracked_files_total": 818,
+    "cataloged_files": 800,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34585745,
-    "total_text_lines": 124706,
-    "markdown_files": 420,
+    "total_bytes": 34596732,
+    "total_text_lines": 125019,
+    "markdown_files": 421,
     "yml_yaml_files": 35,
     "github_workflow_yml_files": 14,
     "data_or_result_files": 86
   },
   "counts_by_ext": {
-    ".md": 420,
+    ".md": 421,
     ".yml": 35,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 420,
+    "documentation_md": 421,
     "github_workflow_yml": 14,
     "config_yml": 21,
     "other": 129,
@@ -49,10 +49,10 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 387,
+    "cosmology_validation_marker": 388,
     "mentions_mock_or_placeholder": 79,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 36,
+    "token_vazio_declared": 37,
     "result_artifact": 73
   },
   "files": [
@@ -3080,7 +3080,7 @@
       "size_bytes": 270522,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "468d894bdd330c8a7575fbb1d823f48f9295b7243cf9ca00f358ef71ddc0b0bf",
+      "sha256": "b86a5d3869da5694079f9654de397bcb5898c93a8503d8bed043ca9a9fc44e78",
       "line_count": 9210,
       "is_text": true,
       "risk_flags": [
@@ -3096,7 +3096,7 @@
       "size_bytes": 125895,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "3b4d98381401402d8b6c051eba6a49432a04d94c3c3fb93eb4cdba5f69849936",
+      "sha256": "370f5f8f73d34d86ad4ca5160bb350636d532ac8750ddb2341fcd59f77ea3b38",
       "line_count": 800,
       "is_text": true,
       "risk_flags": [
@@ -3112,7 +3112,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "14c39f410142b4ad4d79353eb91c9c19304ba765be169a8c9325d17f48946956",
+      "sha256": "7822cec0a33dd43547116df8947307f4de1fa825746c21aff04adb2851540102",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3571,7 +3571,7 @@
       "size_bytes": 144354,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ff39fe09ecbae6011ac8c496e710cefe9d30ab36ad51eddf3b201b7c6db27041",
+      "sha256": "6082c4c7cc6697311ea4c111e7b90f15fdcd7d69558fbf6b1ad053427ba35451",
       "line_count": 843,
       "is_text": true,
       "risk_flags": [
@@ -4120,7 +4120,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3cb35f5d1bc04160ec8a35cd54cb2125b8506f3ef58e549e651b63f4e9409794",
+      "sha256": "2f1345e02e9b4bba4608fc6c5ca118c64020ae81315391dec3f9c6260e45a513",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4591,7 +4591,7 @@
       "size_bytes": 5373,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "0e81421d15dc7b7b1bee2366e9adbe6f05092e2aee1ffa52a8265132e7d76327",
+      "sha256": "7eeca0c91c148b7cd69fa74cc3c7f892a4e67f59aa4070832df3efa3ba0eb5a3",
       "line_count": 42,
       "is_text": true,
       "risk_flags": [
@@ -5635,6 +5635,19 @@
       "is_text": true,
       "risk_flags": [
         "mentions_mock_or_placeholder",
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/science/GRAVITATIONAL_RESIDUAL_MEMORY_AND_COMPACT_GAPS.md",
+      "size_bytes": 10987,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "a1d129a66af0c59b55f976a25ba75eb48a9e1cae1de78c0bad5d242d3ffae06a",
+      "line_count": 313,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared",
         "cosmology_validation_marker"
       ]
     },
