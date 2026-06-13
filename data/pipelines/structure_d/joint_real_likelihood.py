@@ -30,7 +30,7 @@ except ImportError as exc:  # pragma: no cover - exercised by environment setup
     ) from exc
 
 from .energy_momentum_bridge import build_fnext_gate
-from .likelihood import aic, bic, chi2_with_covariance
+from .likelihood import aic, aicc, bic, chi2_with_covariance
 from .synthetic_real_boundary import CLAIM_BOUNDARY, enforce_claim_boundary, interpret_model_comparison
 
 TEXTUAL_OUTPUTS = [
@@ -304,6 +304,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
             "model": MODEL_LCDM,
             "chi2": lcdm_components["total"],
             "AIC": aic(lcdm_components["total"], k_lcdm),
+            "AICc": aicc(lcdm_components["total"], k_lcdm, n_obs),
             "BIC": bic(lcdm_components["total"], k_lcdm, n_obs),
             "N": n_obs,
             "k": k_lcdm,
@@ -325,6 +326,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
             "model": MODEL_RLL,
             "chi2": rll_components["total"],
             "AIC": aic(rll_components["total"], k_rll),
+            "AICc": aicc(rll_components["total"], k_rll, n_obs),
             "BIC": bic(rll_components["total"], k_rll, n_obs),
             "N": n_obs,
             "k": k_rll,
@@ -375,6 +377,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
             {
                 "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
                 "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
+                "delta_aicc_rll_minus_lcdm": rows[1]["AICc"] - rows[0]["AICc"],
                 "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
             },
             "real_observational",
@@ -384,6 +387,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
             {
                 "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
                 "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
+                "delta_aicc_rll_minus_lcdm": rows[1]["AICc"] - rows[0]["AICc"],
                 "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
             },
         ),
@@ -392,6 +396,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
                 {
                     "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
                     "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
+                    "delta_aicc_rll_minus_lcdm": rows[1]["AICc"] - rows[0]["AICc"],
                     "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
                 }
             )

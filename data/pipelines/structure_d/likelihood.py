@@ -279,6 +279,14 @@ def bic(chi2_val, k, N):
     return float(chi2_val + k * np.log(N))
 
 
+def aicc(chi2_val, k, N):
+    k_int = int(k)
+    n_obs = int(N)
+    if n_obs <= k_int + 1:
+        raise ValueError("AICc undefined when N <= k + 1")
+    return float(aic(chi2_val, k_int) + (2.0 * k_int * (k_int + 1)) / (n_obs - k_int - 1))
+
+
 def estimate_log_evidence(chi2_val=None, k=None, n_obs=None, bic_value=None):
     if bic_value is None:
         if chi2_val is None or k is None or n_obs is None:

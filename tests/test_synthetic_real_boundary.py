@@ -31,6 +31,13 @@ def test_mixed_real_and_synthetic_is_forbidden() -> None:
     assert classify_dataset_type({"paths": ["data/real/Hz.csv", "data/synthetic/mock.csv"]}) == "mixed_forbidden"
 
 
+def test_forecast_dataset_is_explicitly_non_claimable() -> None:
+    dataset_type = classify_dataset_type({"path": "results/forecast/desi_dr4_projection.csv", "forecast": True})
+    policy = enforce_claim_boundary(dataset_type, {"delta_aic_rll_minus_lcdm": -99, "delta_bic_rll_minus_lcdm": -99})
+    assert dataset_type == "forecast"
+    assert policy["claim_allowed"] is False
+
+
 def test_unknown_dataset_is_forbidden() -> None:
     assert classify_dataset_type({"path": "data/unlabeled/file.csv"}) == "unknown_forbidden"
 
@@ -111,7 +118,7 @@ def test_real_validation_rejects_synthetic_paths_unless_test_fixture() -> None:
 
 
 def test_claim_allowed_false_for_non_real_and_incomplete_real_data() -> None:
-    non_real_types = ["synthetic_sanity_check", "synthetic_regression_test", "mixed_forbidden", "unknown_forbidden"]
+    non_real_types = ["synthetic_sanity_check", "synthetic_regression_test", "forecast", "mixed_forbidden", "unknown_forbidden"]
     for dataset_type in non_real_types:
         assert enforce_claim_boundary(dataset_type, {"delta_aic_rll_minus_lcdm": -99, "delta_bic_rll_minus_lcdm": -99})[
             "claim_allowed"

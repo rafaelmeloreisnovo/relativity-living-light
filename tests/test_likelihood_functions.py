@@ -3,7 +3,7 @@ import math
 import numpy as np
 import pytest
 
-from data.pipelines.structure_d.likelihood import aic, bic, chi2, chi2_with_covariance
+from data.pipelines.structure_d.likelihood import aic, aicc, bic, chi2, chi2_with_covariance
 
 
 def test_chi2_matches_manual_sum() -> None:
@@ -27,5 +27,6 @@ def test_information_criteria_are_consistent() -> None:
     k = 4
     n = 30
     assert aic(chi2_val, k) == pytest.approx(20.5)
+    assert aicc(chi2_val, k, n) == pytest.approx(20.5 + (2 * k * (k + 1)) / (n - k - 1))
     assert bic(chi2_val, k, n) == pytest.approx(chi2_val + k * math.log(n))
 
