@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-13T07:50:03.519306+00:00",
-  "git_commit": "5a0f9f044c5ad37c358e9b05489821e19ce08836",
+  "generated_at": "2026-06-13T07:50:16.601406+00:00",
+  "git_commit": "720686574a20510c58376dfa81b15128b2a7d5ec",
   "summary": {
-    "tracked_files_total": 848,
-    "cataloged_files": 830,
+    "tracked_files_total": 849,
+    "cataloged_files": 831,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34799357,
-    "total_text_lines": 129358,
+    "total_bytes": 34802881,
+    "total_text_lines": 129379,
     "markdown_files": 426,
     "yml_yaml_files": 46,
     "github_workflow_yml_files": 16,
-    "data_or_result_files": 92
+    "data_or_result_files": 93
   },
   "counts_by_ext": {
     ".md": 426,
@@ -20,7 +20,7 @@
     ".py": 118,
     ".sh": 6,
     ".json": 47,
-    ".csv": 60,
+    ".csv": 61,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -45,7 +45,7 @@
     "other": 129,
     "source_code": 130,
     "archive": 6,
-    "data_or_result": 92,
+    "data_or_result": 93,
     "test_or_validation": 1
   },
   "flags": {
@@ -2803,6 +2803,16 @@
       "risk_flags": []
     },
     {
+      "path": "data/real/bootstrap/real_observational_seed_v1.csv",
+      "size_bytes": 2743,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "93497684eca2cab44bdcf4eec4d7cda0482783ce644dcee4281a9c6b3a4610a4",
+      "line_count": 8,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/bootstrap/real_observational_seed_v1.yml",
       "size_bytes": 9527,
       "ext": ".yml",
@@ -3272,11 +3282,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 281062,
+      "size_bytes": 281373,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "68590bfc9839bf87016c9271e44b036422ba688944e1bc55987169fd3d36529f",
-      "line_count": 9563,
+      "sha256": "4e51bb3f960c15647740d6b858bf6bac847b9dd393c9ff88871d19fd8072385e",
+      "line_count": 9573,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3287,11 +3297,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 131050,
+      "size_bytes": 131198,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "7c700429ab6cfb00d1f27b34fbef152ad11b33d6bbea71ebd3b9bc0de03fc671",
-      "line_count": 830,
+      "sha256": "8ac827b035f7fe70aa49c6106f6572e71c0419f3c63b7f8f50e600d6ddd21214",
+      "line_count": 831,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3306,7 +3316,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "b4b7ccc9948cd9e99baf982eabe7b51d47bc9ce4564e64b337b90d1619731928",
+      "sha256": "26e888897db885664e3fa88c0a092cfcd4a7c0734e9ab841681bd6e8cea0aa88",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3762,11 +3772,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 150109,
+      "size_bytes": 150277,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "074f8f40581a89ed7959cfb79b0bd758cb9126da219ad1ab410e77994bf80c05",
-      "line_count": 873,
+      "sha256": "d2d99dd7b824f847bb5cfe7f0c3b438686b195d894679badc43a9c342225bc66",
+      "line_count": 874,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4314,7 +4324,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "96661ec79efdc59eb6e67dbb313c5700af62bf616a0fa177dc7346444c455db9",
+      "sha256": "9f9df75c9f297057f76c4d56eb570e9d0150be2bb5c142a74d62659de25fe737",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4782,11 +4792,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 6922,
+      "size_bytes": 7076,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "4e0a207bbbbd8efeb7e889da257e7b3fcf858699d2d1d2b718b554ad097eca6f",
-      "line_count": 52,
+      "sha256": "69fd32af8bb5de4c609109ae47cac34e53791b95f1998767c4e112acdd35abe8",
+      "line_count": 53,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
