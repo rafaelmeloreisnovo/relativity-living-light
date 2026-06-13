@@ -1,0 +1,126 @@
+# Orbital Shape Angular Momentum Sources Ledger
+# Status: TOKEN_VAZIO protected source ledger
+# Purpose: map planetary/body shape, orbital ellipse, gravity vectors, spin/orbital angular momentum, torque, and long-time deformation into an auditable validation route.
+
+schema_version: 0.1
+module: orbital_shape_angular_momentum
+status: TOKEN_VAZIO
+claim_allowed: false
+created_context: route_for_shape_gravity_ellipse_angular_momentum_temporal_deformation
+
+claim_boundary:
+  no_new_gravity_claim_without_baseline: true
+  no_shape_deformation_claim_without_geodetic_or_ephemeris_data: true
+  no_RLL_superiority_claim_from_orbital_seed: true
+  require_standard_celestial_mechanics_baseline: true
+  require_error_model: true
+  require_covariance_or_uncertainty: true
+  require_machine_output: true
+
+required_observables:
+  - body_identifier
+  - epoch_time_scale
+  - position_vector
+  - velocity_vector
+  - gravitational_parameter_GM
+  - spin_axis_or_pole_orientation
+  - rotation_rate
+  - inertia_tensor_or_moment_proxy
+  - gravity_harmonics_if_available
+  - shape_model_or_reference_ellipsoid
+  - tidal_or_rotational_deformation_proxy
+  - source_reference
+  - uncertainty_or_covariance
+
+required_source_families:
+  - ephemeris_state_vectors
+  - geodetic_shape_model
+  - gravity_field_model
+  - rotation_and_pole_orientation_model
+  - tidal_deformation_or_love_number_model
+  - numerical_or_analytical_baseline_model
+
+baseline_models:
+  - Keplerian_two_body_orbit
+  - Newtonian_N_body_integration
+  - J2_or_zonal_harmonic_perturbation
+  - IAU_rotation_model
+  - SPICE_or_JPL_ephemeris_baseline
+  - tidal_deformation_model
+  - general_relativity_correction_if_required
+
+expected_metrics:
+  - orbital_angular_momentum_vector_consistency
+  - spin_angular_momentum_proxy_consistency
+  - total_angular_momentum_drift
+  - torque_proxy_dJ_dt
+  - shape_gravity_residual
+  - secular_precession_consistency
+  - deformation_memory_residual
+
+planned_raw_data_paths:
+  ephemerides: data/raw/orbital_dynamics/ephemerides/
+  spice_kernels: data/raw/orbital_dynamics/spice/
+  gravity_models: data/raw/orbital_dynamics/gravity_models/
+  shape_models: data/raw/orbital_dynamics/shape_models/
+  rotation_models: data/raw/orbital_dynamics/rotation_models/
+  tidal_models: data/raw/orbital_dynamics/tidal_models/
+
+seed_records:
+  - record_id: TOKEN_VAZIO_EARTH_MOON_ORBIT_SHAPE_001
+    body_or_system: Earth-Moon system
+    source_family: ephemeris_plus_geodesy
+    intended_sources:
+      - JPL_Horizons_or_SPICE_state_vectors
+      - IERS_Earth_orientation_parameters
+      - ICGEM_or_GRACE_gravity_field_models
+      - reference_ellipsoid_or_geoid_model
+    expected_vectors:
+      - Earth_Moon_relative_position_vector
+      - Earth_Moon_relative_velocity_vector
+      - Earth_spin_axis
+      - orbital_angular_momentum_vector
+      - spin_angular_momentum_proxy
+    future_metric: angular_momentum_and_geoid_shape_consistency
+    status: TOKEN_VAZIO
+    claim_allowed: false
+
+  - record_id: TOKEN_VAZIO_MARS_ORBIT_SHAPE_001
+    body_or_system: Mars
+    source_family: ephemeris_plus_gravity_shape
+    intended_sources:
+      - JPL_Horizons_or_SPICE_state_vectors
+      - Mars_gravity_field_model
+      - Mars_shape_or_reference_ellipsoid_model
+      - Mars_rotation_model
+    expected_vectors:
+      - heliocentric_position_vector
+      - heliocentric_velocity_vector
+      - orbital_angular_momentum_vector
+      - spin_axis_vector
+    future_metric: orbital_spin_shape_residual
+    status: TOKEN_VAZIO
+    claim_allowed: false
+
+  - record_id: TOKEN_VAZIO_JUPITER_SYSTEM_001
+    body_or_system: Jupiter and major moons
+    source_family: N_body_ephemeris_plus_gravity_harmonics
+    intended_sources:
+      - JPL_Horizons_or_SPICE_state_vectors
+      - Jupiter_gravity_harmonics
+      - Galilean_moon_ephemerides
+      - Jupiter_rotation_and_shape_model
+    expected_vectors:
+      - Jupiter_barycentric_state_vector
+      - Galilean_moon_relative_state_vectors
+      - orbital_angular_momentum_vectors
+      - spin_axis_vector
+    future_metric: satellite_torque_and_J2_precession_consistency
+    status: TOKEN_VAZIO
+    claim_allowed: false
+
+validation_boundary:
+  these_records_are_not_raw_catalogs: true
+  these_records_are_not_final_metrics: true
+  these_records_define_ingestion_paths: true
+  global_claim_allowed: false
