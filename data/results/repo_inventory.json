@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:12:47.054783+00:00",
-  "git_commit": "8993ed0583ebf4efa80fd0473425309f3716ed63",
+  "generated_at": "2026-06-13T08:13:11.219618+00:00",
+  "git_commit": "cd2e7d9778286c574a65b7ac9382baceb329aaab",
   "summary": {
     "tracked_files_total": 857,
     "cataloged_files": 839,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34844067,
-    "total_text_lines": 130685,
+    "total_bytes": 34844654,
+    "total_text_lines": 130695,
     "markdown_files": 428,
     "yml_yaml_files": 49,
     "github_workflow_yml_files": 17,
@@ -3328,11 +3328,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 284378,
+      "size_bytes": 284416,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "666bd2a334e8e31078ae9862a792c24b8995f0c83d545ef66938c5c28af29c7a",
-      "line_count": 9671,
+      "sha256": "395197420241fb65ab4535966606f4b680a94003e1a66ed722f9eb540365143d",
+      "line_count": 9673,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3343,10 +3343,10 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 132664,
+      "size_bytes": 132684,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "ac2cabb394a3b0433e76d019ffffc44bb8056415fa2406a2fed25d6e94ef53ec",
+      "sha256": "1e505d07fe8de4cffca276681ba2c6c0c31a24e35eaf4db9f6b69c2f7c5873ec",
       "line_count": 840,
       "is_text": true,
       "risk_flags": [
@@ -3362,7 +3362,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ef24d8e600f9e0f0de07bea572592d888b097bdf3a56d194f19edb81765c14b5",
+      "sha256": "5f7471d10d1d8a79d9e7b7edc0e3cdf9575dacd6eaddfb9350a24d35547d642f",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3818,10 +3818,10 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 151923,
+      "size_bytes": 151943,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "297b688208ef93fa955be42a1068621602a2191454bfa43f1e98f6d372b466a0",
+      "sha256": "aa3ac72e7bd06a3a0ea1634d957914f59140881b9b20a90a10ea980f29c5df30",
       "line_count": 883,
       "is_text": true,
       "risk_flags": [
@@ -4370,7 +4370,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8d04a6d2f4855a84ee11f96fed8745681bc23d0ce6b25cce6d3f3a70ed879557",
+      "sha256": "612469b344c1db0897099d88e106093669a8cbcdf5d0302ddc3619f12894c4f9",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4841,7 +4841,7 @@
       "size_bytes": 7559,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e936c49573ad514649f575f16d19d7c138487fab6573edab902734dcdf25ec2d",
+      "sha256": "c18601007c53f90e6a085cc796e692446e5e7a250d9b3bc203ffafd939b6c073",
       "line_count": 56,
       "is_text": true,
       "risk_flags": [
@@ -8226,11 +8226,11 @@
     },
     {
       "path": "scripts/data_scan/build_real_seed_ingestion_plan.py",
-      "size_bytes": 6957,
+      "size_bytes": 7466,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "900c6fa356519a35cf0ab45d7a3c272a9484b1f9664e2f28124607f7318c9c10",
-      "line_count": 181,
+      "sha256": "b7cdabeb6526df11e9d711af698b98b8acddf6b5f3e5b7a5c025bba08c1943cb",
+      "line_count": 189,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"
