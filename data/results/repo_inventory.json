@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T09:34:46.482498+00:00",
-  "git_commit": "8a4cf5174a5d0e75462cef73c75653cbf72f73bd",
+  "generated_at": "2026-06-13T09:35:05.935861+00:00",
+  "git_commit": "f1dfb3c6474fa1271dbb5a2e03a5159ccbf57da4",
   "summary": {
     "tracked_files_total": 910,
     "cataloged_files": 892,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35056019,
-    "total_text_lines": 135476,
+    "total_bytes": 35056433,
+    "total_text_lines": 135477,
     "markdown_files": 447,
     "yml_yaml_files": 59,
     "github_workflow_yml_files": 22,
@@ -3426,11 +3426,11 @@
     },
     {
       "path": "data/results/bootstrap/raw_data_manifest_status.tsv",
-      "size_bytes": 2140,
+      "size_bytes": 2554,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "c053c7171957bd31c1d53628bb45695402f300f2fea93e7b70e0879df617195e",
-      "line_count": 8,
+      "sha256": "b966b706b3857c1fbe6c95184910e0d43ec140f48f5ecfecea25a0b83482bdda",
+      "line_count": 9,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared",
@@ -3631,7 +3631,7 @@
       "size_bytes": 302505,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "9217a7d8a78937116826501fcb7e0b473cdaafb52db629b2baaf670bb83ccd1a",
+      "sha256": "0cd23346625b79bd915c4f108f99a1c3dd9508c72599b7d11d75a99914d17a09",
       "line_count": 10266,
       "is_text": true,
       "risk_flags": [
@@ -3646,7 +3646,7 @@
       "size_bytes": 141539,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "ad20df6441d7de568ba8965c4406ab9ffbb6fe0e1ce5ed9836fdb43c9da4d31c",
+      "sha256": "a45c5a18f3b5fd4372bc6bcb141c1479b25404b15596b33411bb82b572b7b570",
       "line_count": 893,
       "is_text": true,
       "risk_flags": [
@@ -3662,7 +3662,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ff3007aeda5f3568cbae3fff41e63c38855f1f097ab874dcc6864246d2d49df5",
+      "sha256": "d4014d720d26a46db28b7d722838ffae778a6b5065f0a1bded588ee81b8223f3",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4141,7 +4141,7 @@
       "size_bytes": 161859,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9ec144ebc9d4bce519363b37aa4587a96c23a94526a5886d4cf5d39e7197dd04",
+      "sha256": "8ff85552c8e3a46f86329ebeb5830b920034b51781bfb706ffa04eafc2330eda",
       "line_count": 936,
       "is_text": true,
       "risk_flags": [
@@ -4690,7 +4690,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a3c31c395c54c886163d3fee60947be928ce446c4a77ff753edf46f27090075a",
+      "sha256": "6bcce905ed4103606a74e29b49d2521f56d2e2a52ea1773a4ad680ffc22ae5e3",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5161,7 +5161,7 @@
       "size_bytes": 9210,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c775b0e548cecdcef3ac20966373320cc8162e4c2fe0e05c1b8cdd33c3ce4f7e",
+      "sha256": "508b43a4acab65d3ba2b84eed93c942414beec56b8a4b2aeba27124b60db5695",
       "line_count": 66,
       "is_text": true,
       "risk_flags": [
