@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T04:31:38.213713+00:00",
-  "git_commit": "1dc063821e49de27544bb0ee4cc86126f2382286",
+  "generated_at": "2026-06-13T04:34:16.057431+00:00",
+  "git_commit": "38dfefa620398d5783cf638a69f065fd4ec38e4b",
   "summary": {
     "tracked_files_total": 797,
     "cataloged_files": 779,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34517958,
-    "total_text_lines": 123277,
+    "total_bytes": 34521524,
+    "total_text_lines": 123337,
     "markdown_files": 406,
     "yml_yaml_files": 34,
     "github_workflow_yml_files": 13,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 372,
-    "mentions_mock_or_placeholder": 71,
+    "mentions_mock_or_placeholder": 70,
     "mentions_synthetic": 61,
     "token_vazio_declared": 33,
     "result_artifact": 63
@@ -3067,11 +3067,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 262578,
+      "size_bytes": 262954,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "dfa1e27533e9b8264888393d8321ea9b767b9df691450d43b672ef3795c56e60",
-      "line_count": 8940,
+      "sha256": "ce415de9eb6cfcbadee804fdc0795eac3d3e4c3949f68d1575cb8a2e17ace199",
+      "line_count": 8953,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3083,11 +3083,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 121955,
+      "size_bytes": 122139,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "4f9f304af4cbcce74b1ce373153ef8119378820b6557559588889b788f4f3525",
-      "line_count": 779,
+      "sha256": "0188fbd7ffb7afab001cd2b2e6b18daa700d14597ad60c438cc1a3165bc72b9c",
+      "line_count": 780,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3102,7 +3102,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "631e1d9a65e677695d378832725ab187b56c1325b1e4b4009cb7100d20434dc3",
+      "sha256": "422e10ce0fc2b6d4e142e4fe0780cf9743df0f3078a9165373078b8499b8e0f1",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3558,11 +3558,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 139994,
+      "size_bytes": 140198,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "13f5912de90e48e6472e6b0f1327ca6c321aa83ad8def3d5d0c4d2a4ea8df092",
-      "line_count": 822,
+      "sha256": "f4c7f7c793de12a3d008755db721b259a2e2aafac0242412761b40b941feb8be",
+      "line_count": 823,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4110,7 +4110,7 @@
       "size_bytes": 1500,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7300aac5247eedc0240811472ed14593ea032502d7177ea5a9f6136c6c707113",
+      "sha256": "6038640e9e4178e646cafe98c9607af899812ea3fc243bd5625c63c2a0bf9d5d",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4180,14 +4180,13 @@
     },
     {
       "path": "docs/RLL_1234_CHUNK_TEXT_AUDIT.md",
-      "size_bytes": 2716,
+      "size_bytes": 5518,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "cd9757beaaa51cc04225343c9063fcb4bf43a66f7c9b3fd82f269f953ab803a5",
-      "line_count": 93,
+      "sha256": "2c8c15fb4f3c04c8ae5953a297fb233b75279984a62808e0749dd1684a6dd046",
+      "line_count": 138,
       "is_text": true,
       "risk_flags": [
-        "mentions_mock_or_placeholder",
         "token_vazio_declared"
       ]
     },
@@ -4582,7 +4581,7 @@
       "size_bytes": 5218,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7778b992f8f959cb27d76976882e398118baf6ddfc106d0822b8eef894d22b4f",
+      "sha256": "db546e5d05f686cd27ef66b95c9994a6b6d12a34dfd9389e39ab67816881d7c7",
       "line_count": 41,
       "is_text": true,
       "risk_flags": [
