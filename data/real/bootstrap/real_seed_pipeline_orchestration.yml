@@ -15,6 +15,9 @@ inputs:
     - path: data/real/bootstrap/real_observational_seed_v1.csv
       role: mapped_seed_v1_supplement
       required: true
+    - path: data/real/bootstrap/real_observational_seed_v2_orbital_shape.csv
+      role: orbital_shape_angular_momentum_route_seed
+      required: true
 
 pipeline_outputs:
   ingestion_plan_json: data/results/bootstrap/real_seed_ingestion_plan.json
@@ -171,6 +174,47 @@ routes:
       - direct_collapse_model
       - super_Eddington_growth_model
     status: seed_ready_raw_ingestion_needed
+
+  - route_id: orbital_shape_angular_momentum
+    modules:
+      - orbital_shape_angular_momentum
+    seed_patterns:
+      - Earth-Moon
+      - Mars
+      - Jupiter
+      - angular momentum
+      - planetary shape
+      - gravity harmonics
+    target_ledgers:
+      - data/real/orbital_dynamics/angular_momentum_shape_sources.yml
+    validation_scripts:
+      - scripts/validation/validate_orbital_shape_angular_momentum.py
+    current_outputs:
+      - data/results/orbital_dynamics/angular_momentum_shape_validation.json
+    next_raw_data_paths:
+      - data/raw/orbital_dynamics/ephemerides/
+      - data/raw/orbital_dynamics/spice/
+      - data/raw/orbital_dynamics/gravity_models/
+      - data/raw/orbital_dynamics/shape_models/
+      - data/raw/orbital_dynamics/rotation_models/
+      - data/raw/orbital_dynamics/tidal_models/
+    future_metrics:
+      - orbital_angular_momentum_vector_consistency
+      - spin_angular_momentum_proxy_consistency
+      - total_angular_momentum_drift
+      - torque_proxy_over_time
+      - shape_gravity_residual
+      - secular_precession_consistency
+      - deformation_memory_residual
+    required_baselines:
+      - Keplerian_two_body_orbit
+      - Newtonian_N_body_integration
+      - J2_or_zonal_harmonic_perturbation
+      - IAU_rotation_model
+      - SPICE_or_JPL_ephemeris_baseline
+      - tidal_deformation_model
+      - general_relativity_correction_if_required
+    status: TOKEN_VAZIO_route_scaffold_ready
 
 orchestration_rules:
   - every_seed_must_map_to_route
