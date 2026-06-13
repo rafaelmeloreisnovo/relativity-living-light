@@ -1,0 +1,129 @@
+{
+  "schema": "rll.parameter_origin_registry.v1",
+  "purpose": "Separate Rafael/RLL authorial parameters from external-literature parameters and nuisance parameters before information-criterion comparisons.",
+  "claim_policy": "Parameter origin is provenance metadata only; it does not establish model preference.",
+  "parameters": [
+    {
+      "name": "H0",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "origin": "literature_or_fit",
+      "role": "free_or_prior",
+      "status": "must_report_in_k",
+      "reference": "Planck2018/SH0ES/local_fit_context",
+      "notes": "Use as a free parameter or external prior consistently across all compared models."
+    },
+    {
+      "name": "Om",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "origin": "literature_or_fit",
+      "role": "free_or_prior",
+      "status": "must_report_in_k",
+      "reference": "Planck2018/local_fit_context",
+      "notes": "Matter density entering E(z), BAO, CMB compressed priors, growth and S8."
+    },
+    {
+      "name": "Ok",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "origin": "model_assumption_or_fit",
+      "role": "fixed_or_free",
+      "status": "must_report_if_nonzero_or_free",
+      "reference": "FLRW curvature convention",
+      "notes": "Default fair-comparison route is flat unless curvature is explicitly released for every model."
+    },
+    {
+      "name": "Ob_h2",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "origin": "literature_or_fit",
+      "role": "nuisance_for_rd",
+      "status": "must_report_in_k_when_fitted",
+      "reference": "Planck2018/drag-horizon calibration context",
+      "notes": "Needed when r_d is derived instead of fixed."
+    },
+    {
+      "name": "rd",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "origin": "derived_or_fixed_literature",
+      "role": "derived_or_nuisance",
+      "status": "must_report_policy",
+      "reference": "BAO drag horizon convention",
+      "notes": "Must be fixed for all models or derived for all models; never mix policies inside one comparison."
+    },
+    {
+      "name": "w",
+      "model": "wCDM",
+      "origin": "standard_dark_energy_baseline",
+      "role": "free",
+      "status": "must_report_in_k",
+      "reference": "constant-w dark-energy phenomenology",
+      "notes": "Required baseline before attributing improvements to RLL-specific dynamics."
+    },
+    {
+      "name": "w0",
+      "model": "CPL",
+      "origin": "standard_dark_energy_baseline",
+      "role": "free",
+      "status": "must_report_in_k",
+      "reference": "CPL/w0waCDM parametrization",
+      "notes": "CPL baseline must be fitted independently, not conflated with RLL."
+    },
+    {
+      "name": "wa",
+      "model": "CPL",
+      "origin": "standard_dark_energy_baseline",
+      "role": "free",
+      "status": "must_report_in_k",
+      "reference": "CPL/w0waCDM parametrization",
+      "notes": "CPL baseline must be fitted independently, not conflated with RLL."
+    },
+    {
+      "name": "Os0",
+      "model": "RLL",
+      "origin": "Rafael/RLL_authorial_effective_parameter",
+      "role": "free",
+      "status": "must_report_in_k",
+      "reference": "RLL logistic superposition ansatz",
+      "notes": "Authorial RLL amplitude; do not label as external literature parameter."
+    },
+    {
+      "name": "zt",
+      "model": "RLL",
+      "origin": "Rafael/RLL_authorial_effective_parameter",
+      "role": "free",
+      "status": "must_report_in_k",
+      "reference": "RLL logistic transition ansatz",
+      "notes": "Transition redshift; requires prior bounds and sensitivity checks."
+    },
+    {
+      "name": "wt",
+      "model": "RLL",
+      "origin": "Rafael/RLL_authorial_effective_parameter",
+      "role": "free",
+      "status": "must_report_in_k",
+      "reference": "RLL logistic transition ansatz",
+      "notes": "Transition width; must stay positive and be reported as a free parameter."
+    },
+    {
+      "name": "sigma8",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "origin": "literature_or_fit",
+      "role": "free_or_prior_for_growth",
+      "status": "must_report_in_k_when_fitted",
+      "reference": "RSD/lensing/Planck growth-amplitude context",
+      "notes": "Needed for fσ8 and S8 diagnostics; not interchangeable with S8."
+    },
+    {
+      "name": "M_abs",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "origin": "supernova_nuisance",
+      "role": "nuisance",
+      "status": "must_report_in_k_when_fitted",
+      "reference": "Pantheon+/SN Ia distance-modulus convention",
+      "notes": "SN nuisance/calibration parameter, not an RLL physical parameter."
+    }
+  ],
+  "failsafe": {
+    "raw_datasets_modified": false,
+    "rollback": "This registry is metadata only; remove or revert this file without touching data/real/** if validation fails.",
+    "claim_boundary": "No superiority claim is allowed unless every fitted/free/nuisance parameter is counted consistently in k."
+  }
+}
