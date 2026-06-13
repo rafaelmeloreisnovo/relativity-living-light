@@ -134,4 +134,19 @@ records:
     claim_allowed: false
     next_metric: Eddington_growth_feasibility_grid
 
-safe_conclusion: This manifest creates custody slots only. No raw data claim exists until files are locally present and checksummed.
+  - raw_id: RAW_JPL_HORIZONS_MARS_OBSERVER_2006_SAMPLE
+    route_id: orbital_shape_angular_momentum
+    record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+    source_url: "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='499'&OBJ_DATA='YES'&MAKE_EPHEM='YES'&EPHEM_TYPE='OBSERVER'&CENTER='500@399'&START_TIME='2006-01-01'&STOP_TIME='2006-01-20'&STEP_SIZE='1%20d'&QUANTITIES='1,9,20,23,24,29'"
+    access_date_utc: "2026-06-13"
+    license_or_terms: "NASA/JPL public API output; verify downstream reuse terms before redistribution outside this repository"
+    source_version: "Horizons API response observed as API VERSION 1.2; documentation page version 1.3 dated 2025 June"
+    local_path: data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_observer_2006_sample.csv
+    sha256: 9c8a018c46865766ae00a42340341207b7fe4ae974ca9ec3ccaca257a3eca6e8
+    bytes: 1146
+    raw_data_local: true
+    status: raw_file_present_hash_ready
+    claim_allowed: false
+    next_metric: observer_ephemeris_delta_deldot_profile
+
+safe_conclusion: This manifest creates custody slots and now includes one local raw JPL Horizons observer-ephemeris sample. Scientific claims remain blocked until route-specific raw vectors, baselines, and uncertainty models exist.
