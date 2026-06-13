@@ -1,7 +1,7 @@
 # INDICE MESTRE - Documentacao Oficial
 ## Relativity Living Light
 
-**Atualizado em:** 2026-06-04
+**Atualizado em:** 2026-06-13
 **Regra:** secao principal lista apenas caminhos canonicos oficiais.
 
 ---
@@ -16,6 +16,7 @@ Este arquivo e a **navegacao canonica** da documentacao do repositorio.
 
 Encaminhamentos complementares:
 - Porta de entrada: [`README.md`](../README.md)
+- Mapa central de rastreabilidade: [`docs/RLL_TRACEABILITY_MAP.md`](RLL_TRACEABILITY_MAP.md)
 - Inventario bruto (`.md` e `.zip`): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
 - Mapa Dark Matter/RLL: [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md)
 - Nota Dark Matter/nome/inventario: [`docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md`](DARKMATTER_NAMING_AND_INVENTORY_NOTE.md)
@@ -78,6 +79,11 @@ Encaminhamentos complementares:
 ## 2) Governanca, organizacao e auditoria
 
 - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
+- [`docs/RLL_TRACEABILITY_MAP.md`](RLL_TRACEABILITY_MAP.md) - mapa central: cada claim/artifacto aponta para seu documento, status e proxima prova
+- [`docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md`](RLL_V1_TAG_ANCESTRALITY_AUDIT.md) - auditoria da tag `v1.0.0`, anterioridade da formula e observaveis
+- [`docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md`](RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md) - ledger de proveniencia celular/Termux e estados VERIFIED/DECLARED/TOKEN_VAZIO
+- [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](RLL_NEXT_WORK_DOCUMENTATION_PLAN.md) - plano operacional para inventario da tag, imagens, CSVs, estacoes de dados e non-post-hoc
+- [`docs/RLL_1234_CHUNK_TEXT_AUDIT.md`](RLL_1234_CHUNK_TEXT_AUDIT.md) - auditoria textual dos chunks do `1234.zip`
 - [`docs/CANONICAL_SOURCES.md`](CANONICAL_SOURCES.md)
 - [`docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md`](POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) **(fonte oficial para formatos no core e publicacao de artefatos externos)**
 - [`docs/RAFAELIA_REGIME_INDEX.md`](RAFAELIA_REGIME_INDEX.md) **(classificacao de regimes: formula, hipotese, dado, validacao, legado e simbolico)**
