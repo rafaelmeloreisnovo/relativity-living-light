@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-13T09:27:05.306382+00:00",
-  "git_commit": "c9529d313e22003df6ea4bd19056ae028d994356",
+  "generated_at": "2026-06-13T09:33:28.651584+00:00",
+  "git_commit": "5d89dba6344950d330bf4b7678f8ba9168b57501",
   "summary": {
-    "tracked_files_total": 906,
-    "cataloged_files": 888,
+    "tracked_files_total": 908,
+    "cataloged_files": 890,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35045468,
-    "total_text_lines": 135273,
+    "total_bytes": 35047982,
+    "total_text_lines": 135313,
     "markdown_files": 446,
-    "yml_yaml_files": 58,
+    "yml_yaml_files": 59,
     "github_workflow_yml_files": 22,
-    "data_or_result_files": 108
+    "data_or_result_files": 109
   },
   "counts_by_ext": {
     ".md": 446,
-    ".yml": 58,
+    ".yml": 59,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 128,
     ".sh": 6,
     ".json": 57,
-    ".csv": 64,
+    ".csv": 65,
     ".s": 4,
     ".c": 4,
     ".h": 2,
@@ -41,11 +41,11 @@
   "counts_by_kind": {
     "documentation_md": 446,
     "github_workflow_yml": 22,
-    "config_yml": 36,
+    "config_yml": 37,
     "other": 129,
     "source_code": 140,
     "archive": 6,
-    "data_or_result": 108,
+    "data_or_result": 109,
     "test_or_validation": 1
   },
   "flags": {
@@ -2830,6 +2830,26 @@
       "risk_flags": []
     },
     {
+      "path": "data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv",
+      "size_bytes": 359,
+      "ext": ".csv",
+      "kind": "data_or_result",
+      "sha256": "32406d83e4fa91fdf3d0f4359a849503c4b33bfa8fef1b71fdf496231ba15c86",
+      "line_count": 3,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml",
+      "size_bytes": 1362,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "c7bf09f201b81062f0d37be9a74672bcab950ad64aad40a89ad0c5d5bd58168c",
+      "line_count": 24,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/BAO_data_real.csv",
       "size_bytes": 331,
       "ext": ".csv",
@@ -3596,11 +3616,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 300829,
+      "size_bytes": 301143,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "30336a5d453344a0ceff41a65ee7826cd4d0bef1bb9be95b0db4a29d62c275e6",
-      "line_count": 10214,
+      "sha256": "2673aa8a8e5ec10cbe7e5d0e99afc583f24bc7645224f5f9d240e8b92508d9fd",
+      "line_count": 10224,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3611,11 +3631,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 140696,
+      "size_bytes": 140847,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "3ab05fb5962094339cf7d87e207e372d79072e36e689c53efd95edb4c33bd74d",
-      "line_count": 888,
+      "sha256": "59e4e7172fc0af964365f25e8e09c2f45415e706f12570b6873a824c0bb75a3a",
+      "line_count": 889,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3630,7 +3650,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "d78b57ecac4bf1aaf1bd67d9129eb5dcb5968f55873a247166ac4b034f5f1058",
+      "sha256": "1cb18d88c05df392e314f115b5e2342031327076882d95be239b1ed14ca2ea76",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4106,11 +4126,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 160916,
+      "size_bytes": 161087,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b8807ba154d5e72bae3ff5a9bb88fa367e52646635b15c20b30cf19a2134951a",
-      "line_count": 931,
+      "sha256": "1084be8b087491a3478274c55a183b591072ffc0d07cba64ac22e67f0ddfc613",
+      "line_count": 932,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4658,7 +4678,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "167eb50219803688b970f87ef04fd536ba1a79b659a7d44f3be31e48a2042b6e",
+      "sha256": "5ef1ceabd13d88a160e36ea0a563422ee1047e72ac58e37416d9c0a6e1090d57",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5126,11 +5146,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 8866,
+      "size_bytes": 9023,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a148a141a056e74aaff160d72af84c235dfbe9755e33945eafa2257bc040ce12",
-      "line_count": 64,
+      "sha256": "fef99b253221ef77c0539dd469293dd53063f24c03d7049904207956eefb0c3d",
+      "line_count": 65,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
