@@ -1,6 +1,6 @@
 # Validacao Real RLL vs LCDM — relatorio automatico
 
-_Gerado em 2026-06-08T04:30:36+00:00 UTC. Todos os numeros sao lidos dos artefatos; nenhum e inventado._
+_Gerado em 2026-06-13T04:48:51+00:00 UTC. Todos os numeros sao lidos dos artefatos; nenhum e inventado._
 
 **Regiao de validade:** z in [0.0, 2.4] (onde DESI DR2 + cronometros cosmicos existem).
 
