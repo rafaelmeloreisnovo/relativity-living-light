@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T10:56:20.188783+00:00",
-  "git_commit": "60bd21bd6907838af65ce61717431a924f49df40",
+  "generated_at": "2026-06-13T11:04:00.791322+00:00",
+  "git_commit": "e981cbd6d37f5950d2965becd94d5cb20dc6485d",
   "summary": {
-    "tracked_files_total": 930,
-    "cataloged_files": 912,
+    "tracked_files_total": 932,
+    "cataloged_files": 914,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35161857,
-    "total_text_lines": 138644,
+    "total_bytes": 35166768,
+    "total_text_lines": 138771,
     "markdown_files": 465,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
@@ -17,7 +17,7 @@
     ".yml": 61,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 128,
+    ".py": 130,
     ".sh": 6,
     ".json": 58,
     ".csv": 65,
@@ -43,7 +43,7 @@
     "github_workflow_yml": 23,
     "config_yml": 38,
     "other": 129,
-    "source_code": 140,
+    "source_code": 142,
     "archive": 6,
     "data_or_result": 110,
     "test_or_validation": 1
@@ -3650,11 +3650,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 309462,
+      "size_bytes": 309805,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "add3079cc9233c29d198c63560f9ac95e64990f4089442cea235cdf5a51fa4f5",
-      "line_count": 10505,
+      "sha256": "91a8825d2aec5e9c9c10fc879e5922d96d186f4268e4be30cf229d932140d8de",
+      "line_count": 10517,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3665,11 +3665,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 144928,
+      "size_bytes": 145090,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "756c7dec277c858708646f20d86e8fe2834a53a513814674f7be1d660b823c62",
-      "line_count": 912,
+      "sha256": "2ffa1456de394881ab1216460cf2a0ad45afe41cd0e712dc642d6f70ca7813b2",
+      "line_count": 913,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3684,7 +3684,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "278d84fb1b425e3adbf8fed146f13fe00ca1bf8b4eded1fb76e51610f6f4ddac",
+      "sha256": "9ce24b6ebec17afa41654e8cd1c1dc1592165240e7aa3930705893674d3ad27b",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4160,11 +4160,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 165628,
+      "size_bytes": 165810,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3586189b592a8b155783556394b5e77b00553fcf49587bddb23e2a33f74ac072",
-      "line_count": 955,
+      "sha256": "36d48cf9cfd2fcb071cd7425ce02cb6dcfda2ad107e308b20a62c6b546b93d76",
+      "line_count": 956,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4712,7 +4712,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3a78cb5a924618a496ff8c98e47359dccb908d2b77ecbcec40d0561858cae794",
+      "sha256": "2803973fb221789bc1ba88e0216a051b53a0a6e92fde84443fc8be60a38975c0",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5366,7 +5366,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "4b197125c8af7edacc623eaf1ea1d8e3bdcfe83f057063bbc133481e51cd6e5a",
+      "sha256": "fb00deda472b2c95496164da51f7b5f0375bbd4d45287aae46a5f5c05da60fb5",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
@@ -9195,6 +9195,16 @@
       ]
     },
     {
+      "path": "scripts/run_structure_d_joint_likelihood.py",
+      "size_bytes": 2833,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "75ed478af8e7264cbb0c15d3cb01a6b3ef2755c47ad4087913cff480d6020675",
+      "line_count": 83,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "scripts/unified_geometry_system.py",
       "size_bytes": 3643,
       "ext": ".py",
@@ -9736,6 +9746,16 @@
       "kind": "source_code",
       "sha256": "fc0fe6cc1aad9b4548190eca1282dcfc2022460c7e1625c912460a62d6cc3314",
       "line_count": 27,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "tests/test_structure_d_output_stem_wrapper.py",
+      "size_bytes": 1391,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "3b1315bd88dc1e9b00fd3bbde5a6c53e9ab97aafda4a2f231bf3b7ba86b6cc1a",
+      "line_count": 30,
       "is_text": true,
       "risk_flags": []
     },
