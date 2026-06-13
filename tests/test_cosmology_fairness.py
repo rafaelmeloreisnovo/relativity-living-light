@@ -15,6 +15,7 @@ from rll.cosmology_fairness import (
     e2_lcdm,
     e2_wcdm,
     fsigma8_linear,
+    growth_backend_benchmark_status,
     linear_growth_dplus,
     load_parameter_origin_registry,
     rd_drag_power_law,
@@ -90,6 +91,13 @@ def test_covariance_readiness_gates_partial_covariance_claims() -> None:
     assert partial.claim_allowed is False
     assert full.ready is True
     assert full.claim_allowed is True
+
+
+def test_growth_backend_benchmark_status_is_claim_gate() -> None:
+    status = growth_backend_benchmark_status(require_external=True)
+
+    assert set(status) == {"status", "available_backends", "checked_backends", "claim_allowed", "reason"}
+    assert status["claim_allowed"] is (status["status"] == "available")
 
 
 def test_parameter_origin_registry_contract() -> None:

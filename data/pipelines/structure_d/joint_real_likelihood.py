@@ -14,12 +14,18 @@ import csv
 import hashlib
 import json
 import os
+import sys
 import time
 from pathlib import Path
 from typing import Callable
 
 import numpy as np
 import pandas as pd
+
+_IMPORT_BASE_DIR = Path(__file__).resolve().parents[3]
+_IMPORT_SRC_DIR = _IMPORT_BASE_DIR / "src"
+if str(_IMPORT_SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(_IMPORT_SRC_DIR))
 
 try:
     from scipy.integrate import quad
@@ -28,6 +34,8 @@ except ImportError as exc:  # pragma: no cover - exercised by environment setup
     raise ImportError(
         "joint_real_likelihood requires SciPy. Install with `pip install -r requirements.txt`."
     ) from exc
+
+from rll.cosmology_fairness import covariance_readiness, growth_backend_benchmark_status, load_parameter_origin_registry
 
 from .energy_momentum_bridge import build_fnext_gate
 from .likelihood import aic, aicc, bic, chi2_with_covariance
@@ -45,6 +53,8 @@ RESULTS = BASE_DIR / "results" / "structure_d"
 HZ_PATH = BASE_DIR / "data" / "real" / "Hz_data_real.csv"
 DESI_POINTS_PATH = BASE_DIR / "data" / "real" / "cosmology" / "desi_dr2_bao_primary_points.csv"
 DESI_COV_SUMMARY_PATH = BASE_DIR / "data" / "real" / "cosmology" / "desi_dr2_bao_covariance_summary.csv"
+DESI_FULL_COV_PATH = BASE_DIR / "data" / "real" / "desi_dr2_bao_covariance.csv"
+PARAMETER_REGISTRY_PATH = BASE_DIR / "data" / "inputs" / "cosmology_joint" / "parameter_origin_registry.json"
 FSIGMA8_PATH = BASE_DIR / "data" / "real" / "cosmology" / "fsigma8_growth_real.csv"
 CMB_SHIFT_PATH = BASE_DIR / "data" / "real" / "CMB_shift_real.json"
 
@@ -52,7 +62,22 @@ C_KMS = 299792.458
 ORAD = 9.0e-5
 Z_CMB_DEFAULT = 1089.92
 MODEL_LCDM = "LCDM_joint_real"
+MODEL_WCDM = "wCDM_joint_real"
+MODEL_CPL = "CPL_w0waCDM_joint_real"
 MODEL_RLL = "RLL_joint_real"
+MODEL_ORDER = (MODEL_LCDM, MODEL_WCDM, MODEL_CPL, MODEL_RLL)
+MODEL_PARAM_NAMES = {
+    MODEL_LCDM: ("H0", "Om", "OL", "Ob_h2", "sigma8"),
+    MODEL_WCDM: ("H0", "Om", "OL", "w", "Ob_h2", "sigma8"),
+    MODEL_CPL: ("H0", "Om", "OL", "w0", "wa", "Ob_h2", "sigma8"),
+    MODEL_RLL: ("H0", "Om", "OL", "Os0", "zt", "wt", "Ob_h2", "sigma8"),
+}
+MODEL_BOUNDS = {
+    MODEL_LCDM: [(60.0, 80.0), (0.10, 0.60), (0.40, 1.10), (0.018, 0.026), (0.50, 1.10)],
+    MODEL_WCDM: [(60.0, 80.0), (0.10, 0.60), (0.40, 1.10), (-2.0, -0.3), (0.018, 0.026), (0.50, 1.10)],
+    MODEL_CPL: [(60.0, 80.0), (0.10, 0.60), (0.40, 1.10), (-2.0, -0.3), (-3.0, 3.0), (0.018, 0.026), (0.50, 1.10)],
+    MODEL_RLL: [(60.0, 80.0), (0.10, 0.60), (0.40, 1.10), (0.0, 0.25), (0.1, 10.0), (0.05, 2.0), (0.018, 0.026), (0.50, 1.10)],
+}
 
 
 def _sha256_file(path: Path) -> str:
@@ -92,6 +117,21 @@ def e2_lcdm(z: np.ndarray | float, h0: float, om: float, ol: float) -> np.ndarra
     del h0  # kept in the signature to match the RLL callable interface
     z_arr = np.asarray(z, dtype=float)
     return om * (1.0 + z_arr) ** 3 + ORAD * (1.0 + z_arr) ** 4 + ol
+
+
+def e2_wcdm(z: np.ndarray | float, h0: float, om: float, ol: float, w: float) -> np.ndarray:
+    del h0
+    z_arr = np.asarray(z, dtype=float)
+    zp1 = 1.0 + z_arr
+    return om * zp1**3 + ORAD * zp1**4 + ol * zp1 ** (3.0 * (1.0 + float(w)))
+
+
+def e2_cpl(z: np.ndarray | float, h0: float, om: float, ol: float, w0: float, wa: float) -> np.ndarray:
+    del h0
+    z_arr = np.asarray(z, dtype=float)
+    zp1 = 1.0 + z_arr
+    dark_energy = zp1 ** (3.0 * (1.0 + float(w0) + float(wa))) * np.exp(-3.0 * float(wa) * z_arr / zp1)
+    return om * zp1**3 + ORAD * zp1**4 + ol * dark_energy
 
 
 def e2_rll(z: np.ndarray | float, h0: float, om: float, ol: float, os0: float, zt: float, wt: float) -> np.ndarray:
@@ -183,28 +223,94 @@ def _chi2_diag(obs: np.ndarray, pred: np.ndarray, sigma: np.ndarray) -> float:
     return float(np.sum(((np.asarray(obs, dtype=float) - np.asarray(pred, dtype=float)) / np.asarray(sigma, dtype=float)) ** 2))
 
 
+def load_parameter_registry() -> dict:
+    registry = json.loads(PARAMETER_REGISTRY_PATH.read_text(encoding="utf-8"))
+    return load_parameter_origin_registry(registry)
+
+
+def _registry_parameter_names(registry: dict) -> set[str]:
+    return {str(item["name"]) for item in registry["parameters"]}
+
+
+def _validate_model_parameter_registry(registry: dict) -> None:
+    known_names = _registry_parameter_names(registry)
+    aliases = {"OL": "Om"}
+    missing: dict[str, list[str]] = {}
+    for model, names in MODEL_PARAM_NAMES.items():
+        absent = [name for name in names if aliases.get(name, name) not in known_names and name not in known_names]
+        if absent:
+            missing[model] = absent
+    if missing:
+        raise ValueError(f"parameter_origin_registry missing fitted parameters: {missing}")
+
+
+def _load_desi_covariance(points: pd.DataFrame, summary: pd.DataFrame) -> tuple[np.ndarray, dict[str, object]]:
+    if DESI_FULL_COV_PATH.exists():
+        full_cov = pd.read_csv(DESI_FULL_COV_PATH, index_col=0).to_numpy(dtype=float)
+        readiness = covariance_readiness(full_cov, mode="official_full")
+        if readiness.ready and full_cov.shape == (len(points), len(points)):
+            return full_cov, {
+                "path": str(DESI_FULL_COV_PATH.relative_to(BASE_DIR)),
+                "mode": readiness.mode,
+                "ready": readiness.ready,
+                "claim_allowed": readiness.claim_allowed,
+                "reason": readiness.reason,
+                "sha256": _sha256_file(DESI_FULL_COV_PATH),
+            }
+    block_cov = build_desi_covariance(points, summary)
+    readiness = covariance_readiness(block_cov, mode="block_summary")
+    return block_cov, {
+        "path": str(DESI_COV_SUMMARY_PATH.relative_to(BASE_DIR)),
+        "mode": readiness.mode,
+        "ready": readiness.ready,
+        "claim_allowed": readiness.claim_allowed,
+        "reason": readiness.reason,
+        "sha256": _sha256_file(DESI_COV_SUMMARY_PATH),
+    }
+
+
 def load_joint_inputs() -> dict:
+    registry = load_parameter_registry()
+    _validate_model_parameter_registry(registry)
     hz = pd.read_csv(HZ_PATH)
     desi = pd.read_csv(DESI_POINTS_PATH)
     desi_summary = pd.read_csv(DESI_COV_SUMMARY_PATH)
     fs8 = pd.read_csv(FSIGMA8_PATH)
     cmb = json.loads(CMB_SHIFT_PATH.read_text(encoding="utf-8"))
-    desi_cov = build_desi_covariance(desi, desi_summary)
-    return {"hz": hz, "desi": desi, "desi_summary": desi_summary, "desi_cov": desi_cov, "fs8": fs8, "cmb": cmb}
+    desi_cov, covariance_info = _load_desi_covariance(desi, desi_summary)
+    return {
+        "hz": hz,
+        "desi": desi,
+        "desi_summary": desi_summary,
+        "desi_cov": desi_cov,
+        "desi_covariance_info": covariance_info,
+        "fs8": fs8,
+        "cmb": cmb,
+        "parameter_registry": registry,
+    }
+
+
+def _model_runtime(model: str, vector: np.ndarray) -> tuple[Callable, tuple[float, ...], float, float, float, dict[str, float]]:
+    if model == MODEL_LCDM:
+        h0, om, ol, ob_h2, sigma8 = vector
+        return e2_lcdm, (h0, om, ol), h0, ob_h2, sigma8, {}
+    if model == MODEL_WCDM:
+        h0, om, ol, w, ob_h2, sigma8 = vector
+        return e2_wcdm, (h0, om, ol, w), h0, ob_h2, sigma8, {"w": w}
+    if model == MODEL_CPL:
+        h0, om, ol, w0, wa, ob_h2, sigma8 = vector
+        return e2_cpl, (h0, om, ol, w0, wa), h0, ob_h2, sigma8, {"w0": w0, "wa": wa}
+    if model == MODEL_RLL:
+        h0, om, ol, os0, zt, wt, ob_h2, sigma8 = vector
+        return e2_rll, (h0, om, ol, os0, zt, wt), h0, ob_h2, sigma8, {"Os0": os0, "zt": zt, "wt": wt}
+    raise ValueError(f"unknown model: {model}")
 
 
 def evaluate_components(model: str, vector: np.ndarray, inputs: dict) -> dict[str, float]:
     vector = np.asarray(vector, dtype=float)
-    if model == MODEL_LCDM:
-        h0, om, ol, ob_h2, sigma8 = vector
-        e2_fn = e2_lcdm
-        params = (h0, om, ol)
-    elif model == MODEL_RLL:
-        h0, om, ol, os0, zt, wt, ob_h2, sigma8 = vector
-        e2_fn = e2_rll
-        params = (h0, om, ol, os0, zt, wt)
-    else:
-        raise ValueError(f"unknown model: {model}")
+    e2_fn, params, h0, ob_h2, sigma8, _extra = _model_runtime(model, vector)
+    om = float(params[1])
+    ol = float(params[2])
 
     if h0 <= 0.0 or om <= 0.0 or ol <= 0.0 or ob_h2 <= 0.0 or sigma8 <= 0.0:
         return {"total": float("inf")}
@@ -241,12 +347,10 @@ def evaluate_components(model: str, vector: np.ndarray, inputs: dict) -> dict[st
 
 
 def fit_model(model: str, inputs: dict, seed: int, maxiter: int, tol: float) -> tuple[np.ndarray, dict[str, float]]:
-    if model == MODEL_LCDM:
-        bounds = [(60.0, 80.0), (0.10, 0.60), (0.40, 1.10), (0.018, 0.026), (0.50, 1.10)]
-    elif model == MODEL_RLL:
-        bounds = [(60.0, 80.0), (0.10, 0.60), (0.40, 1.10), (0.0, 0.25), (0.1, 10.0), (0.05, 2.0), (0.018, 0.026), (0.50, 1.10)]
-    else:
-        raise ValueError(f"unknown model: {model}")
+    try:
+        bounds = MODEL_BOUNDS[model]
+    except KeyError as exc:
+        raise ValueError(f"unknown model: {model}") from exc
 
     result = differential_evolution(
         lambda values: evaluate_components(model, values, inputs)["total"],
@@ -285,139 +389,143 @@ def _rows_to_csv(rows: list[dict]) -> str:
     return buf.getvalue()
 
 
+
+def _model_specific_values(model: str, vector: np.ndarray) -> dict[str, float]:
+    values = {name: np.nan for name in ("w", "w0", "wa", "Os0", "zt", "wt")}
+    for name, value in zip(MODEL_PARAM_NAMES[model], vector):
+        if name in values:
+            values[name] = float(value)
+    return values
+
+
+def _model_row(model: str, vector: np.ndarray, components: dict[str, float], n_obs: int) -> dict[str, float | int | str]:
+    vector = np.asarray(vector, dtype=float)
+    k = len(MODEL_PARAM_NAMES[model])
+    base = {
+        "model": model,
+        "chi2": components["total"],
+        "AIC": aic(components["total"], k),
+        "AICc": aicc(components["total"], k, n_obs),
+        "BIC": bic(components["total"], k, n_obs),
+        "N": n_obs,
+        "k": k,
+        "dof": n_obs - k,
+        "chi2_Hz": components["Hz"],
+        "chi2_DESI_DR2_BAO": components["DESI_DR2_BAO"],
+        "chi2_fsigma8": components["fsigma8"],
+        "chi2_CMB_shift": components["CMB_shift"],
+        "H0": float(vector[0]),
+        "Om": float(vector[1]),
+        "OL": float(vector[2]),
+        "Ob_h2": float(vector[-2]),
+        "sigma8": float(vector[-1]),
+    }
+    base.update(_model_specific_values(model, vector))
+    return base
+
+
+def _delta_against(rows_by_model: dict[str, dict], model: str, baseline: str = MODEL_LCDM) -> dict[str, float]:
+    row = rows_by_model[model]
+    base = rows_by_model[baseline]
+    slug = model.replace("_joint_real", "").replace("_w0waCDM", "").lower()
+    return {
+        f"delta_chi2_{slug}_minus_lcdm": row["chi2"] - base["chi2"],
+        f"delta_aic_{slug}_minus_lcdm": row["AIC"] - base["AIC"],
+        f"delta_aicc_{slug}_minus_lcdm": row["AICc"] - base["AICc"],
+        f"delta_bic_{slug}_minus_lcdm": row["BIC"] - base["BIC"],
+    }
+
 def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
     start = time.perf_counter()
     inputs = load_joint_inputs()
     seed = int(os.environ.get("STRUCTURE_D_JOINT_SEED", "42"))
     tol = float(os.environ.get("STRUCTURE_D_JOINT_TOL", "1e-6"))
-    maxiter_lcdm = int(os.environ.get("STRUCTURE_D_JOINT_MAXITER_LCDM", "120"))
-    maxiter_rll = int(os.environ.get("STRUCTURE_D_JOINT_MAXITER_RLL", "180"))
+    default_maxiter = int(os.environ.get("STRUCTURE_D_JOINT_MAXITER", "140"))
+    maxiter_by_model = {
+        MODEL_LCDM: int(os.environ.get("STRUCTURE_D_JOINT_MAXITER_LCDM", str(default_maxiter))),
+        MODEL_WCDM: int(os.environ.get("STRUCTURE_D_JOINT_MAXITER_WCDM", str(default_maxiter))),
+        MODEL_CPL: int(os.environ.get("STRUCTURE_D_JOINT_MAXITER_CPL", str(default_maxiter))),
+        MODEL_RLL: int(os.environ.get("STRUCTURE_D_JOINT_MAXITER_RLL", str(default_maxiter))),
+    }
 
-    lcdm_vector, lcdm_components = fit_model(MODEL_LCDM, inputs, seed, maxiter_lcdm, tol)
-    rll_vector, rll_components = fit_model(MODEL_RLL, inputs, seed, maxiter_rll, tol)
+    fitted: dict[str, tuple[np.ndarray, dict[str, float]]] = {}
+    for offset, model in enumerate(MODEL_ORDER):
+        fitted[model] = fit_model(model, inputs, seed + offset, maxiter_by_model[model], tol)
 
     n_obs = int(len(inputs["hz"]) + len(inputs["desi"]) + len(inputs["fs8"]) + 2)
-    k_lcdm = 5
-    k_rll = 8
-    rows = [
-        {
-            "model": MODEL_LCDM,
-            "chi2": lcdm_components["total"],
-            "AIC": aic(lcdm_components["total"], k_lcdm),
-            "AICc": aicc(lcdm_components["total"], k_lcdm, n_obs),
-            "BIC": bic(lcdm_components["total"], k_lcdm, n_obs),
-            "N": n_obs,
-            "k": k_lcdm,
-            "dof": n_obs - k_lcdm,
-            "chi2_Hz": lcdm_components["Hz"],
-            "chi2_DESI_DR2_BAO": lcdm_components["DESI_DR2_BAO"],
-            "chi2_fsigma8": lcdm_components["fsigma8"],
-            "chi2_CMB_shift": lcdm_components["CMB_shift"],
-            "H0": lcdm_vector[0],
-            "Om": lcdm_vector[1],
-            "OL": lcdm_vector[2],
-            "Os0": np.nan,
-            "zt": np.nan,
-            "wt": np.nan,
-            "Ob_h2": lcdm_vector[3],
-            "sigma8": lcdm_vector[4],
-        },
-        {
-            "model": MODEL_RLL,
-            "chi2": rll_components["total"],
-            "AIC": aic(rll_components["total"], k_rll),
-            "AICc": aicc(rll_components["total"], k_rll, n_obs),
-            "BIC": bic(rll_components["total"], k_rll, n_obs),
-            "N": n_obs,
-            "k": k_rll,
-            "dof": n_obs - k_rll,
-            "chi2_Hz": rll_components["Hz"],
-            "chi2_DESI_DR2_BAO": rll_components["DESI_DR2_BAO"],
-            "chi2_fsigma8": rll_components["fsigma8"],
-            "chi2_CMB_shift": rll_components["CMB_shift"],
-            "H0": rll_vector[0],
-            "Om": rll_vector[1],
-            "OL": rll_vector[2],
-            "Os0": rll_vector[3],
-            "zt": rll_vector[4],
-            "wt": rll_vector[5],
-            "Ob_h2": rll_vector[6],
-            "sigma8": rll_vector[7],
-        },
-    ]
+    rows = [_model_row(model, fitted[model][0], fitted[model][1], n_obs) for model in MODEL_ORDER]
+    rows_by_model = {row["model"]: row for row in rows}
+    rll_delta = _delta_against(rows_by_model, MODEL_RLL)
+    model_deltas = {model: _delta_against(rows_by_model, model) for model in (MODEL_WCDM, MODEL_CPL, MODEL_RLL)}
+    growth_benchmark = growth_backend_benchmark_status(require_external=True)
 
     outputs = []
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.csv", _rows_to_csv(rows)))
 
     payload = {
-        "schema": "rll.joint_real_likelihood.v1",
+        "schema": "rll.joint_real_likelihood.v2",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "runtime_seconds": time.perf_counter() - start,
         "optimizer": {
             "name": "scipy.optimize.differential_evolution",
             "seed": seed,
             "tol": tol,
-            "maxiter_lcdm": maxiter_lcdm,
-            "maxiter_rll": maxiter_rll,
+            "maxiter_by_model": maxiter_by_model,
+            "models": list(MODEL_ORDER),
         },
         "datasets": {
             "Hz": str(HZ_PATH.relative_to(BASE_DIR)),
             "DESI_DR2_BAO_primary": str(DESI_POINTS_PATH.relative_to(BASE_DIR)),
-            "DESI_DR2_BAO_covariance_summary": str(DESI_COV_SUMMARY_PATH.relative_to(BASE_DIR)),
+            "DESI_DR2_BAO_covariance": inputs["desi_covariance_info"]["path"],
             "fsigma8": str(FSIGMA8_PATH.relative_to(BASE_DIR)),
             "CMB_shift": str(CMB_SHIFT_PATH.relative_to(BASE_DIR)),
+            "parameter_origin_registry": str(PARAMETER_REGISTRY_PATH.relative_to(BASE_DIR)),
         },
-        "rd_policy": "derived_power_law_from_H0_Om_Ob_h2",
-        "bao_covariance_policy": "block_covariance_from_committed_DESI_DR2_DM_DH_correlations; diagonal for unpaired BGS DV",
+        "rd_policy": "derived_power_law_from_H0_Om_Ob_h2_for_all_models",
+        "bao_covariance_policy": inputs["desi_covariance_info"],
+        "growth_benchmark": growth_benchmark,
+        "parameter_registry_policy": {
+            "path": str(PARAMETER_REGISTRY_PATH.relative_to(BASE_DIR)),
+            "required_before_information_criteria": True,
+            "sha256": _sha256_file(PARAMETER_REGISTRY_PATH),
+        },
         "dataset_type": "real_observational",
         "claim_boundary": CLAIM_BOUNDARY,
         "claim_allowed": False,
         "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
-        "interpretation_label": interpret_model_comparison(
-            {
-                "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
-                "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
-                "delta_aicc_rll_minus_lcdm": rows[1]["AICc"] - rows[0]["AICc"],
-                "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
-            },
-            "real_observational",
-        )["interpretation_label"],
-        "claim_policy": enforce_claim_boundary(
-            "real_observational",
-            {
-                "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
-                "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
-                "delta_aicc_rll_minus_lcdm": rows[1]["AICc"] - rows[0]["AICc"],
-                "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
-            },
-        ),
-        "fnext": _json_safe(
-            build_fnext_gate(
-                {
-                    "delta_chi2_rll_minus_lcdm": rows[1]["chi2"] - rows[0]["chi2"],
-                    "delta_aic_rll_minus_lcdm": rows[1]["AIC"] - rows[0]["AIC"],
-                    "delta_aicc_rll_minus_lcdm": rows[1]["AICc"] - rows[0]["AICc"],
-                    "delta_bic_rll_minus_lcdm": rows[1]["BIC"] - rows[0]["BIC"],
-                }
-            )
-        ),
+        "interpretation_label": interpret_model_comparison(rll_delta, "real_observational")["interpretation_label"],
+        "claim_policy": enforce_claim_boundary("real_observational", rll_delta),
+        "model_deltas_vs_lcdm": _json_safe(model_deltas),
+        "fnext": _json_safe(build_fnext_gate(rll_delta)),
         "rows": _json_safe(rows),
     }
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.json", json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n"))
 
     manifest = {
-        "schema": "rll.joint_real_likelihood.covariance_manifest.v1",
+        "schema": "rll.joint_real_likelihood.covariance_manifest.v2",
         "desi_covariance_shape": list(inputs["desi_cov"].shape),
         "desi_covariance_sha256": hashlib.sha256(inputs["desi_cov"].astype("<f8").tobytes()).hexdigest(),
-        "input_sha256": {
-            str(path.relative_to(BASE_DIR)): _sha256_file(path)
-            for path in [HZ_PATH, DESI_POINTS_PATH, DESI_COV_SUMMARY_PATH, FSIGMA8_PATH, CMB_SHIFT_PATH]
-        },
+        "desi_covariance_readiness": inputs["desi_covariance_info"],
+        "growth_benchmark": growth_benchmark,
+        "input_sha256": {},
         "failsafe": {
             "atomic_write": True,
             "backup_before_replace": True,
             "rollback_instruction": "copy any non-empty *.bak file over the corresponding output if a downstream check fails",
+            "raw_datasets_modified": False,
         },
+    }
+    # Normalize any relative covariance path used in the hash manifest.
+    manifest["input_sha256"] = {
+        str(path.relative_to(BASE_DIR)): _sha256_file(path)
+        for path in [
+            HZ_PATH,
+            DESI_POINTS_PATH,
+            BASE_DIR / inputs["desi_covariance_info"]["path"],
+            FSIGMA8_PATH,
+            CMB_SHIFT_PATH,
+            PARAMETER_REGISTRY_PATH,
+        ]
     }
     outputs.append(
         _atomic_write_text(
@@ -427,7 +535,6 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
     )
     payload["outputs"] = outputs
     return payload
-
 
 def main() -> dict:
     payload = run_joint_likelihood()

@@ -10,6 +10,7 @@ are interpreted.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from importlib.util import find_spec
 from typing import Callable, Mapping
 
 import numpy as np
@@ -388,6 +389,32 @@ def covariance_readiness(covariance: ArrayLike, *, mode: str) -> CovarianceReadi
         return CovarianceReadiness(True, False, mode_text, "valid covariance, but not an official full covariance", n)
     return CovarianceReadiness(True, True, mode_text, "official full covariance is valid", n)
 
+
+
+def growth_backend_benchmark_status(*, require_external: bool = False) -> dict[str, object]:
+    """Report whether an external CLASS/CAMB growth benchmark is available.
+
+    The local D+/fσ8 implementation is an approximation.  This function is a
+    claim gate: if neither CLASS (``classy``) nor CAMB is installed, strong
+    growth claims must remain blocked rather than silently treating the local
+    approximation as a Boltzmann-code benchmark.
+    """
+
+    backends = {"classy": find_spec("classy") is not None, "camb": find_spec("camb") is not None}
+    available = [name for name, present in backends.items() if present]
+    status = "available" if available else "skipped_missing_backend"
+    claim_allowed = bool(available) and bool(require_external)
+    return {
+        "status": status,
+        "available_backends": available,
+        "checked_backends": sorted(backends),
+        "claim_allowed": claim_allowed,
+        "reason": (
+            "External CLASS/CAMB backend is importable; run numerical benchmark before strong claims."
+            if available
+            else "CLASS/CAMB backend is not installed in this environment; D+/fσ8 remains an internal approximation."
+        ),
+    }
 
 def load_parameter_origin_registry(registry: Mapping[str, object]) -> dict[str, object]:
     """Validate the minimal parameter-origin registry contract."""
