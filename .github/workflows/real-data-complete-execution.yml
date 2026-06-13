@@ -59,6 +59,7 @@ concurrency:
 jobs:
   real-data-complete:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     env:
       RUN_DIR: artifacts/real-data-complete
       CLAIM_BOUNDARY: "No superiority claim unless real-data metrics pass predefined thresholds."
