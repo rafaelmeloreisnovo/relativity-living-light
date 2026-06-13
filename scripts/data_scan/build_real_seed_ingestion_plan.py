@@ -19,6 +19,7 @@ from pathlib import Path
 SEED_CSVS = [
     Path("data/real/bootstrap/real_observational_seed_v0.csv"),
     Path("data/real/bootstrap/real_observational_seed_v1.csv"),
+    Path("data/real/bootstrap/real_observational_seed_v2_orbital_shape.csv"),
 ]
 
 OUT_JSON = Path("data/results/bootstrap/real_seed_ingestion_plan.json")
@@ -60,6 +61,13 @@ MODULE_ROUTE = {
         "validator": "scripts/validation/validate_high_z_smbh_seeds.py",
         "expected_output": "data/results/high_z_smbh/seed_validation.json",
         "next_raw_path": "data/raw/high_z_smbh/",
+    },
+    "orbital_shape_angular_momentum": {
+        "route_id": "orbital_shape_angular_momentum",
+        "target_ledger": "data/real/orbital_dynamics/angular_momentum_shape_sources.yml",
+        "validator": "scripts/validation/validate_orbital_shape_angular_momentum.py",
+        "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json",
+        "next_raw_path": "data/raw/orbital_dynamics/",
     },
 }
 
