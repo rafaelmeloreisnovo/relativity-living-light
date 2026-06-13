@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:39:57.417358+00:00",
-  "git_commit": "cf2e4dfc3157ed4c384c34ecdcabdd5aa81d6d79",
+  "generated_at": "2026-06-13T08:42:01.253066+00:00",
+  "git_commit": "8a05dc162156c7f1d00859ad1c5e88b05f47867f",
   "summary": {
-    "tracked_files_total": 871,
-    "cataloged_files": 853,
+    "tracked_files_total": 872,
+    "cataloged_files": 854,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34905579,
-    "total_text_lines": 132124,
+    "total_bytes": 34908935,
+    "total_text_lines": 132215,
     "markdown_files": 435,
     "yml_yaml_files": 51,
     "github_workflow_yml_files": 18,
@@ -17,7 +17,7 @@
     ".yml": 51,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 120,
+    ".py": 121,
     ".sh": 6,
     ".json": 51,
     ".csv": 63,
@@ -43,7 +43,7 @@
     "github_workflow_yml": 18,
     "config_yml": 33,
     "other": 129,
-    "source_code": 132,
+    "source_code": 133,
     "archive": 6,
     "data_or_result": 99,
     "test_or_validation": 1
@@ -3408,11 +3408,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 288651,
+      "size_bytes": 289337,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "69c55c1167235ddf569a4e8e3864ed648b876ad2b9b15b4159fc89c83102def4",
-      "line_count": 9810,
+      "sha256": "15f1bd6dbd7b7c201434a8669925a408fc5f4b34f07bec5733423d27c60b17a0",
+      "line_count": 9833,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3423,11 +3423,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 134800,
+      "size_bytes": 135131,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "96c8310cd4bdf9917a2d5ebf0a3059fcf2148ee99e6cf9ebe702b84886402720",
-      "line_count": 852,
+      "sha256": "8a9944a7b16c9a68af5efcf9412effca7491d19bcc8ae01e178203803d1fb4d4",
+      "line_count": 854,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3442,7 +3442,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "76f292c75be6ce9c7142b7499d1cb8853adc2865da490ea5bab7f2b878daa7aa",
+      "sha256": "3e74fbfb9ca7d311aab9298d7a7c772e9258e99e9ed54f5eb4a027253ff7538a",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3898,11 +3898,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 154299,
+      "size_bytes": 154670,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "0f9dd753cf4585b30be23632a078512a98003255b748510593c65616422398d4",
-      "line_count": 895,
+      "sha256": "a988406a054ebe4ac5e8121129bf4d26d18592831077fd6586bb2088e92cf0ff",
+      "line_count": 897,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4450,7 +4450,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "46c057e9bf730dcd6e609be12bb28087c7c10a9ebe8a6cd45faee6bbf99e70b2",
+      "sha256": "78c55cbed14c07d966e1ee0d9b7506776ebf74ce785ced0c5e08bf1937532ead",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4921,7 +4921,7 @@
       "size_bytes": 7907,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f93c86039dbd64e17796da1bd3e25e5100db6f3951c3fea694ae39a45d07e55b",
+      "sha256": "80b61d546e9aa72f294f9defa96386675dcedbff7e5d619cde88f4b1e324c2cb",
       "line_count": 58,
       "is_text": true,
       "risk_flags": [
@@ -8599,6 +8599,16 @@
       "kind": "source_code",
       "sha256": "73ec181bfc69e50150b9455337c155fbe83dc2f4fb41b95c8976472d14caca67",
       "line_count": 53,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "scripts/validation/check_claim_boundary.py",
+      "size_bytes": 1968,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "c1a03a5157074d1b621394caa554bacc8eb33b47365cd89e0c4fe34b9b3d0425",
+      "line_count": 64,
       "is_text": true,
       "risk_flags": []
     },
