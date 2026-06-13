@@ -149,4 +149,19 @@ records:
     claim_allowed: false
     next_metric: observer_ephemeris_delta_deldot_profile
 
-safe_conclusion: This manifest creates custody slots and now includes one local raw JPL Horizons observer-ephemeris sample. Scientific claims remain blocked until route-specific raw vectors, baselines, and uncertainty models exist.
+  - raw_id: RAW_JPL_HORIZONS_MARS_VECTORS_2006_SAMPLE
+    route_id: orbital_shape_angular_momentum
+    record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+    source_url: "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%27499%27&OBJ_DATA=NO&MAKE_EPHEM=YES&EPHEM_TYPE=VECTORS&CENTER=%27500%4010%27&START_TIME=%272006-01-01%27&STOP_TIME=%272006-01-02%27&STEP_SIZE=%271%20d%27&OUT_UNITS=%27KM-S%27&VEC_TABLE=%272%27&CSV_FORMAT=YES&TIME_TYPE=TDB"
+    access_date_utc: generated_by_ci_runtime
+    license_or_terms: "NASA/JPL public API output; verify downstream reuse terms before redistribution outside this repository"
+    source_version: "Horizons API runtime response"
+    local_path: data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv
+    sha256: 7bff7afe1d35f86c521c61cfbc3b99fc78ad4a3f6a046cadfe8777eb5d157d5c
+    bytes: 362
+    raw_data_local: true
+    status: raw_file_present_hash_ready
+    claim_allowed: false
+    next_metric: state_vector_vs_reference_h_residual
+
+safe_conclusion: This manifest creates custody slots and now includes two local raw JPL Horizons samples: observer ephemeris and heliocentric state vectors. Scientific claims remain blocked until baselines and uncertainty models exist.
