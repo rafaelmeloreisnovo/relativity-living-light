@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-06-13T10:55:18.796231+00:00",
-  "git_commit": "eedb3631bdb4c810da0a6d0dec1f2d49b74ee2d3",
+  "generated_at": "2026-06-13T10:55:48.303459+00:00",
+  "git_commit": "9da2bec10d87dd8edc636a0c0c46fa99bc7a1e09",
   "summary": {
-    "tracked_files_total": 927,
-    "cataloged_files": 909,
+    "tracked_files_total": 928,
+    "cataloged_files": 910,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35145805,
-    "total_text_lines": 138196,
-    "markdown_files": 462,
+    "total_bytes": 35151562,
+    "total_text_lines": 138332,
+    "markdown_files": 463,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 110
   },
   "flags": {
-    "cosmology_validation_marker": 406,
-    "token_vazio_declared": 92,
+    "cosmology_validation_marker": 407,
+    "token_vazio_declared": 93,
     "mentions_mock_or_placeholder": 85,
-    "mentions_synthetic": 65,
+    "mentions_synthetic": 66,
     "result_artifact": 91
   },
   "errors": [
