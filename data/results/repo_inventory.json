@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-12T23:18:27.204764+00:00",
-  "git_commit": "4ba23f1887323d5b03b3e80de3e153a92e0d0af1",
+  "generated_at": "2026-06-13T01:55:09.873070+00:00",
+  "git_commit": "bdfb35fe1f5a6a09de6f46d2fe1a4736b7db54a9",
   "summary": {
-    "tracked_files_total": 780,
-    "cataloged_files": 762,
+    "tracked_files_total": 781,
+    "cataloged_files": 763,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34374465,
-    "total_text_lines": 120364,
+    "total_bytes": 34384498,
+    "total_text_lines": 120494,
     "markdown_files": 393,
     "yml_yaml_files": 34,
     "github_workflow_yml_files": 13,
@@ -33,6 +33,7 @@
     ".png": 67,
     ".tex": 3,
     ".pdf": 2,
+    ".svg": 1,
     ".toml": 1,
     ".ini": 1,
     ".sha256": 1
@@ -41,7 +42,7 @@
     "documentation_md": 393,
     "github_workflow_yml": 13,
     "config_yml": 21,
-    "other": 126,
+    "other": 127,
     "source_code": 120,
     "archive": 6,
     "data_or_result": 82,
@@ -3056,7 +3057,7 @@
       "size_bytes": 256668,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "f769ed1de7f56d41bcc91cae83bd9a8f6354b61130c89b25e701d7f09890cf13",
+      "sha256": "198786a6adf1a9c7baccc56cef6c0351f1105ca1ccc11e8df8c1e57a0aa016b1",
       "line_count": 8736,
       "is_text": true,
       "risk_flags": [
@@ -3072,7 +3073,7 @@
       "size_bytes": 119081,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "4ea08b6626002833270e165342f5c18cff6f2782982bf921632b8af3c8c0ade3",
+      "sha256": "d8cfdb2da6b34b74be87de447eed8f1011b0db9afd0cb7ac900b566e2aca1163",
       "line_count": 763,
       "is_text": true,
       "risk_flags": [
@@ -3088,7 +3089,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "1abe457c7ca455ed6a95c8f7c073843ef10b5d44d14beb706e392a094df804d2",
+      "sha256": "ba8c30ba8f528ac43bf2c92c009acf01e413e6094b7d926c92a79470695dde90",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3547,7 +3548,7 @@
       "size_bytes": 136800,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d8dfe286f77fc12c91c017f48f183715de358263c04919e7227f3e0df0e6c54a",
+      "sha256": "ae162db5fae359aa55f3e4643c6123aa0cb4de0093ec01ef705aff0efcb3c743",
       "line_count": 806,
       "is_text": true,
       "risk_flags": [
@@ -4096,7 +4097,7 @@
       "size_bytes": 1485,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "0896699d0aa2f45c4688c363ec391caf591fcdeb59784597d2e71a147a1f9064",
+      "sha256": "08966e7035c65da2f20502772b2791538f0ade348ff80e7ac68d529010b976f4",
       "line_count": 71,
       "is_text": true,
       "risk_flags": [
@@ -4425,7 +4426,7 @@
       "size_bytes": 5218,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c88128ab5a2b4b6192c0a4ede7227a43b01835c8b846faea34259a3d1da29c68",
+      "sha256": "454811fdc16ede95472063ef8deccd22af87219a89825243a0b750562c47ac9b",
       "line_count": 41,
       "is_text": true,
       "risk_flags": [
@@ -4757,6 +4758,16 @@
       "risk_flags": [
         "cosmology_validation_marker"
       ]
+    },
+    {
+      "path": "docs/invariants/universe-of-invariants.svg",
+      "size_bytes": 10033,
+      "ext": ".svg",
+      "kind": "other",
+      "sha256": "1a4a502956968581a56e492665d756a5f4839bcd33cd67b63a0429205ce2148d",
+      "line_count": 130,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/modules/lcdmpp_extension_framework.md",

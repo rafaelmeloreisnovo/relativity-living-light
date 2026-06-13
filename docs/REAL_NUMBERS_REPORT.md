@@ -1,15 +1,15 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-12T23:18:27.204764+00:00`  
-Commit: `4ba23f1887323d5b03b3e80de3e153a92e0d0af1`
+Gerado em: `2026-06-13T01:55:09.873070+00:00`  
+Commit: `bdfb35fe1f5a6a09de6f46d2fe1a4736b7db54a9`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 780 |
-| `cataloged_files` | 762 |
+| `tracked_files_total` | 781 |
+| `cataloged_files` | 763 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 34374465 |
-| `total_text_lines` | 120364 |
+| `total_bytes` | 34384498 |
+| `total_text_lines` | 120494 |
 | `markdown_files` | 393 |
 | `yml_yaml_files` | 34 |
 | `github_workflow_yml_files` | 13 |
@@ -20,7 +20,7 @@ Commit: `4ba23f1887323d5b03b3e80de3e153a92e0d0af1`
 | Categoria | Arquivos |
 |---|---:|
 | `documentation_md` | 393 |
-| `other` | 126 |
+| `other` | 127 |
 | `source_code` | 120 |
 | `data_or_result` | 82 |
 | `config_yml` | 21 |
@@ -52,6 +52,7 @@ Commit: `4ba23f1887323d5b03b3e80de3e153a92e0d0af1`
 | `.cff` | 1 |
 | `.html` | 1 |
 | `.tsv` | 1 |
+| `.svg` | 1 |
 | `.toml` | 1 |
 | `.ini` | 1 |
 | `.sha256` | 1 |
