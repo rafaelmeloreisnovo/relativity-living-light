@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T09:20:34.862066+00:00",
-  "git_commit": "0fe821060a1e020ccbc8ca9f49f92f6a495e2445",
+  "generated_at": "2026-06-13T09:20:52.980463+00:00",
+  "git_commit": "48a347167086b54e78edd9651165adeff566f845",
   "summary": {
-    "tracked_files_total": 901,
-    "cataloged_files": 883,
+    "tracked_files_total": 902,
+    "cataloged_files": 884,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35023222,
-    "total_text_lines": 134644,
-    "markdown_files": 444,
+    "total_bytes": 35026461,
+    "total_text_lines": 134758,
+    "markdown_files": 445,
     "yml_yaml_files": 57,
     "github_workflow_yml_files": 21,
     "data_or_result_files": 108
   },
   "counts_by_ext": {
-    ".md": 444,
+    ".md": 445,
     ".yml": 57,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 444,
+    "documentation_md": 445,
     "github_workflow_yml": 21,
     "config_yml": 36,
     "other": 129,
@@ -3586,11 +3586,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 298928,
+      "size_bytes": 299617,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "b4ec81350b4f59f2f5575612d443a8989d3cf4ac2040c0be4430a4cb220e2e45",
-      "line_count": 10156,
+      "sha256": "36e7d901aa7712ee9aa12b24da2c0c7cb3249040e0c2ec3e39d9aa3ee40f55d5",
+      "line_count": 10176,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3601,11 +3601,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 139755,
+      "size_bytes": 140118,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "6b0cdf1c75f38b52046f249ab53912e4f5dc8e0dcecd0679c77597a0cedb2a24",
-      "line_count": 882,
+      "sha256": "fd50011453fec14c8679e34be8de9a1bca329c7bb634a2bd9602d2ad0c37876c",
+      "line_count": 884,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3620,7 +3620,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "aa81c2574a6544bf37eac7cd4b49b0ead90781b200a2369a54519ad4e3eb548a",
+      "sha256": "6e11d6d97e539d34f971624f1b78e21a6fb04822216ed2e0bcafe006aebb8b9c",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4096,11 +4096,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 159855,
+      "size_bytes": 160258,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f29d0207c9a98332f0e0a74bb9f53336855b4fdf2010624b9a3ae6b6690da6a7",
-      "line_count": 925,
+      "sha256": "90ae0cd346be9539f243a043ed512f9419c9295e124606549b1b1d4909f4baa3",
+      "line_count": 927,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4648,7 +4648,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "408aa2d9bcfbc575ce8363491c260648a3b8498977d50c7b11fca32ad153805b",
+      "sha256": "44e62f104b24da729a727d7305f110a89034fb97da555aad83019f8a17b36358",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5116,11 +5116,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 8678,
+      "size_bytes": 8866,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f8ef718b9ee91ba5e1e7614a415d3b8fa9372523dc05ebbd307330e48d82bcb4",
-      "line_count": 63,
+      "sha256": "e5db250645cb83729804b1c4f2fd623383411ce3064583a5e69e7b40af6de7bd",
+      "line_count": 64,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -6213,6 +6213,16 @@
         "mentions_mock_or_placeholder",
         "token_vazio_declared"
       ]
+    },
+    {
+      "path": "docs/science/FIRST_RAW_DATA_INGESTION_REPORT.md",
+      "size_bytes": 1596,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "05a88406eb459945e7f02f9c485b8b3175f6727046eeb9a515b4ac2741164f7c",
+      "line_count": 89,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/science/GRAVITATIONAL_RESIDUAL_MEMORY_AND_COMPACT_GAPS.md",
