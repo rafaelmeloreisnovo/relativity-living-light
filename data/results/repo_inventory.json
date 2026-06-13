@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T08:16:49.503512+00:00",
-  "git_commit": "cc86becefa9436636e973ccd0f994d3845da4c97",
+  "generated_at": "2026-06-13T08:16:58.942760+00:00",
+  "git_commit": "a3925f8aba29c6d4013bd1087c8cf2f8a9463fa6",
   "summary": {
-    "tracked_files_total": 861,
-    "cataloged_files": 843,
+    "tracked_files_total": 862,
+    "cataloged_files": 844,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34865284,
-    "total_text_lines": 131240,
-    "markdown_files": 429,
+    "total_bytes": 34867713,
+    "total_text_lines": 131313,
+    "markdown_files": 430,
     "yml_yaml_files": 50,
     "github_workflow_yml_files": 17,
     "data_or_result_files": 96
   },
   "counts_by_ext": {
-    ".md": 429,
+    ".md": 430,
     ".yml": 50,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 429,
+    "documentation_md": 430,
     "github_workflow_yml": 17,
     "config_yml": 33,
     "other": 129,
@@ -3360,11 +3360,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 285395,
+      "size_bytes": 285762,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "57047c9d3bf76ae0dde21d702070529442c0e4c7ea568aa95b3fe05aab9fa5b9",
-      "line_count": 9703,
+      "sha256": "246123ce880288601cd085a1482b677bcec3cee117cc7fe05fb277d56799b2b2",
+      "line_count": 9715,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3375,11 +3375,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 133174,
+      "size_bytes": 133360,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "04d43e9f54e23c78537ce2b189b2193d82a0529fa714fdc437b12612ab648dbe",
-      "line_count": 843,
+      "sha256": "60ba952ad1b227a79ca6ea5104915d689b88f431b5cd824ba0c6f590f100ac9a",
+      "line_count": 844,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3394,7 +3394,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "cfcef2c82faeacd274ef82e53bc0c536e965dde5bca83969e346678de9fb5f7b",
+      "sha256": "ce40dac9c28a0b86b7eabd7cd407e5bcfa3e6261ee98286b018ab1f81ba0edb0",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3850,11 +3850,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 152493,
+      "size_bytes": 152699,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e822a94a5aa2e499cc00ac4f022caa31a2a230f06678385875a0b9795d897c8a",
-      "line_count": 886,
+      "sha256": "712b4030a72cf9a861de4b86ac939b1d43a047e1094977d57979691c155e3be1",
+      "line_count": 887,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4402,7 +4402,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "264ad1edde8336de4aef75ac74e086afe24c8fc07b62137f11d01ce2201f426d",
+      "sha256": "2e9f43c3a1fe444ccb43841d743d43f4c21eb81642c65dbea2be09212508a22a",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4873,7 +4873,7 @@
       "size_bytes": 7732,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "6d12b28967d080af877e275326dd3bbe5b33a9a20d6cb101d9d18ac70b223796",
+      "sha256": "9afc2d7ec666ac19965ad54e41e01c33ce0d057526e337ee596bdfdc481645bc",
       "line_count": 57,
       "is_text": true,
       "risk_flags": [
@@ -5957,6 +5957,16 @@
       "risk_flags": [
         "token_vazio_declared"
       ]
+    },
+    {
+      "path": "docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_V1_REPORT.md",
+      "size_bytes": 1670,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "89620c9af678a2592cef7d72a1a012749c903e99326d0c60c17a51820996afec",
+      "line_count": 59,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md",
