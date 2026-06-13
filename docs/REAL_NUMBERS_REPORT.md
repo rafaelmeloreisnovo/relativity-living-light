@@ -1,17 +1,17 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-13T06:34:52.716138+00:00`  
-Commit: `44dbf7f10bd677c7c8711e4edebacb5f0adcee69`
+Gerado em: `2026-06-13T06:35:12.840624+00:00`  
+Commit: `6e25cf8bfbc44b0f9f62d684f80e522e34f608d9`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 823 |
-| `cataloged_files` | 805 |
+| `tracked_files_total` | 824 |
+| `cataloged_files` | 806 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 34632789 |
-| `total_text_lines` | 126086 |
+| `total_bytes` | 34639176 |
+| `total_text_lines` | 126276 |
 | `markdown_files` | 424 |
-| `yml_yaml_files` | 37 |
+| `yml_yaml_files` | 38 |
 | `github_workflow_yml_files` | 14 |
 | `data_or_result_files` | 86 |
 
@@ -23,7 +23,7 @@ Commit: `44dbf7f10bd677c7c8711e4edebacb5f0adcee69`
 | `other` | 129 |
 | `source_code` | 122 |
 | `data_or_result` | 86 |
-| `config_yml` | 23 |
+| `config_yml` | 24 |
 | `github_workflow_yml` | 14 |
 | `archive` | 6 |
 | `test_or_validation` | 1 |
@@ -37,7 +37,7 @@ Commit: `44dbf7f10bd677c7c8711e4edebacb5f0adcee69`
 | `.png` | 67 |
 | `.csv` | 59 |
 | `.json` | 42 |
-| `.yml` | 37 |
+| `.yml` | 38 |
 | `NO_EXT` | 12 |
 | `.txt` | 10 |
 | `.sh` | 6 |
@@ -61,11 +61,11 @@ Commit: `44dbf7f10bd677c7c8711e4edebacb5f0adcee69`
 
 | Flag | Ocorrências |
 |---|---:|
-| `cosmology_validation_marker` | 391 |
+| `cosmology_validation_marker` | 392 |
 | `mentions_mock_or_placeholder` | 79 |
 | `result_artifact` | 73 |
 | `mentions_synthetic` | 63 |
-| `token_vazio_declared` | 42 |
+| `token_vazio_declared` | 43 |
 
 ## Fronteira
 
