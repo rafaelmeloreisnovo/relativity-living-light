@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T11:08:32.772464+00:00",
-  "git_commit": "440419d12b169b62acc14c5e8cae415d70c8091e",
+  "generated_at": "2026-06-13T11:08:48.133790+00:00",
+  "git_commit": "07f1ef12f41dc5f030a01d3648da5f1321703736",
   "summary": {
-    "tracked_files_total": 933,
-    "cataloged_files": 915,
+    "tracked_files_total": 934,
+    "cataloged_files": 916,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35171861,
-    "total_text_lines": 138954,
-    "markdown_files": 466,
+    "total_bytes": 35174061,
+    "total_text_lines": 139061,
+    "markdown_files": 467,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 110
   },
   "counts_by_ext": {
-    ".md": 466,
+    ".md": 467,
     ".yml": 61,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 466,
+    "documentation_md": 467,
     "github_workflow_yml": 23,
     "config_yml": 38,
     "other": 129,
@@ -3653,7 +3653,7 @@
       "size_bytes": 310753,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "90a87656c149b560ddc293dce1ffcb3b80af0402f925e486921cdcb1877ffb9a",
+      "sha256": "afea4c718efdc0377619291efa04ac170178bd1a2c41ac7550a41bcaaaf69c84",
       "line_count": 10549,
       "is_text": true,
       "risk_flags": [
@@ -3668,7 +3668,7 @@
       "size_bytes": 145531,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "5a471a4279ff85449ddf6e911b4170977923776f98d393af393ad1c4d943dea1",
+      "sha256": "ff8717ee59c8aa8e78118c09cb86c1e530a8ed0b1709d76966d7ed755f464783",
       "line_count": 916,
       "is_text": true,
       "risk_flags": [
@@ -3684,7 +3684,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "991869f578f18d0b08937a0b9d5df7479ade1d2c4cf319ea1c9ba8081efd5f86",
+      "sha256": "f8609690afa7ef572fe6b19888d35c89c8dff91d9c663163959c8a4b3691a202",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4163,7 +4163,7 @@
       "size_bytes": 166311,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b3f4b6aee2c726e2d1d97e2cda66527bb0d4b92b4a5a1209d9f21a656a1ca871",
+      "sha256": "5f664a203710cadc896a05a9e5873a15091677e376ca962f73565e4b0ef20535",
       "line_count": 959,
       "is_text": true,
       "risk_flags": [
@@ -4712,7 +4712,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e546679ea3156efcc4955a8530ebaa4ebd477b06cbbcfcfc4467839d2d394e8b",
+      "sha256": "659a2496e31093828671c08c2bb28d6fb46c9bb2436e7d13a5bf067acf794733",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4841,6 +4841,16 @@
       "risk_flags": [
         "mentions_mock_or_placeholder"
       ]
+    },
+    {
+      "path": "docs/RLL_CI_DEPENDENCY_FAILURE.md",
+      "size_bytes": 2200,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "4b72fbcc454c25c93c7cfc060c054746af49a485a3501b43fb4f0dbc22474d80",
+      "line_count": 107,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "docs/RLL_CLAIM_BOUNDARIES.md",
@@ -5378,7 +5388,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5fe8da79db4240f7da34286457fb4d0c5b4a13c3158cf28867592fdd0d5edbe8",
+      "sha256": "9b7a0509d1126cb7c805bad61687cfecea9827d7803e1d361517c3588b773248",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
