@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T11:37:31.812252+00:00",
-  "git_commit": "d1d2d822201334bd5a8f2589d96b6a4c646b7c80",
+  "generated_at": "2026-06-13T11:39:53.020329+00:00",
+  "git_commit": "5c2d16840ea0d5d6e3ba595156cc70cc66c05e29",
   "summary": {
-    "tracked_files_total": 935,
-    "cataloged_files": 917,
+    "tracked_files_total": 936,
+    "cataloged_files": 918,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35189940,
-    "total_text_lines": 139538,
+    "total_bytes": 35200068,
+    "total_text_lines": 139799,
     "markdown_files": 468,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
@@ -17,7 +17,7 @@
     ".yml": 61,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 130,
+    ".py": 131,
     ".sh": 6,
     ".json": 58,
     ".csv": 65,
@@ -43,13 +43,13 @@
     "github_workflow_yml": 23,
     "config_yml": 38,
     "other": 129,
-    "source_code": 142,
+    "source_code": 143,
     "archive": 6,
     "data_or_result": 110,
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 409,
+    "cosmology_validation_marker": 410,
     "token_vazio_declared": 97,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 66,
@@ -3650,11 +3650,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 311052,
+      "size_bytes": 311444,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "51e3e4411be743599892662499636c6d4ae8b3d0c5b8ee0623fef842478a5bf9",
-      "line_count": 10559,
+      "sha256": "418a8ee8580d709d975748a7398cb57bd262d29670bea79bbfbcb9dade5852a3",
+      "line_count": 10572,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3665,11 +3665,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 145667,
+      "size_bytes": 145867,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "057a6242e797f964940fac2db9656aa81741b76293669f1625cf4fb5e73d5702",
-      "line_count": 917,
+      "sha256": "97d646d932e3668267e1d0e575e5f1dfb67954a20b340c0f3e5b525b00b3f767",
+      "line_count": 918,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3684,7 +3684,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "865bf10826f19f1f268324084e5bc99b83b1c35380a93f9b1777de9122019825",
+      "sha256": "cdf60a566995790a6ed4d9e7eb11de84ae3754ff7b01250e9739613ce9f2eb20",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4160,11 +4160,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 166467,
+      "size_bytes": 166687,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1139f1f8355feabbbe86013e2d75f0c007902828baf0e902a1aef2ddc1ff6e40",
-      "line_count": 960,
+      "sha256": "a3d81cad4dc6822e60eb5f6f418a317525640cef3872040fc60267b57227ad41",
+      "line_count": 961,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4712,7 +4712,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ab4ee0b9aff28eb321753a9f9a05fabef7cb5daea06da42d2703681573199342",
+      "sha256": "eac7014d0030d9f79e455f33d99fc4cd4c814cb8ebef2daef115e6647d919d54",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5401,7 +5401,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7cb33668509e2499f9648ad5f05cf2b9f1183cfeebce865db4a9b46a95b26d89",
+      "sha256": "48aefbfc7e7a3923faa1530a9f14fa54c0ce90bccd76a42b9a3e0cd6b40df177",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
@@ -8938,6 +8938,18 @@
       "line_count": 53,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "scripts/analysis/structure_d_effective_dynamics.py",
+      "size_bytes": 9316,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "62e3f2c7cdd605a3ec610151f09ddcb547a1c1107ecf46f12b287fb486b2caf7",
+      "line_count": 246,
+      "is_text": true,
+      "risk_flags": [
+        "cosmology_validation_marker"
+      ]
     },
     {
       "path": "scripts/bh_flux_calc.py",
