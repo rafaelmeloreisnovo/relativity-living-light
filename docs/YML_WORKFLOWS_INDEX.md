@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T06:35:35.668518+00:00`  
-Commit: `7c09c081561d6372e78e5ad0cef4ad970589b4ef`
+Gerado em: `2026-06-13T06:35:49.956456+00:00`  
+Commit: `8611200462ee9db97a87f655b48af68b1b6bddd8`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -11,6 +11,7 @@ Commit: `7c09c081561d6372e78e5ad0cef4ad970589b4ef`
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 864 | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` |
 | `.github/workflows/iml_artifact.yml` | `github_workflow_yml` | 1382 | 54 | `bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72` |
 | `.github/workflows/python-tests.yml` | `github_workflow_yml` | 693 | 36 | `c97938a8150e31602504255839a0ccecb0f05eb6eab4e7c1c215890effcff08b` |
+| `.github/workflows/real-data-bootstrap-validation.yml` | `github_workflow_yml` | 2728 | 93 | `3d1fb515d1eaee0cfd5a77ee48e450b4752e7b712fec089f7d28ea5bb67fe497` |
 | `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12275 | 270 | `a71cff24c5d4cb1b007ed2e86429c33291461b65d337f622b822eae746eef675` |
 | `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 9222 | 181 | `9771b28c9b580a3d690583644e02e55fb2420b2303e21344561cd444357adb1f` |
 | `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 3994 | 126 | `b387e1e65c83243cadbb8ff32543bc40b7a99176b2c396b3c88cfa0ff3368ba0` |
