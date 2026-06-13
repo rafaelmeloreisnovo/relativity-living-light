@@ -1,131 +1,53 @@
-# WORKFLOW & YML REFACTOR AUDIT
+# WORKFLOW REFACTOR AUDIT
 
-Auditoria reprodutível dos arquivos `.yml`/`.yaml` do repositório.
-Regra: somente inspeção direta, execução real e checksums. Sem inferência estatística.
+Gerado em: `2026-06-13T06:12:53Z`  
+Commit auditado: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
 
-## 0. Contexto de execução (FATO_VERIFICADO)
+## Inventário pré-alteração obrigatório
 
-| Item | Valor |
-|---|---|
-| Repositório (remote) | `reismelorafael/relativity-living-light` |
-| Branch de trabalho | `claude/yml-workflow-audit-refactor-ug4mrf` |
-| HEAD no início | `01ebbdff94905526dcfa49dcbb1a7be212949140` |
-| Working tree inicial | limpo (`git status --short` vazio) |
-| Python | 3.11.15 |
-| PyYAML | 6.0.1 |
-| Total de arquivos YAML | 34 (13 workflows + 21 data/config) |
+- `git status --short`: `FATO_VERIFICADO_WORKTREE_LIMPA (git status --short executado antes das alterações retornou saída vazia)`
+- `git rev-parse HEAD`: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
+- Total YAML/YML: `35`
+- Total workflows: `14`
 
-Classes de evidência usadas: `FATO_VERIFICADO`, `HIPOTESE`, `LACUNA`,
-`TOKEN_VAZIO`, `ERRO`, `RISCO`, `ACAO_RECOMENDADA`.
+## Validações executadas
 
-## 1. Validação sintática (FATO_VERIFICADO)
+| comando | exit_code | resultado |
+|---|---:|---|
+| `git status --short` | 0 | `FATO_VERIFICADO_WORKTREE_LIMPA (git status --short executado antes das alterações retornou saída vazia)` |
+| `git rev-parse HEAD` | 0 | `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f` |
+| `python3 -c from pathlib import Path
+import yaml,sys
+failed=False
+files=sorted([*Path('.').rglob('*.yml'),*Path('.').rglob('*.yaml')])
+for p in files:
+    try: yaml.safe_load(p.read_text(encoding='utf-8')); print('OK\t'+str(p))
+    except Exception as e: failed=True; print('FAIL\t'+str(p)+'\t'+str(e))
+sys.exit(1 if failed else 0)` | 0 | `OK	validacao_real/sources.yml` |
+| `bash -lc python3 -m py_compile $(find scripts data/pipelines validacao_real -name "*.py" 2>/dev/null)` | 0 | `TOKEN_VAZIO` |
+| `python3 tools/audit_github_workflows.py --strict` | 0 | `Workflow audit OK: executable workflows are isolated and validation data is externalized.` |
 
-Parser real: `yaml.safe_load_all` sobre os 34 arquivos.
+## Workflows auditados
 
-- Resultado: **34/34 OK, 0 FAILED**, exit code `0`.
-- Checksums sha256 completos: `docs/yml/YML_FILE_LEDGER.tsv`.
+| workflow | workflow_dispatch | permissions | concurrency | timeout | scripts inexistentes | artefatos | riscos |
+|---|---:|---|---:|---|---|---|---|
+| `.github/workflows/START_MANUAL_HERE.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `start-manual-here-${{ github.run_id }}:artifacts/manual-start/` | `FATO_VERIFICADO` |
+| `.github/workflows/convention-check.yml` | False | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/dha-fisher-ci.yml` | False | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `dha-fisher-forecast:results/dha/fisher_forecast_reference.json, ln1pz-extractor:results/dha/ln1pz_fit.csv | results/dha/ln1pz_fit_summary.json | , desi-dha-extractor:results/dha/desi_dha_pipeline_summary.json` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/formulas-artifacts.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `formulas-artifacts:artifacts/formulas` | `FATO_VERIFICADO` |
+| `.github/workflows/iml_artifact.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `iml-artifact:artifacts/iml/iml_artifact.json` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/python-tests.yml` | False | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/real-data-complete-execution.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `real-data-complete-${{ github.run_id }}:artifacts/real-data-complete/` | `RISCO_CONTENTS_WRITE` |
+| `.github/workflows/repo-real-inventory.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_CONTENTS_WRITE` |
+| `.github/workflows/rll-book-data-pipeline.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-book-pipeline-${{ github.run_id }}-${{ inputs.book_scope }}-${{ inputs.dataset_group }}-${{ inputs.mode }}:artifacts/rll-pipeline/` | `FATO_VERIFICADO` |
+| `.github/workflows/rll-data-pipeline.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-pipeline-${{ github.run_id }}-${{ inputs.dataset_group }}-${{ inputs.mode }}:artifacts/rll-pipeline/` | `FATO_VERIFICADO` |
+| `.github/workflows/rll-real-data-orchestrator.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-real-run-${{ github.run_id }}:artifacts/rll-real-run/` | `FATO_VERIFICADO` |
+| `.github/workflows/unified-geometry.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `unified-geometry-text-artifacts:results/unified_geometry/shapes.csv | results/unified_geometry/manifest.json | ` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/validacao_real.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `validacao-real-artifacts:validacao_real/fetched/ | validacao_real/results/ | ` | `RISCO_CONTENTS_WRITE` |
+| `.github/workflows/yml-syntax-validation.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
 
-Nenhum erro de sintaxe encontrado. Nenhum `TOKEN_VAZIO_DEPENDENCY`
-(PyYAML estava instalado).
+## Linguagem científica obrigatória
 
-## 2. Inventário de scripts chamados pelos workflows (FATO_VERIFICADO)
-
-Foram extraídos todos os `run:`/`uses:` e mapeados os scripts. **Todos os 28
-scripts/módulos/fixtures referenciados existem no repositório** (0 `BLOQUEADO`
-por arquivo inexistente). Compilação:
-
-```
-python3 -m py_compile $(find scripts tools validacao_real data/pipelines -name "*.py")
--> exit 0  (PY_COMPILE_OK)
-```
-
-Mapa completo workflow→script→arquivo em `docs/yml/WORKFLOW_EXECUTION_MAP.md`.
-
-## 3. Execução real da validação cosmológica (FATO_VERIFICADO)
-
-Pipeline `validacao_real/` executado de ponta a ponta neste runner:
-
-```
-python3 fetch_real_data.py      -> exit 0  (desi: 13 pts, hz: 32 pts)
-python3 compute_validation.py   -> exit 0
-```
-
-O `fetch` **alcançou a rede real** (não foi fallback cego): o manifesto
-registrou `used: remote_then_validated_fallback` e `remote_bytes` mudou
-(`45031 -> 45045` para o arquivo de covariância de cronômetros cósmicos de
-Moresco), confirmando download remoto validado contra o dado real embutido.
-
-Métricas medidas (não inferidas):
-
-| Modelo | chi2 | chi2/dof | AIC | BIC | falsificado (bao/hz) |
-|---|---:|---:|---:|---:|---|
-| LCDM | 39.38 | 0.938 | 45.38 | 50.80 | False / False |
-| RLL  | 44.89 | 1.122 | 54.89 | 63.92 | False / False |
-
-- Δchi2 (LCDM − RLL) = **−5.51**
-- Preferido por AIC: **LCDM** — Preferido por BIC: **LCDM**
-- n_obs = 45 (13 BAO + 32 H(z)); região de validade z ∈ [0.0, 2.4].
-
-### Declaração científica obrigatória
-
-O artefato atual melhora rastreabilidade e reprodutibilidade. **Ele não
-estabelece superioridade do RLL.** Com os dados reais correntes (DESI DR2 BAO
-+ cronômetros cósmicos), **AIC e BIC favorecem ΛCDM**, e o RLL tem chi2 maior.
-Isso é declarado sem suavização, conforme a política de claims do próprio
-repositório (`RLL_COSMO_VALIDATION_MATRIX.yml` → `status:
-partial_real_preparation`, `claims.forbidden_until_validation`).
-
-## 4. Riscos identificados nos workflows (RISCO)
-
-Medições em `docs/yml/YML_FILE_LEDGER.tsv` e na varredura de atributos:
-
-| Risco | Evidência | Severidade |
-|---|---|---|
-| `timeout-minutes` ausente | **13/13** workflows sem timeout de job | Média (runner pendurado) |
-| `concurrency` ausente | **12/13** (só `real-data-complete-execution.yml` tem) | Média (corrida de push em workflows que commitam) |
-| `permissions` ausente (default amplo) | 7 workflows sem bloco `permissions` | Média (privilégio implícito) |
-| Actions não fixadas por SHA | 13/13 usam tags `@v4`/`@v5` (não SHA) | Baixa (actions first-party `actions/*`) |
-| Fallback de dados | `fetch_real_data.py` cai para dado embutido se a rede falhar | Baixa — honesto: dado embutido é real e versionado |
-| Mock em CI | `dha-fisher-ci.yml` gera `mock_catalog.csv` | Baixa — rotulado "mock", não promovido a real |
-| Duplicidade de arquivo | `CAMINHOS_VALIDACAO_NOVOS.yml` ≡ `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` (sha256 idêntico `7c95cdf16a6b…`) | Baixa (manutenção) |
-
-Detalhe de cada item bloqueado/aberto em `docs/yml/YML_BLOCKED_ITEMS.md`.
-
-## 5. Alterações aplicadas neste PR
-
-Apenas mudanças permitidas pela política (documentação + hardening
-behavior-neutral de CI):
-
-1. **Documentação de auditoria** (esta pasta `docs/yml/`).
-2. **`permissions: contents: read`** adicionado aos 7 workflows que não
-   declaravam permissões (hardening sem mudança de comportamento).
-3. **`timeout-minutes`** adicionado a cada job.
-4. **`concurrency`** adicionado aos workflows que não tinham.
-5. **Novo gate** `.github/workflows/yml-syntax-validation.yml` (validação
-   sintática de todos os YAML em PR/push).
-
-**Não alterado** (sensível): dados brutos, resultados materializados, fórmulas
-RLL, parâmetros cosmológicos, hashes históricos. O arquivo duplicado
-`CAMINHOS_VALIDACAO_NOVOS.yml` **não** foi removido — registrado como
-`ACAO_RECOMENDADA` em `YML_NEXT_ACTIONS.md` para decisão do mantenedor.
-
-## 6. Comandos executados (resumo reproduzível)
-
-```
-git rev-parse HEAD; git status --short
-find . -type f \( -name '*.yml' -o -name '*.yaml' \) -not -path './.git/*' | sort   # 34
-python3  (yaml.safe_load_all em 34 arquivos)                                        # 34 OK
-python3 -m py_compile $(find scripts tools validacao_real data/pipelines -name '*.py')  # exit 0
-python3 tools/audit_github_workflows.py --strict                                    # exit 0
-cd validacao_real && python3 fetch_real_data.py && python3 compute_validation.py    # exit 0
-```
-
-## 7. Conclusão
-
-- **F_ok**: 34/34 YAML parseiam; 28/28 scripts referenciados existem e
-  compilam; pipeline cosmológico executa com dados reais e produz
-  chi2/AIC/BIC; auditoria de isolamento de workflows passa (`exit 0`).
-- **F_gap**: 13 workflows sem `timeout-minutes`, 12 sem `concurrency`, 7 sem
-  `permissions` (corrigidos neste PR); duplicata `CAMINHOS_*` pendente de
-  decisão; RLL **não** supera ΛCDM nos dados atuais.
-- **F_next**: ver `docs/yml/YML_NEXT_ACTIONS.md`.
+FATO_VERIFICADO: o artefato atual melhora rastreabilidade e reprodutibilidade por inventário, parser YAML, py_compile e ledger de hashes.  
+LACUNA: esta auditoria documental não estabelece superioridade do RLL.  
+ACAO_RECOMENDADA: quando AIC/BIC favorecerem ΛCDM, isso deve ser declarado nos relatórios científicos.

@@ -30,6 +30,9 @@ on:
         default: '14'
         type: choice
         options: ['7','14','30','90']
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false

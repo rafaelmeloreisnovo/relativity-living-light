@@ -1,48 +1,17 @@
 # YML REFACTOR PLAN
 
-Plano de refatoração com separação entre o que é **seguro agora** (behavior-
-neutral) e o que exige decisão do mantenedor.
+Gerado em: `2026-06-13T06:12:53Z`  
+Commit auditado: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
 
-## Padrão-alvo de workflow (aplicado quando seguro)
+| prioridade | classe | item | evidência | ação segura |
+|---:|---|---|---|---|
+| 1 | FATO_VERIFICADO | Todos os `35` YAML/YML parsearam com PyYAML. | comando `YAML parser validation` exit 0 | manter gate `.github/workflows/yml-syntax-validation.yml` |
+| 2 | FATO_VERIFICADO | Workflows com `permissions` explícito são registrados no ledger. | leitura direta dos workflows | manter `contents: read` por padrão; justificar exceções `contents: write` |
+| 3 | RISCO | Workflows com `contents: write` podem alterar repositório por automação. | ledger marca `RISCO_WRITE_PERMISSION_REQUER_JUSTIFICATIVA` | próximo PR: commit/push apenas por input explícito ou environment protegido |
+| 4 | RISCO | `dha-fisher-ci.yml` materializa `results/dha/mock_catalog.csv` em CI. | mapa de execução registra script inline de mock | manter rotulado como mock; nunca promover para `real_validated` |
+| 5 | LACUNA | Data-config YAML não tem consumidor único inferido nesta auditoria. | ledger registra `TOKEN_VAZIO` em scripts chamados | próximo PR: adicionar `consumed_by` documental sem alterar dados científicos |
+| 6 | ACAO_RECOMENDADA | Checksums devem acompanhar outputs científicos. | workflows reais geram checksum em parte dos caminhos; não universal | próximo PR: padronizar checksum para todos os upload-artifacts |
 
-```yaml
-permissions:
-  contents: read            # mínimo; só sobe para write onde há commit/push
+## Status científico permitido
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false # pipelines que commitam não devem ser cancelados no meio
-
-jobs:
-  <job>:
-    runs-on: ubuntu-latest
-    timeout-minutes: <N>     # rede de segurança contra runner pendurado
-```
-
-## Aplicação por workflow
-
-| Workflow | permissions antes | ação | timeout | concurrency |
-|---|---|---|---|---|
-| START_MANUAL_HERE | ausente | + `contents: read` | +45 | + |
-| convention-check | ausente | + `contents: read` | +15 | + |
-| dha-fisher-ci | ausente | + `contents: read` | +30 | + |
-| formulas-artifacts | ausente | + `contents: read` | +20 | + |
-| iml_artifact | ausente | + `contents: read` | +20 | + |
-| python-tests | ausente | + `contents: read` | +20 | + |
-| unified-geometry | ausente | + `contents: read` | +20 | + |
-| real-data-complete-execution | `contents: write` | manter (justificado) | +60 | já tem |
-| repo-real-inventory | `contents: write` | manter (commita inventário) | +30 | + |
-| rll-book-data-pipeline | job `contents: write` | manter | +45 | + |
-| rll-data-pipeline | job `contents: write` | manter | +45 | + |
-| rll-real-data-orchestrator | job `contents: write` | manter | +60 | + |
-| validacao_real | `contents: write` | manter (commita resultados) | +30 | + |
-
-Justificativa de `contents: write` (mantido): cada um desses workflows tem
-passo `git commit`/`git push` real (inventário, artefatos leves, resultados de
-validação). Reduzir para `read` quebraria a função documentada → não alterado.
-
-## Fora deste PR (sensível)
-- Dedupe de `CAMINHOS_VALIDACAO_NOVOS.yml` (arquivo versionado).
-- Pin por SHA das actions.
-- Renomeação de `mock_catalog.csv`.
-Ver `YML_NEXT_ACTIONS.md`.
+`metadata_ready` para YAML parseados e inventariados. `real_validated` fica BLOQUEADO quando faltar fonte externa, hash, execução registrada, métrica, baseline externo, covariância/erro quando aplicável, artefato final e claim boundary.

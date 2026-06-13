@@ -1,34 +1,16 @@
-# YML BLOCKED / OPEN ITEMS
+# YML BLOCKED ITEMS
 
-Itens que ficaram `BLOQUEADO`, `LACUNA` ou `TOKEN_VAZIO` — sem invenção.
+Gerado em: `2026-06-13T06:12:53Z`  
+Commit auditado: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
 
-## BLOQUEADO
+| classe | item | evidência | status | desbloqueio |
+|---|---|---|---|---|
+| BLOQUEADO | Promoção científica `real_validated` global | critérios completos não foram executados nesta auditoria documental | blocked | executar pipeline real completo com checksums, métricas, baseline e claim boundary |
+| LACUNA | Consumidor explícito para YAML data_config | `YML_FILE_LEDGER.tsv` mostra `scripts chamados=TOKEN_VAZIO` para data_config | metadata_ready | adicionar `consumed_by` ou mapa de consumidor por manifest |
+| RISCO | Permissões de escrita | workflows com `contents: write` registrados no ledger | requer justificativa | condicionar commit/push a input boolean e documentar razão operacional |
+| RISCO | Mock CI | `dha-fisher-ci.yml` gera `results/dha/mock_catalog.csv` | controlado por rótulo | manter fora de claims reais |
+| NÃO VERIFICADO | Execução científica full remota | esta auditoria não executou GitHub Actions hospedado | NÃO VERIFICADO | disparar workflow manual e anexar run_id/logs |
 
-| Item | Motivo | Como desbloquear |
-|---|---|---|
-| Superioridade científica do RLL | AIC/BIC favorecem ΛCDM nos dados reais correntes (Δχ²=−5.51) | requer dados/ajuste que reduzam χ² do RLL sem aumentar k além do que AIC/BIC toleram |
-| Validação Pantheon+ neste runner | não executada nesta auditoria (foco em `validacao_real/`) | rodar `scripts/run_real_pantheon_validation.py` após materializar Pantheon+ |
-| Structure-D real neste runner | não executada nesta auditoria | rodar `python -m data.pipelines.structure_d.run_all_real` |
+## RLL vs ΛCDM
 
-## LACUNA
-
-| Lacuna | Evidência |
-|---|---|
-| `timeout-minutes` ausente | 13/13 workflows (corrigido neste PR) |
-| `concurrency` ausente | 12/13 workflows (corrigido neste PR) |
-| `permissions` explícito ausente | 7 workflows (corrigido neste PR) |
-| Pin de actions por SHA | 13/13 usam tags `@v4`/`@v5`, não SHA |
-| YAML não consumido por workflow | registries de referência (ver execution map) — `reference_only`, não é erro |
-
-## TOKEN_VAZIO
-
-| Campo | Local |
-|---|---|
-| `sha256_depois` (arquivos não modificados) | `YML_FILE_LEDGER.tsv` — igual a `sha256_antes` para data/config não tocados |
-| `no_fake_fill` | `data/real_sources/rll_real_orchestrator_inventory.iml.yml:110` — declarado pelo repo |
-
-## Não-bloqueios confirmados (FATO_VERIFICADO)
-
-- 34/34 YAML parseiam. 28/28 scripts referenciados existem e compilam.
-- `tools/audit_github_workflows.py --strict` retorna exit 0.
-- `validacao_real` executa fim-a-fim (exit 0) com fetch remoto real.
+O artefato atual melhora rastreabilidade e reprodutibilidade. Ele não estabelece superioridade do RLL. Quando AIC/BIC favorecerem ΛCDM, isso deve ser declarado.
