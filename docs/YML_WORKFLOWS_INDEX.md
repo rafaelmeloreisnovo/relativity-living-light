@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T07:36:56.542372+00:00`  
-Commit: `1ac88a1a3ec823867207218822c4825f0ea79d21`
+Gerado em: `2026-06-13T07:50:03.519306+00:00`  
+Commit: `5a0f9f044c5ad37c358e9b05489821e19ce08836`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -25,6 +25,7 @@ Commit: `1ac88a1a3ec823867207218822c4825f0ea79d21`
 | `data/observational_sources.yml` | `config_yml` | 4312 | 131 | `163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d` |
 | `data/real/bootstrap/real_data_requirements_bootstrap.yml` | `config_yml` | 5563 | 175 | `b24cf0640d1c7be12cd0d19e89dc08f91801acb0d1dca501e47ab8cc1bd746a0` |
 | `data/real/bootstrap/real_observational_seed_v0.yml` | `config_yml` | 7163 | 169 | `40e1b78031f51708aee616db5b341a806f4f0ffe490fec955b05c94894b0be88` |
+| `data/real/bootstrap/real_observational_seed_v1.yml` | `config_yml` | 9527 | 237 | `9ca27fe2aba6afdaa27236b5e755467703c51f8b701e4f702443cade6d838809` |
 | `data/real/compact_objects/remnant_boundary_sources.yml` | `config_yml` | 4817 | 147 | `656783efbd3afe5edbc3d41fdb5f50c3a709950aa4229af9c0ed18292b291fe4` |
 | `data/real/compact_objects/wandering_black_hole_sources.yml` | `config_yml` | 3610 | 117 | `2e3fcc600a4a7470c44ee89309648691e5a3bca40003df3070d5047313181e5f` |
 | `data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml` | `config_yml` | 2964 | 80 | `f0ba4a4b4581a2acea9dcba3fef79b8775205b59631944a96139f38c2db4107a` |

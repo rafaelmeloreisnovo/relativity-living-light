@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T07:36:56.542372+00:00",
-  "git_commit": "1ac88a1a3ec823867207218822c4825f0ea79d21",
+  "generated_at": "2026-06-13T07:50:03.519306+00:00",
+  "git_commit": "5a0f9f044c5ad37c358e9b05489821e19ce08836",
   "summary": {
-    "tracked_files_total": 847,
-    "cataloged_files": 829,
+    "tracked_files_total": 848,
+    "cataloged_files": 830,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34789830,
-    "total_text_lines": 129121,
+    "total_bytes": 34799357,
+    "total_text_lines": 129358,
     "markdown_files": 426,
-    "yml_yaml_files": 45,
+    "yml_yaml_files": 46,
     "github_workflow_yml_files": 16,
     "data_or_result_files": 92
   },
   "counts_by_ext": {
     ".md": 426,
-    ".yml": 45,
+    ".yml": 46,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 118,
@@ -41,7 +41,7 @@
   "counts_by_kind": {
     "documentation_md": 426,
     "github_workflow_yml": 16,
-    "config_yml": 29,
+    "config_yml": 30,
     "other": 129,
     "source_code": 130,
     "archive": 6,
@@ -2803,6 +2803,16 @@
       "risk_flags": []
     },
     {
+      "path": "data/real/bootstrap/real_observational_seed_v1.yml",
+      "size_bytes": 9527,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "9ca27fe2aba6afdaa27236b5e755467703c51f8b701e4f702443cade6d838809",
+      "line_count": 237,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/compact_objects/remnant_boundary_sources.yml",
       "size_bytes": 4817,
       "ext": ".yml",
@@ -3265,7 +3275,7 @@
       "size_bytes": 281062,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "480f95290d2c34c0a8d8fb87018fe057a50c8e4c8450438e92e646473852670b",
+      "sha256": "68590bfc9839bf87016c9271e44b036422ba688944e1bc55987169fd3d36529f",
       "line_count": 9563,
       "is_text": true,
       "risk_flags": [
@@ -3280,7 +3290,7 @@
       "size_bytes": 131050,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "fe6a8eb3a8a56b4ea884e4757f5dcecdb07306fbe5f61ff4d5f35c8318f55cb6",
+      "sha256": "7c700429ab6cfb00d1f27b34fbef152ad11b33d6bbea71ebd3b9bc0de03fc671",
       "line_count": 830,
       "is_text": true,
       "risk_flags": [
@@ -3296,7 +3306,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "6823dad1eae01a6ceb9b446f4f5de687ca52881bb4b9ffe69889b25026c079d6",
+      "sha256": "b4b7ccc9948cd9e99baf982eabe7b51d47bc9ce4564e64b337b90d1619731928",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3755,7 +3765,7 @@
       "size_bytes": 150109,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "575dd984f2ccc611ec404fec736b9eda279a955554f382da1d2f221f76ca4ea4",
+      "sha256": "074f8f40581a89ed7959cfb79b0bd758cb9126da219ad1ab410e77994bf80c05",
       "line_count": 873,
       "is_text": true,
       "risk_flags": [
@@ -4304,7 +4314,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d8aa8e3dfe3c2ebe524a0a2ead41ea380e253a1333a0ca853ebc1eed04c5ee64",
+      "sha256": "96661ec79efdc59eb6e67dbb313c5700af62bf616a0fa177dc7346444c455db9",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4775,7 +4785,7 @@
       "size_bytes": 6922,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3c84d2c75071d9445212aaa5a2f0c6b846606e2b50ac6ced351f452afc0a4d60",
+      "sha256": "4e0a207bbbbd8efeb7e889da257e7b3fcf858699d2d1d2b718b554ad097eca6f",
       "line_count": 52,
       "is_text": true,
       "risk_flags": [
