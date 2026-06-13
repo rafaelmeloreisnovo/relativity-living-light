@@ -3,8 +3,8 @@
 Status: raw-data custody status  
 Claim level: `claim_allowed=false`
 
-Total records: **7**  
-Raw files present: **1**  
+Total records: **8**  
+Raw files present: **2**  
 Raw files missing: **6**
 
 ---
@@ -20,19 +20,23 @@ Raw files missing: **6**
 | `RAW_PENDING_GAIA_BH1_ASTROMETRY` | `wandering_dark_compact_mass` | `false` | `false` | `astrometric_dark_mass_consistency` |
 | `RAW_PENDING_UHZ1_HIGHZ_CONTEXT` | `high_z_smbh_seeds` | `false` | `false` | `Eddington_growth_feasibility_grid` |
 | `RAW_JPL_HORIZONS_MARS_OBSERVER_2006_SAMPLE` | `orbital_shape_angular_momentum` | `true` | `true` | `observer_ephemeris_delta_deldot_profile` |
+| `RAW_JPL_HORIZONS_MARS_VECTORS_2006_SAMPLE` | `orbital_shape_angular_momentum` | `true` | `true` | `state_vector_vs_reference_h_residual` |
 
 ---
 
 ## Meaning
 
-This is the first raw-data custody layer with one local raw file now present.
+The raw-data custody layer now contains two local raw files:
 
-The first local raw file is a NASA/JPL Horizons Mars observer-ephemeris sample. It is useful for custody, provenance, parser, and observer-ephemeris feature tests.
+```text
+1. Mars observer ephemeris sample
+2. Mars heliocentric Cartesian state-vector sample
+```
 
-It is not yet the state-vector dataset required for orbital v2.
+The second file is the first raw vector dataset used by orbital v2.
 
 ---
 
 ## Safe conclusion
 
-Raw data custody now contains one local raw file with SHA256. Scientific claims remain blocked until route-specific raw vectors, baselines, and uncertainty models exist.
+Raw data custody now contains two local JPL Horizons samples with SHA256. Orbital v2 has a raw vector residual, but scientific claims remain blocked until baselines and uncertainty models exist.
