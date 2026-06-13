@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:12:03.933029+00:00",
-  "git_commit": "158393a391120de3adf5561dee76b20a93d3d276",
+  "generated_at": "2026-06-13T08:12:31.408217+00:00",
+  "git_commit": "d9b26b451de77bc7d318afe5811b6f442e899c74",
   "summary": {
-    "tracked_files_total": 856,
-    "cataloged_files": 838,
+    "tracked_files_total": 857,
+    "cataloged_files": 839,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34837439,
-    "total_text_lines": 130531,
+    "total_bytes": 34841724,
+    "total_text_lines": 130627,
     "markdown_files": 428,
     "yml_yaml_files": 49,
     "github_workflow_yml_files": 17,
@@ -17,7 +17,7 @@
     ".yml": 49,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 119,
+    ".py": 120,
     ".sh": 6,
     ".json": 47,
     ".csv": 62,
@@ -43,7 +43,7 @@
     "github_workflow_yml": 17,
     "config_yml": 32,
     "other": 129,
-    "source_code": 131,
+    "source_code": 132,
     "archive": 6,
     "data_or_result": 94,
     "test_or_validation": 1
@@ -52,7 +52,7 @@
     "cosmology_validation_marker": 390,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 60,
+    "token_vazio_declared": 61,
     "result_artifact": 78
   },
   "files": [
@@ -3326,11 +3326,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 283294,
+      "size_bytes": 284019,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "22292ed07a03724aa4085892a12c099acd89e4457b925f0896ac8cde77ad7322",
-      "line_count": 9635,
+      "sha256": "baf1e1047207ee4e9864e610fe0ad58087dd1d93a218aaef046c3aedc8716fc4",
+      "line_count": 9659,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3341,11 +3341,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 132123,
+      "size_bytes": 132486,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "966c8dd1a4a8a7994ef9a167a0d349dfbe5c8bd987ac8b8521f592951516ce8b",
-      "line_count": 837,
+      "sha256": "c4dbd914ee69364a18c389b9fa6832fade3876964116b3fbecf4290281c8eb13",
+      "line_count": 839,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3360,7 +3360,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "04c4209a54921ed8ef457cc0c3e93c2255b03aea9902bd9828f1d9abbb2a1534",
+      "sha256": "fbfd1399efa16087697772ca63a8d250a46a0009da22a3c214299bd72224704e",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3816,11 +3816,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 151322,
+      "size_bytes": 151725,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "4724f3fea777d84f44acccdc56fc7058e59485206e596b6e084415b3485a8b03",
-      "line_count": 880,
+      "sha256": "2684d5fb03a2ce2c83a42e1c8f07da8165ac8c97dfa47c83059f19e937cee65c",
+      "line_count": 882,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4368,7 +4368,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "18f2a60012d53af6c160b78f7c7ef9dc66d73060663723649beb5a3586f912a0",
+      "sha256": "ad903395d39ea3e2c27283140d0c699bec734599c0613d9ae0485a562c264a2f",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4836,11 +4836,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 7394,
+      "size_bytes": 7559,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "88dbc57b8bfc94eaa2f62b989a2d5a9e9753647368f45492355677661c9a328a",
-      "line_count": 55,
+      "sha256": "111c8bbe9f0848a93d0a6fe68dd6c443b0a8a10afc26f328c3354224527ed612",
+      "line_count": 56,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -8503,6 +8503,18 @@
       "line_count": 51,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "scripts/validation/validate_orbital_shape_angular_momentum.py",
+      "size_bytes": 2629,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "db1fd5f80ac1a0eb46a07e5dacf9635901983f5c7fd01da96fa6df6f50236624",
+      "line_count": 67,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
     },
     {
       "path": "scripts/verify_pantheon_inputs.py",
