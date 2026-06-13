@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T10:20:35.888100+00:00`  
-Commit: `f89d93b0b03568db96b796fb9a4badecdd9aca71`
+Gerado em: `2026-06-13T10:21:08.695015+00:00`  
+Commit: `14fa1a7964022653ab2af42f618dd9341490e529`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -30,7 +30,7 @@ Commit: `f89d93b0b03568db96b796fb9a4badecdd9aca71`
 | `.github/workflows/yml-syntax-validation.yml` | `github_workflow_yml` | 1616 | 63 | `6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290` |
 | `CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `data/observational_sources.yml` | `config_yml` | 4312 | 131 | `163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d` |
-| `data/raw/RAW_DATA_MANIFEST.yml` | `config_yml` | 6728 | 167 | `873529221e77807b727325c20b08a0d85d3052134f2ffe0d63261e7438b5934d` |
+| `data/raw/RAW_DATA_MANIFEST.yml` | `config_yml` | 6728 | 167 | `62ca61ce2598393c9d77dafdcb2de9271211c27482a95816c396413563b031ae` |
 | `data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_observer_2006_sample.meta.yml` | `config_yml` | 1802 | 53 | `63de5f109ebdf61c7df3352f8c497fd46a11855603d8e0aa077c3bde42ab9ce0` |
 | `data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml` | `config_yml` | 1418 | 24 | `51507bea6a04dd8abb623298d2a94eb7573308e9c2ea3033ebaa183142774fac` |
 | `data/real/bootstrap/canonical_route_checklist.yml` | `config_yml` | 5218 | 168 | `3be1076c8c8834dc59dc7243747ed88148eb3690e2c277c7ef23968db057b438` |
