@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T04:31:25.424839+00:00",
-  "git_commit": "0ea10fe26263bf416ef861627bdab9b7097ddf7d",
+  "generated_at": "2026-06-13T04:31:38.213713+00:00",
+  "git_commit": "1dc063821e49de27544bb0ee4cc86126f2382286",
   "summary": {
-    "tracked_files_total": 796,
-    "cataloged_files": 778,
+    "tracked_files_total": 797,
+    "cataloged_files": 779,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34515242,
-    "total_text_lines": 123184,
-    "markdown_files": 405,
+    "total_bytes": 34517958,
+    "total_text_lines": 123277,
+    "markdown_files": 406,
     "yml_yaml_files": 34,
     "github_workflow_yml_files": 13,
     "data_or_result_files": 83
   },
   "counts_by_ext": {
-    ".md": 405,
+    ".md": 406,
     ".yml": 34,
     "NO_EXT": 12,
     ".txt": 8,
@@ -39,7 +39,7 @@
     ".sha256": 1
   },
   "counts_by_kind": {
-    "documentation_md": 405,
+    "documentation_md": 406,
     "github_workflow_yml": 13,
     "config_yml": 21,
     "other": 127,
@@ -50,9 +50,9 @@
   },
   "flags": {
     "cosmology_validation_marker": 372,
-    "mentions_mock_or_placeholder": 70,
+    "mentions_mock_or_placeholder": 71,
     "mentions_synthetic": 61,
-    "token_vazio_declared": 32,
+    "token_vazio_declared": 33,
     "result_artifact": 63
   },
   "files": [
@@ -3070,7 +3070,7 @@
       "size_bytes": 262578,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "12a69ddc925a191ad3d1da74dbdb266c32a86fbc5f4002bda405d927716d0c51",
+      "sha256": "dfa1e27533e9b8264888393d8321ea9b767b9df691450d43b672ef3795c56e60",
       "line_count": 8940,
       "is_text": true,
       "risk_flags": [
@@ -3086,7 +3086,7 @@
       "size_bytes": 121955,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "3448a03881daddf56feec85aeef2582f29c6229bcb4668e8d6dcc804f6382ff5",
+      "sha256": "4f9f304af4cbcce74b1ce373153ef8119378820b6557559588889b788f4f3525",
       "line_count": 779,
       "is_text": true,
       "risk_flags": [
@@ -3102,7 +3102,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "390d5bb914f518b899e03d94bc26d3dae38e36c9556f4f79a97b916e4f4dcb3a",
+      "sha256": "631e1d9a65e677695d378832725ab187b56c1325b1e4b4009cb7100d20434dc3",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3561,7 +3561,7 @@
       "size_bytes": 139994,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "64812ee752bbab54dd7e844267aa10155e19a7c9940f4c8bce73a4c96fc8a4c1",
+      "sha256": "13f5912de90e48e6472e6b0f1327ca6c321aa83ad8def3d5d0c4d2a4ea8df092",
       "line_count": 822,
       "is_text": true,
       "risk_flags": [
@@ -4110,7 +4110,7 @@
       "size_bytes": 1500,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b55bb1afb05a11f0b76fa2c9516b860b0537a067e076c6de177fa1958a93d5ac",
+      "sha256": "7300aac5247eedc0240811472ed14593ea032502d7177ea5a9f6136c6c707113",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4176,6 +4176,19 @@
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/RLL_1234_CHUNK_TEXT_AUDIT.md",
+      "size_bytes": 2716,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "cd9757beaaa51cc04225343c9063fcb4bf43a66f7c9b3fd82f269f953ab803a5",
+      "line_count": 93,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_mock_or_placeholder",
+        "token_vazio_declared"
       ]
     },
     {
@@ -4569,7 +4582,7 @@
       "size_bytes": 5218,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "755a660d97d02ed695d217e7027503d3304dc978dae020ff31f50deb37397438",
+      "sha256": "7778b992f8f959cb27d76976882e398118baf6ddfc106d0822b8eef894d22b4f",
       "line_count": 41,
       "is_text": true,
       "risk_flags": [
