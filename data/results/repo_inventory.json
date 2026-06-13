@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T08:16:58.942760+00:00",
-  "git_commit": "a3925f8aba29c6d4013bd1087c8cf2f8a9463fa6",
+  "generated_at": "2026-06-13T08:17:52.849035+00:00",
+  "git_commit": "90cb589edaff3a2323b53b38f6e803886a3b5df9",
   "summary": {
-    "tracked_files_total": 862,
-    "cataloged_files": 844,
+    "tracked_files_total": 863,
+    "cataloged_files": 845,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34867713,
-    "total_text_lines": 131313,
+    "total_bytes": 34870953,
+    "total_text_lines": 131397,
     "markdown_files": 430,
-    "yml_yaml_files": 50,
-    "github_workflow_yml_files": 17,
+    "yml_yaml_files": 51,
+    "github_workflow_yml_files": 18,
     "data_or_result_files": 96
   },
   "counts_by_ext": {
     ".md": 430,
-    ".yml": 50,
+    ".yml": 51,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 120,
@@ -40,7 +40,7 @@
   },
   "counts_by_kind": {
     "documentation_md": 430,
-    "github_workflow_yml": 17,
+    "github_workflow_yml": 18,
     "config_yml": 33,
     "other": 129,
     "source_code": 132,
@@ -122,6 +122,16 @@
       "risk_flags": []
     },
     {
+      "path": ".github/workflows/orbital-shape-angular-momentum-validation.yml",
+      "size_bytes": 2046,
+      "ext": ".yml",
+      "kind": "github_workflow_yml",
+      "sha256": "c94befa20a58f0d3cd1f52f0d3f6ff8b73486de81c7f68773a79dacdbfeb5bb6",
+      "line_count": 61,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": ".github/workflows/python-tests.yml",
       "size_bytes": 693,
       "ext": ".yml",
@@ -157,11 +167,11 @@
     },
     {
       "path": ".github/workflows/real-seed-ingestion-plan.yml",
-      "size_bytes": 1930,
+      "size_bytes": 2090,
       "ext": ".yml",
       "kind": "github_workflow_yml",
-      "sha256": "f806ee2445ed8b8b407c54b3391c97bd80a5b25fa7f599ec72d67c416b6d2080",
-      "line_count": 65,
+      "sha256": "19a115f8cbe606b2d5619d2ffc697b88b638ccd0d3d3cf2431186cf601a260b8",
+      "line_count": 67,
       "is_text": true,
       "risk_flags": []
     },
@@ -3360,11 +3370,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 285762,
+      "size_bytes": 286083,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "246123ce880288601cd085a1482b677bcec3cee117cc7fe05fb277d56799b2b2",
-      "line_count": 9715,
+      "sha256": "5f20874b2cc1a5a49e595c522f0bde641248f14a5d437738e2b96a060873c84c",
+      "line_count": 9725,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3375,11 +3385,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 133360,
+      "size_bytes": 133518,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "60ba952ad1b227a79ca6ea5104915d689b88f431b5cd824ba0c6f590f100ac9a",
-      "line_count": 844,
+      "sha256": "e84efefb58012c88d4ff80359b1072ed7ec0d815e0c5064497ae67f1e846989d",
+      "line_count": 845,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3394,7 +3404,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ce40dac9c28a0b86b7eabd7cd407e5bcfa3e6261ee98286b018ab1f81ba0edb0",
+      "sha256": "c7b7cfe545ad173e2c2f0d9bc1ff0bd714e67183edbbe6aadc9733cf793b5267",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3850,11 +3860,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 152699,
+      "size_bytes": 152877,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "712b4030a72cf9a861de4b86ac939b1d43a047e1094977d57979691c155e3be1",
-      "line_count": 887,
+      "sha256": "5f74d2e72206d98b4d4b1f94ed832aa511cba07e39209e980dc8a6359e22ada9",
+      "line_count": 888,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4402,7 +4412,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "2e9f43c3a1fe444ccb43841d743d43f4c21eb81642c65dbea2be09212508a22a",
+      "sha256": "13f9fea5f3f09401bd8b98392c0bf2d4410b27503e68c297bbc5bc652f2c607f",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4873,7 +4883,7 @@
       "size_bytes": 7732,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9afc2d7ec666ac19965ad54e41e01c33ce0d057526e337ee596bdfdc481645bc",
+      "sha256": "bd5d0aa5439f0bab94d678807e35fa7f54a1bff7900fad5ef6edebc6dbe29aa7",
       "line_count": 57,
       "is_text": true,
       "risk_flags": [
@@ -8280,11 +8290,11 @@
     },
     {
       "path": "scripts/data_scan/build_real_seed_ingestion_plan.py",
-      "size_bytes": 7466,
+      "size_bytes": 7843,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "b7cdabeb6526df11e9d711af698b98b8acddf6b5f3e5b7a5c025bba08c1943cb",
-      "line_count": 189,
+      "sha256": "06375c67a2281da0c712aba3e90fcbe2cbcef49a74797136b43296196056aa4e",
+      "line_count": 198,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"

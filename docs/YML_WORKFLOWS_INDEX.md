@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T08:16:58.942760+00:00`  
-Commit: `a3925f8aba29c6d4013bd1087c8cf2f8a9463fa6`
+Gerado em: `2026-06-13T08:17:52.849035+00:00`  
+Commit: `90cb589edaff3a2323b53b38f6e803886a3b5df9`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -10,10 +10,11 @@ Commit: `a3925f8aba29c6d4013bd1087c8cf2f8a9463fa6`
 | `.github/workflows/dha-fisher-ci.yml` | `github_workflow_yml` | 2397 | 77 | `5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4` |
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 864 | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` |
 | `.github/workflows/iml_artifact.yml` | `github_workflow_yml` | 1382 | 54 | `bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72` |
+| `.github/workflows/orbital-shape-angular-momentum-validation.yml` | `github_workflow_yml` | 2046 | 61 | `c94befa20a58f0d3cd1f52f0d3f6ff8b73486de81c7f68773a79dacdbfeb5bb6` |
 | `.github/workflows/python-tests.yml` | `github_workflow_yml` | 693 | 36 | `c97938a8150e31602504255839a0ccecb0f05eb6eab4e7c1c215890effcff08b` |
 | `.github/workflows/real-data-bootstrap-validation.yml` | `github_workflow_yml` | 2728 | 93 | `3d1fb515d1eaee0cfd5a77ee48e450b4752e7b712fec089f7d28ea5bb67fe497` |
 | `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12275 | 270 | `a71cff24c5d4cb1b007ed2e86429c33291461b65d337f622b822eae746eef675` |
-| `.github/workflows/real-seed-ingestion-plan.yml` | `github_workflow_yml` | 1930 | 65 | `f806ee2445ed8b8b407c54b3391c97bd80a5b25fa7f599ec72d67c416b6d2080` |
+| `.github/workflows/real-seed-ingestion-plan.yml` | `github_workflow_yml` | 2090 | 67 | `19a115f8cbe606b2d5619d2ffc697b88b638ccd0d3d3cf2431186cf601a260b8` |
 | `.github/workflows/real-seed-validation-v0.yml` | `github_workflow_yml` | 2479 | 73 | `48361385a0397c3ffa4aff7c75a063eac74a909ed90c532e89a8d1e11b5c4d76` |
 | `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 9222 | 181 | `9771b28c9b580a3d690583644e02e55fb2420b2303e21344561cd444357adb1f` |
 | `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 4025 | 129 | `fe411d15b093e92509854c220171b1da9c7abd041f64648804524b750756df3f` |
