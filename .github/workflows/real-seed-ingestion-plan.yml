@@ -5,12 +5,14 @@ on:
   pull_request:
     paths:
       - "data/real/bootstrap/real_observational_seed_v*.csv"
+      - "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv"
       - "data/real/bootstrap/real_seed_pipeline_orchestration.yml"
       - "scripts/data_scan/build_real_seed_ingestion_plan.py"
       - ".github/workflows/real-seed-ingestion-plan.yml"
   push:
     paths:
       - "data/real/bootstrap/real_observational_seed_v*.csv"
+      - "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv"
       - "data/real/bootstrap/real_seed_pipeline_orchestration.yml"
       - "scripts/data_scan/build_real_seed_ingestion_plan.py"
       - ".github/workflows/real-seed-ingestion-plan.yml"
