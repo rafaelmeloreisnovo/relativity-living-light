@@ -18,6 +18,9 @@ inputs:
     - path: data/real/bootstrap/real_observational_seed_v2_orbital_shape.csv
       role: orbital_shape_angular_momentum_route_seed
       required: true
+    - path: data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv
+      role: orbital_shape_angular_momentum_computable_seed_v1
+      required: true
 
 pipeline_outputs:
   ingestion_plan_json: data/results/bootstrap/real_seed_ingestion_plan.json
@@ -214,7 +217,7 @@ routes:
       - SPICE_or_JPL_ephemeris_baseline
       - tidal_deformation_model
       - general_relativity_correction_if_required
-    status: TOKEN_VAZIO_route_scaffold_ready
+    status: seed_metric_ready_raw_ingestion_needed
 
 orchestration_rules:
   - every_seed_must_map_to_route
