@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T09:26:52.353299+00:00",
-  "git_commit": "34982769317512587a019848d87bd5164a7e33db",
+  "generated_at": "2026-06-13T09:27:05.306382+00:00",
+  "git_commit": "c9529d313e22003df6ea4bd19056ae028d994356",
   "summary": {
-    "tracked_files_total": 905,
-    "cataloged_files": 887,
+    "tracked_files_total": 906,
+    "cataloged_files": 888,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35042698,
-    "total_text_lines": 135197,
+    "total_bytes": 35045468,
+    "total_text_lines": 135273,
     "markdown_files": 446,
-    "yml_yaml_files": 57,
-    "github_workflow_yml_files": 21,
+    "yml_yaml_files": 58,
+    "github_workflow_yml_files": 22,
     "data_or_result_files": 108
   },
   "counts_by_ext": {
     ".md": 446,
-    ".yml": 57,
+    ".yml": 58,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 128,
@@ -40,7 +40,7 @@
   },
   "counts_by_kind": {
     "documentation_md": 446,
-    "github_workflow_yml": 21,
+    "github_workflow_yml": 22,
     "config_yml": 36,
     "other": 129,
     "source_code": 140,
@@ -150,6 +150,16 @@
       "kind": "github_workflow_yml",
       "sha256": "c94befa20a58f0d3cd1f52f0d3f6ff8b73486de81c7f68773a79dacdbfeb5bb6",
       "line_count": 61,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": ".github/workflows/orbital-state-vector-v2.yml",
+      "size_bytes": 2131,
+      "ext": ".yml",
+      "kind": "github_workflow_yml",
+      "sha256": "30746627c50ddfd8760107510de8411879162231bda22ad552957f5fc1bf3f1f",
+      "line_count": 64,
       "is_text": true,
       "risk_flags": []
     },
@@ -3586,11 +3596,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 300514,
+      "size_bytes": 300829,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "478670aef31220c365623ec839e9e2e07ce882294a2f1dbf2a48902e7cc1f5d7",
-      "line_count": 10204,
+      "sha256": "30336a5d453344a0ceff41a65ee7826cd4d0bef1bb9be95b0db4a29d62c275e6",
+      "line_count": 10214,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3601,11 +3611,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 140544,
+      "size_bytes": 140696,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "54ea8d4bece23a611fe927555193668fd274f626dfc776ba3e5100161e5c48dd",
-      "line_count": 887,
+      "sha256": "3ab05fb5962094339cf7d87e207e372d79072e36e689c53efd95edb4c33bd74d",
+      "line_count": 888,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3620,7 +3630,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "1ef11688429d35175b2157cd17cac5a9c7fe24884f923c3644e04e8cc3c4007a",
+      "sha256": "d78b57ecac4bf1aaf1bd67d9129eb5dcb5968f55873a247166ac4b034f5f1058",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4096,11 +4106,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 160744,
+      "size_bytes": 160916,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f2d6c17cc1689de0412d4f37cf2868ab9afb5c03fe4442e1c0731890670f9f12",
-      "line_count": 930,
+      "sha256": "b8807ba154d5e72bae3ff5a9bb88fa367e52646635b15c20b30cf19a2134951a",
+      "line_count": 931,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4648,7 +4658,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "0a98b65695d11fdd03f6b1675bc4d32ca9148ffd4c431de1554f483ba40fef4f",
+      "sha256": "167eb50219803688b970f87ef04fd536ba1a79b659a7d44f3be31e48a2042b6e",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5119,7 +5129,7 @@
       "size_bytes": 8866,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f8115b1304587ff2dbcb0f7b6ecbdc4c7614b6fdfcefa94bee54d2213046c68b",
+      "sha256": "a148a141a056e74aaff160d72af84c235dfbe9755e33945eafa2257bc040ce12",
       "line_count": 64,
       "is_text": true,
       "risk_flags": [

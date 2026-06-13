@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T09:26:52.353299+00:00`  
-Commit: `34982769317512587a019848d87bd5164a7e33db`
+Gerado em: `2026-06-13T09:27:05.306382+00:00`  
+Commit: `c9529d313e22003df6ea4bd19056ae028d994356`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -13,6 +13,7 @@ Commit: `34982769317512587a019848d87bd5164a7e33db`
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 864 | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` |
 | `.github/workflows/iml_artifact.yml` | `github_workflow_yml` | 1382 | 54 | `bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72` |
 | `.github/workflows/orbital-shape-angular-momentum-validation.yml` | `github_workflow_yml` | 2046 | 61 | `c94befa20a58f0d3cd1f52f0d3f6ff8b73486de81c7f68773a79dacdbfeb5bb6` |
+| `.github/workflows/orbital-state-vector-v2.yml` | `github_workflow_yml` | 2131 | 64 | `30746627c50ddfd8760107510de8411879162231bda22ad552957f5fc1bf3f1f` |
 | `.github/workflows/python-tests.yml` | `github_workflow_yml` | 693 | 36 | `c97938a8150e31602504255839a0ccecb0f05eb6eab4e7c1c215890effcff08b` |
 | `.github/workflows/raw-data-manifest-status.yml` | `github_workflow_yml` | 1702 | 60 | `fd81e390c43987d931f296589c2426379cd12ce17edf9d176dd84fedc74e573a` |
 | `.github/workflows/real-data-bootstrap-validation.yml` | `github_workflow_yml` | 2728 | 93 | `3d1fb515d1eaee0cfd5a77ee48e450b4752e7b712fec089f7d28ea5bb67fe497` |
