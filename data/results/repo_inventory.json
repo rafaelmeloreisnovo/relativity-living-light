@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T07:03:38.838081+00:00",
-  "git_commit": "57477328662d1511bbe874d1b3e0ee65f663b713",
+  "generated_at": "2026-06-13T07:03:57.322147+00:00",
+  "git_commit": "9f1da675fad062809859d8b248f9f21b917b2ee7",
   "summary": {
-    "tracked_files_total": 833,
-    "cataloged_files": 815,
+    "tracked_files_total": 834,
+    "cataloged_files": 816,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34745492,
-    "total_text_lines": 127935,
-    "markdown_files": 424,
+    "total_bytes": 34750373,
+    "total_text_lines": 128111,
+    "markdown_files": 425,
     "yml_yaml_files": 44,
     "github_workflow_yml_files": 15,
     "data_or_result_files": 87
   },
   "counts_by_ext": {
-    ".md": 424,
+    ".md": 425,
     ".yml": 44,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 424,
+    "documentation_md": 425,
     "github_workflow_yml": 15,
     "config_yml": 29,
     "other": 129,
@@ -52,7 +52,7 @@
     "cosmology_validation_marker": 390,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 52,
+    "token_vazio_declared": 53,
     "result_artifact": 73
   },
   "files": [
@@ -3192,11 +3192,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 275684,
+      "size_bytes": 276308,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "59c867a49131ec7e9279c1dac4200c3d73fc8d2c74d57a14f683ec77bd7d556d",
-      "line_count": 9383,
+      "sha256": "0e39e501c260ca07bcd051df0dbe47be9e657bb47ce8deca169de09627f54e53",
+      "line_count": 9403,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3207,11 +3207,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 128460,
+      "size_bytes": 128758,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "afc88bdc5ae79531f3119afca367d666c07c6f73b70d1f4e177ad9ba049b92ee",
-      "line_count": 814,
+      "sha256": "f1f8913c82c53e1e9336a78c5b46de355e5cd3cb3577eac45b11f4ee4887dd76",
+      "line_count": 816,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3226,7 +3226,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "0360b2bdf629cecbadebb63351b9a530c79218e0b80a0a41b67378fe4ad7d2f3",
+      "sha256": "84c5ca593e9ef34cc5f1287df85f2e7c2cda72102426d80b1504b0ff172498b6",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3682,11 +3682,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 147199,
+      "size_bytes": 147537,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b1a462c8b2058432480650619463cf75d169a585e49d5c2a98d316710c95aa18",
-      "line_count": 857,
+      "sha256": "bd0061f72f8ef9a51d8988544d8ba5a619d8e5a9442216ca30cc41506842d720",
+      "line_count": 859,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4234,7 +4234,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e705c08b1598b374a3c9c49a2a2247625f55dff37104f61719f8f3634cb8240d",
+      "sha256": "55877ad1e9654f91453af34746f05f538654fdba01483f90fc1718376df1e3ea",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4702,11 +4702,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 6611,
+      "size_bytes": 6765,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "606824c51d6e3c28d8a6c77f45076c6abeb827ff2dfe09d228a7ecc6c860a198",
-      "line_count": 50,
+      "sha256": "7c99ef0c46241e50da4d5d0fed1f5954cd019b275fe28133c73a3e39acf3f3a1",
+      "line_count": 51,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -5789,6 +5789,18 @@
       "risk_flags": [
         "token_vazio_declared",
         "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/science/REAL_OBSERVATIONAL_SEED_V0_REPORT.md",
+      "size_bytes": 3467,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "766180adc4ef3eb4cb9af99aac3a7af8a40fb6ba1543c45982851d80aab1e906",
+      "line_count": 151,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
       ]
     },
     {
