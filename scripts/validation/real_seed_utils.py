@@ -57,22 +57,32 @@ def parse_float(text: str | None) -> float | None:
 
 
 def parse_range(text: str | None) -> list[float] | None:
+    """Parse ranges like `2.5-4.5` as positive interval endpoints.
+
+    A hyphen between numbers is a range separator, not a negative sign.
+    Scientific signed numbers are not needed for the seed mass ranges.
+    """
     if text is None:
         return None
     cleaned = text.replace("≈", "").replace("~", "").replace(",", "")
-    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", cleaned)
+    nums = re.findall(r"\d+(?:\.\d+)?", cleaned)
     if len(nums) >= 2:
         return [float(nums[0]), float(nums[1])]
     return None
 
 
 def parse_pm(text: str | None) -> dict[str, float | None]:
+    """Parse uncertainty strings like `2.08±0.07` or `2.08+/-0.07`.
+
+    The returned uncertainty magnitudes are positive by convention.
+    """
     if text is None:
         return {"value": None, "minus": None, "plus": None}
     cleaned = text.replace("±", "+/-")
-    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", cleaned)
+    nums = re.findall(r"\d+(?:\.\d+)?", cleaned)
     if len(nums) >= 2:
-        return {"value": float(nums[0]), "minus": float(nums[1]), "plus": float(nums[1])}
+        err = abs(float(nums[1]))
+        return {"value": float(nums[0]), "minus": err, "plus": err}
     if len(nums) == 1:
         return {"value": float(nums[0]), "minus": None, "plus": None}
     return {"value": None, "minus": None, "plus": None}
@@ -84,7 +94,7 @@ def parse_asymmetric_radius(text: str | None) -> dict[str, float | None]:
         return {"value": None, "minus": None, "plus": None}
     nums = re.findall(r"\d+(?:\.\d+)?", text)
     if len(nums) >= 3:
-        return {"value": float(nums[0]), "plus": float(nums[1]), "minus": float(nums[2])}
+        return {"value": float(nums[0]), "plus": abs(float(nums[1])), "minus": abs(float(nums[2]))}
     return parse_pm(text)
 
 
