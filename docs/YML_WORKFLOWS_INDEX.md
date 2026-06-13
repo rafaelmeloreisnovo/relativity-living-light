@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T06:25:15.148375+00:00`  
-Commit: `af21fcfc88459a034de5502e74db34f107c1a9ba`
+Gerado em: `2026-06-13T06:25:27.385291+00:00`  
+Commit: `af683e37cf98a6f56206fb4f77ca7d2a244b66c9`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -21,6 +21,7 @@ Commit: `af21fcfc88459a034de5502e74db34f107c1a9ba`
 | `.github/workflows/yml-syntax-validation.yml` | `github_workflow_yml` | 1616 | 63 | `6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290` |
 | `CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `data/observational_sources.yml` | `config_yml` | 4312 | 131 | `163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d` |
+| `data/real/compact_objects/wandering_black_hole_sources.yml` | `config_yml` | 3610 | 117 | `2e3fcc600a4a7470c44ee89309648691e5a3bca40003df3070d5047313181e5f` |
 | `data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml` | `config_yml` | 2964 | 80 | `f0ba4a4b4581a2acea9dcba3fef79b8775205b59631944a96139f38c2db4107a` |
 | `data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml` | `config_yml` | 2907 | 90 | `1e5381d57d932427f952e48883b58a0c99b1f42d077e2e66c1d40afb5bc2d7e2` |
 | `data/real/rll_real_sources_manifest_2026.yml` | `config_yml` | 5897 | 118 | `45501ad4d4a0c11ad79ca6213c450bc3f9dd291697d0a385eb16474e62d74c36` |
