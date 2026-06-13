@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T07:50:37.515989+00:00",
-  "git_commit": "e7cb045be7a93618eea6252267f490f3b402bba3",
+  "generated_at": "2026-06-13T07:55:20.287184+00:00",
+  "git_commit": "6517500b8098bc55208965c92bd817c55326e096",
   "summary": {
-    "tracked_files_total": 850,
-    "cataloged_files": 832,
+    "tracked_files_total": 851,
+    "cataloged_files": 833,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34807897,
-    "total_text_lines": 129617,
+    "total_bytes": 34814635,
+    "total_text_lines": 129809,
     "markdown_files": 427,
-    "yml_yaml_files": 46,
+    "yml_yaml_files": 47,
     "github_workflow_yml_files": 16,
     "data_or_result_files": 93
   },
   "counts_by_ext": {
     ".md": 427,
-    ".yml": 46,
+    ".yml": 47,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 118,
@@ -41,7 +41,7 @@
   "counts_by_kind": {
     "documentation_md": 427,
     "github_workflow_yml": 16,
-    "config_yml": 30,
+    "config_yml": 31,
     "other": 129,
     "source_code": 130,
     "archive": 6,
@@ -2823,6 +2823,16 @@
       "risk_flags": []
     },
     {
+      "path": "data/real/bootstrap/real_seed_pipeline_orchestration.yml",
+      "size_bytes": 6108,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "e10b3d24e519f5cce67d7f8aa9e6ea4d0522c29afd935f44b6beee523c51701a",
+      "line_count": 180,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "data/real/compact_objects/remnant_boundary_sources.yml",
       "size_bytes": 4817,
       "ext": ".yml",
@@ -3282,11 +3292,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 281686,
+      "size_bytes": 281998,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "cc90e15f638055e914b4ceb9dedf427741672174b57f04e26a44613d1eb53d29",
-      "line_count": 9583,
+      "sha256": "6d365add0df1ebda755b8ad81814bad9c85270897fff4e2cc93ce0fb62e98d7f",
+      "line_count": 9593,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3297,11 +3307,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 131348,
+      "size_bytes": 131497,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "c3f4fecb7df6f68c4671f0c9df0e7886db9c9094af75f5294d25a792d57465d5",
-      "line_count": 832,
+      "sha256": "2cbc9108d9c7ebf5eb83b7c604d74cf9faaba99cba1108970f420feaec89e3b7",
+      "line_count": 833,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3316,7 +3326,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "deaaaf12ff02f10f653ceacc627afb15adfea7c1e7bde58dad54c632e948b971",
+      "sha256": "0ab89c2eb991210384342da84cf8604ddfe444d377446f328332a3ab7eb7d339",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3772,11 +3782,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 150447,
+      "size_bytes": 150616,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "67ad1beaeb60700738d02b69657567eb982194cbc9fc30bc54de0e6e017c06c0",
-      "line_count": 875,
+      "sha256": "ad4c302c6d0d470462f583e95180c8a9cf0e3719b57877b1b5de3cd4e7418e6b",
+      "line_count": 876,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4324,7 +4334,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "317c7e6535ce01c49fe5a49c315afcd8c43130f58566b9bb41f1d512247a61a9",
+      "sha256": "db9ed2a1a1c1d98fb5465afb55375bebd2322fa7380f7557396dbbf35a042dd2",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4795,7 +4805,7 @@
       "size_bytes": 7076,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9fbf0764471aef0302c90db07d25320e5098dc0b905b80db80e64969817da5e9",
+      "sha256": "a3be1fe8f7da99b648da06ff894cc0e8d4cc7f6dd200a9bb35bd8aecb30b585a",
       "line_count": 53,
       "is_text": true,
       "risk_flags": [
