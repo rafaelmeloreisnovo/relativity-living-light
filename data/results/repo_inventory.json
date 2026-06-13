@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:38:37.040688+00:00",
-  "git_commit": "e1dca24730ec5903f5bec0a55a6cd7a45ffc6602",
+  "generated_at": "2026-06-13T08:38:56.446575+00:00",
+  "git_commit": "3c7dad0f120857160d663f69eef44d4dd11a9351",
   "summary": {
     "tracked_files_total": 869,
     "cataloged_files": 851,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34896805,
-    "total_text_lines": 131992,
+    "total_bytes": 34897714,
+    "total_text_lines": 132009,
     "markdown_files": 434,
     "yml_yaml_files": 51,
     "github_workflow_yml_files": 18,
@@ -52,7 +52,7 @@
     "cosmology_validation_marker": 396,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 65,
+    "token_vazio_declared": 64,
     "result_artifact": 81
   },
   "files": [
@@ -2856,15 +2856,13 @@
     },
     {
       "path": "data/real/bootstrap/real_seed_pipeline_orchestration.yml",
-      "size_bytes": 7716,
+      "size_bytes": 7887,
       "ext": ".yml",
       "kind": "config_yml",
-      "sha256": "1c57809005d6d9a5eadd9884de4a6c63e9e31f59df47f9bd358407b8f5700f01",
-      "line_count": 224,
+      "sha256": "b8f90f3fcdc9c2232cb6e686f7a305a5bdaccc3a2c8f3a7df84eee0ceb0d9a17",
+      "line_count": 227,
       "is_text": true,
-      "risk_flags": [
-        "token_vazio_declared"
-      ]
+      "risk_flags": []
     },
     {
       "path": "data/real/compact_objects/remnant_boundary_sources.yml",
@@ -3397,11 +3395,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 288329,
+      "size_bytes": 288689,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "1f2768c8aaee48c27b626263bddf937da46c595dbf0e9c72f2c4171995212d7d",
-      "line_count": 9800,
+      "sha256": "0a4e63401f5b48097cd3ae72d4cb24e544b56dcae5546e0809efb48f0f8dda73",
+      "line_count": 9812,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3412,11 +3410,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 134641,
+      "size_bytes": 134820,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "6764146f1f4b36565dc8a17b4635b43a6a6d41b5c1733160b059beadc8b8727c",
-      "line_count": 851,
+      "sha256": "c1a74e4ca10571b6ab3b501bf6914d8af138d94e6c8dad38d00e8e461bdc33e4",
+      "line_count": 852,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3431,7 +3429,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "63fa7ca0862880ddc8530d71e9b6148cdfcf88e0c38d79120faa61d47dcd2c2b",
+      "sha256": "e92bee561435bc4de2835efc98d2e5445f8e4b7a5178c3a9246235893c3e80fd",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3887,11 +3885,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 154120,
+      "size_bytes": 154319,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "de3e4b9e3d57ad93c2346f8519d3551c5e897f2489aa306c302650869d264a74",
-      "line_count": 894,
+      "sha256": "edfca89e9e8bc92ed85bf8e0979d842b25f36ba0d12924b7db38470161cd44df",
+      "line_count": 895,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4439,7 +4437,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8d4d4a9a18ea06c955895ebdd2c8495a79ad71fe16b1427f5bd7dcf237142499",
+      "sha256": "bf8e8212208821714515288dc53ee657e4db5bd82d080a96320ec24b230872c4",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4910,7 +4908,7 @@
       "size_bytes": 7907,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "ff179af32ae30db0af1dfedc07e80c8ddba9b368d8b4f9767e9c152e1a4f847f",
+      "sha256": "fdc1dc4183970b53d043f68a1952751a584f29302df0268ad30a27c388e757e3",
       "line_count": 58,
       "is_text": true,
       "risk_flags": [
