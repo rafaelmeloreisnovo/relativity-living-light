@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T10:10:23.505203+00:00",
-  "git_commit": "40a922b0a905dce77b7a45d2bcfe074fc5b70831",
+  "generated_at": "2026-06-13T10:20:35.888100+00:00",
+  "git_commit": "f89d93b0b03568db96b796fb9a4badecdd9aca71",
   "summary": {
     "tracked_files_total": 915,
     "cataloged_files": 897,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35077093,
-    "total_text_lines": 136122,
+    "total_bytes": 35077954,
+    "total_text_lines": 136135,
     "markdown_files": 450,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
@@ -2851,10 +2851,10 @@
     },
     {
       "path": "data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml",
-      "size_bytes": 1362,
+      "size_bytes": 1418,
       "ext": ".yml",
       "kind": "config_yml",
-      "sha256": "c7bf09f201b81062f0d37be9a74672bcab950ad64aad40a89ad0c5d5bd58168c",
+      "sha256": "51507bea6a04dd8abb623298d2a94eb7573308e9c2ea3033ebaa183142774fac",
       "line_count": 24,
       "is_text": true,
       "risk_flags": []
@@ -3650,11 +3650,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 303898,
+      "size_bytes": 304215,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "137ea2bf507db4c297f9a836751f336319161612f3e4a2b28fb9e154c5ce1c55",
-      "line_count": 10314,
+      "sha256": "c3586a91bf6bc0e7abf1c94e853b58701961c41a6055f1ca00f3647f8d680c20",
+      "line_count": 10324,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3665,11 +3665,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 142208,
+      "size_bytes": 142362,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "1d92264c3be9c76b6edc6364176e738c89f2a0a5d7f223df8b87fa3d2e64f105",
-      "line_count": 897,
+      "sha256": "4a199c4333faf4e46285fb56b8bb7ce9587b6341169445c2150a7aec4d2b6756",
+      "line_count": 898,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3684,7 +3684,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2bde7cf38a6b4383cfd5221a086cd05a8746a9af8022d604935fcca69770a398",
+      "sha256": "ba20988b9b3ff130862666c45df0ba138b6a4e737cdffe3159e7cf7bb3636c74",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4160,11 +4160,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 162608,
+      "size_bytes": 162782,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "34fd71740799ee714b0eba0537e7518dc3d470e7729d8cd0b1ac42f1145beb68",
-      "line_count": 940,
+      "sha256": "dcc2db2cd2288dcaf1c589a4a4d77cccfc1455fcd152e1de8b941209d7acfc2c",
+      "line_count": 941,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4712,7 +4712,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a45268d3c73ac5234205c01bf175530ab6b260db070c4dd77899ec0c1fb93ee6",
+      "sha256": "354efd14120cf450879be0674e88142d742325438f0fb39ffa8e1d15a87df9fe",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5180,11 +5180,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 9363,
+      "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a438eb23a618530aabcba19991e5618266ce64759f81bc1be606910c3dfcfa87",
-      "line_count": 67,
+      "sha256": "85b8507365017ceb57afb1c715ab6fa57ced1f85e5a72d801a0b41e919067500",
+      "line_count": 68,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"

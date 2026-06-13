@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T10:10:23.505203+00:00`  
-Commit: `40a922b0a905dce77b7a45d2bcfe074fc5b70831`
+Gerado em: `2026-06-13T10:20:35.888100+00:00`  
+Commit: `f89d93b0b03568db96b796fb9a4badecdd9aca71`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -32,7 +32,7 @@ Commit: `40a922b0a905dce77b7a45d2bcfe074fc5b70831`
 | `data/observational_sources.yml` | `config_yml` | 4312 | 131 | `163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d` |
 | `data/raw/RAW_DATA_MANIFEST.yml` | `config_yml` | 6728 | 167 | `873529221e77807b727325c20b08a0d85d3052134f2ffe0d63261e7438b5934d` |
 | `data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_observer_2006_sample.meta.yml` | `config_yml` | 1802 | 53 | `63de5f109ebdf61c7df3352f8c497fd46a11855603d8e0aa077c3bde42ab9ce0` |
-| `data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml` | `config_yml` | 1362 | 24 | `c7bf09f201b81062f0d37be9a74672bcab950ad64aad40a89ad0c5d5bd58168c` |
+| `data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml` | `config_yml` | 1418 | 24 | `51507bea6a04dd8abb623298d2a94eb7573308e9c2ea3033ebaa183142774fac` |
 | `data/real/bootstrap/canonical_route_checklist.yml` | `config_yml` | 5218 | 168 | `3be1076c8c8834dc59dc7243747ed88148eb3690e2c277c7ef23968db057b438` |
 | `data/real/bootstrap/dense_behavior_feature_orchestration.yml` | `config_yml` | 2378 | 57 | `fb3fe69be388f600996ef4d2abfa1d36d5d05fc6bd435d7aee7b4654f8ba4001` |
 | `data/real/bootstrap/real_data_requirements_bootstrap.yml` | `config_yml` | 7548 | 222 | `10dcf7fe8dcbec05de9c1ee8ee7eaa2e35f2a61b7b972ebe6630fe59aefe24e5` |
