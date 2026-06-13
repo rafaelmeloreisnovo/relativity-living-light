@@ -1,17 +1,17 @@
 # Documentation Full Inventory
 
-Gerado em: `2026-06-13T07:05:59.324154+00:00`  
-Commit: `ed5cc56c36bbabfd96e3ee13f2f28fd07c9713ff`
+Gerado em: `2026-06-13T07:06:23.127222+00:00`  
+Commit: `e4133d54fa2e9ba540b00213b8cfdafdc4c62c73`
 
 ## Resumo
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 836 |
-| `cataloged_files` | 818 |
+| `tracked_files_total` | 838 |
+| `cataloged_files` | 820 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 34758127 |
-| `total_text_lines` | 128315 |
+| `total_bytes` | 34763056 |
+| `total_text_lines` | 128441 |
 | `markdown_files` | 425 |
 | `yml_yaml_files` | 44 |
 | `github_workflow_yml_files` | 15 |
@@ -303,9 +303,9 @@ Commit: `ed5cc56c36bbabfd96e3ee13f2f28fd07c9713ff`
 | `data/results/desi_dr2_bao_model_comparison.json` | 1097 | `.json` | `data_or_result` | 36 | `0cf0487735ae77e38cfa46cfe6b038ba947c72077d282329d3c25bc8961784bb` | `cosmology_validation_marker,result_artifact` |
 | `data/results/desi_dr2_bao_zml.yml` | 2193 | `.yml` | `config_yml` | 91 | `8a2847f60ab2ca102f0f0f9effb4f743f86cbf912bb23a088ea059728b6f50ee` | `cosmology_validation_marker,result_artifact` |
 | `data/results/model_comparison.json` | 3763 | `.json` | `data_or_result` | 81 | `5ca3013b6e90d99ab031c185bec0ca78d3901f12ff09db2686988609acd806c3` | `mentions_synthetic,cosmology_validation_marker,result_artifact` |
-| `data/results/repo_inventory.json` | 276959 | `.json` | `data_or_result` | 9425 | `448ca532c96537ea7847a23651e0a170eed0cddbb665939926d4f081b4fb1166` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,result_artifact` |
-| `data/results/repo_inventory.tsv` | 129065 | `.tsv` | `data_or_result` | 818 | `729aec8719d1d790f2e07d0611238b04b6b72d0267cf29cdd4368c5325a28a26` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker,result_artifact` |
-| `data/results/repo_inventory_summary.json` | 3287 | `.json` | `data_or_result` | 96 | `3bb3a68c92933046a9e9a97c9c231e0864bdc87c138c77af49cf95fd8e4ab9e1` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,result_artifact` |
+| `data/results/repo_inventory.json` | 277312 | `.json` | `data_or_result` | 9437 | `f11326e10d356097613600b22d62a2c88dc58c5d14d22d7d4c2379ff74de0821` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,result_artifact` |
+| `data/results/repo_inventory.tsv` | 129237 | `.tsv` | `data_or_result` | 819 | `b011e511b7ede220d516b119b84c4eb9b7716ca689596b075a2f981c2b8285d5` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker,result_artifact` |
+| `data/results/repo_inventory_summary.json` | 3287 | `.json` | `data_or_result` | 96 | `76959485c3b2b9af9c1826179b3d4fb50a600943394165b38f9f547bbce076bf` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,result_artifact` |
 | `data/rll_latentes/examples/invalid_missing_falsifier.yml` | 2625 | `.yml` | `config_yml` | 54 | `aaa9313b8de599f4d3c7b65438b10aff1e92472c2a85376f4e911904e7214cde` | `` |
 | `data/rll_latentes/examples/valid_minimal.yml` | 2690 | `.yml` | `config_yml` | 55 | `f3266b086ca9a324398cb4cf9909559c42d46a48b6a8d72f6d98a17f01d94bf8` | `` |
 | `data/rll_latentes/observations.yml` | 13713 | `.yml` | `config_yml` | 237 | `73e933b62a1f4b8811d407614a8ff5d845f34ee3dd8d413393c4d180bef40bd6` | `mentions_synthetic,cosmology_validation_marker` |
@@ -345,7 +345,7 @@ Commit: `ed5cc56c36bbabfd96e3ee13f2f28fd07c9713ff`
 | `docs/DATA_INTEGRITY_CHECKLIST.md` | 3567 | `.md` | `documentation_md` | 75 | `5032099181a427c1bcf617611161adb797c35240f9e9e7f7b99eb39dbc85f0e7` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/DESCOBERTAS_EMERGENTES.md` | 12493 | `.md` | `documentation_md` | 137 | `abe40879996f2fa78ed616542438dc52756e8c2acbe4fbc1f53f4818be7a210c` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/DHA_POSTDOC_VALIDATION_FRAMEWORK.md` | 2716 | `.md` | `documentation_md` | 45 | `51573d6d7dad748a712b56d828226a8dbcc297293c9bb501086097cae7af3e1b` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
-| `docs/DOCUMENTATION_FULL_INVENTORY.md` | 147884 | `.md` | `documentation_md` | 861 | `26732ee0b6b8c24fc5b3237840c1d056cd6987c32269cf9e12508be3c498ad5f` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker` |
+| `docs/DOCUMENTATION_FULL_INVENTORY.md` | 148076 | `.md` | `documentation_md` | 862 | `87704b20766ae5d6d7101110a092eb457259855fde8bbd7ea2067a1473d7912b` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker` |
 | `docs/DOCUMENTATION_ORGANIZATION_MASTER.md` | 8660 | `.md` | `documentation_md` | 184 | `bd1dcd6bf708094d2c5391f78163e2a60f85eb0bd8e6e3b0ce6f450be25e9770` | `cosmology_validation_marker` |
 | `docs/DOCUMENTO_MESTRE_FRENTES.md` | 9021 | `.md` | `documentation_md` | 78 | `0794871a3365cf07489147c42c0a0f2d39eef06ed0ba6f988c025630a5f7a7f7` | `cosmology_validation_marker` |
 | `docs/EASY_NOTES_EMPTY.md` | 1 | `.md` | `documentation_md` | 1 | `01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b` | `` |
@@ -393,7 +393,7 @@ Commit: `ed5cc56c36bbabfd96e3ee13f2f28fd07c9713ff`
 | `docs/README_snippet.md` | 1909 | `.md` | `documentation_md` | 34 | `899c769112158d1a56c6b1b260c6764998f7310dc72325a3822c6b319242f364` | `cosmology_validation_marker` |
 | `docs/README_sup_unification_snippet.md` | 2428 | `.md` | `documentation_md` | 38 | `c9df9a8040cdd5e680598528fb39471946e945c36437e84844f572be14dba491` | `` |
 | `docs/REAL_DATA_MATERIALIZATION_PLAN_2026-05-22.md` | 3957 | `.md` | `documentation_md` | 191 | `1a45f436111fd3a296df4ab0c66aa139e1e2a01391758eeb7408d65d0a327d50` | `mentions_synthetic,cosmology_validation_marker` |
-| `docs/REAL_NUMBERS_REPORT.md` | 1501 | `.md` | `documentation_md` | 72 | `8026737b5ee0ab0bb91d7f397d7a6472494b8bae4fcfe7fb337061e64bff63ca` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared` |
+| `docs/REAL_NUMBERS_REPORT.md` | 1501 | `.md` | `documentation_md` | 72 | `a6aeffe329cf85e217dc421b522f7fdfcd6ddd313ffa96cde733c5810fe5fd36` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared` |
 | `docs/REFERENCES.md` | 46569 | `.md` | `documentation_md` | 737 | `d2ceb701c7296b1efa4206cbcb176889918480b754ca1feedf8078e052dbc42e` | `cosmology_validation_marker` |
 | `docs/RELEASE_NOTES_HISTORY.md` | 17068 | `.md` | `documentation_md` | 215 | `1d0f82242b12dd20064afe7084783777aded6bbf8dd59b7a75d2b0ded70ad09f` | `cosmology_validation_marker` |
 | `docs/REPOSITORY_STRUCTURE_SUGGESTION.md` | 190 | `.md` | `documentation_md` | 9 | `beba59557a9169e2a8a5a8096bad47ead2b7e210cf14a17bc3a31f9d6c0d6777` | `` |
@@ -432,7 +432,7 @@ Commit: `ed5cc56c36bbabfd96e3ee13f2f28fd07c9713ff`
 | `docs/THEORY_INVENTORY_AND_EXTENSIONS.md` | 8042 | `.md` | `documentation_md` | 283 | `eafb87df1accc420e510c0173797db4318e84138531828b9d1d20b275bb6c20b` | `cosmology_validation_marker` |
 | `docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md` | 4559 | `.md` | `documentation_md` | 180 | `ee13c68bf23e3ea8d65851471a3839d455d3b08d00cd0ebaef0a1de0289b0605` | `cosmology_validation_marker` |
 | `docs/VELOCIDADE_SOM.md` | 4057 | `.md` | `documentation_md` | 127 | `32e167faa456c1eaebc1e6e365c078735688dbc82202a3d320ed264c2dbe8376` | `` |
-| `docs/YML_WORKFLOWS_INDEX.md` | 6765 | `.md` | `documentation_md` | 51 | `228dd2f793b8ad28d2a348cc19f792c9615671b4ddc213cb9cbc5643eda492ce` | `cosmology_validation_marker` |
+| `docs/YML_WORKFLOWS_INDEX.md` | 6765 | `.md` | `documentation_md` | 51 | `6d96fb343ef65c2fa2218bb18b52225c66309e14c8b40f0841630fe9661f3588` | `cosmology_validation_marker` |
 | `docs/ZIP_CONTENT_INDEX.md` | 8633 | `.md` | `documentation_md` | 177 | `6b8e25c1bc312fa0eb979e6ac8dd4737b0f1dbb511515eafb8c02e996aad3307` | `mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/canonicos/00_COMO_LER.md` | 13031 | `.md` | `documentation_md` | 378 | `fd63bbcc76f575be6d9d4be63048c3e81d86272939bc9675527336cf71ddff45` | `cosmology_validation_marker` |
 | `docs/canonicos/06_COMPARACOES_DETALHADAS.md` | 25168 | `.md` | `documentation_md` | 913 | `d3203d642bc9900aa4b5a818d13b9db9d4bede9315628bfe5a5ad5e90b1fa619` | `cosmology_validation_marker` |
@@ -745,6 +745,8 @@ Commit: `ed5cc56c36bbabfd96e3ee13f2f28fd07c9713ff`
 | `scripts/validate_watch_config.py` | 1386 | `.py` | `source_code` | 53 | `73ec181bfc69e50150b9455337c155fbe83dc2f4fb41b95c8976472d14caca67` | `` |
 | `scripts/validation/real_seed_utils.py` | 3411 | `.py` | `source_code` | 100 | `428e4f1c8c06bdbbcaf603d698fed2f3689ccbba1f8f598700c4650287ad9e2f` | `` |
 | `scripts/validation/validate_compact_remnant_boundary.py` | 3038 | `.py` | `source_code` | 78 | `aae40ab5ba791e3744c13377bc422ef41a8eedebaf508eb2b6d4b76f2bd635a7` | `token_vazio_declared` |
+| `scripts/validation/validate_dark_lens_candidates.py` | 2206 | `.py` | `source_code` | 61 | `007e14239401a52464206272e8d80adf3a632b19b3f62d0e4909233796746dd9` | `token_vazio_declared` |
+| `scripts/validation/validate_historical_impulse_candidates.py` | 2006 | `.py` | `source_code` | 51 | `f59770e83e0eef5eef9f02c0d46b3d5a2b0fd39957e37f6ff8a2e2bb56cae308` | `` |
 | `scripts/verify_pantheon_inputs.py` | 2568 | `.py` | `source_code` | 86 | `91c8a358cc2320fe0d23d2955c29b9daeb6648baaadbe90a6414993da678ab4f` | `cosmology_validation_marker` |
 | `src/rll/__init__.py` | 88 | `.py` | `source_code` | 4 | `8578eb186c6320e90873f2f87fc136066c245a3b88ce1966c02a23205a32b067` | `` |
 | `src/rll/cli.py` | 6769 | `.py` | `source_code` | 224 | `09404e92a9a906f40b8a529574796a5211adf163975f6cf9708897ed6043ab3a` | `mentions_synthetic,cosmology_validation_marker` |

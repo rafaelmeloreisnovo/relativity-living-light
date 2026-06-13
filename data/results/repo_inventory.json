@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T07:05:59.324154+00:00",
-  "git_commit": "ed5cc56c36bbabfd96e3ee13f2f28fd07c9713ff",
+  "generated_at": "2026-06-13T07:06:23.127222+00:00",
+  "git_commit": "e4133d54fa2e9ba540b00213b8cfdafdc4c62c73",
   "summary": {
-    "tracked_files_total": 836,
-    "cataloged_files": 818,
+    "tracked_files_total": 838,
+    "cataloged_files": 820,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34758127,
-    "total_text_lines": 128315,
+    "total_bytes": 34763056,
+    "total_text_lines": 128441,
     "markdown_files": 425,
     "yml_yaml_files": 44,
     "github_workflow_yml_files": 15,
@@ -17,7 +17,7 @@
     ".yml": 44,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 114,
+    ".py": 116,
     ".sh": 6,
     ".json": 42,
     ".csv": 60,
@@ -43,7 +43,7 @@
     "github_workflow_yml": 15,
     "config_yml": 29,
     "other": 129,
-    "source_code": 126,
+    "source_code": 128,
     "archive": 6,
     "data_or_result": 87,
     "test_or_validation": 1
@@ -52,7 +52,7 @@
     "cosmology_validation_marker": 390,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 54,
+    "token_vazio_declared": 55,
     "result_artifact": 73
   },
   "files": [
@@ -3192,11 +3192,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 276959,
+      "size_bytes": 277312,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "448ca532c96537ea7847a23651e0a170eed0cddbb665939926d4f081b4fb1166",
-      "line_count": 9425,
+      "sha256": "f11326e10d356097613600b22d62a2c88dc58c5d14d22d7d4c2379ff74de0821",
+      "line_count": 9437,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3207,11 +3207,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 129065,
+      "size_bytes": 129237,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "729aec8719d1d790f2e07d0611238b04b6b72d0267cf29cdd4368c5325a28a26",
-      "line_count": 818,
+      "sha256": "b011e511b7ede220d516b119b84c4eb9b7716ca689596b075a2f981c2b8285d5",
+      "line_count": 819,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3226,7 +3226,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "3bb3a68c92933046a9e9a97c9c231e0864bdc87c138c77af49cf95fd8e4ab9e1",
+      "sha256": "76959485c3b2b9af9c1826179b3d4fb50a600943394165b38f9f547bbce076bf",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3682,11 +3682,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 147884,
+      "size_bytes": 148076,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "26732ee0b6b8c24fc5b3237840c1d056cd6987c32269cf9e12508be3c498ad5f",
-      "line_count": 861,
+      "sha256": "87704b20766ae5d6d7101110a092eb457259855fde8bbd7ea2067a1473d7912b",
+      "line_count": 862,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4234,7 +4234,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8026737b5ee0ab0bb91d7f397d7a6472494b8bae4fcfe7fb337061e64bff63ca",
+      "sha256": "a6aeffe329cf85e217dc421b522f7fdfcd6ddd313ffa96cde733c5810fe5fd36",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4705,7 +4705,7 @@
       "size_bytes": 6765,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "228dd2f793b8ad28d2a348cc19f792c9615671b4ddc213cb9cbc5643eda492ce",
+      "sha256": "6d96fb343ef65c2fa2218bb18b52225c66309e14c8b40f0841630fe9661f3588",
       "line_count": 51,
       "is_text": true,
       "risk_flags": [
@@ -8281,6 +8281,28 @@
       "risk_flags": [
         "token_vazio_declared"
       ]
+    },
+    {
+      "path": "scripts/validation/validate_dark_lens_candidates.py",
+      "size_bytes": 2206,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "007e14239401a52464206272e8d80adf3a632b19b3f62d0e4909233796746dd9",
+      "line_count": 61,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "scripts/validation/validate_historical_impulse_candidates.py",
+      "size_bytes": 2006,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "f59770e83e0eef5eef9f02c0d46b3d5a2b0fd39957e37f6ff8a2e2bb56cae308",
+      "line_count": 51,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "scripts/verify_pantheon_inputs.py",
