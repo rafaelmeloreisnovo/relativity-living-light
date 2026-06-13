@@ -1,15 +1,15 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-13T08:15:53.171669+00:00`  
-Commit: `52ff25a2733f8f5fc02bd3623e960ea799804ff7`
+Gerado em: `2026-06-13T08:16:22.716859+00:00`  
+Commit: `98d91dec75ecf09478c18cbc7246fc41bdbc519f`
 
 | Métrica | Valor |
 |---|---:|
 | `tracked_files_total` | 860 |
 | `cataloged_files` | 842 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 34854951 |
-| `total_text_lines` | 130993 |
+| `total_bytes` | 34859537 |
+| `total_text_lines` | 131103 |
 | `markdown_files` | 429 |
 | `yml_yaml_files` | 50 |
 | `github_workflow_yml_files` | 17 |
@@ -65,7 +65,7 @@ Commit: `52ff25a2733f8f5fc02bd3623e960ea799804ff7`
 | `mentions_mock_or_placeholder` | 81 |
 | `result_artifact` | 78 |
 | `mentions_synthetic` | 63 |
-| `token_vazio_declared` | 63 |
+| `token_vazio_declared` | 62 |
 
 ## Fronteira
 

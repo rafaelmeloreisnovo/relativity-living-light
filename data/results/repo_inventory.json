@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:15:53.171669+00:00",
-  "git_commit": "52ff25a2733f8f5fc02bd3623e960ea799804ff7",
+  "generated_at": "2026-06-13T08:16:22.716859+00:00",
+  "git_commit": "98d91dec75ecf09478c18cbc7246fc41bdbc519f",
   "summary": {
     "tracked_files_total": 860,
     "cataloged_files": 842,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34854951,
-    "total_text_lines": 130993,
+    "total_bytes": 34859537,
+    "total_text_lines": 131103,
     "markdown_files": 429,
     "yml_yaml_files": 50,
     "github_workflow_yml_files": 17,
@@ -52,7 +52,7 @@
     "cosmology_validation_marker": 390,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 63,
+    "token_vazio_declared": 62,
     "result_artifact": 78
   },
   "files": [
@@ -3348,11 +3348,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 285102,
+      "size_bytes": 285432,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "1daa36c9824fd96fc0e9eac2bdbd202b6dfb6d1b62f9d4ba74ede21221695d16",
-      "line_count": 9695,
+      "sha256": "e816e915a9a9a7befe9565463edcbfef5454dff386d97268d0eca029c87f6475",
+      "line_count": 9705,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3363,11 +3363,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 133026,
+      "size_bytes": 133193,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "370078f57de39666eab47e7b608b030062035cb1bb527271c3be245d70a1e0d5",
-      "line_count": 842,
+      "sha256": "3e8cf102501437479eeafc928ec3db85f2ccd634e177db96b6c1539809917252",
+      "line_count": 843,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3382,7 +3382,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "3ce0806d9db88997d899dbbb01b7a01ce3230e85801c997a1e96e1def8f5c369",
+      "sha256": "6452f1d00f1d071bed831e2a733a62f4f03a19044eb0e91c95dafb824fbd3275",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3838,11 +3838,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 152325,
+      "size_bytes": 152512,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e29abdf489fbf92528979b39bcbf12a9b04ae8ddf31e276db6a4dbe35d8ccf0f",
-      "line_count": 885,
+      "sha256": "52dfdebf32df2fd60e4686c19f376f841d7b9e734fa91b09c077ae8b65eb2fd7",
+      "line_count": 886,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4390,7 +4390,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f3cf809a9429ad7d2fdc4c662f11eb345310b23b0f9eee0ad97c1e7855252a56",
+      "sha256": "78d5e86380cfd3f799fce6f70049bb3d1cf2784d30a11ae75e482c8772f443be",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4858,11 +4858,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 7559,
+      "size_bytes": 7732,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1b5d7b2d416e46d1458a9ea0dcd0332028e98d1bfe9c8f671c8886f7b5156879",
-      "line_count": 56,
+      "sha256": "1eb40b71379b4cd6be5b1e8350afc0aa6345f9cfae2ccf0c5cccfc842fe511df",
+      "line_count": 57,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
@@ -8540,15 +8540,13 @@
     },
     {
       "path": "scripts/validation/validate_orbital_shape_angular_momentum.py",
-      "size_bytes": 2629,
+      "size_bytes": 6358,
       "ext": ".py",
       "kind": "source_code",
-      "sha256": "db1fd5f80ac1a0eb46a07e5dacf9635901983f5c7fd01da96fa6df6f50236624",
-      "line_count": 67,
+      "sha256": "1d0c90f0f9c024f7eb5a46c9b564ff114515012babf83120e1ef6055a93e4135",
+      "line_count": 164,
       "is_text": true,
-      "risk_flags": [
-        "token_vazio_declared"
-      ]
+      "risk_flags": []
     },
     {
       "path": "scripts/verify_pantheon_inputs.py",
