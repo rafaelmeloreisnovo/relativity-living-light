@@ -1,11 +1,12 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T08:42:10.295773+00:00`  
-Commit: `85fcd3bee76e78e15383d4b95fa2ca2deed4c288`
+Gerado em: `2026-06-13T08:43:22.489361+00:00`  
+Commit: `177fe2a842291896d1ca93f737a050c7bc946b5e`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
 | `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11559 | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` |
+| `.github/workflows/claim-boundary-quality-gates.yml` | `github_workflow_yml` | 1660 | 63 | `0b72cd43b674c8c56f39f6e25d4ffd9c369be7dfa241d3e4e57db8cbb63e4858` |
 | `.github/workflows/convention-check.yml` | `github_workflow_yml` | 894 | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` |
 | `.github/workflows/dha-fisher-ci.yml` | `github_workflow_yml` | 2397 | 77 | `5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4` |
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 864 | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` |
