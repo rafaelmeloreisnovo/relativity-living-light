@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T09:21:54.169109+00:00",
-  "git_commit": "0f2f7f2b12f9e48610a261b3c76c4073fbff837e",
+  "generated_at": "2026-06-13T09:22:09.828830+00:00",
+  "git_commit": "87d8208fd376f3627527904a808dd6b332f74600",
   "summary": {
     "tracked_files_total": 902,
     "cataloged_files": 884,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35029364,
-    "total_text_lines": 134787,
+    "total_bytes": 35029717,
+    "total_text_lines": 134790,
     "markdown_files": 445,
     "yml_yaml_files": 57,
     "github_workflow_yml_files": 21,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 396,
-    "token_vazio_declared": 79,
+    "token_vazio_declared": 78,
     "mentions_mock_or_placeholder": 84,
     "mentions_synthetic": 63,
     "result_artifact": 90
@@ -3589,7 +3589,7 @@
       "size_bytes": 299929,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "296bf81b4eed715482fc3fb1467f6a5f867862f95eeee27499d352e0d87653e9",
+      "sha256": "961e4a0c783ed0a5a38ced02b9f576c332039a16cab0dfae622e0604e0068d4a",
       "line_count": 10186,
       "is_text": true,
       "risk_flags": [
@@ -3604,7 +3604,7 @@
       "size_bytes": 140267,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "900b6b5aa00ece595124d6bd3d2dd10d50f6d712478c62b4a07a1c9392769ab4",
+      "sha256": "e5cb13adf1de4ad79953f7108d49e1484ba8073ab89de679f5be0ad21fc3a616",
       "line_count": 885,
       "is_text": true,
       "risk_flags": [
@@ -3620,7 +3620,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "5bf58e404dec719d82ed8cb5965242c6c55903f0e133993362a5e2831d38aed6",
+      "sha256": "3c5b728a0ec8b71bb885e45f29c28b4710692a1b95e88ed7c28a25c3b32ea300",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4099,7 +4099,7 @@
       "size_bytes": 160427,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c50b1cdbf90f75cedbf24e84f8061e7907f8e8e39a48cdb940314ff484138915",
+      "sha256": "09f84c539a8c99b4abe8b26c2ec49763267ef28452727c425b46d8535c9195f5",
       "line_count": 928,
       "is_text": true,
       "risk_flags": [
@@ -4648,7 +4648,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5451226ee1faf4157c42e83ed429d2368a46e7fe1c9f2027e3a3fabc97441f37",
+      "sha256": "9fd8ab9786023068dc98c44cc2d0f320e7c1085fffd611e74e3ea1858f5c208a",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5119,7 +5119,7 @@
       "size_bytes": 8866,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c8f13abf6728aa6cae412648f7c5d2dda096b64484459ae2bd8b986ca3e33e01",
+      "sha256": "66c42e6db579245df2d9d1e823a67a5781fc259de3e2757ff885c9753dc2037a",
       "line_count": 64,
       "is_text": true,
       "risk_flags": [
@@ -6305,15 +6305,13 @@
     },
     {
       "path": "docs/science/RAW_DATA_MANIFEST_STATUS.md",
-      "size_bytes": 1346,
+      "size_bytes": 1699,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1c0f74b20b5e0c610c89e43c0420d3339db4c9019a7760822595ce4026e2f39c",
-      "line_count": 35,
+      "sha256": "72d1011b21b9020cf0d4fc20f88e8a584508676a15d00b0ca56a9043756ede58",
+      "line_count": 38,
       "is_text": true,
-      "risk_flags": [
-        "token_vazio_declared"
-      ]
+      "risk_flags": []
     },
     {
       "path": "docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md",
