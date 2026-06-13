@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T06:38:24.385542+00:00`  
-Commit: `dbf2432486753227b360329820c48b772f7faaf5`
+Gerado em: `2026-06-13T06:40:01.382942+00:00`  
+Commit: `4d592cddff8538d65982aa471e14477e239ee49b`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -14,9 +14,9 @@ Commit: `dbf2432486753227b360329820c48b772f7faaf5`
 | `.github/workflows/real-data-bootstrap-validation.yml` | `github_workflow_yml` | 2728 | 93 | `3d1fb515d1eaee0cfd5a77ee48e450b4752e7b712fec089f7d28ea5bb67fe497` |
 | `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12275 | 270 | `a71cff24c5d4cb1b007ed2e86429c33291461b65d337f622b822eae746eef675` |
 | `.github/workflows/repo-real-inventory.yml` | `github_workflow_yml` | 9222 | 181 | `9771b28c9b580a3d690583644e02e55fb2420b2303e21344561cd444357adb1f` |
-| `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 3994 | 126 | `b387e1e65c83243cadbb8ff32543bc40b7a99176b2c396b3c88cfa0ff3368ba0` |
-| `.github/workflows/rll-data-pipeline.yml` | `github_workflow_yml` | 3300 | 87 | `d6c4630f9e1bbe4417387d6ff821f6e77cda872528cdc4e93a0d167a7999e865` |
-| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 6063 | 92 | `cda484a3400ecd9bdf7a969a33a331fe12a4c8ce9f6b2dbb9d459ff3bc1666b7` |
+| `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 4025 | 129 | `fe411d15b093e92509854c220171b1da9c7abd041f64648804524b750756df3f` |
+| `.github/workflows/rll-data-pipeline.yml` | `github_workflow_yml` | 3331 | 90 | `2292932656caabdc96430b20a2c6886294cec2d1cdaed6305c7518261955eae8` |
+| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 6094 | 95 | `264945b7d22793418567edce7ed0e6b8fd6a6c31416dd9e45b16992aaabedd2e` |
 | `.github/workflows/unified-geometry.yml` | `github_workflow_yml` | 892 | 35 | `ccb7034dc8d0b5fa743c69054306e948588b28d7114c700639cdea42027361ff` |
 | `.github/workflows/validacao_real.yml` | `github_workflow_yml` | 1819 | 64 | `70b52ed72f09753821dcb03ed0924261d33f2a6f6cd34fe188322ac8865a0a4a` |
 | `.github/workflows/yml-syntax-validation.yml` | `github_workflow_yml` | 1616 | 63 | `6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290` |
