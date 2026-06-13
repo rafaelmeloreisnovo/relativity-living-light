@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T09:26:29.810133+00:00",
-  "git_commit": "bd0581437a0785f1e1e18139821c50889e96edaf",
+  "generated_at": "2026-06-13T09:26:52.353299+00:00",
+  "git_commit": "34982769317512587a019848d87bd5164a7e33db",
   "summary": {
-    "tracked_files_total": 904,
-    "cataloged_files": 886,
+    "tracked_files_total": 905,
+    "cataloged_files": 887,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35036609,
-    "total_text_lines": 135031,
+    "total_bytes": 35042698,
+    "total_text_lines": 135197,
     "markdown_files": 446,
     "yml_yaml_files": 57,
     "github_workflow_yml_files": 21,
@@ -17,7 +17,7 @@
     ".yml": 57,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 127,
+    ".py": 128,
     ".sh": 6,
     ".json": 57,
     ".csv": 64,
@@ -43,7 +43,7 @@
     "github_workflow_yml": 21,
     "config_yml": 36,
     "other": 129,
-    "source_code": 139,
+    "source_code": 140,
     "archive": 6,
     "data_or_result": 108,
     "test_or_validation": 1
@@ -3586,11 +3586,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 300200,
+      "size_bytes": 300514,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "d345a6160fa54b04b4e397cbe3af84e01a6a4c11050e371d335485daafe4510b",
-      "line_count": 10194,
+      "sha256": "478670aef31220c365623ec839e9e2e07ce882294a2f1dbf2a48902e7cc1f5d7",
+      "line_count": 10204,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3601,11 +3601,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 140393,
+      "size_bytes": 140544,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "915acc1ad560c535ca604c130a59faf130e5674bda5c912e86954990bc8d5243",
-      "line_count": 886,
+      "sha256": "54ea8d4bece23a611fe927555193668fd274f626dfc776ba3e5100161e5c48dd",
+      "line_count": 887,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3620,7 +3620,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ce5ceb38d6055b2cb6da4ee91a854668e1b5ae6b381c8ff17eea14f6712a5b74",
+      "sha256": "1ef11688429d35175b2157cd17cac5a9c7fe24884f923c3644e04e8cc3c4007a",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4096,11 +4096,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 160573,
+      "size_bytes": 160744,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "220f6a010351a59fc3ff36b4c6450f6ed20ba2357bbb9606aefcf3c3d9f81f86",
-      "line_count": 929,
+      "sha256": "f2d6c17cc1689de0412d4f37cf2868ab9afb5c03fe4442e1c0731890670f9f12",
+      "line_count": 930,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4648,7 +4648,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "39795fcd24dc740fa55014463ac226263769b080ff3162dd90f8c2555b5122e2",
+      "sha256": "0a98b65695d11fdd03f6b1675bc4d32ca9148ffd4c431de1554f483ba40fef4f",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5119,7 +5119,7 @@
       "size_bytes": 8866,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "48c9b043ece6d4db2d6111794237e4d4ba7b17ad806ce3e3f389b7baccecd61e",
+      "sha256": "f8115b1304587ff2dbcb0f7b6ecbdc4c7614b6fdfcefa94bee54d2213046c68b",
       "line_count": 64,
       "is_text": true,
       "risk_flags": [
@@ -9026,6 +9026,16 @@
       "kind": "source_code",
       "sha256": "1d0c90f0f9c024f7eb5a46c9b564ff114515012babf83120e1ef6055a93e4135",
       "line_count": 164,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "scripts/validation/validate_orbital_state_vector_v2.py",
+      "size_bytes": 5453,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "569818ede4940980515dd142e96c86d8d5817803426f73d5af55052b01573f92",
+      "line_count": 154,
       "is_text": true,
       "risk_flags": []
     },
