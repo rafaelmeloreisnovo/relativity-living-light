@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T08:25:59.034875+00:00",
-  "git_commit": "3e303b04fed120e097067ca5c6b0848436cf3e75",
+  "generated_at": "2026-06-13T08:26:12.348743+00:00",
+  "git_commit": "0c68670e875ff0742378f2c083461fe38a22bf88",
   "summary": {
     "tracked_files_total": 863,
     "cataloged_files": 845,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34871814,
-    "total_text_lines": 131410,
+    "total_bytes": 34871101,
+    "total_text_lines": 131368,
     "markdown_files": 430,
     "yml_yaml_files": 51,
     "github_workflow_yml_files": 18,
@@ -3373,7 +3373,7 @@
       "size_bytes": 286415,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "5d35b28fa435a3331cfcb733554ebdeef4ad949996ba0d407a129cf7ffd46d91",
+      "sha256": "d430989d83112be4a9e0bea5bb0b7c3d1d9c69b64dc293cbcf37a286a3446c23",
       "line_count": 9735,
       "is_text": true,
       "risk_flags": [
@@ -3388,7 +3388,7 @@
       "size_bytes": 133687,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "7e6ff37bd78d442df50611c4c8080dc190ec14e6c2f321deb12971288859a1ee",
+      "sha256": "8541f3e553c333275207bbf5f4621cb1493607a6f70eec2c5f271a6831b9c6c8",
       "line_count": 846,
       "is_text": true,
       "risk_flags": [
@@ -3404,7 +3404,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "87c1c490418b8eab46895851f4015b31539a72b643d2c9f043370fd614c9de1d",
+      "sha256": "a7bdd3c27bced870460efde561ea9a97d686bf69cdbcad52602d69c7ae398cdf",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3863,7 +3863,7 @@
       "size_bytes": 153066,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "888c8fddfbdc7b037445ee4d5f43802614cf088016731a77c593607a6a506583",
+      "sha256": "b5e23b2ee884dd5a4247ec1b9b43592adbc3001089e7e75a6c86b9613794d528",
       "line_count": 889,
       "is_text": true,
       "risk_flags": [
@@ -4412,7 +4412,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "59f52a8ecaddc74eeafbfffedcca8eaa4ca01dc6b015828f95c85dede9ad7d45",
+      "sha256": "f68de1359bd4484f1ce05ce1e3a88c17c7b75fe162ec9427f41c0c8c68fe4c90",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4883,7 +4883,7 @@
       "size_bytes": 7907,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "fa071b2a34962bb97c5853596746c0fc267eab3d392410acee519e214084fdd7",
+      "sha256": "273ae9ea6c65a9087a1fff473275b7dc8ea183f7bb32f87c793e706bace760fe",
       "line_count": 58,
       "is_text": true,
       "risk_flags": [
@@ -5970,11 +5970,11 @@
     },
     {
       "path": "docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_V1_REPORT.md",
-      "size_bytes": 1670,
+      "size_bytes": 957,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "89620c9af678a2592cef7d72a1a012749c903e99326d0c60c17a51820996afec",
-      "line_count": 59,
+      "sha256": "1ece5b1100f201cd49efbe48b4d38c0add6b5f6f9c0ba17c0684fec521ce0050",
+      "line_count": 17,
       "is_text": true,
       "risk_flags": []
     },
