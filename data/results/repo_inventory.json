@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T08:49:16.338545+00:00",
-  "git_commit": "763bfa0a0586537760878d635210b12eebdf1059",
+  "generated_at": "2026-06-13T08:49:34.688240+00:00",
+  "git_commit": "58f47438d154eea3fb016c95aede56a093380d88",
   "summary": {
-    "tracked_files_total": 884,
-    "cataloged_files": 866,
+    "tracked_files_total": 885,
+    "cataloged_files": 867,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34955081,
-    "total_text_lines": 133120,
+    "total_bytes": 34957892,
+    "total_text_lines": 133198,
     "markdown_files": 437,
-    "yml_yaml_files": 53,
-    "github_workflow_yml_files": 19,
+    "yml_yaml_files": 54,
+    "github_workflow_yml_files": 20,
     "data_or_result_files": 103
   },
   "counts_by_ext": {
     ".md": 437,
-    ".yml": 53,
+    ".yml": 54,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 125,
@@ -40,7 +40,7 @@
   },
   "counts_by_kind": {
     "documentation_md": 437,
-    "github_workflow_yml": 19,
+    "github_workflow_yml": 20,
     "config_yml": 34,
     "other": 129,
     "source_code": 137,
@@ -50,9 +50,9 @@
   },
   "flags": {
     "cosmology_validation_marker": 396,
+    "token_vazio_declared": 72,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 71,
     "result_artifact": 84
   },
   "files": [
@@ -97,6 +97,18 @@
       "line_count": 30,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": ".github/workflows/dense-feature-matrix.yml",
+      "size_bytes": 2106,
+      "ext": ".yml",
+      "kind": "github_workflow_yml",
+      "sha256": "096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786",
+      "line_count": 64,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
     },
     {
       "path": ".github/workflows/dha-fisher-ci.yml",
@@ -3456,11 +3468,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 293295,
+      "size_bytes": 293644,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "70e6c6aa07c838000cd6a3a002553d81e2aa2fc71938f8a04fabd5837a4b8445",
-      "line_count": 9965,
+      "sha256": "d2661452fd31dbd9307ffbe4e5c33c5e23b45a17cf8d2e20a8f7c9c4629dbc8a",
+      "line_count": 9977,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3471,11 +3483,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 137019,
+      "size_bytes": 137187,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "4fe91e9c721d357ab96ef9ba11442dec10e433148733191b9f8f89346affb494",
-      "line_count": 866,
+      "sha256": "34d47abf9e9626cbfcf8e870d4998d195bc4be44e9606e15ddf56b2d10b70dc7",
+      "line_count": 867,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3490,7 +3502,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "453d704b20da1baa30e101766a24e75fe8caa64f739206a62d06c46e832c5858",
+      "sha256": "840a50f21a9fc34d544587c413a08cc65db0f69ee22a2dface764cff01deb3de",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3966,11 +3978,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 156799,
+      "size_bytes": 156987,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "64fb94013ae0f8f0f883fa9b081fb39944802cd5873ba11760beb2342d99ef4b",
-      "line_count": 909,
+      "sha256": "11d10d8f584792cfe4b263851f441571e275b3a2a187f474f95124e90ec9c904",
+      "line_count": 910,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4518,7 +4530,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "16c026d81dbc9fd065e2c16e48fc6975a705abeab5e45415655aaec28a0db56c",
+      "sha256": "7b405953350cfd576b44a2da35aa058238b04ed2b60375ef35523e999f86439b",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4989,7 +5001,7 @@
       "size_bytes": 8232,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "21be0d3648a90d80522cedc2c1dec9701e6ac5cb178fc2163305ec5aae1e1e0d",
+      "sha256": "7d2881488711c437ccb9f167d51f702a6736dd1c60c9d22563cff0ab05948568",
       "line_count": 60,
       "is_text": true,
       "risk_flags": [

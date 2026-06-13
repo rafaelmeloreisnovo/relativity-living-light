@@ -1,13 +1,14 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T08:49:16.338545+00:00`  
-Commit: `763bfa0a0586537760878d635210b12eebdf1059`
+Gerado em: `2026-06-13T08:49:34.688240+00:00`  
+Commit: `58f47438d154eea3fb016c95aede56a093380d88`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
 | `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11559 | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` |
 | `.github/workflows/claim-boundary-quality-gates.yml` | `github_workflow_yml` | 1660 | 63 | `0b72cd43b674c8c56f39f6e25d4ffd9c369be7dfa241d3e4e57db8cbb63e4858` |
 | `.github/workflows/convention-check.yml` | `github_workflow_yml` | 894 | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` |
+| `.github/workflows/dense-feature-matrix.yml` | `github_workflow_yml` | 2106 | 64 | `096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786` |
 | `.github/workflows/dha-fisher-ci.yml` | `github_workflow_yml` | 2397 | 77 | `5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4` |
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 864 | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` |
 | `.github/workflows/iml_artifact.yml` | `github_workflow_yml` | 1382 | 54 | `bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72` |
