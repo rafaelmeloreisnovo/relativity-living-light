@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-13T06:35:49.956456+00:00",
-  "git_commit": "8611200462ee9db97a87f655b48af68b1b6bddd8",
+  "generated_at": "2026-06-13T06:37:37.014858+00:00",
+  "git_commit": "f84e8babd79e550223ac1b8c1befe61f6d4e7c94",
   "summary": {
-    "tracked_files_total": 826,
-    "cataloged_files": 808,
+    "tracked_files_total": 827,
+    "cataloged_files": 809,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34652572,
-    "total_text_lines": 126664,
+    "total_bytes": 34658210,
+    "total_text_lines": 126824,
     "markdown_files": 424,
-    "yml_yaml_files": 39,
+    "yml_yaml_files": 40,
     "github_workflow_yml_files": 15,
     "data_or_result_files": 86
   },
   "counts_by_ext": {
     ".md": 424,
-    ".yml": 39,
+    ".yml": 40,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 111,
@@ -41,7 +41,7 @@
   "counts_by_kind": {
     "documentation_md": 424,
     "github_workflow_yml": 15,
-    "config_yml": 24,
+    "config_yml": 25,
     "other": 129,
     "source_code": 123,
     "archive": 6,
@@ -49,10 +49,10 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 392,
+    "cosmology_validation_marker": 391,
     "mentions_mock_or_placeholder": 80,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 44,
+    "token_vazio_declared": 45,
     "result_artifact": 73
   },
   "files": [
@@ -2773,6 +2773,18 @@
       ]
     },
     {
+      "path": "data/real/compact_objects/remnant_boundary_sources.yml",
+      "size_bytes": 4817,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "656783efbd3afe5edbc3d41fdb5f50c3a709950aa4229af9c0ed18292b291fe4",
+      "line_count": 147,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
       "path": "data/real/compact_objects/wandering_black_hole_sources.yml",
       "size_bytes": 3610,
       "ext": ".yml",
@@ -3124,27 +3136,26 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 273597,
+      "size_bytes": 273918,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2279ed8e34be697e0aae0a9108eb775e23214296c576ed73887d56c800caac42",
-      "line_count": 9312,
+      "sha256": "fa16b515ef5d0e24e6279f201bddb660d6173a4b10004a4864476a31776ab1b7",
+      "line_count": 9322,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
         "mentions_mock_or_placeholder",
         "token_vazio_declared",
-        "cosmology_validation_marker",
         "result_artifact"
       ]
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 127456,
+      "size_bytes": 127614,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "8eab5d9a0f91363911fc8c6beaeb475c89954eb060ca647c50b531321f936033",
-      "line_count": 808,
+      "sha256": "741fa842a60a2661ecf9f8f7b034b81483bc14c31f95280783549fd3f52922f3",
+      "line_count": 809,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3159,7 +3170,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "c1fed0e18e049aefe8800e2750b87e5bad8decf660ef8b64109378c8df284685",
+      "sha256": "0c9a7a4a74b55f3af1f8efeaf6cd4b80729a311d02c00100c7b5f9f3fa60a8e6",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3615,11 +3626,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 146075,
+      "size_bytes": 146253,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "91f48e5210b9603e98a4f4daa2c7480416d097ad9a18b51a0e631c8b924d693b",
-      "line_count": 851,
+      "sha256": "3bf5eba547f48b76e655dd0d34a47e5106db6e3da6d063eb176d0ec068641b22",
+      "line_count": 852,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4167,7 +4178,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "3369c82bbb128185a4d926365eb4edb2936fcdbcf9d0e4075ca67e49587d6cf9",
+      "sha256": "a7f53c410c41edb82bc2d6f25322d40d8b6ad2f39421d5a2bd90e5ff24939733",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4635,11 +4646,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 5847,
+      "size_bytes": 6011,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "16bfc4e380483a3bf251ed1deb5ced88f16a0407fa9e4b0118df06065234cba6",
-      "line_count": 45,
+      "sha256": "14d681b0f258a9a78740954f7e3034facb631b4128710e55a40818545e32f5f6",
+      "line_count": 46,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
