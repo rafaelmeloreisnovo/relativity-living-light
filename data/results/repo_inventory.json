@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T11:44:51.625683+00:00",
-  "git_commit": "27c262eea62670ea2411662efa3168ab3192807c",
+  "generated_at": "2026-06-13T11:45:19.958652+00:00",
+  "git_commit": "b928f040f48b30a89eb27401be28facaa4558bab",
   "summary": {
-    "tracked_files_total": 941,
-    "cataloged_files": 923,
+    "tracked_files_total": 942,
+    "cataloged_files": 924,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35224008,
-    "total_text_lines": 140546,
+    "total_bytes": 35234886,
+    "total_text_lines": 140803,
     "markdown_files": 471,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
@@ -17,7 +17,7 @@
     ".yml": 61,
     "NO_EXT": 12,
     ".txt": 10,
-    ".py": 132,
+    ".py": 133,
     ".sh": 6,
     ".json": 59,
     ".csv": 65,
@@ -43,7 +43,7 @@
     "github_workflow_yml": 23,
     "config_yml": 38,
     "other": 129,
-    "source_code": 144,
+    "source_code": 145,
     "archive": 6,
     "data_or_result": 111,
     "test_or_validation": 1
@@ -3664,11 +3664,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 313188,
+      "size_bytes": 313617,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "a28190dbc22d49460f5b5f3e14948171ad22d25b7b6829d47ce274f74a9f3c95",
-      "line_count": 10632,
+      "sha256": "064684e12460b3f6e98fbd40f6fd92d0181ff0efc7b3e258fa0ca88baaaac6a5",
+      "line_count": 10646,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3679,11 +3679,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 146706,
+      "size_bytes": 146932,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "a5f3fe590051a14faa8c26a3fe1b65f069eed034bad7b7ac0419ca784a89b134",
-      "line_count": 923,
+      "sha256": "843e7e1267860bda85f922d78520aa69b0d61b98e561671919afe82454dd932b",
+      "line_count": 924,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3698,7 +3698,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2fcf23d9f19d7eb4a30ee940fed584dcfffca7df3fef571034f699852074bb6c",
+      "sha256": "59eba34db0b8e804706244ec8329dd397a2aef95d6c98da3648f83b631c77f12",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4174,11 +4174,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 167626,
+      "size_bytes": 167872,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "00177831643b1d1c5e6672be37e404df181f4f0cbc2a547afb229cce7a618073",
-      "line_count": 966,
+      "sha256": "457bc6f773e934296a10ebbb7e43b198377a1829e1329b5a8b5425a5fe333257",
+      "line_count": 967,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4726,7 +4726,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "82c2a2b147d04e20036e89ed4d073318f3dd550c2c7eaa86ccd1b1f30f8a3897",
+      "sha256": "34f7133c9eb182b71efa68c0655812136095ec38e71c966848cb3010c515246d",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5451,7 +5451,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e8f0d7f997f614bd9f7d09f96868fb62422fbcd7af9a3b0f32c4afd1bffc144d",
+      "sha256": "b11df05bf87ecd2a74acdf53c3e6c3110971871a65527742eb94388d3fdb52dd",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
@@ -9000,6 +9000,16 @@
       "risk_flags": [
         "cosmology_validation_marker"
       ]
+    },
+    {
+      "path": "scripts/analysis/structure_d_inspection_rate.py",
+      "size_bytes": 9977,
+      "ext": ".py",
+      "kind": "source_code",
+      "sha256": "847ad0fdc3ebeba2d86a2a679e88d8e8433d428a3123a1eba5676bdcba2ce5a7",
+      "line_count": 241,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "scripts/bh_flux_calc.py",
