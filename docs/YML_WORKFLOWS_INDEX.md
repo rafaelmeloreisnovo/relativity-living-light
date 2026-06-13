@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T09:07:50.415211+00:00`  
-Commit: `9b8b4052ea6a372a167d334c40c59061b6748bdd`
+Gerado em: `2026-06-13T09:09:44.238557+00:00`  
+Commit: `d60eb4d3dbeada45f322e40edb1259f282d28fd4`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -27,6 +27,7 @@ Commit: `9b8b4052ea6a372a167d334c40c59061b6748bdd`
 | `.github/workflows/yml-syntax-validation.yml` | `github_workflow_yml` | 1616 | 63 | `6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290` |
 | `CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `data/observational_sources.yml` | `config_yml` | 4312 | 131 | `163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d` |
+| `data/raw/RAW_DATA_MANIFEST.yml` | `config_yml` | 4582 | 137 | `02720db2ec1980301b852136418a1c6bb8accd22156f4c55f1dae04d72e146cc` |
 | `data/real/bootstrap/dense_behavior_feature_orchestration.yml` | `config_yml` | 2378 | 57 | `fb3fe69be388f600996ef4d2abfa1d36d5d05fc6bd435d7aee7b4654f8ba4001` |
 | `data/real/bootstrap/real_data_requirements_bootstrap.yml` | `config_yml` | 7548 | 222 | `10dcf7fe8dcbec05de9c1ee8ee7eaa2e35f2a61b7b972ebe6630fe59aefe24e5` |
 | `data/real/bootstrap/real_observational_seed_v0.yml` | `config_yml` | 7163 | 169 | `40e1b78031f51708aee616db5b341a806f4f0ffe490fec955b05c94894b0be88` |
