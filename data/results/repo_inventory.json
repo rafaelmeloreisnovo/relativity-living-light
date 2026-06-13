@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T09:35:23.071965+00:00",
-  "git_commit": "2e7d562327b365dbb08b8acbc903d9e8aefa8544",
+  "generated_at": "2026-06-13T10:03:41.441650+00:00",
+  "git_commit": "5ac130ce765ebc5bdb97848acc96d23f1be80650",
   "summary": {
-    "tracked_files_total": 910,
-    "cataloged_files": 892,
+    "tracked_files_total": 911,
+    "cataloged_files": 893,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35056520,
-    "total_text_lines": 135481,
-    "markdown_files": 447,
+    "total_bytes": 35059512,
+    "total_text_lines": 135561,
+    "markdown_files": 448,
     "yml_yaml_files": 59,
     "github_workflow_yml_files": 22,
     "data_or_result_files": 110
   },
   "counts_by_ext": {
-    ".md": 447,
+    ".md": 448,
     ".yml": 59,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 447,
+    "documentation_md": 448,
     "github_workflow_yml": 22,
     "config_yml": 37,
     "other": 129,
@@ -51,7 +51,7 @@
   "flags": {
     "cosmology_validation_marker": 396,
     "token_vazio_declared": 78,
-    "mentions_mock_or_placeholder": 84,
+    "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 63,
     "result_artifact": 91
   },
@@ -3631,7 +3631,7 @@
       "size_bytes": 302505,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "d5d52209e8b7a48103246fde03e272284c156218499d4d05f6e29b6d7dafe9b9",
+      "sha256": "02f08d958058c0ab8b56503d6f502b7c996e7d7f407d4b0f9a09b0f876ee8a8e",
       "line_count": 10266,
       "is_text": true,
       "risk_flags": [
@@ -3646,7 +3646,7 @@
       "size_bytes": 141539,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "97a3327ac42e4616cce82a06a768cd69d515aa5f491e806431010b7354f150fd",
+      "sha256": "6d261befa4eb1363d7f6830784ee1799cbf0ae89b13fa9b68463c32433788c27",
       "line_count": 893,
       "is_text": true,
       "risk_flags": [
@@ -3662,7 +3662,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "2110383e2b97153f8ab19ba5772c343979d743f7c8d7641bdc59ab42fc27ef81",
+      "sha256": "ef63c667f49978c602640e3544fac593719076872444c6138f0a27246d80ca8b",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4141,7 +4141,7 @@
       "size_bytes": 161859,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d979d4a79769e1ad7a282d50ac8f00eb26b4c83a6f4ce7287cdf4ec6032a1589",
+      "sha256": "ab760736b0f59ae71a5bcbf385211d07a46f0cfd4ec83e1b28f5a837ea015972",
       "line_count": 936,
       "is_text": true,
       "risk_flags": [
@@ -4690,7 +4690,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "2223f1669f0c1ec7e601cd54116d0ca8cb66fc2658a0f6a3b142ff562ad56ff3",
+      "sha256": "7d408455f5550c41bf70d6781d66d37b48aa7aa22edfced8439bf77b07e32044",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5161,7 +5161,7 @@
       "size_bytes": 9210,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9f1b696158c97e251740767ac567140c6a6a134b336011a0419f677742cb2b9e",
+      "sha256": "b00109b470eac3d9f68a50f0c7093f82ea05c4a3768741267a35d3a861332c81",
       "line_count": 66,
       "is_text": true,
       "risk_flags": [
@@ -6449,6 +6449,18 @@
       "kind": "documentation_md",
       "sha256": "a686197e06f259254f5b0e470d6ca30564b96f31087e45a0523b2197e6d0a746",
       "line_count": 253,
+      "is_text": true,
+      "risk_flags": [
+        "mentions_mock_or_placeholder"
+      ]
+    },
+    {
+      "path": "docs/science/TACTICAL_ROUTE_ORCHESTRATOR.md",
+      "size_bytes": 2992,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "f6a975f694f5c8e3124788ce1268faeae80e8f5ce4ef963667e0bc32ce0a1ee6",
+      "line_count": 80,
       "is_text": true,
       "risk_flags": [
         "mentions_mock_or_placeholder"
