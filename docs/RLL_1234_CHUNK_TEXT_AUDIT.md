@@ -1,6 +1,6 @@
 # RLL 1234.zip Chunk Text Audit
 
-Status: text-source audit placeholder.
+Status: first-pass text-source audit.
 
 Purpose: treat `1234.zip` as a text evidence source without promoting unread content to scientific claim.
 
@@ -23,7 +23,16 @@ part_10.txt
 
 Each listed part has a SHA-256 hash in the external checksum record.
 
-This document does not yet claim the content of those parts. It only reserves the audit path.
+The locally inspected `1234.zip` archive currently exposes four large text files:
+
+```text
+part_01.txt
+part_02.txt
+part_03.txt
+part_04.txt
+```
+
+The remaining `part_05.txt` through `part_10.txt` are present in the external checksum list, but were not present in the locally inspected `1234.zip` archive at this audit step.
 
 ## 2. Claim states
 
@@ -31,13 +40,45 @@ This document does not yet claim the content of those parts. It only reserves th
 |---|---|---|
 | `1234.zip` exists as a user-provided archive | VERIFIED in session/upload context |
 | `part_01.txt` through `part_10.txt` are listed in checksum text | VERIFIED in session/checksum context |
-| Full text content of all chunks | TOKEN_VAZIO |
-| Formula ancestry evidence inside chunks | TOKEN_VAZIO |
+| `part_01.txt` through `part_04.txt` are exposed by local `1234.zip` | VERIFIED in local audit context |
+| `part_05.txt` through `part_10.txt` inside local `1234.zip` | TOKEN_VAZIO / not exposed in current local archive |
+| Full text content of all chunks | PARTIAL |
+| Formula ancestry evidence inside chunks | PARTIAL / requires deeper line audit |
 | Mobile/Termux provenance inside chunks | TOKEN_VAZIO |
 | Dates/timestamps inside chunks | TOKEN_VAZIO |
 | Relation to RLL v1.0.0 tag | TOKEN_VAZIO |
 
-## 3. Audit target
+## 3. First-pass physics-term scan
+
+A first local text scan was run over `part_01.txt` through `part_04.txt` for the following requested terms and nearby conceptual families.
+
+| Term / family | Total hits in local `1234.zip` | Distribution |
+|---|---:|---|
+| `gravidade plasmática` / `gravidade plasmatica` | 9 | part_01: 1; part_02: 5; part_03: 3; part_04: 0 |
+| `empuxo fotônico` / `empuxo fotonico` | 5 | part_01: 2; part_02: 0; part_03: 0; part_04: 3 |
+| `meteorização magnética` / `meteorizacao magnetica` | 0 | literal term not found |
+| `magnética da gravidade` / `magnetica da gravidade` | 0 | literal term not found |
+| `fórmula da unificação` / `formula da unificacao` | 0 | literal phrase not found |
+| `unificação` / `unificacao` | 18 | part_01: 4; part_02: 9; part_03: 3; part_04: 2 |
+| `física quântica` / `fisica quantica` | 20 | part_01: 1; part_02: 12; part_03: 4; part_04: 3 |
+| `quântica` / `quantica` | 514 | broad family term |
+| `plasma` | 1540 | broad family term |
+| `gravidade` | 2320 | broad family term |
+| `magnetismo` | 571 | broad family term |
+| `fóton` / `foton` | 219 | broad family term |
+
+## 4. First-pass classification
+
+| Requested topic | Evidence status | Note |
+|---|---|---|
+| Gravidade plasmática | VERIFIED as literal phrase family in chunks | Requires exact snippet/line extraction for citation-grade audit |
+| Empuxo fotônico | VERIFIED as literal phrase family in chunks | Requires exact snippet/line extraction for citation-grade audit |
+| Meteorização magnética da gravidade | TOKEN_VAZIO as literal phrase | Related terms magnetismo/gravidade/plasma appear broadly |
+| Fórmula da unificação | TOKEN_VAZIO as exact phrase | Broader `unificação` family appears |
+| Física quântica | VERIFIED as literal phrase family in chunks | Broad `quântica` family is frequent |
+| Plasma/gravidade/magnetismo/fóton family | VERIFIED as high-frequency conceptual family | Needs semantic triage to separate physics, metaphor, title, prompt and assistant output |
+
+## 5. Audit target
 
 The audit must read only text content and classify findings into:
 
@@ -51,7 +92,7 @@ The audit must read only text content and classify findings into:
 | CLAIM_BOUNDARY | explicit limits, uncertainty, TOKEN_VAZIO, no-claim text |
 | OTHER | relevant but not categorized yet |
 
-## 4. Required output after reading chunks
+## 6. Required output after deeper reading
 
 Future completed audit should produce:
 
@@ -64,11 +105,15 @@ Future completed audit should produce:
 | false-positive table | rejected or failed outputs |
 | RLL link table | relation to tag, DOI, GitHub commits and later validation |
 
-## 5. Safe claim language
+## 7. Safe claim language
 
 Allowed now:
 
-> `1234.zip` is a text evidence source that must be audited chunk by chunk before being used as proof.
+> `1234.zip` is a text evidence source. A first-pass scan found literal occurrences of gravidade plasmática, empuxo fotônico, unificação and física quântica, plus frequent broad terms such as plasma, gravidade, magnetismo and fóton.
+
+Allowed now:
+
+> The literal phrase meteorização magnética was not found in the first-pass scan, although related magnetism/gravity/plasma terms are frequent.
 
 Not allowed yet:
 
@@ -82,7 +127,7 @@ Not allowed yet:
 
 > `1234.zip` proves scientific correctness.
 
-## 6. Link into traceability
+## 8. Link into traceability
 
 This document is linked from:
 
@@ -90,4 +135,4 @@ This document is linked from:
 - `docs/INDICE_MESTRE.md`
 - `README.md`
 
-Final status remains pending until text chunks are read and cited by exact part/line or local manifest.
+Final proof status remains pending until text chunks are read and cited by exact part/line or local manifest.
