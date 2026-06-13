@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-13T08:13:11.219618+00:00",
-  "git_commit": "cd2e7d9778286c574a65b7ac9382baceb329aaab",
+  "generated_at": "2026-06-13T08:13:22.623615+00:00",
+  "git_commit": "68eed14b56904e1c0c66c1e8977ad33ab5aee24b",
   "summary": {
-    "tracked_files_total": 857,
-    "cataloged_files": 839,
+    "tracked_files_total": 858,
+    "cataloged_files": 840,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34844654,
-    "total_text_lines": 130695,
-    "markdown_files": 428,
+    "total_bytes": 34847996,
+    "total_text_lines": 130850,
+    "markdown_files": 429,
     "yml_yaml_files": 49,
     "github_workflow_yml_files": 17,
     "data_or_result_files": 94
   },
   "counts_by_ext": {
-    ".md": 428,
+    ".md": 429,
     ".yml": 49,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 428,
+    "documentation_md": 429,
     "github_workflow_yml": 17,
     "config_yml": 32,
     "other": 129,
@@ -52,7 +52,7 @@
     "cosmology_validation_marker": 390,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 62,
+    "token_vazio_declared": 63,
     "result_artifact": 78
   },
   "files": [
@@ -3331,7 +3331,7 @@
       "size_bytes": 284416,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "395197420241fb65ab4535966606f4b680a94003e1a66ed722f9eb540365143d",
+      "sha256": "2813f604c8f9d4f7e2bfba64296dbe1ac7728a5d074d9350581d0b6a02c153cd",
       "line_count": 9673,
       "is_text": true,
       "risk_flags": [
@@ -3346,7 +3346,7 @@
       "size_bytes": 132684,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "1e505d07fe8de4cffca276681ba2c6c0c31a24e35eaf4db9f6b69c2f7c5873ec",
+      "sha256": "591c9451066968bb8a72f1885677af7f61eeed3e2daed1e24cb99cacbe3e6aa5",
       "line_count": 840,
       "is_text": true,
       "risk_flags": [
@@ -3362,7 +3362,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "5f7471d10d1d8a79d9e7b7edc0e3cdf9575dacd6eaddfb9350a24d35547d642f",
+      "sha256": "576d470e7217e6ba3bacffc8a826cb158418236d6c565f9883cec53a7ef6e19e",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3821,7 +3821,7 @@
       "size_bytes": 151943,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "aa3ac72e7bd06a3a0ea1634d957914f59140881b9b20a90a10ea980f29c5df30",
+      "sha256": "36600156839aa15d6f997af65df9bc0dfdc88f0bcec3cc37b2212b4e7d37f11a",
       "line_count": 883,
       "is_text": true,
       "risk_flags": [
@@ -4370,7 +4370,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "612469b344c1db0897099d88e106093669a8cbcdf5d0302ddc3619f12894c4f9",
+      "sha256": "f48bd793c8a0714d22aea39d8ffbaebf904859142427caea83662b5d8830cf1d",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4841,7 +4841,7 @@
       "size_bytes": 7559,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "c18601007c53f90e6a085cc796e692446e5e7a250d9b3bc203ffafd939b6c073",
+      "sha256": "968ff57b8a969f931c838be0cf9bfe7560958cc49cdaf0f34a131da333796717",
       "line_count": 56,
       "is_text": true,
       "risk_flags": [
@@ -5912,6 +5912,18 @@
       "risk_flags": [
         "token_vazio_declared",
         "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_MAP.md",
+      "size_bytes": 3342,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "a9b693738a30c6944f2fa874c0de3f64340080a0889df544aa59c61e55c59725",
+      "line_count": 155,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
       ]
     },
     {
