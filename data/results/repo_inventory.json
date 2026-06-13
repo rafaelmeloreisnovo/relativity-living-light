@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-06-13T08:39:22.831803+00:00",
-  "git_commit": "3bcb29539b6259401071c02e9effd04e3a8dc32d",
+  "generated_at": "2026-06-13T08:39:57.417358+00:00",
+  "git_commit": "cf2e4dfc3157ed4c384c34ecdcabdd5aa81d6d79",
   "summary": {
-    "tracked_files_total": 869,
-    "cataloged_files": 851,
+    "tracked_files_total": 871,
+    "cataloged_files": 853,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 34899621,
-    "total_text_lines": 132054,
-    "markdown_files": 434,
+    "total_bytes": 34905579,
+    "total_text_lines": 132124,
+    "markdown_files": 435,
     "yml_yaml_files": 51,
     "github_workflow_yml_files": 18,
-    "data_or_result_files": 98
+    "data_or_result_files": 99
   },
   "counts_by_ext": {
-    ".md": 434,
+    ".md": 435,
     ".yml": 51,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 120,
     ".sh": 6,
-    ".json": 50,
+    ".json": 51,
     ".csv": 63,
     ".s": 4,
     ".c": 4,
@@ -39,21 +39,21 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 434,
+    "documentation_md": 435,
     "github_workflow_yml": 18,
     "config_yml": 33,
     "other": 129,
     "source_code": 132,
     "archive": 6,
-    "data_or_result": 98,
+    "data_or_result": 99,
     "test_or_validation": 1
   },
   "flags": {
     "cosmology_validation_marker": 396,
     "mentions_mock_or_placeholder": 81,
     "mentions_synthetic": 63,
-    "token_vazio_declared": 64,
-    "result_artifact": 81
+    "token_vazio_declared": 65,
+    "result_artifact": 82
   },
   "files": [
     {
@@ -3255,6 +3255,19 @@
       ]
     },
     {
+      "path": "data/results/bootstrap/real_seed_ingestion_plan.json",
+      "size_bytes": 5109,
+      "ext": ".json",
+      "kind": "data_or_result",
+      "sha256": "4386ff0b450def81c5b950b8662bdc20b940043861f4d81f455441de7bd460b9",
+      "line_count": 36,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared",
+        "result_artifact"
+      ]
+    },
+    {
       "path": "data/results/bootstrap/real_seed_validation_index.json",
       "size_bytes": 1888,
       "ext": ".json",
@@ -3398,7 +3411,7 @@
       "size_bytes": 288651,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "b7266faa6ae2f188973654bf962fde0afdd571f4b83a9d8cdb2ec8b1a92bff8d",
+      "sha256": "69c55c1167235ddf569a4e8e3864ed648b876ad2b9b15b4159fc89c83102def4",
       "line_count": 9810,
       "is_text": true,
       "risk_flags": [
@@ -3413,7 +3426,7 @@
       "size_bytes": 134800,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "516973ec303242b4c6927867cdc49a688e938c5bcfdb027874283d0bb262dc7e",
+      "sha256": "96c8310cd4bdf9917a2d5ebf0a3059fcf2148ee99e6cf9ebe702b84886402720",
       "line_count": 852,
       "is_text": true,
       "risk_flags": [
@@ -3429,7 +3442,7 @@
       "size_bytes": 3287,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "396b9cc5836bc959510c4bfc1089fbbd3013398d29f853bb173564206719cfc1",
+      "sha256": "76f292c75be6ce9c7142b7499d1cb8853adc2865da490ea5bab7f2b878daa7aa",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -3888,7 +3901,7 @@
       "size_bytes": 154299,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "49a6aa7ca3f478b2c4e4c3dacbb5e341f53aa8b5098d4a1dbd98ebff1386c4b3",
+      "sha256": "0f9dd753cf4585b30be23632a078512a98003255b748510593c65616422398d4",
       "line_count": 895,
       "is_text": true,
       "risk_flags": [
@@ -4437,7 +4450,7 @@
       "size_bytes": 1501,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b5720c1db2b5fadb670028a0b4bc4ae9dfb483f664f3479147e23d50aa6cacd1",
+      "sha256": "46c057e9bf730dcd6e609be12bb28087c7c10a9ebe8a6cd45faee6bbf99e70b2",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -4908,7 +4921,7 @@
       "size_bytes": 7907,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "d0206fccf604667e3ec9162424556a76833bbf0f663cf7abc5e101e88e7aac91",
+      "sha256": "f93c86039dbd64e17796da1bd3e25e5100db6f3951c3fea694ae39a45d07e55b",
       "line_count": 58,
       "is_text": true,
       "risk_flags": [
@@ -6069,6 +6082,16 @@
       "kind": "documentation_md",
       "sha256": "6fc7009547f9697fa2ff9cce81f14ef9f16bdb41ebda9b59c71a64dd59325490",
       "line_count": 226,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "docs/science/REAL_SEED_INGESTION_PLAN.md",
+      "size_bytes": 849,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "1cd86f6c5709a61d6703b9d77875fb482f131e7f8cdced9477a415dcd4ff8c15",
+      "line_count": 34,
       "is_text": true,
       "risk_flags": []
     },
