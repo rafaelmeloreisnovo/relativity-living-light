@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T08:38:56.446575+00:00`  
-Commit: `3c7dad0f120857160d663f69eef44d4dd11a9351`
+Gerado em: `2026-06-13T08:39:22.831803+00:00`  
+Commit: `3bcb29539b6259401071c02e9effd04e3a8dc32d`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -25,7 +25,7 @@ Commit: `3c7dad0f120857160d663f69eef44d4dd11a9351`
 | `.github/workflows/yml-syntax-validation.yml` | `github_workflow_yml` | 1616 | 63 | `6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290` |
 | `CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `data/observational_sources.yml` | `config_yml` | 4312 | 131 | `163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d` |
-| `data/real/bootstrap/real_data_requirements_bootstrap.yml` | `config_yml` | 5563 | 175 | `b24cf0640d1c7be12cd0d19e89dc08f91801acb0d1dca501e47ab8cc1bd746a0` |
+| `data/real/bootstrap/real_data_requirements_bootstrap.yml` | `config_yml` | 7548 | 222 | `10dcf7fe8dcbec05de9c1ee8ee7eaa2e35f2a61b7b972ebe6630fe59aefe24e5` |
 | `data/real/bootstrap/real_observational_seed_v0.yml` | `config_yml` | 7163 | 169 | `40e1b78031f51708aee616db5b341a806f4f0ffe490fec955b05c94894b0be88` |
 | `data/real/bootstrap/real_observational_seed_v1.yml` | `config_yml` | 9527 | 237 | `9ca27fe2aba6afdaa27236b5e755467703c51f8b701e4f702443cade6d838809` |
 | `data/real/bootstrap/real_seed_pipeline_orchestration.yml` | `config_yml` | 7887 | 227 | `b8f90f3fcdc9c2232cb6e686f7a305a5bdaccc3a2c8f3a7df84eee0ceb0d9a17` |
