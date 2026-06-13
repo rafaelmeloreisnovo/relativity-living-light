@@ -1,13 +1,13 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-13T11:04:10.768269+00:00`  
-Commit: `9d0813a51c8543254cef3903fecbbfc3c15b1c1e`
+Gerado em: `2026-06-13T11:08:32.772464+00:00`  
+Commit: `440419d12b169b62acc14c5e8cae415d70c8091e`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
 | `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11559 | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` |
 | `.github/workflows/canonical-route-artifacts.yml` | `github_workflow_yml` | 4182 | 109 | `2c1dd21882168cf7d87dbbcce338a317a41a60741a6459a577e74567316d022a` |
-| `.github/workflows/claim-boundary-quality-gates.yml` | `github_workflow_yml` | 1660 | 63 | `0b72cd43b674c8c56f39f6e25d4ffd9c369be7dfa241d3e4e57db8cbb63e4858` |
+| `.github/workflows/claim-boundary-quality-gates.yml` | `github_workflow_yml` | 1721 | 64 | `607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509` |
 | `.github/workflows/convention-check.yml` | `github_workflow_yml` | 894 | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` |
 | `.github/workflows/dense-feature-matrix.yml` | `github_workflow_yml` | 2106 | 64 | `096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786` |
 | `.github/workflows/dha-fisher-ci.yml` | `github_workflow_yml` | 2397 | 77 | `5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4` |

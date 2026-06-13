@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-13T11:04:10.768269+00:00",
-  "git_commit": "9d0813a51c8543254cef3903fecbbfc3c15b1c1e",
+  "generated_at": "2026-06-13T11:08:32.772464+00:00",
+  "git_commit": "440419d12b169b62acc14c5e8cae415d70c8091e",
   "summary": {
     "tracked_files_total": 933,
     "cataloged_files": 915,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35171122,
-    "total_text_lines": 138939,
+    "total_bytes": 35171861,
+    "total_text_lines": 138954,
     "markdown_files": 466,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
@@ -90,11 +90,11 @@
     },
     {
       "path": ".github/workflows/claim-boundary-quality-gates.yml",
-      "size_bytes": 1660,
+      "size_bytes": 1721,
       "ext": ".yml",
       "kind": "github_workflow_yml",
-      "sha256": "0b72cd43b674c8c56f39f6e25d4ffd9c369be7dfa241d3e4e57db8cbb63e4858",
-      "line_count": 63,
+      "sha256": "607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509",
+      "line_count": 64,
       "is_text": true,
       "risk_flags": []
     },
@@ -3650,11 +3650,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 310413,
+      "size_bytes": 310753,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "369ff340a5348e21eae044af9bd6ded85e8596af9709e0f3f2680993002f09b3",
-      "line_count": 10537,
+      "sha256": "90a87656c149b560ddc293dce1ffcb3b80af0402f925e486921cdcb1877ffb9a",
+      "line_count": 10549,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3665,11 +3665,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 145372,
+      "size_bytes": 145531,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "c4cda0ea9f0320679fc480f4922b0c679da82c4ceb42c381476ad966db8a4211",
-      "line_count": 915,
+      "sha256": "5a471a4279ff85449ddf6e911b4170977923776f98d393af393ad1c4d943dea1",
+      "line_count": 916,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3684,7 +3684,7 @@
       "size_bytes": 3288,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "9ddb8113cb3d6d63fdd149033a82a65c469eeb213db7cbfeac047a762cc6af91",
+      "sha256": "991869f578f18d0b08937a0b9d5df7479ade1d2c4cf319ea1c9ba8081efd5f86",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4160,11 +4160,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 166132,
+      "size_bytes": 166311,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "a93bba7bb2131baa14e68a39b6a820a94910aac8b9a34d1d0aebc6641aeaf152",
-      "line_count": 958,
+      "sha256": "b3f4b6aee2c726e2d1d97e2cda66527bb0d4b92b4a5a1209d9f21a656a1ca871",
+      "line_count": 959,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4712,7 +4712,7 @@
       "size_bytes": 1503,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "cadc8d86aea19446070fa7f589f91cb942b5579cab04c36e90dc47a0e387fb98",
+      "sha256": "e546679ea3156efcc4955a8530ebaa4ebd477b06cbbcfcfc4467839d2d394e8b",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5378,7 +5378,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7b59e548a20a43aca69921d037622e1da462b7ca09af01f44adbdba644a8cdd7",
+      "sha256": "5fe8da79db4240f7da34286457fb4d0c5b4a13c3158cf28867592fdd0d5edbe8",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
