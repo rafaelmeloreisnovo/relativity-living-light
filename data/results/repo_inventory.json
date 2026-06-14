@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-14T02:14:01.521655+00:00",
-  "git_commit": "ded005e9dd1eeea534d68d0039bae78d1e1c057d",
+  "generated_at": "2026-06-14T02:14:53.161192+00:00",
+  "git_commit": "00ae2b2b8754331b9d6e0823820332a350a608f0",
   "summary": {
-    "tracked_files_total": 945,
-    "cataloged_files": 927,
+    "tracked_files_total": 946,
+    "cataloged_files": 928,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35257399,
-    "total_text_lines": 141374,
+    "total_bytes": 35260867,
+    "total_text_lines": 141406,
     "markdown_files": 473,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
-    "data_or_result_files": 111
+    "data_or_result_files": 112
   },
   "counts_by_ext": {
     ".md": 473,
@@ -29,7 +29,7 @@
     ".ipynb": 5,
     ".zip": 6,
     ".html": 1,
-    ".tsv": 4,
+    ".tsv": 5,
     ".png": 67,
     ".tex": 3,
     ".pdf": 2,
@@ -45,12 +45,12 @@
     "other": 129,
     "source_code": 146,
     "archive": 6,
-    "data_or_result": 111,
+    "data_or_result": 112,
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 416,
-    "token_vazio_declared": 101,
+    "cosmology_validation_marker": 417,
+    "token_vazio_declared": 102,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -3664,11 +3664,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 314622,
+      "size_bytes": 315005,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "911304d93716dcdfa3c584f89e176df09fdb00bed7361a34a83a35f8c0e7818c",
-      "line_count": 10679,
+      "sha256": "7c036163253c7b214927e2a93f664a6c497279039fb57c18e9f1a27016ed9f62",
+      "line_count": 10692,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3679,11 +3679,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 147418,
+      "size_bytes": 147609,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "0d4c7cf72c2b8c9cf10f876dad4c3d1011f4100f79601a46dc2994456939cef3",
-      "line_count": 927,
+      "sha256": "35946fc78d096529c9ca78f8d523500ee6bf7d0e53689733003aa3a8528f1c7d",
+      "line_count": 928,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3698,7 +3698,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "6ec0581dc48f700b8d725ab38eb8523c9b5f0e54bda6f12f5719465202921b2f",
+      "sha256": "2b3811065cf749f2f1cda5f1f3a8c8eead2d22f4ada81cd9cb7e4ea070820bf2",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4174,11 +4174,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 168418,
+      "size_bytes": 168629,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "6acd5f9119379b9e112d0548ec92bcd9e17d20d42b6a79832bf5365499df2f00",
-      "line_count": 970,
+      "sha256": "aa9a975775616d23852a4a32d8c86f529fa629036a85b77b6e270f0b4ec5db62",
+      "line_count": 971,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4726,7 +4726,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "bb1ea77a0eb6ededd8cd5a3c86762d1265b71b7f8eb9fe097b105a331b2e25f0",
+      "sha256": "04d3e20b7a845d7775cb3a41eb7e5d0e2fb46ac6d00e6bf3c810c498de4bee89",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5464,7 +5464,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "7c3b460836d170d0db8bfe294c3facf4ee51346ed7c9f8b6754702036e35778e",
+      "sha256": "824fa700bbb64f10bb3296670765858f0d28f672c00a84c2cfa26e28a557afc7",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
@@ -5768,6 +5768,19 @@
       "line_count": 208,
       "is_text": true,
       "risk_flags": [
+        "cosmology_validation_marker"
+      ]
+    },
+    {
+      "path": "docs/data/PANTHEON_DESI_MASTER_CATALOG.tsv",
+      "size_bytes": 2683,
+      "ext": ".tsv",
+      "kind": "data_or_result",
+      "sha256": "b73fe000ec436f4bf5fe2e0eb8662424d2b5fc7d6d396fc8a6aac98c856acdca",
+      "line_count": 17,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared",
         "cosmology_validation_marker"
       ]
     },
