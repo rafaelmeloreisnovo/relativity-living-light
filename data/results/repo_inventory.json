@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-06-16T18:04:50.656133+00:00",
-  "git_commit": "f637e52153a1db3cd2f3db98db355a3e1a235da3",
+  "generated_at": "2026-06-16T18:19:06.805729+00:00",
+  "git_commit": "31e47ef9dfc3f7801f74914563c0a222a6d8e0a7",
   "summary": {
-    "tracked_files_total": 949,
-    "cataloged_files": 931,
+    "tracked_files_total": 957,
+    "cataloged_files": 939,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35321044,
-    "total_text_lines": 143133,
-    "markdown_files": 476,
+    "total_bytes": 35346879,
+    "total_text_lines": 144018,
+    "markdown_files": 483,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 112
   },
   "counts_by_ext": {
-    ".md": 476,
+    ".md": 483,
     ".yml": 61,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 134,
     ".sh": 6,
-    ".json": 59,
+    ".json": 60,
     ".csv": 65,
     ".s": 4,
     ".c": 4,
@@ -39,10 +39,10 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 476,
+    "documentation_md": 483,
     "github_workflow_yml": 23,
     "config_yml": 38,
-    "other": 129,
+    "other": 130,
     "source_code": 146,
     "archive": 6,
     "data_or_result": 112,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 418,
-    "token_vazio_declared": 106,
+    "token_vazio_declared": 111,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -3689,11 +3689,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 316159,
+      "size_bytes": 316516,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "f44394a812e055563dd401ac2b9a9418bcf4c74f753fa45bddd72ec5716e6e3a",
-      "line_count": 10731,
+      "sha256": "96c86589f6de550dd0eec36e5f2cb30d4acaaa1280550635c2c29a4573ec24f3",
+      "line_count": 10743,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3704,11 +3704,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 148187,
+      "size_bytes": 148363,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "8f40d1a434dc82a3d528f0e3ad64b6511b81dbbef8adb61807df82ef097896ab",
-      "line_count": 931,
+      "sha256": "6cc3df4c63ac8fa911407a36c3acee9e2868a56f9df6ce53b1ab0d26ab60bc5f",
+      "line_count": 932,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3723,7 +3723,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "78582c7f8ada6b592240cae44f5321870d2bea13194f82669c765c6156af3d58",
+      "sha256": "37a41619fe607ed6dd26ded7afd5979a6d2f9a580a50b5051559191004be3298",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4199,11 +4199,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 169267,
+      "size_bytes": 169463,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "149da0d4f4fa3afa7087556fc426b682e7408edf053a68df6d8a4325503c1279",
-      "line_count": 974,
+      "sha256": "2367f31ae0335134389816c50733ac0dfdea3bd8a1b6e30d9717fb998940e13b",
+      "line_count": 975,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4751,7 +4751,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "b37a974d5fa7474901e35145755fa24fc144e01b5d3d5662853df320e2c8f515",
+      "sha256": "de3c51c6fa739b92c3241fd98c2ac245dc37f5600ceb98f5ad9c4c1307255921",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5489,7 +5489,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "671c465269ade96f4f5adbff342b751821db20b4d5add1b28150a61cb090014c",
+      "sha256": "cfe7875bdfda272bab25a8a6fa2ef5be2c758a339082adb8af8cb48de6645d9c",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
@@ -7606,6 +7606,96 @@
       "line_count": null,
       "is_text": false,
       "risk_flags": []
+    },
+    {
+      "path": "knowledge_ecosystem/README.md",
+      "size_bytes": 3231,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "d89e0e637f0fffdb8081a2f52fe0ada06d2b6231002835ba9efa8482489f8c2d",
+      "line_count": 88,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/academic_integrity_and_plagiarism_policy.md",
+      "size_bytes": 2631,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "a5f23a64890694320ae59ec4f42c5f510af13dec8aea10b852cd274b4f3ec621",
+      "line_count": 122,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/claim_state_ledger.md",
+      "size_bytes": 3151,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "5a845a6c3b67f75d919eec21d763105d89680216b9667a10b3a4a29fff124860",
+      "line_count": 94,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/examples_ref_required.md",
+      "size_bytes": 3935,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "6f3d2657cf8fc8c2ebb0e5fd8ccd9460c46f126b3842c60c0f4125b190ae8d18",
+      "line_count": 75,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "knowledge_ecosystem/origin_reference_protocol.md",
+      "size_bytes": 3140,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "3bb0b453b8896161a6a3f72f779575c12077968fb0eb0806c73d4384f5818c09",
+      "line_count": 120,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/public_safety_transparency_network.md",
+      "size_bytes": 3954,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "4b67fac62c6522a7c8041f0e4279200dae6d24a10416421f33c5b7191756eee8",
+      "line_count": 143,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "knowledge_ecosystem/publication_doi_pipeline.md",
+      "size_bytes": 2474,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "8c11448723412dbb91440a91d2b0cc1ee6fdefa9e332147e96a59d44c760d56a",
+      "line_count": 115,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "knowledge_ecosystem/schemas/info_prime.schema.json",
+      "size_bytes": 2590,
+      "ext": ".json",
+      "kind": "other",
+      "sha256": "69d76b5d70ff707b43d2eab4cf066acad1b8fb44b51275987183768f13af7f74",
+      "line_count": 114,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
     },
     {
       "path": "main.tex",
