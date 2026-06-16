@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-16T18:40:11.355110+00:00",
-  "git_commit": "0f9de7c9ac0035376648d64b115e1eb59aaa6929",
+  "generated_at": "2026-06-16T21:30:41.289177+00:00",
+  "git_commit": "f0dcc624d7fea194a8f7dda509b8619c7b39b114",
   "summary": {
-    "tracked_files_total": 963,
-    "cataloged_files": 945,
+    "tracked_files_total": 965,
+    "cataloged_files": 947,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35377775,
-    "total_text_lines": 144998,
-    "markdown_files": 487,
+    "total_bytes": 35396183,
+    "total_text_lines": 145512,
+    "markdown_files": 489,
     "yml_yaml_files": 63,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 112
   },
   "counts_by_ext": {
-    ".md": 487,
+    ".md": 489,
     ".yml": 63,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 487,
+    "documentation_md": 489,
     "github_workflow_yml": 23,
     "config_yml": 40,
     "other": 130,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 418,
-    "token_vazio_declared": 116,
+    "token_vazio_declared": 117,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -738,6 +738,28 @@
       "line_count": 39,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "PapersPub/04_rll_light_loop_distance/draft.md",
+      "size_bytes": 7399,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "8c913af664ff37c3125d9c160d0af191f277eb98d52f672086e028f0cb83cd9d",
+      "line_count": 284,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "PapersPub/04_rll_light_loop_distance/references.md",
+      "size_bytes": 6538,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "aef70f4149f832bcbfb65195c388ff398dd48524b41c274f5b537eb12090ef28",
+      "line_count": 146,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
     },
     {
       "path": "PapersPub/05_geophysics_earth_observation/data_manifest.md",
@@ -3689,11 +3711,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 319201,
+      "size_bytes": 321265,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "ed3eff569fdeb2ccbd3c7c83895738475cadf2be3e8b82875f145b9a7a94f03a",
-      "line_count": 10833,
+      "sha256": "60d3604c591fe27e9da9e8cd637818ca6f94aae17da2072fc88b2808dd8bd801",
+      "line_count": 10903,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3704,11 +3726,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 149654,
+      "size_bytes": 150650,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "d8d63a916bf5dc2209bc0ead3b0624b7453315ebe9afe26a40c877b318613507",
-      "line_count": 940,
+      "sha256": "a6e4035f66fc7e9d101872dfb1c98f20e93eb33345da9b8ecd1381f86579e9b4",
+      "line_count": 946,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3723,7 +3745,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "5a261842628d9d2a14966e92c2bd180640e905f73ce10536555a4596aa86721d",
+      "sha256": "93b033dfcdb23889e63328d7bed84f135f451cf31399feea861f288d93564db7",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4199,11 +4221,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 170914,
+      "size_bytes": 172030,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1e918a2be93334aac9e4e20bdb6b8f5bdf25b0b97a6fc36bf10163bd55ba92a5",
-      "line_count": 983,
+      "sha256": "1d37bc43147754c7dff00713651890a1e6d7b0e8785fedb136ed1d270c048963",
+      "line_count": 989,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4751,7 +4773,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "cb26776eed12f38ece31c8bce720e625d1edcf4b9306f1cb76a13c275e324b7b",
+      "sha256": "fc1294ef308fa3421d25a87734f3a6165052ae4bd49508dda5a15b14cdf65006",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5486,11 +5508,11 @@
     },
     {
       "path": "docs/YML_WORKFLOWS_INDEX.md",
-      "size_bytes": 9523,
+      "size_bytes": 9818,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "4ec039c745c9a7263f5e328ef53f64b6d25cb0c2bb66b0d0fd992875c3d55f1a",
-      "line_count": 68,
+      "sha256": "5c37f0e7deb985975560af74dab52c1a81cd536ccebcff7c216392a44b232aca",
+      "line_count": 70,
       "is_text": true,
       "risk_flags": [
         "cosmology_validation_marker"
