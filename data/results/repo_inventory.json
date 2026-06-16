@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-14T02:39:41.942957+00:00",
-  "git_commit": "a44f91e72a58d306cf93f56ad19a60b4bb94fc7b",
+  "generated_at": "2026-06-16T17:44:08.355864+00:00",
+  "git_commit": "d3d7096949b5ccc5274652852737847398a9c2cd",
   "summary": {
     "tracked_files_total": 947,
     "cataloged_files": 929,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35271060,
-    "total_text_lines": 141745,
+    "total_bytes": 35289296,
+    "total_text_lines": 142100,
     "markdown_files": 474,
     "yml_yaml_files": 61,
     "github_workflow_yml_files": 23,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 418,
-    "token_vazio_declared": 103,
+    "token_vazio_declared": 104,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -520,13 +520,14 @@
     },
     {
       "path": "PapersPub/01_cosmology_pantheon_desi/draft.md",
-      "size_bytes": 1703,
+      "size_bytes": 19139,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8d0257806a037e27b4d66695439b7141518f12322f21940061563e5ed6f5f429",
-      "line_count": 43,
+      "sha256": "c808c4364213dfc2ad7b4385be070e4b21a2aaab34dcd3d9cce4006f3237eb38",
+      "line_count": 383,
       "is_text": true,
       "risk_flags": [
+        "token_vazio_declared",
         "cosmology_validation_marker"
       ]
     },
@@ -3664,11 +3665,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 315388,
+      "size_bytes": 315776,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "24919ade7e64b1d054663d02968f6f741f6b8f07c51896366879a843e873d9ce",
-      "line_count": 10705,
+      "sha256": "e84c9a2c9e6caa238257501adfffdcddbd23d6e605a3161ec05a80729247c3ad",
+      "line_count": 10718,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3679,11 +3680,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 147800,
+      "size_bytes": 147996,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "118d3957b80fb1b141e6839332695108c58849f5571fa9adc5e28c010e3b1f3c",
-      "line_count": 929,
+      "sha256": "b45435d50ddc832c141b0f5986db913cb04527a10b4c8b326dc2991d2a7a98d7",
+      "line_count": 930,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3698,7 +3699,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "39c30e32b1a14bc74c8e93479ad7bb43c759fafb33cb22cd228ac55456210728",
+      "sha256": "6c53ec4c8fed232e779fca8297715544951f22290ba32eccb18843d871d0da06",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4174,11 +4175,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 168840,
+      "size_bytes": 169056,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "e5ac17b7ffb0e9897ea5721773294cfd5ab4acf1dd00ca018e68cd964929399a",
-      "line_count": 972,
+      "sha256": "1c0c22704e1c6c9fad8df5f2ce2c89f5ea48f0464c24a752a1fb8ff9ddc8471c",
+      "line_count": 973,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4726,7 +4727,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "23279389028e95e59a727a0477aa653d8c505638be5b56d28cf78c64bd30e2d3",
+      "sha256": "905e6b44d84359e1489e53552f666adb57dba4e315a3906728cb197654022247",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5464,7 +5465,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "64553b5c3e168daed86d42b85e80c47491bb9ac05ec9ee29055dcfd1485e2b3f",
+      "sha256": "7bb45fddbf86325fdb1706dc6ff2f7332531126fca4f3a78bc3d297e1a9c0449",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [

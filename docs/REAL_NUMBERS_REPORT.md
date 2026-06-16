@@ -1,15 +1,15 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-14T02:39:41.942957+00:00`  
-Commit: `a44f91e72a58d306cf93f56ad19a60b4bb94fc7b`
+Gerado em: `2026-06-16T17:44:08.355864+00:00`  
+Commit: `d3d7096949b5ccc5274652852737847398a9c2cd`
 
 | Métrica | Valor |
 |---|---:|
 | `tracked_files_total` | 947 |
 | `cataloged_files` | 929 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 35271060 |
-| `total_text_lines` | 141745 |
+| `total_bytes` | 35289296 |
+| `total_text_lines` | 142100 |
 | `markdown_files` | 474 |
 | `yml_yaml_files` | 61 |
 | `github_workflow_yml_files` | 23 |
@@ -62,7 +62,7 @@ Commit: `a44f91e72a58d306cf93f56ad19a60b4bb94fc7b`
 | Flag | Ocorrências |
 |---|---:|
 | `cosmology_validation_marker` | 418 |
-| `token_vazio_declared` | 103 |
+| `token_vazio_declared` | 104 |
 | `result_artifact` | 91 |
 | `mentions_mock_or_placeholder` | 85 |
 | `mentions_synthetic` | 67 |
