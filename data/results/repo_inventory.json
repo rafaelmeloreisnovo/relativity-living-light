@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-16T21:55:13.173886+00:00",
-  "git_commit": "c3d7bfd5e2b3a10d84afbf8d3513670a05e6d0ee",
+  "generated_at": "2026-06-16T22:19:41.935511+00:00",
+  "git_commit": "fae3f19e4ddc1cbc05fb031e1d917bdd748bdd28",
   "summary": {
-    "tracked_files_total": 970,
-    "cataloged_files": 952,
+    "tracked_files_total": 971,
+    "cataloged_files": 953,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35421340,
-    "total_text_lines": 146061,
-    "markdown_files": 494,
+    "total_bytes": 35462901,
+    "total_text_lines": 146796,
+    "markdown_files": 495,
     "yml_yaml_files": 63,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 112
   },
   "counts_by_ext": {
-    ".md": 494,
+    ".md": 495,
     ".yml": 63,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 494,
+    "documentation_md": 495,
     "github_workflow_yml": 23,
     "config_yml": 40,
     "other": 130,
@@ -49,8 +49,8 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 418,
-    "token_vazio_declared": 120,
+    "cosmology_validation_marker": 419,
+    "token_vazio_declared": 121,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -3755,11 +3755,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 323285,
+      "size_bytes": 323639,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "d036f70ccabfa457823dc9f0b0d53eab340236b28e43f694048444d6eb8826b3",
-      "line_count": 10969,
+      "sha256": "934810ba3ad824455ca23f0fb9dcf0f20090196a63b9e7090a939d5a7d336428",
+      "line_count": 10981,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3770,11 +3770,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 151638,
+      "size_bytes": 151811,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "a381fbe39fc3d7985962e9f725af7ccb599bbf2dd8700e775f7ded5dda76e270",
-      "line_count": 952,
+      "sha256": "3689aa27eae7e3c88a7c1d6104221a2a7475fd751886f24ef70dbe71c724089d",
+      "line_count": 953,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3789,7 +3789,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "87c489aa35fe1488eeb2d83fa3c75c6ddb1d041ce2f13375e211d041e7486d04",
+      "sha256": "5408722dffcea830351111754447273dca306c358685cbc13b592b71991059ef",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4265,11 +4265,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 173138,
+      "size_bytes": 173331,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "f0e9c332d20e428ad3c9d893df6fd67cf31dffd4c44a809504f5865b49e928ca",
-      "line_count": 995,
+      "sha256": "88e12ceeff3d2a415b1ff498caecf73a0fd5ec002e6c59f4c20c134977cc29f0",
+      "line_count": 996,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4817,7 +4817,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "2d1dc5e226fdc8a188f2f0558587113147c876a674e867124acf4b31e14bba92",
+      "sha256": "5cd2018ff9af1d5849cac0bdcf3bc57ba72a998c669f3eb59aabc7d8bacaf099",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5555,7 +5555,7 @@
       "size_bytes": 9818,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "10b768c0858b371888bb768f2bd78ed7b8579be095eda33f1094e7e19097141d",
+      "sha256": "7dd8ae4552a770314ae2d50068b29c6edd6df6012ee6068ea5c4ab3291d8dc97",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -5737,6 +5737,19 @@
       "line_count": 63,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md",
+      "size_bytes": 40841,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "28ebef89a7a2efb1eaa0b3847899cb51ef8ec9b3ef9924ded4908b548da5eafa",
+      "line_count": 721,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared",
+        "cosmology_validation_marker"
+      ]
     },
     {
       "path": "docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md",
