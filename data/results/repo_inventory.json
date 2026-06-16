@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-16T21:30:41.289177+00:00",
-  "git_commit": "f0dcc624d7fea194a8f7dda509b8619c7b39b114",
+  "generated_at": "2026-06-16T21:42:09.779219+00:00",
+  "git_commit": "4f3b6663ba96142580963c49e396e0a9a38ae610",
   "summary": {
-    "tracked_files_total": 965,
-    "cataloged_files": 947,
+    "tracked_files_total": 968,
+    "cataloged_files": 950,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35396183,
-    "total_text_lines": 145512,
-    "markdown_files": 489,
+    "total_bytes": 35416695,
+    "total_text_lines": 145951,
+    "markdown_files": 492,
     "yml_yaml_files": 63,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 112
   },
   "counts_by_ext": {
-    ".md": 489,
+    ".md": 492,
     ".yml": 63,
     "NO_EXT": 12,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 489,
+    "documentation_md": 492,
     "github_workflow_yml": 23,
     "config_yml": 40,
     "other": 130,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 418,
-    "token_vazio_declared": 117,
+    "token_vazio_declared": 118,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -760,6 +760,26 @@
       "risk_flags": [
         "token_vazio_declared"
       ]
+    },
+    {
+      "path": "PapersPub/05_compression_astrophysics_claims/draft.md",
+      "size_bytes": 8054,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "978ffb6de4e2117b589e4bb9aced58925ce0919f807dc0c8fc22caca2d42c4ba",
+      "line_count": 193,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
+      "path": "PapersPub/05_compression_astrophysics_claims/references.md",
+      "size_bytes": 6887,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "70fc5532284d4b22cf6580f05f570b46b0a973a9735ac4228d85116f35b72d20",
+      "line_count": 145,
+      "is_text": true,
+      "risk_flags": []
     },
     {
       "path": "PapersPub/05_geophysics_earth_observation/data_manifest.md",
@@ -3711,11 +3731,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 321265,
+      "size_bytes": 321930,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "60d3604c591fe27e9da9e8cd637818ca6f94aae17da2072fc88b2808dd8bd801",
-      "line_count": 10903,
+      "sha256": "1cfcde270028792f71b6f011050994b0ff26a30e8f1c0d00a77795e27d7b6886",
+      "line_count": 10925,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3726,11 +3746,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 150650,
+      "size_bytes": 150971,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "a6e4035f66fc7e9d101872dfb1c98f20e93eb33345da9b8ecd1381f86579e9b4",
-      "line_count": 946,
+      "sha256": "70cf9493967d1937d41ef6469495253f8c461098661a55e258da7c3f95b70f50",
+      "line_count": 948,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3745,7 +3765,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "93b033dfcdb23889e63328d7bed84f135f451cf31399feea861f288d93564db7",
+      "sha256": "7f41cccd241241c7fef3bb88db12baba61c40a333b5e93cba29214797e9e295e",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4221,11 +4241,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 172030,
+      "size_bytes": 172391,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "1d37bc43147754c7dff00713651890a1e6d7b0e8785fedb136ed1d270c048963",
-      "line_count": 989,
+      "sha256": "6129ea09e14d26a87a6121154df792ad6a7861f54d5b08607f21315a61d95d30",
+      "line_count": 991,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4773,7 +4793,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "fc1294ef308fa3421d25a87734f3a6165052ae4bd49508dda5a15b14cdf65006",
+      "sha256": "4213ff2ab07de048738c09a27ff0b9f57a626eb5e96650a9794719e5ac791c55",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5511,7 +5531,7 @@
       "size_bytes": 9818,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "5c37f0e7deb985975560af74dab52c1a81cd536ccebcff7c216392a44b232aca",
+      "sha256": "f56d3e139ae95fffcf5545543b5db7032e76b474bc299c421127875d940ebddb",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -7648,6 +7668,18 @@
       "kind": "documentation_md",
       "sha256": "a5f23a64890694320ae59ec4f42c5f510af13dec8aea10b852cd274b4f3ec621",
       "line_count": 122,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/astrophysics_compression_claim_roll.md",
+      "size_bytes": 4224,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "657c7621b812f5d99f5a083a1b6fa74afee250e5cdcf502b033a25b4f716f63c",
+      "line_count": 75,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"
