@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-16T18:19:06.805729+00:00",
-  "git_commit": "31e47ef9dfc3f7801f74914563c0a222a6d8e0a7",
+  "generated_at": "2026-06-16T18:40:11.355110+00:00",
+  "git_commit": "0f9de7c9ac0035376648d64b115e1eb59aaa6929",
   "summary": {
-    "tracked_files_total": 957,
-    "cataloged_files": 939,
+    "tracked_files_total": 963,
+    "cataloged_files": 945,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35346879,
-    "total_text_lines": 144018,
-    "markdown_files": 483,
-    "yml_yaml_files": 61,
+    "total_bytes": 35377775,
+    "total_text_lines": 144998,
+    "markdown_files": 487,
+    "yml_yaml_files": 63,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 112
   },
   "counts_by_ext": {
-    ".md": 483,
-    ".yml": 61,
+    ".md": 487,
+    ".yml": 63,
     "NO_EXT": 12,
     ".txt": 10,
     ".py": 134,
@@ -39,9 +39,9 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 483,
+    "documentation_md": 487,
     "github_workflow_yml": 23,
-    "config_yml": 38,
+    "config_yml": 40,
     "other": 130,
     "source_code": 146,
     "archive": 6,
@@ -50,7 +50,7 @@
   },
   "flags": {
     "cosmology_validation_marker": 418,
-    "token_vazio_declared": 111,
+    "token_vazio_declared": 116,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -3689,11 +3689,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 316516,
+      "size_bytes": 319201,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "96c86589f6de550dd0eec36e5f2cb30d4acaaa1280550635c2c29a4573ec24f3",
-      "line_count": 10743,
+      "sha256": "ed3eff569fdeb2ccbd3c7c83895738475cadf2be3e8b82875f145b9a7a94f03a",
+      "line_count": 10833,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3704,11 +3704,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 148363,
+      "size_bytes": 149654,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "6cc3df4c63ac8fa911407a36c3acee9e2868a56f9df6ce53b1ab0d26ab60bc5f",
-      "line_count": 932,
+      "sha256": "d8d63a916bf5dc2209bc0ead3b0624b7453315ebe9afe26a40c877b318613507",
+      "line_count": 940,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3723,7 +3723,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "37a41619fe607ed6dd26ded7afd5979a6d2f9a580a50b5051559191004be3298",
+      "sha256": "5a261842628d9d2a14966e92c2bd180640e905f73ce10536555a4596aa86721d",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4199,11 +4199,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 169463,
+      "size_bytes": 170914,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "2367f31ae0335134389816c50733ac0dfdea3bd8a1b6e30d9717fb998940e13b",
-      "line_count": 975,
+      "sha256": "1e918a2be93334aac9e4e20bdb6b8f5bdf25b0b97a6fc36bf10163bd55ba92a5",
+      "line_count": 983,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4751,7 +4751,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "de3c51c6fa739b92c3241fd98c2ac245dc37f5600ceb98f5ad9c4c1307255921",
+      "sha256": "cb26776eed12f38ece31c8bce720e625d1edcf4b9306f1cb76a13c275e324b7b",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5489,7 +5489,7 @@
       "size_bytes": 9523,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "cfe7875bdfda272bab25a8a6fa2ef5be2c758a339082adb8af8cb48de6645d9c",
+      "sha256": "4ec039c745c9a7263f5e328ef53f64b6d25cb0c2bb66b0d0fd992875c3d55f1a",
       "line_count": 68,
       "is_text": true,
       "risk_flags": [
@@ -7632,6 +7632,18 @@
       ]
     },
     {
+      "path": "knowledge_ecosystem/bibliographic_reference_chain.md",
+      "size_bytes": 4744,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "6e57bd32e6248d14ba241f9d53a891a0f6cf5702aa48808663cdc4bb0f90587f",
+      "line_count": 190,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
       "path": "knowledge_ecosystem/claim_state_ledger.md",
       "size_bytes": 3151,
       "ext": ".md",
@@ -7652,6 +7664,30 @@
       "line_count": 75,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "knowledge_ecosystem/governance_audit_2026-06-16.md",
+      "size_bytes": 7123,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "2717ee625ade7980bb89c3c407797df85305d8cf1622df347edcfb530271326e",
+      "line_count": 229,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/hotfix_operational_plan.md",
+      "size_bytes": 3142,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "9edd77d681426ece75086a2eac044097033dbc41691d8526a67daed38649d076",
+      "line_count": 125,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
     },
     {
       "path": "knowledge_ecosystem/origin_reference_protocol.md",
@@ -7686,12 +7722,46 @@
       "risk_flags": []
     },
     {
+      "path": "knowledge_ecosystem/reference_seed_sources.yml",
+      "size_bytes": 2736,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "74e11f81af920466ff073034082414016eeda145faf134ca1ef2f6f0c993d4aa",
+      "line_count": 89,
+      "is_text": true,
+      "risk_flags": []
+    },
+    {
       "path": "knowledge_ecosystem/schemas/info_prime.schema.json",
       "size_bytes": 2590,
       "ext": ".json",
       "kind": "other",
       "sha256": "69d76b5d70ff707b43d2eab4cf066acad1b8fb44b51275987183768f13af7f74",
       "line_count": 114,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/source_search_queue.yml",
+      "size_bytes": 4044,
+      "ext": ".yml",
+      "kind": "config_yml",
+      "sha256": "2bb55f27be636072f9b954b1aae5494ec2a53865bd3096291ba7ba129ced0dd9",
+      "line_count": 95,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared"
+      ]
+    },
+    {
+      "path": "knowledge_ecosystem/thesis_theory_formula_registry.md",
+      "size_bytes": 3680,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "43505f24ace458b4f32676ab675e3e7683d10e6590a085838f1b70a511e6cdbe",
+      "line_count": 146,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"

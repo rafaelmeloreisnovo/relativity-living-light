@@ -1,7 +1,7 @@
 # YML Workflows Index
 
-Gerado em: `2026-06-16T18:19:06.805729+00:00`  
-Commit: `31e47ef9dfc3f7801f74914563c0a222a6d8e0a7`
+Gerado em: `2026-06-16T18:40:11.355110+00:00`  
+Commit: `0f9de7c9ac0035376648d64b115e1eb59aaa6929`
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -58,6 +58,8 @@ Commit: `31e47ef9dfc3f7801f74914563c0a222a6d8e0a7`
 | `data/rll_latentes/observations.yml` | `config_yml` | 13713 | 237 | `73e933b62a1f4b8811d407614a8ff5d845f34ee3dd8d413393c4d180bef40bd6` |
 | `data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026.yml` | `config_yml` | 414 | 12 | `0c903f80d9db20ab9cf58b212517bdf546e611afa3a98ce44e090581ed087c66` |
 | `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
+| `knowledge_ecosystem/reference_seed_sources.yml` | `config_yml` | 2736 | 89 | `74e11f81af920466ff073034082414016eeda145faf134ca1ef2f6f0c993d4aa` |
+| `knowledge_ecosystem/source_search_queue.yml` | `config_yml` | 4044 | 95 | `2bb55f27be636072f9b954b1aae5494ec2a53865bd3096291ba7ba129ced0dd9` |
 | `rll_equation_registry.yml` | `config_yml` | 2162 | 64 | `88122f0b0c79c6cb24867f1c8c15587c93756610f35b6d7e072ef0b1c3fdd55b` |
 | `rll_inovacao_tecnologica_watch.yml` | `config_yml` | 1510 | 41 | `bb3b76a4bbbdf55a3cf6d381721e9a01bf2ddac54bb4779e0f0b48a647237ef3` |
 | `tools/inventory_config.yml` | `config_yml` | 1050 | 56 | `66629d935fd917fc3e6bcd20d9a0f761e71fe2e59e8b30e03fd313a54a1fd1d8` |
