@@ -19,11 +19,11 @@
   },
   {
     "path": ".github/workflows/academic-parameter-governance.yml",
-    "bytes": 1546,
+    "bytes": 2088,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 43,
-    "sha256": "6208ee7a1a1170edb918c3d8b67c39a0f3ef005635bd5109986bcab7eb14b979",
+    "linhas": 52,
+    "sha256": "dae81a7c40327693ae7a3d7ea1201219e29a0fe505450a4dd7b5b901ac8a73a9",
     "flags": ""
   },
   {

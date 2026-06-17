@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 993 |
 | `cataloged_files` | 982 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34929120 |
-| `total_text_lines` | 136109 |
+| `total_bytes` | 34929662 |
+| `total_text_lines` | 136118 |
 | `markdown_files` | 503 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
@@ -25,7 +25,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 |---|---:|---|---|---:|---|---|
 | `.github/pull_request_template.md` | 593 | `.md` | `documentation_md` | 19 | `fc1b9dc5164ed6b52595b8706dda0e477ce78f002fa9d12a8fac3c83dda4d531` | `` |
 | `.github/workflows/START_MANUAL_HERE.yml` | 11559 | `.yml` | `github_workflow_yml` | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` | `mentions_synthetic` |
-| `.github/workflows/academic-parameter-governance.yml` | 1546 | `.yml` | `github_workflow_yml` | 43 | `6208ee7a1a1170edb918c3d8b67c39a0f3ef005635bd5109986bcab7eb14b979` | `` |
+| `.github/workflows/academic-parameter-governance.yml` | 2088 | `.yml` | `github_workflow_yml` | 52 | `dae81a7c40327693ae7a3d7ea1201219e29a0fe505450a4dd7b5b901ac8a73a9` | `` |
 | `.github/workflows/canonical-route-artifacts.yml` | 4182 | `.yml` | `github_workflow_yml` | 109 | `2c1dd21882168cf7d87dbbcce338a317a41a60741a6459a577e74567316d022a` | `` |
 | `.github/workflows/claim-boundary-quality-gates.yml` | 1721 | `.yml` | `github_workflow_yml` | 64 | `607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509` | `` |
 | `.github/workflows/convention-check.yml` | 894 | `.yml` | `github_workflow_yml` | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` | `` |
