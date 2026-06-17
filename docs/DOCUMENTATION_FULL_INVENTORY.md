@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 985 |
 | `cataloged_files` | 974 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34866161 |
-| `total_text_lines` | 134440 |
+| `total_bytes` | 34880222 |
+| `total_text_lines` | 134716 |
 | `markdown_files` | 498 |
 | `yml_yaml_files` | 61 |
 | `github_workflow_yml_files` | 24 |
@@ -254,7 +254,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/iml/daise_input.json` | 404 | `.json` | `data_or_result` | 17 | `562ffea1cc9cee22db227da7c2275b552a5bec75e71a14e3641837231bc0d533` | `` |
 | `data/inputs/cosmology_joint/README.md` | 2064 | `.md` | `documentation_md` | 49 | `557a866bedf4196545e05010061687defb0169dd5ddabd23afb2e2afa8ab23b0` | `` |
 | `data/inputs/cosmology_joint/joint_real_inputs_manifest.json` | 2244 | `.json` | `data_or_result` | 47 | `2e4760f6f5f366ff56404ee0a15d8837ec5b7b33d732616c6d737cb6f7c9155b` | `mentions_synthetic` |
-| `data/inputs/cosmology_joint/parameter_origin_registry.json` | 4859 | `.json` | `data_or_result` | 129 | `cc208aa639661f127187e94ceeb908b59a75a228aee2d44ac7f75ced31dea2b6` | `` |
+| `data/inputs/cosmology_joint/parameter_origin_registry.json` | 18920 | `.json` | `data_or_result` | 405 | `d269a7b39cb70fc0d30957ea437c860289ed47cd696c1ddd4df2c36b5de386dd` | `` |
 | `data/inputs/structure_d/Hz.csv` | 336 | `.csv` | `data_or_result` | 9 | `75b7c9c06dfe685f679104f5723e813097157d764293e908bac81db627f11478` | `` |
 | `data/inputs/structure_d/Hz_cov.csv` | 185 | `.csv` | `data_or_result` | 9 | `0391f3d7b69d49e086fccf9ec246bca35d14660ae3c67633559cc7517e12021f` | `` |
 | `data/inputs/structure_d/Hz_cov_matrix.csv` | 474 | `.csv` | `data_or_result` | 8 | `be09b53a9c1fa66acd5b95355f0f266f0d340d77ee76692ccf0d38e8e5a18f23` | `` |
