@@ -3924,6 +3924,15 @@
     "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_CALCULABLE_EVIDENCE_SCAN_PROTOCOL.md",
+    "bytes": 4272,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 147,
+    "sha256": "484bd67eaf1296ca7c46dda0c92233b9f3db64eb11daa3c3a418defe32357dd1",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_CI_DEPENDENCY_FAILURE.md",
     "bytes": 2200,
     "ext": ".md",

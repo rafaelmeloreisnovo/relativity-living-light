@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 992 |
-| `cataloged_files` | 981 |
+| `tracked_files_total` | 993 |
+| `cataloged_files` | 982 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34924848 |
-| `total_text_lines` | 135962 |
-| `markdown_files` | 502 |
+| `total_bytes` | 34929120 |
+| `total_text_lines` | 136109 |
+| `markdown_files` | 503 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 140 |
 
-**Total de arquivos catalogados:** 981
+**Total de arquivos catalogados:** 982
 
 ## Inventário completo
 
@@ -459,6 +459,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RLL_ACADEMIC_PARAMETER_CONVERGENCE_LEDGER.md` | 9992 | `.md` | `documentation_md` | 173 | `d8661f01e0547652c05d3d606d471eea5e9ed35445ca311e694c31372f7f7eb7` | `cosmology_validation_marker` |
 | `docs/RLL_AUDIT_2026-03-14_FRONTEIRA_FISICA.md` | 7817 | `.md` | `documentation_md` | 135 | `f836b45edb0b7fd5ec18a1abad73425c7bbcf0e2e9fd4194880185cd41088271` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/RLL_BH_FLUX_NOTE.md` | 5013 | `.md` | `documentation_md` | 136 | `3a55eeaac7040c398a25461818ef8753df06d4d1d2e45ff33ff04a7e49d181d1` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
+| `docs/RLL_CALCULABLE_EVIDENCE_SCAN_PROTOCOL.md` | 4272 | `.md` | `documentation_md` | 147 | `484bd67eaf1296ca7c46dda0c92233b9f3db64eb11daa3c3a418defe32357dd1` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_CI_DEPENDENCY_FAILURE.md` | 2200 | `.md` | `documentation_md` | 107 | `4b72fbcc454c25c93c7cfc060c054746af49a485a3501b43fb4f0dbc22474d80` | `cosmology_validation_marker` |
 | `docs/RLL_CLAIM_BOUNDARIES.md` | 1655 | `.md` | `documentation_md` | 39 | `9fd4a1e6e86e32dd8bbb88b186c80dbe6a9138dc290e26db535d1286a08c4c8d` | `cosmology_validation_marker` |
 | `docs/RLL_CLAIM_GATE_LEDGER.md` | 6187 | `.md` | `documentation_md` | 155 | `9dadb2435b72d52c319fe80eb17e072d4daa9280b9abfba6da2d72f7fde45b4f` | `mentions_synthetic,token_vazio_declared,cosmology_validation_marker` |
