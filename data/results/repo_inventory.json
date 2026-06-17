@@ -2115,6 +2115,15 @@
     "flags": ""
   },
   {
+    "path": "data/inputs/cosmology_joint/rll_outcome_action_matrix.json",
+    "bytes": 6015,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 66,
+    "sha256": "00846208d7eaa42ebb08643c5e57227e162749d4b96301b869f320b710200f51",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "data/inputs/structure_d/Hz.csv",
     "bytes": 336,
     "ext": ".csv",
@@ -4191,6 +4200,15 @@
     "tipo": "documentation_md",
     "linhas": 93,
     "sha256": "a7645d43d70baed65fc906ab0879bb7af873c95647498722c33e49f8df632eda",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_OUTCOME_ACTION_MATRIX.md",
+    "bytes": 3945,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 129,
+    "sha256": "f68e40b574f6e61bfd369a3bb75db93f1dd19814c7083cdd5140da4686fc6bef",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
