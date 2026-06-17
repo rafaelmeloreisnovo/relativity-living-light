@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 998 |
-| `cataloged_files` | 987 |
+| `tracked_files_total` | 999 |
+| `cataloged_files` | 988 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34948792 |
-| `total_text_lines` | 136677 |
+| `total_bytes` | 34953974 |
+| `total_text_lines` | 136773 |
 | `markdown_files` | 506 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
-| `data_or_result_files` | 140 |
+| `data_or_result_files` | 141 |
 
-**Total de arquivos catalogados:** 987
+**Total de arquivos catalogados:** 988
 
 ## Inventário completo
 
@@ -254,6 +254,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/iml/daise_input.example.json` | 149 | `.json` | `data_or_result` | 7 | `4399cd4c9a96acc33569919bd8b8f0e419254846cd2656963d9433cdcd7c962b` | `` |
 | `data/iml/daise_input.json` | 404 | `.json` | `data_or_result` | 17 | `562ffea1cc9cee22db227da7c2275b552a5bec75e71a14e3641837231bc0d533` | `` |
 | `data/inputs/cosmology_joint/README.md` | 2064 | `.md` | `documentation_md` | 49 | `557a866bedf4196545e05010061687defb0169dd5ddabd23afb2e2afa8ab23b0` | `` |
+| `data/inputs/cosmology_joint/h0_rd_ablation_matrix.json` | 5182 | `.json` | `data_or_result` | 96 | `db0bf95b13441482884947903d0156e8f3ebe9416a9a537a0010248ac3fe9871` | `` |
 | `data/inputs/cosmology_joint/joint_real_inputs_manifest.json` | 2244 | `.json` | `data_or_result` | 47 | `2e4760f6f5f366ff56404ee0a15d8837ec5b7b33d732616c6d737cb6f7c9155b` | `mentions_synthetic` |
 | `data/inputs/cosmology_joint/parameter_origin_registry.json` | 18920 | `.json` | `data_or_result` | 405 | `d269a7b39cb70fc0d30957ea437c860289ed47cd696c1ddd4df2c36b5de386dd` | `` |
 | `data/inputs/structure_d/Hz.csv` | 336 | `.csv` | `data_or_result` | 9 | `75b7c9c06dfe685f679104f5723e813097157d764293e908bac81db627f11478` | `` |

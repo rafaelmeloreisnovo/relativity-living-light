@@ -2079,6 +2079,15 @@
     "flags": ""
   },
   {
+    "path": "data/inputs/cosmology_joint/h0_rd_ablation_matrix.json",
+    "bytes": 5182,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 96,
+    "sha256": "db0bf95b13441482884947903d0156e8f3ebe9416a9a537a0010248ac3fe9871",
+    "flags": ""
+  },
+  {
     "path": "data/inputs/cosmology_joint/joint_real_inputs_manifest.json",
     "bytes": 2244,
     "ext": ".json",
