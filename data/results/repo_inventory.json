@@ -8550,6 +8550,15 @@
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
+    "path": "tools/validate_academic_parameter_registry.py",
+    "bytes": 7143,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 170,
+    "sha256": "772155c21ccf3995292130bfd7246545a4c9c00c3426c64e8f091aedd5e54424",
+    "flags": ""
+  },
+  {
     "path": "tools/verify_real_source_signatures.py",
     "bytes": 9581,
     "ext": ".py",
