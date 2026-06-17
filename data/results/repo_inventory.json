@@ -3888,6 +3888,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_ACADEMIC_PARAMETER_CONVERGENCE_LEDGER.md",
+    "bytes": 9992,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 173,
+    "sha256": "d8661f01e0547652c05d3d606d471eea5e9ed35445ca311e694c31372f7f7eb7",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_AUDIT_2026-03-14_FRONTEIRA_FISICA.md",
     "bytes": 7817,
     "ext": ".md",
