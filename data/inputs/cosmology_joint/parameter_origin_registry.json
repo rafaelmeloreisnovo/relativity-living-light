@@ -1,129 +1,405 @@
 {
-  "schema": "rll.parameter_origin_registry.v1",
-  "purpose": "Separate Rafael/RLL authorial parameters from external-literature parameters and nuisance parameters before information-criterion comparisons.",
-  "claim_policy": "Parameter origin is provenance metadata only; it does not establish model preference.",
+  "schema": "rll.parameter_origin_registry.v2",
+  "purpose": "Separate externally established cosmological parameters, observational nuisance parameters, standard dark-energy baselines, and Rafael/RLL authorial parameters before any information-criterion or Bayesian comparison.",
+  "claim_policy": "Parameter origin is provenance metadata only; it does not establish model preference. External parameters may be used as priors, fitted parameters, derived quantities, or nuisance parameters only when the same policy is applied consistently across LCDM, wCDM, CPL and RLL comparisons.",
+  "no_plagiarism_policy": "This registry stores parameter provenance, roles, equations-by-reference, and citation keys. It must not copy copyrighted prose from source papers. Reports should paraphrase and cite the bibliography keys listed here.",
+  "layers": {
+    "consensus_base": "Parameters of the standard cosmological framework or direct observational calibration used by Planck, BAO, SNe, CMB and growth analyses.",
+    "standard_extension": "Academically established extensions used to test LCDM, such as wCDM, CPL/w0waCDM, curvature, neutrino mass, N_eff and growth amplitude.",
+    "observational_nuisance": "Calibration or likelihood parameters required by datasets, not physical claims of RLL.",
+    "rll_authorial": "Rafael/RLL phenomenological parameters. These must be counted in k and must never be presented as external literature constants."
+  },
   "parameters": [
     {
       "name": "H0",
       "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
       "origin": "literature_or_fit",
-      "role": "free_or_prior",
-      "status": "must_report_in_k",
-      "reference": "Planck2018/SH0ES/local_fit_context",
-      "notes": "Use as a free parameter or external prior consistently across all compared models."
+      "role": "free_parameter_or_external_prior",
+      "status": "must_report_in_k_when_fitted_or_report_prior_when_constrained",
+      "reference_keys": ["Planck2018", "SH0ES2021", "PantheonPlus2022", "DESI_DR2_2025"],
+      "notes": "Present-day expansion rate. Do not hard-clamp at an optimizer boundary without reporting the bound. Run at least: no H0 prior, Planck prior, local-distance-ladder prior, and broad prior."
+    },
+    {
+      "name": "h",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "derived_from_H0",
+      "role": "derived_parameter",
+      "status": "report_if_used_in_physical_densities",
+      "reference_keys": ["Planck2018"],
+      "notes": "h = H0/100. Required to interpret physical densities such as omega_b=Omega_b h^2 and omega_c=Omega_c h^2."
+    },
+    {
+      "name": "omega_b",
+      "symbol": "Omega_b h^2",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "CMB_BBN_literature_or_fit",
+      "role": "free_or_prior_for_sound_horizon_and_CMB",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["Planck2018"],
+      "notes": "Physical baryon density. Needed when r_d or theta_* is derived rather than fixed."
+    },
+    {
+      "name": "omega_c",
+      "symbol": "Omega_c h^2",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "CMB_literature_or_fit",
+      "role": "free_or_prior_for_matter_budget_and_CMB",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["Planck2018"],
+      "notes": "Physical cold dark matter density. Do not replace it silently with Omega_m unless h and baryons are consistently defined."
     },
     {
       "name": "Om",
+      "symbol": "Omega_m",
       "model": "LCDM|wCDM|CPL|RLL",
-      "origin": "literature_or_fit",
-      "role": "free_or_prior",
-      "status": "must_report_in_k",
-      "reference": "Planck2018/local_fit_context",
-      "notes": "Matter density entering E(z), BAO, CMB compressed priors, growth and S8."
+      "layer": "consensus_base",
+      "origin": "derived_or_fit",
+      "role": "free_or_derived_background_parameter",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["Planck2018", "PantheonPlus2022", "DESI_DR2_2025"],
+      "notes": "Total matter density today, including baryons, cold dark matter and massive-neutrino contribution when present."
+    },
+    {
+      "name": "Or",
+      "symbol": "Omega_r",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "derived_from_Tcmb_Neff_and_neutrino_assumptions",
+      "role": "derived_radiation_density",
+      "status": "must_report_policy",
+      "reference_keys": ["Planck2018"],
+      "notes": "Radiation density should be derived consistently when early-universe or CMB quantities are used."
     },
     {
       "name": "Ok",
+      "symbol": "Omega_k",
       "model": "LCDM|wCDM|CPL|RLL",
-      "origin": "model_assumption_or_fit",
-      "role": "fixed_or_free",
+      "layer": "standard_extension",
+      "origin": "FLRW_geometry_assumption_or_fit",
+      "role": "fixed_flat_or_free_curvature",
       "status": "must_report_if_nonzero_or_free",
-      "reference": "FLRW curvature convention",
-      "notes": "Default fair-comparison route is flat unless curvature is explicitly released for every model."
-    },
-    {
-      "name": "Ob_h2",
-      "model": "LCDM|wCDM|CPL|RLL",
-      "origin": "literature_or_fit",
-      "role": "nuisance_for_rd",
-      "status": "must_report_in_k_when_fitted",
-      "reference": "Planck2018/drag-horizon calibration context",
-      "notes": "Needed when r_d is derived instead of fixed."
+      "reference_keys": ["Planck2018", "CAMB1999", "CLASS2011"],
+      "notes": "Default fair-comparison route may be flat, but any curved run must release curvature for every compared model and use the curved D_M branch."
     },
     {
       "name": "rd",
+      "symbol": "r_d",
       "model": "LCDM|wCDM|CPL|RLL",
-      "origin": "derived_or_fixed_literature",
-      "role": "derived_or_nuisance",
+      "layer": "consensus_base",
+      "origin": "derived_or_fixed_drag_sound_horizon",
+      "role": "BAO_standard_ruler",
       "status": "must_report_policy",
-      "reference": "BAO drag horizon convention",
-      "notes": "Must be fixed for all models or derived for all models; never mix policies inside one comparison."
+      "reference_keys": ["Planck2018", "DESI_DR2_2025"],
+      "notes": "BAO predictions use D_M/r_d, D_H/r_d or D_V/r_d. Within one comparison, r_d must be fixed for all models or derived for all models."
+    },
+    {
+      "name": "theta_star",
+      "symbol": "theta_* or 100 theta_*",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "CMB_acoustic_scale_observable",
+      "role": "CMB_constraint_or_consistency_check",
+      "status": "must_report_when_CMB_compressed_likelihood_is_used",
+      "reference_keys": ["Planck2018"],
+      "notes": "Use with proper covariance or declare a diagonal compressed-likelihood limitation."
+    },
+    {
+      "name": "R_shift",
+      "symbol": "R",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "observational_nuisance",
+      "origin": "CMB_compressed_likelihood",
+      "role": "compressed_CMB_distance_prior",
+      "status": "partial_until_full_covariance_is_materialized",
+      "reference_keys": ["Planck2018"],
+      "notes": "CMB shift parameter should not be used as independent diagonal data if an official covariance is available but absent."
     },
     {
       "name": "w",
       "model": "wCDM",
-      "origin": "standard_dark_energy_baseline",
-      "role": "free",
+      "layer": "standard_extension",
+      "origin": "constant_w_dark_energy_baseline",
+      "role": "free_parameter",
       "status": "must_report_in_k",
-      "reference": "constant-w dark-energy phenomenology",
+      "reference_keys": ["ChevallierPolarski2001", "Linder2003", "DESI_DR2_2025"],
       "notes": "Required baseline before attributing improvements to RLL-specific dynamics."
     },
     {
       "name": "w0",
-      "model": "CPL",
-      "origin": "standard_dark_energy_baseline",
-      "role": "free",
-      "status": "must_report_in_k",
-      "reference": "CPL/w0waCDM parametrization",
-      "notes": "CPL baseline must be fitted independently, not conflated with RLL."
+      "model": "CPL|RLL_diagnostic_projection",
+      "layer": "standard_extension",
+      "origin": "CPL_w0wa_parametrization",
+      "role": "free_parameter_in_CPL_or_projection_diagnostic_for_RLL",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["ChevallierPolarski2001", "Linder2003", "DESI_DR2_2025", "DESI_Extended_DE_2025"],
+      "notes": "CPL baseline must be fitted independently. If RLL is projected to an effective w0, label it derived/projection, not fitted RLL evidence."
     },
     {
       "name": "wa",
-      "model": "CPL",
-      "origin": "standard_dark_energy_baseline",
-      "role": "free",
-      "status": "must_report_in_k",
-      "reference": "CPL/w0waCDM parametrization",
-      "notes": "CPL baseline must be fitted independently, not conflated with RLL."
+      "model": "CPL|RLL_diagnostic_projection",
+      "layer": "standard_extension",
+      "origin": "CPL_w0wa_parametrization",
+      "role": "free_parameter_in_CPL_or_projection_diagnostic_for_RLL",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["ChevallierPolarski2001", "Linder2003", "DESI_DR2_2025", "DESI_Extended_DE_2025"],
+      "notes": "Captures time variation of dark-energy equation of state. Do not merge it into RLL parameters unless explicitly running a hybrid model and counting k."
+    },
+    {
+      "name": "sum_mnu",
+      "symbol": "Sigma m_nu",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "standard_extension",
+      "origin": "neutrino_mass_extension",
+      "role": "free_or_prior_extension_parameter",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["Planck2018", "DESI_DR2_2025"],
+      "notes": "Massive neutrinos are degenerate with expansion and growth. Use a shared policy across all models."
+    },
+    {
+      "name": "Neff",
+      "symbol": "N_eff",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "standard_extension",
+      "origin": "effective_relativistic_degrees_of_freedom",
+      "role": "free_or_prior_extension_parameter",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["Planck2018"],
+      "notes": "Needed if early-universe radiation, r_d or CMB-derived constraints are varied beyond the base model."
+    },
+    {
+      "name": "ln10As",
+      "symbol": "ln(10^10 A_s)",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "primordial_power_spectrum_CMB_parameter",
+      "role": "growth_and_CMB_amplitude_parameter",
+      "status": "must_report_in_k_when_fitted_or_report_fixed_prior",
+      "reference_keys": ["Planck2018"],
+      "notes": "Required for CMB/growth likelihoods, not needed for a pure background-only distance fit."
+    },
+    {
+      "name": "ns",
+      "symbol": "n_s",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "primordial_power_spectrum_CMB_parameter",
+      "role": "shape_parameter_for_CMB_and_matter_power",
+      "status": "must_report_in_k_when_fitted_or_report_fixed_prior",
+      "reference_keys": ["Planck2018"],
+      "notes": "Do not include in k for a background-only run unless actually varied."
+    },
+    {
+      "name": "tau",
+      "symbol": "tau",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "CMB_reionization_parameter",
+      "role": "CMB_likelihood_parameter",
+      "status": "must_report_in_k_when_fitted_or_report_fixed_prior",
+      "reference_keys": ["Planck2018"],
+      "notes": "Relevant for full CMB likelihoods; should not be invented for BAO-only or SN-only runs."
+    },
+    {
+      "name": "sigma8",
+      "symbol": "sigma_8",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "consensus_base",
+      "origin": "CMB_lensing_RSD_growth_literature_or_fit",
+      "role": "free_or_prior_for_growth",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["Planck2018", "DESI_DR2_2025", "CLASS2011", "CAMB1999"],
+      "notes": "Needed for f sigma8 and S8 diagnostics; not interchangeable with S8."
+    },
+    {
+      "name": "S8",
+      "symbol": "S_8",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "standard_extension",
+      "origin": "derived_growth_lensing_diagnostic",
+      "role": "derived_or_prior_diagnostic",
+      "status": "report_formula_and_prior_if_used",
+      "reference_keys": ["Planck2018"],
+      "notes": "Usually derived as sigma8 sqrt(Omega_m/0.3). Only count in k if fitted as an independent nuisance/prior parameter."
+    },
+    {
+      "name": "fsigma8",
+      "symbol": "f sigma_8(z)",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "observational_nuisance",
+      "origin": "RSD_growth_observable",
+      "role": "growth_likelihood_observable",
+      "status": "claim_blocked_until_CLASS_or_CAMB_benchmark",
+      "reference_keys": ["CLASS2011", "CAMB1999", "DESI_DR2_2025"],
+      "notes": "If computed by a growth-index proxy, mark proxy mode and block strong growth claims."
+    },
+    {
+      "name": "M_abs",
+      "symbol": "M_B or SN absolute-magnitude offset",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "observational_nuisance",
+      "origin": "supernova_calibration_nuisance",
+      "role": "SN_distance_ladder_or_magnitude_offset_nuisance",
+      "status": "must_report_in_k_when_fitted",
+      "reference_keys": ["PantheonPlus2022", "SH0ES2021"],
+      "notes": "SN nuisance/calibration parameter, not an RLL physical parameter. Include covariance policy."
+    },
+    {
+      "name": "SN_covariance",
+      "symbol": "C_SN",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "observational_nuisance",
+      "origin": "PantheonPlus_stat_sys_covariance",
+      "role": "likelihood_covariance_not_free_parameter",
+      "status": "must_materialize_hash_before_claim",
+      "reference_keys": ["PantheonPlus2022"],
+      "notes": "Not counted in k, but claim-blocking if missing when Pantheon+ is used."
+    },
+    {
+      "name": "BAO_covariance",
+      "symbol": "C_BAO",
+      "model": "LCDM|wCDM|CPL|RLL",
+      "layer": "observational_nuisance",
+      "origin": "DESI_DR2_BAO_covariance",
+      "role": "likelihood_covariance_not_free_parameter",
+      "status": "must_materialize_hash_and_dimension_check_before_claim",
+      "reference_keys": ["DESI_DR2_2025"],
+      "notes": "Not counted in k, but must be applied identically to every model in the same comparison."
     },
     {
       "name": "Os0",
       "model": "RLL",
-      "origin": "Rafael/RLL_authorial_effective_parameter",
-      "role": "free",
+      "layer": "rll_authorial",
+      "origin": "Rafael_RLL_authorial_effective_parameter",
+      "role": "free_parameter",
       "status": "must_report_in_k",
-      "reference": "RLL logistic superposition ansatz",
+      "reference_keys": ["RLL_internal_ansatz"],
       "notes": "Authorial RLL amplitude; do not label as external literature parameter."
     },
     {
       "name": "zt",
       "model": "RLL",
-      "origin": "Rafael/RLL_authorial_effective_parameter",
-      "role": "free",
+      "layer": "rll_authorial",
+      "origin": "Rafael_RLL_authorial_effective_parameter",
+      "role": "free_parameter",
       "status": "must_report_in_k",
-      "reference": "RLL logistic transition ansatz",
-      "notes": "Transition redshift; requires prior bounds and sensitivity checks."
+      "reference_keys": ["RLL_internal_ansatz"],
+      "notes": "Transition redshift; requires prior bounds, sensitivity checks and comparison with CPL effective transition behavior."
     },
     {
       "name": "wt",
       "model": "RLL",
-      "origin": "Rafael/RLL_authorial_effective_parameter",
-      "role": "free",
+      "layer": "rll_authorial",
+      "origin": "Rafael_RLL_authorial_effective_parameter",
+      "role": "free_parameter",
       "status": "must_report_in_k",
-      "reference": "RLL logistic transition ansatz",
+      "reference_keys": ["RLL_internal_ansatz"],
       "notes": "Transition width; must stay positive and be reported as a free parameter."
-    },
-    {
-      "name": "sigma8",
-      "model": "LCDM|wCDM|CPL|RLL",
-      "origin": "literature_or_fit",
-      "role": "free_or_prior_for_growth",
-      "status": "must_report_in_k_when_fitted",
-      "reference": "RSD/lensing/Planck growth-amplitude context",
-      "notes": "Needed for fσ8 and S8 diagnostics; not interchangeable with S8."
-    },
-    {
-      "name": "M_abs",
-      "model": "LCDM|wCDM|CPL|RLL",
-      "origin": "supernova_nuisance",
-      "role": "nuisance",
-      "status": "must_report_in_k_when_fitted",
-      "reference": "Pantheon+/SN Ia distance-modulus convention",
-      "notes": "SN nuisance/calibration parameter, not an RLL physical parameter."
     }
+  ],
+  "bibliography": {
+    "Planck2018": {
+      "type": "paper",
+      "title": "Planck 2018 results. VI. Cosmological parameters",
+      "authors": "Planck Collaboration",
+      "arxiv": "1807.06209",
+      "doi": "10.1051/0004-6361/201833910",
+      "used_for": ["H0", "omega_b", "omega_c", "Omega_m", "theta_star", "sigma8", "N_eff", "sum_mnu", "n_s", "A_s", "tau"]
+    },
+    "DESI_DR2_2025": {
+      "type": "paper",
+      "title": "DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints",
+      "authors": "DESI Collaboration",
+      "arxiv": "2503.14738",
+      "used_for": ["BAO", "D_M/r_d", "D_H/r_d", "D_V/r_d", "w0", "wa", "sum_mnu", "dynamic dark energy context"]
+    },
+    "DESI_Extended_DE_2025": {
+      "type": "paper_or_analysis_context",
+      "title": "DESI DR2 extended dark-energy analysis / w0-wa and dynamical dark-energy context",
+      "authors": "DESI Collaboration and related DR2 dark-energy analyses",
+      "used_for": ["CPL baseline", "phantom-crossing diagnostic", "dark-energy model comparison"]
+    },
+    "PantheonPlus2022": {
+      "type": "paper",
+      "title": "The Pantheon+ Analysis: Cosmological Constraints",
+      "authors": "Brout, Scolnic, Popovic, Riess et al.",
+      "arxiv": "2202.04077",
+      "used_for": ["SNe Ia", "distance modulus", "M_abs", "SN covariance", "w0", "wa", "H0 with SH0ES covariance"]
+    },
+    "SH0ES2021": {
+      "type": "paper",
+      "title": "A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km/s/Mpc Uncertainty from HST and SH0ES",
+      "authors": "Riess et al.",
+      "arxiv": "2112.04510",
+      "used_for": ["local H0 prior", "Cepheid-SN calibration", "distance ladder"]
+    },
+    "ChevallierPolarski2001": {
+      "type": "paper",
+      "title": "Accelerating Universes with Scaling Dark Matter",
+      "authors": "Chevallier and Polarski",
+      "arxiv": "gr-qc/0009008",
+      "used_for": ["CPL dark-energy parametrization background"]
+    },
+    "Linder2003": {
+      "type": "paper",
+      "title": "Exploring the Expansion History of the Universe",
+      "authors": "Eric V. Linder",
+      "arxiv": "astro-ph/0208512",
+      "used_for": ["w0-wa parametrization", "dark-energy expansion history"]
+    },
+    "CAMB1999": {
+      "type": "code_reference",
+      "title": "Efficient Computation of CMB anisotropies in closed FRW models",
+      "authors": "Lewis, Challinor and Lasenby",
+      "arxiv": "astro-ph/9911177",
+      "used_for": ["Boltzmann benchmark", "CMB and growth calculations"]
+    },
+    "CLASS2011": {
+      "type": "code_reference",
+      "title": "The Cosmic Linear Anisotropy Solving System (CLASS) II: Approximation schemes",
+      "authors": "Blas, Lesgourgues and Tram",
+      "arxiv": "1104.2933",
+      "used_for": ["Boltzmann benchmark", "growth", "CMB", "matter power"]
+    },
+    "CosmoMC2002": {
+      "type": "method_reference",
+      "title": "Cosmological parameters from CMB and other data: a Monte-Carlo approach",
+      "authors": "Lewis and Bridle",
+      "arxiv": "astro-ph/0205436",
+      "used_for": ["MCMC parameter estimation", "priors", "goodness of fit"]
+    },
+    "Cobaya2020": {
+      "type": "method_reference",
+      "title": "Cobaya: Code for Bayesian Analysis of hierarchical physical models",
+      "authors": "Torrado and Lewis",
+      "arxiv": "2005.05290",
+      "used_for": ["Bayesian sampling", "likelihood integration", "Boltzmann-code interface"]
+    },
+    "RLL_internal_ansatz": {
+      "type": "internal_model",
+      "title": "RLL logistic transition ansatz",
+      "authors": "Rafael Melo Reis / Instituto Rafael",
+      "used_for": ["Os0", "zt", "wt"],
+      "claim_boundary": "Internal phenomenological model parameters only; not external literature constants."
+    }
+  },
+  "integration_rules": [
+    "Never add a parameter only to improve fit without a literature role and a declared prior policy.",
+    "Every fitted physical or nuisance parameter must be counted in k for AIC, AICc and BIC.",
+    "Covariance matrices are not free parameters, but missing covariance blocks claim-block the corresponding dataset.",
+    "Use the same parameter policy for LCDM, wCDM, CPL and RLL inside a single comparison.",
+    "RLL parameters Os0, zt and wt remain authorial phenomenological parameters and must be separated from external cosmological parameters.",
+    "A pure background-only run must not claim growth or CMB-spectrum validation.",
+    "A growth claim requires CLASS or CAMB benchmark or must be labelled proxy/claim-blocked.",
+    "A Pantheon+ claim requires materialized raw files, covariance, hashes and explicit SN nuisance policy.",
+    "A DESI BAO claim requires D_M/r_d, D_H/r_d or D_V/r_d predictions using the official covariance policy and dimension/hash checks."
   ],
   "failsafe": {
     "raw_datasets_modified": false,
     "rollback": "This registry is metadata only; remove or revert this file without touching data/real/** if validation fails.",
-    "claim_boundary": "No superiority claim is allowed unless every fitted/free/nuisance parameter is counted consistently in k."
+    "claim_boundary": "No superiority claim is allowed unless every fitted/free/nuisance parameter is counted consistently in k and every used dataset has its covariance policy declared."
   }
 }
