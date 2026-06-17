@@ -8586,6 +8586,15 @@
     "flags": ""
   },
   {
+    "path": "tools/apply_rll_outcome_protocol.py",
+    "bytes": 15569,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 355,
+    "sha256": "096e814399af199e2ac7319c0127ce307f7350f4fde1a213d1fb3b4034c9d158",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "tools/audit_github_workflows.py",
     "bytes": 4849,
     "ext": ".py",

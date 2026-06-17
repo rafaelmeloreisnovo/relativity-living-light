@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1003 |
-| `cataloged_files` | 992 |
+| `tracked_files_total` | 1004 |
+| `cataloged_files` | 993 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34967749 |
-| `total_text_lines` | 137084 |
+| `total_bytes` | 34983318 |
+| `total_text_lines` | 137439 |
 | `markdown_files` | 508 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 142 |
 
-**Total de arquivos catalogados:** 992
+**Total de arquivos catalogados:** 993
 
 ## Inventário completo
 
@@ -977,6 +977,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `to_Add/STRUCTURE_D.md` | 468 | `.md` | `documentation_md` | 16 | `02e81cdf40fe177b2591b7968849828a0262a2f9f5cf2932194735bcfc5d3fce` | `` |
 | `to_Add/TODO_GAPS.md` | 4099 | `.md` | `documentation_md` | 22 | `30d2253a25ddec174285327839e00cf6117fd6bae50dc059dd8354abddd04b06` | `` |
 | `to_Add/TOP_MD_BY_SIZE.csv` | 7200 | `.csv` | `data_or_result` | 61 | `66a99a95f248618e86c645bb1066aa1db941dd1b35c7328061c20ea20cbc55ca` | `` |
+| `tools/apply_rll_outcome_protocol.py` | 15569 | `.py` | `source_code` | 355 | `096e814399af199e2ac7319c0127ce307f7350f4fde1a213d1fb3b4034c9d158` | `token_vazio_declared` |
 | `tools/audit_github_workflows.py` | 4849 | `.py` | `source_code` | 133 | `926fd3360f0357ea8412e8d7318ad5b19b0802bad0911f211699ddf027c17b14` | `` |
 | `tools/check_rll_report_claim_language.py` | 2973 | `.py` | `source_code` | 92 | `82d9978738350b653f59e2f89cb7d568cbc7387988a3d95c34f1d235c564a3de` | `` |
 | `tools/docs_inventory.py` | 16973 | `.py` | `source_code` | 470 | `a47657bad2c32fa66d9820e55f0db25172b6668bcc71f53637053634ebfd121f` | `mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared` |
