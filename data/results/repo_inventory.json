@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-16T23:36:42.963144+00:00",
-  "git_commit": "a7fd26477d920a8123d44aabf0c47627f148ad0b",
+  "generated_at": "2026-06-17T00:15:19.211753+00:00",
+  "git_commit": "97eb1b43489414853aef708509ec93fcbac6558b",
   "summary": {
     "tracked_files_total": 972,
     "cataloged_files": 954,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35466352,
-    "total_text_lines": 146914,
+    "total_bytes": 35468423,
+    "total_text_lines": 147011,
     "markdown_files": 496,
     "yml_yaml_files": 63,
     "github_workflow_yml_files": 23,
@@ -3755,11 +3755,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 324033,
+      "size_bytes": 324388,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "49802652059716fcddfec8460db51896766e1ab759d17d6a1bfcd2e6d91d08fa",
-      "line_count": 10994,
+      "sha256": "67f3858385b6dd35215a20200416104bcd5b078d5b35f48dfdcde5fcc9e96010",
+      "line_count": 11006,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3770,11 +3770,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 152013,
+      "size_bytes": 152187,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "bd4d6388c52dcc1fb0e7af92b8a4b5de8f96395f6cdddfe511d7b2ba3a104ebc",
-      "line_count": 954,
+      "sha256": "33f835c6efaa693b0125521200f840e0bd41cb32c81434a13c31e03bf4865103",
+      "line_count": 955,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3789,7 +3789,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "dc823d7aa08c8ba57df3c0d3e93e005510758b6b51b9ebb7502dc2aa1915c975",
+      "sha256": "4458a01587521aa7c55729a4c9aad6cc9ce981911ff9158b7e1be414c15a328c",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4265,11 +4265,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 173553,
+      "size_bytes": 173747,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "8351da5d9ec7b712d89a3fee0723a578a85c4fd2c42deb450d5bdede08d04bea",
-      "line_count": 997,
+      "sha256": "b49cd01c04cc1482ef6cb1f3a19bad41423a9844332e1584963292e616b43265",
+      "line_count": 998,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4817,7 +4817,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "9bb2590916ff142cb6e0a11edc6eb76964e527267e7754346ddc1986888bca43",
+      "sha256": "ca356914bb417162843ca0a4caec37e9b14d8349943b6f65d5a319636c80ff88",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5555,7 +5555,7 @@
       "size_bytes": 9818,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "968187977411a00eb8cd61bc20053323aecf6acb799cca02f1967028a8899a6d",
+      "sha256": "b46e9737c43d4ed3a703ca3dbc437341c3cd0e27ef6a09121d0c72e5dacce225",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -6110,11 +6110,11 @@
     },
     {
       "path": "docs/operacoes/SEGUE_5_PROTOCOLO_OPERACIONAL_RLL.md",
-      "size_bytes": 2633,
+      "size_bytes": 3981,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "151ea4ec82735bf309b229e6df51cb7f213ee9101a675f80644b60ab7ec26551",
-      "line_count": 103,
+      "sha256": "11d3f5caf3a1da61b22f694835bc50bb9044281162eeedcfc978caa24cafec79",
+      "line_count": 186,
       "is_text": true,
       "risk_flags": [
         "token_vazio_declared"
