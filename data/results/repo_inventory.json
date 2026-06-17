@@ -8613,6 +8613,15 @@
     "flags": "mentions_synthetic,token_vazio_declared"
   },
   {
+    "path": "tools/make_h0_rd_ablation_matrix.py",
+    "bytes": 6032,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 148,
+    "sha256": "e3cfd4b334184335ec8c3136e39f7fcda22573bf5758214e9d6b998fa52259f4",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "tools/real_data_materialization_audit.py",
     "bytes": 9306,
     "ext": ".py",
