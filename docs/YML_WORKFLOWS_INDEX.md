@@ -6,7 +6,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
 | `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11559 | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` |
-| `.github/workflows/academic-parameter-governance.yml` | `github_workflow_yml` | 3244 | 74 | `e2817b5cc8d3b1f80682a98acb831cb7fd80c9140e28ff20bd186e2401da9884` |
+| `.github/workflows/academic-parameter-governance.yml` | `github_workflow_yml` | 4204 | 89 | `0afd7943f022372e313903f2a01d1b19976dcd53eb6166030212cb72ec61f9a4` |
 | `.github/workflows/canonical-route-artifacts.yml` | `github_workflow_yml` | 4182 | 109 | `2c1dd21882168cf7d87dbbcce338a317a41a60741a6459a577e74567316d022a` |
 | `.github/workflows/claim-boundary-quality-gates.yml` | `github_workflow_yml` | 1721 | 64 | `607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509` |
 | `.github/workflows/convention-check.yml` | `github_workflow_yml` | 894 | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` |

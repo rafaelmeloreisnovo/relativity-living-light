@@ -19,12 +19,12 @@
   },
   {
     "path": ".github/workflows/academic-parameter-governance.yml",
-    "bytes": 3244,
+    "bytes": 4204,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 74,
-    "sha256": "e2817b5cc8d3b1f80682a98acb831cb7fd80c9140e28ff20bd186e2401da9884",
-    "flags": ""
+    "linhas": 89,
+    "sha256": "0afd7943f022372e313903f2a01d1b19976dcd53eb6166030212cb72ec61f9a4",
+    "flags": "token_vazio_declared"
   },
   {
     "path": ".github/workflows/canonical-route-artifacts.yml",

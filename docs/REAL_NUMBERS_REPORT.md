@@ -8,8 +8,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1006 |
 | `cataloged_files` | 995 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34993278 |
-| `total_text_lines` | 137634 |
+| `total_bytes` | 34994238 |
+| `total_text_lines` | 137649 |
 | `markdown_files` | 509 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
