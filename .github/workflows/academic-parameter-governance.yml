@@ -5,15 +5,21 @@ on:
     paths:
       - 'data/inputs/cosmology_joint/parameter_origin_registry.json'
       - 'tools/validate_academic_parameter_registry.py'
+      - 'tools/scan_rll_model_evidence.py'
       - 'docs/RLL_ACADEMIC_PARAMETER_CONVERGENCE_LEDGER.md'
       - 'docs/RLL_OPERATIONAL_EXCELLENCE_ACADEMIC_STRATEGY.md'
+      - 'docs/RLL_CALCULABLE_EVIDENCE_SCAN_PROTOCOL.md'
+      - 'results/structure_d/joint_real_likelihood.csv'
       - '.github/workflows/academic-parameter-governance.yml'
   pull_request:
     paths:
       - 'data/inputs/cosmology_joint/parameter_origin_registry.json'
       - 'tools/validate_academic_parameter_registry.py'
+      - 'tools/scan_rll_model_evidence.py'
       - 'docs/RLL_ACADEMIC_PARAMETER_CONVERGENCE_LEDGER.md'
       - 'docs/RLL_OPERATIONAL_EXCELLENCE_ACADEMIC_STRATEGY.md'
+      - 'docs/RLL_CALCULABLE_EVIDENCE_SCAN_PROTOCOL.md'
+      - 'results/structure_d/joint_real_likelihood.csv'
       - '.github/workflows/academic-parameter-governance.yml'
   workflow_dispatch:
 
@@ -22,7 +28,7 @@ permissions:
 
 jobs:
   validate-academic-parameter-registry:
-    name: Validate academic parameter registry
+    name: Validate academic parameter registry and evidence scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -36,8 +42,11 @@ jobs:
       - name: Validate registry JSON and academic governance invariants
         run: python3 tools/validate_academic_parameter_registry.py
 
+      - name: Scan current RLL model evidence table
+        run: python3 tools/scan_rll_model_evidence.py --no-write
+
       - name: Print claim boundary reminder
         run: |
-          echo "PASS: registry validated."
-          echo "Reminder: this gate validates provenance and claim boundaries only."
-          echo "No RLL superiority claim is allowed without fair baselines, k counting, covariance policy, and reproducible likelihood outputs."
+          echo "PASS: registry and calculable evidence scanner completed."
+          echo "Reminder: this gate validates provenance, calculable evidence and claim boundaries only."
+          echo "No RLL superiority claim is allowed without fair baselines, k counting, covariance policy, reproducible likelihood outputs, and evidence scan status permitting the claim."
