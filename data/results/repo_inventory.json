@@ -10,65 +10,128 @@
   },
   {
     "path": ".github/workflows/START_MANUAL_HERE.yml",
-    "bytes": 11412,
+    "bytes": 11559,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 262,
-    "sha256": "56c187fd3213633d267b3732a111836730417704f3e468e5baf1c6583c9819d4",
+    "linhas": 270,
+    "sha256": "9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d",
     "flags": "mentions_synthetic"
   },
   {
-    "path": ".github/workflows/convention-check.yml",
-    "bytes": 747,
+    "path": ".github/workflows/canonical-route-artifacts.yml",
+    "bytes": 4182,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 22,
-    "sha256": "3d93068999f0004517b0c700055256b10244e29cfe8acaa6b5b4a5c6d167f437",
+    "linhas": 109,
+    "sha256": "2c1dd21882168cf7d87dbbcce338a317a41a60741a6459a577e74567316d022a",
     "flags": ""
   },
   {
-    "path": ".github/workflows/dha-fisher-ci.yml",
-    "bytes": 2250,
+    "path": ".github/workflows/claim-boundary-quality-gates.yml",
+    "bytes": 1721,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 69,
-    "sha256": "576fa63966f96e85ed6006ddb3eaab3e523627944947f23a781b7e8246da3e6d",
+    "linhas": 64,
+    "sha256": "607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/convention-check.yml",
+    "bytes": 894,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 30,
+    "sha256": "e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/dense-feature-matrix.yml",
+    "bytes": 2106,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 64,
+    "sha256": "096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": ".github/workflows/dha-fisher-ci.yml",
+    "bytes": 2397,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 77,
+    "sha256": "5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4",
     "flags": "mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/formulas-artifacts.yml",
-    "bytes": 717,
+    "bytes": 864,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 30,
-    "sha256": "2e009f61aca9d856a051ee036a0cdeff3bb9a2ed5127d0e6b2e5b6e413b0aa8a",
+    "linhas": 38,
+    "sha256": "809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5",
     "flags": ""
   },
   {
     "path": ".github/workflows/iml_artifact.yml",
-    "bytes": 1235,
+    "bytes": 1382,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 46,
-    "sha256": "265b5d4637656fd8c686a079314615cf4695662a272168d19de7320eebe46401",
+    "linhas": 54,
+    "sha256": "bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/orbital-shape-angular-momentum-validation.yml",
+    "bytes": 2046,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 61,
+    "sha256": "c94befa20a58f0d3cd1f52f0d3f6ff8b73486de81c7f68773a79dacdbfeb5bb6",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/orbital-state-vector-v2.yml",
+    "bytes": 2131,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 64,
+    "sha256": "30746627c50ddfd8760107510de8411879162231bda22ad552957f5fc1bf3f1f",
     "flags": ""
   },
   {
     "path": ".github/workflows/python-tests.yml",
-    "bytes": 534,
+    "bytes": 693,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 27,
-    "sha256": "0ad2f96fda2df19f7b563cfde7b4588112e7c2129c2685bac8c10b8ef433f0fd",
+    "linhas": 35,
+    "sha256": "e2cc2b8d7cfb435f4b86f861a1bcb9c2627e3c015d55037cca06ef9511815f44",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/raw-data-manifest-status.yml",
+    "bytes": 1702,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 60,
+    "sha256": "fd81e390c43987d931f296589c2426379cd12ce17edf9d176dd84fedc74e573a",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/real-data-bootstrap-validation.yml",
+    "bytes": 2728,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 93,
+    "sha256": "3d1fb515d1eaee0cfd5a77ee48e450b4752e7b712fec089f7d28ea5bb67fe497",
     "flags": ""
   },
   {
     "path": ".github/workflows/real-data-complete-execution.yml",
-    "bytes": 12251,
+    "bytes": 12275,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 269,
-    "sha256": "b96d92cbbc9c67a50b372626fe8be9f0f2dc266d3880bef0750dbccfae84cd99",
+    "linhas": 270,
+    "sha256": "a71cff24c5d4cb1b007ed2e86429c33291461b65d337f622b822eae746eef675",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
@@ -81,57 +144,93 @@
     "flags": "mentions_synthetic"
   },
   {
-    "path": ".github/workflows/repo-real-inventory.yml",
-    "bytes": 1896,
+    "path": ".github/workflows/real-seed-ingestion-plan.yml",
+    "bytes": 2090,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 59,
-    "sha256": "24987efc9757a0132932bef6c1d1d8d10def61f885a932d6a22c8f3544951081",
+    "linhas": 67,
+    "sha256": "19a115f8cbe606b2d5619d2ffc697b88b638ccd0d3d3cf2431186cf601a260b8",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/real-seed-validation-v0.yml",
+    "bytes": 2479,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 73,
+    "sha256": "48361385a0397c3ffa4aff7c75a063eac74a909ed90c532e89a8d1e11b5c4d76",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/repo-real-inventory.yml",
+    "bytes": 2012,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 64,
+    "sha256": "20dae232bc874e4cece6e80cc286d9d3b1afc6777702733ee2ed74a56da4fcb1",
     "flags": ""
   },
   {
     "path": ".github/workflows/rll-book-data-pipeline.yml",
-    "bytes": 3878,
+    "bytes": 4025,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 121,
-    "sha256": "7fe171319ced298b38c604b1a4ce40b668b32d1fdec5e4c259959b3fec0f9866",
+    "linhas": 129,
+    "sha256": "fe411d15b093e92509854c220171b1da9c7abd041f64648804524b750756df3f",
     "flags": ""
   },
   {
     "path": ".github/workflows/rll-data-pipeline.yml",
-    "bytes": 3184,
+    "bytes": 3331,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 82,
-    "sha256": "6f9df5055ae59b2d8403f6ade8d0bbdfe6891243e230b0c32736592437e1087a",
+    "linhas": 90,
+    "sha256": "2292932656caabdc96430b20a2c6886294cec2d1cdaed6305c7518261955eae8",
     "flags": ""
   },
   {
     "path": ".github/workflows/rll-real-data-orchestrator.yml",
-    "bytes": 5954,
+    "bytes": 6101,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 87,
-    "sha256": "1a42f5d682c8286e890c78901fc869111ef2e1e5b68551c89da336bf27bba39e",
+    "linhas": 95,
+    "sha256": "93d035d994dfba0fe2f3d451905468b9ebf58cf789afd68b4d31c47c96f0c632",
     "flags": ""
   },
   {
     "path": ".github/workflows/unified-geometry.yml",
-    "bytes": 745,
+    "bytes": 892,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 27,
-    "sha256": "3c8921774788c29e61a77e63a4b0847267a236cd355fb0dbd0b82e3d97be80ef",
+    "linhas": 35,
+    "sha256": "ccb7034dc8d0b5fa743c69054306e948588b28d7114c700639cdea42027361ff",
     "flags": ""
   },
   {
     "path": ".github/workflows/validacao_real.yml",
-    "bytes": 1703,
+    "bytes": 1819,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 59,
-    "sha256": "18c565a60e6f9f6b775064d6aef3ca54cc71c347b0de79cb3af26e1bd33d5480",
+    "linhas": 64,
+    "sha256": "70b52ed72f09753821dcb03ed0924261d33f2a6f6cd34fe188322ac8865a0a4a",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/yml-syntax-validation.yml",
+    "bytes": 1616,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 63,
+    "sha256": "6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290",
+    "flags": ""
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 265,
+    "ext": "NO_EXT",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "5e99948717ab097b0e65cd5326883b5dd11a34b2c2d49209494c254e0ffc94b8",
     "flags": ""
   },
   {
@@ -298,12 +397,12 @@
   },
   {
     "path": "PapersPub/01_cosmology_pantheon_desi/draft.md",
-    "bytes": 1703,
+    "bytes": 19139,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 43,
-    "sha256": "8d0257806a037e27b4d66695439b7141518f12322f21940061563e5ed6f5f429",
-    "flags": ""
+    "linhas": 383,
+    "sha256": "c808c4364213dfc2ad7b4385be070e4b21a2aaab34dcd3d9cce4006f3237eb38",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "PapersPub/01_cosmology_pantheon_desi/figures/.gitkeep",
@@ -378,6 +477,15 @@
     "flags": ""
   },
   {
+    "path": "PapersPub/02_living_ai_omega_system/draft.md",
+    "bytes": 14528,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 528,
+    "sha256": "afee6e6428e7f8b11691c09673ed01115cc6c47d2c083ce8fbcba88bd7afab67",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "PapersPub/03_cosmology_magnetic_plasma/data_manifest.md",
     "bytes": 908,
     "ext": ".md",
@@ -423,6 +531,15 @@
     "flags": ""
   },
   {
+    "path": "PapersPub/03_polymathic_epistemic_ecosystem/draft.md",
+    "bytes": 16435,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 490,
+    "sha256": "a058cb9975a13c017ae30ed04c00648541135277c2e7da5dc50da13a5e8ec23b",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "PapersPub/04_geophysics_geomagnetic_anomaly/data_manifest.md",
     "bytes": 905,
     "ext": ".md",
@@ -465,6 +582,42 @@
     "tipo": "documentation_md",
     "linhas": 39,
     "sha256": "e0a3f0acc89d5d21c3ddf2635df0155550ea0872339ae8b8a70774914bf3f98b",
+    "flags": ""
+  },
+  {
+    "path": "PapersPub/04_rll_light_loop_distance/draft.md",
+    "bytes": 7399,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 284,
+    "sha256": "8c913af664ff37c3125d9c160d0af191f277eb98d52f672086e028f0cb83cd9d",
+    "flags": ""
+  },
+  {
+    "path": "PapersPub/04_rll_light_loop_distance/references.md",
+    "bytes": 6538,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 146,
+    "sha256": "aef70f4149f832bcbfb65195c388ff398dd48524b41c274f5b537eb12090ef28",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "PapersPub/05_compression_astrophysics_claims/draft.md",
+    "bytes": 8054,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 193,
+    "sha256": "978ffb6de4e2117b589e4bb9aced58925ce0919f807dc0c8fc22caca2d42c4ba",
+    "flags": ""
+  },
+  {
+    "path": "PapersPub/05_compression_astrophysics_claims/references.md",
+    "bytes": 6887,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 145,
+    "sha256": "70fc5532284d4b22cf6580f05f570b46b0a973a9735ac4228d85116f35b72d20",
     "flags": ""
   },
   {
@@ -556,6 +709,24 @@
     "linhas": 39,
     "sha256": "b9a08c24bb65410dd75d42470876a0dd85478d62d7770f454508c3bd94c5f742",
     "flags": ""
+  },
+  {
+    "path": "PapersPub/06_source_state_lookback_rll/README.md",
+    "bytes": 1130,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 43,
+    "sha256": "93596d6575c53f598124b1e3f3bb7f7d41a619d5c8173efeedac0a154b87871e",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "PapersPub/06_source_state_lookback_rll/refs_short.md",
+    "bytes": 746,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 15,
+    "sha256": "339d544666908cb1d0b3403a92df2bc3982f03f07b359d5c6d79185c3a49a891",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "PapersPub/07_heliosphere_radiation_transmission/data_manifest.md",
@@ -919,12 +1090,12 @@
   },
   {
     "path": "README.md",
-    "bytes": 9024,
+    "bytes": 9742,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 139,
-    "sha256": "3578f631d6e69776c83d35ddfd0c5f0f05767c5b1999bf2070a5c283d9fc41b9",
-    "flags": "mentions_synthetic"
+    "linhas": 147,
+    "sha256": "2c6cfec734c756374b71db433b1fcb47aaa3036ec5aef7c4115cd462b4f7a034",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "README_MASTER.md",
@@ -1908,6 +2079,15 @@
     "flags": "mentions_synthetic"
   },
   {
+    "path": "data/inputs/cosmology_joint/parameter_origin_registry.json",
+    "bytes": 4859,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 129,
+    "sha256": "cc208aa639661f127187e94ceeb908b59a75a228aee2d44ac7f75ced31dea2b6",
+    "flags": ""
+  },
+  {
     "path": "data/inputs/structure_d/Hz.csv",
     "bytes": 336,
     "ext": ".csv",
@@ -1978,6 +2158,15 @@
     "linhas": 28,
     "sha256": "9054a1e6d5ed8f6199b5fc5e6b9db97030bb4964bd28be104cf7e65daf8deb77",
     "flags": ""
+  },
+  {
+    "path": "data/inputs/structure_d_inspection/inspection_items.json",
+    "bytes": 7598,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 199,
+    "sha256": "14647b298e8dfcbd9259ca47fc6d58be6a72085f1072fa2c48603e9eb87cd2c8",
+    "flags": "mentions_synthetic,token_vazio_declared"
   },
   {
     "path": "data/ledgers/energy_momentum_observational_ledger.schema.json",
@@ -2089,20 +2278,20 @@
   },
   {
     "path": "data/pipelines/structure_d/joint_real_likelihood.py",
-    "bytes": 17631,
+    "bytes": 23051,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 436,
-    "sha256": "35868e62dfb8cf83f688cea3383361246874fc3e6b0044f1940482bb966ec8e5",
+    "linhas": 548,
+    "sha256": "1dbf6db24381e6c6b422ca5199b39993815f9eeb8afebf123508f08802746e7d",
     "flags": "mentions_synthetic"
   },
   {
     "path": "data/pipelines/structure_d/likelihood.py",
-    "bytes": 11433,
+    "bytes": 11676,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 332,
-    "sha256": "8c5a53bf17a4de2748b6506a397f956ec5ecd82e7d400566f03080f16d89f1c9",
+    "linhas": 340,
+    "sha256": "77fb90b9665ad9b50c88427fc946e0a0a93be78b00d2dcc92e4cc41fc85036c2",
     "flags": ""
   },
   {
@@ -2170,11 +2359,11 @@
   },
   {
     "path": "data/pipelines/structure_d/synthetic_real_boundary.py",
-    "bytes": 9418,
+    "bytes": 10060,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 241,
-    "sha256": "726a77eea0b4c0722da82f8041007a64e60977e58bf1fa23bc78be9c9dd7c943",
+    "linhas": 255,
+    "sha256": "0d3f687c5d18bc7bf24d8b96fadb64a9c79a8c3e758022d52d5f1455f0bb8197",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
@@ -2266,6 +2455,105 @@
     "linhas": 34,
     "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
     "flags": ""
+  },
+  {
+    "path": "data/real/bootstrap/canonical_route_checklist.yml",
+    "bytes": 5218,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 168,
+    "sha256": "3be1076c8c8834dc59dc7243747ed88148eb3690e2c277c7ef23968db057b438",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/bootstrap/dense_behavior_feature_orchestration.yml",
+    "bytes": 2378,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 57,
+    "sha256": "fb3fe69be388f600996ef4d2abfa1d36d5d05fc6bd435d7aee7b4654f8ba4001",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/bootstrap/real_data_requirements_bootstrap.yml",
+    "bytes": 7548,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 222,
+    "sha256": "10dcf7fe8dcbec05de9c1ee8ee7eaa2e35f2a61b7b972ebe6630fe59aefe24e5",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/bootstrap/real_observational_seed_v0.csv",
+    "bytes": 1542,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 6,
+    "sha256": "12640cc7c8f4a9a17128ef1f0f7f8c71847d36e8a73a6eb549368acf55e15246",
+    "flags": ""
+  },
+  {
+    "path": "data/real/bootstrap/real_observational_seed_v0.yml",
+    "bytes": 7163,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 169,
+    "sha256": "40e1b78031f51708aee616db5b341a806f4f0ffe490fec955b05c94894b0be88",
+    "flags": ""
+  },
+  {
+    "path": "data/real/bootstrap/real_observational_seed_v1.csv",
+    "bytes": 2743,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 8,
+    "sha256": "93497684eca2cab44bdcf4eec4d7cda0482783ce644dcee4281a9c6b3a4610a4",
+    "flags": ""
+  },
+  {
+    "path": "data/real/bootstrap/real_observational_seed_v1.yml",
+    "bytes": 9527,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 237,
+    "sha256": "9ca27fe2aba6afdaa27236b5e755467703c51f8b701e4f702443cade6d838809",
+    "flags": ""
+  },
+  {
+    "path": "data/real/bootstrap/real_observational_seed_v2_orbital_shape.csv",
+    "bytes": 1657,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 4,
+    "sha256": "9517189de1479034fe6dc103d597cd4e38809106fa6b83a25c9b4a0055254d79",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/bootstrap/real_seed_pipeline_orchestration.yml",
+    "bytes": 7887,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 227,
+    "sha256": "b8f90f3fcdc9c2232cb6e686f7a305a5bdaccc3a2c8f3a7df84eee0ceb0d9a17",
+    "flags": ""
+  },
+  {
+    "path": "data/real/compact_objects/remnant_boundary_sources.yml",
+    "bytes": 4817,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 147,
+    "sha256": "656783efbd3afe5edbc3d41fdb5f50c3a709950aa4229af9c0ed18292b291fe4",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/compact_objects/wandering_black_hole_sources.yml",
+    "bytes": 3610,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 117,
+    "sha256": "2e3fcc600a4a7470c44ee89309648691e5a3bca40003df3070d5047313181e5f",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml",
@@ -2430,6 +2718,60 @@
     "flags": ""
   },
   {
+    "path": "data/real/high_z_smbh/high_z_seed_sources.yml",
+    "bytes": 4252,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 130,
+    "sha256": "bdee494ef60c6d38740c2b59afdec5ad8984929d57b2eb0e6b81744163e36984",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/kinematics/hypervelocity_sources.yml",
+    "bytes": 4189,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 129,
+    "sha256": "00b7da1d4142a0acedd15bc5ce496b60f3075683c109032be9ef10e1180d74e8",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/lensing/dark_lens_sources.yml",
+    "bytes": 4895,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 151,
+    "sha256": "76e62fbad83495c18f74c8dc7b94bdf5f18d158eae57bbc28188da0f67366026",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/orbital_dynamics/angular_momentum_shape_sources.yml",
+    "bytes": 4306,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 126,
+    "sha256": "e3c2a733031507562657751041b7049008d256a0ef2ca0f9615ae2082ee2099a",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv",
+    "bytes": 1637,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 5,
+    "sha256": "d5b5b26bec52b59aaf4352fba6751d01f73b4120b7320574cdc048df29dced58",
+    "flags": ""
+  },
+  {
+    "path": "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.yml",
+    "bytes": 3908,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 112,
+    "sha256": "a23fac026a389a53607dcedf2e6721ecea4881010c8b73f4b0cb93f4157a69fb",
+    "flags": ""
+  },
+  {
     "path": "data/real/rll_real_sources_manifest_2026.yml",
     "bytes": 5897,
     "ext": ".yml",
@@ -2437,6 +2779,15 @@
     "linhas": 118,
     "sha256": "45501ad4d4a0c11ad79ca6213c450bc3f9dd291697d0a385eb16474e62d74c36",
     "flags": ""
+  },
+  {
+    "path": "data/real/structure/residual_gravity_sources.yml",
+    "bytes": 3762,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 115,
+    "sha256": "9bcd53bb0da0d89e61c111433e45a154d5f5f615e052f2b0df98c3bd1273301d",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "data/real_sources/real_data_registry.json",
@@ -2484,6 +2835,123 @@
     "flags": ""
   },
   {
+    "path": "data/results/bootstrap/dense_behavior_features.json",
+    "bytes": 9963,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 41,
+    "sha256": "d42168438f4f529762d492a8803eedc0e397830085767ab527cdef4acf3e3b48",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/dense_behavior_features.tsv",
+    "bytes": 3573,
+    "ext": ".tsv",
+    "tipo": "data_or_result",
+    "linhas": 20,
+    "sha256": "285a760d41ccc4b9d92f99f4aef3d57db27cb8a5b1361b38815e99827442c2be",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/dense_item_value_map.index.md",
+    "bytes": 303,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 22,
+    "sha256": "7b56f3e52cfa25a77069db20a1ace1f215781180f9060c089b064b0003f4c077",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/dense_item_value_map.json",
+    "bytes": 10920,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 29,
+    "sha256": "e5fb241638a1c9e76c64ff35901c01f41f449520d0273d72475cbdc7134bf00e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/raw_data_manifest_status.json",
+    "bytes": 4606,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 20,
+    "sha256": "9c80adb1481ad9b1ee2906c644aa1a1ee6fee5354dd8a4eb1294fa96ce5be6b1",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/raw_data_manifest_status.tsv",
+    "bytes": 2554,
+    "ext": ".tsv",
+    "tipo": "data_or_result",
+    "linhas": 9,
+    "sha256": "1ccfd9d844b1871467c6cd4e507ea943c49ae2b0c1b5c2263f9f198f450a501f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/raw_data_manifest_status_ci_artifact_note.md",
+    "bytes": 731,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 34,
+    "sha256": "7ac9eff16034336d05f2cfeeeb4fe45c95398ae2ef157a670b7d6789973b4f66",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/real_seed_ingestion_plan.json",
+    "bytes": 5109,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 36,
+    "sha256": "4386ff0b450def81c5b950b8662bdc20b940043861f4d81f455441de7bd460b9",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/real_seed_validation_index.json",
+    "bytes": 1888,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 62,
+    "sha256": "e109e19675361281a0b53bce7528a9d778f2df1c8d3554129feb7d4405cb8d61",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/roadmap_next_actions.json",
+    "bytes": 7118,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 154,
+    "sha256": "33c6fc038db4a1ec098ca216ac6076b89835e7350b165e27115f3a17371dac16",
+    "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/bootstrap/token_vazio_priority_ledger.json",
+    "bytes": 7993,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 160,
+    "sha256": "b36548b2077244a5c68df73209bbfc5cb223af1d3f0453416677ec579430535d",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/compact_objects/remnant_boundary_validation.json",
+    "bytes": 1549,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 47,
+    "sha256": "232edf426d7c15d9f4b2c36d248a5f3caf9c1d592141169a61dec66bd3140e29",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/compact_objects/wandering_bh_validation.json",
+    "bytes": 1235,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 39,
+    "sha256": "d2ded31786976d1665fdca6043415d86d885f3875511cdf0cecd2834866b5944",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "data/results/desi_dr2_bao_model_comparison.json",
     "bytes": 1097,
     "ext": ".json",
@@ -2502,6 +2970,24 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "data/results/high_z_smbh/seed_validation.json",
+    "bytes": 1240,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 33,
+    "sha256": "8cb6331acdf1e81dea484dda79014b88dca0cfc27e76ac8aecc423a79178b3c5",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/kinematics/historical_impulse_validation.json",
+    "bytes": 1124,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 28,
+    "sha256": "4ee3e26ac1d0173db18870408f42030c3a0783605ac25635cc4910c7b8843953",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "data/results/model_comparison.json",
     "bytes": 3763,
     "ext": ".json",
@@ -2509,6 +2995,33 @@
     "linhas": 81,
     "sha256": "5ca3013b6e90d99ab031c185bec0ca78d3901f12ff09db2686988609acd806c3",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/negative_results_ledger.json",
+    "bytes": 4644,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 80,
+    "sha256": "0f4fa74cf040573346022358d50cd010886ebd195fb772f2527132b498310617",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/orbital_dynamics/angular_momentum_shape_validation.json",
+    "bytes": 5818,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 139,
+    "sha256": "2c988bc8923e5b4dc7d711cbf809f02441cdc493cc8dbb469e63e48666a93b3a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/orbital_dynamics/orbital_state_vector_v2_validation.json",
+    "bytes": 2747,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 71,
+    "sha256": "265d6ec7b22312c8759890fd1d6662ba20380f9adabe54f21b6ea464f113bf40",
+    "flags": "cosmology_validation_marker"
   },
   {
     "path": "data/rll_latentes/examples/invalid_missing_falsifier.yml",
@@ -2544,6 +3057,24 @@
     "tipo": "other",
     "linhas": 0,
     "sha256": "e26376ab8edc0ed352e8ac54add5f58cf5d696e93d24724c4e4ddfd083b10fea",
+    "flags": ""
+  },
+  {
+    "path": "data/schemas/orbital_shape_angular_momentum.schema.json",
+    "bytes": 2187,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 65,
+    "sha256": "c4e4b3529c3c0daf05c9d8e3ed15f08488b91bbad578a78f7b8d87c388a374b2",
+    "flags": ""
+  },
+  {
+    "path": "data/schemas/real_seed_ingestion_plan.schema.json",
+    "bytes": 1223,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 43,
+    "sha256": "e4ebbea89965a33d8d8fea6cc331ea9f4e0a1432b2a981474534767e9f608f5b",
     "flags": ""
   },
   {
@@ -2980,11 +3511,11 @@
   },
   {
     "path": "docs/INDICE_MESTRE.md",
-    "bytes": 9097,
+    "bytes": 9944,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 138,
-    "sha256": "fc15d7869beaa6ab1381d8da462abaad39251f08e9efc05ef21424e4c2e1bc9a",
+    "linhas": 144,
+    "sha256": "53b1d3872ad70a4156229ddf6f35306ef2e4ff968caff0ab6db7f03e687168e2",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -3168,6 +3699,15 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/RAFAELIA_PRIORITY_MATRIX.md",
+    "bytes": 2424,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 60,
+    "sha256": "017690d0498b682df99b75369e62a30272d97d5d173e4b959838a4e7a9f2efc0",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/RAFAELIA_REGIME_INDEX.md",
     "bytes": 7367,
     "ext": ".md",
@@ -3321,6 +3861,33 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_1234_CHUNK_TEXT_AUDIT.md",
+    "bytes": 5518,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 138,
+    "sha256": "2c8c15fb4f3c04c8ae5953a297fb233b75279984a62808e0749dd1684a6dd046",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_6SIGMA_POST_PR396_AUDIT.md",
+    "bytes": 12423,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 207,
+    "sha256": "7c8f870303eb7406bc227325c04c377db418070a5d8ded9b5d98f5650b95b684",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_ABLATION_MATRIX.md",
+    "bytes": 5218,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 146,
+    "sha256": "f303512e8ba49f0d5bdcd45e3fc89236adcdda71fb0327db22ba5772ef4cb4ba",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_AUDIT_2026-03-14_FRONTEIRA_FISICA.md",
     "bytes": 7817,
     "ext": ".md",
@@ -3339,12 +3906,57 @@
     "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_CI_DEPENDENCY_FAILURE.md",
+    "bytes": 2200,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 107,
+    "sha256": "4b72fbcc454c25c93c7cfc060c054746af49a485a3501b43fb4f0dbc22474d80",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_CLAIM_BOUNDARIES.md",
     "bytes": 1655,
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 39,
     "sha256": "9fd4a1e6e86e32dd8bbb88b186c80dbe6a9138dc290e26db535d1286a08c4c8d",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_CLAIM_GATE_LEDGER.md",
+    "bytes": 6187,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 155,
+    "sha256": "9dadb2435b72d52c319fe80eb17e072d4daa9280b9abfba6da2d72f7fde45b4f",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_CURRENT_RESULTS_PAPER_TABLE.md",
+    "bytes": 6305,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 134,
+    "sha256": "223114a9c56fe67454d1f6c80d89097d0a60062da241ac7e5b174b34c1954742",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_DERIVED_OUTPUTS_MANIFEST.md",
+    "bytes": 3143,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 85,
+    "sha256": "cf66cb75bb2a98e7ac770c64aca4ad4ca25dac995adf2315423624ddf8f240b5",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_EFFECTIVE_DYNAMICS_WORKPACKAGE.md",
+    "bytes": 4018,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 191,
+    "sha256": "8eb7c4a16a2b51cd0921320f2db809b91de1bf2275e804a3ac0a60b67426ad9b",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -3366,6 +3978,78 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_ESTRADA_CANONICA_EXECUCAO.md",
+    "bytes": 10174,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 391,
+    "sha256": "f97fa720e1144a1414a579b5f46cef13e5f7fa22829a9363f8cc7c5d3da2c2a0",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_EXECUTIVE_ONE_PAGE.md",
+    "bytes": 3310,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 116,
+    "sha256": "133832da90b118abaa89fc847e64dd8e790020b9b598d19cad2cfc0c0b3c1933",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_FIGURE_TABLE_MANIFEST.md",
+    "bytes": 4575,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 130,
+    "sha256": "88a4731858fd1b854e3d5fa571c1a4bfcff46fd07af9dd5343e64dc515ba0265",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_FRONTIER_DYNAMICS_AND_ANOMALY_LEDGER.md",
+    "bytes": 15288,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 465,
+    "sha256": "33c7998db4641a2a3fe55fcd30419176fed392118076b029e0bc2ac8a1e02270",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_FRONTIER_STRUCTURE_INDEX.md",
+    "bytes": 3682,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 132,
+    "sha256": "81411b3937abcc1841d70fe8c41dd961e43a41750a3674c3dfe121e7c777670e",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_INSPECTION_RATE_MATH_AND_KNOWLEDGE_TEST.md",
+    "bytes": 5428,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 243,
+    "sha256": "aea00197551ac98012d668d96a4a655fa9174be9768b5be693a4d0a855ebd926",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_MISSING_CALCULATIONS_LEDGER.md",
+    "bytes": 16603,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 55,
+    "sha256": "7ce6fc28f066622bd838950454b360b79ea35b60a69c66835945a01c18c9f1c2",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md",
+    "bytes": 6152,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 140,
+    "sha256": "4c6bd314b0718880aadb083e367506bd306435c21370c9781819a07bf3f95183",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_MULTI_MEDIUM_CONVERGENCE.md",
     "bytes": 291,
     "ext": ".md",
@@ -3373,6 +4057,69 @@
     "linhas": 11,
     "sha256": "06640b559534f6b7d6125ac7f6329e8aed00ec45f76efcbf02798f9d192ad61f",
     "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_NEXT_ROBUST_FIT_PLAN.md",
+    "bytes": 5238,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 152,
+    "sha256": "1341f929741d9898965a85294e8791ce0d4987f9a503927296b8b2c36e5c84a8",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_NEXT_SAFE_ACTIONS_INDEX.md",
+    "bytes": 3477,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 92,
+    "sha256": "7ad2dafa5cb6fc905fc263be7709daf7d99df4648f36a33f659518abfd472c8e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md",
+    "bytes": 5508,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 218,
+    "sha256": "ac330e1cbde6c0575ff47ae29f6a626b6cd503324af6409c0ac5d245a0584682",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_OS0_ZERO_ROOT_CAUSE.md",
+    "bytes": 5461,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 93,
+    "sha256": "a7645d43d70baed65fc906ab0879bb7af873c95647498722c33e49f8df632eda",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_OUTPUT_STEM_CLI_GAP.md",
+    "bytes": 3499,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 158,
+    "sha256": "11daf4c7beed58296763d66865211d9e4f9f8be27fdf4913da3265fe92c718c3",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_OUTPUT_STEM_SAFE_WRAPPER.md",
+    "bytes": 3142,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 144,
+    "sha256": "609749fb97919885feb7f14e13c195b4877a1dc4a27620db7667564dd79b0676",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_PAPER_READY_ROUTE.md",
+    "bytes": 6237,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 183,
+    "sha256": "e931605b3ab730500bc5113dd11efb05f9afd89328741f0013fc62da6e2c17e2",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/RLL_PARADOX_THERMODYNAMIC_LAYER.md",
@@ -3384,6 +4131,24 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_PARAMETER_ORIGIN_TABLE.md",
+    "bytes": 3650,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 33,
+    "sha256": "04130772761d2099adb9ab995850fb731a605853c98543eb1f7652af6b37aca5",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_PIPELINE_CLAIM_GATE_DIAGRAM.md",
+    "bytes": 2645,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 108,
+    "sha256": "26c5d6678e9fde28d0ff47b8d27b5d178cd5250086db84846b00ece6e954f19f",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md",
     "bytes": 16591,
     "ext": ".md",
@@ -3391,6 +4156,15 @@
     "linhas": 490,
     "sha256": "675e6dcc9aece82de1b29fc9b24eb521c3f8f64bae145a2893d739f29fc1eab7",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_PRE_ROBUST_FIT_PR_CHECKLIST.md",
+    "bytes": 3767,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 130,
+    "sha256": "e06eeaae9c6a934b461703eb357d4cd71bd855ea07ec6deea5ab337db3c6af3e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md",
@@ -3402,6 +4176,24 @@
     "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_RISK_REGISTER.md",
+    "bytes": 5002,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 121,
+    "sha256": "c13e93cd547022035a95f7e0564956ae568161cb11a5b837ad7fa4ccc352d1a1",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_ROBUST_FIT_CHECKLIST.md",
+    "bytes": 6055,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 223,
+    "sha256": "4599181ec3ab7071ac2a2c2386c3e5fa83ba952c3c0471c72dbed3c44be68dad",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_STATISTICAL_FINANCIAL_METRICS.md",
     "bytes": 1556,
     "ext": ".md",
@@ -3411,6 +4203,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_SUPPLEMENT_PACKAGE_MAP.md",
+    "bytes": 4953,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 151,
+    "sha256": "9be80cbe9caae7ceb2c30fad975cbb65b62ca06c338600c2d744c86ce2c9bdef",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_TOROIDAL_TRANSPORT_LAYER.md",
     "bytes": 380,
     "ext": ".md",
@@ -3418,6 +4219,33 @@
     "linhas": 12,
     "sha256": "8540cdb1daee165fe22ef512a3a014e9cafc9f2cb5a9743359ec1d47e72a0780",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_TRACEABILITY_MAP.md",
+    "bytes": 6764,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 135,
+    "sha256": "e34a9e9aa1385d95e0305892aaa4aa5a2542e4fe5e291a666eb2cadfc65be2da",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md",
+    "bytes": 5271,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 148,
+    "sha256": "2b6d624d19d9bfca88447d4152bf1303a622b59d40db38f0ec98dd32d59dad18",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_VS_CPL_DIAGNOSTIC.md",
+    "bytes": 6837,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 133,
+    "sha256": "e0ca4a2911c65118b9ce04ddd2408ef6ee757de3c571e405e6eb40fd062f56cd",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/ROADMAP_VALIDACAO.md",
@@ -3663,6 +4491,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md",
+    "bytes": 40841,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 721,
+    "sha256": "28ebef89a7a2efb1eaa0b3847899cb51ef8ec9b3ef9924ded4908b548da5eafa",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md",
     "bytes": 17931,
     "ext": ".md",
@@ -3762,6 +4599,24 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/data/PANTHEON_DESI_MASTER_CATALOG.tsv",
+    "bytes": 2683,
+    "ext": ".tsv",
+    "tipo": "data_or_result",
+    "linhas": 17,
+    "sha256": "b73fe000ec436f4bf5fe2e0eb8662424d2b5fc7d6d396fc8a6aac98c856acdca",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/data/PANTHEON_DESI_MASTER_TABLE.md",
+    "bytes": 11170,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 164,
+    "sha256": "bf118c06c5f981c4bea63bf5dcd97ff41f77fa66fec381a30bb048c5da3bd198",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/estatisticas.md",
     "bytes": 2342,
     "ext": ".md",
@@ -3778,6 +4633,33 @@
     "linhas": 249,
     "sha256": "d6bbd564fdd2eb3ea7e117738ee3a59d62f10c4615d5e41ce552c1264520d9f2",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/invariants/README.md",
+    "bytes": 2083,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 49,
+    "sha256": "cd40c4b0fc32d9b745a1748fe6ba8758fb2ee058fde965789d3483d1ac111829",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/invariants/universe-of-invariants.svg",
+    "bytes": 10033,
+    "ext": ".svg",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "1a4a502956968581a56e492665d756a5f4839bcd33cd67b63a0429205ce2148d",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/methods/RAFAELIA_PREDICTABILITY_INDEX.md",
+    "bytes": 9408,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 324,
+    "sha256": "14735c807db5c2946048df24fa3001cafac4befade6109763682c3e40f46a10a",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/modules/lcdmpp_extension_framework.md",
@@ -3897,6 +4779,33 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/observational_records/2026-06-08_STAR_QCD_VACUUM_SPIN_CORRELATION_REGISTRO.md",
+    "bytes": 375,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 9,
+    "sha256": "7132be40b1c17b5497577fad744caaf89569001aa2e1e46bc69e418a4cd8eb62",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/operacoes/SEGUE_1_CONVERGENCIA_CIENTIFICA_RLL.md",
+    "bytes": 4849,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 145,
+    "sha256": "2128e638ca76124904b224e5df734d5233f6ed7941e574a3a140595d612dec19",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/operacoes/SEGUE_5_PROTOCOLO_OPERACIONAL_RLL.md",
+    "bytes": 3981,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 186,
+    "sha256": "11d3f5caf3a1da61b22f694835bc50bb9044281162eeedcfc978caa24cafec79",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/panteon_likelihood.py",
     "bytes": 18029,
     "ext": ".py",
@@ -3985,6 +4894,15 @@
     "linhas": 0,
     "sha256": "0565761a18d3ab4c3e799fdc9136f76d80d5de33036802ac9e383bb31c7d5c81",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/pr-audits/PR_398_POST_MERGE_AUDIT.md",
+    "bytes": 7126,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 224,
+    "sha256": "671600144f7d05a6d14e944227f198ff5d9240f224c7e00da1db54e882da107e",
+    "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
     "path": "docs/real_data/REAL_DATA_REQUIRED_INPUTS.md",
@@ -4320,6 +5238,267 @@
     "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
+    "path": "docs/science/CANONICAL_ROUTE_ARTIFACTS_VALIDATION.md",
+    "bytes": 1716,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 58,
+    "sha256": "12dc9ccfaa1b076b1fa0dcd8ed54a47548a32b6a58f6952ab4dfec38fdf10a38",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/CANONICAL_ROUTE_CHECKLIST.md",
+    "bytes": 3026,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 144,
+    "sha256": "5a5a9a94fcb19b02ab2fdecd0cd0800813ec5ff3cf3cbb4911e861c0a8de60cc",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/CLAIM_BOUNDARY_QUALITY_GATES.md",
+    "bytes": 1427,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 56,
+    "sha256": "88e6decc4b6c3553b89a48dc56aa01b33edd8287dc1b74278d4cde027cadd943",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md",
+    "bytes": 8089,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 245,
+    "sha256": "81ca83e584de1dedad30b0dda00f9df7110c6871431489be345d769f7f46f8ce",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/DENSE_BEHAVIOR_FEATURES_REPORT.md",
+    "bytes": 2677,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 80,
+    "sha256": "6f49f15f9dd72a1322bc1a4e4c6bddb60e10a639a6275010430f397cf25684dd",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/DENSE_FEATURE_ITEM_VALUE_MAP.md",
+    "bytes": 5313,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 129,
+    "sha256": "e51c9868a66faa06f101051d86007ecf344c992d77c8af40f96026e6db5b038b",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/FIRST_RAW_DATA_INGESTION_REPORT.md",
+    "bytes": 1596,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 89,
+    "sha256": "05a88406eb459945e7f02f9c485b8b3175f6727046eeb9a515b4ac2741164f7c",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/GRAVITATIONAL_RESIDUAL_MEMORY_AND_COMPACT_GAPS.md",
+    "bytes": 10987,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 313,
+    "sha256": "a1d129a66af0c59b55f976a25ba75eb48a9e1cae1de78c0bad5d242d3ffae06a",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/NEGATIVE_RESULTS_LEDGER.md",
+    "bytes": 1753,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 34,
+    "sha256": "730967ea16bb347133e46757f0405b9a9a8ddd42364ed240bc7642b5a6b75b43",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/OPEN_LATENT_GAPS_AND_NEXT_ACTIONS.md",
+    "bytes": 2505,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 119,
+    "sha256": "e677e8fbfd79594ad5feba7838c2f96e39056cafb6441f02f56a509fe1bc2c07",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_MAP.md",
+    "bytes": 3342,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 155,
+    "sha256": "a9b693738a30c6944f2fa874c0de3f64340080a0889df544aa59c61e55c59725",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_V1_REPORT.md",
+    "bytes": 957,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 17,
+    "sha256": "1ece5b1100f201cd49efbe48b4d38c0add6b5f6f9c0ba17c0684fec521ce0050",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/ORBITAL_STATE_VECTOR_V2_REPORT.md",
+    "bytes": 587,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 25,
+    "sha256": "b06916adbfd2109cc8609eb280bae454def035be592e0a77f22d163a1435f8fe",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/PEER_REVIEW_READINESS_STATUS.md",
+    "bytes": 1729,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 95,
+    "sha256": "0d4963893f708497a12c88467e29b76df76bba2b9efe1de206eb932e49dd084c",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/RAW_DATA_MANIFEST_ARTIFACT_VALIDATION.md",
+    "bytes": 867,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 41,
+    "sha256": "428a79387e0977984ff2b968ebe72084414507ede287592e94d64c18723755ba",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/RAW_DATA_MANIFEST_GUIDE.md",
+    "bytes": 1261,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 78,
+    "sha256": "8201441f19af8a34437648bdd71c5f46c204669a8ef4ea14b7f8994d8050c3b9",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/RAW_DATA_MANIFEST_STATUS.md",
+    "bytes": 1786,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 42,
+    "sha256": "e488a92086a107202aab175deb6f8dd3b94bec0ba2fe85823ade3e6eaf3ce173",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md",
+    "bytes": 6656,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 242,
+    "sha256": "1544be2c3de4aaf00581c4c8493e8c8d110d7aa356c9a1185b35c5cf2bcaba11",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/REAL_DATA_PIPELINE_ORCHESTRATION.md",
+    "bytes": 5008,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 294,
+    "sha256": "416e9b64edc99f5e301d66fd59f995bc07e301e674479483e3dd1438a002a9c0",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/REAL_OBSERVATIONAL_SEED_V0_REPORT.md",
+    "bytes": 3467,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 151,
+    "sha256": "766180adc4ef3eb4cb9af99aac3a7af8a40fb6ba1543c45982851d80aab1e906",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/REAL_OBSERVATIONAL_SEED_V1_MAP.md",
+    "bytes": 4383,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 226,
+    "sha256": "6fc7009547f9697fa2ff9cce81f14ef9f16bdb41ebda9b59c71a64dd59325490",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/REAL_SEED_INGESTION_PLAN.md",
+    "bytes": 849,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 34,
+    "sha256": "1cd86f6c5709a61d6703b9d77875fb482f131e7f8cdced9477a415dcd4ff8c15",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/REAL_SEED_VALIDATION_V0_INDEX.md",
+    "bytes": 1985,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 49,
+    "sha256": "36316c2826531099919f71e7bd0267b9af5ee098f7be95a3f3f342e53e840f74",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/ROADMAP_NEXT_ACTIONS.md",
+    "bytes": 5995,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 253,
+    "sha256": "a686197e06f259254f5b0e470d6ca30564b96f31087e45a0523b2197e6d0a746",
+    "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/ROUTE_DEFIBRILLATION_POLICY.md",
+    "bytes": 2191,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 83,
+    "sha256": "b93c8b2e514c03bedc59f5944c32094e0d191111de042740886f6e713634a817",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/TACTICAL_ROUTE_ORCHESTRATOR.md",
+    "bytes": 2992,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 80,
+    "sha256": "f6a975f694f5c8e3124788ce1268faeae80e8f5ce4ef963667e0bc32ce0a1ee6",
+    "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/TOKEN_VAZIO_PRIORITY_LEDGER.md",
+    "bytes": 2394,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 70,
+    "sha256": "36d2708df4ff87ef3f3111276e2811035f39119f05a62793aab3c2ca825f34ef",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/VALIDATION_DASHBOARD.md",
+    "bytes": 2493,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 86,
+    "sha256": "98a5c80126fc4d029e5382d1035e5434495cc7b56710acf0fda5302ff4bebd1f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md",
+    "bytes": 9699,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 273,
+    "sha256": "fa467011bd839bc849c49bf669527c1fddcce47de1b215fed4b0ce3b67285c82",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/tracking_frentes.csv",
     "bytes": 6596,
     "ext": ".csv",
@@ -4345,6 +5524,78 @@
     "linhas": 20,
     "sha256": "7c4d708a5c8293311d39c849c144813643ffef65d3537e8eb64e63659b74d25f",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/COMPUTE_EXCELLENCE_NOTES.md",
+    "bytes": 4351,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 78,
+    "sha256": "e8857e4aa9e8136463da457e0790d713ddd0e655b9b0d863e0180f194c93b422",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/REAL_SYNTHETIC_BOUNDARY_AUDIT.md",
+    "bytes": 7216,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 53,
+    "sha256": "0bd4d9e40969a0e405219263f9f82c9da7d90ae3ca67d7c57dbd836c45250026",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/WORKFLOW_EXECUTION_MAP.md",
+    "bytes": 28883,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 282,
+    "sha256": "6ab005d5b60c1694011e93abe24097ff11416352c5fec861ab23d861cd974911",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/WORKFLOW_REFACTOR_AUDIT.md",
+    "bytes": 4809,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 53,
+    "sha256": "cc7c507c7b240e78f7347dce1c94ede92ce23262f5abab9f7c9efe54c15e5987",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/YML_BLOCKED_ITEMS.md",
+    "bytes": 1320,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 16,
+    "sha256": "1c1c665fbf8cbd852525f95d515d8a69e123b3a595e7b5daa5325b337dd08a39",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/YML_FILE_LEDGER.tsv",
+    "bytes": 20868,
+    "ext": ".tsv",
+    "tipo": "data_or_result",
+    "linhas": 36,
+    "sha256": "1cff442995cba72878041782dbf0e1b6994bf54e96f9fd212477ee0d05b4d6b0",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/YML_NEXT_ACTIONS.md",
+    "bytes": 1072,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 16,
+    "sha256": "3788e43be24f444a6f0c427ba69e4120ba6a94d2257e7ff9d790f21d6bc7e216",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/YML_REFACTOR_PLAN.md",
+    "bytes": 1723,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 17,
+    "sha256": "78007e915e12bdff650933494d81e51109e32adff25b94948d553030dfdff0f8",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs_toroidal_knowledge.md",
@@ -5004,6 +6255,141 @@
     "flags": ""
   },
   {
+    "path": "knowledge_ecosystem/README.md",
+    "bytes": 3231,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 88,
+    "sha256": "d89e0e637f0fffdb8081a2f52fe0ada06d2b6231002835ba9efa8482489f8c2d",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/academic_integrity_and_plagiarism_policy.md",
+    "bytes": 2631,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 122,
+    "sha256": "a5f23a64890694320ae59ec4f42c5f510af13dec8aea10b852cd274b4f3ec621",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/astrophysics_compression_claim_roll.md",
+    "bytes": 4224,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 75,
+    "sha256": "657c7621b812f5d99f5a083a1b6fa74afee250e5cdcf502b033a25b4f716f63c",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/bibliographic_reference_chain.md",
+    "bytes": 4744,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 190,
+    "sha256": "6e57bd32e6248d14ba241f9d53a891a0f6cf5702aa48808663cdc4bb0f90587f",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/claim_state_ledger.md",
+    "bytes": 3151,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 94,
+    "sha256": "5a845a6c3b67f75d919eec21d763105d89680216b9667a10b3a4a29fff124860",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/examples_ref_required.md",
+    "bytes": 3935,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 75,
+    "sha256": "6f3d2657cf8fc8c2ebb0e5fd8ccd9460c46f126b3842c60c0f4125b190ae8d18",
+    "flags": ""
+  },
+  {
+    "path": "knowledge_ecosystem/governance_audit_2026-06-16.md",
+    "bytes": 7123,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 229,
+    "sha256": "2717ee625ade7980bb89c3c407797df85305d8cf1622df347edcfb530271326e",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/hotfix_operational_plan.md",
+    "bytes": 3142,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 125,
+    "sha256": "9edd77d681426ece75086a2eac044097033dbc41691d8526a67daed38649d076",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/origin_reference_protocol.md",
+    "bytes": 3140,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 120,
+    "sha256": "3bb0b453b8896161a6a3f72f779575c12077968fb0eb0806c73d4384f5818c09",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/public_safety_transparency_network.md",
+    "bytes": 3954,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 143,
+    "sha256": "4b67fac62c6522a7c8041f0e4279200dae6d24a10416421f33c5b7191756eee8",
+    "flags": ""
+  },
+  {
+    "path": "knowledge_ecosystem/publication_doi_pipeline.md",
+    "bytes": 2474,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 115,
+    "sha256": "8c11448723412dbb91440a91d2b0cc1ee6fdefa9e332147e96a59d44c760d56a",
+    "flags": ""
+  },
+  {
+    "path": "knowledge_ecosystem/reference_seed_sources.yml",
+    "bytes": 2736,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 89,
+    "sha256": "74e11f81af920466ff073034082414016eeda145faf134ca1ef2f6f0c993d4aa",
+    "flags": ""
+  },
+  {
+    "path": "knowledge_ecosystem/schemas/info_prime.schema.json",
+    "bytes": 2590,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 114,
+    "sha256": "69d76b5d70ff707b43d2eab4cf066acad1b8fb44b51275987183768f13af7f74",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/source_search_queue.yml",
+    "bytes": 4044,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 95,
+    "sha256": "2bb55f27be636072f9b954b1aae5494ec2a53865bd3096291ba7ba129ced0dd9",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "knowledge_ecosystem/thesis_theory_formula_registry.md",
+    "bytes": 3680,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 146,
+    "sha256": "43505f24ace458b4f32676ab675e3e7683d10e6590a085838f1b70a511e6cdbe",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "main.tex",
     "bytes": 5809,
     "ext": ".tex",
@@ -5410,11 +6796,11 @@
   },
   {
     "path": "pyproject.toml",
-    "bytes": 696,
+    "bytes": 716,
     "ext": ".toml",
     "tipo": "config",
-    "linhas": 35,
-    "sha256": "7e34f59743b09c9b93631390613c682321dcc703550d121de206ebf4060b8ac5",
+    "linhas": 36,
+    "sha256": "8f0ca58ad31b1cbead01604b325fdcd53046f7326800e0c58c64071aa18ec8fa",
     "flags": ""
   },
   {
@@ -5697,6 +7083,96 @@
     "flags": ""
   },
   {
+    "path": "results/pipeline-runs/27457036990/CHECKSUMS.sha256",
+    "bytes": 768,
+    "ext": ".sha256",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "ca47cf513f6ba8579e910b1ca2a75d027ff7eb3826dd0b28c58ad1c87e99314e",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/CLAIM_REFERENCE_AUDIT.md",
+    "bytes": 1145,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 9,
+    "sha256": "4d2b69060300aeb629eebbb1817a96b05ebea74ea3aa96325c13626047d21d9b",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/COMMIT_SHA.txt",
+    "bytes": 41,
+    "ext": ".txt",
+    "tipo": "data_or_result",
+    "linhas": 1,
+    "sha256": "e047887ef7eb0b6f6f2383e5ef79492ab18699b53a358879f7b375099001e576",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/MANIFEST.json",
+    "bytes": 3095,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 74,
+    "sha256": "1b3f4692b099d7d067eece6d3f10588d0ee34cfd2c09437f99c47ba5f740daee",
+    "flags": "mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/PIPELINE_REPORT.md",
+    "bytes": 677,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 17,
+    "sha256": "366acf2fcb4edba917664441c0989c9489d685932b82084d7c6a2730ab02baee",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/RUN_UTC.txt",
+    "bytes": 21,
+    "ext": ".txt",
+    "tipo": "data_or_result",
+    "linhas": 1,
+    "sha256": "54a2e06a4e16bb8b30d77fb3e96bdfe9b59fd1de1672531c29456f06c39b5eff",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/SOURCES.md",
+    "bytes": 277,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 21,
+    "sha256": "c22ede9fa387134b193fa0a951d2e221bb7e940e1f8c2cd8040a5822ce5515f2",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/book/BOOK_ROUTE.md",
+    "bytes": 1097,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 36,
+    "sha256": "363c947d499b5c1a833e2fc05b8e8bd1395da58a069e5da0f589815a9646bf8d",
+    "flags": "mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/book/CHAPTERS_USED.md",
+    "bytes": 556,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 16,
+    "sha256": "7c2f2fae7125231bbcbc1db5ca0e6949f0e86178ab5558c4bc3fe13d8094d316",
+    "flags": "mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/pipeline-runs/27457036990/book/FILES_USED.md",
+    "bytes": 421,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 15,
+    "sha256": "72ddcafeaae0d0816c35b363fe72e7b39ba65936cf83dfd129489d2424532f3d",
+    "flags": ""
+  },
+  {
     "path": "results/real/README.md",
     "bytes": 178,
     "ext": ".md",
@@ -5833,30 +7309,39 @@
   },
   {
     "path": "results/structure_d/joint_real_likelihood.csv",
-    "bytes": 634,
+    "bytes": 1266,
     "ext": ".csv",
     "tipo": "data_or_result",
-    "linhas": 3,
-    "sha256": "987ae05dcdc8b9e6411f1dd75c58d9aa1578baa27ad980a22ff46ecd9ae62975",
+    "linhas": 5,
+    "sha256": "c9540e16ef0000d8b206a4a5ea4037eff34bb83bee819d74c58fd9280fc60c2d",
     "flags": ""
   },
   {
     "path": "results/structure_d/joint_real_likelihood.json",
-    "bytes": 3326,
+    "bytes": 6538,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 92,
-    "sha256": "a9e48272bb16d2e29f072f43c7376f226f8d876942ef79545e543113d0cea961",
+    "linhas": 202,
+    "sha256": "4e98a4afdd11f29e08dec72ff60387ff192fbf842e5c796fe97d4af0d484b8a5",
     "flags": ""
   },
   {
     "path": "results/structure_d/joint_real_likelihood_covariance_manifest.json",
-    "bytes": 1020,
+    "bytes": 1776,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 20,
-    "sha256": "a95c4f9bea49432d4537dc655d82d07ccb96ffa8b007f5ef64643094da9cd30a",
+    "linhas": 40,
+    "sha256": "57438f0b2306f0321277dbd18974818d0defe005805000e830a281baef3219dc",
     "flags": ""
+  },
+  {
+    "path": "results/structure_d/joint_real_likelihood_readme.md",
+    "bytes": 5383,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 104,
+    "sha256": "ebee3e9a01a45ad3be44ee8e4d9368314e26fad95405a4a8cfa3dea2c790a9f8",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "results/structure_d/model_comparison.csv",
@@ -5994,6 +7479,24 @@
     "flags": ""
   },
   {
+    "path": "scripts/analysis/structure_d_effective_dynamics.py",
+    "bytes": 9316,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 246,
+    "sha256": "62e3f2c7cdd605a3ec610151f09ddcb547a1c1107ecf46f12b287fb486b2caf7",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/analysis/structure_d_inspection_rate.py",
+    "bytes": 10065,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 249,
+    "sha256": "66babd63b020079f553fe4214f93533f1baff2cee3d9f17ef7c6b288335ad6ed",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/bh_flux_calc.py",
     "bytes": 4684,
     "ext": ".py",
@@ -6055,6 +7558,51 @@
     "linhas": 330,
     "sha256": "dd16ed6eddfc8fdd864eab20a909c9438f23b645efeb5a64c06c4cfadbd6b0ee",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/data_scan/build_dense_behavior_features.py",
+    "bytes": 9136,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 223,
+    "sha256": "3713cde17ecc3f14e20876ffc16868a96f92c161bb9f69964458e6ea7245cde8",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/data_scan/build_raw_data_manifest_status.py",
+    "bytes": 6149,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 171,
+    "sha256": "ef80beab6c4e9e13366a31404f7b1ea5cbac86548172b13700e8a1d12379e441",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/data_scan/build_real_seed_ingestion_plan.py",
+    "bytes": 7843,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 198,
+    "sha256": "06375c67a2281da0c712aba3e90fcbe2cbcef49a74797136b43296196056aa4e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/data_scan/fetch_horizons_mars_state_vector.py",
+    "bytes": 4744,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 140,
+    "sha256": "31d21ead694019cfd415d0867c2a94d14611d39cc68346cc4e9c50b78c68f77a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/data_scan/scan_real_data_bootstrap.py",
+    "bytes": 8902,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 264,
+    "sha256": "9f95fdb094ff2c99d22f457fed9fc835e032e376ca3c4cb5b9711435cb6c5ec0",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "scripts/download_real_cosmology_inputs.sh",
@@ -6174,6 +7722,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/run_structure_d_joint_likelihood.py",
+    "bytes": 2833,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 83,
+    "sha256": "75ed478af8e7264cbb0c15d3cb01a6b3ef2755c47ad4087913cff480d6020675",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/unified_geometry_system.py",
     "bytes": 3643,
     "ext": ".py",
@@ -6210,6 +7767,96 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/validation/check_claim_boundary.py",
+    "bytes": 1968,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 64,
+    "sha256": "c1a03a5157074d1b621394caa554bacc8eb33b47365cd89e0c4fe34b9b3d0425",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/check_seed_artifact_contracts.py",
+    "bytes": 2185,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 64,
+    "sha256": "76979ed687e064db11589536e71a8ceecd0597b494f5d41af8778609c016dbdf",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/real_seed_utils.py",
+    "bytes": 4169,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 118,
+    "sha256": "424ac4a2cf2f6591ffd2b94b2e07d8b8f024a817190a6f62a9f7429044e4c792",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/run_real_seed_validations.py",
+    "bytes": 3919,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 111,
+    "sha256": "45bc227dd9db9ff5a18cd787459a4c90d3f8d9d5ff0b122ce700835ccf2693fa",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_compact_remnant_boundary.py",
+    "bytes": 3038,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 78,
+    "sha256": "aae40ab5ba791e3744c13377bc422ef41a8eedebaf508eb2b6d4b76f2bd635a7",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_dark_lens_candidates.py",
+    "bytes": 2206,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 61,
+    "sha256": "007e14239401a52464206272e8d80adf3a632b19b3f62d0e4909233796746dd9",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_high_z_smbh_seeds.py",
+    "bytes": 2844,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 71,
+    "sha256": "444abd65d998a12ec289255f9c60a43a10c3df99d5bcec81bd23cbe0db9fa51a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_historical_impulse_candidates.py",
+    "bytes": 2006,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 51,
+    "sha256": "f59770e83e0eef5eef9f02c0d46b3d5a2b0fd39957e37f6ff8a2e2bb56cae308",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_orbital_shape_angular_momentum.py",
+    "bytes": 6358,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 164,
+    "sha256": "1d0c90f0f9c024f7eb5a46c9b564ff114515012babf83120e1ef6055a93e4135",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_orbital_state_vector_v2.py",
+    "bytes": 5453,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 154,
+    "sha256": "569818ede4940980515dd142e96c86d8d5817803426f73d5af55052b01573f92",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/verify_pantheon_inputs.py",
     "bytes": 2568,
     "ext": ".py",
@@ -6235,6 +7882,15 @@
     "linhas": 224,
     "sha256": "09404e92a9a906f40b8a529574796a5211adf163975f6cf9708897ed6043ab3a",
     "flags": "mentions_synthetic"
+  },
+  {
+    "path": "src/rll/cosmology_fairness.py",
+    "bytes": 14708,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 436,
+    "sha256": "faab89d7d2677d97ace8fa8ba1e869874490b234f68a8eaad57cc61ab4a1e6a4",
+    "flags": ""
   },
   {
     "path": "src/rll/desi_dha_extractor.py",
@@ -6327,6 +7983,15 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "tests/test_cosmology_fairness.py",
+    "bytes": 3741,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 111,
+    "sha256": "fe6f8fb93d5572b4df2d3ade760c0fe62d64ba550e21306b724f34b669600164",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_desi_dha_extractor.py",
     "bytes": 361,
     "ext": ".py",
@@ -6364,11 +8029,11 @@
   },
   {
     "path": "tests/test_joint_real_likelihood.py",
-    "bytes": 2393,
+    "bytes": 3506,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 56,
-    "sha256": "d9e1b2171aa8c38d321fd9efa67fa4eb51c648ede8d9b1637547659fbc6b1225",
+    "linhas": 78,
+    "sha256": "950c6b352a12a0f9234fcfbfcd020ce5e032cba57a809e5c9a05aad6c5132ed5",
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
@@ -6382,11 +8047,11 @@
   },
   {
     "path": "tests/test_likelihood_functions.py",
-    "bytes": 936,
+    "bytes": 1031,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 31,
-    "sha256": "71a926b3b75d0588542fb08bb875b83627932c0aac04bbe882393f5377c91b51",
+    "linhas": 32,
+    "sha256": "bb55441ded146cda360580cb0cb3923d7142a2a0197e55dde2351f1d674f01f3",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -6406,6 +8071,15 @@
     "linhas": 25,
     "sha256": "29fbad3f571118a48bb17419feed1ae0b0f0f951792cb7f4e52b6eb893759180",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_orbital_outputs.py",
+    "bytes": 856,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 19,
+    "sha256": "48b9ffd2a8c4589bb104f6a1e92fb941f0cc156f0e532d1dc36b89c7934dc76e",
+    "flags": "cosmology_validation_marker"
   },
   {
     "path": "tests/test_panteon_likelihood_covariance.py",
@@ -6453,6 +8127,15 @@
     "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
+    "path": "tests/test_real_seed_utils.py",
+    "bytes": 578,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 16,
+    "sha256": "98d9b4c8a5843d1c7059424e575b1068ca146e17b8504ecc78983a46df561d45",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_real_source_signatures.py",
     "bytes": 2650,
     "ext": ".py",
@@ -6489,12 +8172,39 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_structure_d_effective_dynamics.py",
+    "bytes": 1977,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 70,
+    "sha256": "533e266766d17b63ac9bd3561024f49d6c039c2098ee9aee2f4857833171ec27",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_structure_d_inspection_rate.py",
+    "bytes": 3876,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 125,
+    "sha256": "32c4b8bf18643436a68d954bef5dd298695e00cb1880afd3b889bceb883ca028",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_structure_d_model_coverage.py",
     "bytes": 922,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 27,
     "sha256": "fc0fe6cc1aad9b4548190eca1282dcfc2022460c7e1625c912460a62d6cc3314",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_structure_d_output_stem_wrapper.py",
+    "bytes": 1391,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 30,
+    "sha256": "3b1315bd88dc1e9b00fd3bbde5a6c53e9ab97aafda4a2f231bf3b7ba86b6cc1a",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -6508,11 +8218,11 @@
   },
   {
     "path": "tests/test_synthetic_real_boundary.py",
-    "bytes": 6106,
+    "bytes": 6498,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 140,
-    "sha256": "8635aaf75e5dd2e489eae100f03bded515ce29cb9c6104241331382f3e2eefa0",
+    "linhas": 147,
+    "sha256": "0598ba602dad92b25dca7a61e2b71f040c8b92b4332514871ab05ddd76508a08",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
@@ -6786,6 +8496,15 @@
     "flags": ""
   },
   {
+    "path": "tools/generate_yml_audit_docs.py",
+    "bytes": 21727,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 392,
+    "sha256": "15c98d032693ff071ba9ecd3187c3a551420a87e918c1038dc516f703db059f2",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
+  },
+  {
     "path": "tools/iml/README.md",
     "bytes": 571,
     "ext": ".md",
@@ -6899,7 +8618,7 @@
     "ext": ".json",
     "tipo": "data_or_result",
     "linhas": 21,
-    "sha256": "db9e25d5f253f9d522f6dd39826b4c578da5e64c4e1c67bb0efb4757b6965679",
+    "sha256": "f0f9b56535423db3a74b64f446ebc297cda5683dcb2a910b3a9715cb1340238e",
     "flags": ""
   },
   {
@@ -6971,43 +8690,43 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 47,
-    "sha256": "4fa6a2a2b42116c824f800536ebcf8acfb6c813593babb8f36f96586c764ac27",
+    "sha256": "1dd18a8cb541a8720c26c5a897fca035c1588ef4de9fb2bd3b082e145f8e1cfe",
     "flags": ""
   },
   {
     "path": "validacao_real/results/figures/bao_distances.png",
-    "bytes": 82085,
+    "bytes": 80646,
     "ext": ".png",
     "tipo": "other",
     "linhas": 0,
-    "sha256": "27a7abef0e0b66b93e3ed4ce80a73ae2820c0b6463c90dba9f5bb3b61ef4b8f2",
+    "sha256": "6b19a3db63b977b8c492179a81c42c7b0d7453f759f8dd477466bcfef54aa2e9",
     "flags": ""
   },
   {
     "path": "validacao_real/results/figures/hubble_diagram.png",
-    "bytes": 61343,
+    "bytes": 61898,
     "ext": ".png",
     "tipo": "other",
     "linhas": 0,
-    "sha256": "0225b53bf7374fc2ef14b2e42a1fdbfe4d147a79bd301f6a57611d67d88cb2a3",
+    "sha256": "e05f03361da372b891fcb322d020dd527020cb051d31c7c1560654a769ac3116",
     "flags": ""
   },
   {
     "path": "validacao_real/results/figures/model_comparison_bars.png",
-    "bytes": 28024,
+    "bytes": 28954,
     "ext": ".png",
     "tipo": "other",
     "linhas": 0,
-    "sha256": "fd26026304a826889d5a8ed0bbaa9445bf8c426b766ff1f941e58afe408fc60a",
+    "sha256": "c82d99f8e3df64e2b2bd3598b383ba2cda44cf32bfa406509bc75901c78a1a5a",
     "flags": ""
   },
   {
     "path": "validacao_real/results/figures/residual_pulls.png",
-    "bytes": 52386,
+    "bytes": 51414,
     "ext": ".png",
     "tipo": "other",
     "linhas": 0,
-    "sha256": "877c176295a5f69134bb19e86c045454b09c9bf31ad92154adb4f7c0c155656f",
+    "sha256": "a47ea998856131ec273592b3f7af50c9ee46e53c152ca8c2cbd03dd91f31bf1b",
     "flags": ""
   },
   {
@@ -7034,7 +8753,7 @@
     "ext": ".json",
     "tipo": "data_or_result",
     "linhas": 70,
-    "sha256": "ec034989bfc316fbe9b44e4b0311a0d2f941a05ea82d30a855db477f78cbb993",
+    "sha256": "40dca879e4b241dfdc7b1da5804b2bcafc4e169112fd684983a3d110ff0a4500",
     "flags": ""
   },
   {
