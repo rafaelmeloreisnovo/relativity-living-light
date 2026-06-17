@@ -1,7 +1,7 @@
 # RLL Issues #420–#423 Execution Ledger
 
 > Data UTC: 2026-06-17  
-> Escopo: aplicar no repositório os gates e artefatos derivados das issues #420, #421, #422 e #423.
+> Escopo: aplicar no repositório os gates e artefatos derivados das issues #420, #421, #422 e #423, incluindo rota para cada possível resultado do scanner.
 
 ---
 
@@ -9,9 +9,9 @@
 
 | Issue | Objetivo | Status aplicado |
 |---|---|---|
-| #420 | Registry-driven k/covariance gates before academic claims | Parcial aplicado: registry validator + governance wrapper + claim boundary report. O pipeline científico ainda precisa consumir registry para calcular `k` automaticamente. |
-| #421 | Academic ablation ladder | Parcial aplicado: scanner, decision tree, H0/r_d matrix and issue links. A execução dos fits permanece a próxima etapa computacional. |
-| #422 | Wire evidence scan outputs into reports and claim gates | Parcial aplicado: governance wrapper gera gate report; checker de linguagem criado. Integração com todos os geradores de relatório ainda pendente. |
+| #420 | Registry-driven k/covariance gates before academic claims | Parcial aplicado: registry validator + governance wrapper + claim boundary report + outcome protocol. O pipeline científico ainda precisa consumir registry para calcular `k` automaticamente. |
+| #421 | Academic ablation ladder | Parcial aplicado: scanner, decision tree, H0/r_d matrix, outcome routing e issue links. A execução dos fits permanece a próxima etapa computacional. |
+| #422 | Wire evidence scan outputs into reports and claim gates | Parcial aplicado: governance wrapper gera gate report; checker de linguagem e outcome action plan criados. Integração com todos os geradores de relatório ainda pendente. |
 | #423 | Run H0 and r_d ablation after H0 warning | Parcial aplicado: matriz JSON/CSV/MD e generator. Fits de ablação ainda não executados. |
 
 ---
@@ -22,11 +22,14 @@
 |---|---|
 | `tools/run_rll_academic_claim_governance.py` | Orquestra registry validator + evidence scanner + gate report. |
 | `tools/make_h0_rd_ablation_matrix.py` | Gera a matriz H0/r_d exigida pela issue #423. |
+| `tools/apply_rll_outcome_protocol.py` | Roteia cada possível resultado (`CLAIM_BLOCKED`, `PASS_LIMITED`, `PARTIAL`, `TOKEN_VAZIO`, `AUDIT_FAIL`, `RUNTIME_PENDING`) para ações, artefatos e linguagem permitida. |
 | `tools/check_rll_report_claim_language.py` | Bloqueia linguagem positiva quando `claim_status=CLAIM_BLOCKED`. |
 | `data/inputs/cosmology_joint/h0_rd_ablation_matrix.json` | Matriz canônica de ablação H0/r_d em JSON. |
 | `data/inputs/cosmology_joint/h0_rd_ablation_matrix.csv` | Matriz canônica de ablação H0/r_d em CSV. |
+| `data/inputs/cosmology_joint/rll_outcome_action_matrix.json` | Matriz canônica de ações por resultado possível. |
 | `docs/RLL_H0_RD_ABLATION_MATRIX.md` | Explicação operacional da matriz H0/r_d. |
-| `.github/workflows/academic-parameter-governance.yml` | CI atualizado para rodar todos os gates principais. |
+| `docs/RLL_OUTCOME_ACTION_MATRIX.md` | Explicação operacional da matriz de ações por resultado. |
+| `.github/workflows/academic-parameter-governance.yml` | CI atualizado para rodar todos os gates principais e validar todos os statuses possíveis. |
 
 ---
 
@@ -60,6 +63,25 @@ data/inputs/cosmology_joint/h0_rd_ablation_matrix.csv
 docs/RLL_H0_RD_ABLATION_MATRIX.md
 ```
 
+### Protocolo de resultado possível
+
+```bash
+python3 tools/apply_rll_outcome_protocol.py
+```
+
+Saídas:
+
+```text
+results/audit/rll_outcome_action_plan.json
+results/audit/rll_outcome_action_plan.md
+```
+
+Para regravar a matriz canônica:
+
+```bash
+python3 tools/apply_rll_outcome_protocol.py --write-matrix
+```
+
 ### Checagem de linguagem em relatório
 
 ```bash
@@ -79,6 +101,7 @@ registry validation
 current-table evidence scan
 claim gate wrapper
 H0/r_d ablation policy matrix
+outcome action matrix for every possible result
 report claim-language checker
 CI execution surface
 ```
@@ -117,19 +140,33 @@ Frase proibida:
 
 ---
 
-## 6. Próxima execução técnica
+## 6. Resultado possível → ação
 
-1. Rodar a matriz H0/r_d gerando CSVs em `results/structure_d/ablation/`.
-2. Rodar `tools/run_rll_academic_claim_governance.py --input <ablation_csv>` para cada CSV.
-3. Fazer relatórios importarem `results/audit/rll_academic_claim_gate_report.md`.
-4. Só permitir claim positivo se scanner e covariância permitirem.
+| Resultado | Ação |
+|---|---|
+| `CLAIM_BLOCKED` | Bloquear claim positivo; publicar diagnóstico; rodar ablação H0/r_d se aplicável. |
+| `PASS_LIMITED` | Permitir wording limitado; exigir covariância, MCMC, ablação e CLASS/CAMB antes de claim forte. |
+| `PARTIAL` | Marcar limitações na primeira página; separar calculado de TOKEN_VAZIO. |
+| `TOKEN_VAZIO` | Parar claim; abrir/girar ledger de evidência ausente. |
+| `AUDIT_FAIL` | Corrigir gate; não publicar claim. |
+| `RUNTIME_PENDING` | Executar fit/ablação ou manter como pendente sem interpretação. |
 
 ---
 
-## 7. Retroalimentação
+## 7. Próxima execução técnica
+
+1. Rodar a matriz H0/r_d gerando CSVs em `results/structure_d/ablation/`.
+2. Rodar `tools/run_rll_academic_claim_governance.py --input <ablation_csv>` para cada CSV.
+3. Rodar `tools/apply_rll_outcome_protocol.py` para cada scan.
+4. Fazer relatórios importarem `results/audit/rll_academic_claim_gate_report.md` e `results/audit/rll_outcome_action_plan.md`.
+5. Só permitir claim positivo se scanner, outcome protocol e covariância permitirem.
+
+---
+
+## 8. Retroalimentação
 
 ```text
-F_ok   = issues convertidas em gates/scripts/matriz/CI
+F_ok   = issues convertidas em gates/scripts/matriz/CI/outcome protocol
 F_gap  = fits de ablação e consumo automático em todos os relatórios ainda pendentes
-F_next = executar as ablações reais e conectar relatórios finais ao gate report
+F_next = executar as ablações reais e conectar relatórios finais ao gate report + outcome plan
 ```
