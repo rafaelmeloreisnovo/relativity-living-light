@@ -9,6 +9,9 @@ import pandas as pd
 import hashlib
 import json
 
+from .cosmo import E2_total, omega_astro, omega_fundamental, omega_neutrino, omega_quantum
+from .feedback_agn import Omega_f_from_feedback
+
 
 BAYES_FACTOR_INTERPRETATION_ROWS = [
     {
@@ -168,6 +171,108 @@ def _theta_to_dict(theta, data):
     return dict(zip(param_names, theta_arr))
 
 
+def _append_finite_redshifts(values, redshifts):
+    try:
+        arr = np.asarray(values, dtype=float).ravel()
+    except (TypeError, ValueError):
+        return
+    finite = arr[np.isfinite(arr) & (arr >= 0.0)]
+    if finite.size:
+        redshifts.extend(float(v) for v in finite)
+
+
+def _collect_redshifts(container, redshifts):
+    if container is None:
+        return
+    if isinstance(container, dict):
+        for key in ("z", "z_grid", "z_hz", "z_fs8", "redshift", "redshifts"):
+            if key in container:
+                _append_finite_redshifts(container[key], redshifts)
+        for value in container.values():
+            if isinstance(value, dict):
+                _collect_redshifts(value, redshifts)
+        return
+    if hasattr(container, "columns") and "z" in getattr(container, "columns"):
+        _append_finite_redshifts(container["z"], redshifts)
+
+
+def _stability_redshift_grid(params, data):
+    explicit_grid = data.get("stability_z_grid", data.get("z_grid"))
+    if explicit_grid is not None:
+        grid = np.asarray(explicit_grid, dtype=float).ravel()
+        return grid[np.isfinite(grid) & (grid >= 0.0)]
+
+    redshifts = [0.0]
+    _collect_redshifts(data, redshifts)
+
+    z_peak = params.get("z_peak")
+    if z_peak is not None:
+        try:
+            z_peak = float(z_peak)
+        except (TypeError, ValueError):
+            z_peak = np.nan
+        if np.isfinite(z_peak) and z_peak >= 0.0:
+            redshifts.append(z_peak)
+
+    z_max = data.get("stability_z_max", data.get("z_max", None))
+    try:
+        z_max = float(z_max)
+    except (TypeError, ValueError):
+        z_max = np.nan
+    if not np.isfinite(z_max):
+        z_max = max(redshifts) if redshifts else 0.0
+    z_max = max(5.0, z_max, max(redshifts) if redshifts else 0.0)
+
+    n_points = int(data.get("stability_z_points", 256))
+    n_points = max(n_points, 2)
+    redshifts.extend(np.linspace(0.0, z_max, n_points, dtype=float))
+    grid = np.asarray(redshifts, dtype=float)
+    return np.unique(grid[np.isfinite(grid) & (grid >= 0.0)])
+
+
+def _lcdmpp_e2_is_positive(params, data):
+    z_grid = _stability_redshift_grid(params, data)
+    if z_grid.size == 0:
+        return False
+    try:
+        e2 = E2_total(
+            z_grid,
+            Om=float(params.get("Om", 0.0)),
+            Or=float(params.get("Or", 0.0)),
+            Ol=float(params.get("Ol", 0.0)),
+            Omega_f=lambda zz: Omega_f_from_feedback(
+                zz,
+                beta=params.get("beta", 0.0),
+                z_peak=params.get("z_peak", 2.0),
+                width=params.get("width", 1.0),
+            ),
+            Omega_astro=lambda zz: omega_astro(
+                zz,
+                A=params.get("A_astro", 0.0),
+                n=params.get("n_astro", 0.0),
+                z_c=params.get("z_c_astro", 1.0),
+            ),
+            Omega_fund=lambda zz: omega_fundamental(
+                zz,
+                Omega_e=params.get("Omega_e", 0.0),
+                m=params.get("m_ede", 0.0),
+                beta_topo=params.get("beta_topo", 0.0),
+            ),
+            Omega_nu=lambda zz: omega_neutrino(zz, Omega_nu=params.get("Omega_nu", 0.0)),
+            Omega_q=lambda zz: omega_quantum(
+                zz,
+                Omega_q0=params.get("Omega_q0", 0.0),
+                q_power=params.get("q_power", 0.0),
+            ),
+        )
+    except (FloatingPointError, OverflowError, TypeError, ValueError):
+        return False
+    e2 = np.asarray(e2, dtype=float)
+    return bool(
+        e2.shape == z_grid.shape and np.all(np.isfinite(e2)) and np.all(e2 > 0.0)
+    )
+
+
 def is_physically_stable(theta, data=None):
     data = data or {}
     params = _theta_to_dict(theta, data)
@@ -202,6 +307,9 @@ def is_physically_stable(theta, data=None):
     orad = float(params.get("Or", 0.0))
     ol = float(params.get("Ol", 0.0))
     if om + orad + ol <= 0.0:
+        return False
+
+    if not _lcdmpp_e2_is_positive(params, data):
         return False
 
     veto = data.get("is_physically_stable")
