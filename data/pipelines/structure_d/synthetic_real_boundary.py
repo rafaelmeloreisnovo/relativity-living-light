@@ -14,6 +14,7 @@ DATASET_TYPES = {
     "real_observational",
     "synthetic_sanity_check",
     "synthetic_regression_test",
+    "forecast",
     "mixed_forbidden",
     "unknown_forbidden",
 }
@@ -152,6 +153,12 @@ def classify_dataset_type(metadata: dict) -> str:
         all_values,
         {"synthetic", "synth", "mock", "demo", "example", "fixture", "tests/fixtures", "data/synthetic", "results/synthetic"},
     )
+    forecast_flag = any(
+        _truthy(metadata.get(key)) for key in ("forecast", "simulated_forecast", "future_survey")
+    ) or _contains_token(
+        all_values,
+        {"forecast", "future survey", "simulated forecast", "mock forecast"},
+    )
     real_flag = any(
         _truthy(metadata.get(key)) for key in ("real", "observational", "measured", "real_observational")
     ) or _contains_token(
@@ -159,8 +166,15 @@ def classify_dataset_type(metadata: dict) -> str:
         {"data/real", "results/real", "observational", "pantheon", "desi", "cosmic chronometers", "fsigma8", "cmb"},
     )
 
+    explicit_real_flag = any(
+        _truthy(metadata.get(key)) for key in ("real", "observational", "measured", "real_observational")
+    ) or _contains_token(paths, {"data/real", "results/real", "observational"})
+    if forecast_flag and (synthetic_flag or explicit_real_flag):
+        return "mixed_forbidden"
     if synthetic_flag and real_flag:
         return "mixed_forbidden"
+    if forecast_flag:
+        return "forecast"
     if synthetic_flag:
         if _truthy(metadata.get("regression_fixture")) or _contains_token(all_values, {"regression", "tests/fixtures"}):
             return "synthetic_regression_test"
@@ -188,7 +202,7 @@ def interpret_model_comparison(delta: dict, dataset_type: str) -> dict:
     if dataset_type != "real_observational":
         return {
             "interpretation_label": "blocked_non_real_dataset",
-            "interpretation_reason": "Non-real or mixed datasets cannot support scientific model-comparison claims.",
+            "interpretation_reason": "Non-real, forecast, or mixed datasets cannot support scientific model-comparison claims.",
         }
 
     daic = _finite_number(delta.get("delta_aic_rll_minus_lcdm"))

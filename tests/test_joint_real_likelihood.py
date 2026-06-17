@@ -31,6 +31,28 @@ def test_joint_evaluation_uses_all_four_real_axes() -> None:
     assert np.isfinite(components["total"])
 
 
+def test_joint_real_models_include_wcdm_and_cpl_on_same_inputs() -> None:
+    inputs = joint.load_joint_inputs()
+    wcdm_vector = np.array([67.7, 0.31, 0.69, -1.0, 0.0224, 0.8], dtype=float)
+    cpl_vector = np.array([67.7, 0.31, 0.69, -1.0, 0.0, 0.0224, 0.8], dtype=float)
+
+    wcdm_components = joint.evaluate_components(joint.MODEL_WCDM, wcdm_vector, inputs)
+    cpl_components = joint.evaluate_components(joint.MODEL_CPL, cpl_vector, inputs)
+
+    assert np.isfinite(wcdm_components["total"])
+    assert np.isfinite(cpl_components["total"])
+    assert joint.MODEL_PARAM_NAMES[joint.MODEL_WCDM] == ("H0", "Om", "OL", "w", "Ob_h2", "sigma8")
+    assert joint.MODEL_PARAM_NAMES[joint.MODEL_CPL] == ("H0", "Om", "OL", "w0", "wa", "Ob_h2", "sigma8")
+
+
+def test_joint_inputs_require_parameter_registry_and_covariance_readiness() -> None:
+    inputs = joint.load_joint_inputs()
+
+    assert inputs["parameter_registry"]["schema"] == "rll.parameter_origin_registry.v1"
+    assert inputs["desi_covariance_info"]["ready"] is True
+    assert inputs["desi_covariance_info"]["mode"] in {"official_full", "block_summary"}
+
+
 def test_rd_drag_is_derived_from_parameter_changes() -> None:
     baseline = joint.rd_drag_mpc(67.7, 0.31, 0.02236)
     shifted = joint.rd_drag_mpc(73.0, 0.31, 0.02236)

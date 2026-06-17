@@ -1,0 +1,130 @@
+# High-Redshift Supermassive Black Hole Seed Source Ledger
+# Status: TOKEN_VAZIO protected source ledger
+# Purpose: map real observational sources needed to test early SMBH seed, rapid growth, high-z AGN, quasar, and host-galaxy constraints.
+
+schema_version: 0.1
+claim_allowed: false
+status: TOKEN_VAZIO
+module: high_z_smbh_seeds
+linked_docs:
+  - docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+  - docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md
+
+required_evidence_channels:
+  - redshift_measurement
+  - black_hole_mass_estimate
+  - luminosity_or_accretion_proxy
+  - host_galaxy_constraints
+  - lensing_magnification_if_applicable
+  - selection_function_or_survey_context
+  - growth_model_baseline
+
+source_records:
+  - id: TOKEN_VAZIO_HIGHZ_QSO_001
+    candidate_type: high_redshift_quasar_or_agn
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - object_id
+      - redshift
+      - black_hole_mass_msun
+      - mass_estimation_method
+      - luminosity
+      - bolometric_correction_if_used
+      - accretion_assumption
+      - host_galaxy_mass_or_limit
+      - survey_selection_context
+    physical_parameters:
+      z: null
+      M_bh_msun: null
+      L_bol: null
+      eddington_ratio: null
+      host_mass_msun: null
+    validation_link:
+      script_expected: scripts/validation/validate_high_z_smbh_seeds.py
+      metric_expected: eddington_growth_feasibility
+      baseline_model: light_seed_heavy_seed_direct_collapse_baselines
+    claim_boundary:
+      high_redshift_mass_requires_method_and_uncertainty: true
+      growth_claim_requires_seed_model: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_JWST_AGN_001
+    candidate_type: jwst_high_z_agn_candidate
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - object_id
+      - photometric_or_spectroscopic_redshift
+      - agn_indicator
+      - black_hole_mass_or_proxy
+      - host_galaxy_properties
+      - line_width_or_spectral_feature
+      - lensing_magnification_check
+    physical_parameters:
+      z: null
+      M_bh_proxy_msun: null
+      host_mass_msun: null
+      magnification_mu: null
+    validation_link:
+      script_expected: scripts/validation/validate_high_z_smbh_seeds.py
+      metric_expected: early_seed_requirement
+      baseline_model: jwst_high_z_agn_baseline
+    claim_boundary:
+      photometric_candidate_not_equal_confirmed_smbh: true
+      spectroscopy_or_uncertainty_required: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_DIRECT_COLLAPSE_001
+    candidate_type: direct_collapse_seed_constraint
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - candidate_environment
+      - metallicity_or_limit
+      - gas_mass_or_proxy
+      - radiation_background_or_proxy
+      - redshift
+      - model_reference
+    physical_parameters:
+      z: null
+      gas_mass_msun: null
+      metallicity: null
+      seed_mass_required_msun: null
+    validation_link:
+      script_expected: scripts/validation/validate_high_z_smbh_seeds.py
+      metric_expected: direct_collapse_condition_consistency
+      baseline_model: direct_collapse_black_hole_model
+    claim_boundary:
+      direct_collapse_requires_environment_constraints: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_redshift_before_growth_claim: true
+  require_mass_uncertainty_or_method: true
+  require_lensing_magnification_check: true
+  require_growth_baseline_before_interpretation: true
+  require_checksum_before_claim_if_local: true

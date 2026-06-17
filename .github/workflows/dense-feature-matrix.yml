@@ -1,0 +1,64 @@
+name: Dense Feature Matrix
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "data/results/bootstrap/real_seed_ingestion_plan.json"
+      - "data/results/orbital_dynamics/angular_momentum_shape_validation.json"
+      - "data/results/bootstrap/token_vazio_priority_ledger.json"
+      - "data/results/negative_results_ledger.json"
+      - "data/real/bootstrap/dense_behavior_feature_orchestration.yml"
+      - "scripts/data_scan/build_dense_behavior_features.py"
+      - ".github/workflows/dense-feature-matrix.yml"
+  push:
+    paths:
+      - "data/results/bootstrap/real_seed_ingestion_plan.json"
+      - "data/results/orbital_dynamics/angular_momentum_shape_validation.json"
+      - "data/results/bootstrap/token_vazio_priority_ledger.json"
+      - "data/results/negative_results_ledger.json"
+      - "data/real/bootstrap/dense_behavior_feature_orchestration.yml"
+      - "scripts/data_scan/build_dense_behavior_features.py"
+      - ".github/workflows/dense-feature-matrix.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dense-feature-matrix-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-dense-feature-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile builder
+        run: |
+          python -m py_compile scripts/data_scan/build_dense_behavior_features.py
+
+      - name: Build dense feature matrix
+        run: |
+          python scripts/data_scan/build_dense_behavior_features.py
+
+      - name: Display dense feature report
+        run: |
+          cat docs/science/DENSE_BEHAVIOR_FEATURES_REPORT.md
+
+      - name: Upload dense feature artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dense-feature-matrix
+          path: |
+            data/results/bootstrap/dense_behavior_features.json
+            data/results/bootstrap/dense_behavior_features.tsv
+            docs/science/DENSE_BEHAVIOR_FEATURES_REPORT.md

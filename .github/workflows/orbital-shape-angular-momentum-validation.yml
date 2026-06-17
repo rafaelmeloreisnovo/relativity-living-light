@@ -1,0 +1,61 @@
+name: Orbital Shape Angular Momentum Validation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "data/real/orbital_dynamics/**"
+      - "scripts/validation/validate_orbital_shape_angular_momentum.py"
+      - "docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM*.md"
+      - ".github/workflows/orbital-shape-angular-momentum-validation.yml"
+  push:
+    paths:
+      - "data/real/orbital_dynamics/**"
+      - "scripts/validation/validate_orbital_shape_angular_momentum.py"
+      - "docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM*.md"
+      - ".github/workflows/orbital-shape-angular-momentum-validation.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orbital-shape-angular-momentum-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-orbital-shape-angular-momentum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile validator
+        run: |
+          python -m py_compile scripts/validation/validate_orbital_shape_angular_momentum.py
+
+      - name: Run orbital shape angular momentum validation
+        run: |
+          python scripts/validation/validate_orbital_shape_angular_momentum.py
+
+      - name: Display results
+        run: |
+          cat data/results/orbital_dynamics/angular_momentum_shape_validation.json
+          echo "---"
+          cat docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_V1_REPORT.md
+
+      - name: Upload orbital validation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orbital-shape-angular-momentum-validation
+          path: |
+            data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv
+            data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.yml
+            data/results/orbital_dynamics/angular_momentum_shape_validation.json
+            docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_V1_REPORT.md

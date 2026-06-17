@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "module": "historical_impulse_slingshot",
+  "input_seed_records": [
+    "REAL_SEED_LMC_HYPERVELOCITY_SMBH"
+  ],
+  "data_status": "external_only_seed",
+  "claim_allowed": false,
+  "claim_boundary": "seed-derived calculation only; not a final validation claim",
+  "calculations": {
+    "LMC_HVS_traceback_seed": {
+      "reported_HVS_count": 21.0,
+      "approximately_half_trace_to_LMC": true,
+      "inferred_central_mass_msun_approx": 600000.0,
+      "mechanism_seed": "Hills_mechanism_forward_model",
+      "classification_v0": "historical_impulse_origin_trace_seed",
+      "interpretation_v0": "seed supports a future trajectory-memory/slingshot validation path; not a proof of an LMC SMBH without catalog ingestion and traceback recomputation"
+    }
+  },
+  "required_next_data": [
+    "HVS object-level catalog with position, proper motion, distance, radial velocity",
+    "Milky Way and LMC potential models",
+    "traceback probability computation",
+    "Galactic Center vs LMC origin model comparison",
+    "escape velocity context"
+  ],
+  "status": "seed_metric_ready_claim_blocked"
+}

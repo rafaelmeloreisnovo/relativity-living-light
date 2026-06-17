@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rll.local/schemas/real_seed_ingestion_plan.schema.json",
+  "title": "RLL Real Seed Ingestion Plan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "claim_allowed",
+    "total_items",
+    "routes",
+    "items",
+    "safe_conclusion"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "status": {"const": "real_seed_ingestion_plan_generated"},
+    "claim_allowed": {"const": false},
+    "total_items": {"type": "integer", "minimum": 0},
+    "routes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["record_id", "module", "route_id", "expected_output", "claim_allowed"],
+        "properties": {
+          "record_id": {"type": "string"},
+          "module": {"type": "string"},
+          "route_id": {"type": "string"},
+          "expected_output": {"type": "string"},
+          "claim_allowed": {"const": false}
+        },
+        "additionalProperties": true
+      }
+    },
+    "safe_conclusion": {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -1,20 +1,40 @@
 {
-  "schema": "rll.joint_real_likelihood.covariance_manifest.v1",
+  "schema": "rll.joint_real_likelihood.covariance_manifest.v2",
   "desi_covariance_shape": [
     13,
     13
   ],
-  "desi_covariance_sha256": "e40089445abcf624c49f2d7540c5680621d70530ef82a2b84d58adb242ff0b9d",
+  "desi_covariance_sha256": "668f2e9d9b6ec4e068c8ce35005a5355a60a00fbea6b3694277ff289232cdd73",
+  "desi_covariance_readiness": {
+    "path": "data/real/desi_dr2_bao_covariance.csv",
+    "mode": "official_full",
+    "ready": true,
+    "claim_allowed": true,
+    "reason": "official full covariance is valid",
+    "sha256": "4c95c45bf14f8eb49bf03fa512984448428920f7a2ba0a846dae30ed1da08658"
+  },
+  "growth_benchmark": {
+    "status": "skipped_missing_backend",
+    "available_backends": [],
+    "checked_backends": [
+      "camb",
+      "classy"
+    ],
+    "claim_allowed": false,
+    "reason": "CLASS/CAMB backend is not installed in this environment; D+/fσ8 remains an internal approximation."
+  },
   "input_sha256": {
     "data/real/Hz_data_real.csv": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
     "data/real/cosmology/desi_dr2_bao_primary_points.csv": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
-    "data/real/cosmology/desi_dr2_bao_covariance_summary.csv": "e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e",
+    "data/real/desi_dr2_bao_covariance.csv": "4c95c45bf14f8eb49bf03fa512984448428920f7a2ba0a846dae30ed1da08658",
     "data/real/cosmology/fsigma8_growth_real.csv": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
-    "data/real/CMB_shift_real.json": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc"
+    "data/real/CMB_shift_real.json": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc",
+    "data/inputs/cosmology_joint/parameter_origin_registry.json": "cc208aa639661f127187e94ceeb908b59a75a228aee2d44ac7f75ced31dea2b6"
   },
   "failsafe": {
     "atomic_write": true,
     "backup_before_replace": true,
-    "rollback_instruction": "copy any non-empty *.bak file over the corresponding output if a downstream check fails"
+    "rollback_instruction": "copy any non-empty *.bak file over the corresponding output if a downstream check fails",
+    "raw_datasets_modified": false
   }
 }

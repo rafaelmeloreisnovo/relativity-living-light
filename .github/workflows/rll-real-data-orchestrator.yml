@@ -20,9 +20,17 @@ on:
       run_formulas: {type: boolean, required: true, default: true}
       run_plots: {type: boolean, required: true, default: true}
       commit_light_artifacts: {type: boolean, required: true, default: false}
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   orchestrate:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     permissions:
       contents: write
     steps:
