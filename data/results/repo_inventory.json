@@ -4113,6 +4113,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_ISSUES_420_423_EXECUTION_LEDGER.md",
+    "bytes": 4145,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 135,
+    "sha256": "b86eafc9aeb7952d02d1ad879f1b66fadd0dd74724af57ebbc349a76d3270745",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_MISSING_CALCULATIONS_LEDGER.md",
     "bytes": 16603,
     "ext": ".md",
