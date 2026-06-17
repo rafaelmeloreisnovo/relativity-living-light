@@ -1,0 +1,147 @@
+# Compact Remnant Boundary Source Ledger
+# Status: TOKEN_VAZIO protected source ledger
+# Purpose: map real observational sources needed to validate neutron-star, lower-mass-gap, black-hole, and pair-instability boundary claims.
+
+schema_version: 0.1
+claim_allowed: false
+status: TOKEN_VAZIO
+module: compact_remnant_boundary
+linked_docs:
+  - docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md
+  - docs/science/GRAVITATIONAL_RESIDUAL_MEMORY_AND_COMPACT_GAPS.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+
+required_evidence_channels:
+  - gravitational_wave_catalog
+  - pulsar_mass_catalog
+  - neutron_star_mass_radius_constraints
+  - xray_binary_black_hole_masses
+  - stellar_evolution_models
+  - metallicity_or_environment_constraints
+
+source_records:
+  - id: TOKEN_VAZIO_REMNANT_NS_001
+    candidate_type: neutron_star_mass_constraint
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - object_id
+      - mass_msun
+      - mass_uncertainty_low
+      - mass_uncertainty_high
+      - radius_km_if_available
+      - measurement_method
+      - equation_of_state_context
+    physical_parameters:
+      M_remnant_msun: null
+      R_km: null
+      spin: null
+      eos_model: TOKEN_VAZIO
+    validation_link:
+      script_expected: scripts/validation/validate_compact_remnant_boundary.py
+      metric_expected: mass_limit_consistency
+      baseline_model: neutron_star_EOS_limits
+    claim_boundary:
+      maximum_neutron_star_mass_not_fixed_constant: true
+      eos_required: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_REMNANT_GW_001
+    candidate_type: gravitational_wave_compact_object
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - event_id
+      - primary_mass_msun
+      - secondary_mass_msun
+      - mass_uncertainties
+      - spin_if_available
+      - waveform_model
+      - posterior_reference
+      - catalog_version
+    physical_parameters:
+      m1_msun: null
+      m2_msun: null
+      chi_eff: null
+      remnant_mass_msun: null
+    validation_link:
+      script_expected: scripts/validation/validate_compact_remnant_boundary.py
+      metric_expected: mass_gap_classification
+      baseline_model: gravitational_wave_catalog_baseline
+    claim_boundary:
+      mass_gap_classification_requires_posterior: true
+      object_class_not_unique_without_uncertainty: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_REMNANT_BH_XRB_001
+    candidate_type: xray_binary_black_hole_mass
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - system_id
+      - compact_object_mass_msun
+      - orbital_period
+      - inclination_if_available
+      - companion_type
+      - measurement_method
+      - uncertainty_model
+    validation_link:
+      script_expected: scripts/validation/validate_compact_remnant_boundary.py
+      metric_expected: stellar_black_hole_mass_consistency
+      baseline_model: stellar_black_hole_catalog_baseline
+    claim_boundary:
+      xray_binary_mass_requires_orbital_model: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_PAIR_INSTABILITY_001
+    candidate_type: pair_instability_gap_constraint
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - black_hole_mass_msun
+      - helium_core_mass_if_modelled
+      - metallicity_if_available
+      - formation_channel
+      - catalog_or_simulation_reference
+    validation_link:
+      script_expected: scripts/validation/validate_compact_remnant_boundary.py
+      metric_expected: pair_instability_gap_consistency
+      baseline_model: pair_instability_stellar_evolution_model
+    claim_boundary:
+      pair_instability_gap_is_model_dependent: true
+      metallicity_and_core_mass_required: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_uncertainty_before_classification: true
+  require_baseline_before_interpretation: true
+  require_checksum_before_claim_if_local: true

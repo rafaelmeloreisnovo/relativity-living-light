@@ -1,0 +1,202 @@
+{
+  "schema": "rll.joint_real_likelihood.v2",
+  "created_utc": "2026-06-13T02:53:51Z",
+  "runtime_seconds": 75.68915109399995,
+  "optimizer": {
+    "name": "scipy.optimize.differential_evolution",
+    "seed": 42,
+    "tol": 0.001,
+    "maxiter_by_model": {
+      "LCDM_joint_real": 3,
+      "wCDM_joint_real": 3,
+      "CPL_w0waCDM_joint_real": 3,
+      "RLL_joint_real": 3
+    },
+    "models": [
+      "LCDM_joint_real",
+      "wCDM_joint_real",
+      "CPL_w0waCDM_joint_real",
+      "RLL_joint_real"
+    ]
+  },
+  "datasets": {
+    "Hz": "data/real/Hz_data_real.csv",
+    "DESI_DR2_BAO_primary": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+    "DESI_DR2_BAO_covariance": "data/real/desi_dr2_bao_covariance.csv",
+    "fsigma8": "data/real/cosmology/fsigma8_growth_real.csv",
+    "CMB_shift": "data/real/CMB_shift_real.json",
+    "parameter_origin_registry": "data/inputs/cosmology_joint/parameter_origin_registry.json"
+  },
+  "rd_policy": "derived_power_law_from_H0_Om_Ob_h2_for_all_models",
+  "bao_covariance_policy": {
+    "path": "data/real/desi_dr2_bao_covariance.csv",
+    "mode": "official_full",
+    "ready": true,
+    "claim_allowed": true,
+    "reason": "official full covariance is valid",
+    "sha256": "4c95c45bf14f8eb49bf03fa512984448428920f7a2ba0a846dae30ed1da08658"
+  },
+  "growth_benchmark": {
+    "status": "skipped_missing_backend",
+    "available_backends": [],
+    "checked_backends": [
+      "camb",
+      "classy"
+    ],
+    "claim_allowed": false,
+    "reason": "CLASS/CAMB backend is not installed in this environment; D+/fσ8 remains an internal approximation."
+  },
+  "parameter_registry_policy": {
+    "path": "data/inputs/cosmology_joint/parameter_origin_registry.json",
+    "required_before_information_criteria": true,
+    "sha256": "cc208aa639661f127187e94ceeb908b59a75a228aee2d44ac7f75ced31dea2b6"
+  },
+  "dataset_type": "real_observational",
+  "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+  "claim_allowed": false,
+  "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
+  "interpretation_label": "lcdm_preferred",
+  "claim_policy": {
+    "claim_allowed": false,
+    "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+    "reason": "At least one information-criterion delta is positive for RLL minus LCDM.",
+    "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation."
+  },
+  "model_deltas_vs_lcdm": {
+    "wCDM_joint_real": {
+      "delta_chi2_wcdm_minus_lcdm": -0.7720350478297746,
+      "delta_aic_wcdm_minus_lcdm": 1.2279649521702254,
+      "delta_aicc_wcdm_minus_lcdm": 1.6671664040758571,
+      "delta_bic_wcdm_minus_lcdm": 3.386848035529894
+    },
+    "CPL_w0waCDM_joint_real": {
+      "delta_chi2_cpl_minus_lcdm": -22.41070351951199,
+      "delta_aic_cpl_minus_lcdm": -18.410703519511983,
+      "delta_aicc_cpl_minus_lcdm": -17.445186278132667,
+      "delta_bic_cpl_minus_lcdm": -14.092937352792646
+    },
+    "RLL_joint_real": {
+      "delta_chi2_rll_minus_lcdm": -7.87423459769343e-11,
+      "delta_aic_rll_minus_lcdm": 5.999999999921258,
+      "delta_aicc_rll_minus_lcdm": 7.583699059482399,
+      "delta_bic_rll_minus_lcdm": 12.476649250000278
+    }
+  },
+  "fnext": {
+    "schema": "rll.energy_momentum_bridge.fnext.v1",
+    "status": "not_measured",
+    "F_gap": null,
+    "F_gap_uncertainty": null,
+    "uncertainty_status": "incomplete",
+    "delta_chi2_rll_minus_lcdm": -7.87423459769343e-11,
+    "delta_aic_rll_minus_lcdm": 5.999999999921258,
+    "delta_bic_rll_minus_lcdm": 12.476649250000278,
+    "score": null,
+    "score_status": "not_computable",
+    "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+    "claim_allowed": false,
+    "reason": "ledger absent"
+  },
+  "rows": [
+    {
+      "model": "LCDM_joint_real",
+      "chi2": 84.48241222580135,
+      "AIC": 94.48241222580135,
+      "AICc": 95.51689498442204,
+      "BIC": 105.27682764259971,
+      "N": 64,
+      "k": 5,
+      "dof": 59,
+      "chi2_Hz": 19.430741008634875,
+      "chi2_DESI_DR2_BAO": 20.575030662200746,
+      "chi2_fsigma8": 23.630658522602975,
+      "chi2_CMB_shift": 20.845982032362752,
+      "H0": 60.0,
+      "Om": 0.37541381103514887,
+      "OL": 0.9771327179758683,
+      "Ob_h2": 0.026,
+      "sigma8": 0.6147302831680962,
+      "w": null,
+      "w0": null,
+      "wa": null,
+      "Os0": null,
+      "zt": null,
+      "wt": null
+    },
+    {
+      "model": "wCDM_joint_real",
+      "chi2": 83.71037717797158,
+      "AIC": 95.71037717797158,
+      "AICc": 97.1840613884979,
+      "BIC": 108.66367567812961,
+      "N": 64,
+      "k": 6,
+      "dof": 58,
+      "chi2_Hz": 19.365634730204704,
+      "chi2_DESI_DR2_BAO": 17.48883027438094,
+      "chi2_fsigma8": 22.797439542715814,
+      "chi2_CMB_shift": 24.058472630670114,
+      "H0": 60.0,
+      "Om": 0.3740141812825024,
+      "OL": 0.9497249070259529,
+      "Ob_h2": 0.026,
+      "sigma8": 0.6151824032688435,
+      "w": -0.9725236468940587,
+      "w0": null,
+      "wa": null,
+      "Os0": null,
+      "zt": null,
+      "wt": null
+    },
+    {
+      "model": "CPL_w0waCDM_joint_real",
+      "chi2": 62.071708706289364,
+      "AIC": 76.07170870628937,
+      "AICc": 78.07170870628937,
+      "BIC": 91.18389028980707,
+      "N": 64,
+      "k": 7,
+      "dof": 57,
+      "chi2_Hz": 19.220020703366146,
+      "chi2_DESI_DR2_BAO": 12.082522240097463,
+      "chi2_fsigma8": 18.87551935235649,
+      "chi2_CMB_shift": 11.893646410469268,
+      "H0": 60.0,
+      "Om": 0.364109717761877,
+      "OL": 0.684511268689338,
+      "Ob_h2": 0.024058480593615865,
+      "sigma8": 0.6226074269985636,
+      "w": null,
+      "w0": -0.3,
+      "wa": -1.835701089847297,
+      "Os0": null,
+      "zt": null,
+      "wt": null
+    },
+    {
+      "model": "RLL_joint_real",
+      "chi2": 84.48241222572261,
+      "AIC": 100.48241222572261,
+      "AICc": 103.10059404390444,
+      "BIC": 117.75347689259999,
+      "N": 64,
+      "k": 8,
+      "dof": 56,
+      "chi2_Hz": 19.43074096832219,
+      "chi2_DESI_DR2_BAO": 20.575029041552828,
+      "chi2_fsigma8": 23.630658584576636,
+      "chi2_CMB_shift": 20.84598363127095,
+      "H0": 60.0,
+      "Om": 0.3754138109513542,
+      "OL": 0.9771327214966472,
+      "Ob_h2": 0.026,
+      "sigma8": 0.6147304340494005,
+      "w": null,
+      "w0": null,
+      "wa": null,
+      "Os0": 0.0,
+      "zt": 0.48913585347939664,
+      "wt": 0.5725207843474277
+    }
+  ]
+}

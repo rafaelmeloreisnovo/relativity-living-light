@@ -1,0 +1,17 @@
+section	dataset	item_id	data_kind	z_eff	observable	value	sigma	status	local_path	claim_gate
+DESI	DESI_DR2_BAO	DESI_000	measurement	0.295	DV_over_rd	7.942	0.075	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_001	measurement	0.510	DM_over_rd	13.588	0.167	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_002	measurement	0.510	DH_over_rd	21.863	0.425	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_003	measurement	0.706	DM_over_rd	17.351	0.177	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_004	measurement	0.706	DH_over_rd	19.455	0.330	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_005	measurement	0.934	DM_over_rd	21.576	0.152	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_006	measurement	0.934	DH_over_rd	17.641	0.193	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_007	measurement	1.321	DM_over_rd	27.601	0.318	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_008	measurement	1.321	DH_over_rd	14.176	0.221	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_009	measurement	1.484	DM_over_rd	30.512	0.760	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_010	measurement	1.484	DH_over_rd	12.817	0.516	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_011	measurement	2.330	DM_over_rd	38.988	0.531	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+DESI	DESI_DR2_BAO	DESI_012	measurement	2.330	DH_over_rd	8.632	0.101	ready	data/real/cosmology/desi_dr2_bao_primary_points.csv	usable_with_13x13_covariance
+PANTHEON	PantheonPlusSH0ES	PPLUS_FILE_DISTANCE	file		Pantheon_distance_table			TOKEN_VAZIO_UNTIL_HASHED	data/pantheon/Pantheon+SH0ES.dat	full_provenance_sha256_required
+PANTHEON	PantheonPlusSH0ES	PPLUS_FILE_COV	file		Pantheon_full_covariance			TOKEN_VAZIO_UNTIL_HASHED	data/pantheon/Pantheon+SH0ES_STAT+SYS.cov	full_covariance_required
+PANTHEON	PantheonPlusSH0ES	PPLUS_SCHEMA_CORE	column_schema		zHD,m_b_corr,MU_SH0ES,RA,DEC,IS_CALIBRATOR,USED_IN_SH0ES_HF,x1,c,mB,FITCHI2,FITPROB			staged_schema	data/pantheon/Pantheon+SH0ES.dat	filters_must_be_declared_before_fit

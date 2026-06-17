@@ -1,0 +1,64 @@
+name: Validacao Real RLL
+
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "Optional note for this run"
+        required: false
+        default: "manual validation run"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install minimal deps
+        run: pip install pyyaml matplotlib
+
+      - name: Fetch real data (portal with embedded fallback)
+        working-directory: validacao_real
+        run: python3 fetch_real_data.py
+
+      - name: Compute validation (chi2 / AIC / BIC / falsifiability)
+        working-directory: validacao_real
+        run: python3 compute_validation.py
+
+      - name: Generate figures
+        working-directory: validacao_real
+        run: python3 make_figures.py
+
+      - name: Render documentation from artifacts
+        working-directory: validacao_real
+        run: python3 render_report.py
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: validacao-real-artifacts
+          path: |
+            validacao_real/fetched/
+            validacao_real/results/
+
+      - name: Commit results back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add validacao_real/fetched validacao_real/results
+          git commit -m "validacao_real: automated run ${{ github.run_number }}" || echo "nothing to commit"
+          git push || echo "push skipped"

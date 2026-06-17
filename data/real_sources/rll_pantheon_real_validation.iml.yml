@@ -1,0 +1,79 @@
+schema_version: "2026-05-22"
+name: "rll.pantheon.real_validation"
+purpose: "Bridge the existing Pantheon freestanding runtime with real Pantheon+ data provenance and academic falsifiability checks."
+claim_boundary: "No superiority claim unless real-data metrics pass predefined thresholds."
+
+existing_lowlevel_runtime:
+  name: "rll.pantheon.freestanding_runtime"
+  source:
+    - "core/lowlevel_runtime/c/pantheon_freestanding.c"
+    - "core/lowlevel_runtime/include/pantheon_freestanding.h"
+  role: "deterministic low-level support for hashing/checksum/provenance, not the cosmological Pantheon+ dataset"
+  guarantees:
+    - "no heap/malloc"
+    - "no stdlib"
+    - "no stdio"
+    - "no string.h"
+    - "freestanding object build"
+  primitives:
+    - "rll_fnv1a64"
+    - "rll_crc32"
+    - "rll_sys_write1"
+
+dataset:
+  name: "Pantheon+ / SH0ES"
+  type: "real_observational_cosmology_data"
+  role: "primary real-data validation dataset for RLL vs LCDM"
+  origin:
+    repository: "https://github.com/PantheonPlusSH0ES/DataRelease"
+    branch: "main"
+    release_scope: "Pantheon+SH0ES/Data"
+  files:
+    - name: "pantheon_lightcurve_table"
+      source_url: "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+SH0ES/Data/lcparam_full_long_zhel.txt"
+      local_path: "data/pantheon/lcparam_full_long_zhel.txt"
+      required: true
+    - name: "pantheon_covariance_matrix"
+      source_url: "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+SH0ES/Data/Pantheon+SH0ES_STAT+SYS.cov"
+      local_path: "data/pantheon/Pantheon+SH0ES_STAT+SYS.cov"
+      required: true
+
+outputs:
+  provenance_manifest: "data/real_sources/pantheon_real_data_manifest.json"
+  academic_status: "data/real_sources/pantheon_academic_validation_status.json"
+  model_comparison: "data/results/model_comparison.json"
+  output_contract:
+    - "provenance_manifest must include SHA256 for each required input file"
+    - "academic_status must include pass/fail against declared falsifiability checks"
+    - "model_comparison must include all required_metrics with LCDM and RLL values"
+
+validation:
+  baseline_model: "LCDM"
+  candidate_model: "RLL"
+  required_metrics:
+    - "n_obs"
+    - "k_rll"
+    - "k_lcdm"
+    - "chi2_rll"
+    - "chi2_lcdm"
+    - "AIC_rll"
+    - "AIC_lcdm"
+    - "BIC_rll"
+    - "BIC_lcdm"
+    - "delta_chi2_rll_minus_lcdm"
+    - "delta_aic_rll_minus_lcdm"
+    - "delta_bic_rll_minus_lcdm"
+    - "interpretation_label"
+
+falsifiability:
+  null_hypothesis: "LCDM explains the Pantheon+ observations at least as well as RLL under the declared likelihood, sample, covariance, and parameter count."
+  alternative_hypothesis: "RLL improves the declared comparison metrics enough to pass predefined thresholds."
+  false_positive_controls:
+    - "real Pantheon+ files present"
+    - "SHA256 provenance recorded"
+    - "same covariance used for both models"
+    - "same observational sample used for both models"
+    - "parameter counts declared"
+    - "AIC and BIC penalties included"
+    - "interpretation label conservative"
+    - "no superiority claim from synthetic or partial data"

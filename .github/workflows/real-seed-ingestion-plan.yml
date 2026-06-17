@@ -1,0 +1,67 @@
+name: Real Seed Ingestion Plan
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "data/real/bootstrap/real_observational_seed_v*.csv"
+      - "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv"
+      - "data/real/bootstrap/real_seed_pipeline_orchestration.yml"
+      - "scripts/data_scan/build_real_seed_ingestion_plan.py"
+      - ".github/workflows/real-seed-ingestion-plan.yml"
+  push:
+    paths:
+      - "data/real/bootstrap/real_observational_seed_v*.csv"
+      - "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv"
+      - "data/real/bootstrap/real_seed_pipeline_orchestration.yml"
+      - "scripts/data_scan/build_real_seed_ingestion_plan.py"
+      - ".github/workflows/real-seed-ingestion-plan.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: real-seed-ingestion-plan-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-real-seed-ingestion-plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show repository state
+        run: |
+          git rev-parse HEAD
+          git status --short
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile ingestion plan builder
+        run: |
+          python -m py_compile scripts/data_scan/build_real_seed_ingestion_plan.py
+
+      - name: Build real seed ingestion plan
+        run: |
+          python scripts/data_scan/build_real_seed_ingestion_plan.py
+
+      - name: Display ingestion plan
+        run: |
+          cat data/results/bootstrap/real_seed_ingestion_plan.json
+          echo "---"
+          cat docs/science/REAL_SEED_INGESTION_PLAN.md
+
+      - name: Upload ingestion plan artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-seed-ingestion-plan
+          path: |
+            data/results/bootstrap/real_seed_ingestion_plan.json
+            data/results/bootstrap/real_seed_ingestion_plan.tsv
+            docs/science/REAL_SEED_INGESTION_PLAN.md

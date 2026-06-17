@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1",
+  "status": "real_seed_validation_v0_complete",
+  "claim_allowed": false,
+  "scripts": [
+    {
+      "script": "scripts/validation/validate_compact_remnant_boundary.py",
+      "returncode": 0,
+      "stdout": "materialized in repository",
+      "stderr": ""
+    },
+    {
+      "script": "scripts/validation/validate_dark_lens_candidates.py",
+      "returncode": 0,
+      "stdout": "materialized in repository",
+      "stderr": ""
+    },
+    {
+      "script": "scripts/validation/validate_historical_impulse_candidates.py",
+      "returncode": 0,
+      "stdout": "materialized in repository",
+      "stderr": ""
+    },
+    {
+      "script": "scripts/validation/validate_high_z_smbh_seeds.py",
+      "returncode": 0,
+      "stdout": "materialized in repository",
+      "stderr": ""
+    }
+  ],
+  "outputs": [
+    {
+      "path": "data/results/compact_objects/remnant_boundary_validation.json",
+      "exists": true,
+      "module": "compact_remnant_boundary",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    },
+    {
+      "path": "data/results/compact_objects/wandering_bh_validation.json",
+      "exists": true,
+      "module": "wandering_black_holes_dark_lens",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    },
+    {
+      "path": "data/results/kinematics/historical_impulse_validation.json",
+      "exists": true,
+      "module": "historical_impulse_slingshot",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    },
+    {
+      "path": "data/results/high_z_smbh/seed_validation.json",
+      "exists": true,
+      "module": "high_z_smbh_seeds",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    }
+  ],
+  "safe_conclusion": "seed-level calculations were produced; no final scientific validation claim is allowed yet"
+}

@@ -1,0 +1,1 @@
+Identificou-se uma metodologia não acadêmica compartilhada na plataforma para identificar números primos na sequência de ímpares de 1 a 100. O método baseia-se em multiplicar em ordem os números ímpares sequenciais por três

@@ -1,0 +1,74 @@
+{
+  "registry_version": "2026-05-22",
+  "purpose": "Real-data materialization registry for Relativity Living Light validation flows.",
+  "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+  "datasets": [
+    {
+      "id": "pantheon_plus_shoes",
+      "domain": "cosmology_supernovae",
+      "status": "primary_minimal_real_validation",
+      "description": "Pantheon+ / SH0ES Type Ia supernova data and covariance used for RLL vs LCDM expansion-history comparison.",
+      "required_local_files": [
+        "data/pantheon/lcparam_full_long_zhel.txt",
+        "data/pantheon/Pantheon+SH0ES_STAT+SYS.cov"
+      ],
+      "candidate_remote_files": [
+        {
+          "local_path": "data/pantheon/lcparam_full_long_zhel.txt",
+          "urls": [
+            "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+SH0ES/Data/lcparam_full_long_zhel.txt",
+            "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+SH0ES/Data/Pantheon+SH0ES.dat"
+          ],
+          "note": "Some public releases expose the table as Pantheon+SH0ES.dat. If so, parser compatibility must be checked before renaming."
+        },
+        {
+          "local_path": "data/pantheon/Pantheon+SH0ES_STAT+SYS.cov",
+          "urls": [
+            "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+SH0ES/Data/Pantheon+SH0ES_STAT+SYS.cov"
+          ],
+          "note": "Covariance matrix required for covariance-aware Pantheon+ likelihood."
+        }
+      ],
+      "required_metrics": [
+        "n_obs",
+        "chi2_rll",
+        "chi2_lcdm",
+        "AIC_rll",
+        "AIC_lcdm",
+        "BIC_rll",
+        "BIC_lcdm",
+        "delta_chi2_rll_minus_lcdm",
+        "delta_aic_rll_minus_lcdm",
+        "delta_bic_rll_minus_lcdm"
+      ]
+    },
+    {
+      "id": "desi_dr2_bao",
+      "domain": "cosmology_bao",
+      "status": "secondary_cross_validation",
+      "description": "DESI DR2 BAO measurements for independent expansion-history and dark-energy cross-checks.",
+      "required_local_files": [],
+      "candidate_remote_files": [],
+      "note": "Registry placeholder. Materialization should use official DESI DR2 release tables and preserve exact provenance/DOI/reference before ingestion."
+    },
+    {
+      "id": "planck_2018_pr4",
+      "domain": "cmb_baseline",
+      "status": "baseline_prior_or_external_comparison",
+      "description": "Planck 2018 / PR4 CMB parameters and likelihood products used only with explicit assumptions.",
+      "required_local_files": [],
+      "candidate_remote_files": [],
+      "note": "Do not silently mix Planck priors into Pantheon-only comparisons. Any CMB prior must be declared in the output artifact."
+    },
+    {
+      "id": "omni_space_weather",
+      "domain": "heliospheric_radiative",
+      "status": "auxiliary_non_cosmology_validation",
+      "description": "NASA OMNI solar wind / IMF products for heliospheric-radiative RLL blocks, not for direct LCDM comparison.",
+      "required_local_files": [],
+      "candidate_remote_files": [],
+      "note": "Separate from cosmological model-comparison artifacts."
+    }
+  ],
+  "minimum_final_artifact": "data/results/model_comparison.json"
+}

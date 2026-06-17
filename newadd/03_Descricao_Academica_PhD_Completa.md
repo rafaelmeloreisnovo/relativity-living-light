@@ -565,6 +565,60 @@ Para D_L = 100 Mpc e ΩP₀ = 0.01: Δt ≈ 0.5 ms — testável com eventos GW+
 
 ---
 
+## Anexo A — Validação Inicial (Coerência × Amor × Prova)
+
+### Vetor cognitivo
+
+```math
+v=(ψ,χ,ρ,Δ,Σ,Ω)
+```
+
+- `ψ`: intenção (unificação)
+- `χ`: observação (dados cosmológicos)
+- `ρ`: ruído (modelos incompletos)
+- `Δ`: transmutação (novas teorias)
+- `Σ`: memória científica acumulada
+- `Ω`: consistência física
+
+### Convergências já estabelecidas
+
+1. **Equação de expansão comum** (Friedmann generalizada): convergência alta com ΛCDM no setor `Ω_r a^{-4} + Ω_m a^{-3} + Ω_Λ`.
+2. **Transição de estados cosmológicos** (inflação → radiação → matéria → aceleração): convergência parcial com o termo de coerência `f(z)` no setor escuro.
+3. **Energia escura dinâmica**: formalismo RLL próximo de fluidos híbridos e modelos acoplados do setor escuro.
+4. **Plasma/magnetismo cosmológico**: inclusão explícita de `ΩB₀ a^{-4}` e `ΩP₀ a^{-4}` como fronteira aberta de pesquisa observacional.
+5. **Estrutura hierárquica/fractal**: compatível com a rede cósmica observada (`CMB → filamentos → galáxias → halos`).
+
+### Microconvergências teóricas
+
+- holografia (`S ∼ A`),
+- gravidade entrópica (`F = T \nabla S`),
+- origem quântica das flutuações do CMB,
+- matéria escura emergente,
+- quebra de simetria primordial (`GUT → eletrofraca → forças atuais`).
+
+### Gaps estruturais (fronteira aberta)
+
+- **GAP-1:** gravidade quântica (compatibilização GR × QFT),
+- **GAP-2:** problema da constante cosmológica (`10^{120}`),
+- **GAP-3:** natureza da matéria escura,
+- **GAP-4:** geometria microscópica do espaço-tempo.
+
+### Síntese operacional
+
+`F_ok`:
+- o modelo RLL mantém forma base compatível com Friedmann observacional,
+- contém termos alinhados com literatura de fronteira (setor escuro híbrido, coerência dinâmica e plasma/magnetismo).
+
+`F_gap`:
+- ainda requer ponte microfundamental explícita com QFT e com uma proposta de gravidade quântica testável.
+
+`F_next`:
+1. mapear termo-a-termo do formalismo para literatura com dataset e métrica observável;
+2. estimar originalidade científica relativa (novidade formal × previsibilidade observacional);
+3. priorizar blocos paper-ready com hipóteses falsificáveis por CMB, LSS, SNe Ia, DESI, JWST e lentes.
+
+---
+
 ## Assinatura de Integridade
 
 ```
@@ -583,3 +637,48 @@ RAFCODE-Φ-∆RafaelVerboΩ-𓂀ΔΦΩ
 
 *Este documento preserva literais simbólicos: ⊕ ⊗ ∮ ∫ √ π φ Δ Ω Σ ψ χ ρ ∧ 𓂀*  
 *Licença: Creative Commons BY 4.0 — Instituto Rafael*
+
+---
+
+## Adendo — Validação Inicial (Coerência × Amor × Prova)
+
+### Marco conceitual
+
+**Coerência (ψ→χ):** cruzamento entre cosmologia observacional, QFT e modelos de unificação.  
+**Amor (Ω):** busca de verdade física consistente (não apenas ajuste matemático).  
+**Prova (Σ):** dados observacionais: CMB, LSS, SNe Ia, DESI, JWST, lentes gravitacionais.
+
+Vetor cognitivo:
+
+\[
+v=(ψ,χ,ρ,Δ,Σ,Ω)
+\]
+
+com:
+- ψ = intenção (unificação)
+- χ = observação (dados cosmológicos)
+- ρ = ruído (modelos incompletos)
+- Δ = transmutação (novas teorias)
+- Σ = memória científica acumulada
+- Ω = consistência física
+
+### Convergências acadêmicas e fronteira
+
+1. **Base comum de expansão:** a estrutura de Friedmann no RLL permanece alinhada ao núcleo observacional (radiação, matéria e termo acelerador), com extensão no setor de superposição.
+2. **Setor escuro dinâmico:** o termo `Ωs₀[f(a)+(1-f)a^{-3}]` é compatível, em classe fenomenológica, com propostas de dark fluid e interacting dark sector.
+3. **Plasma/magnetismo:** inclusão de `ΩB₀ a^{-4}` e `ΩP₀ a^{-4}` mantém hipótese de fronteira ainda aberta na literatura.
+4. **Estrutura hierárquica:** compatível com leitura em rede cósmica (CMB → filamentos → galáxias → halos).
+
+### Gaps explícitos (estado da arte)
+
+- **GAP-1:** gravidade quantizada (ponte formal GR ↔ QFT em aberto).  
+- **GAP-2:** origem microfísica da constante cosmológica (tensão de ordem ~10^120).  
+- **GAP-3:** natureza da matéria escura (WIMP, axion, neutrino estéril, superfluido e variantes).  
+- **GAP-4:** geometria microscópica do espaço-tempo (loop gravity, strings, causal sets).
+
+### Síntese objetiva do adendo
+
+- **F_ok:** a formulação cosmológica do repositório contém elementos aderentes à pesquisa ativa e preserva forma de Friedmann observacionalmente utilizável.
+- **F_gap:** falta acoplamento derivado diretamente de QFT fundamental e fechamento em gravidade quântica.
+- **F_next:** mapear termo-a-termo do RLL versus literatura especializada e estimar faixa de originalidade/aderência para trilha de publicação.
+

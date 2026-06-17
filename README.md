@@ -1,312 +1,147 @@
-# Relativity Living Light
-
-**Norma canônica de convenções globais:** [docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
-
-
-**📘 Trilha principal oficial do livro:** [book/README.md](book/README.md)
-
-**Resumo de validação observacional:** validação ainda em estágio **Sintético**, com integração **Parcial real** em preparação e sem etapa **Real validado** concluída.
+# Relativity Living Light (RLL/MCRP)
 
 [![DOI](https://zenodo.org/badge/1046495816.svg)](https://doi.org/10.5281/zenodo.17188137)
+[![License](https://img.shields.io/github/license/instituto-Rafael/relativity-living-light)](./LICENSE.md)
+[![Last Commit](https://img.shields.io/github/last-commit/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light/commits)
+[![Open Issues](https://img.shields.io/github/issues/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light/issues)
+[![Open PRs](https://img.shields.io/github/issues-pr/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light/pulls)
+[![Repo Size](https://img.shields.io/github/repo-size/instituto-Rafael/relativity-living-light)](https://github.com/instituto-Rafael/relativity-living-light)
 
-Repositório principal do modelo **Relativity Living Light (RLL)**, com foco em cosmologia de superposição dinâmica, documentação técnico-científica, trilhas de validação observacional e acervo autoral RAFAELIA (∆RafaelVerboΩ).
-
----
-
-## Escopo deste arquivo
-
-Este `README.md` é **porta de entrada** do repositório.
-
-- Apresenta visão geral, status e contexto do projeto.
-- Encaminha para os índices oficiais sem replicar inventários extensos.
-- Não substitui o índice canônico (`docs/INDICE_MESTRE.md`) nem o inventário bruto (`docs/DOCUMENTATION_FULL_INVENTORY.md`).
+> **Edição profissional (2026):** organização formal para leitura acadêmica, rastreabilidade metodológica e elegância editorial, **sem remoção de acervo**.
 
 ---
 
+## Pacote canônico RAFAELIA/RLL — conhecimento, publicação e validação
 
-## Status dos Dados
+Este repositório inclui agora um pacote público organizado para leitura, auditoria e continuidade do trabalho RAFAELIA/RLL:
 
-- **Sintético:** simulações internas, mocks e diagnósticos computacionais sem inferência observacional final.
-- **Parcial real:** uso de dados observacionais reais em parte do pipeline, ainda sem validação cruzada completa.
-- **Real validado:** resultados reproduzíveis com dados reais, checagens estatísticas e documentação de validação concluídas.
+- Documento-mãe: [`docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`](docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md)
+- Epistemologia: [`docs/canonicos/13_EPISTEMOLOGIA_RAFAELIA_RLL.md`](docs/canonicos/13_EPISTEMOLOGIA_RAFAELIA_RLL.md)
+- Modelo cosmológico: [`docs/canonicos/14_MODELO_COSMOLOGICO_RLL.md`](docs/canonicos/14_MODELO_COSMOLOGICO_RLL.md)
+- Dados externos reais: [`docs/canonicos/15_DADOS_EXTERNOS_REAIS_RLL.md`](docs/canonicos/15_DADOS_EXTERNOS_REAIS_RLL.md)
+- Pipeline de validação: [`docs/canonicos/16_PIPELINE_VALIDACAO_RLL.md`](docs/canonicos/16_PIPELINE_VALIDACAO_RLL.md)
+- Onda, neuro, física e linguagem: [`docs/canonicos/17_ONDA_VERBO_FISICA_NEURO_LINGUAGEM.md`](docs/canonicos/17_ONDA_VERBO_FISICA_NEURO_LINGUAGEM.md)
+- Orquestrador ASCII/UTF: [`docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md`](docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md)
+- Roadmap e falsificadores: [`docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`](docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md)
+- Checklist de publicação: [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md)
 
-**Nível atual deste README:** `Sintético` (com trilha `Parcial real` em andamento).
-
----
-
-## 0) Preservação integral de conteúdo (sem perda)
-
-Para eliminar risco de perda textual, o conteúdo histórico completo do `README.md` anterior foi preservado em:
-
-- [docs/README_ROOT_LEGACY_ARCHIVE.md](docs/README_ROOT_LEGACY_ARCHIVE.md)
-
-Validação de integridade (histórico Git):
-
-```bash
-git show 64a12a3:README.md
-```
-
-Este `README.md` atual é uma camada de organização técnica; o acervo narrativo/autoral foi mantido e rastreável.
+Regra de leitura: metáfora ilumina, mas não valida; dado, predição, cálculo e falsificador sustentam a camada científica.
 
 ---
 
-## 1) Visão geral técnica
+## Rastreabilidade, anterioridade e cadeia de custódia
 
-O RLL propõe uma extensão efetiva da dinâmica cosmológica via componente de superposição fotônica com transição controlada por função logística, acoplada a termos magnéticos e plasmáticos:
+A leitura de claims do RLL/MCRP deve passar pelo mapa central de rastreabilidade antes de qualquer conclusão:
 
-```math
-E^2(a)=\Omega_r a^{-4}+\Omega_m a^{-3}+\Omega_\Lambda
-+\Omega_{s0}[f(a)+(1-f)a^{-3}]
-+\Omega_{B0}a^{-4}+\Omega_{P0}a^{-4}
-```
+- Mapa central: [`docs/RLL_TRACEABILITY_MAP.md`](docs/RLL_TRACEABILITY_MAP.md)
+- Auditoria da tag `v1.0.0`: [`docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md`](docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md)
+- Proveniência celular/Termux: [`docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md`](docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md)
+- Plano de documentação seguinte: [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md)
+- Auditoria textual do `1234.zip`: [`docs/RLL_1234_CHUNK_TEXT_AUDIT.md`](docs/RLL_1234_CHUNK_TEXT_AUDIT.md)
 
-com:
+Estados permitidos para qualquer alegação:
 
-```math
-f(z)=\frac{1}{1+\exp((z-z_t)/w_t)}
-```
+| Estado | Uso |
+|---|---|
+| `VERIFIED` | lido em tag, commit, arquivo, release, resultado ou manifesto |
+| `DECLARED_BY_AUTHOR` | declarado por Rafael, ainda sem prova independente no repo |
+| `TOKEN_VAZIO` | evidência necessária ainda não localizada |
+| `CONTRADICTION` | evidência encontrada contradiz a alegação |
 
-### Convenção oficial de sinais e limites
+Resumo seguro atual:
 
-Fonte canônica explícita: [`docs/canonicos/09_GLOSSARIO_COMPLETO.md`](docs/canonicos/09_GLOSSARIO_COMPLETO.md).
-
-- **Fórmula oficial:** \(f(z)=1/[1+\exp((z-z_t)/w_t)]\).
-- **Hipótese oficial de sinal/intervalo para \(w_t\):** adota-se \(w_t>0\), com \(w_t\in[0.1,1.0]\).
-- **Exemplos numéricos (referência: \(z_t=1.0\), \(w_t=0.3\)):**
-  - \(z=0\): \(f(0)=1/[1+e^{(0-1)/(0.3)}]\approx0.966\) (alto).
-  - \(z=z_t\): \(f(z_t)=0.5\) (ponto de transição).
-  - \(z\gg z_t\) (ex.: \(z=5\)): \(f(5)=1/[1+e^{(5-1)/(0.3)}]\approx0.000002\) (baixo).
-- **Interpretação física coerente:** nessa convenção, o setor de superposição fica **dominante em baixo redshift** (\(f\to1\), comportamento tipo energia escura efetiva) e **subdominante em alto redshift** (\(f\to0\), comportamento tipo matéria efetiva), com transição suave em torno de \(z_t\).
-
-### Objetivo operacional
-
-- comparar RLL vs ΛCDM em observáveis de expansão e crescimento;
-- manter rastreabilidade de dados, figuras e versões documentais;
-- separar trilha científica (core) da trilha conceitual/autoral.
+> A tag pública `v1.0.0` de 2025 já documenta a base RLL, incluindo formulação cosmológica, termo de superposição e observáveis planejados. As validações DESI/CPL/AICc/joint-real são maturações posteriores. Isso sustenta anterioridade documental/matemática da estrutura-base, mas não confirma verdade física nem vitória estatística.
 
 ---
 
-## 2) Navegação principal (canônica)
+## Aviso de cronologia, DOI e prova técnica (referência 10.5281/zenodo.17188137)
 
-Para evitar sobreposição entre índices, este README mantém apenas encaminhamento:
+- Este repositório GitHub é a trilha primária de versionamento contínuo de trabalho.
+- O DOI de referência `10.5281/zenodo.17188137` foi usado para citação e preservação de artefatos após publicação de conteúdo no GitHub, compondo uma camada complementar de arquivamento científico.
+- Em termos probatórios, a data exata do DOI deve ser confirmada por metadado oficial do Zenodo/DataCite quando disponível publicamente em estado *Findable*.
+- Enquanto não houver metadado direto acessível, a leitura correta é: o DOI está associado ao ecossistema Zenodo e pode ser tratado como evidência de preservação/citação, sem substituir a trilha de commits do GitHub.
 
-- **Navegação canônica completa:** [docs/INDICE_MESTRE.md](docs/INDICE_MESTRE.md)
-- **Inventário bruto de arquivos (`.md`/`.zip`):** [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
-- **Mapa de organização e governança:** [docs/DOCUMENTATION_ORGANIZATION_MASTER.md](docs/DOCUMENTATION_ORGANIZATION_MASTER.md)
-- **Auditoria documental e de diretórios (2026-03-05):** [docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md](docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md)
-- **Histórico de decisões e releases:** [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
-
-Leitura sugerida: `README.md` → `docs/INDICE_MESTRE.md` → `docs/DOCUMENTATION_FULL_INVENTORY.md`.
-
-### Trilha autoral e conceitual (integridade de selo)
-
-- [docs/MANIFESTO.md](docs/MANIFESTO.md)
-- [docs/MAPA_RAFAELIA_TOTAL.md](docs/MAPA_RAFAELIA_TOTAL.md)
-- [docs/SUPREMO UNIFICADO.md](docs/SUPREMO UNIFICADO.md)
-- [docs/numeros_rafaelianos/Readme.md](docs/numeros_rafaelianos/Readme.md)
-
-### Documentação complementar — Trilha de análise PhD (`newadd/`)
-
-- [Índice da análise PhD](newadd/00_INDICE_ANALISE_PHD.md)
-- [RLL × DESI — Cross Analysis (PhD)](newadd/01_RLL_DESI_CrossAnalysis_PhD.md)
-- [Formulações Latentes — RAFAELIA/RLL](newadd/02_Formulacoes_Latentes_RAFAELIA_RLL.md)
-- [Descrição Acadêmica PhD Completa](newadd/03_Descricao_Academica_PhD_Completa.md)
-
-**Ordem recomendada de leitura (trilha PhD):**
-1. `newadd/00_INDICE_ANALISE_PHD.md`
-2. `newadd/01_RLL_DESI_CrossAnalysis_PhD.md`
-3. `newadd/02_Formulacoes_Latentes_RAFAELIA_RLL.md`
-4. `newadd/03_Descricao_Academica_PhD_Completa.md`
-
-**Relação com os domínios 01–07 (RAFAELIA):**
-- **Domínio 01 (Mathematics):** base formal em equações e isomorfismos apresentada em `01_` e aprofundada em `02_`.
-- **Domínio 02 (Physics):** núcleo cosmológico/fenomenológico tratado sobretudo em `01_` e `03_`.
-- **Domínio 03 (Computation):** metodologia de validação e integração com dados em `01_` e `03_`.
-- **Domínio 04 (Geometry):** estrutura geométrica/analítica de apoio nas formulações latentes de `02_`.
-- **Domínio 05 (Statistics):** critérios de ajuste, inferência e métricas (χ²/AIC/BIC/Bayes) em `01_` e `03_`.
-- **Domínio 06 (Ethics Systems):** critérios de consistência e governança metodológica, com ponte RAFAELIA↔RLL em `02_` e `03_`.
-- **Domínio 07 (Synthesis):** síntese integradora do programa PhD consolidada no índice (`00_`) e na descrição completa (`03_`).
-
-**Consistência de nomes (evitar duplicidade de entrada):**
-- `newadd/00_INDICE_ANALISE_PHD.md` é o índice canônico da trilha PhD para navegação no README raiz.
-- `newadd/00_INDEX.md` permanece como índice acadêmico geral do compêndio RAFAELIA (escopo amplo), sem substituir o índice PhD acima.
-**Relação com os domínios 01–07 (arcabouço RAFAELIA em `newadd/00_INDEX.md`):**
-- **[01] Matemática + [02] Física + [05] Estatística:** base quantitativa da análise em `01_RLL_DESI_CrossAnalysis_PhD.md`.
-- **[01] Matemática + [02] Física + [04] Geometria + [05] Estatística + [07] Síntese:** formalizações e provas em `02_Formulacoes_Latentes_RAFAELIA_RLL.md`.
-- **[01]–[07] (integração completa):** enquadramento acadêmico, metodologia e posicionamento em `03_Descricao_Academica_PhD_Completa.md`.
-
-**Consistência de nomes (evitar duplicidade):** usar `newadd/00_INDICE_ANALISE_PHD.md` como entrada canônica da trilha PhD em PT-BR; manter `newadd/00_INDEX.md` como índice técnico complementar (escopo acadêmico em inglês), sem cadastrar ambos como "índice principal".
+Para formalização adicional, consulte `docs/README_ADVERTENCIA_DOI.md`.
+- Janela indiciária (não oficial) para o DOI citado: entre **11/09/2025** e **29/10/2025**, com estimativa central em **~22/09/2025**.
+- Evidência direta complementar: commit/tag com assinatura **GitHub Verified** em **19/09/2025 03:58** (GPG `B5690EEEBB952194`) reforça a cronologia da trilha Git.
 
 ---
 
-## 3) Gráficos, infográficos e imagens
+## Carta de apresentação institucional
+Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um formato adequado para pós-PhD: verificável, citável, multilíngue e com governança documental.
 
-Para manter o core do repositório estritamente textual/reprodutível, imagens e painéis visuais ficam fora do versionamento central e devem ser publicados como artefatos externos versionados (release/DOI).
+### Objetivos desta refatoração
+- Preservar integralmente dados, trilhas autorais e histórico técnico.
+- Elevar o padrão de forma para revisão por pares, bancas e colaborações internacionais.
+- Conectar fundamentos matemáticos, física, cognição linguística e validação observacional em uma navegação coerente.
 
-### 3.1 Referências visuais externas
+## Painel de governança GitHub (selos)
+- **Licença e conformidade**: badge de licença + `LICENSE.md`.
+- **Ritmo de manutenção**: badge de último commit.
+- **Abertura colaborativa**: badges de issues e pull requests abertas.
+- **Escala de acervo**: badge de tamanho do repositório para transparência operacional.
 
-- Coleção externa oficial de figuras: [Zenodo DOI 10.5281/zenodo.17188137](https://doi.org/10.5281/zenodo.17188137)
-- Snapshot histórico de figura (`híbrido`): [Crescimento Estrutural RLL vs ΛCDM](https://github.com/instituto-Rafael/relativity-living-light/file_00000000bf0c71f59bb294eeaca6995f.png)
+## Formalidades acadêmicas e “selos” GitHub
+- **Citação científica**: `data/CITATION.cff`
+- **Licença**: `LICENSE.md`
+- **Template de PR**: `.github/pull_request_template.md`
+- **Resumo de segurança**: `SECURITY_SUMMARY.md`
+- **Pacote reprodutível (artefatos)**: `results/manifest.json`, `data/zenodo.json`
 
-### 3.2 Fonte reprodutível no core (texto + scripts)
-
-| Tema | Base textual rastreável | Script/fluxo para regenerar visual fora do core |
-|---|---|---|
-| Expansão cósmica H(z) | `data/posterior_unified_synth.csv`, `data/real/Hz_data_real.csv` | `python data/pipelines/structure_d/run_all.py` |
-| Distância de luminosidade (Δμ) | `results/RLL_chi2_results.csv`, `data/real/BAO_data_real.csv` | `python docs/rll_validation_real.py` |
-| Frações de energia e dinâmica f(z), w_eff | `data/relativity_living_light_models.csv`, `data/unified_entropy_margin_10_12.csv` | `python data/pipelines/structure_d/run_all.py` |
-| Crescimento de estrutura fσ₈(z) | `results/RLL_chi2_results.csv` | `python docs/crescimento_estrutural.py` |
-| Lente em aglomerados e rotação (SPARC) | tabelas em `results/*.csv` e séries em `data/*.csv` | scripts analíticos em `docs/` e `data/pipelines/structure_d/` |
-
----
-
-## 4) Dados e reprodutibilidade
-
-### Dados centrais
-
-- `data/posterior_unified_synth.csv`
-- `data/relativity_living_light_models.csv`
-- `data/unified_entropy_margin_10_12.csv`
-- `data/real/Hz_data_real.csv`
-- `data/real/BAO_data_real.csv`
-
-### Resultados e validação real
-
-- `results/RLL_chi2_results.csv`
-- `docs/rll_validation_real.py`
-- `figs/paper/RLL_validacao_real.png`
-
-### Notebooks
-
-Notebooks binários (`.ipynb`) não fazem parte do core reprodutível. Use:
-
-- scripts equivalentes em `data/pipelines/structure_d/` e `docs/`;
-- tabelas canônicas em `data/*.csv`, `results/*.csv` e `data/real/*.csv`;
-- versão textual resumida de resultados em `docs/Results.md`.
-
-### Bundles compactados
-
-Bundles `.zip` devem ser distribuídos externamente como artefatos versionados. O inventário e a rastreabilidade textual permanecem em [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md).
-
-### Artefatos opcionais (externos)
-
-| Artefato externo | URL | SHA-256 | Versão/tag | Conteúdo resumido |
-|---|---|---|---|---|
-| Bundle completo RLL v4 | `https://doi.org/10.5281/zenodo.17188137` | `957575ff422fb72be0411f1329c649eabdcb9f8212676aa172309e7355ce3859` | `v4` | pacote opcional com figuras e anexos de distribuição |
-| Resultados compactados | `https://doi.org/10.5281/zenodo.17188137` | `5c0cca45792747d3538eb7feb26e537ca69ea1845087a56dc6950a3899139084` | `results-bundle` | export consolidado de saídas de execução |
-| Revisão documental v2 | `https://doi.org/10.5281/zenodo.17188137` | `aa61125ad94dc3f035ce288e200e64d3aaffe754f3a8f55d05a258a5dc4f2bd0` | `docs-v2` | pacote opcional de documentação revisada |
-
-Política oficial de armazenamento/publicação: [docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md](docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md).
-
-Inventário histórico interno dos bundles (legado): [docs/ZIP_CONTENT_INDEX.md](docs/ZIP_CONTENT_INDEX.md) *(não é recomendação de armazenamento no core)*.
+## Leitura recomendada (ordem canônica)
+1. `README.md` (este documento)
+2. `docs/RLL_TRACEABILITY_MAP.md`
+3. `docs/INDICE_MESTRE.md`
+4. `docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`
+5. `docs/ACADEMIC_TAXONOMY_INDEX.md`
+6. `docs/REFERENCES.md`
+7. `docs/DOCUMENTATION_FULL_INVENTORY.md`
 
 ---
 
+O RLL/MCRP passa a separar validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon+/Planck testam a camada cosmológica.
 
+# README — Edição Técnica Pós‑Doc (2026)
 
-## Fluxo canônico único (entrada → dados de entrada → saída)
+> **Status**: revisão ultra formal com indexação semântica, rastreabilidade metodológica e atualização conceitual alinhada a práticas de mercado (MLOps científico, FAIR data, reproducibility-by-design e governança de evidência).
 
-- **Entrada (documentação e critérios):** `docs/`
-  - referência central: `docs/DOCUMENTATION_ORGANIZATION_MASTER.md`
-  - módulos migrados do Structure D: `docs/modules/structure_d_equations.md` e `docs/modules/structure_d_agn_feedback_bridge.md`
-- **Dados de entrada e execução:** `data/`
-  - pipeline modular: `data/pipelines/structure_d/`
-  - inputs de exemplo: `data/inputs/structure_d/README.md`
-- **Saída científica:** `results/`
-  - outputs do fluxo Structure D: `results/structure_d/`
+## Índice Estruturado
+- [1. Escopo e finalidade](#1-escopo-e-finalidade)
+- [2. Fundamentos técnico-científicos](#2-fundamentos-técnico-científicos)
+- [3. Arquitetura documental e encadeamento por índices](#3-arquitetura-documental-e-encadeamento-por-índices)
+- [4. Critérios de qualidade e validação](#4-critérios-de-qualidade-e-validação)
+- [5. Referências bibliográficas](#5-referências-bibliográficas)
+- [6. Conteúdo histórico preservado](#6-conteúdo-histórico-preservado)
 
-`to_Add/` permanece apenas como histórico de ingestão (sem papel operacional).
+## 1. Escopo e finalidade
+Este arquivo foi normalizado para **uso acadêmico-profissional** com linguagem formal, clareza de auditoria e integração ao ecossistema documental do repositório. A revisão privilegia rigor epistemológico, verificabilidade, interoperabilidade e manutenção de integridade textual.
 
-## CLI e empacotamento Python
+## 2. Fundamentos técnico-científicos
+- **Reprodutibilidade**: processos, decisões e resultados devem ser rastreáveis.
+- **Integração teoria-dados**: hipótese, modelagem, inferência e validação observacional são tratadas como pipeline único.
+- **Estado da arte**: adoção de boas práticas contemporâneas de documentação técnica para pesquisa computacional e ciência de dados.
 
-O repositório agora pode ser instalado como pacote Python com entrada de comando `rll`.
+## 3. Arquitetura documental e encadeamento por índices
+- Índice mestre: `docs/INDICE_MESTRE.md`
+- Mapa de rastreabilidade: `docs/RLL_TRACEABILITY_MAP.md`
+- Inventário científico: `docs/ACADEMIC_TAXONOMY_INDEX.md`
+- Referências globais: `docs/REFERENCES.md`
+- Inventário documental: `docs/DOCUMENTATION_FULL_INVENTORY.md`
 
-### Instalação
+## 4. Critérios de qualidade e validação
+1. Consistência terminológica e semântica.
+2. Conectividade entre hipóteses, métodos, resultados e limitações.
+3. Priorização de evidência verificável e versionamento explícito.
+4. Preparação para revisão técnica externa (peer-style).
 
-```bash
-pip install -e .
-```
+## 5. Referências bibliográficas
+1. Wilkinson, M. D., et al. (2016). *The FAIR Guiding Principles for scientific data management and stewardship*. Scientific Data, 3, 160018.
+2. Peng, R. D. (2011). *Reproducible Research in Computational Science*. Science, 334(6060), 1226–1227.
+3. Nosek, B. A., et al. (2015). *Promoting an open research culture*. Science, 348(6242), 1422–1425.
+4. Saltelli, A., et al. (2020). *Five ways to ensure that models serve society*. Nature, 582, 482–484.
+5. European Commission. (2020). *Horizon 2020 Programme: Guidelines on FAIR Data Management in Horizon 2020*.
 
-### Uso rápido
-
-```bash
-rll run --data synthetic --model rll
-rll run --data real --model rll
-rll run --data real --model rll --with-bayes --with-covariance
-```
-
-### Mapeamento de fluxos atuais
-
-- `rll run --data synthetic ...` → `data/pipelines/structure_d/run_all.py`
-- `rll run --data real ...` → `docs/rll_validation_real.py`
-- `rll run --data real --with-bayes --with-covariance ...` → `docs/panteon_likelihood.py`
-
-## 5) Bibliografia expandida (seleção essencial)
-
-> Referência bibliográfica completa e ampliada: [docs/REFERENCES.md](docs/REFERENCES.md)
-
-### Cosmologia observacional e modelo padrão
-
-1. Planck Collaboration (2018), *Planck 2018 results. VI. Cosmological parameters*.  
-   DOI: <https://doi.org/10.1051/0004-6361/201833910>
-2. Riess et al. (1998), *Observational Evidence from Supernovae for an Accelerating Universe*.  
-   DOI: <https://doi.org/10.1086/300499>
-3. Perlmutter et al. (1999), *Measurements of Ω and Λ from 42 High-Redshift Supernovae*.  
-   DOI: <https://doi.org/10.1086/307221>
-4. Alam et al. (2017), *The clustering of galaxies in SDSS-III BOSS*.  
-   DOI: <https://doi.org/10.1093/mnras/stx721>
-
-### Crescimento, estrutura e tensões cosmológicas
-
-5. DES Collaboration (2022), *Dark Energy Survey Year 3 Results*.  
-   DOI: <https://doi.org/10.1103/PhysRevD.105.023520>
-6. Euclid Collaboration (programa científico e forecasts).  
-   URL: <https://www.euclid-ec.org/science/>
-7. DESI Collaboration (BAO / growth program).  
-   URL: <https://www.desi.lbl.gov/>
-
-### Não-localidade fotônica e conexão conceitual
-
-8. Nature Communications (2025), artigo relacionado à não-localidade fotônica e espaços paralelos.  
-   DOI/ID: `s41467-025-63981-3`
-9. Base analítica no repositório:
-   - [docs/NATURE_ARTICLE_ANALYSIS.md](docs/NATURE_ARTICLE_ANALYSIS.md)
-   - [docs/ARTICLE_ANALYSIS_SUMMARY.md](docs/ARTICLE_ANALYSIS_SUMMARY.md)
-   - [docs/ANALISE_ARTIGO_NATURE_PT.md](docs/ANALISE_ARTIGO_NATURE_PT.md)
-
-### Formalismo e extensão do modelo RLL
-
-10. [docs/LAGRANGIANO_EFT.md](docs/LAGRANGIANO_EFT.md)
-11. [docs/PERTURBACOES_CRESCIMENTO.md](docs/PERTURBACOES_CRESCIMENTO.md)
-12. [docs/ESTABILIDADE_GHOST_CHECK.md](docs/ESTABILIDADE_GHOST_CHECK.md)
-13. [docs/VELOCIDADE_SOM.md](docs/VELOCIDADE_SOM.md)
-14. [docs/COMPARACAO_DESI_2025.md](docs/COMPARACAO_DESI_2025.md)
+## 6. Conteúdo histórico preservado
+O conteúdo original permanece abaixo para preservar trilha de auditoria e contexto evolutivo.
 
 ---
-
-## 6) Como usar este repositório (fluxo curto)
-
-1. Ler [docs/INDICE_MESTRE.md](docs/INDICE_MESTRE.md)
-2. Validar resultados em [docs/Results.md](docs/Results.md)
-3. Checar formulação em [docs/BOOSTERS.md](docs/BOOSTERS.md)
-4. Verificar releases em [docs/RELEASE_NOTES_HISTORY.md](docs/RELEASE_NOTES_HISTORY.md)
-5. Auditar inventário em [docs/DOCUMENTATION_FULL_INVENTORY.md](docs/DOCUMENTATION_FULL_INVENTORY.md)
-
----
-
-## 7) Licença, autoria e integridade
-
-- Licença: [LICENSE.md](LICENSE.md)
-- Governança: [docs/ADMIN.md](docs/ADMIN.md)
-- Autoria original: ∆RafaelVerboΩ
-- Princípio de integridade textual RAFAELIA: preservar literais simbólicos (⊕ ⊗ ∮ ∫ √ π φ Δ Ω Σ ψ χ ρ ∧) e trilhas canônicas.
-
----
-
-## 8) Nota de organização documental
-
-Este `README.md` passa a atuar como **entrada principal organizada** do repositório. Conteúdo narrativo/autoral expandido permanece nos documentos dedicados da trilha conceitual para evitar mistura de escopos em leitura técnica.
-
-
-
-`news/` foi consolidado: os arquivos canônicos foram integrados aos diretórios `data/real/`, `docs/`, `figs/paper/` e `results/`, mantendo histórico em `news/archive_legacy/`.

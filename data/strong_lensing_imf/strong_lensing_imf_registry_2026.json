@@ -1,0 +1,5 @@
+{
+  "registry_id": "strong_lensing_imf_registry_2026",
+  "purpose": "Introduce recent strong-lensing IMF and dark-matter decomposition targets as external validation benchmarks for RLL without modifying the canonical RLL formula.",
+  "claim_boundary": "These systems motivate and constrain observational validation. They do not constitute evidence of RLL superiority unless real-data metrics pass predefined thresholds.",
+  "formula_policy":

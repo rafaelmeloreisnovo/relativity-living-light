@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "module": "wandering_black_holes_dark_lens",
+  "input_seed_records": [
+    "REAL_SEED_OGLE_2011_BLG_0462"
+  ],
+  "data_status": "external_only_seed",
+  "claim_allowed": false,
+  "claim_boundary": "seed-derived calculation only; not a final validation claim",
+  "calculations": {
+    "OGLE_2011_BLG_0462": {
+      "lens_mass_msun": {
+        "value": 7.15,
+        "minus": 0.83,
+        "plus": 0.83
+      },
+      "lens_distance_kpc": {
+        "value": 1.52,
+        "minus": 0.15,
+        "plus": 0.15
+      },
+      "space_velocity_km_s": {
+        "value": 51.1,
+        "minus": 7.5,
+        "plus": 7.5
+      },
+      "mass_classification_v0": "stellar_mass_black_hole_candidate",
+      "silent_or_dark_lens_relevance_v0": "candidate mass is in stellar-mass black-hole range and seed source reports no detected lens light; still requires raw astrometric/photometric ingestion and alternative-model comparison"
+    }
+  },
+  "required_next_data": [
+    "microlensing light curve table",
+    "astrometric displacement table",
+    "lens-source geometry parameters",
+    "luminous counterpart search limits",
+    "alternative lens model comparison"
+  ],
+  "status": "seed_metric_ready_claim_blocked"
+}

@@ -1,0 +1,64 @@
+name: repo-real-inventory
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/DOCUMENTATION_FULL_INVENTORY.md'
+      - 'docs/REAL_NUMBERS_REPORT.md'
+      - 'docs/YML_WORKFLOWS_INDEX.md'
+      - 'data/results/repo_inventory.json'
+      - 'data/results/repo_inventory.tsv'
+      - 'data/results/repo_inventory_summary.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout full repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate real inventory from canonical tool
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/docs_inventory.py
+
+      - name: Upload generated inventory artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: repo-real-inventory-${{ github.run_id }}
+          path: |
+            docs/DOCUMENTATION_FULL_INVENTORY.md
+            docs/REAL_NUMBERS_REPORT.md
+            docs/YML_WORKFLOWS_INDEX.md
+            data/results/repo_inventory.json
+            data/results/repo_inventory.tsv
+            data/results/repo_inventory_summary.json
+          retention-days: 14
+
+      - name: Commit generated real inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/DOCUMENTATION_FULL_INVENTORY.md docs/REAL_NUMBERS_REPORT.md docs/YML_WORKFLOWS_INDEX.md data/results/repo_inventory.json data/results/repo_inventory.tsv data/results/repo_inventory_summary.json
+          if git diff --cached --quiet; then
+            echo "No inventory changes."
+            exit 0
+          fi
+          git commit -m "Generate measured repository inventory"
+          git push

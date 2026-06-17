@@ -1,0 +1,95 @@
+schema: rafaelia.source_search_queue.v0.1
+created: '2026-06-16'
+status: active
+purpose: >-
+  Fila de buscas bibliográficas e estruturais para promover exemplos,
+  teses, conceitos e fórmulas de REF_REQUIRED/TOKEN_VAZIO para SOURCE_LINKED,
+  METHOD_DEFINED ou CLAIM_BLOCKED.
+
+rules:
+  - Toda busca deve registrar pergunta, domínio, termos e status.
+  - Nenhuma referência encontrada promove claim automaticamente.
+  - Fonte primária, método e limite devem ser separados.
+  - Se a fonte não for encontrada, manter TOKEN_VAZIO_REFERENCE.
+  - Se a fonte contradiz o claim, usar CLAIM_BLOCKED ou CLAIM_REVISED.
+
+priority_levels:
+  P0: claim_empirico_sem_fonte
+  P1: base_metodologica_necessaria
+  P2: expansão_bibliografica
+  P3: estilo_contexto_historia
+
+searches:
+  - search_id: SEARCH_000001
+    priority: P0
+    target_id: EX_REF_001
+    question: 'Qual é a fonte acadêmica específica sobre chia, nutrição humana/animal e origem cultural mencionada oralmente?'
+    domain: [nutricao, agronomia, etnobotanica]
+    query_terms:
+      - 'chia nutrition animals humans professor federal university Viçosa'
+      - 'Salvia hispanica chia human animal nutrition review Brazil university'
+    preferred_sources: [article, thesis, university_repository, review]
+    status: PENDING
+    result: TOKEN_VAZIO_RESULT
+
+  - search_id: SEARCH_000002
+    priority: P0
+    target_id: EX_REF_002
+    question: 'Qual é a origem histórica documentada da cesariana e quais tradições/etimologias são confiáveis?'
+    domain: [historia_da_medicina]
+    query_terms:
+      - 'history of cesarean section origin Julius Caesar myth'
+      - 'caesarean section etymology historical source'
+    preferred_sources: [historical_review, book, medical_history_article]
+    status: PENDING
+    result: TOKEN_VAZIO_RESULT
+
+  - search_id: SEARCH_000003
+    priority: P0
+    target_id: EX_REF_004
+    question: 'Quais padrões acadêmicos tratam plágio, autoria e responsabilidade por contribuição?'
+    domain: [etica_academica, autoria]
+    query_terms:
+      - 'ICMJE authors contributors responsibility AI authorship'
+      - 'CRediT contributor role taxonomy research integrity'
+    preferred_sources: [standard, guideline, official]
+    status: SOURCE_FOUND_PARTIAL
+    result: 'ICMJE and CRediT found as structural standards; COPE still needs direct source capture.'
+
+  - search_id: SEARCH_000004
+    priority: P1
+    target_id: PROTOCOL_000002
+    question: 'Quais padrões sustentam origem→referência→claim→DOI?'
+    domain: [governanca_dados, publicacao]
+    query_terms:
+      - 'FAIR principles provenance persistent identifier metadata'
+      - 'DataCite metadata schema DOI citation retrieval'
+      - 'Citation File Format CITATION.cff GitHub Zenodo'
+    preferred_sources: [standard, official_doc]
+    status: SOURCE_FOUND
+    result: 'FAIR, DataCite and CFF found.'
+
+  - search_id: SEARCH_000005
+    priority: P1
+    target_id: FORMULA_000001
+    question: 'Como formalizar IA viva humano-acoplada com responsabilidade humana e declaração de IA assistiva?'
+    domain: [computacao, filosofia, autoria, IA]
+    query_terms:
+      - 'human in the loop AI governance authors responsibility'
+      - 'ICMJE artificial intelligence assisted technology authors responsible'
+      - 'AI assisted writing authorship disclosure guideline'
+    preferred_sources: [guideline, review, standard]
+    status: SOURCE_FOUND_PARTIAL
+    result: 'ICMJE supports human responsibility and disclosure of AI use in scholarly work.'
+
+  - search_id: SEARCH_000006
+    priority: P2
+    target_id: METAPHOR_000001
+    question: 'Como tratar a metáfora da árvore do conhecimento infinito e barro finito como limite epistemológico?'
+    domain: [filosofia, teologia, epistemologia]
+    query_terms:
+      - 'tree of knowledge epistemology metaphor finite human knowledge'
+      - 'human finitude infinite knowledge philosophy theology'
+    preferred_sources: [book, philosophy_article, theological_source]
+    status: PENDING
+    result: TOKEN_VAZIO_RESULT

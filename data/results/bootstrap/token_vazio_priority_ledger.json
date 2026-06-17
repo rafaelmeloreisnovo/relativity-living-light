@@ -1,0 +1,160 @@
+{
+  "schema_version": "0.1",
+  "status": "token_vazio_priority_ledger",
+  "claim_allowed": false,
+  "purpose": "Rank open gaps, latent paths, forgotten items, and claim blockers so TOKEN_VAZIO becomes an auditable discovery queue rather than an accidental omission.",
+  "axiom": "Ruido entendido vira sinal. Erro medido vira engenharia. Lacuna marcada vira ciencia. TOKEN_VAZIO protegido vira verdade futura.",
+  "priority_scale": {
+    "P0": "blocks scientific credibility or claim boundary",
+    "P1": "highest value next measurement or schema/test gate",
+    "P2": "important route maturation task",
+    "P3": "lateral or exploratory expansion"
+  },
+  "items": [
+    {
+      "id": "TV-P0-001",
+      "state": "OPEN",
+      "priority": "P0",
+      "route": "all",
+      "object": "raw data with checksum",
+      "what_exists": "external_only_seed catalogs, CI artifacts, JSON reports, mapped ledgers",
+      "what_is_missing": "local raw data files with sha256, source version, license/terms, access date, and reproducible download method",
+      "risk_if_ignored": "seed-level references may be mistaken for full validation data",
+      "next_measure": "create raw_data_manifest.yml and ingest one raw dataset first",
+      "claim_boundary": "claim_allowed remains false"
+    },
+    {
+      "id": "TV-P0-002",
+      "state": "OPEN",
+      "priority": "P0",
+      "route": "cosmology_background",
+      "object": "blocked cosmology baseline",
+      "what_exists": "RLL comparison docs and earlier real-data ledgers",
+      "what_is_missing": "covariance-aware joint comparison with BAO, H(z), Pantheon+, Planck/CMB, f_sigma8 against LCDM, wCDM, and CPL",
+      "risk_if_ignored": "core RLL claim remains weaker than the wider validation scaffold",
+      "next_measure": "rebuild model_comparison.json with robust covariance and CPL baseline",
+      "claim_boundary": "no RLL superiority claim"
+    },
+    {
+      "id": "TV-P0-003",
+      "state": "OPEN",
+      "priority": "P0",
+      "route": "all",
+      "object": "claim_allowed gate",
+      "what_exists": "claim_allowed=false is preserved in seed artifacts",
+      "what_is_missing": "automated CI gate that fails if claim_allowed becomes true without raw data, checksum, metric, baseline, uncertainty, and reviewer note",
+      "risk_if_ignored": "future accidental overclaim",
+      "next_measure": "add scripts/validation/check_claim_allowed_gate.py and workflow step",
+      "claim_boundary": "fail closed"
+    },
+    {
+      "id": "TV-P1-001",
+      "state": "OPEN",
+      "priority": "P1",
+      "route": "compact_remnant_boundary",
+      "object": "GW posterior samples",
+      "what_exists": "GW230529 and GW190814 seed records plus v0 mass-gap calculations",
+      "what_is_missing": "LVK/GWOSC posterior samples, posterior overlap probability, EOS and low-mass BH baseline comparison",
+      "risk_if_ignored": "mass-gap route remains descriptive rather than quantitative",
+      "next_measure": "ingest one posterior sample table and compute mass_gap_overlap_probability",
+      "claim_boundary": "seed_metric_ready_raw_ingestion_needed"
+    },
+    {
+      "id": "TV-P1-002",
+      "state": "OPEN",
+      "priority": "P1",
+      "route": "orbital_shape_angular_momentum",
+      "object": "raw ephemerides and baselines",
+      "what_exists": "Earth, Moon, Mars, Jupiter reference seed metrics and CI artifact",
+      "what_is_missing": "SPICE/JPL Horizons state vectors, gravity harmonics, shape model versions, rotation model, covariance, Kepler/Newton/N-body/J2 baseline",
+      "risk_if_ignored": "orbital route remains a reference-constant calculation, not dynamical validation",
+      "next_measure": "ingest one SPICE/JPL state-vector table and compare h from vectors vs seed formula",
+      "claim_boundary": "no orbital deformation or new gravity claim"
+    },
+    {
+      "id": "TV-P1-003",
+      "state": "OPEN",
+      "priority": "P1",
+      "route": "all",
+      "object": "JSON schemas",
+      "what_exists": "JSON outputs from validation workflows",
+      "what_is_missing": "formal JSON schemas for ingestion plan, validation result, orbital metric result, and claim boundary",
+      "risk_if_ignored": "artifacts remain readable but not contract-validated",
+      "next_measure": "add data/schemas/*.schema.json and CI schema validation",
+      "claim_boundary": "schema must require claim_allowed"
+    },
+    {
+      "id": "TV-P1-004",
+      "state": "OPEN",
+      "priority": "P1",
+      "route": "all",
+      "object": "unit tests",
+      "what_exists": "scripts and workflows",
+      "what_is_missing": "tests for parser signs, claim boundary, ingestion routing, and orbital formulas",
+      "risk_if_ignored": "known parser class of bugs can return",
+      "next_measure": "add tests/test_real_seed_utils.py, tests/test_ingestion_plan.py, tests/test_orbital_shape_angular_momentum.py",
+      "claim_boundary": "CI should fail on parser regression"
+    },
+    {
+      "id": "TV-P2-001",
+      "state": "OPEN",
+      "priority": "P2",
+      "route": "residual_gravity_structures",
+      "object": "Gaia BH3 / ED-2 stream validator",
+      "what_exists": "mapped seed and route in orchestration",
+      "what_is_missing": "object-level stream membership data, validator script, JSON artifact, stream-membership metric",
+      "risk_if_ignored": "route remains lateral and underdeveloped",
+      "next_measure": "add validate_residual_gravity_structures.py and seed result JSON",
+      "claim_boundary": "no residual-structure claim"
+    },
+    {
+      "id": "TV-P2-002",
+      "state": "OPEN",
+      "priority": "P2",
+      "route": "historical_impulse_slingshot",
+      "object": "traceback integration",
+      "what_exists": "S5-HVS1 and LMC HVS seeds",
+      "what_is_missing": "Gaia astrometry/RV table, Galactic potential model, traceback probability code",
+      "risk_if_ignored": "slingshot remains conceptual",
+      "next_measure": "ingest one HVS table and compute origin traceback probability",
+      "claim_boundary": "no origin claim without model comparison"
+    },
+    {
+      "id": "TV-P2-003",
+      "state": "OPEN",
+      "priority": "P2",
+      "route": "high_z_smbh_seeds",
+      "object": "photometry/spectroscopy and lensing context",
+      "what_exists": "UHZ1 and CEERS 1019 seed calculations",
+      "what_is_missing": "raw JWST/Chandra tables, mass uncertainty model, host-galaxy constraints, magnification and selection checks",
+      "risk_if_ignored": "growth route remains simplified Eddington arithmetic",
+      "next_measure": "add high_z source manifest with raw tables and baseline seed models",
+      "claim_boundary": "no formation-channel claim"
+    },
+    {
+      "id": "TV-P3-001",
+      "state": "LATENT",
+      "priority": "P3",
+      "route": "orbital_shape_angular_momentum",
+      "object": "exoplanet tidal deformation",
+      "what_exists": "planetary shape/angular-momentum route",
+      "what_is_missing": "hot-Jupiter or close-in exoplanet seed catalog",
+      "risk_if_ignored": "lateral application remains hidden",
+      "next_measure": "add optional exoplanet_tidal_deformation route only after core orbital route matures",
+      "claim_boundary": "exploratory only"
+    },
+    {
+      "id": "TV-P3-002",
+      "state": "LATENT",
+      "priority": "P3",
+      "route": "residual_gravity_structures",
+      "object": "galactic geodesy with stellar streams",
+      "what_exists": "residual structure route and Gaia BH3 seed",
+      "what_is_missing": "stream-as-field-line interpretation and baseline Milky Way potential comparison",
+      "risk_if_ignored": "strong transdisciplinary bridge is left unformalized",
+      "next_measure": "write docs/science/GALACTIC_GEODESY_STREAMS_MAP.md after raw stream ingestion",
+      "claim_boundary": "no new gravity claim"
+    }
+  ],
+  "safe_conclusion": "The open items are not failures. They are ranked measurement and governance tasks. Until P0/P1 blockers are closed, all scientific claims remain blocked."
+}

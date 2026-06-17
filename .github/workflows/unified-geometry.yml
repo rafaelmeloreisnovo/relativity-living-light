@@ -1,0 +1,35 @@
+name: unified-geometry
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/unified_geometry_system.py'
+      - '.github/workflows/unified-geometry.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-text-artifacts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run unified geometry generator
+        run: |
+          python scripts/unified_geometry_system.py --a 1.0 --r 1.0 --R 2.0
+      - name: Upload textual artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: unified-geometry-text-artifacts
+          path: |
+            results/unified_geometry/shapes.csv
+            results/unified_geometry/manifest.json

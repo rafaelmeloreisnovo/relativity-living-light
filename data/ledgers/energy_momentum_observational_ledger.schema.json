@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://relativity-living-light.local/schemas/energy_momentum_observational_ledger.schema.json",
+  "title": "RLL Energy-Momentum Observational Ledger",
+  "type": "object",
+  "required": ["schema", "dataset_type", "status", "fields"],
+  "properties": {
+    "schema": {"const": "rll.energy_momentum_observational_ledger.v1"},
+    "dataset_type": {"const": "real_observational"},
+    "status": {"enum": ["not_measured", "measured"]},
+    "notes": {"type": "string"},
+    "fields": {
+      "type": "object",
+      "required": ["rho_before", "rho_rest_after", "rho_radiation", "rho_kinetic", "rho_thermal", "pressure", "rho_field"],
+      "properties": {
+        "rho_before": {"$ref": "#/$defs/energy_density"},
+        "rho_rest_after": {"$ref": "#/$defs/energy_density"},
+        "rho_radiation": {"$ref": "#/$defs/energy_density"},
+        "rho_kinetic": {"$ref": "#/$defs/energy_density"},
+        "rho_thermal": {"$ref": "#/$defs/energy_density"},
+        "pressure": {"$ref": "#/$defs/pressure"},
+        "rho_field": {"$ref": "#/$defs/energy_density"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ledger_field": {
+      "type": "object",
+      "required": ["name", "value", "uncertainty", "unit", "source", "doi_or_url", "license", "measured", "notes"],
+      "properties": {
+        "name": {"type": "string"},
+        "value": {"type": ["number", "null"]},
+        "uncertainty": {"type": ["number", "null"]},
+        "unit": {"type": "string", "minLength": 1},
+        "source": {"type": ["string", "null"]},
+        "doi_or_url": {"type": ["string", "null"]},
+        "sha256": {"type": ["string", "null"], "pattern": "^([a-fA-F0-9]{64})?$"},
+        "local_path": {"type": ["string", "null"]},
+        "license": {"type": ["string", "null"]},
+        "measured": {"type": "boolean"},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"measured": {"const": true}}},
+          "then": {"properties": {"source": {"type": "string", "minLength": 1}}, "required": ["source"]}
+        }
+      ]
+    },
+    "energy_density": {
+      "allOf": [
+        {"$ref": "#/$defs/ledger_field"},
+        {"properties": {"unit": {"const": "J/m^3"}}}
+      ]
+    },
+    "pressure": {
+      "allOf": [
+        {"$ref": "#/$defs/ledger_field"},
+        {"properties": {"unit": {"const": "Pa"}}}
+      ]
+    }
+  }
+}

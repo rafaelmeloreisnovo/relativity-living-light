@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/instituto-Rafael/relativity-living-light/knowledge_ecosystem/schemas/info_prime.schema.json",
+  "title": "InfoPrime",
+  "description": "Unidade mínima de informação rastreável no ecossistema polimático RAFAELIA/RLL.",
+  "type": "object",
+  "required": [
+    "id",
+    "origin_type",
+    "origin_person_or_source",
+    "domain",
+    "claim_state",
+    "content",
+    "evidence",
+    "limit",
+    "next_step"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^INFO_PRIME_[0-9]{6,}$"
+    },
+    "origin_type": {
+      "type": "string",
+      "enum": [
+        "oral_insight",
+        "article",
+        "book",
+        "code",
+        "dataset",
+        "experiment",
+        "observation",
+        "tradition",
+        "sensor",
+        "image",
+        "commit",
+        "unknown"
+      ]
+    },
+    "origin_person_or_source": {
+      "type": "string"
+    },
+    "timestamp_or_date": {
+      "type": "string",
+      "description": "ISO date/datetime when known, or TOKEN_VAZIO_DATE."
+    },
+    "domain": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "teologia",
+          "filosofia",
+          "fisica",
+          "biologia",
+          "matematica",
+          "computacao",
+          "pedagogia",
+          "medicina",
+          "direito",
+          "historia",
+          "seguranca_publica",
+          "outro"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "claim_state": {
+      "type": "string",
+      "enum": [
+        "RAW_ORAL",
+        "RAW_NOTE",
+        "METAFORA",
+        "PARABOLA_DIDATICA",
+        "HIPOTESE",
+        "REF_REQUIRED",
+        "TOKEN_VAZIO",
+        "SOURCE_LINKED",
+        "METHOD_DEFINED",
+        "EVIDENCE_LINKED",
+        "RESULT_REPRODUCED",
+        "PEER_OR_REVIEW_READY",
+        "CLAIM_ALLOWED",
+        "CLAIM_BLOCKED"
+      ]
+    },
+    "content": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "string",
+      "description": "DOI, URL, commit, file path, hash, log, citation, or TOKEN_VAZIO_EVIDENCE."
+    },
+    "limit": {
+      "type": "string"
+    },
+    "next_step": {
+      "type": "string"
+    },
+    "related_files": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["unreviewed", "human_reviewed", "source_reviewed", "reproduced", "rejected"]
+    }
+  },
+  "additionalProperties": false
+}

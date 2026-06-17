@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1",
+  "module": "high_z_smbh_seeds",
+  "input_seed_records": [
+    "REAL_SEED_UHZ1_HIGHZ_SMBH"
+  ],
+  "data_status": "external_only_seed",
+  "claim_allowed": false,
+  "claim_boundary": "seed-derived calculation only; not a final validation claim",
+  "constants": {
+    "salpeter_time_myr_assumed": 45.0,
+    "growth_start_age_myr_assumed": 100.0
+  },
+  "calculations": {
+    "UHZ1": {
+      "redshift": 10.1,
+      "estimated_black_hole_mass_msun": 40000000.0,
+      "age_after_big_bang_myr": 470.0,
+      "available_growth_time_myr_assumed": 370.0,
+      "required_seed_mass_msun_at_eddington_v0": 10744.698937692205,
+      "classification_v0": "high_z_overmassive_black_hole_seed_constraint",
+      "interpretation_v0": "simple Eddington e-folding estimate only; requires raw photometry/spectroscopy, magnification check, accretion model, and host constraints before claim"
+    }
+  },
+  "required_next_data": [
+    "spectroscopic/photometric redshift source table",
+    "black-hole mass estimation method and uncertainty",
+    "lensing magnification check",
+    "host-galaxy mass constraints",
+    "light-seed vs heavy-seed vs direct-collapse baseline models"
+  ],
+  "status": "seed_metric_ready_claim_blocked"
+}

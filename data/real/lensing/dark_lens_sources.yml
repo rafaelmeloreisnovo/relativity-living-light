@@ -1,0 +1,151 @@
+# Dark Lens / Microlensing / Astrometric Lensing Source Ledger
+# Status: TOKEN_VAZIO protected source ledger
+# Purpose: map real observational sources needed to test dark-lens, silent compact mass, microlensing, astrometric lensing, weak-lensing, and strong-lensing candidates.
+
+schema_version: 0.1
+claim_allowed: false
+status: TOKEN_VAZIO
+module: dark_lens_and_lensing_gaps
+linked_docs:
+  - docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md
+  - docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+
+required_evidence_channels:
+  - microlensing_light_curve
+  - astrometric_lensing_shift
+  - strong_lensing_configuration
+  - weak_lensing_shear
+  - luminous_counterpart_search
+  - lens_mass_model
+  - foreground_background_geometry
+
+source_records:
+  - id: TOKEN_VAZIO_MICROLENS_001
+    candidate_type: microlensing_compact_mass
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - event_id
+      - event_timescale
+      - light_curve
+      - source_distance_or_prior
+      - lens_distance_or_prior
+      - proper_motion_or_astrometric_shift
+      - lens_mass_posterior
+      - luminous_counterpart_search
+    physical_parameters:
+      theta_E_mas: null
+      t_E_days: null
+      mu_rel_mas_yr: null
+      M_lens_msun: null
+      D_lens_kpc: null
+      D_source_kpc: null
+    validation_link:
+      script_expected: scripts/validation/validate_dark_lens_candidates.py
+      metric_expected: microlensing_mass_consistency
+      baseline_model: stellar_lens_or_compact_remnant_alternative
+    claim_boundary:
+      microlensing_mass_not_unique_without_geometry: true
+      no_luminosity_is_not_proof: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_ASTRO_LENS_001
+    candidate_type: astrometric_lensing
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - source_position_shift
+      - parallax
+      - proper_motion
+      - lens_source_separation
+      - mass_model
+      - uncertainty_model
+    physical_parameters:
+      alpha_deflect_mas: null
+      theta_E_mas: null
+      M_lens_msun: null
+    validation_link:
+      script_expected: scripts/validation/validate_dark_lens_candidates.py
+      metric_expected: astrometric_deflection_consistency
+      baseline_model: astrometric_lens_baseline
+    claim_boundary:
+      astrometric_shift_requires_error_model: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_STRONG_LENS_001
+    candidate_type: dark_strong_lens_candidate
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - image_positions
+      - arc_or_multiple_image_configuration
+      - redshifts
+      - lens_mass_model
+      - luminous_counterpart_search
+      - time_delay_if_available
+    physical_parameters:
+      theta_E_arcsec: null
+      M_lens_msun: null
+      z_lens: null
+      z_source: null
+    validation_link:
+      script_expected: scripts/validation/validate_dark_lens_candidates.py
+      metric_expected: strong_lens_mass_model_consistency
+      baseline_model: galaxy_lens_or_group_lens_alternative
+    claim_boundary:
+      lensing_mass_alone_does_not_identify_black_hole: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_WEAK_LENS_001
+    candidate_type: weak_lensing_dark_mass
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - shear_catalog
+      - source_redshift_distribution
+      - mass_reconstruction
+      - luminous_counterpart_search
+      - foreground_model
+    validation_link:
+      script_expected: scripts/validation/validate_dark_lens_candidates.py
+      metric_expected: weak_lensing_mass_consistency
+      baseline_model: dark_matter_halo_or_cluster_model
+    claim_boundary:
+      weak_lensing_is_population_statistic: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_lens_geometry_before_mass_claim: true
+  require_luminous_counterpart_search: true
+  require_alternative_models: true
+  require_checksum_before_claim_if_local: true
