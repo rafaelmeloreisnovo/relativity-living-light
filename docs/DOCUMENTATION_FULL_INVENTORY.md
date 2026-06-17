@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1006 |
 | `cataloged_files` | 995 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34994238 |
-| `total_text_lines` | 137649 |
+| `total_bytes` | 34995963 |
+| `total_text_lines` | 137686 |
 | `markdown_files` | 509 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
@@ -481,7 +481,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RLL_FRONTIER_STRUCTURE_INDEX.md` | 3682 | `.md` | `documentation_md` | 132 | `81411b3937abcc1841d70fe8c41dd961e43a41750a3674c3dfe121e7c777670e` | `cosmology_validation_marker` |
 | `docs/RLL_H0_RD_ABLATION_MATRIX.md` | 2395 | `.md` | `documentation_md` | 55 | `e61541f3865e76ef1110929fb35268f7297fd6f76812b95ddcbec142a53cf3da` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_INSPECTION_RATE_MATH_AND_KNOWLEDGE_TEST.md` | 5428 | `.md` | `documentation_md` | 243 | `aea00197551ac98012d668d96a4a655fa9174be9768b5be693a4d0a855ebd926` | `token_vazio_declared,cosmology_validation_marker` |
-| `docs/RLL_ISSUES_420_423_EXECUTION_LEDGER.md` | 4145 | `.md` | `documentation_md` | 135 | `b86eafc9aeb7952d02d1ad879f1b66fadd0dd74724af57ebbc349a76d3270745` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/RLL_ISSUES_420_423_EXECUTION_LEDGER.md` | 5870 | `.md` | `documentation_md` | 172 | `76c5da40e57735dde30d8ed953bd9b21fc227bac6f88c095aa312f36432ac40f` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_MISSING_CALCULATIONS_LEDGER.md` | 16603 | `.md` | `documentation_md` | 55 | `7ce6fc28f066622bd838950454b360b79ea35b60a69c66835945a01c18c9f1c2` | `mentions_synthetic,token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md` | 6152 | `.md` | `documentation_md` | 140 | `4c6bd314b0718880aadb083e367506bd306435c21370c9781819a07bf3f95183` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_MULTI_MEDIUM_CONVERGENCE.md` | 291 | `.md` | `documentation_md` | 11 | `06640b559534f6b7d6125ac7f6329e8aed00ec45f76efcbf02798f9d192ad61f` | `token_vazio_declared,cosmology_validation_marker` |

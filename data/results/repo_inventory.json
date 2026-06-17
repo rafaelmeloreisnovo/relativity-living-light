@@ -4123,11 +4123,11 @@
   },
   {
     "path": "docs/RLL_ISSUES_420_423_EXECUTION_LEDGER.md",
-    "bytes": 4145,
+    "bytes": 5870,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 135,
-    "sha256": "b86eafc9aeb7952d02d1ad879f1b66fadd0dd74724af57ebbc349a76d3270745",
+    "linhas": 172,
+    "sha256": "76c5da40e57735dde30d8ed953bd9b21fc227bac6f88c095aa312f36432ac40f",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
