@@ -19,6 +19,14 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 DEFAULT_INPUT = BASE_DIR / "data" / "inputs" / "structure_d_inspection" / "inspection_items.json"
 DEFAULT_OUTPUT_DIR = BASE_DIR / "results" / "structure_d" / "inspection"
 
+
+def _display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(BASE_DIR))
+    except ValueError:
+        return str(path)
+
+
 EVIDENCE_WEIGHT = 0.40
 OPERATION_WEIGHT = 0.35
 RISK_CONTROL_WEIGHT = 0.25
@@ -164,9 +172,9 @@ def build_manifest(ledger_path: Path, rows: list[dict[str, Any]], output_csv: Pa
     return {
         "schema": "rll.structure_d_inspection_rate.v1",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "source_ledger": str(ledger_path.relative_to(BASE_DIR)),
-        "output_csv": str(output_csv.relative_to(BASE_DIR)),
-        "category_csv": str(category_csv.relative_to(BASE_DIR)),
+        "source_ledger": _display_path(ledger_path),
+        "output_csv": _display_path(output_csv),
+        "category_csv": _display_path(category_csv),
         "formula": {
             "item_score_percent": "100 * (0.40*evidence + 0.35*operation + 0.25*risk_control)",
             "inspection_rate_percent": "sum(weight*item_score_percent)/sum(weight)",
@@ -231,9 +239,9 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     print(f"inspection_rate_percent={manifest['global']['inspection_rate_percent']:.2f}")
     print(f"risk_exposure_percent={manifest['global']['risk_exposure_percent']:.2f}")
     print(f"inspection_class={manifest['global']['inspection_class']}")
-    print(f"Wrote: {Path(result['items_csv']).relative_to(BASE_DIR)}")
-    print(f"Wrote: {Path(result['categories_csv']).relative_to(BASE_DIR)}")
-    print(f"Wrote: {Path(result['manifest_json']).relative_to(BASE_DIR)}")
+    print(f"Wrote: {_display_path(Path(result['items_csv']))}")
+    print(f"Wrote: {_display_path(Path(result['categories_csv']))}")
+    print(f"Wrote: {_display_path(Path(result['manifest_json']))}")
     return result
 
 
