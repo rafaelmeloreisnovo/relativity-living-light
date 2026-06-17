@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 990 |
-| `cataloged_files` | 979 |
+| `tracked_files_total` | 991 |
+| `cataloged_files` | 980 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34907510 |
-| `total_text_lines` | 135498 |
-| `markdown_files` | 501 |
+| `total_bytes` | 34908850 |
+| `total_text_lines` | 135530 |
+| `markdown_files` | 502 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 140 |
 
-**Total de arquivos catalogados:** 979
+**Total de arquivos catalogados:** 980
 
 ## Inventário completo
 
@@ -638,6 +638,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/science/VALIDATION_DASHBOARD.md` | 2493 | `.md` | `documentation_md` | 86 | `98a5c80126fc4d029e5382d1035e5434495cc7b56710acf0fda5302ff4bebd1f` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md` | 9699 | `.md` | `documentation_md` | 273 | `fa467011bd839bc849c49bf669527c1fddcce47de1b215fed4b0ce3b67285c82` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/templates/RLL_ACADEMIC_REPORT_TEMPLATE.md` | 1896 | `.md` | `documentation_md` | 122 | `6674ea34489da8432e77e39db526ffd9b3a419b9925e840383eb036da033a6c3` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/templates/RLL_PARAMETER_POLICY_CHECKLIST.md` | 1340 | `.md` | `documentation_md` | 32 | `98707d4f6e333d5efdf7c6f89af100d94ea3d079a47a90c43395c8367ed7a061` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/tracking_frentes.csv` | 6596 | `.csv` | `data_or_result` | 23 | `7c132ec01ae6de9381f0aaea6034b1bfa1f95d59e9a44bdee04cf2d7d509eef0` | `cosmology_validation_marker` |
 | `docs/tracking_frentes.json` | 12594 | `.json` | `data_or_result` | 332 | `f03802e04464e962c95a924ee5ef08be29344c873820b7cb64098f5c07033aa8` | `cosmology_validation_marker` |
 | `docs/tracking_frentes_id_mapping.csv` | 950 | `.csv` | `data_or_result` | 20 | `7c4d708a5c8293311d39c849c144813643ffef65d3537e8eb64e63659b74d25f` | `cosmology_validation_marker` |
