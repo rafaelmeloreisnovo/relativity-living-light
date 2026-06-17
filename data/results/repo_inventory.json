@@ -19,11 +19,11 @@
   },
   {
     "path": ".github/workflows/academic-parameter-governance.yml",
-    "bytes": 2088,
+    "bytes": 3244,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 52,
-    "sha256": "dae81a7c40327693ae7a3d7ea1201219e29a0fe505450a4dd7b5b901ac8a73a9",
+    "linhas": 74,
+    "sha256": "e2817b5cc8d3b1f80682a98acb831cb7fd80c9140e28ff20bd186e2401da9884",
     "flags": ""
   },
   {
@@ -2079,6 +2079,15 @@
     "flags": ""
   },
   {
+    "path": "data/inputs/cosmology_joint/h0_rd_ablation_matrix.csv",
+    "bytes": 3106,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 7,
+    "sha256": "e4af33281e7829c3061896f2c64409599adb03e2e3eeccb33450aaf25f64af12",
+    "flags": ""
+  },
+  {
     "path": "data/inputs/cosmology_joint/h0_rd_ablation_matrix.json",
     "bytes": 5182,
     "ext": ".json",
@@ -4084,6 +4093,15 @@
     "linhas": 132,
     "sha256": "81411b3937abcc1841d70fe8c41dd961e43a41750a3674c3dfe121e7c777670e",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_H0_RD_ABLATION_MATRIX.md",
+    "bytes": 2395,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 55,
+    "sha256": "e61541f3865e76ef1110929fb35268f7297fd6f76812b95ddcbec142a53cf3da",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/RLL_INSPECTION_RATE_MATH_AND_KNOWLEDGE_TEST.md",
@@ -8565,6 +8583,15 @@
     "tipo": "source_code",
     "linhas": 133,
     "sha256": "926fd3360f0357ea8412e8d7318ad5b19b0802bad0911f211699ddf027c17b14",
+    "flags": ""
+  },
+  {
+    "path": "tools/check_rll_report_claim_language.py",
+    "bytes": 2973,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 92,
+    "sha256": "82d9978738350b653f59e2f89cb7d568cbc7387988a3d95c34f1d235c564a3de",
     "flags": ""
   },
   {
