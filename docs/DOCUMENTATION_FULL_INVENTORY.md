@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 985 |
 | `cataloged_files` | 974 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34861912 |
-| `total_text_lines` | 134312 |
+| `total_bytes` | 34866161 |
+| `total_text_lines` | 134440 |
 | `markdown_files` | 498 |
 | `yml_yaml_files` | 61 |
 | `github_workflow_yml_files` | 24 |
@@ -277,7 +277,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/pipelines/structure_d/growth.py` | 650 | `.py` | `source_code` | 17 | `51ce065c45a140378f1c64f07cf29bcf14071e89c83961b55bd86d00f9f84aa6` | `` |
 | `data/pipelines/structure_d/inference.py` | 13272 | `.py` | `source_code` | 429 | `de5c93c931580d5f942bdf725a76e052fc411215b75d0282759d7ae6087981cb` | `` |
 | `data/pipelines/structure_d/joint_real_likelihood.py` | 23051 | `.py` | `source_code` | 548 | `1dbf6db24381e6c6b422ca5199b39993815f9eeb8afebf123508f08802746e7d` | `mentions_synthetic` |
-| `data/pipelines/structure_d/likelihood.py` | 11676 | `.py` | `source_code` | 340 | `77fb90b9665ad9b50c88427fc946e0a0a93be78b00d2dcc92e4cc41fc85036c2` | `` |
+| `data/pipelines/structure_d/likelihood.py` | 15486 | `.py` | `source_code` | 448 | `a5eb2a2587a2b3a7baf0fe8415cb61924546e2dcd1abd90d9ec5fb40983fe9b0` | `` |
 | `data/pipelines/structure_d/make_example_data.py` | 6738 | `.py` | `source_code` | 179 | `954f215396945d86166b7c9dadea3e2e9e1cd1ec6c8684fd69c5fef96671f570` | `mentions_synthetic,mentions_mock_or_placeholder` |
 | `data/pipelines/structure_d/models.py` | 8534 | `.py` | `source_code` | 290 | `410b691c701d75bb9d1eae61a1299241b9f9fcdc6638e0171e0f08eba7a685ed` | `` |
 | `data/pipelines/structure_d/reporting.py` | 15601 | `.py` | `source_code` | 434 | `b778df7f0499969bb94e416368a485540071e7a35322032c775f4430db6f8d4d` | `` |
@@ -916,7 +916,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tests/test_dha_fisher.py` | 620 | `.py` | `source_code` | 22 | `54612a5ab5bbf91096be8d6f0c45405afc6b3eb3a779df67f11cf727d66acfe0` | `cosmology_validation_marker` |
 | `tests/test_energy_momentum_bridge.py` | 5737 | `.py` | `source_code` | 167 | `0ff0a06f4053b6c65351ea73c4746720f3f6fcc021bbc9ebf8b91d08918a9f83` | `mentions_synthetic,cosmology_validation_marker` |
 | `tests/test_joint_real_likelihood.py` | 3506 | `.py` | `source_code` | 78 | `950c6b352a12a0f9234fcfbfcd020ce5e032cba57a809e5c9a05aad6c5132ed5` | `mentions_synthetic,cosmology_validation_marker` |
-| `tests/test_lcdmpp_extensions.py` | 1932 | `.py` | `source_code` | 70 | `0056c228d0606d9515db0e8e97bd75a8e95053495dbcd10444ea9f330869e0b8` | `cosmology_validation_marker` |
+| `tests/test_lcdmpp_extensions.py` | 2371 | `.py` | `source_code` | 90 | `94a0d5512a4c0b2e7949bc96650d72e724909b5d55d5761d2555f5776f492ec0` | `cosmology_validation_marker` |
 | `tests/test_likelihood_functions.py` | 1031 | `.py` | `source_code` | 32 | `bb55441ded146cda360580cb0cb3923d7142a2a0197e55dde2351f1d674f01f3` | `cosmology_validation_marker` |
 | `tests/test_ln1pz_extractor.py` | 934 | `.py` | `source_code` | 32 | `99f07f4c1fe823b5fe9491605cb6eebd8f21e64e6480387bf7e205acd1d04416` | `cosmology_validation_marker` |
 | `tests/test_model_comparison_artifact.py` | 1362 | `.py` | `source_code` | 25 | `29fbad3f571118a48bb17419feed1ae0b0f0f951792cb7f4e52b6eb893759180` | `mentions_synthetic,cosmology_validation_marker` |

@@ -2287,11 +2287,11 @@
   },
   {
     "path": "data/pipelines/structure_d/likelihood.py",
-    "bytes": 11676,
+    "bytes": 15486,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 340,
-    "sha256": "77fb90b9665ad9b50c88427fc946e0a0a93be78b00d2dcc92e4cc41fc85036c2",
+    "linhas": 448,
+    "sha256": "a5eb2a2587a2b3a7baf0fe8415cb61924546e2dcd1abd90d9ec5fb40983fe9b0",
     "flags": ""
   },
   {
@@ -8038,11 +8038,11 @@
   },
   {
     "path": "tests/test_lcdmpp_extensions.py",
-    "bytes": 1932,
+    "bytes": 2371,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 70,
-    "sha256": "0056c228d0606d9515db0e8e97bd75a8e95053495dbcd10444ea9f330869e0b8",
+    "linhas": 90,
+    "sha256": "94a0d5512a4c0b2e7949bc96650d72e724909b5d55d5761d2555f5776f492ec0",
     "flags": "cosmology_validation_marker"
   },
   {
