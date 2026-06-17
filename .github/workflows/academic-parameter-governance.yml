@@ -4,21 +4,37 @@ on:
   push:
     paths:
       - 'data/inputs/cosmology_joint/parameter_origin_registry.json'
+      - 'data/inputs/cosmology_joint/h0_rd_ablation_matrix.json'
+      - 'data/inputs/cosmology_joint/h0_rd_ablation_matrix.csv'
       - 'tools/validate_academic_parameter_registry.py'
       - 'tools/scan_rll_model_evidence.py'
+      - 'tools/run_rll_academic_claim_governance.py'
+      - 'tools/make_h0_rd_ablation_matrix.py'
+      - 'tools/check_rll_report_claim_language.py'
       - 'docs/RLL_ACADEMIC_PARAMETER_CONVERGENCE_LEDGER.md'
       - 'docs/RLL_OPERATIONAL_EXCELLENCE_ACADEMIC_STRATEGY.md'
       - 'docs/RLL_CALCULABLE_EVIDENCE_SCAN_PROTOCOL.md'
+      - 'docs/RLL_H0_RD_ABLATION_MATRIX.md'
+      - 'docs/RLL_CERTAINTY_CALCULATION_BOUNDARY.md'
+      - 'docs/RLL_DATA_FIT_DECISION_TREE.md'
       - 'results/structure_d/joint_real_likelihood.csv'
       - '.github/workflows/academic-parameter-governance.yml'
   pull_request:
     paths:
       - 'data/inputs/cosmology_joint/parameter_origin_registry.json'
+      - 'data/inputs/cosmology_joint/h0_rd_ablation_matrix.json'
+      - 'data/inputs/cosmology_joint/h0_rd_ablation_matrix.csv'
       - 'tools/validate_academic_parameter_registry.py'
       - 'tools/scan_rll_model_evidence.py'
+      - 'tools/run_rll_academic_claim_governance.py'
+      - 'tools/make_h0_rd_ablation_matrix.py'
+      - 'tools/check_rll_report_claim_language.py'
       - 'docs/RLL_ACADEMIC_PARAMETER_CONVERGENCE_LEDGER.md'
       - 'docs/RLL_OPERATIONAL_EXCELLENCE_ACADEMIC_STRATEGY.md'
       - 'docs/RLL_CALCULABLE_EVIDENCE_SCAN_PROTOCOL.md'
+      - 'docs/RLL_H0_RD_ABLATION_MATRIX.md'
+      - 'docs/RLL_CERTAINTY_CALCULATION_BOUNDARY.md'
+      - 'docs/RLL_DATA_FIT_DECISION_TREE.md'
       - 'results/structure_d/joint_real_likelihood.csv'
       - '.github/workflows/academic-parameter-governance.yml'
   workflow_dispatch:
@@ -45,8 +61,14 @@ jobs:
       - name: Scan current RLL model evidence table
         run: python3 tools/scan_rll_model_evidence.py --no-write
 
+      - name: Run integrated academic claim governance wrapper
+        run: python3 tools/run_rll_academic_claim_governance.py --no-write
+
+      - name: Validate H0/r_d ablation matrix generator
+        run: python3 tools/make_h0_rd_ablation_matrix.py --no-write
+
       - name: Print claim boundary reminder
         run: |
-          echo "PASS: registry and calculable evidence scanner completed."
-          echo "Reminder: this gate validates provenance, calculable evidence and claim boundaries only."
+          echo "PASS: registry, evidence scanner, governance wrapper and ablation matrix checks completed."
+          echo "Reminder: this gate validates provenance, calculable evidence, ablation policy and claim boundaries only."
           echo "No RLL superiority claim is allowed without fair baselines, k counting, covariance policy, reproducible likelihood outputs, and evidence scan status permitting the claim."
