@@ -5526,6 +5526,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/templates/RLL_ACADEMIC_REPORT_TEMPLATE.md",
+    "bytes": 1896,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 122,
+    "sha256": "6674ea34489da8432e77e39db526ffd9b3a419b9925e840383eb036da033a6c3",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/tracking_frentes.csv",
     "bytes": 6596,
     "ext": ".csv",
