@@ -1,16 +1,16 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-17T00:36:40.544640+00:00`  
-Commit: `99d081a6570d84aac79cafec846f76f43a16f1ae`
+Gerado em: `2026-06-17T02:17:58.729633+00:00`  
+Commit: `cebf9ef7c3595a389287ed8d57e3c8fa5d63ddcd`
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 973 |
-| `cataloged_files` | 955 |
+| `tracked_files_total` | 974 |
+| `cataloged_files` | 956 |
 | `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 35468776 |
-| `total_text_lines` | 147052 |
-| `markdown_files` | 496 |
+| `total_bytes` | 35474120 |
+| `total_text_lines` | 147209 |
+| `markdown_files` | 497 |
 | `yml_yaml_files` | 63 |
 | `github_workflow_yml_files` | 23 |
 | `data_or_result_files` | 112 |
@@ -19,7 +19,7 @@ Commit: `99d081a6570d84aac79cafec846f76f43a16f1ae`
 
 | Categoria | Arquivos |
 |---|---:|
-| `documentation_md` | 496 |
+| `documentation_md` | 497 |
 | `source_code` | 146 |
 | `other` | 131 |
 | `data_or_result` | 112 |
@@ -32,7 +32,7 @@ Commit: `99d081a6570d84aac79cafec846f76f43a16f1ae`
 
 | Extensão | Arquivos |
 |---|---:|
-| `.md` | 496 |
+| `.md` | 497 |
 | `.py` | 134 |
 | `.png` | 67 |
 | `.csv` | 65 |
@@ -61,8 +61,8 @@ Commit: `99d081a6570d84aac79cafec846f76f43a16f1ae`
 
 | Flag | Ocorrências |
 |---|---:|
-| `cosmology_validation_marker` | 419 |
-| `token_vazio_declared` | 122 |
+| `cosmology_validation_marker` | 420 |
+| `token_vazio_declared` | 123 |
 | `result_artifact` | 91 |
 | `mentions_mock_or_placeholder` | 85 |
 | `mentions_synthetic` | 67 |

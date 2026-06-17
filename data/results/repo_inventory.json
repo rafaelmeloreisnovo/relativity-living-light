@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-17T00:36:40.544640+00:00",
-  "git_commit": "99d081a6570d84aac79cafec846f76f43a16f1ae",
+  "generated_at": "2026-06-17T02:17:58.729633+00:00",
+  "git_commit": "cebf9ef7c3595a389287ed8d57e3c8fa5d63ddcd",
   "summary": {
-    "tracked_files_total": 973,
-    "cataloged_files": 955,
+    "tracked_files_total": 974,
+    "cataloged_files": 956,
     "uncataloged_or_error_files": 18,
-    "total_bytes": 35468776,
-    "total_text_lines": 147052,
-    "markdown_files": 496,
+    "total_bytes": 35474120,
+    "total_text_lines": 147209,
+    "markdown_files": 497,
     "yml_yaml_files": 63,
     "github_workflow_yml_files": 23,
     "data_or_result_files": 112
   },
   "counts_by_ext": {
-    ".md": 496,
+    ".md": 497,
     ".yml": 63,
     "NO_EXT": 13,
     ".txt": 10,
@@ -39,7 +39,7 @@
     ".sha256": 2
   },
   "counts_by_kind": {
-    "documentation_md": 496,
+    "documentation_md": 497,
     "github_workflow_yml": 23,
     "other": 131,
     "config_yml": 40,
@@ -49,8 +49,8 @@
     "test_or_validation": 1
   },
   "flags": {
-    "cosmology_validation_marker": 419,
-    "token_vazio_declared": 122,
+    "cosmology_validation_marker": 420,
+    "token_vazio_declared": 123,
     "mentions_mock_or_placeholder": 85,
     "mentions_synthetic": 67,
     "result_artifact": 91
@@ -3765,11 +3765,11 @@
     },
     {
       "path": "data/results/repo_inventory.json",
-      "size_bytes": 324388,
+      "size_bytes": 324655,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "9aa39f6d7d0d4c5abe286c7bc1138b66cee75d021a3106941055f43b1dcfeeb6",
-      "line_count": 11006,
+      "sha256": "d2aa71f05c5a8d7d31d51ad88fef9cdaaaedf80a26359880261336cb89e5c032",
+      "line_count": 11016,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3780,11 +3780,11 @@
     },
     {
       "path": "data/results/repo_inventory.tsv",
-      "size_bytes": 152187,
+      "size_bytes": 152291,
       "ext": ".tsv",
       "kind": "data_or_result",
-      "sha256": "510c06771e02a368d14f01b5a1e596508b244a986602cffd2d58161ce0ae425c",
-      "line_count": 955,
+      "sha256": "86491199abbd4995c6fae909d4095f38aa8c53e10ee0272b62b95bd15416a8ff",
+      "line_count": 956,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -3799,7 +3799,7 @@
       "size_bytes": 3289,
       "ext": ".json",
       "kind": "data_or_result",
-      "sha256": "3489e35fbf7bf82ac1689cc8f6b0e7bc8d48ae76232065b5b7f0d5775e8b8d39",
+      "sha256": "5bffd5b3fd1da9afc63bc6b5a80a18ec4ca44b76a5727613a0db6f99554516af",
       "line_count": 96,
       "is_text": true,
       "risk_flags": [
@@ -4275,11 +4275,11 @@
     },
     {
       "path": "docs/DOCUMENTATION_FULL_INVENTORY.md",
-      "size_bytes": 173747,
+      "size_bytes": 173871,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "fc0d29b0d9d8fdac4a2db690858924928bd5ff5b5f80ebdbf5f5a22761cfbdc5",
-      "line_count": 998,
+      "sha256": "5354d7a4935b9fdde971d330129c29c00d88c056376c5ce1147e025e881579da",
+      "line_count": 999,
       "is_text": true,
       "risk_flags": [
         "mentions_synthetic",
@@ -4827,7 +4827,7 @@
       "size_bytes": 1504,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "bc6cc4cecda2377b67d10e2d90365ff7aef098725b354253fe68842f92d905b3",
+      "sha256": "c472100b17232b957a48b364d5aa16a99c2ac12fa212c296000003227e27b175",
       "line_count": 72,
       "is_text": true,
       "risk_flags": [
@@ -5565,7 +5565,7 @@
       "size_bytes": 9818,
       "ext": ".md",
       "kind": "documentation_md",
-      "sha256": "120a3dc91a2b3cf95e2f7b0fa3481eef5dc1cb519985c245347148ae73da7b9b",
+      "sha256": "d7e97209d92fe2e749edec98bd45335cd39370749b422dd402596f5bb27dcfe3",
       "line_count": 70,
       "is_text": true,
       "risk_flags": [
@@ -6117,6 +6117,19 @@
       "line_count": 9,
       "is_text": true,
       "risk_flags": []
+    },
+    {
+      "path": "docs/operacoes/SEGUE_1_CONVERGENCIA_CIENTIFICA_RLL.md",
+      "size_bytes": 4849,
+      "ext": ".md",
+      "kind": "documentation_md",
+      "sha256": "2128e638ca76124904b224e5df734d5233f6ed7941e574a3a140595d612dec19",
+      "line_count": 145,
+      "is_text": true,
+      "risk_flags": [
+        "token_vazio_declared",
+        "cosmology_validation_marker"
+      ]
     },
     {
       "path": "docs/operacoes/SEGUE_5_PROTOCOLO_OPERACIONAL_RLL.md",
