@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 991 |
-| `cataloged_files` | 980 |
+| `tracked_files_total` | 992 |
+| `cataloged_files` | 981 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34908850 |
-| `total_text_lines` | 135530 |
+| `total_bytes` | 34924848 |
+| `total_text_lines` | 135962 |
 | `markdown_files` | 502 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 140 |
 
-**Total de arquivos catalogados:** 980
+**Total de arquivos catalogados:** 981
 
 ## Inventário completo
 
@@ -977,6 +977,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tools/iml/iml_pipeline.py` | 3459 | `.py` | `source_code` | 43 | `73dfa54829abaf7df43a453501ad3ae38dad571f588222315831d141a0b1daa1` | `` |
 | `tools/inventory_config.yml` | 1050 | `.yml` | `config_yml` | 56 | `66629d935fd917fc3e6bcd20d9a0f761e71fe2e59e8b30e03fd313a54a1fd1d8` | `mentions_synthetic,token_vazio_declared` |
 | `tools/real_data_materialization_audit.py` | 9306 | `.py` | `source_code` | 252 | `6c00d159876f9765d44112e5786424d55b72052514b78aa95437ec50e9d1669c` | `mentions_synthetic,mentions_mock_or_placeholder` |
+| `tools/scan_rll_model_evidence.py` | 15998 | `.py` | `source_code` | 432 | `eb1581008d79aa89dae2f1c0b7e52d716c4c609ff91b1037c834fd21a486c870` | `token_vazio_declared` |
 | `tools/validate_academic_parameter_registry.py` | 7143 | `.py` | `source_code` | 170 | `772155c21ccf3995292130bfd7246545a4c9c00c3426c64e8f091aedd5e54424` | `` |
 | `tools/verify_real_source_signatures.py` | 9581 | `.py` | `source_code` | 238 | `725719b5cb87832a6798d185704da5b931cbd789db7d597c1315b693f4754171` | `` |
 | `validacao_real/README.md` | 1221 | `.md` | `documentation_md` | 33 | `5e05728e8a9e9793d81b1064b5ef5a88749a04de186694dc5442f457a3783830` | `` |

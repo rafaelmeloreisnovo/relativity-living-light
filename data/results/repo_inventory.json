@@ -8586,6 +8586,15 @@
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
+    "path": "tools/scan_rll_model_evidence.py",
+    "bytes": 15998,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 432,
+    "sha256": "eb1581008d79aa89dae2f1c0b7e52d716c4c609ff91b1037c834fd21a486c870",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "tools/validate_academic_parameter_registry.py",
     "bytes": 7143,
     "ext": ".py",
