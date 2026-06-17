@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 987 |
-| `cataloged_files` | 976 |
+| `tracked_files_total` | 989 |
+| `cataloged_files` | 978 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34897357 |
-| `total_text_lines` | 135059 |
-| `markdown_files` | 499 |
-| `yml_yaml_files` | 61 |
-| `github_workflow_yml_files` | 24 |
+| `total_bytes` | 34905614 |
+| `total_text_lines` | 135376 |
+| `markdown_files` | 500 |
+| `yml_yaml_files` | 62 |
+| `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 140 |
 
-**Total de arquivos catalogados:** 976
+**Total de arquivos catalogados:** 978
 
 ## Inventário completo
 
@@ -25,6 +25,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 |---|---:|---|---|---:|---|---|
 | `.github/pull_request_template.md` | 593 | `.md` | `documentation_md` | 19 | `fc1b9dc5164ed6b52595b8706dda0e477ce78f002fa9d12a8fac3c83dda4d531` | `` |
 | `.github/workflows/START_MANUAL_HERE.yml` | 11559 | `.yml` | `github_workflow_yml` | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` | `mentions_synthetic` |
+| `.github/workflows/academic-parameter-governance.yml` | 1546 | `.yml` | `github_workflow_yml` | 43 | `6208ee7a1a1170edb918c3d8b67c39a0f3ef005635bd5109986bcab7eb14b979` | `` |
 | `.github/workflows/canonical-route-artifacts.yml` | 4182 | `.yml` | `github_workflow_yml` | 109 | `2c1dd21882168cf7d87dbbcce338a317a41a60741a6459a577e74567316d022a` | `` |
 | `.github/workflows/claim-boundary-quality-gates.yml` | 1721 | `.yml` | `github_workflow_yml` | 64 | `607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509` | `` |
 | `.github/workflows/convention-check.yml` | 894 | `.yml` | `github_workflow_yml` | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` | `` |
@@ -478,6 +479,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RLL_NEXT_ROBUST_FIT_PLAN.md` | 5238 | `.md` | `documentation_md` | 152 | `1341f929741d9898965a85294e8791ce0d4987f9a503927296b8b2c36e5c84a8` | `mentions_synthetic,token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_NEXT_SAFE_ACTIONS_INDEX.md` | 3477 | `.md` | `documentation_md` | 92 | `7ad2dafa5cb6fc905fc263be7709daf7d99df4648f36a33f659518abfd472c8e` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md` | 5508 | `.md` | `documentation_md` | 218 | `ac330e1cbde6c0575ff47ae29f6a626b6cd503324af6409c0ac5d245a0584682` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/RLL_OPERATIONAL_EXCELLENCE_ACADEMIC_STRATEGY.md` | 6711 | `.md` | `documentation_md` | 274 | `12f3886a6b366eaa1f931d7601651ca463b830bb277a01b934d8e6c083bae1e9` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_OS0_ZERO_ROOT_CAUSE.md` | 5461 | `.md` | `documentation_md` | 93 | `a7645d43d70baed65fc906ab0879bb7af873c95647498722c33e49f8df632eda` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_OUTPUT_STEM_CLI_GAP.md` | 3499 | `.md` | `documentation_md` | 158 | `11daf4c7beed58296763d66865211d9e4f9f8be27fdf4913da3265fe92c718c3` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_OUTPUT_STEM_SAFE_WRAPPER.md` | 3142 | `.md` | `documentation_md` | 144 | `609749fb97919885feb7f14e13c195b4877a1dc4a27620db7667564dd79b0676` | `token_vazio_declared,cosmology_validation_marker` |

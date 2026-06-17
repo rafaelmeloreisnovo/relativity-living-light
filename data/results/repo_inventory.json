@@ -18,6 +18,15 @@
     "flags": "mentions_synthetic"
   },
   {
+    "path": ".github/workflows/academic-parameter-governance.yml",
+    "bytes": 1546,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 43,
+    "sha256": "6208ee7a1a1170edb918c3d8b67c39a0f3ef005635bd5109986bcab7eb14b979",
+    "flags": ""
+  },
+  {
     "path": ".github/workflows/canonical-route-artifacts.yml",
     "bytes": 4182,
     "ext": ".yml",
@@ -4092,6 +4101,15 @@
     "tipo": "documentation_md",
     "linhas": 218,
     "sha256": "ac330e1cbde6c0575ff47ae29f6a626b6cd503324af6409c0ac5d245a0584682",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/RLL_OPERATIONAL_EXCELLENCE_ACADEMIC_STRATEGY.md",
+    "bytes": 6711,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 274,
+    "sha256": "12f3886a6b366eaa1f931d7601651ca463b830bb277a01b934d8e6c083bae1e9",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
