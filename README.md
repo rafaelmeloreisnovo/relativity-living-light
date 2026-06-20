@@ -24,6 +24,7 @@ Este repositório inclui agora um pacote público organizado para leitura, audit
 - Orquestrador ASCII/UTF: [`docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md`](docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md)
 - Roadmap e falsificadores: [`docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`](docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md)
 - Checklist de publicação: [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md)
+- Limite nulo e AION: [`docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`](docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md)
 
 Regra de leitura: metáfora ilumina, mas não valida; dado, predição, cálculo e falsificador sustentam a camada científica.
 
