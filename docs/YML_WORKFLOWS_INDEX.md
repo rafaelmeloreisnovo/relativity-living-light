@@ -1,5 +1,8 @@
 # YML Workflows and Config Index
 
+Gerado por: `tools/docs_inventory.py`
+Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e commit não são materializados para reduzir conflitos entre branches.
+
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
 | `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11559 | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` |
