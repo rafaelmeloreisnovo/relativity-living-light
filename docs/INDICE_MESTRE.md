@@ -116,6 +116,7 @@ Encaminhamentos complementares:
 - [`docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md`](canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md) - matriz ASCII/UTF, hashes, C_eff e TOKEN_VAZIO
 - [`docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`](canonicos/19_ROADMAP_FALSIFICADORES_RLL.md) - roadmap de testes e criterios de falsificacao
 - [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md) - checklist publico de documentos, governanca, seguranca e citabilidade
+- [`docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md`](canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md) - vetor V_info tipado, equacao de observacao (F_prop/F_med/T), FSM com falsificadores Popper, Fisher/Shannon, integracao claim_state
 
 ---
 

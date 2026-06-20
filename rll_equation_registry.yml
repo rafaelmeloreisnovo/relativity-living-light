@@ -62,3 +62,31 @@ equations:
     domain: ["RafaelIA", "state_space", "topology"]
     status: "author_model"
     claim_boundary: "conceptual state representation; requires task-specific validation"
+
+  - id: observation_equation
+    equation: "s_obs(nu,t0) = T_{te->t0}[F_med o F_prop][s_src(nu,te)] + n_inst(nu,t0) + eps_interp(nu,t0)"
+    domain: ["cosmology", "observational_astronomy", "radiative_transfer", "RLL"]
+    status: "author_model"
+    source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
+    claim_boundary: "formal decomposition of observed signal; F_prop uses d_L(z) from RLL eq; not yet validated against specific sources"
+
+  - id: v_info_vector
+    equation: "V_info in R+ x R+ x R+ x (R+ x [0,pi)) x R+ x R+ x R+ x S2 x L2(R+) x PD x PD x R_ep x C_s"
+    domain: ["cosmology", "information_theory", "observational_astronomy", "RLL"]
+    status: "author_model"
+    source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
+    claim_boundary: "typed 13-component tuple; claim_state component maps to info_prime.schema.json enum"
+
+  - id: fisher_information_total
+    equation: "I_total(theta) = sum_{k=1}^{5} I^(k)(theta) >= I^(k') for all k'"
+    domain: ["statistics", "information_theory", "multi_messenger_astronomy"]
+    status: "known_statistics"
+    source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
+    claim_boundary: "holds under conditional independence between sensory layers; relaxed when mutual information I(L_k;L_k') > 0"
+
+  - id: claim_state_entropy
+    equation: "H_claim = -sum_{s in C_s} P(s|evidence) log2 P(s|evidence) ; H_max = log2(14) ~ 3.81 bits"
+    domain: ["information_theory", "epistemology", "RLL"]
+    status: "author_model"
+    source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
+    claim_boundary: "TOKEN_VAZIO corresponds to H_max; CLAIM_ALLOWED to H=0; monotonic decrease as evidence accumulates"
