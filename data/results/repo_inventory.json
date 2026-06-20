@@ -2107,11 +2107,11 @@
   },
   {
     "path": "data/inputs/cosmology_joint/parameter_origin_registry.json",
-    "bytes": 18920,
+    "bytes": 18949,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 405,
-    "sha256": "d269a7b39cb70fc0d30957ea437c860289ed47cd696c1ddd4df2c36b5de386dd",
+    "linhas": 406,
+    "sha256": "c4c54baad5640dab81d85c8c037019aedbcdf011351b256bf5961c0dca269ee3",
     "flags": ""
   },
   {
@@ -2251,11 +2251,11 @@
   },
   {
     "path": "data/pipelines/structure_d/cosmo.py",
-    "bytes": 6468,
+    "bytes": 6542,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 228,
-    "sha256": "bdfca5dd807fa978aa590c279cdf17783bd21d857932579d0bd1ef7726d93745",
+    "sha256": "91302e9463e13235339ca9042a7f95617c9e9d60f2c6270f2b1682c9c5f4ece1",
     "flags": ""
   },
   {
@@ -2314,11 +2314,11 @@
   },
   {
     "path": "data/pipelines/structure_d/joint_real_likelihood.py",
-    "bytes": 23051,
+    "bytes": 23071,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 548,
-    "sha256": "1dbf6db24381e6c6b422ca5199b39993815f9eeb8afebf123508f08802746e7d",
+    "sha256": "40b0a51952fba62c3922c8bd25e1614e591793f718c064b965af4d71a20d3d18",
     "flags": "mentions_synthetic"
   },
   {
@@ -8020,11 +8020,11 @@
   },
   {
     "path": "src/rll/cosmology_fairness.py",
-    "bytes": 14708,
+    "bytes": 14713,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 436,
-    "sha256": "faab89d7d2677d97ace8fa8ba1e869874490b234f68a8eaad57cc61ab4a1e6a4",
+    "sha256": "2ef3c416fbadaa70df02e9cff6ce8666f18df153b34e98a3b0d5abedfb175682",
     "flags": ""
   },
   {
@@ -8164,20 +8164,20 @@
   },
   {
     "path": "tests/test_joint_real_likelihood.py",
-    "bytes": 3506,
+    "bytes": 3513,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 78,
-    "sha256": "950c6b352a12a0f9234fcfbfcd020ce5e032cba57a809e5c9a05aad6c5132ed5",
+    "sha256": "4ac3c4c910e4dab687acd33e453f80432eb868fcadbd8635b827e368d9862b79",
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
     "path": "tests/test_lcdmpp_extensions.py",
-    "bytes": 2371,
+    "bytes": 2490,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 90,
-    "sha256": "94a0d5512a4c0b2e7949bc96650d72e724909b5d55d5761d2555f5776f492ec0",
+    "linhas": 94,
+    "sha256": "b49f4fe57a30671255ea65547f314aabd4b20b1ce5f8a6979378dd4391e926dd",
     "flags": "cosmology_validation_marker"
   },
   {

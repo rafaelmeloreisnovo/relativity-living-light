@@ -234,7 +234,7 @@ def _registry_parameter_names(registry: dict) -> set[str]:
 
 def _validate_model_parameter_registry(registry: dict) -> None:
     known_names = _registry_parameter_names(registry)
-    aliases = {"OL": "Om"}
+    aliases = {"OL": "Om", "Ob_h2": "omega_b"}
     missing: dict[str, list[str]] = {}
     for model, names in MODEL_PARAM_NAMES.items():
         absent = [name for name in names if aliases.get(name, name) not in known_names and name not in known_names]
