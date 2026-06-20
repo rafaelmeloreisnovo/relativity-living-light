@@ -1,0 +1,66 @@
+{
+  "schema": "rll.outcome_action_matrix.v1",
+  "purpose": "Map every possible RLL evidence/governance outcome to deterministic operational actions.",
+  "rules": [
+    {
+      "status": "CLAIM_BLOCKED",
+      "meaning": "The current result table does not support a positive RLL claim, or a required governance gate failed.",
+      "allowed_wording": "Nesta rodada, o claim positivo do RLL está bloqueado; o relatório deve explicar o motivo, comparar com CPL e registrar TOKEN_VAZIO/PENDING onde aplicável.",
+      "forbidden_wording": ["RLL vence", "RLL é favorecido", "RLL prova", "RLL faz melhor aos dados", "RLL supera CPL"],
+      "required_actions": ["keep positive superiority wording blocked", "publish only negative/diagnostic interpretation", "run or schedule H0/r_d ablation if H0_all_equal is true", "report Delta AICc/BIC vs CPL", "report Os0/zt/wt and whether Os0 collapsed", "mark missing covariance, Pantheon, CMB or growth blocks as TOKEN_VAZIO/PENDING"],
+      "required_artifacts": ["results/audit/rll_model_evidence_scan.json", "results/audit/rll_academic_claim_gate_report.md", "docs/RLL_DATA_FIT_DECISION_TREE.md", "data/inputs/cosmology_joint/h0_rd_ablation_matrix.json"],
+      "release_policy": "Do not publish as discovery. Allow only audit/diagnostic report.",
+      "close_or_update_issues": "Keep #420/#421/#422/#423 open unless the blocking reasons are fully resolved by new artifacts."
+    },
+    {
+      "status": "PASS_LIMITED",
+      "meaning": "RLL is not worse than CPL by scanned AICc/BIC criteria in this table, but stronger academic gates remain.",
+      "allowed_wording": "RLL não é pior que CPL nesta tabela pelos critérios escaneados; o resultado é limitado e ainda depende de covariância, ablação, MCMC e benchmark físico.",
+      "forbidden_wording": ["RLL está provado", "RLL é verdade física", "RLL encerra ΛCDM", "RLL dispensa CPL"],
+      "required_actions": ["label the result PASS_LIMITED, not confirmed", "run H0/r_d ablation and rescan every ablation CSV", "materialize covariance policies before strong claim", "run MCMC/nested sampling before publication-grade inference", "run CLASS/CAMB or keep growth claim blocked"],
+      "required_artifacts": ["results/audit/rll_model_evidence_scan.json", "results/structure_d/ablation/*.csv", "results/audit/rll_academic_claim_gate_report.md", "covariance manifests and hashes for used datasets"],
+      "release_policy": "Allow limited methodological/preprint wording; block discovery wording.",
+      "close_or_update_issues": "Update #421/#423 with ablation scans; keep #420/#422 open until registry-derived k and report wiring are complete."
+    },
+    {
+      "status": "PARTIAL",
+      "meaning": "Some calculation exists, but covariance, baseline, dataset, registry or benchmark coverage is incomplete.",
+      "allowed_wording": "Resultado parcial: há cálculo, mas a interpretação fica limitada por lacunas explícitas de covariância, baseline, dataset ou benchmark.",
+      "forbidden_wording": ["RLL vence", "RLL é favorecido", "RLL comprovado"],
+      "required_actions": ["state every missing block explicitly", "separate computed values from TOKEN_VAZIO", "avoid ranking claims if CPL or covariance is missing", "add missing dataset/covariance manifests before rerun"],
+      "required_artifacts": ["partial evidence scan JSON", "claim boundary section in report", "TOKEN_VAZIO list"],
+      "release_policy": "Allow internal report only unless limitations are front-page visible.",
+      "close_or_update_issues": "Open/update issue for each missing block; do not close governance issues."
+    },
+    {
+      "status": "TOKEN_VAZIO",
+      "meaning": "There is not enough evidence to calculate the requested claim safely.",
+      "allowed_wording": "TOKEN_VAZIO: não há evidência computacional suficiente para responder sem inventar resultado.",
+      "forbidden_wording": ["probably wins", "likely proves", "deve estar certo", "parece confirmado"],
+      "required_actions": ["stop claim generation", "identify missing file, dataset, covariance, baseline or run", "create a reproducibility task before interpretation"],
+      "required_artifacts": ["missing-evidence ledger", "issue with exact missing artifact path"],
+      "release_policy": "No scientific claim. Only gap ledger.",
+      "close_or_update_issues": "Create or update issue with missing evidence; keep claim blocked."
+    },
+    {
+      "status": "AUDIT_FAIL",
+      "meaning": "A governance script, registry, schema, N-k-dof, JSON or report-language check failed.",
+      "allowed_wording": "A auditoria falhou; nenhum claim científico deve ser emitido até correção do gate.",
+      "forbidden_wording": ["ignore audit", "publish anyway", "manual override without artifact"],
+      "required_actions": ["fix the failing gate", "rerun registry validator and evidence scanner", "record the failed command and exact error"],
+      "required_artifacts": ["CI log or local transcript", "fixed gate output"],
+      "release_policy": "Block release/report claim until audit passes.",
+      "close_or_update_issues": "Open/update audit-failure issue; do not close root governance issue."
+    },
+    {
+      "status": "RUNTIME_PENDING",
+      "meaning": "Governance metadata exists, but the actual cosmological run or ablation fit has not been executed.",
+      "allowed_wording": "PENDING: a matriz/rota existe, mas o fit cosmológico ainda não foi executado para esta política.",
+      "forbidden_wording": ["ablation completed", "fit confirms", "run proves"],
+      "required_actions": ["execute the ablation or mark as pending", "do not overwrite prior evidence without run_id", "scan each generated CSV independently"],
+      "required_artifacts": ["results/structure_d/ablation/<run_id>.csv", "scan JSON for each run_id"],
+      "release_policy": "Allow roadmap/status only; block result interpretation.",
+      "close_or_update_issues": "Keep #423 open until ablation CSVs exist and are scanned."
+    }
+  ]
+}
