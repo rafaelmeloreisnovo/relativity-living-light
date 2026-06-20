@@ -1,8 +1,5 @@
 # YML Workflows and Config Index
 
-Gerado por: `tools/docs_inventory.py`
-Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e commit não são materializados para reduzir conflitos entre branches.
-
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
 | `.github/workflows/START_MANUAL_HERE.yml` | `github_workflow_yml` | 11559 | 270 | `9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d` |
@@ -59,7 +56,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `knowledge_ecosystem/reference_seed_sources.yml` | `config_yml` | 2736 | 89 | `74e11f81af920466ff073034082414016eeda145faf134ca1ef2f6f0c993d4aa` |
 | `knowledge_ecosystem/source_search_queue.yml` | `config_yml` | 4044 | 95 | `2bb55f27be636072f9b954b1aae5494ec2a53865bd3096291ba7ba129ced0dd9` |
-| `rll_equation_registry.yml` | `config_yml` | 2162 | 64 | `88122f0b0c79c6cb24867f1c8c15587c93756610f35b6d7e072ef0b1c3fdd55b` |
+| `rll_equation_registry.yml` | `config_yml` | 3864 | 92 | `678e013d557f8a327ce00b05a1ca0397c9ecc9fddfd208e8bb1503e22206487b` |
 | `rll_inovacao_tecnologica_watch.yml` | `config_yml` | 1510 | 41 | `bb3b76a4bbbdf55a3cf6d381721e9a01bf2ddac54bb4779e0f0b48a647237ef3` |
 | `tools/inventory_config.yml` | `config_yml` | 1050 | 56 | `66629d935fd917fc3e6bcd20d9a0f761e71fe2e59e8b30e03fd313a54a1fd1d8` |
 | `validacao_real/data/desi_dr2_bao.yml` | `config_yml` | 2502 | 99 | `86d80d1290c039175e2b524b92111fa365b7cccb689cd16ba396ed883a21b690` |

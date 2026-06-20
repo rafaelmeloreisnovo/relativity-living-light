@@ -17,6 +17,7 @@
 - [x] Orquestrador ASCII/UTF: `docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md`
 - [x] Roadmap e falsificadores: `docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`
 - [x] Checklist de publicação: `docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`
+- [ ] Modelo Vetorial Informacional (MVICS): `docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md`
 
 ## 2. Arquivos de governança que devem existir ou ser confirmados
 

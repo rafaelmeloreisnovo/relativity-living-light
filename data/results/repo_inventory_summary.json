@@ -1,11 +1,11 @@
 {
-  "tracked_files_total": 1006,
-  "cataloged_files": 995,
-  "uncataloged_or_error_files": 0,
-  "total_bytes": 34995963,
-  "total_text_lines": 137686,
-  "markdown_files": 509,
-  "yml_yaml_files": 62,
-  "github_workflow_yml_files": 25,
-  "data_or_result_files": 143
+  "tracked_files_total": 972,
+  "cataloged_files": 944,
+  "uncataloged_or_error_files": 17,
+  "total_bytes": 34798264,
+  "total_text_lines": 132583,
+  "markdown_files": 493,
+  "yml_yaml_files": 60,
+  "github_workflow_yml_files": 23,
+  "data_or_result_files": 134
 }
