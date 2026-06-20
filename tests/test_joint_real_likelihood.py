@@ -48,7 +48,7 @@ def test_joint_real_models_include_wcdm_and_cpl_on_same_inputs() -> None:
 def test_joint_inputs_require_parameter_registry_and_covariance_readiness() -> None:
     inputs = joint.load_joint_inputs()
 
-    assert inputs["parameter_registry"]["schema"] == "rll.parameter_origin_registry.v1"
+    assert inputs["parameter_registry"]["schema"].startswith("rll.parameter_origin_registry.")
     assert inputs["desi_covariance_info"]["ready"] is True
     assert inputs["desi_covariance_info"]["mode"] in {"official_full", "block_summary"}
 

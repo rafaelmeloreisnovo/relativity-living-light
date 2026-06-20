@@ -426,7 +426,7 @@ def load_parameter_origin_registry(registry: Mapping[str, object]) -> dict[str, 
     params = registry["parameters"]
     if not isinstance(params, list) or not params:
         raise ValueError("parameter registry requires a non-empty parameters list")
-    required_param = {"name", "model", "origin", "role", "status", "reference"}
+    required_param = {"name", "model", "origin", "role", "status", "reference_keys"}
     for idx, item in enumerate(params):
         if not isinstance(item, Mapping):
             raise ValueError(f"parameter entry {idx} is not an object")

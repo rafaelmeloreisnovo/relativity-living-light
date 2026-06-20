@@ -3,10 +3,14 @@ import numpy as np
 from data.pipelines.structure_d.cosmo import (
     H_of_z,
     H_of_z_extended,
+    Omega_m_z,
     omega_astro,
     omega_ede,
+    omega_fundamental,
+    omega_neutrino,
     omega_topological,
 )
+from data.pipelines.structure_d.growth import f_sigma8_proxy
 from data.pipelines.structure_d.likelihood import is_physically_stable, log_prior
 
 
