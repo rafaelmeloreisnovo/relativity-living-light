@@ -320,6 +320,7 @@
       "type": "paper_or_analysis_context",
       "title": "DESI DR2 extended dark-energy analysis / w0-wa and dynamical dark-energy context",
       "authors": "DESI Collaboration and related DR2 dark-energy analyses",
+      "arxiv": "2503.14738",
       "used_for": ["CPL baseline", "phantom-crossing diagnostic", "dark-energy model comparison"]
     },
     "PantheonPlus2022": {
