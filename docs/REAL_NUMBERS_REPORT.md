@@ -1,72 +1,37 @@
 # Real Numbers Report
 
-Gerado em: `2026-06-16T21:55:13.173886+00:00`  
-Commit: `c3d7bfd5e2b3a10d84afbf8d3513670a05e6d0ee`
-
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 970 |
-| `cataloged_files` | 952 |
-| `uncataloged_or_error_files` | 18 |
-| `total_bytes` | 35421340 |
-| `total_text_lines` | 146061 |
-| `markdown_files` | 494 |
-| `yml_yaml_files` | 63 |
+| `tracked_files_total` | 972 |
+| `cataloged_files` | 944 |
+| `uncataloged_or_error_files` | 17 |
+| `total_bytes` | 34798264 |
+| `total_text_lines` | 132583 |
+| `markdown_files` | 493 |
+| `yml_yaml_files` | 60 |
 | `github_workflow_yml_files` | 23 |
-| `data_or_result_files` | 112 |
+| `data_or_result_files` | 134 |
 
-## Categorias
-
-| Categoria | Arquivos |
-|---|---:|
-| `documentation_md` | 494 |
-| `source_code` | 146 |
-| `other` | 130 |
-| `data_or_result` | 112 |
-| `config_yml` | 40 |
-| `github_workflow_yml` | 23 |
-| `archive` | 6 |
-| `test_or_validation` | 1 |
-
-## Extensões
-
-| Extensão | Arquivos |
-|---|---:|
-| `.md` | 494 |
-| `.py` | 134 |
-| `.png` | 67 |
-| `.csv` | 65 |
-| `.yml` | 63 |
-| `.json` | 60 |
-| `NO_EXT` | 12 |
-| `.txt` | 10 |
-| `.sh` | 6 |
-| `.zip` | 6 |
-| `.ipynb` | 5 |
-| `.tsv` | 5 |
-| `.s` | 4 |
-| `.c` | 4 |
-| `.java` | 3 |
-| `.tex` | 3 |
-| `.h` | 2 |
-| `.pdf` | 2 |
-| `.sha256` | 2 |
-| `.cff` | 1 |
-| `.html` | 1 |
-| `.svg` | 1 |
-| `.toml` | 1 |
-| `.ini` | 1 |
-
-## Flags
-
-| Flag | Ocorrências |
-|---|---:|
-| `cosmology_validation_marker` | 418 |
-| `token_vazio_declared` | 120 |
-| `result_artifact` | 91 |
-| `mentions_mock_or_placeholder` | 85 |
-| `mentions_synthetic` | 67 |
-
-## Fronteira
+## Contrato operacional
 
 tracked_files_total é a contagem bruta de `git ls-files`. cataloged_files é o que foi lido, medido e hasheado. uncataloged_or_error_files mostra a lacuna real.
+
+## Lacunas
+
+- `figs/conceptual/concept_density_evolution_superposition_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_expansion_hz_superposition_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_mock_hubble_fit_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_mock_hubble_fit_v02.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_mock_supernova_fit_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_mock_supernova_fit_v02.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_mock_supernova_fit_v03.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_omega_s0_1d_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_omega_s0_1d_v02.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_omega_s0_wt_2d_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_zt_1d_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_zt_1d_v02.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_zt_1d_v03.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_zt_1d_v04.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_zt_wt_2d_v01.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_posterior_zt_wt_2d_v02.png`: `FileNotFoundError(2, 'No such file or directory')`
+- `figs/conceptual/concept_rotation_curves_superposition_v01.png`: `FileNotFoundError(2, 'No such file or directory')`

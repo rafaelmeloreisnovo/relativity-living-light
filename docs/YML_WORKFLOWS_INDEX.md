@@ -1,7 +1,4 @@
-# YML Workflows Index
-
-Gerado em: `2026-06-16T21:55:13.173886+00:00`  
-Commit: `c3d7bfd5e2b3a10d84afbf8d3513670a05e6d0ee`
+# YML Workflows and Config Index
 
 | Path | Tipo | Bytes | Linhas | SHA256 |
 |---|---|---:|---:|---|
@@ -30,9 +27,6 @@ Commit: `c3d7bfd5e2b3a10d84afbf8d3513670a05e6d0ee`
 | `.github/workflows/yml-syntax-validation.yml` | `github_workflow_yml` | 1616 | 63 | `6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290` |
 | `CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `data/observational_sources.yml` | `config_yml` | 4312 | 131 | `163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d` |
-| `data/raw/RAW_DATA_MANIFEST.yml` | `config_yml` | 6728 | 167 | `62ca61ce2598393c9d77dafdcb2de9271211c27482a95816c396413563b031ae` |
-| `data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_observer_2006_sample.meta.yml` | `config_yml` | 1802 | 53 | `63de5f109ebdf61c7df3352f8c497fd46a11855603d8e0aa077c3bde42ab9ce0` |
-| `data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml` | `config_yml` | 1418 | 24 | `51507bea6a04dd8abb623298d2a94eb7573308e9c2ea3033ebaa183142774fac` |
 | `data/real/bootstrap/canonical_route_checklist.yml` | `config_yml` | 5218 | 168 | `3be1076c8c8834dc59dc7243747ed88148eb3690e2c277c7ef23968db057b438` |
 | `data/real/bootstrap/dense_behavior_feature_orchestration.yml` | `config_yml` | 2378 | 57 | `fb3fe69be388f600996ef4d2abfa1d36d5d05fc6bd435d7aee7b4654f8ba4001` |
 | `data/real/bootstrap/real_data_requirements_bootstrap.yml` | `config_yml` | 7548 | 222 | `10dcf7fe8dcbec05de9c1ee8ee7eaa2e35f2a61b7b972ebe6630fe59aefe24e5` |
@@ -60,7 +54,7 @@ Commit: `c3d7bfd5e2b3a10d84afbf8d3513670a05e6d0ee`
 | `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6204 | 126 | `7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89` |
 | `knowledge_ecosystem/reference_seed_sources.yml` | `config_yml` | 2736 | 89 | `74e11f81af920466ff073034082414016eeda145faf134ca1ef2f6f0c993d4aa` |
 | `knowledge_ecosystem/source_search_queue.yml` | `config_yml` | 4044 | 95 | `2bb55f27be636072f9b954b1aae5494ec2a53865bd3096291ba7ba129ced0dd9` |
-| `rll_equation_registry.yml` | `config_yml` | 2162 | 64 | `88122f0b0c79c6cb24867f1c8c15587c93756610f35b6d7e072ef0b1c3fdd55b` |
+| `rll_equation_registry.yml` | `config_yml` | 3864 | 92 | `678e013d557f8a327ce00b05a1ca0397c9ecc9fddfd208e8bb1503e22206487b` |
 | `rll_inovacao_tecnologica_watch.yml` | `config_yml` | 1510 | 41 | `bb3b76a4bbbdf55a3cf6d381721e9a01bf2ddac54bb4779e0f0b48a647237ef3` |
 | `tools/inventory_config.yml` | `config_yml` | 1050 | 56 | `66629d935fd917fc3e6bcd20d9a0f761e71fe2e59e8b30e03fd313a54a1fd1d8` |
 | `validacao_real/data/desi_dr2_bao.yml` | `config_yml` | 2502 | 99 | `86d80d1290c039175e2b524b92111fa365b7cccb689cd16ba396ed883a21b690` |
