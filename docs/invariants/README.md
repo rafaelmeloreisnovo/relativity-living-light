@@ -35,6 +35,7 @@ Assim, esta arte entra no repositório como **mapa de coerência**, não como su
 ## Caminho do artefato
 
 - SVG: [`universe-of-invariants.svg`](./universe-of-invariants.svg)
+- Kernel técnico: [`sqrt3_2_kernel.md`](./sqrt3_2_kernel.md)
 
 ## Fórmula-marcador
 
