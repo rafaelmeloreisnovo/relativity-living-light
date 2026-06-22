@@ -148,3 +148,82 @@ Para FAILSAFE/FAILOVER/ROLLBACK, registre sempre:
 - **F_ok:** `sqrt(3)/2` é invariante direto em geometria 30°/60°/hexagonal e operador válido de contração com `|h| < 1`.
 - **F_gap:** não deve ser confundido com `1σ`, z-score, densidade total de empacotamento ou prova universal sem fórmula intermediária.
 - **F_next:** implementar kernels de baixo nível sem heap para Q16.16/Q32.32, com testes de saturação, rollback e comparação contra `float64`.
+
+## Extensão matemática — complexos, Eisenstein e simetria de ordem 6
+
+A leitura matemática mais forte além do triângulo é a rotação complexa:
+
+```text
+e^(i*pi/3) = cos(60°) + i*sin(60°) = 1/2 + i*sqrt(3)/2
+```
+
+Esse ponto é vértice do hexágono unitário e base para raízes da unidade de ordem 6, análise harmônica, rotações discretas, números de Eisenstein e reticulado triangular no plano complexo. Uma base executável equivalente é:
+
+```text
+a = (1, 0)
+b = (1/2, sqrt(3)/2)
+(x, y) = m*a + n*b
+```
+
+Essa forma conecta álgebra, redes triangulares, discretização de superfícies, autômatos celulares hexagonais e códigos geométricos sem exigir interpretação cosmológica forte.
+
+## Extensão cosmológica — pivô diagnóstico, não constante fundamental
+
+Em cosmologia, `sqrt(3)/2` deve entrar como operador, pivô, malha ou hipótese testável. Ele não é registrado aqui como constante cosmológica fundamental.
+
+O pivô operacional proposto é:
+
+```text
+a_h = sqrt(3)/2
+z_h = 1/a_h - 1 = 2/sqrt(3) - 1 ≈ 0.15470053837925168
+```
+
+Uso permitido:
+
+```text
+H_LCDM(z_h)
+H_CPL(z_h)
+H_RLL(z_h)
+Delta_chi2 = chi2_LCDM - chi2_modelo_com_pivo_h
+```
+
+Interpretação:
+
+- se `Delta_chi2 > 0`, o modelo com pivô reduziu o chi-quadrado no conjunto testado;
+- se `Delta_chi2 < 0`, piorou;
+- se empata dentro da tolerância estatística, o pivô é apenas linguagem geométrica/diagnóstica, não descoberta.
+
+O modelo base `LambdaCDM` plano de 6 parâmetros permanece uma referência observacional robusta; dados DESI DR2/BAO e combinações com CMB/SNe podem tensionar a hipótese de energia escura constante em parametrizações dinâmicas, mas isso não transforma `sqrt(3)/2` em constante física universal. Portanto, o status correto é `TOKEN_VAZIO` para qualquer alegação de nova física até comparação reprodutível com BAO, supernovas, CMB e resíduos.
+
+Fontes de fronteira usadas para esta extensão:
+
+- Planck Collaboration, `Planck 2018 results. VI. Cosmological parameters`, arXiv:1807.06209, A&A 641 A6 (2020): https://arxiv.org/abs/1807.06209
+- DESI Collaboration, `DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints`, arXiv:2503.14738, Phys. Rev. D 112, 083515 (2025): https://arxiv.org/abs/2503.14738
+- DESI DR2 guide page, March 19 2025: https://www.desi.lbl.gov/2025/03/19/desi-dr2-results-march-19-guide/
+
+## Implementação freestanding Q16.16
+
+O primeiro kernel executável foi colocado no runtime C freestanding:
+
+```text
+core/lowlevel_runtime/include/pantheon_freestanding.h
+core/lowlevel_runtime/c/pantheon_freestanding.c
+```
+
+API inicial:
+
+```text
+rll_sqrt3_2_project_q16(x_q16)
+rll_sqrt3_2_reverse_q16(x_q16)
+rll_sqrt3_2_decay_q16(state_q16, input_q16)
+rll_sqrt3_2_hex_grid_q16(row, col, side_q16)
+rll_sqrt3_2_cosmo_pivot_q16()
+```
+
+Garantias do escopo atual:
+
+- sem `malloc`, sem heap e sem GC;
+- sem dependência de `stdlib`, `stdio` ou `string.h` no módulo freestanding;
+- fixed-point Q16.16 explícito;
+- rota de rollback aproximada por `2/sqrt(3)`;
+- pivô cosmológico exportado como diagnóstico (`a_h`, `z_h`), não como constante fundamental.

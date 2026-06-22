@@ -44,3 +44,15 @@ gcc -ffreestanding -fno-builtin -nostdlib -c core/lowlevel_runtime/c/pantheon_fr
 pytest -q tests/test_pantheon_freestanding.py
 gcc -ffreestanding -fno-builtin -nostdlib -c core/lowlevel_runtime/c/pantheon_freestanding.c -Icore/lowlevel_runtime/include -o /tmp/pantheon_freestanding.o
 ```
+
+## RAFAELIA sqrt3_2 kernel Q16.16
+- `rll_sqrt3_2_project_q16` aplica `sqrt(3)/2` como projeção/contração fixed-point.
+- `rll_sqrt3_2_reverse_q16` aplica o inverso `2/sqrt(3)` como rota de rollback aproximada.
+- `rll_sqrt3_2_decay_q16` implementa `R_{n+1}=Entrada_n+h*R_n` sem heap.
+- `rll_sqrt3_2_hex_grid_q16` gera coordenadas de grid triangular/hexagonal em Q16.16.
+- `rll_sqrt3_2_cosmo_pivot_q16` expõe `a_h=sqrt(3)/2` e `z_h=2/sqrt(3)-1` como pivô diagnóstico, não como constante cosmológica fundamental.
+
+Build/teste focal:
+```bash
+pytest -q tests/test_sqrt3_2_freestanding_kernel.py
+```

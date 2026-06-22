@@ -11,6 +11,26 @@ typedef unsigned int rll_u32;
 typedef unsigned long long rll_u64;
 typedef long long rll_i64;
 
+#define RLL_SQRT3_2_Q16 56756u
+#define RLL_ONE_Q16 65536u
+
+typedef struct rll_hex_q16 {
+    rll_i64 x_q16;
+    rll_i64 y_q16;
+} rll_hex_q16;
+
+typedef struct rll_sqrt3_2_pivot_q16 {
+    rll_u32 a_q16;
+    rll_u32 z_q16;
+} rll_sqrt3_2_pivot_q16;
+
+/* RAFAELIA sqrt(3)/2 Q16.16 kernels: sem heap, sem libc, rota de rollback explícita. */
+rll_i64 rll_sqrt3_2_project_q16(rll_i64 x_q16);
+rll_i64 rll_sqrt3_2_reverse_q16(rll_i64 x_q16);
+rll_i64 rll_sqrt3_2_decay_q16(rll_i64 state_q16, rll_i64 input_q16);
+rll_hex_q16 rll_sqrt3_2_hex_grid_q16(rll_i64 row, rll_i64 col, rll_i64 side_q16);
+rll_sqrt3_2_pivot_q16 rll_sqrt3_2_cosmo_pivot_q16(void);
+
 /*
  * Pantheon freestanding low-level runtime (não é dataset Pantheon+ cosmológico).
  * - sem heap/malloc
