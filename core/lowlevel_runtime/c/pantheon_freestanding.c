@@ -10,6 +10,39 @@
 #define RLL_ENOSYS_NEG (-38ll)
 #define RLL_EINVAL_NEG (-22ll)
 
+#define RLL_ONE_Q16_I64 65536ll
+#define RLL_SQRT3_2_Q16_I64 56756ll
+#define RLL_INV_SQRT3_2_Q16_I64 75674ll
+#define RLL_COSMO_Z_H_Q16 10138u
+
+rll_i64 rll_sqrt3_2_project_q16(rll_i64 x_q16) {
+    return (x_q16 * RLL_SQRT3_2_Q16_I64) >> 16;
+}
+
+rll_i64 rll_sqrt3_2_reverse_q16(rll_i64 x_q16) {
+    return (x_q16 * RLL_INV_SQRT3_2_Q16_I64) >> 16;
+}
+
+rll_i64 rll_sqrt3_2_decay_q16(rll_i64 state_q16, rll_i64 input_q16) {
+    return input_q16 + rll_sqrt3_2_project_q16(state_q16);
+}
+
+rll_hex_q16 rll_sqrt3_2_hex_grid_q16(rll_i64 row, rll_i64 col, rll_i64 side_q16) {
+    rll_hex_q16 p;
+    rll_i64 half_shift = (row & 1ll) * (side_q16 >> 1);
+    p.x_q16 = (col * side_q16) + half_shift;
+    p.y_q16 = rll_sqrt3_2_project_q16(row * side_q16);
+    return p;
+}
+
+rll_sqrt3_2_pivot_q16 rll_sqrt3_2_cosmo_pivot_q16(void) {
+    rll_sqrt3_2_pivot_q16 p;
+    p.a_q16 = RLL_SQRT3_2_Q16;
+    p.z_q16 = RLL_COSMO_Z_H_Q16;
+    return p;
+}
+
+
 #if defined(__linux__) && defined(__x86_64__)
 #define RLL_SYS_WRITE 1ull
 #endif
