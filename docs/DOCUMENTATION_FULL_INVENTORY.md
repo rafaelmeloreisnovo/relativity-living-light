@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1006 |
-| `cataloged_files` | 995 |
+| `tracked_files_total` | 1009 |
+| `cataloged_files` | 998 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 34998402 |
-| `total_text_lines` | 137722 |
-| `markdown_files` | 509 |
+| `total_bytes` | 35013065 |
+| `total_text_lines` | 138145 |
+| `markdown_files` | 510 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 143 |
 
-**Total de arquivos catalogados:** 995
+**Total de arquivos catalogados:** 998
 
 ## Inventário completo
 
@@ -236,12 +236,12 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `book/38_apendice_numeros_rafaelianos.md` | 3372 | `.md` | `documentation_md` | 34 | `143e805dd5bc98b5767189dae3c3a01ba74e589ad2dd1e4de9b470af84a5398f` | `` |
 | `book/39_apendice_referencias_fontes.md` | 3126 | `.md` | `documentation_md` | 65 | `331a91be3cefed6b6b41dfd0f86dedfc2525acffbae5acad78d79313bdebeb96` | `` |
 | `book/README.md` | 10899 | `.md` | `documentation_md` | 567 | `c14de5f52d8e40e3c74093edac0878bf9c13c3639563e265511e49eb73c64792` | `mentions_mock_or_placeholder` |
-| `core/lowlevel_runtime/README.md` | 2236 | `.md` | `documentation_md` | 46 | `2acf589e514d5c2348e5a39bc3aa1877bdd37644c3eedf64f0cc1f2ce08a9ef3` | `` |
+| `core/lowlevel_runtime/README.md` | 2839 | `.md` | `documentation_md` | 58 | `c937b57a9a28e470dbfd82148468b6cc1320143d46b1ab69cf8c4214c7c263ea` | `` |
 | `core/lowlevel_runtime/asm/arch_detect_x86_64.S` | 154 | `.s` | `other` | 0 | `70f4ae02947603f74b46df6d2e5d308df60738ecb2f3583b8fa643570b96249c` | `` |
 | `core/lowlevel_runtime/c/kernel_bridge.c` | 469 | `.c` | `source_code` | 23 | `78a4114f348f2862d293f947d284ba5d023fb004666af7d7a50db4564bba3933` | `` |
-| `core/lowlevel_runtime/c/pantheon_freestanding.c` | 1917 | `.c` | `source_code` | 73 | `68aeb0681c380aa266230720d5664c30c9f8e5be26a08cc2ff8cb6ada0a17402` | `` |
+| `core/lowlevel_runtime/c/pantheon_freestanding.c` | 2839 | `.c` | `source_code` | 106 | `670cc927c7680d279b6c546d3844e580d209b424d14a43dee76d9f48777346ae` | `` |
 | `core/lowlevel_runtime/include/kernel_bridge.h` | 197 | `.h` | `source_code` | 15 | `2bed0f0706ec3b4e6d691aa725d1afb73cfbedd0cb4ec5168a9322fdde0b1193` | `` |
-| `core/lowlevel_runtime/include/pantheon_freestanding.h` | 723 | `.h` | `source_code` | 30 | `0ad7b9eb68d515c130eadc5e715163e68e62360e5a31d01a2499a1124d7d5c06` | `` |
+| `core/lowlevel_runtime/include/pantheon_freestanding.h` | 1363 | `.h` | `source_code` | 50 | `6660cefb1ec10d0a46580aeb7feca48f7482fb7ffdc21e213f4c267be2bfaa6f` | `` |
 | `core/lowlevel_runtime/java/KernelBridge.java` | 247 | `.java` | `other` | 0 | `68868a5b5112e5c42f420dcaa02d1715b37c632fc9040b4af1fdbc0a8ee9957c` | `` |
 | `darkmatter.md` | 20833 | `.md` | `documentation_md` | 335 | `b81611fbd5b2179abd09e6527f0d54ef80bdf72039a3ad4c6e4bd8b3fca29cbc` | `mentions_synthetic` |
 | `data/CITATION.cff` | 239 | `.cff` | `other` | 0 | `450eecd1a92a8e43ebdfaf56e1b0e16ee9d76aa65a079ae2021c75ec7df66587` | `` |
@@ -551,7 +551,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/data/PANTHEON_DESI_MASTER_TABLE.md` | 11170 | `.md` | `documentation_md` | 164 | `bf118c06c5f981c4bea63bf5dcd97ff41f77fa66fec381a30bb048c5da3bd198` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/estatisticas.md` | 2342 | `.md` | `documentation_md` | 89 | `f55e3dcdd989b5db49cf7ffd29c2b3f10b4254e889b10ee7f73a189b29059e10` | `mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/fisher_forecast.py` | 8472 | `.py` | `source_code` | 249 | `d6bbd564fdd2eb3ea7e117738ee3a59d62f10c4615d5e41ce552c1264520d9f2` | `mentions_synthetic,cosmology_validation_marker` |
-| `docs/invariants/README.md` | 2083 | `.md` | `documentation_md` | 49 | `cd40c4b0fc32d9b745a1748fe6ba8758fb2ee058fde965789d3483d1ac111829` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/invariants/README.md` | 2145 | `.md` | `documentation_md` | 50 | `a4d4c5de6cada647885a3f422c83801bd98e3089cb6028bb0b74d49cb5dc9346` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/invariants/sqrt3_2_kernel.md` | 8361 | `.md` | `documentation_md` | 229 | `8c0fcbd2fb106d47052382eb6c2faf8debad970784d9c04b4d3f3a6cc227cede` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/invariants/universe-of-invariants.svg` | 10033 | `.svg` | `other` | 0 | `1a4a502956968581a56e492665d756a5f4839bcd33cd67b63a0429205ce2148d` | `cosmology_validation_marker` |
 | `docs/methods/RAFAELIA_PREDICTABILITY_INDEX.md` | 9408 | `.md` | `documentation_md` | 324 | `14735c807db5c2946048df24fa3001cafac4befade6109763682c3e40f46a10a` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/modules/lcdmpp_extension_framework.md` | 3319 | `.md` | `documentation_md` | 113 | `f4e1e7a5a731e9d07cb759cc52dca70f1195624b09cf5eb6064716dae62e0afc` | `cosmology_validation_marker` |
@@ -946,6 +947,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tests/test_rll_latentes.py` | 6037 | `.py` | `source_code` | 161 | `51f1043643369301549d83d27639767ed13df5a8a04609ffc6e47d0757fd21a4` | `cosmology_validation_marker` |
 | `tests/test_rll_vs_lcdm_bao.py` | 1702 | `.py` | `source_code` | 43 | `05ede53d82c13e75cc8522c64eacef322d38aee2ec6b418d3454f2cd6b716695` | `cosmology_validation_marker` |
 | `tests/test_run_real_pantheon_validation.py` | 6289 | `.py` | `source_code` | 141 | `6c66dfa461ae20dc61f29b9b1f04edfdfc51b3f2854f8cf48be3879b8318e2e2` | `cosmology_validation_marker` |
+| `tests/test_sqrt3_2_freestanding_kernel.py` | 2653 | `.py` | `source_code` | 88 | `9e4a7280a4fd02715caa3752f5dbd8fa8b86466d7c792cf7de96fb0b7382ed00` | `cosmology_validation_marker` |
+| `tests/test_sqrt3_2_kernel_contract.py` | 1422 | `.py` | `source_code` | 40 | `ab10b101571d41861c2ee77b6c31ee68dc98454078f353f3cdb888f8f09c8042` | `cosmology_validation_marker` |
 | `tests/test_structure_d_effective_dynamics.py` | 1977 | `.py` | `source_code` | 70 | `533e266766d17b63ac9bd3561024f49d6c039c2098ee9aee2f4857833171ec27` | `cosmology_validation_marker` |
 | `tests/test_structure_d_inspection_rate.py` | 3876 | `.py` | `source_code` | 125 | `32c4b8bf18643436a68d954bef5dd298695e00cb1880afd3b889bceb883ca028` | `cosmology_validation_marker` |
 | `tests/test_structure_d_model_coverage.py` | 922 | `.py` | `source_code` | 27 | `fc0fe6cc1aad9b4548190eca1282dcfc2022460c7e1625c912460a62d6cc3314` | `cosmology_validation_marker` |

@@ -1918,11 +1918,11 @@
   },
   {
     "path": "core/lowlevel_runtime/README.md",
-    "bytes": 2236,
+    "bytes": 2839,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 46,
-    "sha256": "2acf589e514d5c2348e5a39bc3aa1877bdd37644c3eedf64f0cc1f2ce08a9ef3",
+    "linhas": 58,
+    "sha256": "c937b57a9a28e470dbfd82148468b6cc1320143d46b1ab69cf8c4214c7c263ea",
     "flags": ""
   },
   {
@@ -1945,11 +1945,11 @@
   },
   {
     "path": "core/lowlevel_runtime/c/pantheon_freestanding.c",
-    "bytes": 1917,
+    "bytes": 2839,
     "ext": ".c",
     "tipo": "source_code",
-    "linhas": 73,
-    "sha256": "68aeb0681c380aa266230720d5664c30c9f8e5be26a08cc2ff8cb6ada0a17402",
+    "linhas": 106,
+    "sha256": "670cc927c7680d279b6c546d3844e580d209b424d14a43dee76d9f48777346ae",
     "flags": ""
   },
   {
@@ -1963,11 +1963,11 @@
   },
   {
     "path": "core/lowlevel_runtime/include/pantheon_freestanding.h",
-    "bytes": 723,
+    "bytes": 1363,
     "ext": ".h",
     "tipo": "source_code",
-    "linhas": 30,
-    "sha256": "0ad7b9eb68d515c130eadc5e715163e68e62360e5a31d01a2499a1124d7d5c06",
+    "linhas": 50,
+    "sha256": "6660cefb1ec10d0a46580aeb7feca48f7482fb7ffdc21e213f4c267be2bfaa6f",
     "flags": ""
   },
   {
@@ -4753,11 +4753,20 @@
   },
   {
     "path": "docs/invariants/README.md",
-    "bytes": 2083,
+    "bytes": 2145,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 49,
-    "sha256": "cd40c4b0fc32d9b745a1748fe6ba8758fb2ee058fde965789d3483d1ac111829",
+    "linhas": 50,
+    "sha256": "a4d4c5de6cada647885a3f422c83801bd98e3089cb6028bb0b74d49cb5dc9346",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/invariants/sqrt3_2_kernel.md",
+    "bytes": 8361,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 229,
+    "sha256": "8c0fcbd2fb106d47052382eb6c2faf8debad970784d9c04b4d3f3a6cc227cede",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -8304,6 +8313,24 @@
     "tipo": "source_code",
     "linhas": 141,
     "sha256": "6c66dfa461ae20dc61f29b9b1f04edfdfc51b3f2854f8cf48be3879b8318e2e2",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_sqrt3_2_freestanding_kernel.py",
+    "bytes": 2653,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 88,
+    "sha256": "9e4a7280a4fd02715caa3752f5dbd8fa8b86466d7c792cf7de96fb0b7382ed00",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_sqrt3_2_kernel_contract.py",
+    "bytes": 1422,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 40,
+    "sha256": "ab10b101571d41861c2ee77b6c31ee68dc98454078f353f3cdb888f8f09c8042",
     "flags": "cosmology_validation_marker"
   },
   {
