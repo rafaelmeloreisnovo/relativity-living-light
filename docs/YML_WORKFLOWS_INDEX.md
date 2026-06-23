@@ -13,7 +13,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `.github/workflows/dense-feature-matrix.yml` | `github_workflow_yml` | 2106 | 64 | `096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786` |
 | `.github/workflows/desi-dr2-bao-validation.yml` | `github_workflow_yml` | 1856 | 65 | `35b65780c6662b0bb01109fdc4f0d7526ffbff832e9c9f4605244029cc1949c2` |
 | `.github/workflows/dha-fisher-ci.yml` | `github_workflow_yml` | 2397 | 77 | `5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4` |
-| `.github/workflows/formulas-artifacts-validation.yml` | `github_workflow_yml` | 783 | 36 | `9f0d052c445b5f5658c4a7f788fe81e2504642b2634a999c0b7de122bcebfc44` |
+| `.github/workflows/formulas-artifacts-validation.yml` | `github_workflow_yml` | 1200 | 46 | `a79f6d1a2ed11ca4d4eb6bfe2f782272cf7757246541bb5d177f42fc89f822e2` |
 | `.github/workflows/formulas-artifacts.yml` | `github_workflow_yml` | 864 | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` |
 | `.github/workflows/iml_artifact.yml` | `github_workflow_yml` | 1382 | 54 | `bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72` |
 | `.github/workflows/orbital-shape-angular-momentum-validation.yml` | `github_workflow_yml` | 2046 | 61 | `c94befa20a58f0d3cd1f52f0d3f6ff8b73486de81c7f68773a79dacdbfeb5bb6` |

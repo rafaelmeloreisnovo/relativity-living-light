@@ -82,11 +82,11 @@
   },
   {
     "path": ".github/workflows/formulas-artifacts-validation.yml",
-    "bytes": 783,
+    "bytes": 1200,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 36,
-    "sha256": "9f0d052c445b5f5658c4a7f788fe81e2504642b2634a999c0b7de122bcebfc44",
+    "linhas": 46,
+    "sha256": "a79f6d1a2ed11ca4d4eb6bfe2f782272cf7757246541bb5d177f42fc89f822e2",
     "flags": ""
   },
   {
