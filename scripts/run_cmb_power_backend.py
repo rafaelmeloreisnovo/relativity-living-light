@@ -6,31 +6,39 @@ import json
 from pathlib import Path
 
 RLL_BACKGROUND_C = Path("src/rll/class_rll_background.c")
+RLL_KERNEL = Path("src/rll/rll_perturbation_kernel.py")
 
 
 def rll_background_status() -> dict:
-    exists = RLL_BACKGROUND_C.exists()
+    bg_exists = RLL_BACKGROUND_C.exists()
+    kernel_exists = RLL_KERNEL.exists()
     return {
-        "rll_background_exact": bool(exists),
-        "source": str(RLL_BACKGROUND_C),
-        "provides": ["E2(a)", "H/H0", "w_eff(a)", "Omega_m(a)", "Omega_s(a)", "dlnH_dlna"],
-        "perturbations_exact": "TOKEN_VAZIO",
+        "rll_background_exact": bool(bg_exists),
+        "background_source": str(RLL_BACKGROUND_C),
+        "linear_perturbation_kernel": bool(kernel_exists),
+        "kernel_source": str(RLL_KERNEL),
+        "provides": ["E2(a)", "H/H0", "w_eff(a)", "Omega_m(a)", "Omega_s(a)", "dlnH_dlna", "delta_m(a)", "growth_rate(a)"],
+        "perturbations_exact": "linear_kernel_available_background_coupled",
         "cmb_cl_exact": "TOKEN_VAZIO",
         "nonlinear_pk_exact": "TOKEN_VAZIO",
     }
 
 
+def rll_status(engine: str) -> dict:
+    status = rll_background_status()
+    status.update({
+        "engine": engine,
+        "available": True,
+        "model": "rll",
+        "status": "rll_background_and_linear_kernel_available",
+        "reason": "RLL exact background and linear growth kernel are present; exact Cl and nonlinear P(k) still require full Boltzmann/nonlinear integration",
+    })
+    return status
+
+
 def try_camb(args: argparse.Namespace) -> dict:
     if args.model == "rll":
-        status = rll_background_status()
-        status.update({
-            "engine": "camb",
-            "available": True,
-            "model": "rll",
-            "status": "rll_exact_background_available",
-            "reason": "RLL exact background is present as a C module; exact CAMB perturbations still require a custom backend port",
-        })
-        return status
+        return rll_status("camb")
     try:
         import camb  # type: ignore
         from camb import model  # type: ignore
@@ -64,15 +72,7 @@ def try_camb(args: argparse.Namespace) -> dict:
 
 def try_classy(args: argparse.Namespace) -> dict:
     if args.model == "rll":
-        status = rll_background_status()
-        status.update({
-            "engine": "classy",
-            "available": True,
-            "model": "rll",
-            "status": "rll_exact_background_available",
-            "reason": "RLL exact background is present as a C module; exact CLASS perturbations still require integration into background/perturbation structs",
-        })
-        return status
+        return rll_status("classy")
     try:
         from classy import Class  # type: ignore
     except Exception as exc:
