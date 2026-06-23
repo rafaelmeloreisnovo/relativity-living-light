@@ -1,0 +1,15 @@
+{
+  "status": "transfer_bridge_contract_available",
+  "background": "src/rll/class_rll_background.c",
+  "kernel": "src/rll/rll_perturbation_kernel.py",
+  "outputs": ["z", "k_hmpc", "D_z", "T_k_z", "P_linear_bridge"],
+  "inputs": {
+    "redshifts": [0.0, 0.5, 1.0, 2.0],
+    "k_hmpc_range": [0.0001, 10.0],
+    "k_points_default": 80
+  },
+  "method": "linear growth D(z) from RLL perturbation kernel times external transfer-shape placeholder",
+  "exact_cl_cmb": "TOKEN_VAZIO",
+  "exact_nonlinear_pk": "TOKEN_VAZIO",
+  "next": "replace placeholder transfer-shape with native CLASS/CAMB transfer functions"
+}
