@@ -1,0 +1,13 @@
+{
+  "status": "class_transfer_adapter_contract_available",
+  "model": "rll",
+  "input_contract": "src/rll/rll_transfer_bridge_contract.json",
+  "background_source": "src/rll/class_rll_background.c",
+  "kernel_source": "src/rll/rll_perturbation_kernel.py",
+  "backend_target": "CLASS_or_CAMB_custom_transfer_layer",
+  "handoff_outputs": ["z", "k_hmpc", "D_z", "T_k_z", "P_linear_bridge"],
+  "expected_native_backend_outputs": ["transfer_table", "matter_power_linear", "cmb_sources"],
+  "exact_cl_cmb": "TOKEN_VAZIO",
+  "exact_nonlinear_pk": "TOKEN_VAZIO",
+  "next": "implement backend-native transfer table generation"
+}
