@@ -1,0 +1,36 @@
+name: Formulas artifacts validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data/formulas/**'
+      - 'scripts/validate_formulas_manifest.py'
+      - '.github/workflows/formulas-artifacts-validation.yml'
+  pull_request:
+    paths:
+      - 'data/formulas/**'
+      - 'scripts/validate_formulas_manifest.py'
+      - '.github/workflows/formulas-artifacts-validation.yml'
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  formulas-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate formulas manifest
+        run: python scripts/validate_formulas_manifest.py
