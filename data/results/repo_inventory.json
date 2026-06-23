@@ -2080,11 +2080,11 @@
   },
   {
     "path": "data/formulas/FORMULA_INDEX_CONTRACT.json",
-    "bytes": 1747,
+    "bytes": 1971,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 49,
-    "sha256": "6c428881f5f5a89674e1e6da08caae97d6e2613c2fb4fa0d705e5d347b38430a",
+    "linhas": 50,
+    "sha256": "57505c6775897028156f879d5e4769608bb28ee4bdd4f6e90b3e5393abf93c31",
     "flags": "token_vazio_declared"
   },
   {

@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1051 |
 | `cataloged_files` | 1040 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35104679 |
-| `total_text_lines` | 140653 |
+| `total_bytes` | 35104903 |
+| `total_text_lines` | 140654 |
 | `markdown_files` | 523 |
 | `yml_yaml_files` | 64 |
 | `github_workflow_yml_files` | 27 |
@@ -254,7 +254,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/duplicates_archive/Hz_superposicao (1).ipynb` | 1710 | `.ipynb` | `other` | 0 | `a3e626e1f2ea57f55df53018988097228e37d064d251e891e899dba17d6b95ca` | `` |
 | `data/examples/bh_flux_presets.json` | 892 | `.json` | `data_or_result` | 27 | `c2cff4b374c9a9103ff7a3900e279e4936ef9eb81f7fc12c0ab080b5c8ef369c` | `` |
 | `data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json` | 1424 | `.json` | `data_or_result` | 41 | `a418ec78f04514eca8e2e1da3db2167bfe8c0973dc2b964c16b251570f0e5b1b` | `` |
-| `data/formulas/FORMULA_INDEX_CONTRACT.json` | 1747 | `.json` | `data_or_result` | 49 | `6c428881f5f5a89674e1e6da08caae97d6e2613c2fb4fa0d705e5d347b38430a` | `token_vazio_declared` |
+| `data/formulas/FORMULA_INDEX_CONTRACT.json` | 1971 | `.json` | `data_or_result` | 50 | `57505c6775897028156f879d5e4769608bb28ee4bdd4f6e90b3e5393abf93c31` | `token_vazio_declared` |
 | `data/iml/daise_input.example.json` | 149 | `.json` | `data_or_result` | 7 | `4399cd4c9a96acc33569919bd8b8f0e419254846cd2656963d9433cdcd7c962b` | `` |
 | `data/iml/daise_input.json` | 404 | `.json` | `data_or_result` | 17 | `562ffea1cc9cee22db227da7c2275b552a5bec75e71a14e3641837231bc0d533` | `` |
 | `data/inputs/cosmology_joint/README.md` | 2064 | `.md` | `documentation_md` | 49 | `557a866bedf4196545e05010061687defb0169dd5ddabd23afb2e2afa8ab23b0` | `` |
