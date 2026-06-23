@@ -3807,6 +3807,15 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/PR385_SAFE_EXTRACTION_STATUS.md",
+    "bytes": 793,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 23,
+    "sha256": "9fdd2590864dd6c8c39575fce598e670d496a5906fc4887b7cb7a1bcf7257b8b",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/RAFAELIA_PRIORITY_MATRIX.md",
     "bytes": 2424,
     "ext": ".md",
