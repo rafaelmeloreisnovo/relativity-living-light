@@ -63,6 +63,15 @@
     "flags": "token_vazio_declared"
   },
   {
+    "path": ".github/workflows/desi-dr2-bao-validation.yml",
+    "bytes": 1370,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 50,
+    "sha256": "b4866525c2a3c5bd0dda301fa1ef1d6e7b693f2d5a9f8e0b8150e3156713bf59",
+    "flags": ""
+  },
+  {
     "path": ".github/workflows/dha-fisher-ci.yml",
     "bytes": 2397,
     "ext": ".yml",
