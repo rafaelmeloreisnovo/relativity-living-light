@@ -7714,11 +7714,11 @@
   },
   {
     "path": "scripts/check_rll_growth.py",
-    "bytes": 8156,
+    "bytes": 8732,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 237,
-    "sha256": "efb23b2be50ef86a852d85732acdfd84a5effee34e93e4cf1b8abfcc9e49cb9e",
+    "linhas": 256,
+    "sha256": "75e035444326c3f98e6bdf3d9d9e62265dbb41f2aea54a2ee818c781e000988e",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
