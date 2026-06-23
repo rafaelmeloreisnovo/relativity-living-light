@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1043 |
 | `cataloged_files` | 1032 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35090714 |
-| `total_text_lines` | 140250 |
+| `total_bytes` | 35090741 |
+| `total_text_lines` | 140249 |
 | `markdown_files` | 521 |
 | `yml_yaml_files` | 63 |
 | `github_workflow_yml_files` | 26 |
@@ -30,7 +30,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `.github/workflows/claim-boundary-quality-gates.yml` | 1721 | `.yml` | `github_workflow_yml` | 64 | `607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509` | `` |
 | `.github/workflows/convention-check.yml` | 894 | `.yml` | `github_workflow_yml` | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` | `` |
 | `.github/workflows/dense-feature-matrix.yml` | 2106 | `.yml` | `github_workflow_yml` | 64 | `096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786` | `token_vazio_declared` |
-| `.github/workflows/desi-dr2-bao-validation.yml` | 1465 | `.yml` | `github_workflow_yml` | 53 | `adb2ce4104b1dab947244cb73457affa3e3efd5b644e45c11e824e9dd38a345d` | `` |
+| `.github/workflows/desi-dr2-bao-validation.yml` | 1492 | `.yml` | `github_workflow_yml` | 52 | `4291e8253844b21b770a12b396d060c806cee2cbf7468fc44f4e3ddff69bdd00` | `` |
 | `.github/workflows/dha-fisher-ci.yml` | 2397 | `.yml` | `github_workflow_yml` | 77 | `5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4` | `mentions_mock_or_placeholder` |
 | `.github/workflows/formulas-artifacts.yml` | 864 | `.yml` | `github_workflow_yml` | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` | `` |
 | `.github/workflows/iml_artifact.yml` | 1382 | `.yml` | `github_workflow_yml` | 54 | `bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72` | `` |
