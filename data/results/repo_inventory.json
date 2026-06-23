@@ -2061,6 +2061,15 @@
     "flags": ""
   },
   {
+    "path": "data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json",
+    "bytes": 1368,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 40,
+    "sha256": "f7cfa230a3243afed23cd35c1db703f0ed2896ca539e608d0880b1ba32b34ad2",
+    "flags": ""
+  },
+  {
     "path": "data/iml/daise_input.example.json",
     "bytes": 149,
     "ext": ".json",

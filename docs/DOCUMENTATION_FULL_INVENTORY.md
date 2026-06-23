@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1043 |
-| `cataloged_files` | 1032 |
+| `tracked_files_total` | 1044 |
+| `cataloged_files` | 1033 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35091266 |
-| `total_text_lines` | 140268 |
+| `total_bytes` | 35092634 |
+| `total_text_lines` | 140308 |
 | `markdown_files` | 521 |
 | `yml_yaml_files` | 63 |
 | `github_workflow_yml_files` | 26 |
-| `data_or_result_files` | 150 |
+| `data_or_result_files` | 151 |
 
-**Total de arquivos catalogados:** 1032
+**Total de arquivos catalogados:** 1033
 
 ## Inventário completo
 
@@ -252,6 +252,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/density_decomp.ipynb` | 3054 | `.ipynb` | `other` | 0 | `80a0a2ea4c3f44c35cf68f3f4e988a94f894fbfe8223785ab8dafbef62fd3df8` | `` |
 | `data/duplicates_archive/Hz_superposicao (1).ipynb` | 1710 | `.ipynb` | `other` | 0 | `a3e626e1f2ea57f55df53018988097228e37d064d251e891e899dba17d6b95ca` | `` |
 | `data/examples/bh_flux_presets.json` | 892 | `.json` | `data_or_result` | 27 | `c2cff4b374c9a9103ff7a3900e279e4936ef9eb81f7fc12c0ab080b5c8ef369c` | `` |
+| `data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json` | 1368 | `.json` | `data_or_result` | 40 | `f7cfa230a3243afed23cd35c1db703f0ed2896ca539e608d0880b1ba32b34ad2` | `` |
 | `data/iml/daise_input.example.json` | 149 | `.json` | `data_or_result` | 7 | `4399cd4c9a96acc33569919bd8b8f0e419254846cd2656963d9433cdcd7c962b` | `` |
 | `data/iml/daise_input.json` | 404 | `.json` | `data_or_result` | 17 | `562ffea1cc9cee22db227da7c2275b552a5bec75e71a14e3641837231bc0d533` | `` |
 | `data/inputs/cosmology_joint/README.md` | 2064 | `.md` | `documentation_md` | 49 | `557a866bedf4196545e05010061687defb0169dd5ddabd23afb2e2afa8ab23b0` | `` |
