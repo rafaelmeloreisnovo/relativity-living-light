@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1016 |
-| `cataloged_files` | 1005 |
+| `tracked_files_total` | 1017 |
+| `cataloged_files` | 1006 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35031567 |
-| `total_text_lines` | 138727 |
-| `markdown_files` | 512 |
+| `total_bytes` | 35033789 |
+| `total_text_lines` | 138837 |
+| `markdown_files` | 513 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 143 |
 
-**Total de arquivos catalogados:** 1005
+**Total de arquivos catalogados:** 1006
 
 ## Inventário completo
 
@@ -480,6 +480,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RLL_FIGURE_TABLE_MANIFEST.md` | 4575 | `.md` | `documentation_md` | 130 | `88a4731858fd1b854e3d5fa571c1a4bfcff46fd07af9dd5343e64dc515ba0265` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_FRONTIER_DYNAMICS_AND_ANOMALY_LEDGER.md` | 15288 | `.md` | `documentation_md` | 465 | `33c7998db4641a2a3fe55fcd30419176fed392118076b029e0bc2ac8a1e02270` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_FRONTIER_STRUCTURE_INDEX.md` | 3682 | `.md` | `documentation_md` | 132 | `81411b3937abcc1841d70fe8c41dd961e43a41750a3674c3dfe121e7c777670e` | `cosmology_validation_marker` |
+| `docs/RLL_GROWTH_FSIGMA8.md` | 2222 | `.md` | `documentation_md` | 110 | `beeb846d7f7ff8e5d1606c3b42e4247df250aa46f15c380ec5ec2aa21ba9b64d` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_H0_RD_ABLATION_MATRIX.md` | 2395 | `.md` | `documentation_md` | 55 | `e61541f3865e76ef1110929fb35268f7297fd6f76812b95ddcbec142a53cf3da` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_INSPECTION_RATE_MATH_AND_KNOWLEDGE_TEST.md` | 5428 | `.md` | `documentation_md` | 243 | `aea00197551ac98012d668d96a4a655fa9174be9768b5be693a4d0a855ebd926` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_ISSUES_420_423_EXECUTION_LEDGER.md` | 5870 | `.md` | `documentation_md` | 172 | `76c5da40e57735dde30d8ed953bd9b21fc227bac6f88c095aa312f36432ac40f` | `token_vazio_declared,cosmology_validation_marker` |

@@ -4113,6 +4113,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_GROWTH_FSIGMA8.md",
+    "bytes": 2222,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 110,
+    "sha256": "beeb846d7f7ff8e5d1606c3b42e4247df250aa46f15c380ec5ec2aa21ba9b64d",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_H0_RD_ABLATION_MATRIX.md",
     "bytes": 2395,
     "ext": ".md",
