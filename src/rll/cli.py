@@ -14,22 +14,23 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
-def _run_script(path: Path, module: str | None = None) -> None:
-    if module:
-        repo = str(_repo_root())
-        if repo not in sys.path:
-            sys.path.insert(0, repo)
-        original_argv = sys.argv[:]
-        sys.argv = [str(path)]
-        try:
+def _run_script(path: Path, module: str | None = None, script_args: list[str] | None = None) -> None:
+    script_args = script_args or []
+    original_argv = sys.argv[:]
+    sys.argv = [str(path), *script_args]
+    try:
+        if module:
+            repo = str(_repo_root())
+            if repo not in sys.path:
+                sys.path.insert(0, repo)
             runpy.run_module(module, run_name="__main__", alter_sys=True)
-        finally:
-            sys.argv = original_argv
-        return
-    runpy.run_path(str(path), run_name="__main__")
+            return
+        runpy.run_path(str(path), run_name="__main__")
+    finally:
+        sys.argv = original_argv
 
 
-def _select_real_flow(with_bayes: bool, with_covariance: bool) -> Path:
+def _select_legacy_real_flow(with_bayes: bool, with_covariance: bool) -> Path:
     root = _repo_root()
     if with_bayes or with_covariance:
         return root / "docs" / "panteon_likelihood.py"
@@ -55,7 +56,23 @@ class ExecutionPlan:
     script: Path
     model: str
     module: str | None = None
+    script_args: tuple[str, ...] = ()
     warning_message: str | None = None
+
+
+def _normalise_adversary(adversary: str) -> str:
+    return "w0wa" if adversary == "w0waCDM" else adversary
+
+
+def _real_model_selection_args(args: argparse.Namespace) -> list[str]:
+    forwarded = ["--adversary", _normalise_adversary(args.adversary)]
+    if args.with_bayes:
+        forwarded.append("--with-bayes")
+    if args.with_growth:
+        forwarded.append("--with-growth")
+    if args.bao_diagonal:
+        forwarded.append("--bao-diagonal")
+    return forwarded
 
 
 def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
@@ -64,17 +81,34 @@ def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
     if args.data == "synthetic":
         script = root / "data" / "pipelines" / "structure_d" / "run_all.py"
         module = "data.pipelines.structure_d.run_all"
+        warning_message = None
+        script_args: tuple[str, ...] = ()
     else:
-        script = _select_real_flow(args.with_bayes, args.with_covariance)
-        module = None
+        use_model_selection = args.adversary != "lcdm" or args.with_growth or args.model in {"both", "rll", "w0wa"}
+        if use_model_selection:
+            script = root / "rll_vs_lcdm.py"
+            module = None
+            script_args = tuple(_real_model_selection_args(args))
+            warning_message = None
+        else:
+            script = _select_legacy_real_flow(args.with_bayes, args.with_covariance)
+            module = None
+            script_args = ()
+            warning_message = (
+                "Aviso: usando fluxo real legado. Para comparação defensável use "
+                "--adversary w0wa ou --adversary both."
+            )
 
-    warning_message = None
-    if args.model != "rll":
-        warning_message = (
-            f"Aviso: --model={args.model} será tratado no fluxo comparativo já existente."
-        )
+    if args.model not in {"rll", "both", "lcdm", "w0wa"}:
+        warning_message = f"Aviso: --model={args.model} será tratado no fluxo comparativo disponível."
 
-    return ExecutionPlan(script=script, model=args.model, module=module, warning_message=warning_message)
+    return ExecutionPlan(
+        script=script,
+        model=args.model,
+        module=module,
+        script_args=script_args,
+        warning_message=warning_message,
+    )
 
 
 def _validar_plano_execucao(plan: ExecutionPlan) -> None:
@@ -82,10 +116,11 @@ def _validar_plano_execucao(plan: ExecutionPlan) -> None:
         raise FileNotFoundError(f"Script não encontrado: {plan.script}")
 
 
-def _persistir_execucao(plan: ExecutionPlan) -> dict[str, str]:
-    payload = {
+def _persistir_execucao(plan: ExecutionPlan) -> dict[str, object]:
+    payload: dict[str, object] = {
         "script": str(plan.script),
         "model": plan.model,
+        "script_args": list(plan.script_args),
     }
     if plan.module:
         payload["module"] = plan.module
@@ -95,7 +130,8 @@ def _persistir_execucao(plan: ExecutionPlan) -> dict[str, str]:
 def _logar_execucao(plan: ExecutionPlan) -> None:
     if plan.warning_message:
         print(plan.warning_message)
-    print(f"[rll] Executando fluxo: {plan.script}")
+    args_suffix = f" {' '.join(plan.script_args)}" if plan.script_args else ""
+    print(f"[rll] Executando fluxo: {plan.script}{args_suffix}")
 
 
 def cmd_run(args: argparse.Namespace) -> None:
@@ -103,10 +139,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     _validar_plano_execucao(plan)
     _persistir_execucao(plan)
     _logar_execucao(plan)
-    if plan.module:
-        _run_script(plan.script, plan.module)
-    else:
-        _run_script(plan.script)
+    _run_script(plan.script, plan.module, list(plan.script_args))
 
 
 def cmd_preflight_real(args: argparse.Namespace) -> None:
@@ -167,19 +200,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     run_parser.add_argument(
         "--model",
-        choices=["rll", "lcdm", "both"],
+        choices=["rll", "lcdm", "w0wa", "both"],
         default="rll",
-        help="Seleção de modelo (fluxos atuais executam comparativo RLL vs LCDM)",
+        help="Seleção de modelo para fluxo comparativo",
+    )
+    run_parser.add_argument(
+        "--adversary",
+        choices=["lcdm", "w0wa", "w0waCDM", "both"],
+        default="both",
+        help="Adversário estatístico para o RLL no fluxo real",
     )
     run_parser.add_argument(
         "--with-bayes",
         action="store_true",
-        help="No fluxo real, prioriza pipeline Pantheon+ com comparação AIC/BIC",
+        help="No fluxo real, emite fator de Bayes aproximado via BIC/Schwarz",
+    )
+    run_parser.add_argument(
+        "--with-growth",
+        action="store_true",
+        help="No fluxo real, registra gate fσ8/TOKEN_VAZIO sem fabricar crescimento de estrutura",
     )
     run_parser.add_argument(
         "--with-covariance",
         action="store_true",
-        help="No fluxo real, prioriza pipeline Pantheon+ com matriz de covariância",
+        help="Compatibilidade com fluxo legado Pantheon+ com matriz de covariância",
+    )
+    run_parser.add_argument(
+        "--bao-diagonal",
+        action="store_true",
+        help="No fluxo rll_vs_lcdm.py, força BAO diagonal sem covariância resumida",
     )
     run_parser.set_defaults(func=cmd_run)
 
