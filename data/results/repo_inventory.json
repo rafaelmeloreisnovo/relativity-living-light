@@ -2079,6 +2079,15 @@
     "flags": ""
   },
   {
+    "path": "data/formulas/FORMULA_INDEX_CONTRACT.json",
+    "bytes": 1747,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 49,
+    "sha256": "6c428881f5f5a89674e1e6da08caae97d6e2613c2fb4fa0d705e5d347b38430a",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "data/iml/daise_input.example.json",
     "bytes": 149,
     "ext": ".json",
