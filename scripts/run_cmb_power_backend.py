@@ -7,18 +7,23 @@ from pathlib import Path
 
 RLL_BACKGROUND_C = Path("src/rll/class_rll_background.c")
 RLL_KERNEL = Path("src/rll/rll_perturbation_kernel.py")
+RLL_TRANSFER_CONTRACT = Path("src/rll/rll_transfer_bridge_contract.json")
 
 
 def rll_background_status() -> dict:
     bg_exists = RLL_BACKGROUND_C.exists()
     kernel_exists = RLL_KERNEL.exists()
+    transfer_contract_exists = RLL_TRANSFER_CONTRACT.exists()
     return {
         "rll_background_exact": bool(bg_exists),
         "background_source": str(RLL_BACKGROUND_C),
         "linear_perturbation_kernel": bool(kernel_exists),
         "kernel_source": str(RLL_KERNEL),
-        "provides": ["E2(a)", "H/H0", "w_eff(a)", "Omega_m(a)", "Omega_s(a)", "dlnH_dlna", "delta_m(a)", "growth_rate(a)"],
+        "transfer_bridge_contract": bool(transfer_contract_exists),
+        "transfer_contract_source": str(RLL_TRANSFER_CONTRACT),
+        "provides": ["E2(a)", "H/H0", "w_eff(a)", "Omega_m(a)", "Omega_s(a)", "dlnH_dlna", "delta_m(a)", "growth_rate(a)", "T(k,z) contract", "P_linear(k,z) contract"],
         "perturbations_exact": "linear_kernel_available_background_coupled",
+        "transfer_bridge": "contract_available",
         "cmb_cl_exact": "TOKEN_VAZIO",
         "nonlinear_pk_exact": "TOKEN_VAZIO",
     }
@@ -30,8 +35,8 @@ def rll_status(engine: str) -> dict:
         "engine": engine,
         "available": True,
         "model": "rll",
-        "status": "rll_background_and_linear_kernel_available",
-        "reason": "RLL exact background and linear growth kernel are present; exact Cl and nonlinear P(k) still require full Boltzmann/nonlinear integration",
+        "status": "rll_background_kernel_transfer_contract_available",
+        "reason": "RLL background, linear kernel, and transfer contract are present; exact Cl and nonlinear P(k) still require full backend integration",
     })
     return status
 
