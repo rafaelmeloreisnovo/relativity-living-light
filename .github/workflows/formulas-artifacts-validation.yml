@@ -6,11 +6,15 @@ on:
     paths:
       - 'data/formulas/**'
       - 'scripts/validate_formulas_manifest.py'
+      - 'scripts/validate_formula_index_contract.py'
+      - 'scripts/materialize_formula_index.py'
       - '.github/workflows/formulas-artifacts-validation.yml'
   pull_request:
     paths:
       - 'data/formulas/**'
       - 'scripts/validate_formulas_manifest.py'
+      - 'scripts/validate_formula_index_contract.py'
+      - 'scripts/materialize_formula_index.py'
       - '.github/workflows/formulas-artifacts-validation.yml'
 
 permissions:
@@ -34,3 +38,9 @@ jobs:
 
       - name: Validate formulas manifest
         run: python scripts/validate_formulas_manifest.py
+
+      - name: Validate formula index contract
+        run: python scripts/validate_formula_index_contract.py
+
+      - name: Compile materializer
+        run: python -m py_compile scripts/materialize_formula_index.py
