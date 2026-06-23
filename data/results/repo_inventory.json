@@ -2071,11 +2071,11 @@
   },
   {
     "path": "data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json",
-    "bytes": 1368,
+    "bytes": 1424,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 40,
-    "sha256": "f7cfa230a3243afed23cd35c1db703f0ed2896ca539e608d0880b1ba32b34ad2",
+    "linhas": 41,
+    "sha256": "a418ec78f04514eca8e2e1da3db2167bfe8c0973dc2b964c16b251570f0e5b1b",
     "flags": ""
   },
   {
@@ -3588,6 +3588,15 @@
     "tipo": "documentation_md",
     "linhas": 40,
     "sha256": "af84ce19aee81694f9e357689d7ebd3c42945d5c2d04656328fc78ac33df8707",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/FORMULAS_ARTIFACTS_VERIFICATION.md",
+    "bytes": 1716,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 51,
+    "sha256": "c2c5b0102792831941288f2e6bf9f9faf0769c7b77fbffcd4b620e69f73e88e4",
     "flags": "cosmology_validation_marker"
   },
   {
