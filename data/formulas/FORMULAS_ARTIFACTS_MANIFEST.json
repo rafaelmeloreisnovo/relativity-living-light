@@ -1,0 +1,40 @@
+{
+  "schema": "rafaelia.formulas_artifacts_manifest.v1",
+  "generated_from_upload": "formulas-artifacts (3).zip",
+  "total_formulas": 486,
+  "category_counts": {
+    "cosmology_metrics": 91,
+    "geral": 388,
+    "integridade_e_criptografia": 7
+  },
+  "source_count": 53,
+  "artifact_files": {
+    "FORMULAS_BY_SOURCE.md": {
+      "bytes": 2283,
+      "sha256": "1f68527c129a1a49ec811867bd0a16ca345de6f80f5e35bce011a26c37b0ed66"
+    },
+    "FORMULAS_CLAIM_MAP.md": {
+      "bytes": 90,
+      "sha256": "a02d15c320f9b718be56c8416f116ba9dc34fafa138f7bd3c7147269922b5825"
+    },
+    "FORMAL_ACADEMIC_REPORT.md": {
+      "bytes": 41,
+      "sha256": "318489091568bfeb1a83f4475deed4d37cf7c2602ceb608d084ea357668cf5b6"
+    },
+    "formulas.csv": {
+      "bytes": 85358,
+      "sha256": "5cb0d6dc5ded3a69e6cbd8e6ad0093498f0416a779529beef3c6621cc87c4937"
+    },
+    "formulas.json": {
+      "bytes": 119150,
+      "sha256": "d9c6ebb3e2ed1f959160a19e9bed89993a6ea98235a92fc618a0602d69d11072"
+    }
+  },
+  "claim_boundary": "Formula extraction and categorization do not promote scientific claims without data, loader, covariance, test and CI gate.",
+  "required_next_gate": [
+    "store full formulas.json in repo or release artifact",
+    "validate schema in CI",
+    "map each formula to claim_gate and source",
+    "link formula ids to scripts/results where available"
+  ]
+}
