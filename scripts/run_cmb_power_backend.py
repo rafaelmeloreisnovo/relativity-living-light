@@ -5,8 +5,32 @@ import argparse
 import json
 from pathlib import Path
 
+RLL_BACKGROUND_C = Path("src/rll/class_rll_background.c")
+
+
+def rll_background_status() -> dict:
+    exists = RLL_BACKGROUND_C.exists()
+    return {
+        "rll_background_exact": bool(exists),
+        "source": str(RLL_BACKGROUND_C),
+        "provides": ["E2(a)", "H/H0", "w_eff(a)", "Omega_m(a)", "Omega_s(a)", "dlnH_dlna"],
+        "perturbations_exact": "TOKEN_VAZIO",
+        "cmb_cl_exact": "TOKEN_VAZIO",
+        "nonlinear_pk_exact": "TOKEN_VAZIO",
+    }
+
 
 def try_camb(args: argparse.Namespace) -> dict:
+    if args.model == "rll":
+        status = rll_background_status()
+        status.update({
+            "engine": "camb",
+            "available": True,
+            "model": "rll",
+            "status": "rll_exact_background_available",
+            "reason": "RLL exact background is present as a C module; exact CAMB perturbations still require a custom backend port",
+        })
+        return status
     try:
         import camb  # type: ignore
         from camb import model  # type: ignore
@@ -23,14 +47,6 @@ def try_camb(args: argparse.Namespace) -> dict:
     pars.NonLinear = model.NonLinear_both if args.nonlinear else model.NonLinear_none
     if args.model == "w0wa":
         pars.set_dark_energy(w=args.w0, wa=args.wa, dark_energy_model="ppf")
-    if args.model == "rll":
-        return {
-            "engine": "camb",
-            "available": True,
-            "model": "rll",
-            "status": "TOKEN_VAZIO",
-            "reason": "stock CAMB does not implement the RLL logistic background; use lcdm/w0wa or add a custom background module",
-        }
     results = camb.get_results(pars)
     cmb = results.get_cmb_power_spectra(pars, CMB_unit="muK")
     matter = results.get_matter_power_spectrum(minkh=args.kmin, maxkh=args.kmax, npoints=args.k_points)
@@ -47,18 +63,20 @@ def try_camb(args: argparse.Namespace) -> dict:
 
 
 def try_classy(args: argparse.Namespace) -> dict:
+    if args.model == "rll":
+        status = rll_background_status()
+        status.update({
+            "engine": "classy",
+            "available": True,
+            "model": "rll",
+            "status": "rll_exact_background_available",
+            "reason": "RLL exact background is present as a C module; exact CLASS perturbations still require integration into background/perturbation structs",
+        })
+        return status
     try:
         from classy import Class  # type: ignore
     except Exception as exc:
         return {"engine": "classy", "available": False, "reason": repr(exc)}
-    if args.model == "rll":
-        return {
-            "engine": "classy",
-            "available": True,
-            "model": "rll",
-            "status": "TOKEN_VAZIO",
-            "reason": "stock CLASS needs a custom RLL background module for exact logistic RLL perturbations",
-        }
     params = {
         "h": args.h,
         "Omega_b": args.omega_b,
