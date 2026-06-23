@@ -2637,6 +2637,15 @@
     "flags": ""
   },
   {
+    "path": "data/real/cosmology/desi_bao_dr2_cobaya/README.md",
+    "bytes": 1191,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 25,
+    "sha256": "b7b819f58e1312f384231afb795b9bcc7c544cb40c7de91b563d1abf4abc9206",
+    "flags": ""
+  },
+  {
     "path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
     "bytes": 635,
     "ext": ".csv",
