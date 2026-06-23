@@ -1,6 +1,6 @@
 # RLL Growth Gate - linear f_sigma8
 
-Status: solver linear executavel conectado a `scripts/check_rll_growth.py`.
+Status: solver linear executavel conectado a `scripts/check_rll_growth.py` e ao CSV real `data/real/cosmology/fsigma8_growth.csv`.
 
 Este modulo fecha o primeiro nivel de crescimento de estrutura para o RLL: fator de crescimento linear `D(a)`, taxa `f=dlnD/dlna` e observavel `f_sigma8(z)`.
 
@@ -50,6 +50,12 @@ f(z)=1/(1+exp((z-z_t)/w_t))
 python scripts/check_rll_growth.py --model all
 ```
 
+O CSV real default e:
+
+```text
+data/real/cosmology/fsigma8_growth.csv
+```
+
 Saidas:
 
 ```text
@@ -57,7 +63,19 @@ results/rll_growth_fsigma8_summary.json
 results/rll_growth_fsigma8_predictions.csv
 ```
 
-## 4. Com dado real opcional
+## 4. Resultado materializado localmente
+
+Com `Omega_m=0.315`, `Omega_s0=0.059`, `z_t=1.164`, `w_t=0.405`, `sigma8_0=0.811` e 7 pontos reais em diagonal simples:
+
+```text
+lcdm: chi2_fsigma8 = 5.3737848935179695
+w0wa: chi2_fsigma8 = 5.3737848935179695
+rll : chi2_fsigma8 = 4.280773157819194
+```
+
+Leitura honesta: neste gate diagonal minimo, RLL fica melhor que LCDM/w0wa nos parametros pontuais escolhidos, mas isso ainda nao e evidencia bayesiana nem MCMC.
+
+## 5. Com dado real alternativo
 
 O arquivo CSV pode ter colunas:
 
@@ -69,6 +87,7 @@ ou equivalentes:
 
 ```text
 redshift,value,error
+z,fs8,sigma
 ```
 
 Comando:
@@ -81,17 +100,6 @@ python scripts/check_rll_growth.py \
 
 Quando `--data` e informado, o script calcula `chi2_fsigma8` para cada modelo.
 
-## 5. Resultado de sanidade local
-
-Com `Omega_m=0.315`, `sigma8_0=0.811` e parametros centrais do RLL, a validacao local mostra:
-
-```text
-LCDM: f(z=0) aproximadamente 0.527
-RLL : f(z=0) aproximadamente 0.525
-```
-
-Esse intervalo e coerente com crescimento linear de fundo em GR para `Omega_m` proximo de 0.315.
-
 ## 6. Fronteira honesta
 
 Este bloco e valido como gate linear de fundo. Ele ainda nao e:
@@ -99,12 +107,12 @@ Este bloco e valido como gate linear de fundo. Ele ainda nao e:
 - Boltzmann solver completo;
 - CMB likelihood;
 - nonlinear power spectrum;
-- Halofit;
+- Halofit/HMcode direto;
 - baryonic feedback;
 - tratamento de covariancia completa de surveys.
 
-Esses pontos permanecem `TOKEN_VAZIO` ate implementacao especifica.
+Esses pontos sao tratados no adaptador `scripts/run_cmb_power_backend.py` e permanecem `TOKEN_VAZIO` para RLL exato ate haver modulo customizado em CAMB/CLASS.
 
 ## 7. Valor cientifico imediato
 
-Antes, `f_sigma8` era uma lacuna. Agora existe uma previsao computavel e testavel para `LCDM`, `w0wa` e `RLL`. Isso transforma crescimento de estrutura de promessa textual em gate falsificavel minimo.
+Antes, `f_sigma8` era uma lacuna. Agora existe uma previsao computavel e testavel para `LCDM`, `w0wa` e `RLL`, ligada a dados observacionais reais e com `chi2_fsigma8` gerado.
