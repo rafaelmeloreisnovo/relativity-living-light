@@ -8064,6 +8064,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/smoke_desi_dr2_bao_covariance_loader.py",
+    "bytes": 1181,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 35,
+    "sha256": "a76fd5d1499094cabce27bc6c77614960a786303bb407430b48734c8f55c4b40",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/unified_geometry_system.py",
     "bytes": 3643,
     "ext": ".py",

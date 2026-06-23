@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1042 |
-| `cataloged_files` | 1031 |
+| `tracked_files_total` | 1043 |
+| `cataloged_files` | 1032 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35089533 |
-| `total_text_lines` | 140215 |
+| `total_bytes` | 35090714 |
+| `total_text_lines` | 140250 |
 | `markdown_files` | 521 |
 | `yml_yaml_files` | 63 |
 | `github_workflow_yml_files` | 26 |
 | `data_or_result_files` | 150 |
 
-**Total de arquivos catalogados:** 1031
+**Total de arquivos catalogados:** 1032
 
 ## Inventário completo
 
@@ -919,6 +919,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `scripts/run_real_pantheon_validation.py` | 11066 | `.py` | `source_code` | 290 | `7866fc213c097175d5bf8b6fdb2f0138dbe3abfa9f892f31f0200cd93332eea2` | `cosmology_validation_marker` |
 | `scripts/run_repro_all.sh` | 4337 | `.sh` | `source_code` | 133 | `c0109005dd1b86a4be690e422f58ebdd17b25919e52a49a58aed6997bdc7630e` | `cosmology_validation_marker` |
 | `scripts/run_structure_d_joint_likelihood.py` | 2833 | `.py` | `source_code` | 83 | `75ed478af8e7264cbb0c15d3cb01a6b3ef2755c47ad4087913cff480d6020675` | `cosmology_validation_marker` |
+| `scripts/smoke_desi_dr2_bao_covariance_loader.py` | 1181 | `.py` | `source_code` | 35 | `a76fd5d1499094cabce27bc6c77614960a786303bb407430b48734c8f55c4b40` | `cosmology_validation_marker` |
 | `scripts/unified_geometry_system.py` | 3643 | `.py` | `source_code` | 120 | `e37b8de7fbc82ecccce19f613e86c1fc82b4566ca315ead35be54908eb5f59b6` | `cosmology_validation_marker` |
 | `scripts/validate_book_links.py` | 4115 | `.py` | `source_code` | 132 | `15425474733128909453c04a781d2886790141e22d9366463e318cbfd01ddf2d` | `cosmology_validation_marker` |
 | `scripts/validate_rll_latentes_catalog.py` | 1330 | `.py` | `source_code` | 39 | `fbfef13d86f0993e694f5d573e733b77b8cc16442bf41368ae4c5e85ca3c3298` | `cosmology_validation_marker` |
