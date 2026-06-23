@@ -379,12 +379,12 @@
   },
   {
     "path": "NEXT_RLL_VALIDATION_STEP.md",
-    "bytes": 720,
+    "bytes": 1369,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 29,
-    "sha256": "cc1d073f99f9389d1ea1334296e5ad29e9d07ba7a1c93c06eb9c33f9ecf68d99",
-    "flags": ""
+    "linhas": 48,
+    "sha256": "eef6cc41e70df099b7b3f6d207535d2a34919e65dcdbc2c629fc7af3cef4d7f6",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "Numprimod.md",
