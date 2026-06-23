@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1043 |
 | `cataloged_files` | 1032 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35090741 |
-| `total_text_lines` | 140249 |
+| `total_bytes` | 35091389 |
+| `total_text_lines` | 140268 |
 | `markdown_files` | 521 |
 | `yml_yaml_files` | 63 |
 | `github_workflow_yml_files` | 26 |
@@ -30,7 +30,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `.github/workflows/claim-boundary-quality-gates.yml` | 1721 | `.yml` | `github_workflow_yml` | 64 | `607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509` | `` |
 | `.github/workflows/convention-check.yml` | 894 | `.yml` | `github_workflow_yml` | 30 | `e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0` | `` |
 | `.github/workflows/dense-feature-matrix.yml` | 2106 | `.yml` | `github_workflow_yml` | 64 | `096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786` | `token_vazio_declared` |
-| `.github/workflows/desi-dr2-bao-validation.yml` | 1492 | `.yml` | `github_workflow_yml` | 52 | `4291e8253844b21b770a12b396d060c806cee2cbf7468fc44f4e3ddff69bdd00` | `` |
+| `.github/workflows/desi-dr2-bao-validation.yml` | 1979 | `.yml` | `github_workflow_yml` | 65 | `8f729979f80893e80c35f91b2a5bbb11f20c60b6bc2d210410759cad33fa23a0` | `` |
 | `.github/workflows/dha-fisher-ci.yml` | 2397 | `.yml` | `github_workflow_yml` | 77 | `5a6c4802761b25b78654c5a1ae38c17e3219b96d3c7900231ff5975f426b9ae4` | `mentions_mock_or_placeholder` |
 | `.github/workflows/formulas-artifacts.yml` | 864 | `.yml` | `github_workflow_yml` | 38 | `809eade798f1b6437863e4214f507e8d77c52133a448a85db4e3f604f3b4f2e5` | `` |
 | `.github/workflows/iml_artifact.yml` | 1382 | `.yml` | `github_workflow_yml` | 54 | `bd7ff9bc857fed0d7ede5a4ba82efe568f9380816070cf4beba3a425cf483f72` | `` |
@@ -956,7 +956,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tests/test_compute_rll_real_pipeline_contract.py` | 4868 | `.py` | `source_code` | 106 | `7e8566a08f2e9375d895a942f0c35de933a23f68547660d523aae6168915ae22` | `mentions_synthetic,cosmology_validation_marker` |
 | `tests/test_cosmology_fairness.py` | 3741 | `.py` | `source_code` | 111 | `fe6f8fb93d5572b4df2d3ade760c0fe62d64ba550e21306b724f34b669600164` | `cosmology_validation_marker` |
 | `tests/test_desi_dha_extractor.py` | 361 | `.py` | `source_code` | 11 | `056cef79bc6e86084747710dfd49da08e2296bc5bf29ce4c805841ea093bc009` | `cosmology_validation_marker` |
-| `tests/test_desi_dr2_bao_covariance_loader.py` | 1103 | `.py` | `source_code` | 32 | `48ef5ec5e3797d39add01d02c05e7b476da133920da209438dec83b17c7f4b93` | `cosmology_validation_marker` |
+| `tests/test_desi_dr2_bao_covariance_loader.py` | 1264 | `.py` | `source_code` | 38 | `bf166aa39a7ae145a74b0cc5b82af9281575d157fae8c92acf818e1a0ba7194f` | `cosmology_validation_marker` |
 | `tests/test_desi_dr2_bao_materialized.py` | 1366 | `.py` | `source_code` | 37 | `4cc0249fe150adb866989be7bcb3cb9d615ed998418bf7a55c3a0ae9792696c4` | `cosmology_validation_marker` |
 | `tests/test_dha_fisher.py` | 620 | `.py` | `source_code` | 22 | `54612a5ab5bbf91096be8d6f0c45405afc6b3eb3a779df67f11cf727d66acfe0` | `cosmology_validation_marker` |
 | `tests/test_energy_momentum_bridge.py` | 5737 | `.py` | `source_code` | 167 | `0ff0a06f4053b6c65351ea73c4746720f3f6fcc021bbc9ebf8b91d08918a9f83` | `mentions_synthetic,cosmology_validation_marker` |

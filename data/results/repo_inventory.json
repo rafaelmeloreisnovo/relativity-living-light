@@ -64,11 +64,11 @@
   },
   {
     "path": ".github/workflows/desi-dr2-bao-validation.yml",
-    "bytes": 1492,
+    "bytes": 1979,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 52,
-    "sha256": "4291e8253844b21b770a12b396d060c806cee2cbf7468fc44f4e3ddff69bdd00",
+    "linhas": 65,
+    "sha256": "8f729979f80893e80c35f91b2a5bbb11f20c60b6bc2d210410759cad33fa23a0",
     "flags": ""
   },
   {
@@ -8398,11 +8398,11 @@
   },
   {
     "path": "tests/test_desi_dr2_bao_covariance_loader.py",
-    "bytes": 1103,
+    "bytes": 1264,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 32,
-    "sha256": "48ef5ec5e3797d39add01d02c05e7b476da133920da209438dec83b17c7f4b93",
+    "linhas": 38,
+    "sha256": "bf166aa39a7ae145a74b0cc5b82af9281575d157fae8c92acf818e1a0ba7194f",
     "flags": "cosmology_validation_marker"
   },
   {
