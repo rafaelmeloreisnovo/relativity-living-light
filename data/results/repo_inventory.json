@@ -2619,6 +2619,15 @@
     "flags": ""
   },
   {
+    "path": "data/real/cosmology/RLL_REAL_DATA_REQUIREMENTS.csv",
+    "bytes": 2241,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 14,
+    "sha256": "47b2f67ca54b8d02b0a28b60b6bffcb3822efb81e3c928a3762ed0d411a107a5",
+    "flags": ""
+  },
+  {
     "path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
     "bytes": 635,
     "ext": ".csv",
