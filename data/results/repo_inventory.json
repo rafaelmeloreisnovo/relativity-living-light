@@ -8316,6 +8316,15 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "tests/test_rll_background.py",
+    "bytes": 1271,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 40,
+    "sha256": "422d3ac84a85f2487bd5ec388fb49608cd1c7138e9cb747c599ac5215b03add6",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_rll_latentes.py",
     "bytes": 6037,
     "ext": ".py",
