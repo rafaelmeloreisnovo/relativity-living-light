@@ -8379,6 +8379,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_desi_dr2_bao_covariance_loader.py",
+    "bytes": 1103,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 32,
+    "sha256": "48ef5ec5e3797d39add01d02c05e7b476da133920da209438dec83b17c7f4b93",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_desi_dr2_bao_materialized.py",
     "bytes": 1366,
     "ext": ".py",

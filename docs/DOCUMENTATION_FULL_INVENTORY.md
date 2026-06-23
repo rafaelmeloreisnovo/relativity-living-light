@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1040 |
-| `cataloged_files` | 1029 |
+| `tracked_files_total` | 1041 |
+| `cataloged_files` | 1030 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35086683 |
-| `total_text_lines` | 140116 |
+| `total_bytes` | 35087786 |
+| `total_text_lines` | 140148 |
 | `markdown_files` | 521 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 150 |
 
-**Total de arquivos catalogados:** 1029
+**Total de arquivos catalogados:** 1030
 
 ## Inventário completo
 
@@ -954,6 +954,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tests/test_compute_rll_real_pipeline_contract.py` | 4868 | `.py` | `source_code` | 106 | `7e8566a08f2e9375d895a942f0c35de933a23f68547660d523aae6168915ae22` | `mentions_synthetic,cosmology_validation_marker` |
 | `tests/test_cosmology_fairness.py` | 3741 | `.py` | `source_code` | 111 | `fe6f8fb93d5572b4df2d3ade760c0fe62d64ba550e21306b724f34b669600164` | `cosmology_validation_marker` |
 | `tests/test_desi_dha_extractor.py` | 361 | `.py` | `source_code` | 11 | `056cef79bc6e86084747710dfd49da08e2296bc5bf29ce4c805841ea093bc009` | `cosmology_validation_marker` |
+| `tests/test_desi_dr2_bao_covariance_loader.py` | 1103 | `.py` | `source_code` | 32 | `48ef5ec5e3797d39add01d02c05e7b476da133920da209438dec83b17c7f4b93` | `cosmology_validation_marker` |
 | `tests/test_desi_dr2_bao_materialized.py` | 1366 | `.py` | `source_code` | 37 | `4cc0249fe150adb866989be7bcb3cb9d615ed998418bf7a55c3a0ae9792696c4` | `cosmology_validation_marker` |
 | `tests/test_dha_fisher.py` | 620 | `.py` | `source_code` | 22 | `54612a5ab5bbf91096be8d6f0c45405afc6b3eb3a779df67f11cf727d66acfe0` | `cosmology_validation_marker` |
 | `tests/test_energy_momentum_bridge.py` | 5737 | `.py` | `source_code` | 167 | `0ff0a06f4053b6c65351ea73c4746720f3f6fcc021bbc9ebf8b91d08918a9f83` | `mentions_synthetic,cosmology_validation_marker` |
