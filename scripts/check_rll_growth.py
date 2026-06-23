@@ -7,6 +7,8 @@ import json
 import math
 from pathlib import Path
 
+DEFAULT_REAL_FSIGMA8 = "data/real/cosmology/fsigma8_growth.csv"
+
 
 def exp_clip(x: float) -> float:
     return math.exp(max(-700.0, min(700.0, x)))
@@ -123,16 +125,27 @@ def prediction_grid(p: argparse.Namespace) -> list[float]:
     return [round(i * p.z_step, 10) for i in range(int(p.z_max / p.z_step) + 1)]
 
 
+def pick(row: dict[str, str], names: list[str]) -> str | None:
+    for name in names:
+        value = row.get(name)
+        if value not in (None, ""):
+            return value
+    return None
+
+
 def read_data(path: str | None) -> list[dict[str, float]]:
     if not path:
         return []
+    file_path = Path(path)
+    if not file_path.exists():
+        return []
     out = []
-    with Path(path).open("r", encoding="utf-8", newline="") as f:
+    with file_path.open("r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            z = float(row.get("z") or row.get("redshift"))
-            obs = float(row.get("fsigma8") or row.get("f_sigma8") or row.get("value"))
-            err = float(row.get("sigma") or row.get("error") or row.get("err"))
+            z = float(pick(row, ["z", "redshift"]))
+            obs = float(pick(row, ["fsigma8", "f_sigma8", "fs8", "value"]))
+            err = float(pick(row, ["sigma", "error", "err"]))
             out.append({"z": z, "obs": obs, "sigma": err})
     return out
 
@@ -152,6 +165,12 @@ def evaluate_models(p: argparse.Namespace) -> tuple[dict, list[dict[str, float]]
             "sigma8_0": p.sigma8_0,
             "a_min": p.a_min,
             "steps": p.steps,
+            "data": p.data,
+        },
+        "data_policy": {
+            "covariance": "diagonal_only",
+            "full_covariance": "TOKEN_VAZIO",
+            "note": "chi2_fsigma8 uses the sigma column only unless a future covariance block is provided",
         },
         "assumptions": {
             "equation": "D_xx + (2 + dlnH_dlna) D_x - 1.5 Omega_m(a) D = 0",
@@ -217,7 +236,7 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--steps", type=int, default=4000)
     ap.add_argument("--z-max", type=float, default=2.0)
     ap.add_argument("--z-step", type=float, default=0.1)
-    ap.add_argument("--data", default=None)
+    ap.add_argument("--data", default=DEFAULT_REAL_FSIGMA8)
     ap.add_argument("--out-json", default="results/rll_growth_fsigma8_summary.json")
     ap.add_argument("--out-csv", default="results/rll_growth_fsigma8_predictions.csv")
     return ap
