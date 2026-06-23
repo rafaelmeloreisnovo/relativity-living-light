@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1009 |
-| `cataloged_files` | 998 |
+| `tracked_files_total` | 1010 |
+| `cataloged_files` | 999 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35013065 |
-| `total_text_lines` | 138145 |
-| `markdown_files` | 510 |
+| `total_bytes` | 35015250 |
+| `total_text_lines` | 138217 |
+| `markdown_files` | 511 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 143 |
 
-**Total de arquivos catalogados:** 998
+**Total de arquivos catalogados:** 999
 
 ## Inventário completo
 
@@ -395,6 +395,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/BOOSTERS.md` | 26526 | `.md` | `documentation_md` | 845 | `6bcdb6ddb0b9d2d439674b2d9344fe8eb11901b02ca56cce72eb6229c0b65fff` | `cosmology_validation_marker` |
 | `docs/CANONICAL_SOURCES.md` | 1133 | `.md` | `documentation_md` | 25 | `1457596e1477bfcd87a63c261cd7ab2d6737b9f4a21307b250b850829fe8c5f4` | `cosmology_validation_marker` |
 | `docs/CLI.md` | 1071 | `.md` | `documentation_md` | 42 | `1f66a8f1981c66b09c770adc899ccd2e3dc2c9bdd1be0a92bb6720a395c712f4` | `mentions_synthetic,cosmology_validation_marker` |
+| `docs/CODEX_CONTINUA_RLL_CLAIM_BOUNDARY.md` | 2185 | `.md` | `documentation_md` | 72 | `9a37bded59489c0619d316dfab7220519091f23608bd5724fd966d90809debea` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/COMPARACAO_DESI_2025.md` | 9655 | `.md` | `documentation_md` | 167 | `edf42e93a29ebf243755d96d595f3556b36d49ae0d3012e04d7422bca017c957` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/COMPLETION_SUMMARY.md` | 8630 | `.md` | `documentation_md` | 332 | `1984a8fe250308989019a87d94ef6c324afaafdfbfffd39a1843b189e53c66fb` | `cosmology_validation_marker` |
 | `docs/CONCEPTUAL_FRAMEWORK.md` | 14549 | `.md` | `documentation_md` | 327 | `36f9f5f68502e5eb5de7f0b76383bb7355dc21fae4d8c5a8e00b47286e4e61e2` | `cosmology_validation_marker` |

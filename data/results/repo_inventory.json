@@ -3348,6 +3348,15 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/CODEX_CONTINUA_RLL_CLAIM_BOUNDARY.md",
+    "bytes": 2185,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 72,
+    "sha256": "9a37bded59489c0619d316dfab7220519091f23608bd5724fd966d90809debea",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/COMPARACAO_DESI_2025.md",
     "bytes": 9655,
     "ext": ".md",
