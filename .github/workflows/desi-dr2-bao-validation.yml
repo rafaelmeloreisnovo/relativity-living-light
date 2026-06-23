@@ -36,11 +36,21 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install DESI DR2 BAO test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+
       - name: Validate DESI DR2 BAO loader without external deps
         run: python scripts/smoke_desi_dr2_bao_covariance_loader.py
 
+<<<<<<< codex/fix-inconsistencias-no-yml-ey43zg
       - name: Validate DESI DR2 BAO loader tests without external deps
         run: python tests/test_desi_dr2_bao_covariance_loader.py
+=======
+      - name: Validate DESI DR2 BAO loader tests
+        run: python -m pytest -q tests/test_desi_dr2_bao_covariance_loader.py
+>>>>>>> main
 
       - name: Run DESI DR2 BAO covariance chi2 smoke
         run: python scripts/check_desi_dr2_bao_covariance.py
