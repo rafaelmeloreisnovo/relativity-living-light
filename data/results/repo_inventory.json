@@ -8019,6 +8019,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/materialize_formula_index.py",
+    "bytes": 4507,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 118,
+    "sha256": "5ddbab5d531c83d2ce6c71f8159ceebf5c8d5755daab2e4264d0be591e9e142c",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "scripts/materialize_real_data.py",
     "bytes": 4120,
     "ext": ".py",

@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1049 |
-| `cataloged_files` | 1038 |
+| `tracked_files_total` | 1050 |
+| `cataloged_files` | 1039 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35099032 |
-| `total_text_lines` | 140509 |
+| `total_bytes` | 35103539 |
+| `total_text_lines` | 140627 |
 | `markdown_files` | 523 |
 | `yml_yaml_files` | 64 |
 | `github_workflow_yml_files` | 27 |
 | `data_or_result_files` | 152 |
 
-**Total de arquivos catalogados:** 1038
+**Total de arquivos catalogados:** 1039
 
 ## Inventário completo
 
@@ -914,6 +914,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `scripts/fetch_real_sources.py` | 12841 | `.py` | `source_code` | 310 | `2c6e606ac530ffef24efc4c5753d3a2bcc3cddf8d63e49fbe8bfa591256e4b2a` | `cosmology_validation_marker` |
 | `scripts/generate_rll_plots.py` | 1556 | `.py` | `source_code` | 25 | `e67151201d5735e4111f38415f91664f3d946b704b2bed29b23258085af03a5a` | `cosmology_validation_marker` |
 | `scripts/ingest_real_cosmology_sources.py` | 8146 | `.py` | `source_code` | 221 | `b566f7b4033144abb3f35ac4017e0b5146233742d5bd43afc50541aeffa90534` | `cosmology_validation_marker` |
+| `scripts/materialize_formula_index.py` | 4507 | `.py` | `source_code` | 118 | `5ddbab5d531c83d2ce6c71f8159ceebf5c8d5755daab2e4264d0be591e9e142c` | `token_vazio_declared,cosmology_validation_marker` |
 | `scripts/materialize_real_data.py` | 4120 | `.py` | `source_code` | 126 | `9cc19fa4c9fcb3ff81d5cc5bbdcb4664d4e14896278b8734ee24bc59fb509f74` | `cosmology_validation_marker` |
 | `scripts/rll_dark_lensing_node.py` | 3861 | `.py` | `source_code` | 125 | `218c58023d83d11c64a81184dd0a156300729789187b2dafb751c1f805f2dfbd` | `cosmology_validation_marker` |
 | `scripts/rll_latentes_pipeline.py` | 219 | `.py` | `source_code` | 10 | `3f6b6ae7650327ba9e9e4abaf3488f7b69567cde9d2753235463b907d746eab9` | `cosmology_validation_marker` |
