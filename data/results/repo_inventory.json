@@ -8118,6 +8118,15 @@
     "flags": ""
   },
   {
+    "path": "src/rll/class_transfer_adapter_contract.json",
+    "bytes": 620,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 13,
+    "sha256": "82651ec8f48619969c967c5d57ac1c65dbc212bd53aea4c0bc1f8bc179fb069c",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "src/rll/cli.py",
     "bytes": 8731,
     "ext": ".py",
