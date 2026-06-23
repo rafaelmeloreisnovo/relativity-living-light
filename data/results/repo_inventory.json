@@ -8307,6 +8307,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_rll_model_selection.py",
+    "bytes": 1314,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 39,
+    "sha256": "b6445c9bef1b591232adb7f8b541bb514455ea9ab8ac27dd24210a0df40466cf",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_rll_vs_lcdm_bao.py",
     "bytes": 1702,
     "ext": ".py",

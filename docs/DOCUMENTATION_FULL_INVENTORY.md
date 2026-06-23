@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1010 |
-| `cataloged_files` | 999 |
+| `tracked_files_total` | 1011 |
+| `cataloged_files` | 1000 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35019649 |
-| `total_text_lines` | 138312 |
+| `total_bytes` | 35020963 |
+| `total_text_lines` | 138351 |
 | `markdown_files` | 511 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 143 |
 
-**Total de arquivos catalogados:** 999
+**Total de arquivos catalogados:** 1000
 
 ## Inventário completo
 
@@ -946,6 +946,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tests/test_real_seed_utils.py` | 578 | `.py` | `source_code` | 16 | `98d9b4c8a5843d1c7059424e575b1068ca146e17b8504ecc78983a46df561d45` | `cosmology_validation_marker` |
 | `tests/test_real_source_signatures.py` | 2650 | `.py` | `source_code` | 66 | `b384cb8703199cfb2ca3d0fb5518a9495c1629c0bbcaa02987a2ee0c7d8e7b4e` | `mentions_synthetic,cosmology_validation_marker` |
 | `tests/test_rll_latentes.py` | 6037 | `.py` | `source_code` | 161 | `51f1043643369301549d83d27639767ed13df5a8a04609ffc6e47d0757fd21a4` | `cosmology_validation_marker` |
+| `tests/test_rll_model_selection.py` | 1314 | `.py` | `source_code` | 39 | `b6445c9bef1b591232adb7f8b541bb514455ea9ab8ac27dd24210a0df40466cf` | `cosmology_validation_marker` |
 | `tests/test_rll_vs_lcdm_bao.py` | 1702 | `.py` | `source_code` | 43 | `05ede53d82c13e75cc8522c64eacef322d38aee2ec6b418d3454f2cd6b716695` | `cosmology_validation_marker` |
 | `tests/test_run_real_pantheon_validation.py` | 6289 | `.py` | `source_code` | 141 | `6c66dfa461ae20dc61f29b9b1f04edfdfc51b3f2854f8cf48be3879b8318e2e2` | `cosmology_validation_marker` |
 | `tests/test_sqrt3_2_freestanding_kernel.py` | 2653 | `.py` | `source_code` | 88 | `9e4a7280a4fd02715caa3752f5dbd8fa8b86466d7c792cf7de96fb0b7382ed00` | `cosmology_validation_marker` |
