@@ -379,11 +379,11 @@
   },
   {
     "path": "NEXT_RLL_VALIDATION_STEP.md",
-    "bytes": 1369,
+    "bytes": 2000,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 48,
-    "sha256": "eef6cc41e70df099b7b3f6d207535d2a34919e65dcdbc2c629fc7af3cef4d7f6",
+    "linhas": 67,
+    "sha256": "f281ca0ff48d674a19bd39eb85c96cf75000f315c238ece6abb83be0520ca00f",
     "flags": "token_vazio_declared"
   },
   {

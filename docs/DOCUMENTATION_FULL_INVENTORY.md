@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1017 |
 | `cataloged_files` | 1006 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35033789 |
-| `total_text_lines` | 138837 |
+| `total_bytes` | 35034420 |
+| `total_text_lines` | 138856 |
 | `markdown_files` | 513 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
@@ -65,7 +65,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `MANIFESTO_MIGRATION_FILES.md` | 3125 | `.md` | `documentation_md` | 54 | `f5bfff34b30ca9afa697d9b6315ecbcf03bb61f423ec54e3f8898c2f21eacc71` | `` |
 | `Matemática.md` | 7670 | `.md` | `documentation_md` | 256 | `16e0699c9a8b0d23b8288f8c22c57769f53731c48547104683c9f0714baa9e91` | `` |
 | `MathRaf.md` | 4424 | `.md` | `documentation_md` | 82 | `6b306bca5483c5e4ad622f89b99bbe5902810c66170bec90a701aef819982558` | `` |
-| `NEXT_RLL_VALIDATION_STEP.md` | 1369 | `.md` | `documentation_md` | 48 | `eef6cc41e70df099b7b3f6d207535d2a34919e65dcdbc2c629fc7af3cef4d7f6` | `token_vazio_declared` |
+| `NEXT_RLL_VALIDATION_STEP.md` | 2000 | `.md` | `documentation_md` | 67 | `f281ca0ff48d674a19bd39eb85c96cf75000f315c238ece6abb83be0520ca00f` | `token_vazio_declared` |
 | `Numprimod.md` | 233 | `.md` | `documentation_md` | 1 | `5dcf55662f10d4473338bc07e6d5b6b099de111dd2db826223f05a4dfb219ec5` | `` |
 | `PapersPub/01_cosmology_pantheon_desi/data_manifest.md` | 918 | `.md` | `documentation_md` | 29 | `a248545e2bb5163e984fd6575406bf345a46c7a1046493d7c73c0a645d4ee67c` | `` |
 | `PapersPub/01_cosmology_pantheon_desi/draft.md` | 19139 | `.md` | `documentation_md` | 383 | `c808c4364213dfc2ad7b4385be070e4b21a2aaab34dcd3d9cce4006f3237eb38` | `token_vazio_declared` |
