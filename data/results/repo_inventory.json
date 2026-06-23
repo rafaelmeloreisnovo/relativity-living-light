@@ -3466,12 +3466,12 @@
   },
   {
     "path": "docs/ESTABILIDADE_GHOST_CHECK.md",
-    "bytes": 5827,
+    "bytes": 2570,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 184,
-    "sha256": "3c39aeacf7a9a2e95c9a01ee00e481e8ec6fa3d896bd7e95f1eaa49590cce3b6",
-    "flags": "cosmology_validation_marker"
+    "linhas": 96,
+    "sha256": "e1b78d3fe5d85573be2a18dcdaa85170af4851a02997f29058193811874526be",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/EXECUCAO_REAL_STRUCTURE_D.md",

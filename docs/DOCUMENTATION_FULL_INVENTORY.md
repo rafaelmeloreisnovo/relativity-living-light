@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1013 |
 | `cataloged_files` | 1002 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35025296 |
-| `total_text_lines` | 138476 |
+| `total_bytes` | 35022039 |
+| `total_text_lines` | 138388 |
 | `markdown_files` | 512 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
@@ -408,7 +408,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/DOCUMENTATION_ORGANIZATION_MASTER.md` | 9154 | `.md` | `documentation_md` | 186 | `12011a7fec127dfc1cdb74ffcce50493f156251a998d631581a61ff1524e2a5f` | `cosmology_validation_marker` |
 | `docs/DOCUMENTO_MESTRE_FRENTES.md` | 9021 | `.md` | `documentation_md` | 78 | `0794871a3365cf07489147c42c0a0f2d39eef06ed0ba6f988c025630a5f7a7f7` | `cosmology_validation_marker` |
 | `docs/EASY_NOTES_EMPTY.md` | 1 | `.md` | `documentation_md` | 1 | `01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b` | `cosmology_validation_marker` |
-| `docs/ESTABILIDADE_GHOST_CHECK.md` | 5827 | `.md` | `documentation_md` | 184 | `3c39aeacf7a9a2e95c9a01ee00e481e8ec6fa3d896bd7e95f1eaa49590cce3b6` | `cosmology_validation_marker` |
+| `docs/ESTABILIDADE_GHOST_CHECK.md` | 2570 | `.md` | `documentation_md` | 96 | `e1b78d3fe5d85573be2a18dcdaa85170af4851a02997f29058193811874526be` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/EXECUCAO_REAL_STRUCTURE_D.md` | 7506 | `.md` | `documentation_md` | 174 | `f718abd08e9909e8475a2c07345c4f36d9f958700a1f551044164123200b0be1` | `mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/FORMALISMO_RAFAELIA_T7_E_COERENCIA.md` | 4299 | `.md` | `documentation_md` | 79 | `418bc11694038b43cda799bd9df2694aa5d00578e64831e46a2c3b648777e056` | `cosmology_validation_marker` |
 | `docs/FORMALIZACAO_CONHECIMENTO_MULTILINGUE.md` | 1285 | `.md` | `documentation_md` | 40 | `af84ce19aee81694f9e357689d7ebd3c42945d5c2d04656328fc78ac33df8707` | `cosmology_validation_marker` |
