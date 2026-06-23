@@ -16,14 +16,14 @@ def load_module():
     return module
 
 
-def test_rll_stock_backend_is_marked_not_exact():
+def test_rll_background_is_no_longer_empty_in_backend_status():
     m = load_module()
     args = argparse.Namespace(model="rll")
     result = m.try_classy(args)
-    if result.get("available"):
-        assert result["status"] == "TOKEN_VAZIO"
-    else:
-        assert result["available"] is False
+    assert result["model"] == "rll"
+    assert result["status"] == "rll_exact_background_available"
+    assert result["rll_background_exact"] is True
+    assert result["perturbations_exact"] == "TOKEN_VAZIO"
 
 
 def test_parser_defaults_to_lcdm_auto():
