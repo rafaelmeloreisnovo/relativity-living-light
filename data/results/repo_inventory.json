@@ -3843,6 +3843,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/RAFAELIA_AI_REPO_BRIDGE.md",
+    "bytes": 1382,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 45,
+    "sha256": "ab1cbefb45e1fe506884acdefbef3d224aaf4c8172b446967e38fb30d2170bb0",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RAFAELIA_PRIORITY_MATRIX.md",
     "bytes": 2424,
     "ext": ".md",
