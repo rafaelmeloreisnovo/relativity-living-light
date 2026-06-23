@@ -7903,11 +7903,11 @@
   },
   {
     "path": "scripts/run_cmb_power_backend.py",
-    "bytes": 5170,
+    "bytes": 5866,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 132,
-    "sha256": "28c46f2d029497032a02b5d3883bdb24660e2a04609fb0067977e9a7b95dbadf",
+    "linhas": 150,
+    "sha256": "d757fcade317e9f440a4273337395d1eb28fb0b2efe0f0800fc8f59e9a745d72",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -8209,11 +8209,11 @@
   },
   {
     "path": "tests/test_cmb_power_backend.py",
-    "bytes": 1004,
+    "bytes": 1091,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 35,
-    "sha256": "8ac6d4fa650f5a1bb694bf59e0af527724a36007f5513eaa6d625ec911e34559",
+    "sha256": "130f43c1b682118c2696e894ff52e426964b0797ec407f12475946c6ace615f8",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
