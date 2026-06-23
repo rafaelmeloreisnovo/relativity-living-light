@@ -3862,11 +3862,11 @@
   },
   {
     "path": "docs/RAFAELIA_AI_REPO_BRIDGE.md",
-    "bytes": 1382,
+    "bytes": 2811,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 45,
-    "sha256": "ab1cbefb45e1fe506884acdefbef3d224aaf4c8172b446967e38fb30d2170bb0",
+    "linhas": 88,
+    "sha256": "c47a63d0b764fffa7ff4485e36aa8742ba14c2b092469ce3abb9dcddf621f588",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
