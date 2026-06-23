@@ -8145,6 +8145,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/validate_formula_index_contract.py",
+    "bytes": 723,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 16,
+    "sha256": "b2c5c0379deb67e4883310ed117133fdc6311479900fffdaea3e7ac6ca5716e4",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/validate_formulas_manifest.py",
     "bytes": 714,
     "ext": ".py",
