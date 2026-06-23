@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1034 |
-| `cataloged_files` | 1023 |
+| `tracked_files_total` | 1035 |
+| `cataloged_files` | 1024 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35074386 |
-| `total_text_lines` | 139792 |
-| `markdown_files` | 518 |
+| `total_bytes` | 35077515 |
+| `total_text_lines` | 139909 |
+| `markdown_files` | 519 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 148 |
 
-**Total de arquivos catalogados:** 1023
+**Total de arquivos catalogados:** 1024
 
 ## Inventário completo
 
@@ -465,6 +465,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RLL_6SIGMA_POST_PR396_AUDIT.md` | 12423 | `.md` | `documentation_md` | 207 | `7c8f870303eb7406bc227325c04c377db418070a5d8ded9b5d98f5650b95b684` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_ABLATION_MATRIX.md` | 5218 | `.md` | `documentation_md` | 146 | `f303512e8ba49f0d5bdcd45e3fc89236adcdda71fb0327db22ba5772ef4cb4ba` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_ACADEMIC_PARAMETER_CONVERGENCE_LEDGER.md` | 9992 | `.md` | `documentation_md` | 173 | `d8661f01e0547652c05d3d606d471eea5e9ed35445ca311e694c31372f7f7eb7` | `cosmology_validation_marker` |
+| `docs/RLL_ALL_REAL_DATA_MASTER.md` | 3129 | `.md` | `documentation_md` | 117 | `61dc1ca036b18aff63eaf79704343ebb9fe2c1fb7015105571f85833d96382dd` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_APPLIED_CHANGES_2026-06-17_EVIDENCE_SCAN.md` | 1737 | `.md` | `documentation_md` | 54 | `c49dd8eac23c4d411b8c9da093cb85a86a430fc839e6ec85406a698ccb16bce4` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_AUDIT_2026-03-14_FRONTEIRA_FISICA.md` | 7817 | `.md` | `documentation_md` | 135 | `f836b45edb0b7fd5ec18a1abad73425c7bbcf0e2e9fd4194880185cd41088271` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/RLL_BH_FLUX_NOTE.md` | 5013 | `.md` | `documentation_md` | 136 | `3a55eeaac7040c398a25461818ef8753df06d4d1d2e45ff33ff04a7e49d181d1` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
