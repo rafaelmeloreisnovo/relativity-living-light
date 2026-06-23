@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1033 |
-| `cataloged_files` | 1022 |
+| `tracked_files_total` | 1034 |
+| `cataloged_files` | 1023 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35069849 |
-| `total_text_lines` | 139771 |
+| `total_bytes` | 35074386 |
+| `total_text_lines` | 139792 |
 | `markdown_files` | 518 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
-| `data_or_result_files` | 147 |
+| `data_or_result_files` | 148 |
 
-**Total de arquivos catalogados:** 1022
+**Total de arquivos catalogados:** 1023
 
 ## Inventário completo
 
@@ -313,6 +313,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/real/compact_objects/wandering_black_hole_sources.yml` | 3610 | `.yml` | `config_yml` | 117 | `2e3fcc600a4a7470c44ee89309648691e5a3bca40003df3070d5047313181e5f` | `token_vazio_declared` |
 | `data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml` | 2964 | `.yml` | `config_yml` | 80 | `f0ba4a4b4581a2acea9dcba3fef79b8775205b59631944a96139f38c2db4107a` | `` |
 | `data/real/cosmology/README.md` | 1986 | `.md` | `documentation_md` | 36 | `abaa318e0adb6644618255a1aa85347491be004c5075096ed447e7c1416d512b` | `` |
+| `data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv` | 4537 | `.csv` | `data_or_result` | 21 | `e430b7a6c3c745ea58d3a738f57636a3dc633214142a2054abfefb1dba16c4a4` | `token_vazio_declared` |
 | `data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml` | 2907 | `.yml` | `config_yml` | 90 | `1e5381d57d932427f952e48883b58a0c99b1f42d077e2e66c1d40afb5bc2d7e2` | `` |
 | `data/real/cosmology/RLL_REAL_DATA_REQUIREMENTS.csv` | 2241 | `.csv` | `data_or_result` | 14 | `47b2f67ca54b8d02b0a28b60b6bffcb3822efb81e3c928a3762ed0d411a107a5` | `` |
 | `data/real/cosmology/desi_dr2_bao_covariance_summary.csv` | 635 | `.csv` | `data_or_result` | 7 | `e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e` | `` |
