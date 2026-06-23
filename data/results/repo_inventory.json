@@ -4374,6 +4374,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_W0WA_IMPLEMENTATION_LEDGER.md",
+    "bytes": 1116,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 32,
+    "sha256": "6e2b8bbd89d698b810897738e9deca9fe568a9c9950a5225c27e77a09bee3334",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/ROADMAP_VALIDACAO.md",
     "bytes": 3869,
     "ext": ".md",
