@@ -4131,6 +4131,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_FORMAL_INVARIANT_AND_REAL_DATA.md",
+    "bytes": 4899,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 114,
+    "sha256": "6ae9d9739083f9e5bf11b6c70da71774527aa33042135426cbbfe8ac369fa6aa",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_FRONTIER_DYNAMICS_AND_ANOMALY_LEDGER.md",
     "bytes": 15288,
     "ext": ".md",
