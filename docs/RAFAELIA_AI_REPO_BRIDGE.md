@@ -7,39 +7,82 @@ Status date: 2026-06-23
 | Repository | Role |
 |---|---|
 | `rafaelmeloreisnovo/Rafaelia_Private` | private corpus, symbolic invariants, Ethica, BitStack and ZIPRAF base |
+| `rafaelmeloreisnovo/CONVERSATIONS_CHUNKS_PRIVATE` | conversation chunks, memory bridge, manifests, chunk summaries and temporal corpus maps |
 | `rafaelmeloreisnovo/GAIA_phi` | deterministic core, hashing, vecdb, manifests, guard and C/Python engines |
-| `rafaelmeloreisnovo/llamaRafaelia` | local inference/runtime layer in C/C++ |
+| `rafaelmeloreisnovo/llamaRafaelia` | local inference/runtime layer in C/C++ and RMRCTI primary source path |
 | `instituto-Rafael/relativity-living-light` | scientific validation, real data, loaders, CI and claim gates |
 
 ## Stack reading
 
 ```text
-Private corpus -> deterministic core -> local inference -> scientific validation
+Private corpus -> conversation chunks -> deterministic scanner -> deterministic core -> local inference -> scientific validation
+```
+
+## Temporal corpus bridge
+
+The conversation corpus must not be treated as a single file to read fully in every session.
+
+```text
+Google Takeout / conversations.json
+  -> chunk manifest
+  -> hash check
+  -> RMRCTI scan
+  -> bitstack/jsonl + csv
+  -> coupled report
+  -> compressed summary
+  -> global timeline map
+  -> formula/link
+  -> claim gate
+```
+
+Poetic language is preserved as a didactic layer, but evidence remains separated:
+
+```text
+metaphor/parabola -> technical translation -> deterministic artifact -> claim boundary
 ```
 
 ## Formula bridge
 
-The formulas upload is represented by:
+The formulas artifact is represented by:
 
 ```text
 data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json
+data/formulas/FORMULA_INDEX_CONTRACT.json
 scripts/validate_formulas_manifest.py
+scripts/validate_formula_index_contract.py
+scripts/materialize_formula_index.py
 .github/workflows/formulas-artifacts-validation.yml
 ```
 
-The current manifest records 486 formulas, 53 sources and three categories: `geral`, `cosmology_metrics`, `integridade_e_criptografia`.
+The current verified manifest records 486 formulas, 53 sources and three categories: `geral`, `cosmology_metrics`, `integridade_e_criptografia`.
 
-## Operational rule
+## Operational rules
+
+Formula gate:
 
 ```text
 formula -> category -> source -> gate -> loader/test/result -> claim or TOKEN_VAZIO
 ```
 
+Conversation gate:
+
+```text
+chunk -> offset/hash -> RMRCTI metrics -> anomaly flag -> summary/map -> formula/link or TOKEN_VAZIO
+```
+
+## Claim boundary
+
+- A formula is not proof by itself.
+- A metaphor is not proof by itself.
+- A conversation chunk is not proof by itself.
+- A claim is only promoted when linked to source, deterministic artifact, test/CI and result.
+
 ## Next integrations
 
-1. Import full `formulas.json` when safe.
-2. Generate stable formula IDs.
-3. Map formula IDs to claim gates.
+1. Import full `formulas.json` or artifact ZIP when safe.
+2. Generate stable formula IDs using `scripts/materialize_formula_index.py`.
+3. Map formula IDs to claim gates and result artifacts.
 4. Link cosmology formulas to RLL loaders.
 5. Link guard formulas to GAIA_phi and Rafaelia_Private.
 6. Link local runtime prompts to llamaRafaelia.
+7. Link conversation chunks to RMRCTI reports and global timeline maps.
