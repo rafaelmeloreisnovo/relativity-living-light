@@ -26,10 +26,14 @@ defaults:
 
 jobs:
   desi-dr2-bao:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Verify ARM64 runner
+        run: |
+          test "$(uname -m)" = "aarch64"
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -38,6 +42,9 @@ jobs:
 
       - name: Validate DESI DR2 BAO loader without external deps
         run: python scripts/smoke_desi_dr2_bao_covariance_loader.py
+
+      - name: Validate DESI DR2 BAO loader tests without external deps
+        run: python tests/test_desi_dr2_bao_covariance_loader.py
 
       - name: Run DESI DR2 BAO covariance chi2 smoke
         run: python scripts/check_desi_dr2_bao_covariance.py

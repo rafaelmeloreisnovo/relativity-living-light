@@ -30,3 +30,9 @@ def test_covariance_inverse_identity_size():
     m = load_module()
     inv = m.invert([[2.0, 0.0], [0.0, 4.0]])
     assert inv == [[0.5, 0.0], [0.0, 0.25]]
+
+
+if __name__ == "__main__":
+    test_desi_dr2_core_shape()
+    test_covariance_inverse_identity_size()
+    print("DESI DR2 BAO covariance loader tests passed")
