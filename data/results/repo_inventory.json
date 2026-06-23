@@ -2646,6 +2646,15 @@
     "flags": ""
   },
   {
+    "path": "data/real/cosmology/fsigma8_growth_README.md",
+    "bytes": 656,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 30,
+    "sha256": "3639c4c972beb94bca981330a93cdac412ed317841bb8f0d55c821a02512e52a",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "data/real/cosmology/fsigma8_growth_real.csv",
     "bytes": 2428,
     "ext": ".csv",

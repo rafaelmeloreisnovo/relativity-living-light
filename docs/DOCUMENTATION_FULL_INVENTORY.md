@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1021 |
-| `cataloged_files` | 1010 |
+| `tracked_files_total` | 1022 |
+| `cataloged_files` | 1011 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35043863 |
-| `total_text_lines` | 139137 |
-| `markdown_files` | 514 |
+| `total_bytes` | 35044519 |
+| `total_text_lines` | 139167 |
+| `markdown_files` | 515 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 144 |
 
-**Total de arquivos catalogados:** 1010
+**Total de arquivos catalogados:** 1011
 
 ## Inventário completo
 
@@ -317,6 +317,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/real/cosmology/desi_dr2_bao_covariance_summary.csv` | 635 | `.csv` | `data_or_result` | 7 | `e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e` | `` |
 | `data/real/cosmology/desi_dr2_bao_primary_points.csv` | 2729 | `.csv` | `data_or_result` | 14 | `5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69` | `` |
 | `data/real/cosmology/fsigma8_growth.csv` | 581 | `.csv` | `data_or_result` | 8 | `09aec32d662f5f585876279e14fdda73634032d0da7d46efdac4a20a349862cd` | `` |
+| `data/real/cosmology/fsigma8_growth_README.md` | 656 | `.md` | `documentation_md` | 30 | `3639c4c972beb94bca981330a93cdac412ed317841bb8f0d55c821a02512e52a` | `token_vazio_declared` |
 | `data/real/cosmology/fsigma8_growth_real.csv` | 2428 | `.csv` | `data_or_result` | 17 | `3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211` | `mentions_synthetic` |
 | `data/real/cosmology/real_source_signatures.json` | 8528 | `.json` | `data_or_result` | 226 | `99812a5f270c52130d3fd89e41bb4c321d04f7cf672b82dfbc8575a7f2ca7962` | `` |
 | `data/real/cosmology_observational_seed_2026.csv` | 1100 | `.csv` | `data_or_result` | 5 | `bd15cfc605aaf299fe1dba406f4e1c32935f69bbe6e4ff82a6ab1b200c16e155` | `` |
