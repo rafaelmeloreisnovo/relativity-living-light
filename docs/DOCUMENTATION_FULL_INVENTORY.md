@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1012 |
-| `cataloged_files` | 1001 |
+| `tracked_files_total` | 1013 |
+| `cataloged_files` | 1002 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35022079 |
-| `total_text_lines` | 138383 |
+| `total_bytes` | 35025296 |
+| `total_text_lines` | 138476 |
 | `markdown_files` | 512 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 143 |
 
-**Total de arquivos catalogados:** 1001
+**Total de arquivos catalogados:** 1002
 
 ## Inventário completo
 
@@ -877,6 +877,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `scripts/bh_flux_calc.py` | 4684 | `.py` | `source_code` | 135 | `c3b05502b25384f46b41104ddf339298e8aeda6253b23ef086eea2a19d781098` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `scripts/build_real_validation_report.py` | 4434 | `.py` | `source_code` | 131 | `4e8c97d8122be8eabfab0dc7e2b230920af2a1e0dbf2fd339fb93f992cf1285f` | `cosmology_validation_marker` |
 | `scripts/check_convention_conflicts.sh` | 1523 | `.sh` | `source_code` | 47 | `ea5f6c1e04d29db39afefd37f461203aa3868f2d28f97265d8658b8c54f266d3` | `cosmology_validation_marker` |
+| `scripts/check_rll_background.py` | 3217 | `.py` | `source_code` | 93 | `db2dc693fba9e863d0bc2aa4e19a9b86b48c611d4aabd5f0c18ca224bca9825f` | `token_vazio_declared,cosmology_validation_marker` |
 | `scripts/check_structure_d_model_dataset_coverage.sh` | 2850 | `.sh` | `source_code` | 74 | `0ff1934ae15fc3bbb824438e38daf5b8768ecd3b10648ddcd48544fa1c9397ad` | `cosmology_validation_marker` |
 | `scripts/check_structure_d_required_outputs.sh` | 1790 | `.sh` | `source_code` | 72 | `ad980b2c79fba82b949f18b3bb0337ee34d0b40abcf1106e7d3d40efcec55684` | `cosmology_validation_marker` |
 | `scripts/compute_desi_dr2_bao_zml.py` | 10946 | `.py` | `source_code` | 301 | `ca92cbe58092ccfcd5804edfc01fa077fc55e59af3ea7ba0bc6207d3737ff372` | `mentions_synthetic,cosmology_validation_marker` |

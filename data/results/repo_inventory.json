@@ -7686,6 +7686,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/check_rll_background.py",
+    "bytes": 3217,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 93,
+    "sha256": "db2dc693fba9e863d0bc2aa4e19a9b86b48c611d4aabd5f0c18ca224bca9825f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "scripts/check_structure_d_model_dataset_coverage.sh",
     "bytes": 2850,
     "ext": ".sh",
