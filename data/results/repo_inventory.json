@@ -4338,6 +4338,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/RLL_PROGRESS_VALUE_MATRIX.md",
+    "bytes": 3862,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 72,
+    "sha256": "4535fe467c6a31d245f9d144bf4e6dd356718622cf20e41d35685d08589307e3",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md",
     "bytes": 12495,
     "ext": ".md",
@@ -9023,7 +9032,7 @@
     "ext": ".json",
     "tipo": "data_or_result",
     "linhas": 21,
-    "sha256": "f0f9b56535423db3a74b64f446ebc297cda5683dcb2a910b3a9715cb1340238e",
+    "sha256": "2affe10de858041d5159505be7b7a5c8ff30819127717bcf1717ed3b635fad5a",
     "flags": ""
   },
   {
@@ -9095,7 +9104,7 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 47,
-    "sha256": "1dd18a8cb541a8720c26c5a897fca035c1588ef4de9fb2bd3b082e145f8e1cfe",
+    "sha256": "79cc5dac97c38c3120681332b57e4cba5277f9d831d05877dd077fb2611b9edb",
     "flags": ""
   },
   {
@@ -9158,7 +9167,7 @@
     "ext": ".json",
     "tipo": "data_or_result",
     "linhas": 70,
-    "sha256": "40dca879e4b241dfdc7b1da5804b2bcafc4e169112fd684983a3d110ff0a4500",
+    "sha256": "f3271be7c5f0ab165ccd636aecd5dac307fe7ccf58a242506685a3b5e083fe11",
     "flags": ""
   },
   {

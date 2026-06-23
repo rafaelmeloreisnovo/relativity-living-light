@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1030 |
-| `cataloged_files` | 1019 |
+| `tracked_files_total` | 1031 |
+| `cataloged_files` | 1020 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35058847 |
-| `total_text_lines` | 139571 |
-| `markdown_files` | 516 |
+| `total_bytes` | 35062709 |
+| `total_text_lines` | 139643 |
+| `markdown_files` | 517 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 146 |
 
-**Total de arquivos catalogados:** 1019
+**Total de arquivos catalogados:** 1020
 
 ## Inventário completo
 
@@ -505,6 +505,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RLL_PIPELINE_CLAIM_GATE_DIAGRAM.md` | 2645 | `.md` | `documentation_md` | 108 | `26c5d6678e9fde28d0ff47b8d27b5d178cd5250086db84846b00ece6e954f19f` | `mentions_synthetic,token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md` | 16591 | `.md` | `documentation_md` | 490 | `675e6dcc9aece82de1b29fc9b24eb521c3f8f64bae145a2893d739f29fc1eab7` | `cosmology_validation_marker` |
 | `docs/RLL_PRE_ROBUST_FIT_PR_CHECKLIST.md` | 3767 | `.md` | `documentation_md` | 130 | `e06eeaae9c6a934b461703eb357d4cd71bd855ea07ec6deea5ab337db3c6af3e` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/RLL_PROGRESS_VALUE_MATRIX.md` | 3862 | `.md` | `documentation_md` | 72 | `4535fe467c6a31d245f9d144bf4e6dd356718622cf20e41d35685d08589307e3` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md` | 12495 | `.md` | `documentation_md` | 418 | `b602fdf64001c6ec70d0b3f414d106a6d69e5ce16a2bd4414629a546f608bc25` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/RLL_RISK_REGISTER.md` | 5002 | `.md` | `documentation_md` | 121 | `c13e93cd547022035a95f7e0564956ae568161cb11a5b837ad7fa4ccc352d1a1` | `mentions_synthetic,token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_ROBUST_FIT_CHECKLIST.md` | 6055 | `.md` | `documentation_md` | 223 | `4599181ec3ab7071ac2a2c2386c3e5fa83ba952c3c0471c72dbed3c44be68dad` | `mentions_synthetic,token_vazio_declared,cosmology_validation_marker` |
@@ -1025,7 +1026,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `validacao_real/fetch_real_data.py` | 2687 | `.py` | `source_code` | 83 | `54b0ab69d4fdbdfe28fbdc617688c30d3ace2ad6328788204c8781a0664ec28b` | `` |
 | `validacao_real/fetched/desi_dr2_bao.yml` | 2305 | `.yml` | `config_yml` | 98 | `d7eea61898fbf62b489aa244c7dc201b1e6f84f3dc5e95996d27735868c4e661` | `` |
 | `validacao_real/fetched/hz_cosmic_chronometers.yml` | 1475 | `.yml` | `config_yml` | 105 | `d780c26dced451af32e91435d70710a0a210a13aa0422eb0d925fba76cdb6a45` | `` |
-| `validacao_real/fetched/manifest.json` | 583 | `.json` | `data_or_result` | 21 | `f0f9b56535423db3a74b64f446ebc297cda5683dcb2a910b3a9715cb1340238e` | `` |
+| `validacao_real/fetched/manifest.json` | 583 | `.json` | `data_or_result` | 21 | `2affe10de858041d5159505be7b7a5c8ff30819127717bcf1717ed3b635fad5a` | `` |
 | `validacao_real/legacy_artifacts/RELATORIO_VALIDACAO.md` | 1645 | `.md` | `documentation_md` | 47 | `1d0c312806166557b41500788295147f6b53b6f23666d006eb9d7f4057ba058b` | `` |
 | `validacao_real/legacy_artifacts/bao_distances.png` | 82085 | `.png` | `other` | 0 | `ced304d9836601f91bf8b0fd46156111c567092390d3211c0f7fc8339fe9bc1b` | `` |
 | `validacao_real/legacy_artifacts/hubble_diagram.png` | 61343 | `.png` | `other` | 0 | `5b198885a1fca071f173cf11adac346d87c1da5f43d3b7ea63ab856fc729d26f` | `` |
@@ -1033,14 +1034,14 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `validacao_real/legacy_artifacts/residual_pulls.png` | 52386 | `.png` | `other` | 0 | `9fec6b1e77377b286fb03c126de5c5e3387bf7fdc2f3739c82122563b02a0e34` | `` |
 | `validacao_real/make_figures.py` | 5867 | `.py` | `source_code` | 147 | `67a904b17a99c899cc9597e702c80393e2f97a68b949d49073243c3c98b628bf` | `` |
 | `validacao_real/render_report.py` | 3407 | `.py` | `source_code` | 75 | `7dc4843df0a1f9e8b4fbe6f39d265375b8cc01dfaed87bf4bf899371784da276` | `` |
-| `validacao_real/results/RELATORIO_VALIDACAO.md` | 1645 | `.md` | `documentation_md` | 47 | `1dd18a8cb541a8720c26c5a897fca035c1588ef4de9fb2bd3b082e145f8e1cfe` | `` |
+| `validacao_real/results/RELATORIO_VALIDACAO.md` | 1645 | `.md` | `documentation_md` | 47 | `79cc5dac97c38c3120681332b57e4cba5277f9d831d05877dd077fb2611b9edb` | `` |
 | `validacao_real/results/figures/bao_distances.png` | 80646 | `.png` | `other` | 0 | `6b19a3db63b977b8c492179a81c42c7b0d7453f759f8dd477466bcfef54aa2e9` | `` |
 | `validacao_real/results/figures/hubble_diagram.png` | 61898 | `.png` | `other` | 0 | `e05f03361da372b891fcb322d020dd527020cb051d31c7c1560654a769ac3116` | `` |
 | `validacao_real/results/figures/model_comparison_bars.png` | 28954 | `.png` | `other` | 0 | `c82d99f8e3df64e2b2bd3598b383ba2cda44cf32bfa406509bc75901c78a1a5a` | `` |
 | `validacao_real/results/figures/residual_pulls.png` | 51414 | `.png` | `other` | 0 | `a47ea998856131ec273592b3f7af50c9ee46e53c152ca8c2cbd03dd91f31bf1b` | `` |
 | `validacao_real/results/model_comparison.csv` | 226 | `.csv` | `data_or_result` | 3 | `bfb33632c266653249dd2fb31836b9e70328bcdc0de3ab3e33a9b161ebf8ca0b` | `` |
 | `validacao_real/results/per_point_predictions.csv` | 3026 | `.csv` | `data_or_result` | 46 | `c2554d238fe72e3bfa513e4bc44e0dcce7f9a438c77691fad207d9afb2e25dc6` | `` |
-| `validacao_real/results/validation_summary.json` | 1500 | `.json` | `data_or_result` | 70 | `40dca879e4b241dfdc7b1da5804b2bcafc4e169112fd684983a3d110ff0a4500` | `` |
+| `validacao_real/results/validation_summary.json` | 1500 | `.json` | `data_or_result` | 70 | `f3271be7c5f0ab165ccd636aecd5dac307fe7ccf58a242506685a3b5e083fe11` | `` |
 | `validacao_real/sources.yml` | 1289 | `.yml` | `config_yml` | 30 | `ef38522ef37bb78d394b9844183936d48c3a61d7072c53f8abf8c76411fcae5b` | `` |
 
 ## Arquivos com erro/lacuna
