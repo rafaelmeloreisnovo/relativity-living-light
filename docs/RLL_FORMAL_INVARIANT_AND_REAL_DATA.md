@@ -2,19 +2,31 @@
 
 Status date: 2026-06-23
 
+## Master registry
+
+The authoritative real-data registry is now:
+
+```text
+data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv
+```
+
+The detailed explanation is:
+
+```text
+docs/RLL_ALL_REAL_DATA_MASTER.md
+```
+
+Older requirement files are secondary. If there is disagreement, the master registry wins.
+
 ## Purpose
 
 This document defines the invariant content of the RLL work: what must remain true across papers, code, results, market discussion and public claims.
 
 ## Formal invariant
 
-The RLL content invariant is:
-
 ```text
 I_RLL = (M, B, P, D, C, L, S, T, G, V)
 ```
-
-Where:
 
 | Symbol | Meaning | Required content |
 |---|---|---|
@@ -29,8 +41,6 @@ Where:
 | G | gates | claim gates, TOKEN_VAZIO, negative-result handling |
 | V | versioning | commits, data hashes, source dates, release tags |
 
-A public or academic claim is allowed only when the relevant subset of `I_RLL` is present and reproducible.
-
 ## Claim rule
 
 ```text
@@ -43,7 +53,7 @@ If any required part is missing:
 claim_status = TOKEN_VAZIO
 ```
 
-## What is implemented now
+## Current implemented stack
 
 | Element | Status | Repository evidence |
 |---|---|---|
@@ -54,31 +64,17 @@ claim_status = TOKEN_VAZIO
 | Transfer bridge | contract | `src/rll/rll_transfer_bridge_contract.json` |
 | CLASS/CAMB handoff | contract | `src/rll/class_transfer_adapter_contract.json` |
 | Progress/value matrix | implemented | `docs/RLL_PROGRESS_VALUE_MATRIX.md` |
-| Real data requirements | implemented | `data/real/cosmology/RLL_REAL_DATA_REQUIREMENTS.csv` |
+| All real data master | implemented | `data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv` |
 
 ## Serious data still required
 
-| Dataset class | Required item | Why |
-|---|---|---|
-| BAO | DESI DR1/DR2 full covariance | distance constraints and dark-energy evolution tests |
-| BAO/RSD | SDSS BOSS/eBOSS DR16 covariances | legacy benchmark and growth comparison |
-| SNe Ia | Pantheon+ data and covariance | low-redshift distance ladder and dark-energy constraints |
-| CMB | Planck 2018 likelihood or distance priors | standard CMB baseline |
-| CMB lensing | ACT DR6 and Planck PR4 lensing covariances | growth and lensing cross-check |
-| Growth | f sigma 8 full covariance | replace diagonal-only screening |
-| Nonlinear matter | Halofit/HMcode backend validation | nonlinear P(k) gate |
-| Sampling | MCMC/nested sampling chains | evidence and posterior robustness |
-| Provenance | data hashes and licenses | chain of custody |
+Do not maintain this list manually here. Use the master registry:
 
-## Tools required
+```text
+data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv
+```
 
-| Tool class | Examples | Purpose |
-|---|---|---|
-| Boltzmann backend | CLASS, CAMB, classy, camb | CMB Cl and matter transfer functions |
-| Sampler | Cobaya, MontePython, emcee, dynesty | posterior and evidence |
-| Data processing | Python, numpy/scipy optional, CSV/JSON validators | likelihood and reproducibility |
-| CI | GitHub Actions, pytest | regression and reproducibility gates |
-| Provenance | sha256, Zenodo, release tags | citable package and custody |
+That file includes existing assets, PR #385, DESI DR1/DR2, SDSS/eBOSS DR16, Pantheon+, Planck 2018, ACT DR6, Planck PR4, f sigma 8 covariance, CLASS/CAMB native backend, nonlinear validation, sampling, provenance and release gates.
 
 ## Academic rigor gates
 
@@ -88,6 +84,7 @@ claim_status = TOKEN_VAZIO
 4. Results include negative cases and collapse-to-LCDM cases.
 5. CMB Cl and P(k) are backend-generated, not hand-waved.
 6. Public claims preserve TOKEN_VAZIO when backend/data are missing.
+7. Every dataset/backend mentioned in chat or docs must exist in the master registry.
 
 ## Market rigor gates
 
@@ -107,8 +104,10 @@ RLL is not yet a market-valued product.
 
 ## Next required actions
 
-1. Add full covariance files or loaders for DESI, SDSS, Pantheon+, Planck and ACT.
-2. Replace transfer contracts with native CLASS/CAMB transfer-table generation.
-3. Run CMB Cl and P(k) comparisons.
-4. Run MCMC or nested sampling.
-5. Release a tagged, citable package with hashes and data provenance.
+1. Resolve or extract PR #385.
+2. Materialize DESI DR2 BAO and Cobaya files.
+3. Add DESI DR1, SDSS/eBOSS DR16, Pantheon+, Planck and ACT loaders with covariance.
+4. Upgrade f sigma 8 from diagonal-only to covariance-aware.
+5. Replace transfer contracts with native CLASS/CAMB transfer-table generation.
+6. Run MCMC or nested sampling.
+7. Release a tagged, citable package with hashes and data provenance.
