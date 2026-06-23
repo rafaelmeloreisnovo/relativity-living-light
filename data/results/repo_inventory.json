@@ -7812,6 +7812,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/check_desi_dr2_bao_covariance.py",
+    "bytes": 4767,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 133,
+    "sha256": "25337be7feb5fc620bc607eb65b508ea76812112e9a86139d61851c8673d2774",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/check_rll_background.py",
     "bytes": 3217,
     "ext": ".py",
