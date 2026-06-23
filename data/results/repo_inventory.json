@@ -7884,6 +7884,15 @@
     "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
+    "path": "scripts/run_cmb_power_backend.py",
+    "bytes": 5170,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 132,
+    "sha256": "28c46f2d029497032a02b5d3883bdb24660e2a04609fb0067977e9a7b95dbadf",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "scripts/run_desi_dha_pipeline.py",
     "bytes": 789,
     "ext": ".py",
@@ -8170,6 +8179,15 @@
     "linhas": 115,
     "sha256": "dcade964e6b27ef77082ec539a74845270dd9424a4d15d735640a7fd9ab8e484",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_cmb_power_backend.py",
+    "bytes": 1004,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 35,
+    "sha256": "8ac6d4fa650f5a1bb694bf59e0af527724a36007f5513eaa6d625ec911e34559",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "tests/test_compute_rll_real_pipeline_contract.py",
