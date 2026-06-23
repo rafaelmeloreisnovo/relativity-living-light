@@ -81,6 +81,15 @@
     "flags": "mentions_mock_or_placeholder"
   },
   {
+    "path": ".github/workflows/formulas-artifacts-validation.yml",
+    "bytes": 783,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 36,
+    "sha256": "9f0d052c445b5f5658c4a7f788fe81e2504642b2634a999c0b7de122bcebfc44",
+    "flags": ""
+  },
+  {
     "path": ".github/workflows/formulas-artifacts.yml",
     "bytes": 864,
     "ext": ".yml",
@@ -8097,6 +8106,15 @@
     "tipo": "source_code",
     "linhas": 132,
     "sha256": "15425474733128909453c04a781d2886790141e22d9366463e318cbfd01ddf2d",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validate_formulas_manifest.py",
+    "bytes": 714,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 19,
+    "sha256": "6fc40508e3dfb6ab1df2ca8925a6801f8563fbe9997bee1b42fc481ef17c392a",
     "flags": "cosmology_validation_marker"
   },
   {
