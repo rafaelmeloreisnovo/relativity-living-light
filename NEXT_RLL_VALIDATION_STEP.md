@@ -1,14 +1,15 @@
 # Proximo salto RLL
 
-Objetivo: executar uma validacao real minima com baseline LCDM, adversario w0waCDM e setor logistico RLL, mantendo a fronteira entre avaliacao pontual, aproximacao por BIC e evidencia completa futura.
+Objetivo: executar uma validacao real minima com baseline LCDM, adversario w0waCDM, setor logistico RLL e gate linear de crescimento `f_sigma8`, mantendo a fronteira entre avaliacao pontual, aproximacao por BIC e evidencia completa futura.
 
 ## Dados esperados
 
 - `data/real/Hz_data_real.csv`
 - `data/real/cosmology/desi_dr2_bao_primary_points.csv`
 - `data/real/cosmology/desi_dr2_bao_covariance_summary.csv`
+- opcional: `data/real/cosmology/fsigma8_growth.csv`
 
-## Comando direto
+## Comando direto - fundo Hz+BAO
 
 ```bash
 python rll_vs_lcdm.py \
@@ -17,6 +18,20 @@ python rll_vs_lcdm.py \
   --with-growth \
   --bao data/real/cosmology/desi_dr2_bao_primary_points.csv \
   --bao-covariance data/real/cosmology/desi_dr2_bao_covariance_summary.csv
+```
+
+## Comando direto - crescimento linear f_sigma8
+
+```bash
+python scripts/check_rll_growth.py --model all
+```
+
+Com dados reais de crescimento:
+
+```bash
+python scripts/check_rll_growth.py \
+  --model all \
+  --data data/real/cosmology/fsigma8_growth.csv
 ```
 
 ## Comando via CLI
@@ -29,6 +44,8 @@ rll run --data real --model rll --adversary w0waCDM --with-bayes --with-growth
 
 - `results/rll_model_comparison_summary.json`
 - `results/rll_model_comparison_predictions.csv`
+- `results/rll_growth_fsigma8_summary.json`
+- `results/rll_growth_fsigma8_predictions.csv`
 
 ## Leitura minima
 
@@ -39,10 +56,12 @@ rll run --data real --model rll --adversary w0waCDM --with-bayes --with-growth
 - `delta_aic_rll_minus_w0wa`
 - `delta_bic_rll_minus_w0wa`
 - fator aproximado por BIC, se `--with-bayes` for usado
-- status `TOKEN_VAZIO` para crescimento de estrutura, se `--with-growth` for usado
+- `D(z)`, `f_growth(z)` e `f_sigma8(z)` pelo solver linear
+- `chi2_fsigma8` quando o CSV real de crescimento for informado
 
 ## Fronteira honesta
 
 - `--with-bayes` usa aproximacao BIC/Schwarz, nao nested sampling.
-- `--with-growth` registra o gate f_sigma8, mas ainda nao calcula crescimento real.
+- `scripts/check_rll_growth.py` calcula crescimento linear em fundo GR suave, nao Boltzmann/CMB completo.
+- nonlinear power spectrum, Halofit, baryonic feedback e covariancia completa de surveys permanecem `TOKEN_VAZIO`.
 - MCMC e otimizacao robusta seguem como etapa posterior.
