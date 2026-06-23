@@ -1,6 +1,7 @@
 {
   "schema": "rafaelia.formulas_artifacts_manifest.v1",
-  "generated_from_upload": "formulas-artifacts (3).zip",
+  "artifact_name": "formulas-artifacts (3).zip",
+  "provenance": "generated_by_RLL_formula_extraction_pipeline",
   "total_formulas": 486,
   "category_counts": {
     "cosmology_metrics": 91,
