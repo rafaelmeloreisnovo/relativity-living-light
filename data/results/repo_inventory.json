@@ -8029,12 +8029,12 @@
   },
   {
     "path": "src/rll/cli.py",
-    "bytes": 6769,
+    "bytes": 8731,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 224,
-    "sha256": "09404e92a9a906f40b8a529574796a5211adf163975f6cf9708897ed6043ab3a",
-    "flags": "mentions_synthetic"
+    "linhas": 273,
+    "sha256": "4eefe3bc92cbe761fcc2856fe0d0d4e560fdef1d07f7e1bfd4d3c208c8afe91b",
+    "flags": "mentions_synthetic,token_vazio_declared"
   },
   {
     "path": "src/rll/cosmology_fairness.py",

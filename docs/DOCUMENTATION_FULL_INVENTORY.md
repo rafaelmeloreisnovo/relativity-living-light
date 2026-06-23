@@ -10,8 +10,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tracked_files_total` | 1010 |
 | `cataloged_files` | 999 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35017038 |
-| `total_text_lines` | 138244 |
+| `total_bytes` | 35019000 |
+| `total_text_lines` | 138293 |
 | `markdown_files` | 511 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
@@ -915,7 +915,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `scripts/validation/validate_orbital_state_vector_v2.py` | 5453 | `.py` | `source_code` | 154 | `569818ede4940980515dd142e96c86d8d5817803426f73d5af55052b01573f92` | `cosmology_validation_marker` |
 | `scripts/verify_pantheon_inputs.py` | 2568 | `.py` | `source_code` | 86 | `91c8a358cc2320fe0d23d2955c29b9daeb6648baaadbe90a6414993da678ab4f` | `cosmology_validation_marker` |
 | `src/rll/__init__.py` | 88 | `.py` | `source_code` | 4 | `8578eb186c6320e90873f2f87fc136066c245a3b88ce1966c02a23205a32b067` | `` |
-| `src/rll/cli.py` | 6769 | `.py` | `source_code` | 224 | `09404e92a9a906f40b8a529574796a5211adf163975f6cf9708897ed6043ab3a` | `mentions_synthetic` |
+| `src/rll/cli.py` | 8731 | `.py` | `source_code` | 273 | `4eefe3bc92cbe761fcc2856fe0d0d4e560fdef1d07f7e1bfd4d3c208c8afe91b` | `mentions_synthetic,token_vazio_declared` |
 | `src/rll/cosmology_fairness.py` | 14713 | `.py` | `source_code` | 436 | `2ef3c416fbadaa70df02e9cff6ce8666f18df153b34e98a3b0d5abedfb175682` | `` |
 | `src/rll/desi_dha_extractor.py` | 4359 | `.py` | `source_code` | 126 | `7fb2e0991960ea4ea693341855fde38023dd6c0c03cfa8dbbb5eec87604171fe` | `` |
 | `src/rll/dha_fisher.py` | 2769 | `.py` | `source_code` | 83 | `7a407f231ebe454bcbb3b1afc9c5fd111b4ebc74f2d498e3acf26b2af4336062` | `` |
