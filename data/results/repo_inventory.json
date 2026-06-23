@@ -3888,6 +3888,15 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/RAFAELIA_RLL_ADMIN_EXECUTION_MATRIX.md",
+    "bytes": 9150,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 211,
+    "sha256": "13c80440c2ed213cf76d964c114cccca71d29093479641b6655542a61beaf338",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RAFAELIA_UNIFIED_PAPER.md",
     "bytes": 6725,
     "ext": ".md",
