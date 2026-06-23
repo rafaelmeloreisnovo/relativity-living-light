@@ -8442,6 +8442,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_rll_perturbation_kernel.py",
+    "bytes": 1087,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 35,
+    "sha256": "1daa3955c537fd80707ae1c86be5ee2fd8f98ae7f9136b705fe36870ea8f828f",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_rll_vs_lcdm_bao.py",
     "bytes": 1702,
     "ext": ".py",
