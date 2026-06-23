@@ -64,11 +64,11 @@
   },
   {
     "path": ".github/workflows/desi-dr2-bao-validation.yml",
-    "bytes": 1979,
+    "bytes": 1856,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
     "linhas": 65,
-    "sha256": "8f729979f80893e80c35f91b2a5bbb11f20c60b6bc2d210410759cad33fa23a0",
+    "sha256": "35b65780c6662b0bb01109fdc4f0d7526ffbff832e9c9f4605244029cc1949c2",
     "flags": ""
   },
   {
