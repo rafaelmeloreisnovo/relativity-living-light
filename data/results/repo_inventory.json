@@ -8181,6 +8181,15 @@
     "flags": "token_vazio_declared"
   },
   {
+    "path": "src/rll/rll_transfer_bridge_contract.json",
+    "bytes": 606,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 15,
+    "sha256": "10aead78b71bcf0ecff08fb2eaa8b1b71b822acc646741d91224a9a72bce388f",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared"
+  },
+  {
     "path": "temp.md",
     "bytes": 13353,
     "ext": ".md",
