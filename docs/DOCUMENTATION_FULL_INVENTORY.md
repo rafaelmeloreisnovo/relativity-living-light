@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1023 |
-| `cataloged_files` | 1012 |
+| `tracked_files_total` | 1024 |
+| `cataloged_files` | 1013 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35048635 |
-| `total_text_lines` | 139283 |
+| `total_bytes` | 35053016 |
+| `total_text_lines` | 139412 |
 | `markdown_files` | 515 |
 | `yml_yaml_files` | 62 |
 | `github_workflow_yml_files` | 25 |
 | `data_or_result_files` | 144 |
 
-**Total de arquivos catalogados:** 1012
+**Total de arquivos catalogados:** 1013
 
 ## Inventário completo
 
@@ -930,6 +930,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `src/rll/dha_fisher.py` | 2769 | `.py` | `source_code` | 83 | `7a407f231ebe454bcbb3b1afc9c5fd111b4ebc74f2d498e3acf26b2af4336062` | `` |
 | `src/rll/latentes.py` | 15393 | `.py` | `source_code` | 386 | `3b2ae19b765c292b9c978749d909df280d0b5265ca7b0046cdba2fa82b6c9692` | `` |
 | `src/rll/ln1pz_extractor.py` | 2467 | `.py` | `source_code` | 69 | `f86ef42bd473f33c6282cd22d34ddecd959b88246d3f488755abeb8f9f0645c3` | `` |
+| `src/rll/rll_perturbation_kernel.py` | 4381 | `.py` | `source_code` | 129 | `e0f7133ee8f28ba837b9518c7dd9b0f4b84054d04eeb92e6b755e822dc203976` | `token_vazio_declared` |
 | `temp.md` | 13353 | `.md` | `documentation_md` | 486 | `d71750c435d24ac6c752fd6cfbdaf485c0ef6e04b7cf9eb7806c82758fbf61e4` | `` |
 | `tests/fixtures/README.md` | 491 | `.md` | `documentation_md` | 7 | `2ae35ecafd77bf44d737805b62a0aa2e0693b0a4474e0630f72c38e209731bb4` | `mentions_synthetic,cosmology_validation_marker` |
 | `tests/test_bh_flux_calc.py` | 2379 | `.py` | `source_code` | 85 | `9e77703a8d63b99edb10c32c1050753324b8403fd02c04a433ad2d534cdcb04b` | `cosmology_validation_marker` |

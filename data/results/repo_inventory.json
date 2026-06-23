@@ -8163,6 +8163,15 @@
     "flags": ""
   },
   {
+    "path": "src/rll/rll_perturbation_kernel.py",
+    "bytes": 4381,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 129,
+    "sha256": "e0f7133ee8f28ba837b9518c7dd9b0f4b84054d04eeb92e6b755e822dc203976",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "temp.md",
     "bytes": 13353,
     "ext": ".md",
