@@ -2646,6 +2646,15 @@
     "flags": ""
   },
   {
+    "path": "data/real/cosmology/desi_bao_dr2_cobaya/desi_gaussian_bao_ALL_GCcomb_mean.tsv",
+    "bytes": 459,
+    "ext": ".tsv",
+    "tipo": "data_or_result",
+    "linhas": 14,
+    "sha256": "138f09ca5d08506c1a45c4a1c50773f98b257e6b8981d95546e1fd5fbfee4ebc",
+    "flags": ""
+  },
+  {
     "path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
     "bytes": 635,
     "ext": ".csv",
