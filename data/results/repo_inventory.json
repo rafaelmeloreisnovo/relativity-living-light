@@ -7912,11 +7912,11 @@
   },
   {
     "path": "scripts/run_cmb_power_backend.py",
-    "bytes": 6216,
+    "bytes": 6364,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 155,
-    "sha256": "4305b6ef7118d50f24c83050e089808d539558cff33454d35850df7dd1218d3d",
+    "linhas": 128,
+    "sha256": "5b90b2813c8fa6cdd3dcf2cd24e12535770dc87058255fb94068a3cf64ac0f50",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -8233,6 +8233,15 @@
     "linhas": 61,
     "sha256": "9c2d0b73d435318581c5b6d44c5cfa29b08767e950efef79959f4341fc291817",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_class_transfer_adapter_contract.py",
+    "bytes": 576,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 14,
+    "sha256": "2007970e31c0ea52030ae72ce25b1077281bce91266e12a46a4feeb08c3f5861",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "tests/test_cli_orchestration.py",
