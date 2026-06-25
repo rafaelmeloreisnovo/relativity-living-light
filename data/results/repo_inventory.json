@@ -3870,6 +3870,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/RAFAELIA_FALSIFICATION_GATE.md",
+    "bytes": 2791,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 136,
+    "sha256": "d5cb8982ce62774934b57da6eaff1142ef7217a5e001e8be0ae05f65b4ada5f3",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/RAFAELIA_PRIORITY_MATRIX.md",
     "bytes": 2424,
     "ext": ".md",

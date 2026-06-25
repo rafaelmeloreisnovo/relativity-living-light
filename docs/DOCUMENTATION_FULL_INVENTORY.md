@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1052 |
-| `cataloged_files` | 1041 |
+| `tracked_files_total` | 1053 |
+| `cataloged_files` | 1042 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35115482 |
-| `total_text_lines` | 140908 |
-| `markdown_files` | 524 |
+| `total_bytes` | 35118273 |
+| `total_text_lines` | 141044 |
+| `markdown_files` | 525 |
 | `yml_yaml_files` | 64 |
 | `github_workflow_yml_files` | 27 |
 | `data_or_result_files` | 152 |
 
-**Total de arquivos catalogados:** 1041
+**Total de arquivos catalogados:** 1042
 
 ## Inventário completo
 
@@ -453,6 +453,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/POST_PHD_FORMAL_GAP_ANALYSIS.md` | 6232 | `.md` | `documentation_md` | 100 | `dfd96e557ee242934a3e4f2d052f3a6b77b76daa54b377b07b88a8b81c716ff4` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/PR385_SAFE_EXTRACTION_STATUS.md` | 1075 | `.md` | `documentation_md` | 37 | `3e62d42e716db271dbbd0902e373f7463437ca793f9dea987faaab0540156c4a` | `cosmology_validation_marker` |
 | `docs/RAFAELIA_AI_REPO_BRIDGE.md` | 2811 | `.md` | `documentation_md` | 88 | `c47a63d0b764fffa7ff4485e36aa8742ba14c2b092469ce3abb9dcddf621f588` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/RAFAELIA_FALSIFICATION_GATE.md` | 2791 | `.md` | `documentation_md` | 136 | `d5cb8982ce62774934b57da6eaff1142ef7217a5e001e8be0ae05f65b4ada5f3` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RAFAELIA_PRIORITY_MATRIX.md` | 2424 | `.md` | `documentation_md` | 60 | `017690d0498b682df99b75369e62a30272d97d5d173e4b959838a4e7a9f2efc0` | `cosmology_validation_marker` |
 | `docs/RAFAELIA_REGIME_INDEX.md` | 7367 | `.md` | `documentation_md` | 165 | `7f43740b93bfe2400baa8dc0b99813fe6528eacc0ce0d41959412b4be1e6f722` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/RAFAELIA_RLL_ADMIN_EXECUTION_MATRIX.md` | 9150 | `.md` | `documentation_md` | 211 | `13c80440c2ed213cf76d964c114cccca71d29093479641b6655542a61beaf338` | `token_vazio_declared,cosmology_validation_marker` |
