@@ -3483,6 +3483,24 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md",
+    "bytes": 6103,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 137,
+    "sha256": "96464bec83872c546a455c0fc987a24babea5d59b3bda24eb8ec34fa8ac49f18",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md",
+    "bytes": 5127,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 111,
+    "sha256": "7bb4d92b41815d45f7a754e9c3afdc92b055881ef9af76c3ab4a21ca8510dd5f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md",
     "bytes": 3054,
     "ext": ".md",
@@ -3664,11 +3682,11 @@
   },
   {
     "path": "docs/INDICE_MESTRE.md",
-    "bytes": 10181,
+    "bytes": 10580,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 145,
-    "sha256": "4986c0bc36016ba29a698b12750849fdb5c242ffaa749c71d571d817422bd5ab",
+    "linhas": 147,
+    "sha256": "d56da25d68af03942453556313228aada76b7b568ff730dd95aef1cd53d17a50",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -3862,11 +3880,11 @@
   },
   {
     "path": "docs/RAFAELIA_AI_REPO_BRIDGE.md",
-    "bytes": 2811,
+    "bytes": 4408,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 88,
-    "sha256": "c47a63d0b764fffa7ff4485e36aa8742ba14c2b092469ce3abb9dcddf621f588",
+    "linhas": 137,
+    "sha256": "33351682889a3335c9953138c0ffae0f871932860d677c47a37de7d7596aaee3",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -4150,11 +4168,11 @@
   },
   {
     "path": "docs/RLL_CLAIM_BOUNDARIES.md",
-    "bytes": 1655,
+    "bytes": 2836,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 39,
-    "sha256": "9fd4a1e6e86e32dd8bbb88b186c80dbe6a9138dc290e26db535d1286a08c4c8d",
+    "linhas": 54,
+    "sha256": "7b678a0816f2cf1dedcb27505c082c185fde842fbc20f1be33508c645233da52",
     "flags": "cosmology_validation_marker"
   },
   {
