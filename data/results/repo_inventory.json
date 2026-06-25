@@ -3924,6 +3924,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/RAFAELIA_RLL_SIX_SIGMA_ADEQUACAO_MANIFEST_20260625.md",
+    "bytes": 3559,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 98,
+    "sha256": "9ed05e0a6c56c1d69c919fe7030d4dafeff7e0f71c3c38b3abb729f6bb6e3d4f",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/RAFAELIA_UNIFIED_PAPER.md",
     "bytes": 6725,
     "ext": ".md",
