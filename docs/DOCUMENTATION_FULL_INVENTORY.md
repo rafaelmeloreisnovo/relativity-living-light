@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1056 |
-| `cataloged_files` | 1045 |
+| `tracked_files_total` | 1057 |
+| `cataloged_files` | 1046 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35136239 |
-| `total_text_lines` | 141456 |
-| `markdown_files` | 528 |
+| `total_bytes` | 35138492 |
+| `total_text_lines` | 141506 |
+| `markdown_files` | 529 |
 | `yml_yaml_files` | 64 |
 | `github_workflow_yml_files` | 27 |
 | `data_or_result_files` | 152 |
 
-**Total de arquivos catalogados:** 1045
+**Total de arquivos catalogados:** 1046
 
 ## Inventário completo
 
@@ -460,6 +460,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RAFAELIA_REGIME_INDEX.md` | 7367 | `.md` | `documentation_md` | 165 | `7f43740b93bfe2400baa8dc0b99813fe6528eacc0ce0d41959412b4be1e6f722` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/RAFAELIA_RLL_ADMIN_EXECUTION_MATRIX.md` | 9150 | `.md` | `documentation_md` | 211 | `13c80440c2ed213cf76d964c114cccca71d29093479641b6655542a61beaf338` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RAFAELIA_RLL_SIX_SIGMA_ADEQUACAO_MANIFEST_20260625.md` | 3559 | `.md` | `documentation_md` | 98 | `9ed05e0a6c56c1d69c919fe7030d4dafeff7e0f71c3c38b3abb729f6bb6e3d4f` | `cosmology_validation_marker` |
+| `docs/RAFAELIA_RLL_SIX_SIGMA_SOURCE_LEDGER_20260625.md` | 2253 | `.md` | `documentation_md` | 50 | `b082583958012d94d5914458a9b5d3ede60c06ef9bd0e983b7774a3e5bc5bc2f` | `cosmology_validation_marker` |
 | `docs/RAFAELIA_UNIFIED_PAPER.md` | 6725 | `.md` | `documentation_md` | 197 | `3ec0b979953df3e2a0ac250ece9e97271853dcfa1cb57afd1dc1f7f46a211e95` | `cosmology_validation_marker` |
 | `docs/README_ADVERTENCIA_DOI.md` | 2948 | `.md` | `documentation_md` | 62 | `4818423d59fbcc03ccf1e498066df9185f4218a79e634d9298e3d065717d324f` | `cosmology_validation_marker` |
 | `docs/README_CIENTIFICO.md` | 7708 | `.md` | `documentation_md` | 180 | `de834a162633dae63463b3aa8f23f920055ffbd4ad6ed7390c788ff088bf2b75` | `mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker` |
