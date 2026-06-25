@@ -5,6 +5,7 @@
 - RLL é tratado como **modelo candidato** e **arquitetura de inferência**, não como prova de superioridade.
 - Toda ponte conceitual deve indicar claramente: conceito, equação, interpretação física, aplicação e métrica de validação.
 - Analogias físicas, linguísticas e informacionais são hipóteses operacionais até validação quantitativa.
+- Convergências externas são referências de contexto; não promovem claims sem validação própria.
 
 ## Regra obrigatória
 
@@ -18,6 +19,11 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 4. **Teia cósmica em grafo**: representação computacional; depende de consistência com observáveis independentes.
 5. **RafaelIA/coerência**: modelo autoral; requer validação externa, calibração e comparação com baselines.
 6. **Métricas financeiras/ML**: medem desempenho histórico/preditivo; não estabelecem causalidade física forte sem desenho causal.
+7. **Convergência externa ETH/HLS**: registra analogia técnica entre componente dissipativa complexa e rigidez emergente em transições de fase; não valida RLL, T7, BITRAF ou RAFAELIA sem artefato e métrica próprios.
+
+## Documento de convergência externa registrado
+
+- [`docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md`](CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md) — ponte controlada entre Higgs-like stiffness / ETH e o tratamento de ruído-dissipação como variável de estado.
 
 ## Vocabulário recomendado
 
@@ -25,6 +31,8 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 - arquitetura de inferência
 - hipótese operacional
 - ponte conceitual
+- convergência independente
+- analogia técnica controlada
 - métrica a validar
 - evidência indireta
 - fonte secundária
@@ -36,4 +44,6 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 - prova definitiva
 - revolucionário comprovado
 - supera ΛCDM
-- prevê mercado
+- confirma RAFAELIA
+- valida RLL cosmológico
+- prova T7/BITRAF
