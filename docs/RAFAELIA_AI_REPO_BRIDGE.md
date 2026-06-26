@@ -1,6 +1,6 @@
 # RAFAELIA AI repository bridge
 
-Status date: 2026-06-25
+Status date: 2026-06-26
 
 ## Repository roles
 
@@ -65,6 +65,7 @@ Current registered convergence documents:
 ```text
 docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md
 docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md
+docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md
 ```
 
 Bridge rule:
@@ -88,6 +89,14 @@ complex dissipative component -> measurable deviation -> emergent stiffness near
 ```
 
 This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It only records a controlled analogy for treating noise/dissipation as a state variable in transition models.
+
+For the multiscale boundary / biomimetic interface case, the permitted interpretation is also narrow:
+
+```text
+edge/interface geometry -> boundary-layer or thermal coupling -> measurable loss/drag/noise/separation variable
+```
+
+This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It records a controlled analogy for treating borders, films and layers as measurable transition mediators.
 
 ## Operational rules
 
@@ -135,3 +144,4 @@ convergence candidate -> independence check -> source/artifact -> metric need ->
 7. Link conversation chunks to RMRCTI reports and global timeline maps.
 8. Keep external convergence notes separated from validation claims.
 9. Use the convergence registry to prioritize evidence collection without promoting untested claims.
+10. For boundary/interface analogies, require geometry, regime, metric and validation path before any promotion.
