@@ -73,37 +73,36 @@ fonte externa ou artefato interno
 | C06 | Informação, entropia e seleção de modelos | AIC/BIC, Fisher/Shannon e Popper organizam comparação e falsificação | `TOKEN_VAZIO` e claim_state como disciplina anti-alucinação | `[E][I][C]` | registrar fórmula, fonte, script e resultado |
 | C07 | Grafos, redes e teia cósmica | estruturas complexas podem ser representadas por grafos e campos correlacionados | representação vetorial/topológica como ponte, não prova | `[C][H][M]` | exigir observável independente e métrica de ajuste |
 | C08 | Reprodutibilidade / FAIR / governança de evidência | ciência robusta exige dados rastreáveis, scripts e documentação versionada | bridge RAFAELIA -> artefato -> CI -> claim boundary | `[E][I][C]` | manter rastreabilidade e auditoria textual |
-| C09 | Transmutação nuclear / chrysopoeia por nêutrons de fusão | símbolo histórico de transmutação encontra rota nuclear restrita via `198Hg(n,2n)197Hg -> 197Au` em preprint de fusão | mito/notícia -> preprint -> mecanismo -> pendência -> rota -> teste/TOKEN_VAZIO | `[E][C][H][M]` | tratar como candidata ativa; exige peer review, reprodução neutronics, segurança radiológica e separação química |
+| C09 | Reservado: fóton/plasma | já usado no repositório como `C09_photon_massless_dispersion` | manter rastreabilidade com `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` e Bíblia canônica | `[I][M]` | não reutilizar C09 para convergências externas |
+
+## Convergências externas fora da série Cxx
+
+| ID externo | Eixo | Padrão observado | Tradução RAFAELIA/RLL | Regime atual | Gate obrigatório |
+|---|---|---|---|---|---|
+| CONV-NUC-01 | Transmutação nuclear / chrysopoeia por nêutrons de fusão | símbolo histórico de transmutação encontra rota nuclear restrita via `198Hg(n,2n)197Hg -> 197Au` em preprint de fusão | mito/notícia -> preprint -> mecanismo -> pendência -> rota -> teste/TOKEN_VAZIO | `[E][C][H][M]` | tratar como candidata ativa; exige peer review, reprodução neutronics, segurança radiológica e separação química |
 
 ## Nona convergência: regra de elevação
 
-A nona convergência não deve ser escrita como vitória automática. Ela abre um regime novo:
+A nona convergência não deve ser escrita como vitória automática. Ela abre um regime novo, mas não autoriza colisão de identificadores.
 
 ```text
-C09 = candidate_active
+C09 = reserved_internal_validation_path
+CONV-NUC-01 = external_convergence_candidate
 ```
 
-Critério de entrada atendido:
+Critério de saída para CONV-NUC-01:
 
 ```text
-C09 possui fonte externa identificada,
-extração técnica própria,
-e relação não redundante com C01..C08.
-```
-
-Critério de saída:
-
-```text
-se C09 for reproduzida -> criar pipeline/teste;
-se C09 for refutada -> registrar falha e manter histórico;
-se C09 ficar sem validação -> manter como hipótese operacional;
-se C09 for usada como prova de RLL -> bloquear por claim boundary.
+se CONV-NUC-01 for reproduzida -> criar pipeline/teste;
+se CONV-NUC-01 for refutada -> registrar falha e manter histórico;
+se CONV-NUC-01 ficar sem validação -> manter como hipótese operacional;
+se CONV-NUC-01 for usada como prova de RLL -> bloquear por claim boundary.
 ```
 
 Documento específico:
 
 ```text
-docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
+docs/CONVERGENCIA_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
 ```
 
 ## Cubo e fatorial: uso permitido da metáfora
@@ -141,4 +140,4 @@ nove eixos de convergência justificam uma matriz formal de validação e priori
 2. Separar eixos redundantes de eixos realmente independentes.
 3. Criar notas específicas apenas para convergências com fonte e extração técnica.
 4. Vincular cada eixo ao claim boundary e ao pipeline quando houver métrica.
-5. Manter C09 como `candidate_active` até haver reprodução independente ou refutação técnica.
+5. Manter C09 reservado ao caminho fóton/plasma e CONV-NUC-01 como `candidate_active` externa até reprodução independente ou refutação técnica.

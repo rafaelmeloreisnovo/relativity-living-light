@@ -1,4 +1,4 @@
-# 21 — Limite nulo, AION e cancelamento diferencial no RLL
+# 22 — Limite nulo, AION e cancelamento diferencial no RLL
 
 **Status:** nota metodológica canônica complementar  
 **Data:** 2026-06-20  

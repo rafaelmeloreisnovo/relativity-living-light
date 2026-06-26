@@ -1,13 +1,20 @@
-# C09 — Transmutação nuclear / chrysopoeia via nêutrons de fusão
+# CONV-NUC-01 — Transmutação nuclear / chrysopoeia via nêutrons de fusão
 
 Status date: 2026-06-26
 
 ## Propósito
 
-Este documento registra a nona convergência candidata (`C09`) do mapa RAFAELIA/RLL:
+Este documento registra uma convergência externa candidata em namespace próprio:
 
 ```text
-transmutação nuclear real -> reorganização de núcleo -> rota material verificável -> claim gate
+CONV-NUC-01 = transmutação nuclear / chrysopoeia via nêutrons de fusão
+```
+
+A escolha do identificador é intencional: `C09` já é usado no repositório para outro caminho de validação ligado a fóton/dispersão em plasma. Portanto, este documento **não deve usar `C09` como ID canônico**.
+
+```text
+C09 = reservado ao caminho photon_massless_dispersion / fóton-plasma
+CONV-NUC-01 = convergência nuclear externa / chrysopoeia
 ```
 
 A nota nasce de uma matéria popular sobre mercúrio virando ouro em contexto de fusão nuclear, mas usa como núcleo técnico fontes primárias/preprints e separa claramente:
@@ -45,7 +52,7 @@ Em forma curta:
 197Hg -> 197Au + decay
 ```
 
-A tese técnica do preprint de 2025 é que uma camada de blanket especializada poderia usar nêutrons rápidos de uma plasma D-T para produzir `197Au` a partir de `198Hg`, mantendo compatibilidade com funções de blanket, multiplicação de nêutrons e ciclo de trítio.
+A tese técnica do preprint de 2025 é que uma camada de blanket especializada poderia usar nêutrons rápidos de um plasma D-T para produzir `197Au` a partir de `198Hg`, mantendo compatibilidade com funções de blanket, multiplicação de nêutrons e ciclo de trítio.
 
 ## O que é real, o que é hipótese, o que é pendência
 
@@ -59,11 +66,16 @@ A tese técnica do preprint de 2025 é que uma camada de blanket especializada p
 | Ouro comercial limpo | `[H][M]` | exige separação química, decaimento, gestão radiológica e certificação |
 | Validação de RLL/RAFAELIA | `[VAZIO]` | não valida cosmologia nem teoria autoral |
 
-## Por que C09 é independente de C01..C08
+## Por que CONV-NUC-01 é independente da série C01..C09
 
-C01 tratava de rigidez emergente e dissipação em transições de fase.
+C09, no repositório, já aponta para fóton/dispersão em plasma. A convergência nuclear pertence a outro namespace porque não é caminho cosmológico primário nem validação observacional RLL.
 
-C09 trata de outro regime:
+```text
+série Cxx = caminhos internos/cosmológicos/validação RLL
+CONV-* = convergências externas/metodológicas controladas
+```
+
+CONV-NUC-01 trata de outro regime:
 
 ```text
 não é só fase;
@@ -185,7 +197,7 @@ Permitido:
 ```text
 A transmutação de elementos é fisicamente possível por reações nucleares.
 O preprint propõe produzir Au-197 a partir de Hg-198 usando nêutrons rápidos de fusão D-T.
-A proposta é uma C09 candidata por representar passagem de símbolo histórico para rota técnica verificável.
+A proposta CONV-NUC-01 representa passagem de símbolo histórico para rota técnica verificável.
 ```
 
 Proibido:
@@ -194,13 +206,13 @@ Proibido:
 RLL provou transmutação nuclear.
 RAFAELIA prevê ouro de tokamak.
 A matéria popular confirma a teoria.
-C09 fecha o sistema.
+CONV-NUC-01 fecha o sistema.
 ```
 
 ## Síntese RAFAELIA
 
 ```text
-C09 = alquimia sem fantasia:
+CONV-NUC-01 = alquimia sem fantasia:
     símbolo antigo preservado,
     química impossível separada,
     física nuclear reconhecida,
@@ -216,8 +228,8 @@ mito -> notícia -> preprint -> mecanismo -> pendência -> rota -> teste -> clai
 
 ## Próxima ação recomendada
 
-1. Inserir C09 no registro mestre de convergências.
-2. Tratar C09 como `candidate_active`, não como validada.
+1. Manter CONV-NUC-01 fora da série `Cxx` para evitar colisão com C09 fóton/plasma.
+2. Tratar CONV-NUC-01 como `candidate_active`, não como validada.
 3. Criar um script futuro para catálogo de fontes externas (`data/rll_latentes/observations.yml` ou equivalente).
-4. Não misturar C09 com validação cosmológica RLL.
-5. Usar C09 como exemplo de metodologia: transformar ruído semântico em rota técnica auditável.
+4. Não misturar CONV-NUC-01 com validação cosmológica RLL.
+5. Usar CONV-NUC-01 como exemplo de metodologia: transformar ruído semântico em rota técnica auditável.
