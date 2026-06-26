@@ -36,8 +36,9 @@ docs/CONVERGENCIA_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
 Namespace rule:
 
 ```text
-Cxx       -> internal RLL validation/convergence paths already used by canonical matrices
-CONV-*    -> external or methodological convergence notes
+C01..C08 -> external/methodological convergence axes in this registry
+C09      -> reserved existing photon/plasma validation identifier
+CONV-*   -> external convergence notes that must not collide with Cxx validation IDs
 ```
 
 Bridge rule:
