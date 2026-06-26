@@ -20,12 +20,27 @@ from typing import Iterable, Sequence
 
 C_KM_S = 299792.458
 DEFAULT_BAO_PATH = "data/real/cosmology/desi_dr2_bao_primary_points.csv"
+LEGACY_BAO_PATH = "data/real/BAO_data_real.csv"
 DEFAULT_BAO_COVARIANCE_PATH = "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
 BAO_FORMATS = ("auto", "legacy_dv", "desi_dr2_primary")
 ADVERSARY_CHOICES = ("lcdm", "w0wa", "w0waCDM", "both")
 BAO_DV = {"DV_over_rd", "DV_over_rs"}
 BAO_DM = "DM_over_rd"
 BAO_DH = "DH_over_rd"
+
+
+class BaoPoint(dict[str, object]):
+    """BAO row that preserves dict access while exposing attribute metadata.
+
+    Older tests and notebooks access `p.observable`; production code uses
+    dictionary indexing. This small compatibility wrapper supports both.
+    """
+
+    def __getattr__(self, name: str) -> object:
+        try:
+            return self[name]
+        except KeyError as exc:
+            raise AttributeError(name) from exc
 
 
 def _safe_float(text: str, default: float | None = None) -> float:
@@ -74,7 +89,7 @@ def _detect_bao(cols: dict[str, str]) -> str:
     return "desi_dr2_primary" if {"z_eff", "observable", "value", "sigma", "tracer", "release"}.issubset(cols) else "legacy_dv"
 
 
-def load_bao(path: Path, *, bao_format: str = "auto") -> list[dict[str, object]]:
+def load_bao(path: Path, *, bao_format: str = "auto") -> list[BaoPoint]:
     if bao_format not in BAO_FORMATS:
         raise ValueError(f"Unsupported BAO format {bao_format!r}")
     with path.open("r", encoding="utf-8") as f:
@@ -90,15 +105,17 @@ def load_bao(path: Path, *, bao_format: str = "auto") -> list[dict[str, object]]
             rc = _first(cols, ["release"], 0)
             bc = cols.get("covariance_block")
             return [
-                {
-                    "z": _safe_float(r[zc]),
-                    "value": _safe_float(r[vc]),
-                    "sigma": _safe_float(r[sc], 0.1),
-                    "observable": _obs(r[oc]),
-                    "tracer": r.get(tc, ""),
-                    "release": r.get(rc, ""),
-                    "covariance_block": r.get(bc, "") if bc else "",
-                }
+                BaoPoint(
+                    {
+                        "z": _safe_float(r[zc]),
+                        "value": _safe_float(r[vc]),
+                        "sigma": _safe_float(r[sc], 0.1),
+                        "observable": _obs(r[oc]),
+                        "tracer": r.get(tc, ""),
+                        "release": r.get(rc, ""),
+                        "covariance_block": r.get(bc, "") if bc else "",
+                    }
+                )
                 for r in reader
             ]
         zc = _first(cols, ["z", "z_eff"], 0)
@@ -106,15 +123,17 @@ def load_bao(path: Path, *, bao_format: str = "auto") -> list[dict[str, object]]
         sc = _first(cols, ["sigma", "err"], 2)
         tc = cols.get("survey") or cols.get("tracer")
         return [
-            {
-                "z": _safe_float(r[zc]),
-                "value": _safe_float(r[vc]),
-                "sigma": _safe_float(r[sc], 0.1),
-                "observable": "DV_over_rd",
-                "tracer": r.get(tc, "") if tc else "",
-                "release": "legacy_dv",
-                "covariance_block": "",
-            }
+            BaoPoint(
+                {
+                    "z": _safe_float(r[zc]),
+                    "value": _safe_float(r[vc]),
+                    "sigma": _safe_float(r[sc], 0.1),
+                    "observable": "DV_over_rd",
+                    "tracer": r.get(tc, "") if tc else "",
+                    "release": "legacy_dv",
+                    "covariance_block": "",
+                }
+            )
             for r in reader
         ]
 

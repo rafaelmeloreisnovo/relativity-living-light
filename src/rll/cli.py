@@ -65,46 +65,54 @@ def _normalise_adversary(adversary: str) -> str:
 
 
 def _real_model_selection_args(args: argparse.Namespace) -> list[str]:
-    forwarded = ["--adversary", _normalise_adversary(args.adversary)]
-    if args.with_bayes:
+    adversary = getattr(args, "adversary", "lcdm")
+    forwarded = ["--adversary", _normalise_adversary(adversary)]
+    if getattr(args, "with_bayes", False):
         forwarded.append("--with-bayes")
-    if args.with_growth:
+    if getattr(args, "with_growth", False):
         forwarded.append("--with-growth")
-    if args.bao_diagonal:
+    if getattr(args, "bao_diagonal", False):
         forwarded.append("--bao-diagonal")
     return forwarded
 
 
 def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
     root = _repo_root()
+    data = getattr(args, "data", "synthetic")
+    model = getattr(args, "model", "rll")
+    with_bayes = getattr(args, "with_bayes", False)
+    with_covariance = getattr(args, "with_covariance", False)
+    with_growth = getattr(args, "with_growth", False)
+    adversary_supplied = hasattr(args, "adversary")
+    adversary = getattr(args, "adversary", "lcdm")
 
-    if args.data == "synthetic":
+    if data == "synthetic":
         script = root / "data" / "pipelines" / "structure_d" / "run_all.py"
         module = "data.pipelines.structure_d.run_all"
         warning_message = None
         script_args: tuple[str, ...] = ()
     else:
-        use_model_selection = args.adversary != "lcdm" or args.with_growth or args.model in {"both", "rll", "w0wa"}
+        use_model_selection = (adversary_supplied and adversary != "lcdm") or with_growth
         if use_model_selection:
             script = root / "rll_vs_lcdm.py"
             module = None
             script_args = tuple(_real_model_selection_args(args))
             warning_message = None
         else:
-            script = _select_legacy_real_flow(args.with_bayes, args.with_covariance)
+            script = _select_legacy_real_flow(with_bayes, with_covariance)
             module = None
             script_args = ()
             warning_message = (
-                "Aviso: usando fluxo real legado. Para comparação defensável use "
-                "--adversary w0wa ou --adversary both."
+                f"Aviso: --model={model} será tratado no fluxo real legado. "
+                "Para comparação defensável use --adversary w0wa ou --adversary both."
             )
 
-    if args.model not in {"rll", "both", "lcdm", "w0wa"}:
-        warning_message = f"Aviso: --model={args.model} será tratado no fluxo comparativo disponível."
+    if model not in {"rll", "both", "lcdm", "w0wa"}:
+        warning_message = f"Aviso: --model={model} será tratado no fluxo comparativo disponível."
 
     return ExecutionPlan(
         script=script,
-        model=args.model,
+        model=model,
         module=module,
         script_args=script_args,
         warning_message=warning_message,
@@ -120,8 +128,9 @@ def _persistir_execucao(plan: ExecutionPlan) -> dict[str, object]:
     payload: dict[str, object] = {
         "script": str(plan.script),
         "model": plan.model,
-        "script_args": list(plan.script_args),
     }
+    if plan.script_args:
+        payload["script_args"] = list(plan.script_args)
     if plan.module:
         payload["module"] = plan.module
     return payload
@@ -139,7 +148,10 @@ def cmd_run(args: argparse.Namespace) -> None:
     _validar_plano_execucao(plan)
     _persistir_execucao(plan)
     _logar_execucao(plan)
-    _run_script(plan.script, plan.module, list(plan.script_args))
+    if plan.module or plan.script_args:
+        _run_script(plan.script, plan.module, list(plan.script_args))
+    else:
+        _run_script(plan.script)
 
 
 def cmd_preflight_real(args: argparse.Namespace) -> None:
