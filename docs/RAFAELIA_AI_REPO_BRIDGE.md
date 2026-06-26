@@ -30,6 +30,7 @@ docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md
 docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md
 docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md
 docs/CONVERGENCIA_OBSERVACAO_SILENCIO_UTIL.md
+docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
 ```
 
 Bridge rule:
@@ -57,6 +58,13 @@ narrative or absence -> preserved raw input -> technical extraction -> route map
 ```
 
 None of these interpretations validates RAFAELIA, BITRAF, T7 or RLL cosmology. They register controlled analogies for measurable transition, interface, observation and information systems.
+For the C09 nuclear transmutation case, the permitted interpretation is also narrow:
+
+```text
+historical symbol -> nuclear mechanism -> simulation/preprint -> route map -> pending validation
+```
+
+This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It only records a controlled analogy for treating noisy semantic inputs as route maps for technical validation.
 
 ## Operational rules
 
@@ -84,6 +92,18 @@ Observation-silence gate:
 raw input -> explicit signal -> bounded absence -> route map -> testable variable or TOKEN_VAZIO
 ```
 
+Convergence registry gate:
+
+```text
+convergence candidate -> independence check -> source/artifact -> metric need -> claim_state
+```
+
+C09 route gate:
+
+```text
+popular article -> primary/preprint source -> nuclear reaction -> engineering pending map -> validation or TOKEN_VAZIO
+```
+
 ## Claim boundary
 
 - A formula is not proof by itself.
@@ -92,6 +112,7 @@ raw input -> explicit signal -> bounded absence -> route map -> testable variabl
 - An external analogy is not proof by itself.
 - A convergence count is not proof by itself.
 - A narrative or silence marker is not proof by itself.
+- A preprint or popular article is not proof by itself.
 - A claim is only promoted when linked to source, deterministic artifact, test/CI and result.
 
 ## Next integrations
@@ -108,3 +129,4 @@ raw input -> explicit signal -> bounded absence -> route map -> testable variabl
 10. For boundary/interface analogies, require geometry, regime, metric and validation path before any promotion.
 11. For droplet dissipation analogies, require size, humidity, temperature and energy-balance variables before any promotion.
 12. For observation/silence analogies, preserve raw input and mark absence before any inference.
+10. Treat C09 as candidate_active until peer review or reproduction changes the claim state.

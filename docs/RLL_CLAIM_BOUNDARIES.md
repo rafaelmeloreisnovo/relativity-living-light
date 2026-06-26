@@ -8,6 +8,7 @@
 - Convergências externas são referências de contexto; não promovem claims sem validação própria.
 - Contagem de convergências aumenta prioridade de validação, não força conclusão.
 - Narrativas, ausências e leituras simbólicas só entram como rota de triagem quando o bruto é preservado.
+- Preprints, notícias e simulações externas exigem reprodução antes de qualquer promoção forte.
 
 ## Regra obrigatória
 
@@ -26,6 +27,7 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 9. **Borda multiescala biomimética**: registra analogia técnica entre penas, alula, winglets, gotas e películas térmicas como problemas de interface/camada; não valida RLL sem simulação, experimento e métrica próprios.
 10. **Dissipação termo-cinética de gotas**: registra que arrasto em gotas redistribui energia mecânica em turbulência, calor local, oscilação, evaporação e troca térmica; não implica aquecimento dominante nem nova lei sem balanço medido.
 11. **Observação e silêncio útil**: registra narrativa, observação comum e ausência delimitada como entradas de triagem; não substitui fonte, medição ou validação.
+9. **C09 transmutação nuclear/chrysopoeia**: registra rota externa candidata `198Hg(n,2n)197Hg -> 197Au`; não valida RLL e exige peer review, reprodução neutronics, segurança radiológica, separação química e análise econômica.
 
 ## Documentos de convergência externa registrados
 
@@ -34,6 +36,7 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 - [`docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md`](CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md) — ponte controlada entre biomimética, aerodinâmica e interfaces térmicas como taxonomia de borda/camada.
 - [`docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md`](NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md) — complemento sobre gotas em queda, arrasto, calor local, oscilação, evaporação e fronteira de claim.
 - [`docs/CONVERGENCIA_OBSERVACAO_SILENCIO_UTIL.md`](CONVERGENCIA_OBSERVACAO_SILENCIO_UTIL.md) — nota sobre observação, narrativa, ausência delimitada e TOKEN_VAZIO como rota de triagem.
+- [`docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md`](C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md) — mapa de rotas e pendências para transmutação nuclear por nêutrons de fusão.
 
 ## Vocabulário recomendado
 
@@ -50,6 +53,8 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 - não é claim de superioridade
 - observação delimitada
 - TOKEN_VAZIO protegido
+- candidate_active
+- mapa de pendências
 
 ## Vocabulário a evitar sem evidência forte
 
@@ -63,3 +68,5 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 - nona convergência fecha a teoria
 - narrativa prova ciência
 - silêncio confirma hipótese
+- ouro de fusão já está validado industrialmente
+- notícia popular confirma mecanismo

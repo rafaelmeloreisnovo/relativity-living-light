@@ -3429,6 +3429,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md",
+    "bytes": 7830,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 223,
+    "sha256": "33d10bdb638ba17dc91f3dd0fa1b7f98dfbfba2b2a13d194f10a9134707120a3",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/CANONICAL_SOURCES.md",
     "bytes": 1133,
     "ext": ".md",
@@ -3484,11 +3493,11 @@
   },
   {
     "path": "docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md",
-    "bytes": 6103,
+    "bytes": 6652,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 137,
-    "sha256": "96464bec83872c546a455c0fc987a24babea5d59b3bda24eb8ec34fa8ac49f18",
+    "linhas": 144,
+    "sha256": "b944c7805224992070469519f0a412620a6b73422fb9d63e9ee1875d66b9af2f",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -3691,11 +3700,11 @@
   },
   {
     "path": "docs/INDICE_MESTRE.md",
-    "bytes": 11049,
+    "bytes": 10799,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 149,
-    "sha256": "9dc053435d32d76829dc4f21e9127370d4ecf221a3fe93b5dca85aaf1ed8e6c5",
+    "linhas": 148,
+    "sha256": "8b64a5049ec6c3d7b02b674900681c4b779112897dd6f26e81fec8b852c6d0c1",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -3898,11 +3907,11 @@
   },
   {
     "path": "docs/RAFAELIA_AI_REPO_BRIDGE.md",
-    "bytes": 3587,
+    "bytes": 3953,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 95,
-    "sha256": "a87a9197da3981742b0c7f7f3f749517d1a7e5f2bcc8b9b64aa3af0498a645af",
+    "linhas": 112,
+    "sha256": "0009f8f2ef73102c87a6d4add02564d7b9a8544cab2eae13818be268d2328302",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -4204,11 +4213,11 @@
   },
   {
     "path": "docs/RLL_CLAIM_BOUNDARIES.md",
-    "bytes": 3728,
+    "bytes": 3508,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 58,
-    "sha256": "b708aa6012d8efc0492ef813212f3cf57ecc7730d9e4e63aa37a1dd40f401327",
+    "linhas": 61,
+    "sha256": "8c7b7118fddd9822589338ea324696b13825343a1a0a5848fb1d408a4e449a70",
     "flags": "cosmology_validation_marker"
   },
   {
