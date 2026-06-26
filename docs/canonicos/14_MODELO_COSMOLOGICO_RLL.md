@@ -73,7 +73,7 @@ Critério de linguagem:
 - proibido sem evidência: “RLL é superior”; 
 - proibido sem revisão/dados robustos: “RLL confirmou matéria escura/energia escura”.
 
-Para a nota metodológica ampliada, ver `docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`.
+Para a nota metodológica ampliada, ver `docs/canonicos/22_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`.
 
 ## 4. Impressão digital do RLL [H]
 
