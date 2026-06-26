@@ -27,8 +27,7 @@ Current registered convergence documents:
 ```text
 docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md
 docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md
-docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md
-docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md
+docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
 ```
 
 Bridge rule:
@@ -49,7 +48,13 @@ For the falling-drop dissipation note, the permitted interpretation is narrow:
 falling drop -> drag/interface exchange -> thermal and shape balance -> measurable regime map
 ```
 
-Neither interpretation validates RAFAELIA, BITRAF, T7 or RLL cosmology. They only register controlled analogies for measurable transition and interface systems.
+For the C09 nuclear transmutation case, the permitted interpretation is also narrow:
+
+```text
+historical symbol -> nuclear mechanism -> simulation/preprint -> route map -> pending validation
+```
+
+This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It only records a controlled analogy for treating noisy semantic inputs as route maps for technical validation.
 
 ## Operational rules
 
@@ -71,6 +76,18 @@ External convergence gate:
 paper/news -> source metadata -> technical extraction -> analogy label -> claim boundary -> validation path or TOKEN_VAZIO
 ```
 
+Convergence registry gate:
+
+```text
+convergence candidate -> independence check -> source/artifact -> metric need -> claim_state
+```
+
+C09 route gate:
+
+```text
+popular article -> primary/preprint source -> nuclear reaction -> engineering pending map -> validation or TOKEN_VAZIO
+```
+
 ## Claim boundary
 
 - A formula is not proof by itself.
@@ -78,6 +95,7 @@ paper/news -> source metadata -> technical extraction -> analogy label -> claim 
 - A conversation chunk is not proof by itself.
 - An external analogy is not proof by itself.
 - A convergence count is not proof by itself.
+- A preprint or popular article is not proof by itself.
 - A claim is only promoted when linked to source, deterministic artifact, test/CI and result.
 
 ## Next integrations
@@ -91,5 +109,4 @@ paper/news -> source metadata -> technical extraction -> analogy label -> claim 
 7. Link conversation chunks to RMRCTI reports and global timeline maps.
 8. Keep external convergence notes separated from validation claims.
 9. Use the convergence registry to prioritize evidence collection without promoting untested claims.
-10. For boundary/interface analogies, require geometry, regime, metric and validation path before any promotion.
-11. For droplet dissipation analogies, require size, humidity, temperature and energy-balance variables before any promotion.
+10. Treat C09 as candidate_active until peer review or reproduction changes the claim state.

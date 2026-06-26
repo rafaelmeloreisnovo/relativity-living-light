@@ -1,6 +1,6 @@
 # Registro de convergências independentes RAFAELIA/RLL
 
-Status date: 2026-06-25
+Status date: 2026-06-26
 
 ## Propósito
 
@@ -61,7 +61,7 @@ fonte externa ou artefato interno
 | `[V]` | validado por pipeline/CI/dado próprio |
 | `[VAZIO]` | lacuna marcada, sem promoção |
 
-## Matriz inicial de oito convergências
+## Matriz de nove convergências
 
 | ID | Eixo | Padrão externo observado | Tradução RAFAELIA/RLL | Regime atual | Gate obrigatório |
 |---|---|---|---|---|---|
@@ -73,30 +73,37 @@ fonte externa ou artefato interno
 | C06 | Informação, entropia e seleção de modelos | AIC/BIC, Fisher/Shannon e Popper organizam comparação e falsificação | `TOKEN_VAZIO` e claim_state como disciplina anti-alucinação | `[E][I][C]` | registrar fórmula, fonte, script e resultado |
 | C07 | Grafos, redes e teia cósmica | estruturas complexas podem ser representadas por grafos e campos correlacionados | representação vetorial/topológica como ponte, não prova | `[C][H][M]` | exigir observável independente e métrica de ajuste |
 | C08 | Reprodutibilidade / FAIR / governança de evidência | ciência robusta exige dados rastreáveis, scripts e documentação versionada | bridge RAFAELIA -> artefato -> CI -> claim boundary | `[E][I][C]` | manter rastreabilidade e auditoria textual |
+| C09 | Transmutação nuclear / chrysopoeia por nêutrons de fusão | símbolo histórico de transmutação encontra rota nuclear restrita via `198Hg(n,2n)197Hg -> 197Au` em preprint de fusão | mito/notícia -> preprint -> mecanismo -> pendência -> rota -> teste/TOKEN_VAZIO | `[E][C][H][M]` | tratar como candidata ativa; exige peer review, reprodução neutronics, segurança radiológica e separação química |
 
 ## Nona convergência: regra de elevação
 
-A nona convergência não deve ser escrita como vitória automática. Ela deve abrir um regime novo:
+A nona convergência não deve ser escrita como vitória automática. Ela abre um regime novo:
 
 ```text
-C09 = convergence_threshold_9
+C09 = candidate_active
 ```
 
-Critério de entrada:
+Critério de entrada atendido:
 
 ```text
-C09 só existe se houver fonte externa ou artefato interno independente,
-com extração técnica própria,
+C09 possui fonte externa identificada,
+extração técnica própria,
 e relação não redundante com C01..C08.
 ```
 
 Critério de saída:
 
 ```text
-se C09 for redundante -> anexar ao eixo existente;
-se C09 for nova -> criar nota própria;
-se C09 tiver métrica -> criar pipeline/teste;
-se C09 não tiver fonte -> TOKEN_VAZIO.
+se C09 for reproduzida -> criar pipeline/teste;
+se C09 for refutada -> registrar falha e manter histórico;
+se C09 ficar sem validação -> manter como hipótese operacional;
+se C09 for usada como prova de RLL -> bloquear por claim boundary.
+```
+
+Documento específico:
+
+```text
+docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
 ```
 
 ## Cubo e fatorial: uso permitido da metáfora
@@ -119,13 +126,13 @@ Esses números não são evidência física. Eles indicam que, ao crescer o núm
 Não escrever:
 
 ```text
-oito convergências provam RAFAELIA/RLL
+oito ou nove convergências provam RAFAELIA/RLL
 ```
 
 Escrever:
 
 ```text
-oito eixos de convergência justificam uma matriz formal de validação e priorização experimental
+nove eixos de convergência justificam uma matriz formal de validação e priorização experimental
 ```
 
 ## Próximos passos
@@ -134,4 +141,4 @@ oito eixos de convergência justificam uma matriz formal de validação e priori
 2. Separar eixos redundantes de eixos realmente independentes.
 3. Criar notas específicas apenas para convergências com fonte e extração técnica.
 4. Vincular cada eixo ao claim boundary e ao pipeline quando houver métrica.
-5. Manter C09 como `TOKEN_VAZIO` até aparecer convergência nova e não redundante.
+5. Manter C09 como `candidate_active` até haver reprodução independente ou refutação técnica.
