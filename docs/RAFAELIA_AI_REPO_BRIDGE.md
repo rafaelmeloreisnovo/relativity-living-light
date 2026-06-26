@@ -30,13 +30,26 @@ docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md
 docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md
 docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md
 docs/CONVERGENCIA_OBSERVACAO_SILENCIO_UTIL.md
-docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
+docs/CONVERGENCIA_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
+```
+
+Namespace rule:
+
+```text
+Cxx       -> internal RLL validation/convergence paths already used by canonical matrices
+CONV-*    -> external or methodological convergence notes
 ```
 
 Bridge rule:
 
 ```text
 external/symbolic input -> technical reading -> bounded analogy -> claim boundary -> own validation or TOKEN_VAZIO
+```
+
+For the ETH/HLS case, the permitted interpretation is narrow:
+
+```text
+complex dissipative component -> measurable deviation -> emergent stiffness near phase transition
 ```
 
 For the multiscale boundary / biomimetic interface case, the permitted interpretation is narrow:
@@ -57,14 +70,13 @@ For the observation/useful-silence note, the permitted interpretation is narrow:
 narrative or absence -> preserved raw input -> technical extraction -> route map -> claim_state
 ```
 
-None of these interpretations validates RAFAELIA, BITRAF, T7 or RLL cosmology. They register controlled analogies for measurable transition, interface, observation and information systems.
-For the C09 nuclear transmutation case, the permitted interpretation is also narrow:
+For the CONV-NUC-01 nuclear transmutation note, the permitted interpretation is narrow:
 
 ```text
 historical symbol -> nuclear mechanism -> simulation/preprint -> route map -> pending validation
 ```
 
-This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It only records a controlled analogy for treating noisy semantic inputs as route maps for technical validation.
+None of these interpretations validates RAFAELIA, BITRAF, T7 or RLL cosmology. Each note keeps its own boundary sentence so one convergence cannot silently replace another.
 
 ## Operational rules
 
@@ -98,7 +110,7 @@ Convergence registry gate:
 convergence candidate -> independence check -> source/artifact -> metric need -> claim_state
 ```
 
-C09 route gate:
+CONV-NUC-01 route gate:
 
 ```text
 popular article -> primary/preprint source -> nuclear reaction -> engineering pending map -> validation or TOKEN_VAZIO
@@ -129,4 +141,4 @@ popular article -> primary/preprint source -> nuclear reaction -> engineering pe
 10. For boundary/interface analogies, require geometry, regime, metric and validation path before any promotion.
 11. For droplet dissipation analogies, require size, humidity, temperature and energy-balance variables before any promotion.
 12. For observation/silence analogies, preserve raw input and mark absence before any inference.
-10. Treat C09 as candidate_active until peer review or reproduction changes the claim state.
+13. For CONV-NUC-01, keep the external-convergence namespace and do not reuse the existing C09 photon/plasma validation identifier.
