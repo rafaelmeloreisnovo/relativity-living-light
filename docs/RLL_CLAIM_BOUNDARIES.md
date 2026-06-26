@@ -7,6 +7,7 @@
 - Analogias físicas, linguísticas e informacionais são hipóteses operacionais até validação quantitativa.
 - Convergências externas são referências de contexto; não promovem claims sem validação própria.
 - Contagem de convergências aumenta prioridade de validação, não força conclusão.
+- Preprints, notícias e simulações externas exigem reprodução antes de qualquer promoção forte.
 
 ## Regra obrigatória
 
@@ -22,11 +23,13 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 6. **Métricas financeiras/ML**: medem desempenho histórico/preditivo; não estabelecem causalidade física forte sem desenho causal.
 7. **Convergência externa ETH/HLS**: registra analogia técnica entre componente dissipativa complexa e rigidez emergente em transições de fase; não valida RLL, T7, BITRAF ou RAFAELIA sem artefato e métrica próprios.
 8. **Registro de convergências independentes**: organiza eixos 3->8->9 como matriz de priorização; não converte número de eixos em prova.
+9. **C09 transmutação nuclear/chrysopoeia**: registra rota externa candidata `198Hg(n,2n)197Hg -> 197Au`; não valida RLL e exige peer review, reprodução neutronics, segurança radiológica, separação química e análise econômica.
 
 ## Documentos de convergência externa registrados
 
 - [`docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md`](CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md) — registro mestre de eixos independentes, escala 3->8->9 e critério de C09.
 - [`docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md`](CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md) — ponte controlada entre Higgs-like stiffness / ETH e o tratamento de ruído-dissipação como variável de estado.
+- [`docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md`](C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md) — mapa de rotas e pendências para transmutação nuclear por nêutrons de fusão.
 
 ## Vocabulário recomendado
 
@@ -41,6 +44,8 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 - fonte secundária
 - necessita fonte primária
 - não é claim de superioridade
+- candidate_active
+- mapa de pendências
 
 ## Vocabulário a evitar sem evidência forte
 
@@ -52,3 +57,5 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 - prova T7/BITRAF
 - oito convergências provam o modelo
 - nona convergência fecha a teoria
+- ouro de fusão já está validado industrialmente
+- notícia popular confirma mecanismo
