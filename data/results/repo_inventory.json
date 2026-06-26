@@ -190,11 +190,11 @@
   },
   {
     "path": ".github/workflows/repo-real-inventory.yml",
-    "bytes": 2012,
+    "bytes": 2767,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 64,
-    "sha256": "20dae232bc874e4cece6e80cc286d9d3b1afc6777702733ee2ed74a56da4fcb1",
+    "linhas": 78,
+    "sha256": "450c9e23c9434ceeccb00f6832ceb570ad229a60eab81afd0e8ceb667b2e28a9",
     "flags": ""
   },
   {
@@ -235,11 +235,11 @@
   },
   {
     "path": ".github/workflows/validacao_real.yml",
-    "bytes": 1819,
+    "bytes": 2277,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 64,
-    "sha256": "70b52ed72f09753821dcb03ed0924261d33f2a6f6cd34fe188322ac8865a0a4a",
+    "linhas": 75,
+    "sha256": "a68d24e188c4b478875cca8fc69eef61279ca5a419cde82776b888ed26af32fd",
     "flags": ""
   },
   {
@@ -325,11 +325,11 @@
   },
   {
     "path": "CAMINHOS_VALIDACAO_NOVOS.yml",
-    "bytes": 6204,
+    "bytes": 6394,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 126,
-    "sha256": "7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89",
+    "linhas": 132,
+    "sha256": "c9671d9af19ff795bc76e8a054dab6b3217e55f2eed39015464d5fdd1180d41e",
     "flags": ""
   },
   {
@@ -2260,11 +2260,11 @@
   },
   {
     "path": "data/observational_sources.yml",
-    "bytes": 4312,
+    "bytes": 4502,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 131,
-    "sha256": "163fe5781972776f1b7fd1360a10381d70420866178db4d3c192dd4b2cb73b7d",
+    "linhas": 137,
+    "sha256": "2158f7340434eeb20e28251dfab96e11f4a94471a43158065f4898ec8e621d23",
     "flags": ""
   },
   {
@@ -2530,29 +2530,29 @@
   },
   {
     "path": "data/real/bootstrap/canonical_route_checklist.yml",
-    "bytes": 5218,
+    "bytes": 5408,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 168,
-    "sha256": "3be1076c8c8834dc59dc7243747ed88148eb3690e2c277c7ef23968db057b438",
+    "linhas": 174,
+    "sha256": "95369c717fba5b8f5fae99f80247be66c1b20f15a228379f720961aaa50f9373",
     "flags": "token_vazio_declared"
   },
   {
     "path": "data/real/bootstrap/dense_behavior_feature_orchestration.yml",
-    "bytes": 2378,
+    "bytes": 2568,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 57,
-    "sha256": "fb3fe69be388f600996ef4d2abfa1d36d5d05fc6bd435d7aee7b4654f8ba4001",
+    "linhas": 63,
+    "sha256": "88f5863df6cf2fe5e3556bea6a055a1c0b269a04a0ccb6366b5d8baf0347abdc",
     "flags": "token_vazio_declared"
   },
   {
     "path": "data/real/bootstrap/real_data_requirements_bootstrap.yml",
-    "bytes": 7548,
+    "bytes": 7738,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 222,
-    "sha256": "10dcf7fe8dcbec05de9c1ee8ee7eaa2e35f2a61b7b972ebe6630fe59aefe24e5",
+    "linhas": 228,
+    "sha256": "c7de623235686389f71b39d8a4b2f4500271890fedcaf765d2345854e982e9f5",
     "flags": "token_vazio_declared"
   },
   {
@@ -2566,11 +2566,11 @@
   },
   {
     "path": "data/real/bootstrap/real_observational_seed_v0.yml",
-    "bytes": 7163,
+    "bytes": 7353,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 169,
-    "sha256": "40e1b78031f51708aee616db5b341a806f4f0ffe490fec955b05c94894b0be88",
+    "linhas": 175,
+    "sha256": "8cba5a711f71ab4c17db03df8ab8e586c65403e771f5212421160299781849b0",
     "flags": ""
   },
   {
@@ -2584,11 +2584,11 @@
   },
   {
     "path": "data/real/bootstrap/real_observational_seed_v1.yml",
-    "bytes": 9527,
+    "bytes": 9717,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 237,
-    "sha256": "9ca27fe2aba6afdaa27236b5e755467703c51f8b701e4f702443cade6d838809",
+    "linhas": 243,
+    "sha256": "983e353dbda482e9afa8cb25fdfdf67bb3e0cc3ea43563aa07885333826acfe5",
     "flags": ""
   },
   {
@@ -2629,11 +2629,11 @@
   },
   {
     "path": "data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml",
-    "bytes": 2964,
+    "bytes": 3154,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 80,
-    "sha256": "f0ba4a4b4581a2acea9dcba3fef79b8775205b59631944a96139f38c2db4107a",
+    "linhas": 86,
+    "sha256": "3611c3b97f799c057aed07ee7b823b9866b30e1731a0cfa0f328728b5670243b",
     "flags": ""
   },
   {
@@ -2656,11 +2656,11 @@
   },
   {
     "path": "data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml",
-    "bytes": 2907,
+    "bytes": 3097,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 90,
-    "sha256": "1e5381d57d932427f952e48883b58a0c99b1f42d077e2e66c1d40afb5bc2d7e2",
+    "linhas": 96,
+    "sha256": "5125a06d02ee614e340ceb9f95d01f15e7d4bbaed271d0becefde4a28a04f2b9",
     "flags": ""
   },
   {
@@ -2881,11 +2881,11 @@
   },
   {
     "path": "data/real/orbital_dynamics/angular_momentum_shape_sources.yml",
-    "bytes": 4306,
+    "bytes": 4496,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 126,
-    "sha256": "e3c2a733031507562657751041b7049008d256a0ef2ca0f9615ae2082ee2099a",
+    "linhas": 132,
+    "sha256": "66e31530068fe951725ae75609f85cde96bca4c822f48a452136f3c2662b6fc5",
     "flags": "token_vazio_declared"
   },
   {
@@ -2899,11 +2899,11 @@
   },
   {
     "path": "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.yml",
-    "bytes": 3908,
+    "bytes": 4098,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 112,
-    "sha256": "a23fac026a389a53607dcedf2e6721ecea4881010c8b73f4b0cb93f4157a69fb",
+    "linhas": 118,
+    "sha256": "7a42abfdd033a43841179de7a0b21c86af4cca4e4d89813c9b259bd699e601f8",
     "flags": ""
   },
   {
@@ -2935,11 +2935,11 @@
   },
   {
     "path": "data/real_sources/rll_pantheon_real_validation.iml.yml",
-    "bytes": 3121,
+    "bytes": 3311,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 79,
-    "sha256": "656edde4040a24f48b59fb04fbb51f11aad73909ea4c243808a0b3ddd4fb3cd8",
+    "linhas": 85,
+    "sha256": "2a836c0ed26ef686210a080b3b28c6977b1e7bfca22af8c4ff0e443cd768d5af",
     "flags": "mentions_synthetic"
   },
   {
@@ -3106,11 +3106,11 @@
   },
   {
     "path": "data/results/desi_dr2_bao_zml.yml",
-    "bytes": 2193,
+    "bytes": 2383,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 91,
-    "sha256": "8a2847f60ab2ca102f0f0f9effb4f743f86cbf912bb23a088ea059728b6f50ee",
+    "linhas": 97,
+    "sha256": "2be83a808f2e1cb6bdbad7f33c261ea872f881d9ad18420d0944395c734edfdb",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -3178,20 +3178,20 @@
   },
   {
     "path": "data/rll_latentes/examples/invalid_missing_falsifier.yml",
-    "bytes": 2625,
+    "bytes": 2815,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 54,
-    "sha256": "aaa9313b8de599f4d3c7b65438b10aff1e92472c2a85376f4e911904e7214cde",
+    "linhas": 60,
+    "sha256": "6d7c10c5bc1cb3f56f35e8fa020f1742b10d7c7ecc7127b74d59e7abf1186969",
     "flags": ""
   },
   {
     "path": "data/rll_latentes/examples/valid_minimal.yml",
-    "bytes": 2690,
+    "bytes": 2880,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 55,
-    "sha256": "f3266b086ca9a324398cb4cf9909559c42d46a48b6a8d72f6d98a17f01d94bf8",
+    "linhas": 61,
+    "sha256": "ae69360861c986dbb3d113047e6b6d8eed8a4d7c7d235a869b39fa5205f512f9",
     "flags": ""
   },
   {
@@ -3241,11 +3241,11 @@
   },
   {
     "path": "data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026.yml",
-    "bytes": 414,
+    "bytes": 605,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 12,
-    "sha256": "0c903f80d9db20ab9cf58b212517bdf546e611afa3a98ce44e090581ed087c66",
+    "linhas": 18,
+    "sha256": "42ca09dfcd038925055e90e838e017f634151e74578b8d1d99cfdb3ffd2025cc",
     "flags": ""
   },
   {
@@ -5293,11 +5293,11 @@
   },
   {
     "path": "docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml",
-    "bytes": 6204,
+    "bytes": 6394,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 126,
-    "sha256": "7c95cdf16a6b0ccf6cf42ef409eb45ac732714c344d93a44d26ef1e4bfe6ba89",
+    "linhas": 132,
+    "sha256": "c9671d9af19ff795bc76e8a054dab6b3217e55f2eed39015464d5fdd1180d41e",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -5990,70 +5990,70 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 337,
-    "sha256": "2c6478cb4b266651ad841e20bb78b054caa3c4c0711eb1666011376ca6db808e",
+    "sha256": "f52ea7f5c9a35d9c05c76270d79d6e9d017f25c7377afa75db30a367fdf79d3e",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/WORKFLOW_EXECUTION_MAP.md",
-    "bytes": 55994,
+    "bytes": 56608,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 533,
-    "sha256": "b6bd948ffca052195fcf546d34c957c69d43440f599580c911884176da89367a",
+    "linhas": 535,
+    "sha256": "395a2c569d996f1d084c00bbe982311ac6ac796fa4629628eac8ec49a252043d",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/WORKFLOW_REFACTOR_AUDIT.md",
-    "bytes": 11330,
+    "bytes": 12442,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 81,
-    "sha256": "f03235c42a24222c18404fe54c0cbd42a50ac01856a4e517133851ddc33b2562",
-    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+    "linhas": 100,
+    "sha256": "02fb27b54cf609207fab58161f19a2bf8e1ed23326a7373d88b36facfe07ba5d",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_BLOCKED_ITEMS.md",
-    "bytes": 1320,
+    "bytes": 1341,
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 16,
-    "sha256": "10837f79481a65efeeb65c65d3a0f7880a73bff228517db52e7aa2af03925aee",
+    "sha256": "61a201454c7b6fd4b8c6930420a93df78b973bb73d325a46ed4e8c300366cc77",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_FILE_LEDGER.tsv",
-    "bytes": 41638,
+    "bytes": 41793,
     "ext": ".tsv",
     "tipo": "data_or_result",
     "linhas": 68,
-    "sha256": "402489ac02f6e2e12b24cca710bf4ca963386305fbfc19a1e7231a27feea4c22",
+    "sha256": "62d11090d90d184a0328f623c68924e67a169f6d931cc9c1374833afbe7d9ded",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_NEXT_ACTIONS.md",
-    "bytes": 1250,
+    "bytes": 1298,
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 17,
-    "sha256": "60aca3404ae5e4edebaedfd97a7769834664fcc2ccd25dddae3ff4d98652c75c",
+    "sha256": "6aab7204a6ea80998bbba38b63d4d8c1bf66985a9ee7eab8bbc2c30dffe53141",
     "flags": "cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_PIPELINE_EXECUTION_READINESS.md",
-    "bytes": 31295,
+    "bytes": 35370,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 162,
-    "sha256": "cb182bf9678414f8928aac89c63a13d0cba7bb18fbce6f140de67d61621b56e8",
+    "linhas": 163,
+    "sha256": "3db50286f1b395253f52bec33f3a69f3d7e807445d306598b789093ea6849084",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_REFACTOR_PLAN.md",
-    "bytes": 1723,
+    "bytes": 1724,
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 17,
-    "sha256": "fc02730c145ba5bf7b38b44498e278532da909ee52427d0b1d4af9c13b4a8e09",
+    "sha256": "597a46aaac2acd6ec7ba292fc104e03ee91ff042a553143af3be61939e99d8fb",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6814,11 +6814,11 @@
   },
   {
     "path": "knowledge_ecosystem/reference_seed_sources.yml",
-    "bytes": 2736,
+    "bytes": 2926,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 89,
-    "sha256": "74e11f81af920466ff073034082414016eeda145faf134ca1ef2f6f0c993d4aa",
+    "linhas": 95,
+    "sha256": "9264067a6e18d643d597fc952a45adb95bb2298ac87a4a2208d1fa48353419ba",
     "flags": ""
   },
   {
@@ -6832,11 +6832,11 @@
   },
   {
     "path": "knowledge_ecosystem/source_search_queue.yml",
-    "bytes": 4044,
+    "bytes": 4234,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 95,
-    "sha256": "2bb55f27be636072f9b954b1aae5494ec2a53865bd3096291ba7ba129ced0dd9",
+    "linhas": 101,
+    "sha256": "2eb433d16099e9afd49fd071904682f6675f6dcd7f079a124485fca4cad178db",
     "flags": "token_vazio_declared"
   },
   {
@@ -7885,20 +7885,20 @@
   },
   {
     "path": "rll_equation_registry.yml",
-    "bytes": 3864,
+    "bytes": 4054,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 92,
-    "sha256": "678e013d557f8a327ce00b05a1ca0397c9ecc9fddfd208e8bb1503e22206487b",
+    "linhas": 98,
+    "sha256": "f332903e515ad070393a91b955b7886aeba016dbb3497fa5cf865182a380335f",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared"
   },
   {
     "path": "rll_inovacao_tecnologica_watch.yml",
-    "bytes": 1510,
+    "bytes": 1700,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 41,
-    "sha256": "bb3b76a4bbbdf55a3cf6d381721e9a01bf2ddac54bb4779e0f0b48a647237ef3",
+    "linhas": 47,
+    "sha256": "d9e02bb85b5f916fb7973ff0dea8eba40f58d544b4471cd1fa85233c25a0ed41",
     "flags": ""
   },
   {
@@ -8910,6 +8910,15 @@
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
+    "path": "tests/test_write_workflow_guards.py",
+    "bytes": 1663,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 42,
+    "sha256": "23c20b7d67b4500807f12de97977e7f86e4e4b5526b706eee0706c0f37014532",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_wt_convention_outputs.py",
     "bytes": 1431,
     "ext": ".py",
@@ -9199,11 +9208,11 @@
   },
   {
     "path": "tools/generate_yml_audit_docs.py",
-    "bytes": 26766,
+    "bytes": 26844,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 500,
-    "sha256": "eeed64f42ca1cebcf1e1cfdd1255b2716d24f1ead386c33e35fb7ea0f21eb0ba",
+    "sha256": "de9fa0fc0d87331a4c7a016e97e2d0be7efc59d8c5c5c1355764bab07f39ec03",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
   },
   {
@@ -9226,11 +9235,11 @@
   },
   {
     "path": "tools/inventory_config.yml",
-    "bytes": 1050,
+    "bytes": 1240,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 56,
-    "sha256": "66629d935fd917fc3e6bcd20d9a0f761e71fe2e59e8b30e03fd313a54a1fd1d8",
+    "linhas": 62,
+    "sha256": "d443542fdbe259cd9acaf91d032b4c7f4c5c487b826ca2e741542dfdfe0de979",
     "flags": "mentions_synthetic,token_vazio_declared"
   },
   {
@@ -9307,20 +9316,20 @@
   },
   {
     "path": "validacao_real/data/desi_dr2_bao.yml",
-    "bytes": 2502,
+    "bytes": 2692,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 99,
-    "sha256": "86d80d1290c039175e2b524b92111fa365b7cccb689cd16ba396ed883a21b690",
+    "linhas": 105,
+    "sha256": "580de8b8823d5d0b8e9926742c7953b8f8966120899014ed97212561cfa34796",
     "flags": ""
   },
   {
     "path": "validacao_real/data/hz_cosmic_chronometers.yml",
-    "bytes": 1589,
+    "bytes": 1779,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 41,
-    "sha256": "0d37ddd2a24f51eb43ee196e8d2d33313e4662c730070cfadfa22537ff25d4a7",
+    "linhas": 47,
+    "sha256": "42619a71fa91071e2955b3a68bbaccffa22db7455720c98e1abaf861232ce116",
     "flags": ""
   },
   {
@@ -9334,20 +9343,20 @@
   },
   {
     "path": "validacao_real/fetched/desi_dr2_bao.yml",
-    "bytes": 2305,
+    "bytes": 2495,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 98,
-    "sha256": "d7eea61898fbf62b489aa244c7dc201b1e6f84f3dc5e95996d27735868c4e661",
+    "linhas": 104,
+    "sha256": "9d7f1c710bceda0d789ff05221a0349b4b046cf235d76fa1b300fa345d67ba37",
     "flags": ""
   },
   {
     "path": "validacao_real/fetched/hz_cosmic_chronometers.yml",
-    "bytes": 1475,
+    "bytes": 1665,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 105,
-    "sha256": "d780c26dced451af32e91435d70710a0a210a13aa0422eb0d925fba76cdb6a45",
+    "linhas": 111,
+    "sha256": "3254fd368ec55f8f405d34caebc06ddcda320d6e6273c5bd2293d37f42cd8847",
     "flags": ""
   },
   {
@@ -9496,11 +9505,11 @@
   },
   {
     "path": "validacao_real/sources.yml",
-    "bytes": 1289,
+    "bytes": 1479,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 30,
-    "sha256": "ef38522ef37bb78d394b9844183936d48c3a61d7072c53f8abf8c76411fcae5b",
+    "linhas": 36,
+    "sha256": "ea086780f0472ee0a22a9dc71311fff48ff5292558e7d7998743658f201a82e5",
     "flags": ""
   }
 ]

@@ -1,13 +1,13 @@
 # REAL / SYNTHETIC / MOCK BOUNDARY AUDIT
 
-Gerado em: `2026-06-26T20:06:17Z`  
-Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
+Gerado em: `2026-06-26T20:26:23Z`  
+Commit auditado: `3a48ed3fb4e86daf43b471337bfcdf9bdbb85fea`
 
 ## Escopo e comando
 
 FATO_VERIFICADO: varredura YAML/YML por parser e varredura textual de fronteira executadas.  
 Comando equivalente amplo solicitado, executado com `rg` por diretriz do ambiente: `rg -n -i "mock|synthetic|sintetico|sintético|placeholder|example|TOKEN_VAZIO|fake|sample|demo" .`.  
-Total amplo medido por `wc -l`: `3628`.
+Total amplo medido por `wc -l`: `3647`.
 
 ## Regra de promoção
 

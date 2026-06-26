@@ -87,3 +87,9 @@ sources:
       - AI viva human responsibility
       - publication package
     state: SOURCE_FOUND
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

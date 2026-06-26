@@ -1,7 +1,7 @@
 # WORKFLOW EXECUTION MAP
 
-Gerado em: `2026-06-26T20:06:17Z`
-Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
+Gerado em: `2026-06-26T20:26:23Z`
+Commit auditado: `3a48ed3fb4e86daf43b471337bfcdf9bdbb85fea`
 
 ## Mapa workflow -> job -> step -> script/comando
 
@@ -354,12 +354,13 @@ Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
 
 - name: `repo-real-inventory`
 - permissions: `{"contents": "write"}`
-- inputs: `TOKEN_VAZIO`
-- artifacts: `repo-real-inventory-${{ github.run_id }}:docs/DOCUMENTATION_FULL_INVENTORY.md | docs/REAL_NUMBERS_REPORT.md | docs/YML_WORKFLOWS_INDEX.md | data/results/repo_inventory.json | data/results/repo_inventory.tsv | data/results/repo_inventory_summary.json | `
+- inputs: `commit_inventory`
+- artifacts: `repo-real-inventory-${{ github.run_id }}:docs/DOCUMENTATION_FULL_INVENTORY.md | docs/REAL_NUMBERS_REPORT.md | docs/YML_WORKFLOWS_INDEX.md | data/results/repo_inventory.json | data/results/repo_inventory.tsv | data/results/repo_inventory_summary.json | data/results/repo_inventory_checksums.sha256 | `
 
 | job | step | working-directory | comando | scripts detectados |
 |---|---|---|---|---|
 | `inventory` | `Generate real inventory from canonical tool` | `TOKEN_VAZIO` | `set -euo pipefail python3 tools/docs_inventory.py` | `tools/docs_inventory.py` |
+| `inventory` | `Build inventory checksums` | `TOKEN_VAZIO` | `set -euo pipefail sha256sum docs/DOCUMENTATION_FULL_INVENTORY.md docs/REAL_NUMBERS_REPORT.md docs/YML_WORKFLOWS_INDEX.md data/results/repo_inventory.json data/results/repo_inventory.tsv data/results/repo_inventory_summar` | `TOKEN_VAZIO` |
 | `inventory` | `Commit generated real inventory` | `TOKEN_VAZIO` | `set -euo pipefail git config user.name "github-actions[bot]" git config user.email "41898282+github-actions[bot]@users.noreply.github.com" git add docs/DOCUMENTATION_FULL_INVENTORY.md docs/REAL_NUMBERS_REPORT.md docs/YML` | `TOKEN_VAZIO` |
 | `TOKEN_VAZIO` | `uses` | `TOKEN_VAZIO` | `actions/checkout@v4` | `TOKEN_VAZIO` |
 | `TOKEN_VAZIO` | `uses` | `TOKEN_VAZIO` | `actions/upload-artifact@v4` | `TOKEN_VAZIO` |
@@ -442,7 +443,7 @@ Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
 
 - name: `Validacao Real RLL`
 - permissions: `{"contents": "write"}`
-- inputs: `note`
+- inputs: `commit_results, note`
 - artifacts: `validacao-real-artifacts:validacao_real/fetched/ | validacao_real/results/ | `
 
 | job | step | working-directory | comando | scripts detectados |
@@ -452,6 +453,7 @@ Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
 | `validate` | `Compute validation (chi2 / AIC / BIC / falsifiability)` | `validacao_real` | `python3 compute_validation.py` | `validacao_real/compute_validation.py` |
 | `validate` | `Generate figures` | `validacao_real` | `python3 make_figures.py` | `validacao_real/make_figures.py` |
 | `validate` | `Render documentation from artifacts` | `validacao_real` | `python3 render_report.py` | `validacao_real/render_report.py` |
+| `validate` | `Build artifact checksums` | `TOKEN_VAZIO` | `set -euo pipefail find validacao_real/fetched validacao_real/results -type f -print0 \| sort -z \| xargs -0 -r sha256sum > validacao_real/results/CHECKSUMS.sha256` | `TOKEN_VAZIO` |
 | `validate` | `Commit results back to repo` | `TOKEN_VAZIO` | `git config user.name "github-actions[bot]" git config user.email "41898282+github-actions[bot]@users.noreply.github.com" git add validacao_real/fetched validacao_real/results git commit -m "validacao_real: automated run ` | `TOKEN_VAZIO` |
 | `TOKEN_VAZIO` | `uses` | `TOKEN_VAZIO` | `actions/checkout@v4` | `TOKEN_VAZIO` |
 | `TOKEN_VAZIO` | `uses` | `TOKEN_VAZIO` | `actions/setup-python@v5` | `TOKEN_VAZIO` |

@@ -129,3 +129,9 @@ catalog:
 mapping:
   catalog_diff_log: "results/mapping_logs/observational_sources_diff.log"
   selection_trace_log: "results/mapping_logs/source_selection_trace.log"
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

@@ -342,7 +342,7 @@ Commit auditado: `{head}`
 |---:|---|---|---|---|
 | 1 | FATO_VERIFICADO | Todos os `{len(yml_files)}` YAML/YML parsearam com PyYAML. | comando `YAML parser validation` exit 0 | manter gate `.github/workflows/yml-syntax-validation.yml` |
 | 2 | FATO_VERIFICADO | Workflows com `permissions` explícito são registrados no ledger. | leitura direta dos workflows | manter `contents: read` por padrão; justificar exceções `contents: write` |
-| 3 | RISCO | Workflows com `contents: write` podem alterar repositório por automação. | ledger marca `RISCO_WRITE_PERMISSION_REQUER_JUSTIFICATIVA` | próximo PR: commit/push apenas por input explícito ou environment protegido |
+| 3 | MITIGADO | Workflows com `contents: write` devem alterar repositório somente por input explícito. | workflows de commit usam `commit_*` default false quando há push/commit back | manter revisão de permissões por workflow |
 | 4 | RISCO | `dha-fisher-ci.yml` materializa `results/dha/mock_catalog.csv` em CI. | mapa de execução registra script inline de mock | manter rotulado como mock; nunca promover para `real_validated` |
 | 5 | LACUNA | Data-config YAML não tem consumidor único inferido nesta auditoria. | ledger registra `TOKEN_VAZIO` em scripts chamados | próximo PR: adicionar `consumed_by` documental sem alterar dados científicos |
 | 6 | ACAO_RECOMENDADA | Checksums devem acompanhar outputs científicos. | workflows reais geram checksum em parte dos caminhos; não universal | próximo PR: padronizar checksum para todos os upload-artifacts |
@@ -403,7 +403,7 @@ Commit auditado: `{head}`
 |---|---|---|---|---|
 | BLOQUEADO | Promoção científica `real_validated` global | critérios completos não foram executados nesta auditoria documental | blocked | executar pipeline real completo com checksums, métricas, baseline e claim boundary |
 | LACUNA | Consumidor explícito para YAML data_config | `YML_FILE_LEDGER.tsv` mostra `scripts chamados=TOKEN_VAZIO` para data_config | metadata_ready | adicionar `consumed_by` ou mapa de consumidor por manifest |
-| RISCO | Permissões de escrita | workflows com `contents: write` registrados no ledger | requer justificativa | condicionar commit/push a input boolean e documentar razão operacional |
+| MITIGADO | Permissões de escrita | workflows com `contents: write` registrados no ledger | requer justificativa contínua | manter commit/push condicionado a input boolean e documentar razão operacional |
 | RISCO | Mock CI | `dha-fisher-ci.yml` gera `results/dha/mock_catalog.csv` | controlado por rótulo | manter fora de claims reais |
 | NÃO VERIFICADO | Execução científica full remota | esta auditoria não executou GitHub Actions hospedado | NÃO VERIFICADO | disparar workflow manual e anexar run_id/logs |
 
@@ -420,15 +420,15 @@ Commit auditado: `{head}`
 | ordem | ação | classe | escopo | rollback |
 |---:|---|---|---|---|
 | 1 | Manter mapa YAML -> SH/PY com gate de sintaxe e rollback por consumidor | FATO_IMPLEMENTADO | docs/yml/YML_PIPELINE_EXECUTION_READINESS.md | reverter artefato documental |
-| 2 | Adicionar campo documental `consumed_by` aos manifests YAML sem alterar dados | ACAO_RECOMENDADA | data_config | revert do commit documental |
-| 3 | Padronizar checksum para todo artifact upload | ACAO_RECOMENDADA | workflows | revert do workflow específico |
-| 4 | Tornar commits automáticos opt-in com input explícito | ACAO_RECOMENDADA | workflows com `contents: write` | reverter input/condição |
+| 2 | Adicionar campo documental `consumed_by` aos manifests YAML sem alterar dados | FATO_IMPLEMENTADO | data_config metadata-only | revert do commit documental |
+| 3 | Padronizar checksum para artifacts de workflows de escrita auditados | FATO_IMPLEMENTADO | workflows com commit back | revert do workflow específico |
+| 4 | Tornar commits automáticos opt-in com input explícito | FATO_IMPLEMENTADO | workflows com commit back | reverter input/condição |
 | 5 | Executar workflow real em GitHub Actions e anexar run_id/logs | ACAO_RECOMENDADA | validação real | nenhuma alteração de dados sem PR separado |
 | 6 | Criar auditoria semântica por schema para cada família YAML | ACAO_RECOMENDADA | tools + docs | desativar via workflow_dispatch mode |
 
 ## Próximo PR mínimo seguro
 
-`ci: require explicit commit opt-in for write workflows` limitado a workflows que já usam `contents: write`, sem alterar dados científicos.
+`ci: keep write workflows opt-in and checksum-bearing` limitado a workflows que já usam `contents: write`, sem alterar dados científicos.
 """)
 
     yaml_script_rows = [
@@ -487,7 +487,7 @@ Este mapa responde ao caminho pedido: cada YAML é tratado como contrato de exec
 |---|---|---|
 | script inexistente | status `BLOQUEADO_ARQUIVO_INEXISTENTE`; não executar | corrigir caminho ou remover referência |
 | syntax gate falha | bloquear PR e preservar artefatos anteriores | `git revert` do commit que alterou o consumidor |
-| workflow com `contents: write` | exigir justificativa e input explícito em PR futuro | reverter workflow específico |
+| workflow com `contents: write` | exigir justificativa e input explícito antes de commit/push | reverter workflow específico |
 | metadata sem script direto | manter `metadata_ready`; não inferir execução | adicionar `consumed_by` documental |
 | dado mock/synthetic/example | manter rótulo de fronteira; nunca promover para real | remover promoção e regenerar auditoria |
 """)

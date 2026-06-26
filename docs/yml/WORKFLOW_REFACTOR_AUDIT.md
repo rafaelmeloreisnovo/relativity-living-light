@@ -1,26 +1,45 @@
 # WORKFLOW REFACTOR AUDIT
 
-Gerado em: `2026-06-26T20:06:17Z`  
-Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
+Gerado em: `2026-06-26T20:26:23Z`  
+Commit auditado: `3a48ed3fb4e86daf43b471337bfcdf9bdbb85fea`
 
 ## Inventário pré-alteração obrigatório
 
-- `git status --short`: `M docs/yml/REAL_SYNTHETIC_BOUNDARY_AUDIT.md
- M docs/yml/WORKFLOW_EXECUTION_MAP.md
- M docs/yml/WORKFLOW_REFACTOR_AUDIT.md
- M docs/yml/YML_BLOCKED_ITEMS.md
- M docs/yml/YML_FILE_LEDGER.tsv
- M docs/yml/YML_NEXT_ACTIONS.md
- M docs/yml/YML_REFACTOR_PLAN.md
- M scripts/validation/run_real_seed_validations.py
+- `git status --short`: `M .github/workflows/repo-real-inventory.yml
+ M .github/workflows/validacao_real.yml
+ M CAMINHOS_VALIDACAO_NOVOS.yml
+ M data/observational_sources.yml
+ M data/raw/RAW_DATA_MANIFEST.yml
+ M data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_observer_2006_sample.meta.yml
+ M data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml
+ M data/real/bootstrap/canonical_route_checklist.yml
+ M data/real/bootstrap/dense_behavior_feature_orchestration.yml
+ M data/real/bootstrap/real_data_requirements_bootstrap.yml
+ M data/real/bootstrap/real_observational_seed_v0.yml
+ M data/real/bootstrap/real_observational_seed_v1.yml
+ M data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml
+ M data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml
+ M data/real/orbital_dynamics/angular_momentum_shape_sources.yml
+ M data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.yml
+ M data/real_sources/rll_pantheon_real_validation.iml.yml
+ M data/results/desi_dr2_bao_zml.yml
+ M data/rll_latentes/examples/invalid_missing_falsifier.yml
+ M data/rll_latentes/examples/valid_minimal.yml
+ M data/strong_lensing_imf/strong_lensing_imf_benchmark_seed_2026.yml
+ M docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml
+ M knowledge_ecosystem/reference_seed_sources.yml
+ M knowledge_ecosystem/source_search_queue.yml
+ M rll_equation_registry.yml
+ M rll_inovacao_tecnologica_watch.yml
  M tools/generate_yml_audit_docs.py
-?? data/results/compact_objects/wandering_bh_source_readiness.json
-?? data/results/structure/
-?? docs/yml/YML_PIPELINE_EXECUTION_READINESS.md
-?? scripts/validation/validate_residual_gravity_structures.py
-?? scripts/validation/validate_wandering_bh_candidates.py
-?? tests/test_seed_readiness_validators.py`
-- `git rev-parse HEAD`: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
+ M tools/inventory_config.yml
+ M validacao_real/data/desi_dr2_bao.yml
+ M validacao_real/data/hz_cosmic_chronometers.yml
+ M validacao_real/fetched/desi_dr2_bao.yml
+ M validacao_real/fetched/hz_cosmic_chronometers.yml
+ M validacao_real/sources.yml
+?? tests/test_write_workflow_guards.py`
+- `git rev-parse HEAD`: `3a48ed3fb4e86daf43b471337bfcdf9bdbb85fea`
 - Total YAML/YML: `67`
 - Total workflows: `27`
 
@@ -28,8 +47,8 @@ Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
 
 | comando | exit_code | resultado |
 |---|---:|---|
-| `git status --short` | 0 | `?? tests/test_seed_readiness_validators.py` |
-| `git rev-parse HEAD` | 0 | `623c7be20f0952cd5769615032f8d2d68a1a23e8` |
+| `git status --short` | 0 | `?? tests/test_write_workflow_guards.py` |
+| `git rev-parse HEAD` | 0 | `3a48ed3fb4e86daf43b471337bfcdf9bdbb85fea` |
 | `python3 -c from pathlib import Path
 import yaml,sys
 failed=False
@@ -66,7 +85,7 @@ sys.exit(1 if failed else 0)` | 0 | `OK	validacao_real/sources.yml` |
 | `.github/workflows/real-data-contract-ci.yml` | True | `"TOKEN_VAZIO"` | False | LACUNA:real-data-contract | `TOKEN_VAZIO` | `real-data-contract-${{ github.run_id }}:artifacts/real-data-contract/` | `LACUNA_PERMISSIONS` |
 | `.github/workflows/real-seed-ingestion-plan.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `real-seed-ingestion-plan:data/results/bootstrap/real_seed_ingestion_plan.json | data/results/bootstrap/real_seed_ingestion_plan.tsv | docs/science/REAL_SEED_INGESTION_PLAN.md | ` | `FATO_VERIFICADO` |
 | `.github/workflows/real-seed-validation-v0.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `real-seed-validation-v0:data/results/compact_objects/remnant_boundary_validation.json | data/results/compact_objects/wandering_bh_validation.json | data/results/kinematics/historical_impulse_validation.json | data/results/high_z_smbh/seed_validation.json | data/results/bootstrap/real_seed_validation_index.json | docs/science/REAL_SEED_VALIDATION_V0_INDEX.md | ` | `FATO_VERIFICADO` |
-| `.github/workflows/repo-real-inventory.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `repo-real-inventory-${{ github.run_id }}:docs/DOCUMENTATION_FULL_INVENTORY.md | docs/REAL_NUMBERS_REPORT.md | docs/YML_WORKFLOWS_INDEX.md | data/results/repo_inventory.json | data/results/repo_inventory.tsv | data/results/repo_inventory_summary.json | ` | `RISCO_CONTENTS_WRITE` |
+| `.github/workflows/repo-real-inventory.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `repo-real-inventory-${{ github.run_id }}:docs/DOCUMENTATION_FULL_INVENTORY.md | docs/REAL_NUMBERS_REPORT.md | docs/YML_WORKFLOWS_INDEX.md | data/results/repo_inventory.json | data/results/repo_inventory.tsv | data/results/repo_inventory_summary.json | data/results/repo_inventory_checksums.sha256 | ` | `RISCO_CONTENTS_WRITE` |
 | `.github/workflows/rll-book-data-pipeline.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-book-pipeline-${{ github.run_id }}-${{ inputs.book_scope }}-${{ inputs.dataset_group }}-${{ inputs.mode }}:artifacts/rll-pipeline/` | `FATO_VERIFICADO` |
 | `.github/workflows/rll-data-pipeline.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-pipeline-${{ github.run_id }}-${{ inputs.dataset_group }}-${{ inputs.mode }}:artifacts/rll-pipeline/` | `FATO_VERIFICADO` |
 | `.github/workflows/rll-real-data-orchestrator.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-real-run-${{ github.run_id }}:artifacts/rll-real-run/` | `FATO_VERIFICADO` |

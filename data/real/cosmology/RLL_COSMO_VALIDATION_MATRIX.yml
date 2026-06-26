@@ -88,3 +88,9 @@ real_data_materialization:
     source_registry_key: desi_dr2_bao_2025
     zenodo_registry_key: desi_dr2_zenodo_supplement_2025
     claim_boundary: "Use as observed compressed distance-ratio constraints; do not claim model confirmation without full covariance likelihood, posterior checks, and external CMB/SN consistency."
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

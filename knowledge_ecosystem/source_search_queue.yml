@@ -93,3 +93,9 @@ searches:
     preferred_sources: [book, philosophy_article, theological_source]
     status: PENDING
     result: TOKEN_VAZIO_RESULT
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

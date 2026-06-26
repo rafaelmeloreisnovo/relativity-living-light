@@ -52,3 +52,9 @@ sources:
     falsifiable_latent_tests: []
     suggested_command: "echo fixture"
     local_target: "artifacts/rll_latentes/raw/fixture_source/"
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

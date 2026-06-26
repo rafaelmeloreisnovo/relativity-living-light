@@ -90,3 +90,9 @@ equations:
     status: "author_model"
     source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
     claim_boundary: "TOKEN_VAZIO corresponds to H_max; CLAIM_ALLOWED to H=0; monotonic decrease as evidence accumulates"
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md
