@@ -18,44 +18,6 @@ Status date: 2026-06-26
 Private corpus -> conversation chunks -> deterministic scanner -> deterministic core -> local inference -> scientific validation
 ```
 
-## Temporal corpus bridge
-
-The conversation corpus must not be treated as a single file to read fully in every session.
-
-```text
-Google Takeout / conversations.json
-  -> chunk manifest
-  -> hash check
-  -> RMRCTI scan
-  -> bitstack/jsonl + csv
-  -> coupled report
-  -> compressed summary
-  -> global timeline map
-  -> formula/link
-  -> claim gate
-```
-
-Poetic language is preserved as a didactic layer, but evidence remains separated:
-
-```text
-metaphor/parabola -> technical translation -> deterministic artifact -> claim boundary
-```
-
-## Formula bridge
-
-The formulas artifact is represented by:
-
-```text
-data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json
-data/formulas/FORMULA_INDEX_CONTRACT.json
-scripts/validate_formulas_manifest.py
-scripts/validate_formula_index_contract.py
-scripts/materialize_formula_index.py
-.github/workflows/formulas-artifacts-validation.yml
-```
-
-The current verified manifest records 486 formulas, 53 sources and three categories: `geral`, `cosmology_metrics`, `integridade_e_criptografia`.
-
 ## External convergence bridge
 
 External publications may be used as **independent convergence references** only when they pass through the same claim boundary discipline.
@@ -66,6 +28,7 @@ Current registered convergence documents:
 docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md
 docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md
 docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md
+docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md
 ```
 
 Bridge rule:
@@ -74,29 +37,19 @@ Bridge rule:
 external source -> technical reading -> bounded analogy -> claim boundary -> own validation or TOKEN_VAZIO
 ```
 
-Convergence scale:
-
-```text
-3 convergences -> technical note and traceability
-8 convergences -> registry matrix and prioritization
-9 convergences -> combinatorial regime; stronger gate, not stronger claim
-```
-
-For the Higgs-like stiffness / ETH case, the permitted interpretation is narrow:
-
-```text
-complex dissipative component -> measurable deviation -> emergent stiffness near phase transition
-```
-
-This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It only records a controlled analogy for treating noise/dissipation as a state variable in transition models.
-
-For the multiscale boundary / biomimetic interface case, the permitted interpretation is also narrow:
+For the multiscale boundary / biomimetic interface case, the permitted interpretation is narrow:
 
 ```text
 edge/interface geometry -> boundary-layer or thermal coupling -> measurable loss/drag/noise/separation variable
 ```
 
-This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It records a controlled analogy for treating borders, films and layers as measurable transition mediators.
+For the falling-drop dissipation note, the permitted interpretation is narrow:
+
+```text
+falling drop -> drag/interface exchange -> thermal and shape balance -> measurable regime map
+```
+
+Neither interpretation validates RAFAELIA, BITRAF, T7 or RLL cosmology. They only register controlled analogies for measurable transition and interface systems.
 
 ## Operational rules
 
@@ -116,12 +69,6 @@ External convergence gate:
 
 ```text
 paper/news -> source metadata -> technical extraction -> analogy label -> claim boundary -> validation path or TOKEN_VAZIO
-```
-
-Convergence registry gate:
-
-```text
-convergence candidate -> independence check -> source/artifact -> metric need -> claim_state
 ```
 
 ## Claim boundary
@@ -145,3 +92,4 @@ convergence candidate -> independence check -> source/artifact -> metric need ->
 8. Keep external convergence notes separated from validation claims.
 9. Use the convergence registry to prioritize evidence collection without promoting untested claims.
 10. For boundary/interface analogies, require geometry, regime, metric and validation path before any promotion.
+11. For droplet dissipation analogies, require size, humidity, temperature and energy-balance variables before any promotion.
