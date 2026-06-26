@@ -7867,11 +7867,11 @@
   },
   {
     "path": "rll_vs_lcdm.py",
-    "bytes": 17834,
+    "bytes": 18467,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 433,
-    "sha256": "3c83cdd4750031befd2c7c61d5531ac3c35509f34537bb9560765e6d484f66db",
+    "linhas": 452,
+    "sha256": "505aba5f314a5929dd8d14cb76415a781e7a1dd8eac1887e5e35f143faafcb63",
     "flags": "token_vazio_declared"
   },
   {
@@ -8137,11 +8137,11 @@
   },
   {
     "path": "scripts/run_cmb_power_backend.py",
-    "bytes": 6364,
+    "bytes": 6554,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 128,
-    "sha256": "5b90b2813c8fa6cdd3dcf2cd24e12535770dc87058255fb94068a3cf64ac0f50",
+    "linhas": 130,
+    "sha256": "97af0684ffd41a2369c4c2061022f62e9c08252464c4dc29aab11c6c0ee56e5d",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -8380,11 +8380,11 @@
   },
   {
     "path": "src/rll/cli.py",
-    "bytes": 8731,
+    "bytes": 9285,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 273,
-    "sha256": "4eefe3bc92cbe761fcc2856fe0d0d4e560fdef1d07f7e1bfd4d3c208c8afe91b",
+    "linhas": 285,
+    "sha256": "1330a731b92baf72706a221eb18db3716a1d5f90a4ac2bcd342cc3c0ebca6245",
     "flags": "mentions_synthetic,token_vazio_declared"
   },
   {
