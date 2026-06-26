@@ -23,12 +23,14 @@ No superiority claim unless real-data metrics pass predefined thresholds.
 7. **Convergência externa ETH/HLS**: registra analogia técnica entre componente dissipativa complexa e rigidez emergente em transições de fase; não valida RLL, T7, BITRAF ou RAFAELIA sem artefato e métrica próprios.
 8. **Registro de convergências independentes**: organiza eixos 3->8->9 como matriz de priorização; não converte número de eixos em prova.
 9. **Borda multiescala biomimética**: registra analogia técnica entre penas, alula, winglets, gotas e películas térmicas como problemas de interface/camada; não valida RLL sem simulação, experimento e métrica próprios.
+10. **Dissipação termo-cinética de gotas**: registra que arrasto em gotas redistribui energia mecânica em turbulência, calor local, oscilação, evaporação e troca térmica; não implica aquecimento dominante nem nova lei sem balanço medido.
 
 ## Documentos de convergência externa registrados
 
 - [`docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md`](CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md) — registro mestre de eixos independentes, escala 3->8->9 e critério de C09.
 - [`docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md`](CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md) — ponte controlada entre Higgs-like stiffness / ETH e o tratamento de ruído-dissipação como variável de estado.
 - [`docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md`](CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md) — ponte controlada entre biomimética, aerodinâmica e interfaces térmicas como taxonomia de borda/camada.
+- [`docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md`](NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md) — complemento sobre gotas em queda, arrasto, calor local, oscilação, evaporação e fronteira de claim.
 
 ## Vocabulário recomendado
 
