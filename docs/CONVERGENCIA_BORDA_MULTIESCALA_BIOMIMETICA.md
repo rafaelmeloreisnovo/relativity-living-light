@@ -151,6 +151,14 @@ A gota de chuva real nao deve ser tratada como "gota de lagrima" rigida. Pequena
 
 Estado: `COD/MODEL`.
 
+Complemento termo-cinetico:
+
+```text
+docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md
+```
+
+A nota complementar registra que a gota em queda tambem deve ser lida como interface de balanco energetico: arrasto, calor local, turbulencia, oscilacao, evaporacao e troca termica.
+
 ### 6.4 Leidenfrost como interface termica
 
 No efeito Leidenfrost, uma camada de vapor altera o acoplamento entre liquido e superficie quente. A analogia util para RLL nao e que toda interface tenha Leidenfrost, mas que uma camada fina pode mudar transferencia de calor, atrito e condicao de contorno.
@@ -181,6 +189,7 @@ metafora/parabola -> traducao tecnica -> variavel mensuravel -> simulacao/teste 
 | PBM-R | taxonomia estrutural de interfaces | nova fisica fundamental | matriz de casos + metricas |
 | coruja/winglet | convergencia de controle de vortice/camada | equivalencia direta entre ave e aviao | CFD/experimento comparativo |
 | gota/Leidenfrost | interface fina altera acoplamento | toda gota e Leidenfrost | teste separado por regime |
+| gota/dissipacao | arrasto redistribui energia mecanica em calor local, turbulencia, oscilacao e evaporacao | a gota sempre aquece muito apenas por cair | balanco energetico por tamanho, umidade e temperatura |
 | RLL | analogia metodologica de transicao/dissipacao | validacao cosmologica | ligar a pipeline e resultados reais |
 
 ## 9. Fontes externas para leitura
@@ -188,12 +197,13 @@ metafora/parabola -> traducao tecnica -> variavel mensuravel -> simulacao/teste 
 - NASA GPM, `The Anatomy of a Raindrop`: https://gpm.nasa.gov/education/videos/anatomy-raindrop
 - NASA Glenn, `Winglets`: https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/winglets/
 - Muthuramalingam et al., `Flow turning effect and laminar control by the 3D curvature of leading edge serrations from owl wing`: https://arxiv.org/abs/2008.05998
+- Loftus and Wordsworth, `The Physics of Falling Raindrops in Diverse Planetary Atmospheres`: https://arxiv.org/abs/2102.09570
 
 ## 10. Fechamento
 
 A descricao defensavel e:
 
-> Sistemas biologicos, aerodinamicos e termicos podem ser comparados como problemas de interface. Em cada caso, uma borda, pelicula ou camada transforma uma descontinuidade abrupta em gradiente mensuravel. Essa leitura nao valida RLL cosmologico, mas cria uma taxonomia tecnica util para organizar hipoteses, metricas e experimentos.
+> Sistemas biologicos, aerodinamicos e termicos podem ser comparados como problemas de interface. Em cada caso, uma borda, pelicula ou camada transforma uma descontinuidade abrupta em gradiente mensuravel. Para gotas em queda, a leitura se amplia: a interface tambem distribui energia entre forma, calor local, turbulencia, oscilacao, evaporacao e troca termica. Essa leitura nao valida RLL cosmologico, mas cria uma taxonomia tecnica util para organizar hipoteses, metricas e experimentos.
 
 Retroalimentacao:
 
