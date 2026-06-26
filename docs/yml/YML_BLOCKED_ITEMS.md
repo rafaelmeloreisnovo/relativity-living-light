@@ -1,13 +1,13 @@
 # YML BLOCKED ITEMS
 
-Gerado em: `2026-06-13T06:12:53Z`  
-Commit auditado: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
+Gerado em: `2026-06-26T20:26:23Z`  
+Commit auditado: `3a48ed3fb4e86daf43b471337bfcdf9bdbb85fea`
 
 | classe | item | evidência | status | desbloqueio |
 |---|---|---|---|---|
 | BLOQUEADO | Promoção científica `real_validated` global | critérios completos não foram executados nesta auditoria documental | blocked | executar pipeline real completo com checksums, métricas, baseline e claim boundary |
 | LACUNA | Consumidor explícito para YAML data_config | `YML_FILE_LEDGER.tsv` mostra `scripts chamados=TOKEN_VAZIO` para data_config | metadata_ready | adicionar `consumed_by` ou mapa de consumidor por manifest |
-| RISCO | Permissões de escrita | workflows com `contents: write` registrados no ledger | requer justificativa | condicionar commit/push a input boolean e documentar razão operacional |
+| MITIGADO | Permissões de escrita | workflows com `contents: write` registrados no ledger | requer justificativa contínua | manter commit/push condicionado a input boolean e documentar razão operacional |
 | RISCO | Mock CI | `dha-fisher-ci.yml` gera `results/dha/mock_catalog.csv` | controlado por rótulo | manter fora de claims reais |
 | NÃO VERIFICADO | Execução científica full remota | esta auditoria não executou GitHub Actions hospedado | NÃO VERIFICADO | disparar workflow manual e anexar run_id/logs |
 

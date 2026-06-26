@@ -77,3 +77,9 @@ falsifiability:
     - "AIC and BIC penalties included"
     - "interpretation label conservative"
     - "no superiority claim from synthetic or partial data"
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

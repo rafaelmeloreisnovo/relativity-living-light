@@ -124,3 +124,9 @@ validation_boundary:
   these_records_are_not_final_metrics: true
   these_records_define_ingestion_paths: true
   global_claim_allowed: false
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

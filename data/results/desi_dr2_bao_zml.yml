@@ -89,3 +89,9 @@ zml:
       observable: DM_over_rd
       value: 38.988973962
       sigma: 0.531682028096
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

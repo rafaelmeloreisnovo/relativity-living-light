@@ -39,3 +39,9 @@ vectors:
     status: "engineering_target"
     targets: ["Termux", "ARM32", "Python", "Julia", "C_freestanding"]
     validation_output: "data/results/low_resource_benchmark.json"
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

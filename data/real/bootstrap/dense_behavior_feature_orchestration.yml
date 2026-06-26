@@ -55,3 +55,9 @@ next_math_targets:
   - claim_boundary_risk_score
 
 safe_conclusion: Dense features can reveal mathematical routes and candidate behavior classes, but they do not yet predict physical behavior without raw data, uncertainty, and baselines.
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

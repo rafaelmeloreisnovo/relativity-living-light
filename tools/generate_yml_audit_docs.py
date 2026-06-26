@@ -25,6 +25,7 @@ NON_SCRIPT_TOKENS = {"pip", "fi", "then", "else", "echo", "cat", "mkdir", "touch
 BOUNDARY_RE = re.compile(r"mock|synthetic|sintetico|sintético|placeholder|example|TOKEN_VAZIO|fake|sample|demo|real_validated", re.I)
 SECRET_RE = re.compile(r"secrets\.([A-Za-z0-9_]+)")
 PATH_RE = re.compile(r"(?<![A-Za-z0-9_./-])([A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.${}()@:+-]+)+)(?![A-Za-z0-9_./-])")
+SCRIPT_PATH_RE = re.compile(r"(?<![A-Za-z0-9_./-])([A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+\.(?:py|sh))(?![A-Za-z0-9_./-])")
 
 
 def rel(path: Path) -> str:
@@ -168,6 +169,50 @@ def script_info(script: str) -> dict[str, Any]:
     }
 
 
+def referenced_scripts_from_yaml(path: Path) -> list[str]:
+    """Return literal .py/.sh paths referenced by a YAML file.
+
+    This is intentionally lexical: it avoids pretending that every manifest is
+    executable, while still giving an operational route from YAML to the Python
+    or shell mechanisms it names.
+    """
+    text = path.read_text(encoding="utf-8", errors="replace")
+    found = set()
+    for match in SCRIPT_PATH_RE.findall(text):
+        if any(token in match for token in ("${{", "$(", "://")):
+            continue
+        found.add(match)
+    if path.suffix in {".yml", ".yaml"} and rel(path).startswith(".github/workflows/"):
+        for script in workflow_info(path)["scripts"]:
+            found.add(script)
+    return sorted(found)
+
+
+def script_readiness(script: str) -> dict[str, str]:
+    path = ROOT / script
+    if not path.exists() or not path.is_file():
+        return {
+            "exists": "False",
+            "syntax_gate": "BLOQUEADO_ARQUIVO_INEXISTENTE",
+            "entrypoint": "False",
+            "rollback": "não executar; corrigir caminho ou remover referência",
+        }
+    info = script_info(script)
+    if path.suffix == ".py":
+        syntax_gate = "python3 -m py_compile"
+    elif path.suffix == ".sh":
+        syntax_gate = "bash -n"
+    else:
+        syntax_gate = "NÃO_APLICÁVEL"
+    rollback = "reverter commit/artefato do consumidor; preservar inputs originais"
+    return {
+        "exists": "True",
+        "syntax_gate": syntax_gate,
+        "entrypoint": str(info["has_main"] or path.suffix == ".sh"),
+        "rollback": rollback,
+    }
+
+
 def write(path: Path, content: str) -> None:
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
 
@@ -188,7 +233,8 @@ def main() -> int:
     ]
     for label, cmd in [
         ("YAML parser validation", ["python3", "-c", "from pathlib import Path\nimport yaml,sys\nfailed=False\nfiles=sorted([*Path('.').rglob('*.yml'),*Path('.').rglob('*.yaml')])\nfor p in files:\n    try: yaml.safe_load(p.read_text(encoding='utf-8')); print('OK\\t'+str(p))\n    except Exception as e: failed=True; print('FAIL\\t'+str(p)+'\\t'+str(e))\nsys.exit(1 if failed else 0)"]),
-        ("Python py_compile", ["bash", "-lc", "python3 -m py_compile $(find scripts data/pipelines validacao_real -name \"*.py\" 2>/dev/null)"]),
+        ("Python py_compile", ["bash", "-lc", "python3 -m py_compile $(find scripts data/pipelines validacao_real tools -name \"*.py\" 2>/dev/null)"]),
+        ("Shell bash -n", ["bash", "-lc", "find scripts -name \"*.sh\" -print0 2>/dev/null | xargs -0 -r bash -n"]),
         ("Workflow audit tool", ["python3", "tools/audit_github_workflows.py", "--strict"]),
     ]:
         rc, out = run(cmd)
@@ -296,7 +342,7 @@ Commit auditado: `{head}`
 |---:|---|---|---|---|
 | 1 | FATO_VERIFICADO | Todos os `{len(yml_files)}` YAML/YML parsearam com PyYAML. | comando `YAML parser validation` exit 0 | manter gate `.github/workflows/yml-syntax-validation.yml` |
 | 2 | FATO_VERIFICADO | Workflows com `permissions` explícito são registrados no ledger. | leitura direta dos workflows | manter `contents: read` por padrão; justificar exceções `contents: write` |
-| 3 | RISCO | Workflows com `contents: write` podem alterar repositório por automação. | ledger marca `RISCO_WRITE_PERMISSION_REQUER_JUSTIFICATIVA` | próximo PR: commit/push apenas por input explícito ou environment protegido |
+| 3 | MITIGADO | Workflows com `contents: write` devem alterar repositório somente por input explícito. | workflows de commit usam `commit_*` default false quando há push/commit back | manter revisão de permissões por workflow |
 | 4 | RISCO | `dha-fisher-ci.yml` materializa `results/dha/mock_catalog.csv` em CI. | mapa de execução registra script inline de mock | manter rotulado como mock; nunca promover para `real_validated` |
 | 5 | LACUNA | Data-config YAML não tem consumidor único inferido nesta auditoria. | ledger registra `TOKEN_VAZIO` em scripts chamados | próximo PR: adicionar `consumed_by` documental sem alterar dados científicos |
 | 6 | ACAO_RECOMENDADA | Checksums devem acompanhar outputs científicos. | workflows reais geram checksum em parte dos caminhos; não universal | próximo PR: padronizar checksum para todos os upload-artifacts |
@@ -357,7 +403,7 @@ Commit auditado: `{head}`
 |---|---|---|---|---|
 | BLOQUEADO | Promoção científica `real_validated` global | critérios completos não foram executados nesta auditoria documental | blocked | executar pipeline real completo com checksums, métricas, baseline e claim boundary |
 | LACUNA | Consumidor explícito para YAML data_config | `YML_FILE_LEDGER.tsv` mostra `scripts chamados=TOKEN_VAZIO` para data_config | metadata_ready | adicionar `consumed_by` ou mapa de consumidor por manifest |
-| RISCO | Permissões de escrita | workflows com `contents: write` registrados no ledger | requer justificativa | condicionar commit/push a input boolean e documentar razão operacional |
+| MITIGADO | Permissões de escrita | workflows com `contents: write` registrados no ledger | requer justificativa contínua | manter commit/push condicionado a input boolean e documentar razão operacional |
 | RISCO | Mock CI | `dha-fisher-ci.yml` gera `results/dha/mock_catalog.csv` | controlado por rótulo | manter fora de claims reais |
 | NÃO VERIFICADO | Execução científica full remota | esta auditoria não executou GitHub Actions hospedado | NÃO VERIFICADO | disparar workflow manual e anexar run_id/logs |
 
@@ -373,15 +419,77 @@ Commit auditado: `{head}`
 
 | ordem | ação | classe | escopo | rollback |
 |---:|---|---|---|---|
-| 1 | Adicionar campo documental `consumed_by` aos manifests YAML sem alterar dados | ACAO_RECOMENDADA | data_config | revert do commit documental |
-| 2 | Padronizar checksum para todo artifact upload | ACAO_RECOMENDADA | workflows | revert do workflow específico |
-| 3 | Tornar commits automáticos opt-in com input explícito | ACAO_RECOMENDADA | workflows com `contents: write` | reverter input/condição |
-| 4 | Executar workflow real em GitHub Actions e anexar run_id/logs | ACAO_RECOMENDADA | validação real | nenhuma alteração de dados sem PR separado |
-| 5 | Criar auditoria semântica por schema para cada família YAML | ACAO_RECOMENDADA | tools + docs | desativar via workflow_dispatch mode |
+| 1 | Manter mapa YAML -> SH/PY com gate de sintaxe e rollback por consumidor | FATO_IMPLEMENTADO | docs/yml/YML_PIPELINE_EXECUTION_READINESS.md | reverter artefato documental |
+| 2 | Adicionar campo documental `consumed_by` aos manifests YAML sem alterar dados | FATO_IMPLEMENTADO | data_config metadata-only | revert do commit documental |
+| 3 | Padronizar checksum para artifacts de workflows de escrita auditados | FATO_IMPLEMENTADO | workflows com commit back | revert do workflow específico |
+| 4 | Tornar commits automáticos opt-in com input explícito | FATO_IMPLEMENTADO | workflows com commit back | reverter input/condição |
+| 5 | Executar workflow real em GitHub Actions e anexar run_id/logs | ACAO_RECOMENDADA | validação real | nenhuma alteração de dados sem PR separado |
+| 6 | Criar auditoria semântica por schema para cada família YAML | ACAO_RECOMENDADA | tools + docs | desativar via workflow_dispatch mode |
 
 ## Próximo PR mínimo seguro
 
-`ci: require explicit commit opt-in for write workflows` limitado a workflows que já usam `contents: write`, sem alterar dados científicos.
+`ci: keep write workflows opt-in and checksum-bearing` limitado a workflows que já usam `contents: write`, sem alterar dados científicos.
+""")
+
+    yaml_script_rows = [
+        "| yaml | tipo | scripts SH/PY referenciados | status | rollback/failsafe |",
+        "|---|---|---|---|---|",
+    ]
+    script_consumer_rows = [
+        "| script | consumidores YAML | existe | gate sintaxe | entrypoint | rollback |",
+        "|---|---|---:|---|---:|---|",
+    ]
+    consumers: dict[str, list[str]] = {}
+    for path in yml_files:
+        r = rel(path)
+        typ = "workflow" if r.startswith(".github/workflows/") else "data_config"
+        refs = referenced_scripts_from_yaml(path)
+        for script in refs:
+            consumers.setdefault(script, []).append(r)
+        status = "scripts_mapeados" if refs else "sem_script_direto_metadata_only"
+        rollback = "não executar mutação; usar commit revert e artefatos versionados"
+        yaml_script_rows.append(f"| `{r}` | {typ} | `{', '.join(refs) if refs else 'TOKEN_VAZIO'}` | {status} | {rollback} |")
+    for script in sorted(consumers):
+        readiness = script_readiness(script)
+        script_consumer_rows.append(
+            f"| `{script}` | `{', '.join(sorted(consumers[script]))}` | {readiness['exists']} | `{readiness['syntax_gate']}` | {readiness['entrypoint']} | {readiness['rollback']} |"
+        )
+    if len(script_consumer_rows) == 2:
+        script_consumer_rows.append("| TOKEN_VAZIO | TOKEN_VAZIO | False | TOKEN_VAZIO | False | TOKEN_VAZIO |")
+
+    write(DOCS / "YML_PIPELINE_EXECUTION_READINESS.md", f"""# YML PIPELINE EXECUTION READINESS
+
+Gerado em: `{now}`  
+Commit auditado: `{head}`
+
+## Objetivo operacional
+
+Este mapa responde ao caminho pedido: cada YAML é tratado como contrato de execução ou metadata; quando ele referencia `.py` ou `.sh`, o caminho é explicitado com gate de sintaxe, entrypoint e rollback/failsafe. O documento não executa efeitos destrutivos e não promove dado científico.
+
+## Gates executados
+
+- YAML parser: `python3 -c ... yaml.safe_load(...)`
+- Python: `python3 -m py_compile $(find scripts data/pipelines validacao_real tools -name "*.py" 2>/dev/null)`
+- Shell: `find scripts -name "*.sh" -print0 2>/dev/null | xargs -0 -r bash -n`
+- Workflow hygiene: `python3 tools/audit_github_workflows.py --strict`
+
+## YAML -> SH/PY
+
+{chr(10).join(yaml_script_rows)}
+
+## SH/PY -> consumidores YAML
+
+{chr(10).join(script_consumer_rows)}
+
+## Política failsafe/failover/rollback
+
+| caso | mitigação | rollback |
+|---|---|---|
+| script inexistente | status `BLOQUEADO_ARQUIVO_INEXISTENTE`; não executar | corrigir caminho ou remover referência |
+| syntax gate falha | bloquear PR e preservar artefatos anteriores | `git revert` do commit que alterou o consumidor |
+| workflow com `contents: write` | exigir justificativa e input explícito antes de commit/push | reverter workflow específico |
+| metadata sem script direto | manter `metadata_ready`; não inferir execução | adicionar `consumed_by` documental |
+| dado mock/synthetic/example | manter rótulo de fronteira; nunca promover para real | remover promoção e regenerar auditoria |
 """)
 
     print(f"generated docs/yml audit docs for {len(yml_files)} yaml files and {len(wf_files)} workflows")

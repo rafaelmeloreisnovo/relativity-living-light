@@ -15,15 +15,19 @@ from pathlib import Path
 SCRIPTS = [
     "scripts/validation/validate_compact_remnant_boundary.py",
     "scripts/validation/validate_dark_lens_candidates.py",
+    "scripts/validation/validate_wandering_bh_candidates.py",
     "scripts/validation/validate_historical_impulse_candidates.py",
     "scripts/validation/validate_high_z_smbh_seeds.py",
+    "scripts/validation/validate_residual_gravity_structures.py",
 ]
 
 EXPECTED_OUTPUTS = [
     "data/results/compact_objects/remnant_boundary_validation.json",
     "data/results/compact_objects/wandering_bh_validation.json",
+    "data/results/compact_objects/wandering_bh_source_readiness.json",
     "data/results/kinematics/historical_impulse_validation.json",
     "data/results/high_z_smbh/seed_validation.json",
+    "data/results/structure/residual_gravity_validation.json",
 ]
 
 OUT = Path("data/results/bootstrap/real_seed_validation_index.json")

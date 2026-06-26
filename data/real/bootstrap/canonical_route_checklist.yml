@@ -166,3 +166,9 @@ safe_conclusion: >
   This checklist controls execution and packaging only. It does not authorize
   scientific claims. Review-ready remains false until baselines, uncertainty,
   tests, and external reproduction exist.
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

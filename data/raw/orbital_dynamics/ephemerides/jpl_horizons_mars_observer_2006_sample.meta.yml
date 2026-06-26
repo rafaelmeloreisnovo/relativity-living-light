@@ -51,3 +51,9 @@ next_metrics:
   - state_vector_vs_reference_h_residual_after_vector_ingestion
 
 safe_conclusion: First raw Horizons sample is locally versioned and checksummed, but it is observer ephemeris data, not the final state-vector dataset required for orbital v2 claims.
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

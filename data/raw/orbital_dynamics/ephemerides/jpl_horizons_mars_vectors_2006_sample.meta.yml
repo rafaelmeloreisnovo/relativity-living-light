@@ -22,3 +22,9 @@ claim_boundary:
   uncertainty_required_for_metric_claim: true
   claim_allowed: false
 safe_conclusion: Raw Horizons vector sample is locally present and checksummed against the canonical LF-normalized repository artifact, but claims remain blocked pending baseline and uncertainty model.
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

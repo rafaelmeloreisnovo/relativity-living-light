@@ -124,3 +124,9 @@ caminhos:
     confirma_se: "f(z) do RLL implica destino consistente com dados de wa<0"
     refuta_se: "f(z) so admite expansao eterna, contra preferencia de wa<0"
     nota: "Consequencia de longo prazo, baixa prioridade de teste imediato."
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

@@ -103,3 +103,9 @@ points:
 - z: 1.965
   H: 186.5
   sigma: 50.4
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md
