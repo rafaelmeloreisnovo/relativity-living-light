@@ -1,6 +1,6 @@
 # RAFAELIA AI repository bridge
 
-Status date: 2026-06-25
+Status date: 2026-06-26
 
 ## Repository roles
 
@@ -65,6 +65,7 @@ Current registered convergence documents:
 ```text
 docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md
 docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md
+docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
 ```
 
 Bridge rule:
@@ -87,7 +88,13 @@ For the Higgs-like stiffness / ETH case, the permitted interpretation is narrow:
 complex dissipative component -> measurable deviation -> emergent stiffness near phase transition
 ```
 
-This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It only records a controlled analogy for treating noise/dissipation as a state variable in transition models.
+For the C09 nuclear transmutation case, the permitted interpretation is also narrow:
+
+```text
+historical symbol -> nuclear mechanism -> simulation/preprint -> route map -> pending validation
+```
+
+This does **not** validate RAFAELIA, BITRAF, T7 or RLL cosmology. It only records a controlled analogy for treating noisy semantic inputs as route maps for technical validation.
 
 ## Operational rules
 
@@ -115,6 +122,12 @@ Convergence registry gate:
 convergence candidate -> independence check -> source/artifact -> metric need -> claim_state
 ```
 
+C09 route gate:
+
+```text
+popular article -> primary/preprint source -> nuclear reaction -> engineering pending map -> validation or TOKEN_VAZIO
+```
+
 ## Claim boundary
 
 - A formula is not proof by itself.
@@ -122,6 +135,7 @@ convergence candidate -> independence check -> source/artifact -> metric need ->
 - A conversation chunk is not proof by itself.
 - An external analogy is not proof by itself.
 - A convergence count is not proof by itself.
+- A preprint or popular article is not proof by itself.
 - A claim is only promoted when linked to source, deterministic artifact, test/CI and result.
 
 ## Next integrations
@@ -135,3 +149,4 @@ convergence candidate -> independence check -> source/artifact -> metric need ->
 7. Link conversation chunks to RMRCTI reports and global timeline maps.
 8. Keep external convergence notes separated from validation claims.
 9. Use the convergence registry to prioritize evidence collection without promoting untested claims.
+10. Treat C09 as candidate_active until peer review or reproduction changes the claim state.
