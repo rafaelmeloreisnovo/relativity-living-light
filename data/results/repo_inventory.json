@@ -5968,30 +5968,30 @@
   },
   {
     "path": "docs/yml/REAL_SYNTHETIC_BOUNDARY_AUDIT.md",
-    "bytes": 7216,
+    "bytes": 46004,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 53,
-    "sha256": "0bd4d9e40969a0e405219263f9f82c9da7d90ae3ca67d7c57dbd836c45250026",
+    "linhas": 337,
+    "sha256": "43e123b3e0f443a7e13830ffeb849f7110e1e49c7dab1838d77cd9e255f90798",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/WORKFLOW_EXECUTION_MAP.md",
-    "bytes": 28883,
+    "bytes": 55994,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 282,
-    "sha256": "6ab005d5b60c1694011e93abe24097ff11416352c5fec861ab23d861cd974911",
+    "linhas": 533,
+    "sha256": "5582433706d523e48a53c600191d9efd668c3931a2678ba24dbbce056112fe75",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/WORKFLOW_REFACTOR_AUDIT.md",
-    "bytes": 4809,
+    "bytes": 11039,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 53,
-    "sha256": "cc7c507c7b240e78f7347dce1c94ede92ce23262f5abab9f7c9efe54c15e5987",
-    "flags": "token_vazio_declared,cosmology_validation_marker"
+    "linhas": 78,
+    "sha256": "0da18602a24f3d00c83364a5abf621f1f81a5cdce333dc7d4f5433c296f3bde0",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_BLOCKED_ITEMS.md",
@@ -5999,16 +5999,16 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 16,
-    "sha256": "1c1c665fbf8cbd852525f95d515d8a69e123b3a595e7b5daa5325b337dd08a39",
+    "sha256": "d4b8be0e19e6046388a26ccafeb71b2724057da64c90f616181cd5a3303621e7",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_FILE_LEDGER.tsv",
-    "bytes": 20868,
+    "bytes": 41638,
     "ext": ".tsv",
     "tipo": "data_or_result",
-    "linhas": 36,
-    "sha256": "1cff442995cba72878041782dbf0e1b6994bf54e96f9fd212477ee0d05b4d6b0",
+    "linhas": 68,
+    "sha256": "46f2c5eedd189c6e6afdfede1e95de68a99a20bee06b6e2cf8443c4914a1b0a0",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6017,7 +6017,7 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 16,
-    "sha256": "3788e43be24f444a6f0c427ba69e4120ba6a94d2257e7ff9d790f21d6bc7e216",
+    "sha256": "5b1fe178f32637519f5ae325ca67fba5c0d44e620129b6f068ea81d28a774e9b",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -6026,7 +6026,7 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 17,
-    "sha256": "78007e915e12bdff650933494d81e51109e32adff25b94948d553030dfdff0f8",
+    "sha256": "fdb75e6dd21a88ccb9a23532133624fae008de6bf186475c8ec58aa0adbca823",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {

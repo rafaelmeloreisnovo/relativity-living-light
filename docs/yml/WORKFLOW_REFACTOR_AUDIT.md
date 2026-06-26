@@ -1,21 +1,33 @@
 # WORKFLOW REFACTOR AUDIT
 
-Gerado em: `2026-06-13T06:12:53Z`  
-Commit auditado: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
+Gerado em: `2026-06-26T19:52:53Z`  
+Commit auditado: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
 
 ## Inventário pré-alteração obrigatório
 
-- `git status --short`: `FATO_VERIFICADO_WORKTREE_LIMPA (git status --short executado antes das alterações retornou saída vazia)`
-- `git rev-parse HEAD`: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
-- Total YAML/YML: `35`
-- Total workflows: `14`
+- `git status --short`: `M data/raw/RAW_DATA_MANIFEST.yml
+ M data/results/repo_inventory.json
+ M data/results/repo_inventory.tsv
+ M data/results/repo_inventory_summary.json
+ M docs/DOCUMENTATION_FULL_INVENTORY.md
+ M docs/REAL_NUMBERS_REPORT.md
+ M docs/yml/REAL_SYNTHETIC_BOUNDARY_AUDIT.md
+ M docs/yml/WORKFLOW_EXECUTION_MAP.md
+ M docs/yml/WORKFLOW_REFACTOR_AUDIT.md
+ M docs/yml/YML_BLOCKED_ITEMS.md
+ M docs/yml/YML_FILE_LEDGER.tsv
+ M docs/yml/YML_NEXT_ACTIONS.md
+ M docs/yml/YML_REFACTOR_PLAN.md`
+- `git rev-parse HEAD`: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
+- Total YAML/YML: `67`
+- Total workflows: `27`
 
 ## Validações executadas
 
 | comando | exit_code | resultado |
 |---|---:|---|
-| `git status --short` | 0 | `FATO_VERIFICADO_WORKTREE_LIMPA (git status --short executado antes das alterações retornou saída vazia)` |
-| `git rev-parse HEAD` | 0 | `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f` |
+| `git status --short` | 0 | ` M docs/yml/YML_REFACTOR_PLAN.md` |
+| `git rev-parse HEAD` | 0 | `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0` |
 | `python3 -c from pathlib import Path
 import yaml,sys
 failed=False
@@ -32,13 +44,26 @@ sys.exit(1 if failed else 0)` | 0 | `OK	validacao_real/sources.yml` |
 | workflow | workflow_dispatch | permissions | concurrency | timeout | scripts inexistentes | artefatos | riscos |
 |---|---:|---|---:|---|---|---|---|
 | `.github/workflows/START_MANUAL_HERE.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `start-manual-here-${{ github.run_id }}:artifacts/manual-start/` | `FATO_VERIFICADO` |
+| `.github/workflows/academic-parameter-governance.yml` | True | `{"contents": "read"}` | False | LACUNA:validate-academic-parameter-registry | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/canonical-route-artifacts.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `canonical-route-artifacts:data/real/bootstrap/canonical_route_checklist.yml | docs/science/CANONICAL_ROUTE_CHECKLIST.md | docs/science/TACTICAL_ROUTE_ORCHESTRATOR.md | docs/science/ROUTE_DEFIBRILLATION_POLICY.md | docs/science/PEER_REVIEW_READINESS_STATUS.md | docs/science/ROADMAP_NEXT_ACTIONS.md | data/raw/RAW_DATA_MANIFEST.yml | data/results/bootstrap/raw_data_manifest_status.json | data/results/bootstrap/raw_data_manifest_status.tsv | docs/science/RAW_DATA_MANIFEST_STATUS.md | data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv | data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv | data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml | data/results/orbital_dynamics/orbital_state_vector_v2_validation.json | docs/science/ORBITAL_STATE_VECTOR_V2_REPORT.md | , route-artifact-checklist:data/real/bootstrap/canonical_route_checklist.yml | docs/science/CANONICAL_ROUTE_CHECKLIST.md | , route-artifact-raw-custody:data/raw/RAW_DATA_MANIFEST.yml | data/results/bootstrap/raw_data_manifest_status.json | data/results/bootstrap/raw_data_manifest_status.tsv | docs/science/RAW_DATA_MANIFEST_STATUS.md | docs/science/RAW_DATA_MANIFEST_GUIDE.md | , route-artifact-orbital-v2:data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv | data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv | data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml | data/results/orbital_dynamics/orbital_state_vector_v2_validation.json | docs/science/ORBITAL_STATE_VECTOR_V2_REPORT.md | , route-artifact-orchestration-docs:docs/science/TACTICAL_ROUTE_ORCHESTRATOR.md | docs/science/ROUTE_DEFIBRILLATION_POLICY.md | docs/science/PEER_REVIEW_READINESS_STATUS.md | docs/science/ROADMAP_NEXT_ACTIONS.md | ` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/claim-boundary-quality-gates.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
 | `.github/workflows/convention-check.yml` | False | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/dense-feature-matrix.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `dense-feature-matrix:data/results/bootstrap/dense_behavior_features.json | data/results/bootstrap/dense_behavior_features.tsv | docs/science/DENSE_BEHAVIOR_FEATURES_REPORT.md | ` | `FATO_VERIFICADO` |
+| `.github/workflows/desi-dr2-bao-validation.yml` | True | `{"contents": "read"}` | False | LACUNA:desi-dr2-bao | `TOKEN_VAZIO` | `desi-dr2-bao-covariance-chi2:results/desi_dr2_bao_covariance_chi2.json` | `FATO_VERIFICADO` |
 | `.github/workflows/dha-fisher-ci.yml` | False | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `dha-fisher-forecast:results/dha/fisher_forecast_reference.json, ln1pz-extractor:results/dha/ln1pz_fit.csv | results/dha/ln1pz_fit_summary.json | , desi-dha-extractor:results/dha/desi_dha_pipeline_summary.json` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/formulas-artifacts-validation.yml` | True | `{"contents": "read"}` | False | LACUNA:formulas-manifest | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
 | `.github/workflows/formulas-artifacts.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `formulas-artifacts:artifacts/formulas` | `FATO_VERIFICADO` |
 | `.github/workflows/iml_artifact.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `iml-artifact:artifacts/iml/iml_artifact.json` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/orbital-shape-angular-momentum-validation.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `orbital-shape-angular-momentum-validation:data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv | data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.yml | data/results/orbital_dynamics/angular_momentum_shape_validation.json | docs/science/ORBITAL_SHAPE_ANGULAR_MOMENTUM_V1_REPORT.md | ` | `FATO_VERIFICADO` |
+| `.github/workflows/orbital-state-vector-v2.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `orbital-state-vector-v2:data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv | data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.meta.yml | data/results/orbital_dynamics/orbital_state_vector_v2_validation.json | docs/science/ORBITAL_STATE_VECTOR_V2_REPORT.md | ` | `FATO_VERIFICADO` |
 | `.github/workflows/python-tests.yml` | False | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_BOUNDARY_TERMS_ROTULADOS` |
+| `.github/workflows/raw-data-manifest-status.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `raw-data-manifest-status:data/results/bootstrap/raw_data_manifest_status.json | data/results/bootstrap/raw_data_manifest_status.tsv | docs/science/RAW_DATA_MANIFEST_STATUS.md | ` | `FATO_VERIFICADO` |
+| `.github/workflows/real-data-bootstrap-validation.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `real-data-bootstrap-scan:data/results/bootstrap/real_data_bootstrap_summary.json | data/results/bootstrap/real_data_bootstrap_ledger.tsv | docs/science/REAL_DATA_BOOTSTRAP_SCAN_REPORT.md | ` | `FATO_VERIFICADO` |
 | `.github/workflows/real-data-complete-execution.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `real-data-complete-${{ github.run_id }}:artifacts/real-data-complete/` | `RISCO_CONTENTS_WRITE` |
-| `.github/workflows/repo-real-inventory.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `TOKEN_VAZIO` | `RISCO_CONTENTS_WRITE` |
+| `.github/workflows/real-data-contract-ci.yml` | True | `"TOKEN_VAZIO"` | False | LACUNA:real-data-contract | `TOKEN_VAZIO` | `real-data-contract-${{ github.run_id }}:artifacts/real-data-contract/` | `LACUNA_PERMISSIONS` |
+| `.github/workflows/real-seed-ingestion-plan.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `real-seed-ingestion-plan:data/results/bootstrap/real_seed_ingestion_plan.json | data/results/bootstrap/real_seed_ingestion_plan.tsv | docs/science/REAL_SEED_INGESTION_PLAN.md | ` | `FATO_VERIFICADO` |
+| `.github/workflows/real-seed-validation-v0.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `real-seed-validation-v0:data/results/compact_objects/remnant_boundary_validation.json | data/results/compact_objects/wandering_bh_validation.json | data/results/kinematics/historical_impulse_validation.json | data/results/high_z_smbh/seed_validation.json | data/results/bootstrap/real_seed_validation_index.json | docs/science/REAL_SEED_VALIDATION_V0_INDEX.md | ` | `FATO_VERIFICADO` |
+| `.github/workflows/repo-real-inventory.yml` | True | `{"contents": "write"}` | True | OK | `TOKEN_VAZIO` | `repo-real-inventory-${{ github.run_id }}:docs/DOCUMENTATION_FULL_INVENTORY.md | docs/REAL_NUMBERS_REPORT.md | docs/YML_WORKFLOWS_INDEX.md | data/results/repo_inventory.json | data/results/repo_inventory.tsv | data/results/repo_inventory_summary.json | ` | `RISCO_CONTENTS_WRITE` |
 | `.github/workflows/rll-book-data-pipeline.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-book-pipeline-${{ github.run_id }}-${{ inputs.book_scope }}-${{ inputs.dataset_group }}-${{ inputs.mode }}:artifacts/rll-pipeline/` | `FATO_VERIFICADO` |
 | `.github/workflows/rll-data-pipeline.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-pipeline-${{ github.run_id }}-${{ inputs.dataset_group }}-${{ inputs.mode }}:artifacts/rll-pipeline/` | `FATO_VERIFICADO` |
 | `.github/workflows/rll-real-data-orchestrator.yml` | True | `{"contents": "read"}` | True | OK | `TOKEN_VAZIO` | `rll-real-run-${{ github.run_id }}:artifacts/rll-real-run/` | `FATO_VERIFICADO` |

@@ -164,4 +164,4 @@ records:
     claim_allowed: false
     next_metric: state_vector_vs_reference_h_residual
 
-safe_conclusion: This manifest creates custody slots and now includes two local raw JPL Horizons samples: observer ephemeris and heliocentric state vectors. Scientific claims remain blocked until baselines and uncertainty models exist.
+safe_conclusion: "This manifest creates custody slots and now includes two local raw JPL Horizons samples: observer ephemeris and heliocentric state vectors. Scientific claims remain blocked until baselines and uncertainty models exist."

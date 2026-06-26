@@ -1,11 +1,11 @@
 # YML REFACTOR PLAN
 
-Gerado em: `2026-06-13T06:12:53Z`  
-Commit auditado: `c8eb1047ada81ee2a1f6eb4c917ae707fdee8e4f`
+Gerado em: `2026-06-26T19:52:53Z`  
+Commit auditado: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
 
 | prioridade | classe | item | evidência | ação segura |
 |---:|---|---|---|---|
-| 1 | FATO_VERIFICADO | Todos os `35` YAML/YML parsearam com PyYAML. | comando `YAML parser validation` exit 0 | manter gate `.github/workflows/yml-syntax-validation.yml` |
+| 1 | FATO_VERIFICADO | Todos os `67` YAML/YML parsearam com PyYAML. | comando `YAML parser validation` exit 0 | manter gate `.github/workflows/yml-syntax-validation.yml` |
 | 2 | FATO_VERIFICADO | Workflows com `permissions` explícito são registrados no ledger. | leitura direta dos workflows | manter `contents: read` por padrão; justificar exceções `contents: write` |
 | 3 | RISCO | Workflows com `contents: write` podem alterar repositório por automação. | ledger marca `RISCO_WRITE_PERMISSION_REQUER_JUSTIFICATIVA` | próximo PR: commit/push apenas por input explícito ou environment protegido |
 | 4 | RISCO | `dha-fisher-ci.yml` materializa `results/dha/mock_catalog.csv` em CI. | mapa de execução registra script inline de mock | manter rotulado como mock; nunca promover para `real_validated` |
