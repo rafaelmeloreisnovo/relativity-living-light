@@ -1,6 +1,7 @@
 # INDICE MESTRE - Documentacao Oficial
 ## Relativity Living Light
 
+**Atualizado em:** 2026-06-20
 **Atualizado em:** 2026-06-26
 **Regra:** secao principal lista apenas caminhos canonicos oficiais.
 
@@ -113,13 +114,14 @@ Encaminhamentos complementares:
 
 - [`docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`](canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md) - documento-mae consolidado
 - [`docs/canonicos/13_EPISTEMOLOGIA_RAFAELIA_RLL.md`](canonicos/13_EPISTEMOLOGIA_RAFAELIA_RLL.md) - sistema [E]/[C]/[H]/[VAZIO], RAW_TEXT_FIRST e integridade epistemica
-- [`docs/canonicos/14_MODELO_COSMOLOGICO_RLL.md`](canonicos/14_MODELO_COSMOLOGICO_RLL.md) - equacao-mae, EoS efetiva, adversario w0waCDM e falsificadores
+- [`docs/canonicos/14_MODELO_COSMOLOGICO_RLL.md`](canonicos/14_MODELO_COSMOLOGICO_RLL.md) - equacao-mae, limite nulo, EoS efetiva, adversario w0waCDM e falsificadores
 - [`docs/canonicos/15_DADOS_EXTERNOS_REAIS_RLL.md`](canonicos/15_DADOS_EXTERNOS_REAIS_RLL.md) - DESI, CMB, H(z), fσ8, metricas e pendencias
 - [`docs/canonicos/16_PIPELINE_VALIDACAO_RLL.md`](canonicos/16_PIPELINE_VALIDACAO_RLL.md) - estrutura executavel, funcoes-nucleo e reprodutibilidade
 - [`docs/canonicos/17_ONDA_VERBO_FISICA_NEURO_LINGUAGEM.md`](canonicos/17_ONDA_VERBO_FISICA_NEURO_LINGUAGEM.md) - som, onda, neuro, linguagem, metafora e limites
 - [`docs/canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md`](canonicos/18_ORQUESTRADOR_ASCII_UTF_RAFAELIA.md) - matriz ASCII/UTF, hashes, C_eff e TOKEN_VAZIO
 - [`docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`](canonicos/19_ROADMAP_FALSIFICADORES_RLL.md) - roadmap de testes e criterios de falsificacao
 - [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md) - checklist publico de documentos, governanca, seguranca e citabilidade
+- [`docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`](canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md) - limite nulo `Ωs0=0`, degenerescencia com ΛCDM e analogia metodologica com AION
 - [`docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md`](canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md) - vetor V_info tipado, equacao de observacao (F_prop/F_med/T), FSM com falsificadores Popper, Fisher/Shannon, integracao claim_state
 
 ---
