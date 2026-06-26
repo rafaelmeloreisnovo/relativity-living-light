@@ -20,7 +20,7 @@ Private corpus -> conversation chunks -> deterministic scanner -> deterministic 
 
 ## External convergence bridge
 
-External publications may be used as **independent convergence references** only when they pass through the same claim boundary discipline.
+External publications and symbolic/observational inputs may be used as **independent convergence references** only when they pass through the same claim boundary discipline.
 
 Current registered convergence documents:
 
@@ -29,12 +29,13 @@ docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md
 docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md
 docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md
 docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md
+docs/CONVERGENCIA_OBSERVACAO_SILENCIO_UTIL.md
 ```
 
 Bridge rule:
 
 ```text
-external source -> technical reading -> bounded analogy -> claim boundary -> own validation or TOKEN_VAZIO
+external/symbolic input -> technical reading -> bounded analogy -> claim boundary -> own validation or TOKEN_VAZIO
 ```
 
 For the multiscale boundary / biomimetic interface case, the permitted interpretation is narrow:
@@ -49,7 +50,13 @@ For the falling-drop dissipation note, the permitted interpretation is narrow:
 falling drop -> drag/interface exchange -> thermal and shape balance -> measurable regime map
 ```
 
-Neither interpretation validates RAFAELIA, BITRAF, T7 or RLL cosmology. They only register controlled analogies for measurable transition and interface systems.
+For the observation/useful-silence note, the permitted interpretation is narrow:
+
+```text
+narrative or absence -> preserved raw input -> technical extraction -> route map -> claim_state
+```
+
+None of these interpretations validates RAFAELIA, BITRAF, T7 or RLL cosmology. They register controlled analogies for measurable transition, interface, observation and information systems.
 
 ## Operational rules
 
@@ -68,7 +75,13 @@ chunk -> offset/hash -> RMRCTI metrics -> anomaly flag -> summary/map -> formula
 External convergence gate:
 
 ```text
-paper/news -> source metadata -> technical extraction -> analogy label -> claim boundary -> validation path or TOKEN_VAZIO
+paper/news/narrative -> source metadata -> technical extraction -> analogy label -> claim boundary -> validation path or TOKEN_VAZIO
+```
+
+Observation-silence gate:
+
+```text
+raw input -> explicit signal -> bounded absence -> route map -> testable variable or TOKEN_VAZIO
 ```
 
 ## Claim boundary
@@ -78,6 +91,7 @@ paper/news -> source metadata -> technical extraction -> analogy label -> claim 
 - A conversation chunk is not proof by itself.
 - An external analogy is not proof by itself.
 - A convergence count is not proof by itself.
+- A narrative or silence marker is not proof by itself.
 - A claim is only promoted when linked to source, deterministic artifact, test/CI and result.
 
 ## Next integrations
@@ -93,3 +107,4 @@ paper/news -> source metadata -> technical extraction -> analogy label -> claim 
 9. Use the convergence registry to prioritize evidence collection without promoting untested claims.
 10. For boundary/interface analogies, require geometry, regime, metric and validation path before any promotion.
 11. For droplet dissipation analogies, require size, humidity, temperature and energy-balance variables before any promotion.
+12. For observation/silence analogies, preserve raw input and mark absence before any inference.
