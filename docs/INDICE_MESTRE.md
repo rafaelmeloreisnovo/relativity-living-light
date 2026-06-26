@@ -1,7 +1,7 @@
 # INDICE MESTRE - Documentacao Oficial
 ## Relativity Living Light
 
-**Atualizado em:** 2026-06-25
+**Atualizado em:** 2026-06-26
 **Regra:** secao principal lista apenas caminhos canonicos oficiais.
 
 ---
@@ -70,6 +70,7 @@ Encaminhamentos complementares:
 - [`docs/RLL_CLAIM_BOUNDARIES.md`](RLL_CLAIM_BOUNDARIES.md)
 - [`docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md`](CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md) - registro mestre 3->8->9 de convergências independentes, com matriz e claim gate
 - [`docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md`](CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md) - convergência independente ETH/HLS para ruído-dissipação como variável de estado, sem promoção automática de claim
+- [`docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md`](C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md) - C09 candidata: transmutação nuclear/chrysopoeia via nêutrons de fusão, mapa de rotas e pendências
 - [`docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md`](RLL_PRE_MOVEMENT_SCALE_BRIDGE.md) - ponte de escala para pre-movimento, impactos vetoriais, memoria dinamica e limites de promocao cosmologica
 - [`rll_equation_registry.yml`](../rll_equation_registry.yml)
 
