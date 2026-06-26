@@ -1,0 +1,243 @@
+# Real Observational Seed Catalog v1
+# Status: external_only_seed_supplement
+# Purpose: add more real mappable observational anchors across compact remnants, dormant black holes, slingshot kinematics, residual structure, and high-z SMBH growth.
+# Claim policy: seed data only; not raw-catalog ingestion and not final validation.
+
+schema_version: 0.1
+status: external_only_seed_supplement
+claim_allowed: false
+created_context: mapped_real_data_expansion_for_RLL_bootstrap
+extends:
+  - data/real/bootstrap/real_observational_seed_v0.yml
+linked_docs:
+  - docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md
+  - docs/science/REAL_OBSERVATIONAL_SEED_V0_REPORT.md
+  - docs/science/REAL_SEED_VALIDATION_V0_INDEX.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+
+source_policy:
+  raw_data_local: false
+  local_checksum_status: not_applicable_external_only
+  interpretation_status: seed_record_only
+  require_future_raw_catalog_ingestion: true
+  require_future_metric_before_claim: true
+  global_claim_allowed: false
+
+seed_records:
+  - record_id: REAL_SEED_GW190814
+    module: compact_remnant_boundary
+    object_or_event: GW190814
+    source_type: gravitational_wave_mass_gap_event
+    provider_or_authors: LIGO Scientific Collaboration and Virgo Collaboration; follow-up EOS literature
+    reference: ApJL 896 L44; arXiv:2007.02513; arXiv:2007.03799
+    reference_url: https://arxiv.org/abs/2007.02513
+    secondary_reference_url: https://arxiv.org/abs/2007.03799
+    publication_year: 2020
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      event_date_utc: '2019-08-14T21:10:39Z'
+      secondary_mass_msun_range_reported: [2.50, 2.67]
+      source_class_interpretation: mass_gap_secondary_candidate
+      relevance: compact_remnant_boundary_and_NS_BH_gap
+      caution: component_nature_is_ambiguous_without_full_posterior_and_EOS_baseline
+    mapping:
+      target_ledger: data/real/compact_objects/remnant_boundary_sources.yml
+      expected_result: data/results/compact_objects/remnant_boundary_validation.json
+      future_metric: mass_gap_overlap_probability
+      baseline_models:
+        - neutron_star_EOS_limits
+        - low_mass_black_hole_population
+        - gravitational_wave_catalog_baseline
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_PSR_J0952_0607
+    module: compact_remnant_boundary
+    object_or_event: PSR J0952-0607
+    source_type: high_mass_neutron_star_pulsar
+    provider_or_authors: Romani et al.
+    reference: arXiv:2207.05124
+    reference_url: https://arxiv.org/abs/2207.05124
+    publication_year: 2022
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      neutron_star_mass_msun: 2.35
+      neutron_star_mass_uncertainty_msun: 0.17
+      spin_frequency_hz: 707.0
+      system_type: black_widow_millisecond_pulsar
+      relevance: high_mass_NS_lower_bound_for_EOS_and_TOV_boundary
+    mapping:
+      target_ledger: data/real/compact_objects/remnant_boundary_sources.yml
+      expected_result: data/results/compact_objects/remnant_boundary_validation.json
+      future_metric: EOS_minimum_maximum_mass_constraint
+      baseline_models:
+        - neutron_star_EOS_limits
+        - rotational_support_models
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_GAIA_BH1
+    module: wandering_black_holes
+    object_or_event: Gaia BH1
+    source_type: dormant_black_hole_astrometric_binary
+    provider_or_authors: El-Badry et al.
+    reference: arXiv:2209.06833
+    reference_url: https://arxiv.org/abs/2209.06833
+    publication_year: 2022
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      black_hole_mass_msun: 9.62
+      black_hole_mass_uncertainty_msun: 0.18
+      distance_pc: 480
+      visible_companion_type: sun_like_star
+      detection_method: Gaia_astrometric_orbit_plus_radial_velocity
+      relevance: dormant_black_hole_seed_for_dark_mass_dynamics
+    mapping:
+      target_ledger: data/real/compact_objects/wandering_black_hole_sources.yml
+      expected_result: data/results/compact_objects/wandering_bh_validation.json
+      future_metric: astrometric_binary_dark_mass_consistency
+      baseline_models:
+        - luminous_companion_alternative
+        - non_black_hole_binary_model
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_GAIA_BH2
+    module: wandering_black_holes
+    object_or_event: Gaia BH2
+    source_type: dormant_black_hole_astrometric_binary
+    provider_or_authors: El-Badry et al.
+    reference: arXiv:2302.07880
+    reference_url: https://arxiv.org/abs/2302.07880
+    publication_year: 2023
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      black_hole_mass_msun: 8.9
+      black_hole_mass_uncertainty_msun: 0.3
+      distance_kpc: 1.16
+      orbital_period_days: 1277
+      eccentricity: 0.52
+      detection_method: Gaia_DR3_astrometry_plus_radial_velocity_followup
+      relevance: wide_dormant_black_hole_binary_seed
+    mapping:
+      target_ledger: data/real/compact_objects/wandering_black_hole_sources.yml
+      expected_result: data/results/compact_objects/wandering_bh_validation.json
+      future_metric: wide_binary_dark_mass_consistency
+      baseline_models:
+        - luminous_giant_binary_alternative
+        - dormant_BH_population_model
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_GAIA_BH3
+    module: residual_gravity_structures
+    object_or_event: Gaia BH3 / ED-2 stream association
+    source_type: massive_stellar_black_hole_with_stream_context
+    provider_or_authors: Gaia Collaboration; follow-up dynamical formation literature
+    reference: Gaia BH3 discovery and ED-2 stream follow-up; arXiv:2404.13036; arXiv:2404.13047
+    reference_url: https://arxiv.org/abs/2404.13036
+    secondary_reference_url: https://arxiv.org/abs/2404.13047
+    publication_year: 2024
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      black_hole_mass_msun_approx: 33
+      distance_pc_approx: 590
+      orbital_period_years_approx: 11.6
+      companion_context: low_metallicity_star
+      residual_structure_context: ED_2_halo_stream_association
+      relevance: links_dormant_BH_mass_to_residual_stream_and_low_metallicity_origin
+    mapping:
+      target_ledger: data/real/structure/residual_gravity_sources.yml
+      expected_result: data/results/structure/residual_gravity_validation.json
+      future_metric: stream_membership_and_dark_compact_mass_consistency
+      baseline_models:
+        - disrupted_cluster_stream_model
+        - isolated_binary_evolution_model
+        - dynamical_interaction_model
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_S5_HVS1
+    module: historical_impulse_slingshot
+    object_or_event: S5-HVS1
+    source_type: hypervelocity_star_galactic_center_traceback
+    provider_or_authors: Koposov et al.
+    reference: arXiv:1907.11725
+    reference_url: https://arxiv.org/abs/1907.11725
+    publication_year: 2019
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      star_mass_msun_approx: 2.35
+      distance_kpc_approx: 9
+      heliocentric_radial_velocity_km_s: 1017
+      heliocentric_radial_velocity_uncertainty_km_s: 2.7
+      galactic_frame_velocity_km_s: 1755
+      galactic_frame_velocity_uncertainty_km_s: 50
+      travel_time_myr: 4.8
+      origin_trace: Galactic_Centre_Sgr_A_star
+      mechanism: Hills_mechanism
+      relevance: direct_seed_for_historical_impulse_trajectory_memory
+    mapping:
+      target_ledger: data/real/kinematics/hypervelocity_sources.yml
+      expected_result: data/results/kinematics/historical_impulse_validation.json
+      future_metric: traceback_probability_and_escape_velocity_consistency
+      baseline_models:
+        - Hills_mechanism
+        - Galactic_potential_model
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_CEERS_1019
+    module: high_z_smbh_seeds
+    object_or_event: CEERS 1019
+    source_type: JWST_high_redshift_AGN
+    provider_or_authors: Larson et al.; CEERS Team
+    reference: arXiv:2303.08918
+    reference_url: https://arxiv.org/abs/2303.08918
+    publication_year: 2023
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      redshift: 8.679
+      age_after_big_bang_myr_approx: 570
+      black_hole_mass_log10_msun: 6.95
+      black_hole_mass_log10_uncertainty: 0.37
+      eddington_ratio: 1.2
+      eddington_ratio_uncertainty: 0.5
+      host_log10_stellar_mass_msun_approx: 9.5
+      relevance: high_z_seed_growth_and_AGN_accretion_constraint
+    mapping:
+      target_ledger: data/real/high_z_smbh/high_z_seed_sources.yml
+      expected_result: data/results/high_z_smbh/seed_validation.json
+      future_metric: Eddington_growth_feasibility_grid
+      baseline_models:
+        - light_seed_model
+        - heavy_seed_model
+        - super_Eddington_growth_model
+    claim_allowed: false
+    status: external_only_seed
+
+validation_boundary:
+  these_records_are_not_raw_catalogs: true
+  these_records_are_not_final_metrics: true
+  these_records_are_mappable_seed_records: true
+  global_claim_allowed: false
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

@@ -1,145 +1,146 @@
-# Lagrangiano Efetivo — EFT da Superposição
-## Formalismo de teoria de campos para o componente RLL
+# Lagrangiano Efetivo - EFT minima do setor logistico RLL
 
-**Módulo:** teoria/LAGRANGIANO_EFT.md  
-**Status:** Esboço formal — desenvolvimento em andamento
+Modulo: `docs/LAGRANGIANO_EFT.md`
+Status: reconstrucao canonica minima conectada ao gate executavel `scripts/check_rll_background.py`.
 
----
+## 1. Objetivo
 
-## 1. Motivação
+O RLL possui um setor logistico de fundo cosmologico. Para que ele seja mais que uma parametrizacao fenomenologica, e preciso mostrar que existe uma reconstrucao efetiva compativel com campo escalar canonico no regime de baixa energia.
 
-O modelo fenomenológico (função f(z), equação de Friedmann estendida) descreve corretamente os observáveis mas não especifica a teoria de campos subjacente. O formalismo EFT permite verificar:
-- Consistência quântica (ausência de ghosts e taquiões)
-- Simetrias que impõem a forma específica de f(z)
-- Acoplamentos permitidos com outros setores
+A acao minima e:
 
----
-
-## 2. Lagrangiano Geral
-
-A Lagrangiana efetiva para o setor de superposição é:
-
-```
-S = ∫ d⁴x √(−g) [ R/(16πG) + L_m + L_r + L_sup ]
+```text
+S = integral d4x sqrt(-g) [ R/(16 pi G) + L_m + L_r + L_phi ]
+L_phi = -1/2 g^{mu nu} partial_mu phi partial_nu phi - V(phi)
 ```
 
-onde a Lagrangiana de superposição é:
+Esta convencao usa assinatura `(-,+,+,+)`. Para campo homogeneo:
 
-```
-L_sup = −(1/2) g^{μν} ∂_μφ ∂_νφ − V(φ) + L_acoplamentos
-```
-
-### 2.1 Potencial
-
-Para reproduzir a equação de estado w_eff(z) = −f(z):
-
-```
-V(φ) = (1 − w_eff)/2 · ρ_s(φ)
-     = (1 + f(φ))/2 · ρ_s
+```text
+rho_phi = K + V
+p_phi   = K - V
+K       = phi_dot^2 / 2
+w       = p_phi/rho_phi
 ```
 
-A forma explícita de V(φ) depende da solução de φ(a), que é dada por:
+Logo:
 
-```
-φ'(lna) = √(3(1 + w_eff) · Ω_s(a)) · M_Pl
-         = √(3(1 − f(a)) · Ω_s(a)) · M_Pl
-```
-
-### 2.2 Classificação como quintessência
-
-O modelo pertence à classe dos modelos de quintessência "thawing":
-- Em alto redshift: φ congelado pelo atrito de Hubble, V(φ) ≈ Λ_eff (tipo energia escura)
-- Em baixo redshift: φ começa a rolar, V(φ) → 0 (tipo matéria escura)
-
-Isso é consistente com a classificação de Caldwell & Linder (2005): w₀ ≈ −0.05, wₐ ≈ +0.12.
-
----
-
-## 3. Acoplamentos Adicionais
-
-### 3.1 Acoplamento magneto-coerente
-
-O booster magnético Ω_B0 introduz um acoplamento:
-
-```
-L_mag = −(α_B/4) F_{μν}F^{μν} · (φ/M_Pl)
+```text
+K(a) = (1+w(a)) rho_phi(a)/2
+V(a) = (1-w(a)) rho_phi(a)/2
 ```
 
-onde α_B é o parâmetro de acoplamento. Esse termo modifica a propagação dos fótons e gera um acoplamento φ–fotão que pode ser testado via birrefringência cosmológica.
+## 2. Setor logistico RLL
 
-**Constraint atual:** α_B < 10⁻³ do alinhamento de spins MeerKAT (Böhme et al. contexto).
+O fundo logistico e:
 
-### 3.2 Acoplamento com plasma
-
-```
-L_plasma = −(β/2) n_e · φ²/M_Pl²
-```
-
-onde n_e é a densidade de elétrons do plasma cosmológico. Este termo contribui para Ω_P0 na equação de Friedmann.
-
----
-
-## 4. Verificação de Estabilidade no Formalismo EFT
-
-### 4.1 Condição anti-ghost
-
-A energia cinética do campo escalar deve ser positiva:
-
-```
-(1/2) φ̇² > 0  ↔  (1 + w_eff) · Ω_s > 0
+```text
+f(z) = 1/(1+exp((z-z_t)/w_t)), w_t > 0
+rho_s(z) = Omega_s0 rho_c0 [ f(z) + (1-f(z))(1+z)^3 ]
+p_s(z)   = - Omega_s0 rho_c0 f(z)
 ```
 
-Como Ω_s > 0 e w_eff = −f(z) ∈ [−1, 0], a condição é satisfeita para z < ∞.
-No limite z → ∞: w_eff → −1, energia cinética → 0 (limite phantom, não cruzamento).
+Portanto:
 
-### 4.2 Velocidade do som e condição anti-taquiônica
-
-```
-c_s² = δp/δρ|_adiabático = (∂²L/∂(∂φ)²) / (∂²L/∂φ̇²)
+```text
+w_eff(z) = -f(z) / [ f(z) + (1-f(z))(1+z)^3 ]
 ```
 
-Para a Lagrangiana padrão de campo escalar canônico:
+Esta correcao e central: o setor misto tem denominador de densidade. Assim, no alto redshift o termo `(1+z)^3` domina e `w_eff -> 0`; no baixo redshift, `w_eff` aproxima o regime de energia escura.
 
-```
-c_s² = 1   (velocidade do som = velocidade da luz)
-```
+## 3. Reconstrucao do campo
 
-Isso satisfaz a condição de estabilidade c_s² > 0 por construção.
+Defina:
 
-**Nota:** A velocidade do som do componente de superposição não deve ser confundida com a velocidade do som efetiva do fluido misto. Para fins de evolução de perturbações em grade de N-corpos, usa-se a prescrição c_s² = f(z) (detalhado em ESTABILIDADE_GHOST_CHECK.md).
-
----
-
-## 5. Simetrias e Proteção do Potencial
-
-Para que o potencial V(φ) não receba correções quânticas grandes (problema de naturalidade), são necessárias simetrias que protejam a forma de V.
-
-**Candidatos:**
-- **Simetria shift:** φ → φ + c, quebrada apenas por termos de massa e potencial
-- **Discrete symmetry:** φ → −φ, implica V(φ) = V(−φ) (potencial par)
-- **Conformal coupling:** L_sup ⊃ (ξ/6) R φ², com ξ específico
-
-A identificação da simetria subjacente à função de transição logística f(z) permanece em aberto e constitui um problema teórico interessante.
-
----
-
-## 6. Conexão com Gravidade Quântica
-
-A escala de energia associada à transição em z_t ≈ 1.16 corresponde a:
-
-```
-E_transição ≈ H(z_t) · M_Pl ≈ (1.5 × H₀) · M_Pl ≈ 10⁻³³ eV
+```text
+E2(z) = Omega_m(1+z)^3 + Omega_Lambda + Omega_s0 [ f + (1-f)(1+z)^3 ]
+Omega_s(z) = Omega_s0 [ f + (1-f)(1+z)^3 ] / E2(z)
 ```
 
-Esta é a escala da "energia escura" (Hubble hoje × M_Planck), muito abaixo de qualquer escala de nova física convencional. O modelo EFT é portanto válido em todo o regime relevante, sem necessidade de UV completion até energias de ordem M_Pl.
+A derivada canonica em relacao a `ln a` e:
 
----
+```text
+d phi / d ln a = M_Pl sqrt( 3 Omega_s(a) [1+w_eff(a)] )
+```
 
-## 7. Próximos Passos Teóricos
+O potencial parametrico fica:
 
-Os seguintes desenvolvimentos formais são necessários para completar o formalismo EFT:
+```text
+V(a)/(rho_c0) = 1/2 [1-w_eff(a)] Omega_s(a) E2(a)
+```
 
-1. **Derivar V(φ) explícito** integrando φ'(lna) numericamente e invertendo φ(a)
-2. **Calcular correções de 1-loop** ao potencial para verificar naturalidade
-3. **Derivar equações de Boltzmann** para as perturbações de φ (necessário para previsões CMB precisas)
-4. **Analisar instabilidade de gradiente** em escalas subhorizon (k >> aH)
+E a energia cinetica parametrica:
+
+```text
+K(a)/(rho_c0) = 1/2 [1+w_eff(a)] Omega_s(a) E2(a)
+```
+
+O gate minimo e simplesmente:
+
+```text
+[1+w_eff(a)] Omega_s(a) >= 0
+```
+
+Esse gate e calculado pelo script como `kinetic_gate`.
+
+## 4. Velocidade de som
+
+Para campo escalar canonico:
+
+```text
+cs2_rest = 1
+```
+
+Para o fechamento fenomenologico de fundo usado na checagem minima:
+
+```text
+cs2_proxy(z) = f(z)
+```
+
+Como `0 <= f(z) <= 1`, o proxy permanece limitado. Isso nao substitui o tratamento completo de perturbacoes.
+
+## 5. Comando executavel
+
+```bash
+python scripts/check_rll_background.py \
+  --omega-m 0.315 \
+  --omega-s0 0.059 \
+  --zt 1.164 \
+  --wt 0.405
+```
+
+Saida:
+
+```text
+results/rll_background_check.json
+```
+
+## 6. O que esta fechado
+
+- Lagrangiano canonico minimo definido.
+- `w_eff` corrigido com denominador de densidade do fluido misto.
+- Reconstrucao parametrica `K(a)` e `V(a)` definida.
+- Gate cinetico executavel conectado ao script.
+- Proxy de velocidade de som limitado por construcao.
+
+## 7. O que permanece TOKEN_VAZIO
+
+- Inversao numerica `a(phi)` para escrever `V(phi)` explicitamente.
+- Correcoes de loop e naturalidade.
+- Equacoes de Boltzmann.
+- Crescimento de estrutura `f_sigma8`.
+- Evidencia Bayesiana completa.
+
+## 8. Criterio de falsificacao deste bloco
+
+Este bloco falha se, dentro do intervalo de parametros posterior defensavel:
+
+```text
+w_eff < -1
+ou
+[1+w_eff] Omega_s < 0
+ou
+cs2_proxy fora de [0,1]
+```
+
+Se isso ocorrer, o setor logistico precisa ser revisado antes de qualquer claim cosmologico forte.

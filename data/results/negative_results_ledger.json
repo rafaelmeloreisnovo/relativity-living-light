@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1",
+  "status": "negative_results_and_blocked_claims_ledger",
+  "claim_allowed": false,
+  "purpose": "Record non-results, blocked claims, weaker-than-baseline outcomes, and explicit no-claim zones.",
+  "principle": "A negative result is not a failure. It is a boundary condition for honest science.",
+  "items": [
+    {
+      "id": "NEG-001",
+      "route": "cosmology_background",
+      "result_type": "baseline_not_beaten",
+      "statement": "Existing real-data comparisons do not currently justify a claim that RLL beats LCDM or CPL/w0waCDM.",
+      "evidence_status": "repository history and bootstrap status indicate cosmology_background remains blocked for full covariance-aware comparison",
+      "blocked_claim": "RLL is superior to LCDM/CPL on real cosmological data",
+      "next_test": "joint covariance-aware likelihood with BAO, H(z), Pantheon+, Planck/CMB, f_sigma8 and AIC/AICc/BIC",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-002",
+      "route": "compact_remnant_boundary",
+      "result_type": "seed_only",
+      "statement": "Mass-gap and high-mass neutron-star seeds are not enough to classify compact objects without posterior samples and EOS/baseline comparison.",
+      "evidence_status": "seed-level JSON artifacts exist; raw posterior samples and baseline comparison remain required",
+      "blocked_claim": "RLL predicts or proves a new compact-remnant transition",
+      "next_test": "mass_gap_overlap_probability using LVK/GWOSC posterior samples",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-003",
+      "route": "wandering_dark_compact_mass",
+      "result_type": "seed_only",
+      "statement": "Dark-lens and dormant-BH seeds are not proof of a new dark compact mass population without astrometric, photometric, RV, and alternative-model comparisons.",
+      "evidence_status": "external-only seeds and v0 artifact exist",
+      "blocked_claim": "RLL validates a new dark-lens or wandering-BH population",
+      "next_test": "astrometric_binary_dark_mass_consistency and luminous-counterpart exclusion",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-004",
+      "route": "residual_gravity_structures",
+      "result_type": "underdeveloped_route",
+      "statement": "Residual structure route is mapped but not yet supported by a mature validator or raw stream data.",
+      "evidence_status": "orchestration status is seed_mapped_validator_needed",
+      "blocked_claim": "RLL validates residual gravitational structures or orphan-halo signatures",
+      "next_test": "stream membership probability with Gaia/stream data",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-005",
+      "route": "historical_impulse_slingshot",
+      "result_type": "no_traceback_yet",
+      "statement": "Slingshot seeds do not yet compute traceback probabilities with a Galactic/LMC potential model.",
+      "evidence_status": "seed route and v0 artifact exist; raw kinematics and potential models remain required",
+      "blocked_claim": "an object preserves a validated RLL-style gravitational impulse memory",
+      "next_test": "traceback_probability with Gaia astrometry, RV, and potential models",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-006",
+      "route": "high_z_smbh_seeds",
+      "result_type": "simplified_growth_only",
+      "statement": "High-z SMBH calculations are simplified seed-level growth estimates without raw photometry/spectroscopy, magnification context, and host-galaxy constraints.",
+      "evidence_status": "seed calculations exist; raw JWST/Chandra context remains required",
+      "blocked_claim": "RLL explains early SMBH formation better than standard seed models",
+      "next_test": "Eddington growth grid with light/heavy/direct-collapse baselines and uncertainties",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-007",
+      "route": "orbital_shape_angular_momentum",
+      "result_type": "reference_seed_metrics_only",
+      "statement": "Orbital-shape-angular-momentum v1 computes reference-parameter metrics but does not ingest raw ephemeris vectors or compare to SPICE/JPL/N-body/J2 baselines.",
+      "evidence_status": "CI artifact exists with Earth, Moon, Mars, Jupiter seed metrics",
+      "blocked_claim": "the route proves a new gravity, new deformation law, or RLL superiority over celestial mechanics",
+      "next_test": "state-vector h comparison and shape-gravity residual against baseline models",
+      "claim_allowed": false
+    }
+  ],
+  "safe_conclusion": "The project explicitly records where it cannot claim victory. This protects future scientific value."
+}

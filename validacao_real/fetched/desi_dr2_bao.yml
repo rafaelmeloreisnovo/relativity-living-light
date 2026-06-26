@@ -96,3 +96,7 @@ points:
   sigma: 0.101
   paired_observable: DM_over_rd
   correlation_coefficient: -0.431
+consumed_by:
+- tools/generate_yml_audit_docs.py
+- tools/docs_inventory.py
+- docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

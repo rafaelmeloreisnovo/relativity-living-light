@@ -10,9 +10,9 @@ from __future__ import annotations
 
 import argparse
 import csv
-import datetime as dt
 import hashlib
 import json
+import os
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -129,14 +129,6 @@ def load_config(root: Path) -> InventoryConfig:
     return InventoryConfig(outputs=outputs, exclude_dirs=exclude_dirs, text_extensions=text_extensions, real_data_markers=markers)
 
 
-def git_ref(root: Path, full: bool = True) -> str:
-    args = ["git", "rev-parse", "HEAD"] if full else ["git", "rev-parse", "--short", "HEAD"]
-    try:
-        return subprocess.check_output(args, cwd=root, stderr=subprocess.DEVNULL).decode("utf-8").strip()
-    except Exception:  # noqa: BLE001 - inventory must still run outside Git.
-        return "(sem commit git)"
-
-
 def git_tracked_files(root: Path) -> list[str]:
     try:
         raw = subprocess.check_output(["git", "ls-files", "-z"], cwd=root, stderr=subprocess.DEVNULL)
@@ -159,6 +151,10 @@ def is_excluded(path: str, config: InventoryConfig) -> bool:
 
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
+    if path.is_symlink():
+        digest.update(b"SYMLINK\0")
+        digest.update(os.readlink(path).encode("utf-8", errors="surrogateescape"))
+        return digest.hexdigest()
     with path.open("rb") as handle:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
@@ -172,7 +168,7 @@ def count_text_lines(data: bytes) -> int:
 
 
 def read_text_for_flags(path: Path, ext: str, config: InventoryConfig) -> tuple[int, str]:
-    if ext not in config.text_extensions:
+    if path.is_symlink() or ext not in config.text_extensions:
         return 0, ""
     try:
         data = path.read_bytes()
@@ -196,8 +192,8 @@ def classify(path: str, ext: str) -> str:
     return "other"
 
 
-def detect_flags(path: str, text: str, markers: tuple[str, ...]) -> str:
-    flags: list[str] = []
+def detect_flags(path: str, text: str, markers: tuple[str, ...], extra_flags: list[str] | None = None) -> str:
+    flags: list[str] = list(extra_flags or [])
     if "synthetic" in text or "sintético" in text or "sintetico" in text:
         flags.append("mentions_synthetic")
     if "mock" in text or "placeholder" in text:
@@ -219,9 +215,14 @@ def collect_inventory(root: Path, config: InventoryConfig) -> tuple[list[Invento
             continue
         path = root / rel
         try:
-            stat = path.stat()
+            stat = path.lstat()
             ext = path.suffix.lower() or "NO_EXT"
             lines, text = read_text_for_flags(path, ext, config)
+            extra_flags: list[str] = []
+            if path.is_symlink():
+                extra_flags.append("symlink")
+                if not path.exists():
+                    extra_flags.append("broken_symlink")
             items.append(
                 InventoryItem(
                     path=rel,
@@ -230,7 +231,7 @@ def collect_inventory(root: Path, config: InventoryConfig) -> tuple[list[Invento
                     tipo=classify(rel, ext),
                     linhas=lines,
                     sha256=sha256_file(path),
-                    flags=detect_flags(rel, text, config.real_data_markers),
+                    flags=detect_flags(rel, text, config.real_data_markers, extra_flags),
                 )
             )
         except Exception as exc:  # noqa: BLE001 - collect all custody gaps.
@@ -252,19 +253,18 @@ def build_summary(items: list[InventoryItem], errors: list[dict[str, str]], trac
     }
 
 
-def generated_header(root: Path) -> tuple[str, str]:
-    generated_at = dt.datetime.now(dt.timezone.utc).isoformat()
-    commit = git_ref(root, full=True)
-    return generated_at, commit
+def inventory_contract_lines() -> list[str]:
+    return [
+        "Gerado por: `tools/docs_inventory.py`",
+        "Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e commit não são materializados para reduzir conflitos entre branches.",
+    ]
 
 
 def render_markdown_inventory(root: Path, items: list[InventoryItem], errors: list[dict[str, str]], summary: dict[str, int]) -> str:
-    generated_at, commit = generated_header(root)
     lines = [
         "# Documentation Full Inventory",
         "",
-        f"Gerado em: `{generated_at}`",
-        f"Commit: `{commit}`",
+        *inventory_contract_lines(),
         "",
         "## Resumo",
         "",
@@ -300,7 +300,7 @@ def render_markdown_inventory(root: Path, items: list[InventoryItem], errors: li
 
 
 def render_real_numbers(summary: dict[str, int], errors: list[dict[str, str]]) -> str:
-    lines = ["# Real Numbers Report", "", "| Métrica | Valor |", SUMMARY_SEPARATOR]
+    lines = ["# Real Numbers Report", "", *inventory_contract_lines(), "", "| Métrica | Valor |", SUMMARY_SEPARATOR]
     for key, value in summary.items():
         lines.append(f"| `{key}` | {value} |")
     lines.extend(
@@ -326,6 +326,8 @@ def render_yml_index(items: list[InventoryItem]) -> str:
     yml_items = [item for item in items if item.ext in {".yml", ".yaml"}]
     lines = [
         "# YML Workflows and Config Index",
+        "",
+        *inventory_contract_lines(),
         "",
         "| Path | Tipo | Bytes | Linhas | SHA256 |",
         "|---|---|---:|---:|---|",

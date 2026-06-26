@@ -1,0 +1,8 @@
+z,fsigma8,sigma,survey,reference,notes
+0.067,0.423,0.055,6dFGS,Beutler2012,low-redshift RSD measurement
+0.38,0.497,0.045,BOSS_DR12,Alam2017_consensus,consensus RSD point diagonal-only use
+0.51,0.458,0.038,BOSS_DR12,Alam2017_consensus,consensus RSD point diagonal-only use
+0.57,0.462,0.041,BOSS_DR11_CMASS,Alam2015,CMASS RSD point
+0.61,0.436,0.034,BOSS_DR12,Alam2017_consensus,consensus RSD point diagonal-only use
+0.70,0.430,0.050,eBOSS_DR16_LRG_ELG_Fourier,Zhao2020,multitracer Fourier RSD point
+0.845,0.300,0.080,eBOSS_DR16_LRG_ELG_Fourier,Zhao2020,multitracer Fourier RSD point

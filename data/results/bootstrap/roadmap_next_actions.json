@@ -1,0 +1,154 @@
+{
+  "schema_version": "0.1",
+  "status": "roadmap_next_actions_generated",
+  "claim_allowed": false,
+  "purpose": "Operational roadmap from current seed-stage validation scaffold toward raw-data validated scientific workflows.",
+  "current_state": {
+    "seed_items": 19,
+    "active_routes": 6,
+    "cosmology_background": "blocked",
+    "claim_allowed_true_routes": 0,
+    "raw_data_complete_routes": 0,
+    "strongest_current_route": "compact_remnant_boundary",
+    "strongest_transdisciplinary_route": "orbital_shape_angular_momentum",
+    "highest_productization_asset": "claim governance plus dense feature matrix plus validation dashboard"
+  },
+  "phases": [
+    {
+      "phase": "P0",
+      "title": "Freeze governance and canonical artifacts",
+      "goal": "Make the existing seed-stage system stable, reproducible, and hard to overclaim.",
+      "tasks": [
+        "Run Claim Boundary Quality Gates workflow",
+        "Run Dense Feature Matrix workflow",
+        "Confirm no artifact contains unsupported claim_allowed=true",
+        "Confirm canonical JSON, TSV, and MD artifacts match latest CI outputs",
+        "Add or update contract checks if CI output format changes"
+      ],
+      "done_when": [
+        "claim boundary gate passes",
+        "dense feature matrix artifact is generated",
+        "canonical artifacts are committed",
+        "claim_allowed remains false everywhere"
+      ],
+      "value_unlocked": "trust, governance, reproducibility, readiness for external review"
+    },
+    {
+      "phase": "P1",
+      "title": "Raw data manifest and checksum layer",
+      "goal": "Convert external-only seed references into auditable local raw-data records.",
+      "tasks": [
+        "Create data/raw/RAW_DATA_MANIFEST.yml",
+        "Add fields: source_url, access_date_utc, license_or_terms, sha256, local_path, source_version",
+        "Define data/raw/compact_objects/gw/posteriors/",
+        "Define data/raw/orbital_dynamics/ephemerides/",
+        "Define data/raw/astrometry/gaia_bh/",
+        "Define data/raw/high_z_smbh/",
+        "Add script to calculate sha256 for local raw files"
+      ],
+      "done_when": [
+        "at least one raw dataset is represented with sha256",
+        "manifest validates locally",
+        "claim_allowed still false until baseline and error model exist"
+      ],
+      "value_unlocked": "moves project from seed references toward real reproducible data custody"
+    },
+    {
+      "phase": "P2",
+      "title": "Compact remnant v2",
+      "goal": "Turn the strongest immediate route into a falsifiable metric using real posterior or catalog tables.",
+      "tasks": [
+        "Ingest one GW posterior sample or compact-object catalog table",
+        "Compute mass_gap_overlap_probability",
+        "Add EOS and low-mass black-hole baseline placeholders with clear provenance",
+        "Write data/results/compact_objects/remnant_boundary_validation_v2.json",
+        "Write docs/science/COMPACT_REMNANT_BOUNDARY_V2_REPORT.md",
+        "Add CI workflow or extend existing compact-object workflow"
+      ],
+      "done_when": [
+        "mass_gap_overlap_probability exists",
+        "input data has sha256 or explicit external-only boundary",
+        "baseline comparison is represented",
+        "negative result ledger is updated if RLL does not improve anything"
+      ],
+      "value_unlocked": "highest near-term academic value and strongest falsifiable scientific route"
+    },
+    {
+      "phase": "P3",
+      "title": "Orbital state-vector v2",
+      "goal": "Move orbital route from reference constants to vector residual tests.",
+      "tasks": [
+        "Ingest one state-vector table for Earth or Mars",
+        "Compute h_vector = |r x v|",
+        "Compare h_vector against seed formula h = sqrt(mu*a*(1-e^2))",
+        "Compute state_vector_vs_reference_h_residual",
+        "Add baseline note: Kepler/Newton/J2/SPICE or Horizons source",
+        "Write orbital_shape_angular_momentum_v2.json and report"
+      ],
+      "done_when": [
+        "state-vector residual exists",
+        "source/version/access metadata exists",
+        "uncertainty or precision note exists",
+        "no new-gravity claim is made"
+      ],
+      "value_unlocked": "strongest transdisciplinary math bridge: vectors, shape, spin, angular momentum"
+    },
+    {
+      "phase": "P4",
+      "title": "Schemas, tests, and artifact contracts v2",
+      "goal": "Make every central JSON artifact machine-checkable.",
+      "tasks": [
+        "Extend schemas to dense_behavior_features and dense_item_value_map",
+        "Add test for total_items=19 until item set changes intentionally",
+        "Add test for raw_data_local false in seed-stage matrix",
+        "Add test that negative_results_ledger contains all active routes",
+        "Add workflow step for schema/contract checks"
+      ],
+      "done_when": [
+        "CI fails on malformed artifact",
+        "CI fails on missing claim_allowed",
+        "CI fails on unsupported change in route count or item count"
+      ],
+      "value_unlocked": "software quality and external collaborator confidence"
+    },
+    {
+      "phase": "P5",
+      "title": "Residual, high-z, and slingshot maturation",
+      "goal": "Move lateral high-potential routes from seed to first measurable metric.",
+      "tasks": [
+        "Residual route: add stream_membership_probability scaffold",
+        "High-z route: add Eddington growth grid with uncertainty columns",
+        "Slingshot route: add traceback_probability scaffold",
+        "Update negative results ledger after each measurable result",
+        "Update dense item value map after each v2 result"
+      ],
+      "done_when": [
+        "each route has one route-specific v2 metric artifact",
+        "each route has baseline and limitation notes",
+        "all remain claim_allowed=false unless full proof conditions exist"
+      ],
+      "value_unlocked": "broader academic portfolio and richer product demo"
+    },
+    {
+      "phase": "P6",
+      "title": "Paper and product packaging",
+      "goal": "Package the system as a scientific claim-governance engine and research workflow artifact.",
+      "tasks": [
+        "Write docs/science/PAPER_OUTLINE_VALIDATION_GOVERNANCE.md",
+        "Write docs/science/PRODUCT_NOTE_CLAIM_GOVERNANCE_ENGINE.md",
+        "Add one-page executive summary",
+        "Prepare reproducibility matrix for external reviewer",
+        "Prepare examples: compact remnant and orbital v2"
+      ],
+      "done_when": [
+        "paper outline exists",
+        "product note exists",
+        "two reproducible examples exist",
+        "claims are conservative and auditable"
+      ],
+      "value_unlocked": "academic communication, partnership readiness, SaaS/prototype framing"
+    }
+  ],
+  "recommended_next_single_action": "P1: create RAW_DATA_MANIFEST.yml and sha256 helper, then choose compact_remnant_boundary v2 as first raw-data route.",
+  "safe_conclusion": "The roadmap prioritizes trust and raw data before stronger scientific claims. The system remains claim_allowed=false until the full evidence chain is present."
+}

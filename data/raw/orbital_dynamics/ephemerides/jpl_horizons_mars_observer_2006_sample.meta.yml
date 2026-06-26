@@ -1,0 +1,59 @@
+schema_version: 0.1
+status: raw_file_present_hash_ready
+claim_allowed: false
+
+raw_id: RAW_JPL_HORIZONS_MARS_OBSERVER_2006_SAMPLE
+route_id: orbital_shape_angular_momentum
+record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+raw_role: observer_ephemeris_sample
+
+source:
+  provider: NASA/JPL Horizons API
+  source_url: "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='499'&OBJ_DATA='YES'&MAKE_EPHEM='YES'&EPHEM_TYPE='OBSERVER'&CENTER='500@399'&START_TIME='2006-01-01'&STOP_TIME='2006-01-20'&STEP_SIZE='1%20d'&QUANTITIES='1,9,20,23,24,29'"
+  access_date_utc: "2026-06-13"
+  source_version: "Horizons API; API VERSION observed as 1.2 in response; documentation page version 1.3 dated 2025 June"
+  license_or_terms: "NASA/JPL public API output; verify downstream reuse terms before redistribution outside this repository"
+
+local:
+  path: data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_observer_2006_sample.csv
+  sha256: 9c8a018c46865766ae00a42340341207b7fe4ae974ca9ec3ccaca257a3eca6e8
+  bytes: 1146
+  raw_data_local: true
+
+columns:
+  - date_utc
+  - ra_h
+  - ra_m
+  - ra_s
+  - dec_sign
+  - dec_d
+  - dec_m
+  - dec_s
+  - apmag
+  - s_brt
+  - delta_au
+  - deldot_km_s
+  - sot_deg
+  - trail_code
+  - sto_deg
+  - constellation
+
+claim_boundary:
+  raw_sample_is_not_full_validation: true
+  observer_ephemeris_is_not_state_vector: true
+  state_vector_v2_still_required: true
+  baseline_required_for_metric_claim: true
+  uncertainty_required_for_metric_claim: true
+  claim_allowed: false
+
+next_metrics:
+  - observer_ephemeris_delta_deldot_profile
+  - state_vector_vs_reference_h_residual_after_vector_ingestion
+
+safe_conclusion: First raw Horizons sample is locally versioned and checksummed, but it is observer ephemeris data, not the final state-vector dataset required for orbital v2 claims.
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

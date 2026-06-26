@@ -1,0 +1,30 @@
+schema_version: 0.1
+status: raw_file_present_hash_ready
+claim_allowed: false
+raw_id: RAW_JPL_HORIZONS_MARS_VECTORS_2006_SAMPLE
+route_id: orbital_shape_angular_momentum
+record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+raw_role: heliocentric_cartesian_state_vector_sample
+source:
+  provider: NASA/JPL Horizons API
+  source_url: 'https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%27499%27&OBJ_DATA=NO&MAKE_EPHEM=YES&EPHEM_TYPE=VECTORS&CENTER=%27500%4010%27&START_TIME=%272006-01-01%27&STOP_TIME=%272006-01-02%27&STEP_SIZE=%271%20d%27&OUT_UNITS=%27KM-S%27&VEC_TABLE=%272%27&CSV_FORMAT=YES&TIME_TYPE=TDB'
+  access_date_utc: generated_by_ci_runtime
+  source_version: Horizons API runtime response
+  license_or_terms: NASA/JPL public API output; verify downstream reuse terms before redistribution outside this repository
+local:
+  path: data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv
+  sha256: 32406d83e4fa91fdf3d0f4359a849503c4b33bfa8fef1b71fdf496231ba15c86
+  bytes: 359
+  raw_data_local: true
+claim_boundary:
+  state_vector_sample_is_not_full_validation: true
+  baseline_required_for_metric_claim: true
+  uncertainty_required_for_metric_claim: true
+  claim_allowed: false
+safe_conclusion: Raw Horizons vector sample is locally present and checksummed against the canonical LF-normalized repository artifact, but claims remain blocked pending baseline and uncertainty model.
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

@@ -1,0 +1,129 @@
+# Hypervelocity / Historical Impulse Source Ledger
+# Status: TOKEN_VAZIO protected source ledger
+# Purpose: map real observational sources needed to test slingshot, Hills mechanism, three-body scattering, recoil, and trajectory-memory claims.
+
+schema_version: 0.1
+claim_allowed: false
+status: TOKEN_VAZIO
+module: historical_impulse_slingshot
+linked_docs:
+  - docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md
+  - docs/science/GRAVITATIONAL_RESIDUAL_MEMORY_AND_COMPACT_GAPS.md
+  - docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+
+required_evidence_channels:
+  - proper_motion
+  - radial_velocity
+  - distance_or_parallax
+  - origin_traceback
+  - velocity_gain_estimate
+  - encounter_model
+  - escape_velocity_context
+
+source_records:
+  - id: TOKEN_VAZIO_HVS_001
+    candidate_type: hypervelocity_star
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - object_id
+      - ra
+      - dec
+      - parallax_or_distance
+      - proper_motion_ra
+      - proper_motion_dec
+      - radial_velocity
+      - total_velocity
+      - origin_trace_probability
+      - galactic_escape_velocity_context
+    physical_parameters:
+      v_total_km_s: null
+      v_escape_km_s: null
+      Delta_v_km_s: null
+      t_enc_myr: null
+      origin_candidate: TOKEN_VAZIO
+    validation_link:
+      script_expected: scripts/validation/validate_historical_impulse_candidates.py
+      metric_expected: traceback_probability
+      baseline_model: Hills_mechanism_or_galactic_dynamics_baseline
+    claim_boundary:
+      high_velocity_not_unique_origin: true
+      traceback_required: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_RUNAWAY_001
+    candidate_type: runaway_star_or_compact_remnant
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - object_id
+      - 6d_phase_space_if_available
+      - stellar_type_or_remnant_type
+      - velocity_relative_to_local_standard
+      - candidate_origin_cluster_or_binary
+      - supernova_or_dynamical_ejection_alternative
+    physical_parameters:
+      v_runaway_km_s: null
+      t_ejection_myr: null
+      M_object_msun: null
+    validation_link:
+      script_expected: scripts/validation/validate_historical_impulse_candidates.py
+      metric_expected: ejection_scenario_consistency
+      baseline_model: supernova_kick_or_cluster_dynamics_baseline
+    claim_boundary:
+      runaway_channel_not_unique: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_RECOIL_TRACE_001
+    candidate_type: gravitational_wave_recoil_trace
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - compact_object_or_agn_id
+      - spatial_offset
+      - velocity_offset
+      - host_galaxy_center
+      - merger_or_waveform_context
+      - bound_star_cluster_if_available
+      - alternative_offset_models
+    physical_parameters:
+      v_kick_km_s: null
+      offset_pc: null
+      M_bh_msun: null
+    validation_link:
+      script_expected: scripts/validation/validate_historical_impulse_candidates.py
+      metric_expected: recoil_consistency
+      baseline_model: gravitational_wave_recoil_or_galaxy_merger_baseline
+    claim_boundary:
+      offset_not_unique_recoil_proof: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_trajectory_before_origin_claim: true
+  require_velocity_uncertainty: true
+  require_escape_context: true
+  require_baseline_before_interpretation: true
+  require_checksum_before_claim_if_local: true

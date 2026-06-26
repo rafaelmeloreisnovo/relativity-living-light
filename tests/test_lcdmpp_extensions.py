@@ -3,12 +3,15 @@ import numpy as np
 from data.pipelines.structure_d.cosmo import (
     H_of_z,
     H_of_z_extended,
+    Omega_m_z,
     omega_astro,
     omega_ede,
+    omega_fundamental,
+    omega_neutrino,
     omega_topological,
 )
 from data.pipelines.structure_d.growth import f_sigma8_proxy
-from data.pipelines.structure_d.models import model_RLL_LCDMpp_Hz
+from data.pipelines.structure_d.likelihood import is_physically_stable, log_prior
 
 
 def test_omega_astro_and_terms_are_vectorized():
@@ -49,22 +52,43 @@ def test_growth_gamma_default_matches_requested_gr_convention():
 
 def test_model_rll_lcdmpp_hz_includes_new_components_without_crash():
     z = np.array([0.0, 1.0])
+    out = Omega_m_z(
+        z,
+        Om=0.3,
+        Or=0.0,
+        Ol=0.7,
+        Omega_fund=lambda zz: omega_fundamental(zz, Omega_e=0.01, m=1.0, beta_topo=0.001),
+        Omega_nu=lambda zz: omega_neutrino(zz, Omega_nu=0.001),
+    )
+    assert np.all(np.isfinite(out))
+    assert np.all(out > 0.0)
+
+
+def test_likelihood_stability_rejects_negative_lcdmpp_e2():
     params = {
         "H0": 70.0,
         "Om": 0.3,
         "Or": 0.0,
         "Ol": 0.7,
-        "Onu": 0.001,
-        "Omega_q0": 0.0,
-        "A_astro": 0.01,
-        "n_astro": 1.0,
-        "z_c_astro": 2.0,
-        "Omega_e": 0.005,
-        "m_ede": 1.0,
-        "beta_topo": 0.001,
-        "lambda_brane": 1000.0,
+        "Omega_e": -2.0,
+        "m_ede": 0.0,
     }
-    hz = model_RLL_LCDMpp_Hz(z, params)
-    assert hz.shape == z.shape
-    assert np.all(np.isfinite(hz))
-    assert np.all(hz > 0.0)
+
+    assert not is_physically_stable(params)
+    assert log_prior(params) == -np.inf
+
+
+def test_likelihood_stability_accepts_positive_lcdmpp_e2_grid():
+    params = {
+        "H0": 70.0,
+        "Om": 0.3,
+        "Or": 0.0,
+        "Ol": 0.7,
+        "Omega_e": 0.02,
+        "m_ede": 1.0,
+        "Omega_nu": 0.001,
+    }
+
+    assert is_physically_stable(
+        params, data={"stability_z_grid": np.linspace(0.0, 3.0, 16)}
+    )

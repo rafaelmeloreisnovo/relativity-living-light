@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1",
+  "module": "wandering_black_holes_and_lensing_gaps",
+  "source": "data/real/compact_objects/wandering_black_hole_sources.yml",
+  "claim_allowed": false,
+  "claim_boundary": "readiness scan only; black-hole claims require lensing/dynamics, baseline alternatives, and checksums",
+  "records": [
+    {
+      "id": "TOKEN_VAZIO_WBH_001",
+      "candidate_type": "wandering_bh",
+      "missing_fields": [
+        "dataset_name",
+        "provider",
+        "url_or_reference",
+        "local_path",
+        "checksum_sha256",
+        "raw_data_available"
+      ],
+      "status": "blocked_missing_observational_data"
+    },
+    {
+      "id": "TOKEN_VAZIO_DARK_LENS_001",
+      "candidate_type": "dark_lens",
+      "missing_fields": [
+        "dataset_name",
+        "provider",
+        "url_or_reference",
+        "local_path",
+        "checksum_sha256",
+        "raw_data_available"
+      ],
+      "status": "blocked_missing_observational_data"
+    },
+    {
+      "id": "TOKEN_VAZIO_RECOIL_001",
+      "candidate_type": "recoiling_bh",
+      "missing_fields": [
+        "dataset_name",
+        "provider",
+        "url_or_reference",
+        "local_path",
+        "checksum_sha256",
+        "raw_data_available"
+      ],
+      "status": "blocked_missing_observational_data"
+    }
+  ],
+  "status": "blocked_missing_observational_data",
+  "rollback": "preserve source YAML; remove generated JSON or git revert this validator output"
+}

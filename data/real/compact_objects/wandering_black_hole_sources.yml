@@ -1,0 +1,117 @@
+# Wandering / Silent Black Hole Source Ledger
+# Status: TOKEN_VAZIO protected source ledger
+# Purpose: map missing observational data needed to test wandering, recoiling, silent, dark-lens, and orphan compact-mass candidates.
+
+schema_version: 0.1
+claim_allowed: false
+status: TOKEN_VAZIO
+module: wandering_black_holes_and_lensing_gaps
+linked_docs:
+  - docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+
+required_evidence_channels:
+  - lensing
+  - microlensing
+  - astrometric_lensing
+  - stellar_kinematics
+  - hypervelocity_traceback
+  - gravitational_wave_history
+  - multiwavelength_accretion_constraints
+
+source_records:
+  - id: TOKEN_VAZIO_WBH_001
+    candidate_type: wandering_bh
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - position
+      - proper_motion_or_velocity
+      - mass_estimate
+      - lensing_or_dynamical_signature
+      - luminous_counterpart_search
+      - multiwavelength_non_detection_or_accretion_state
+      - baseline_alternatives
+      - error_model
+    physical_parameters:
+      M_dark_msun: null
+      theta_E_arcsec: null
+      alpha_deflect_mas: null
+      v_kick_km_s: null
+      Delta_v_km_s: null
+      t_enc_myr: null
+      accretion_rate_state: unknown
+    validation_link:
+      script_expected: scripts/validation/validate_wandering_bh_candidates.py
+      metric_expected: TOKEN_VAZIO
+      baseline_model: TOKEN_VAZIO
+    claim_boundary:
+      black_hole_confirmed: false
+      mass_carrier_required: true
+      lensing_or_dynamics_required: true
+      no_luminosity_is_not_proof: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_DARK_LENS_001
+    candidate_type: dark_lens
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - lens_geometry
+      - event_timescale_or_image_configuration
+      - lens_mass_posterior
+      - luminous_counterpart_search
+      - alternative_lens_models
+    validation_link:
+      script_expected: scripts/validation/validate_dark_lens_candidates.py
+      metric_expected: TOKEN_VAZIO
+      baseline_model: TOKEN_VAZIO
+    claim_boundary:
+      black_hole_confirmed: false
+      lensing_mass_only_is_not_unique: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+  - id: TOKEN_VAZIO_RECOIL_001
+    candidate_type: recoiling_bh
+    dataset_name: TOKEN_VAZIO
+    provider: TOKEN_VAZIO
+    url_or_reference: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    data_type: TOKEN_VAZIO
+    raw_data_available: false
+    local_path: TOKEN_VAZIO
+    checksum_sha256: TOKEN_VAZIO
+    observables_required:
+      - spatial_offset
+      - velocity_offset
+      - host_galaxy_model
+      - merger_history_or_alternative
+      - accretion_state
+    validation_link:
+      script_expected: scripts/validation/validate_wandering_bh_candidates.py
+      metric_expected: TOKEN_VAZIO
+      baseline_model: TOKEN_VAZIO
+    claim_boundary:
+      offset_is_not_unique_proof: true
+      claim_allowed: false
+    status: TOKEN_VAZIO
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_checksum_before_claim: true
+  require_observable_before_metric: true
+  require_baseline_before_interpretation: true

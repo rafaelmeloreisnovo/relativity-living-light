@@ -25,8 +25,34 @@ Este repositório inclui agora um pacote público organizado para leitura, audit
 - Roadmap e falsificadores: [`docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`](docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md)
 - Checklist de publicação: [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md)
 - Limite nulo e AION: [`docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`](docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md)
+- Modelo Vetorial Informacional (MVICS): [`docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md`](docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md)
 
 Regra de leitura: metáfora ilumina, mas não valida; dado, predição, cálculo e falsificador sustentam a camada científica.
+
+---
+
+## Rastreabilidade, anterioridade e cadeia de custódia
+
+A leitura de claims do RLL/MCRP deve passar pelo mapa central de rastreabilidade antes de qualquer conclusão:
+
+- Mapa central: [`docs/RLL_TRACEABILITY_MAP.md`](docs/RLL_TRACEABILITY_MAP.md)
+- Auditoria da tag `v1.0.0`: [`docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md`](docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md)
+- Proveniência celular/Termux: [`docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md`](docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md)
+- Plano de documentação seguinte: [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md)
+- Auditoria textual do `1234.zip`: [`docs/RLL_1234_CHUNK_TEXT_AUDIT.md`](docs/RLL_1234_CHUNK_TEXT_AUDIT.md)
+
+Estados permitidos para qualquer alegação:
+
+| Estado | Uso |
+|---|---|
+| `VERIFIED` | lido em tag, commit, arquivo, release, resultado ou manifesto |
+| `DECLARED_BY_AUTHOR` | declarado por Rafael, ainda sem prova independente no repo |
+| `TOKEN_VAZIO` | evidência necessária ainda não localizada |
+| `CONTRADICTION` | evidência encontrada contradiz a alegação |
+
+Resumo seguro atual:
+
+> A tag pública `v1.0.0` de 2025 já documenta a base RLL, incluindo formulação cosmológica, termo de superposição e observáveis planejados. As validações DESI/CPL/AICc/joint-real são maturações posteriores. Isso sustenta anterioridade documental/matemática da estrutura-base, mas não confirma verdade física nem vitória estatística.
 
 ---
 
@@ -66,11 +92,12 @@ Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um
 
 ## Leitura recomendada (ordem canônica)
 1. `README.md` (este documento)
-2. `docs/INDICE_MESTRE.md`
-3. `docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`
-4. `docs/ACADEMIC_TAXONOMY_INDEX.md`
-5. `docs/REFERENCES.md`
-6. `docs/DOCUMENTATION_FULL_INVENTORY.md`
+2. `docs/RLL_TRACEABILITY_MAP.md`
+3. `docs/INDICE_MESTRE.md`
+4. `docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`
+5. `docs/ACADEMIC_TAXONOMY_INDEX.md`
+6. `docs/REFERENCES.md`
+7. `docs/DOCUMENTATION_FULL_INVENTORY.md`
 
 ---
 
@@ -98,6 +125,7 @@ Este arquivo foi normalizado para **uso acadêmico-profissional** com linguagem 
 
 ## 3. Arquitetura documental e encadeamento por índices
 - Índice mestre: `docs/INDICE_MESTRE.md`
+- Mapa de rastreabilidade: `docs/RLL_TRACEABILITY_MAP.md`
 - Inventário científico: `docs/ACADEMIC_TAXONOMY_INDEX.md`
 - Referências globais: `docs/REFERENCES.md`
 - Inventário documental: `docs/DOCUMENTATION_FULL_INVENTORY.md`
@@ -119,22 +147,3 @@ Este arquivo foi normalizado para **uso acadêmico-profissional** com linguagem 
 O conteúdo original permanece abaixo para preservar trilha de auditoria e contexto evolutivo.
 
 ---
-
-# Relativity Living Light
-
-**Norma canônica de convenções globais:** [docs/canonicos/CONVENCOES_GLOBAIS_RLL.md](docs/canonicos/CONVENCOES_GLOBAIS_RLL.md)
-
-
-**📘 Trilha principal oficial do livro:** [book/README.md](book/README.md)
-
-**Resumo de validação observacional:** validação ainda em estágio **Sintético**, com integração **Parcial real** em preparação e sem etapa **Real validado** concluída.
-
-[![DOI](https://zenodo.org/badge/1046495816.svg)](https://doi.org/10.5281/zenodo.17188137)
-
-Repositório principal do modelo **Relativity Living Light (RLL)**, com foco em cosmologia de superposição dinâmica, documentação técnico-científica, trilhas de validação observacional e acervo autoral RAFAELIA (∆RafaelVerboΩ).
-
----
-
-## Escopo deste arquivo
-
-Este `README.md` é **porta de entrada** do repositório.

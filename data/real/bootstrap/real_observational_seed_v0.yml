@@ -1,0 +1,175 @@
+# Real Observational Seed Catalog v0
+# Status: external_only_seed
+# Purpose: introduce real observational anchor records before full raw-catalog ingestion.
+# Claim policy: these records are not validation results. They are seed anchors for future ingestion, checksums, metrics, and baselines.
+
+schema_version: 0.1
+status: external_only_seed
+claim_allowed: false
+created_context: initial_real_data_seed_for_RLL_bootstrap
+linked_docs:
+  - docs/science/REAL_DATA_BOOTSTRAP_VALIDATION_SYSTEM.md
+  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+  - docs/science/GRAVITATIONAL_RESIDUAL_MEMORY_AND_COMPACT_GAPS.md
+  - docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md
+
+source_policy:
+  raw_data_local: false
+  local_checksum_status: not_applicable_external_only
+  interpretation_status: seed_record_only
+  require_future_raw_catalog_ingestion: true
+  require_future_metric_before_claim: true
+
+seed_records:
+  - record_id: REAL_SEED_GW230529_181500
+    module: compact_remnant_boundary
+    object_or_event: GW230529_181500
+    source_type: gravitational_wave_event_paper
+    provider_or_authors: LIGO Scientific Collaboration, Virgo Collaboration, KAGRA Collaboration
+    reference: arXiv:2404.04248
+    reference_url: https://arxiv.org/abs/2404.04248
+    publication_year: 2024
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      event_date_utc: '2023-05-29T18:15:00Z'
+      detector_context: LIGO Livingston observation during LVK O4
+      primary_mass_msun_90pct_range: [2.5, 4.5]
+      secondary_mass_msun_90pct_range: [1.2, 2.0]
+      primary_mass_less_than_5_msun_credibility: '99 percent reported by source'
+      source_class_interpretation: compact_binary_with_lower_mass_gap_primary_candidate
+      classification_caution: gravitational_wave_data_alone_does_not_definitively_identify_NS_or_BH_components
+    required_future_validation:
+      - ingest_GWOSC_or_LVK_posterior_samples_when_available
+      - record_catalog_version
+      - compute_mass_gap_classification_with_uncertainty
+      - compare_against_NS_EOS_and_BH_mass_baselines
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_PSR_J0740_6620
+    module: compact_remnant_boundary
+    object_or_event: PSR J0740+6620
+    source_type: neutron_star_mass_radius_paper
+    provider_or_authors: Miller et al.; Fonseca et al.
+    reference: arXiv:2105.06979 and arXiv:2104.00880
+    reference_url: https://arxiv.org/abs/2105.06979
+    secondary_reference_url: https://arxiv.org/abs/2104.00880
+    publication_year: 2021
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      gravitational_mass_msun: 2.08
+      gravitational_mass_uncertainty_msun: 0.07
+      radius_km_68pct_median: 13.7
+      radius_km_68pct_upper: 2.6
+      radius_km_68pct_lower: 1.5
+      measurement_context: NICER_and_XMM_Newton_radius_with_radio_timing_mass_context
+      relevance: high_mass_neutron_star_constraint_for_EOS_and_NS_BH_boundary
+    required_future_validation:
+      - ingest_pulsar_mass_catalog_or_timing_table
+      - record_mass_measurement_method
+      - compare_against_neutron_star_EOS_limits
+      - propagate_radius_uncertainty
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_OGLE_2011_BLG_0462
+    module: wandering_black_holes
+    object_or_event: OGLE-2011-BLG-0462 / MOA-2011-BLG-191
+    source_type: astrometric_microlensing_black_hole_candidate_paper
+    provider_or_authors: Sahu et al.
+    reference: arXiv:2503.07820
+    reference_url: https://arxiv.org/abs/2503.07820
+    publication_year: 2025
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      lens_mass_msun: 7.15
+      lens_mass_uncertainty_msun: 0.83
+      lens_distance_kpc: 1.52
+      lens_distance_uncertainty_kpc: 0.15
+      space_velocity_km_s: 51.1
+      space_velocity_uncertainty_km_s: 7.5
+      method: HST_astrometry_plus_updated_photometry_microlensing
+      accretion_or_light_context: lack_of_detected_lens_light_reported_by_source
+      relevance: isolated_or_silent_stellar_mass_black_hole_seed_for_dark_lens_module
+    required_future_validation:
+      - ingest_photometric_and_astrometric_table_if_public
+      - compare_alternative_mass_analyses
+      - compute_lensing_mass_consistency
+      - record_luminous_counterpart_search_limits
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_LMC_HYPERVELOCITY_SMBH
+    module: historical_impulse_slingshot
+    object_or_event: Hypervelocity stars tracing possible LMC SMBH
+    source_type: hypervelocity_star_traceback_paper
+    provider_or_authors: Han et al.
+    reference: arXiv:2502.00102
+    reference_url: https://arxiv.org/abs/2502.00102
+    publication_year: 2025
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      data_context: Gaia_DR3_proper_motions_and_HVS_Survey_sample
+      reported_unbound_B_type_HVS_count: 21
+      reported_fraction_tracing_to_LMC: about_half
+      inferred_LMC_SMBH_mass_log10_msun: 5.8
+      inferred_LMC_SMBH_mass_log10_upper: 0.2
+      inferred_LMC_SMBH_mass_log10_lower: 0.4
+      approximate_mass_msun: 600000
+      mechanism: Hills_mechanism_forward_model
+      relevance: real_seed_for_slingshot_historical_impulse_and_origin_trace_module
+    required_future_validation:
+      - ingest_HVS_catalog_with_phase_space_columns
+      - compute_traceback_probability
+      - compare_Galactic_Center_vs_LMC_origin_models
+      - compute_escape_velocity_consistency
+    claim_allowed: false
+    status: external_only_seed
+
+  - record_id: REAL_SEED_UHZ1_HIGHZ_SMBH
+    module: high_z_smbh_seeds
+    object_or_event: UHZ1
+    source_type: Chandra_JWST_high_redshift_black_hole_seed_paper
+    provider_or_authors: Natarajan et al.; Whalen et al.
+    reference: arXiv:2308.02654 and arXiv:2308.03837
+    reference_url: https://arxiv.org/abs/2308.02654
+    secondary_reference_url: https://arxiv.org/abs/2308.03837
+    publication_year: 2023
+    external_only: true
+    local_path: external_only
+    checksum_sha256: not_applicable_external_only
+    observables:
+      redshift: 10.1
+      approximate_age_after_big_bang_myr: 470
+      estimated_black_hole_mass_msun: 40000000
+      bolometric_luminosity_erg_s: '5e45'
+      discovery_context: Chandra_Xray_plus_JWST_NIRCam_NIRSpec_context
+      interpretation_caution: candidate_overmassive_black_hole_galaxy_and_heavy_seed_scenario
+      relevance: high_z_SMBH_seed_growth_constraint
+    required_future_validation:
+      - ingest_redshift_and_photometry_spectroscopy_source_tables
+      - check_lensing_magnification_and_selection_context
+      - compute_Eddington_growth_feasibility
+      - compare_light_seed_heavy_seed_direct_collapse_models
+    claim_allowed: false
+    status: external_only_seed
+
+validation_boundary:
+  these_records_are_not_raw_catalogs: true
+  these_records_are_not_final_metrics: true
+  these_records_can_seed_ingestion_workflows: true
+  global_claim_allowed: false
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.1",
+  "status": "orbital_state_vector_v2_generated",
+  "module": "orbital_shape_angular_momentum",
+  "claim_allowed": false,
+  "input_raw_file": "data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv",
+  "seed_file": "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv",
+  "formula": {
+    "h_vector": "|r x v|",
+    "h_seed": "sqrt(mu*a*(1-e^2))",
+    "relative_residual": "(h_vector - h_seed) / h_seed"
+  },
+  "items": [
+    {
+      "record_id": "REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1",
+      "body_system": "Mars",
+      "calendar_tdb": "A.D. 2006-Jan-01 00:00:00.0000",
+      "jd_tdb": 2453736.5,
+      "state_vector_km_km_s": {
+        "x_km": 61083369.46835414,
+        "y_km": 220757665.4727506,
+        "z_km": 3124955.669833437,
+        "vx_km_s": -22.43445381356987,
+        "vy_km_s": 8.522324624760257,
+        "vz_km_s": 0.729697881433895
+      },
+      "h_vector_components": {
+        "hx_km2_s": 134454514.14945292,
+        "hy_km2_s": -114679078.93623343,
+        "hz_km2_s": 5473149953.823415,
+        "h_vector_km2_s": 5476002166.230221
+      },
+      "h_seed_formula_km2_s": 5475990916.542538,
+      "state_vector_vs_reference_h_residual_km2_s": 11249.687683105469,
+      "state_vector_vs_reference_h_relative_residual": 2.0543656581169718e-06,
+      "claim_allowed": false
+    },
+    {
+      "record_id": "REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1",
+      "body_system": "Mars",
+      "calendar_tdb": "A.D. 2006-Jan-02 00:00:00.0000",
+      "jd_tdb": 2453737.5,
+      "state_vector_km_km_s": {
+        "x_km": 59142544.39884686,
+        "y_km": 221484894.7595732,
+        "z_km": 3187872.023810804,
+        "vx_km_s": -22.49172010691555,
+        "vy_km_s": 8.31166014966696,
+        "vz_km_s": 0.7266905055652093
+      },
+      "h_vector_components": {
+        "hx_km2_s": 134454461.28534502,
+        "hy_km2_s": -114679050.78582987,
+        "hz_km2_s": 5473148990.2717705,
+        "h_vector_km2_s": 5476001201.292926
+      },
+      "h_seed_formula_km2_s": 5475990916.542538,
+      "state_vector_vs_reference_h_residual_km2_s": 10284.750388145447,
+      "state_vector_vs_reference_h_relative_residual": 1.8781532958858687e-06,
+      "claim_allowed": false
+    }
+  ],
+  "claim_boundary": "This compares Horizons state-vector h with a seed formula. It is a v2 metric artifact, not a new-gravity or RLL superiority claim.",
+  "required_next_data": [
+    "longer state-vector time series",
+    "baseline precision model",
+    "uncertainty/error model",
+    "same calculation for Earth/Jupiter/Moon where appropriate"
+  ],
+  "safe_conclusion": "Orbital v2 computes a real vector residual from raw state vectors, but final scientific claims remain blocked."
+}

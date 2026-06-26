@@ -1,0 +1,63 @@
+# Dense Behavior Feature Orchestration
+# Status: seed-derived feature layer
+# Purpose: convert observed/mapped seed data into denser feature vectors and behavior classes without making scientific prediction claims.
+
+schema_version: 0.1
+status: seed_derived_feature_layer
+claim_allowed: false
+created_context: dense_data_feature_engineering_for_seen_but_not_yet_understood_patterns
+
+inputs:
+  canonical_ingestion_plan: data/results/bootstrap/real_seed_ingestion_plan.json
+  orbital_validation_result: data/results/orbital_dynamics/angular_momentum_shape_validation.json
+  token_vazio_priority_ledger: data/results/bootstrap/token_vazio_priority_ledger.json
+  negative_results_ledger: data/results/negative_results_ledger.json
+
+outputs:
+  dense_feature_json: data/results/bootstrap/dense_behavior_features.json
+  dense_feature_tsv: data/results/bootstrap/dense_behavior_features.tsv
+  dense_feature_report: docs/science/DENSE_BEHAVIOR_FEATURES_REPORT.md
+
+claim_boundary:
+  this_is_feature_engineering: true
+  this_is_not_final_prediction: true
+  raw_data_required_for_scientific_prediction: true
+  baseline_required_for_behavior_claim: true
+  error_model_required: true
+  claim_allowed: false
+
+feature_families:
+  - route_maturity_features
+  - claim_blocker_features
+  - orbital_reference_dynamics_features
+  - behavior_class_features
+  - next_measure_priority_features
+
+behavior_classes:
+  seed_only_waiting_raw_data:
+    meaning: record has mapped seed data but cannot support prediction yet
+  seed_metric_ready_claim_blocked:
+    meaning: record has computed seed-level metric but still lacks raw data and baselines
+  reference_motion_profile:
+    meaning: orbital seed has numerical reference dynamics, useful for later vector comparison
+  high_value_next_measure:
+    meaning: record or route is ranked as a P0/P1 next measurement
+  negative_result_guarded:
+    meaning: route has explicit blocked claims and must not be overinterpreted
+
+next_math_targets:
+  - mass_gap_overlap_probability
+  - state_vector_vs_reference_h_residual
+  - spin_orbit_ratio_series
+  - traceback_probability
+  - stream_membership_probability
+  - Eddington_growth_feasibility_grid
+  - claim_boundary_risk_score
+
+safe_conclusion: Dense features can reveal mathematical routes and candidate behavior classes, but they do not yet predict physical behavior without raw data, uncertainty, and baselines.
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

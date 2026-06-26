@@ -1,0 +1,13 @@
+# RAW_JPL_HORIZONS_MARS_OBSERVER_2006_SAMPLE
+# Source: NASA/JPL Horizons API
+# API query:
+# https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='499'&OBJ_DATA='YES'&MAKE_EPHEM='YES'&EPHEM_TYPE='OBSERVER'&CENTER='500@399'&START_TIME='2006-01-01'&STOP_TIME='2006-01-20'&STEP_SIZE='1%20d'&QUANTITIES='1,9,20,23,24,29'
+# Retrieved in ChatGPT session: 2026-06-13
+# Claim boundary: raw observational ephemeris sample only; no scientific claim.
+# Columns from Horizons table:
+# date_utc,ra_h,ra_m,ra_s,dec_sign,dec_d,dec_m,dec_s,apmag,s_brt,delta_au,deldot_km_s,sot_deg,trail_code,sto_deg,constellation
+2006-Jan-01 00:00,02,32,15.02,+,16,35,29.9,-0.597,4.456,0.77519869764264,14.7500341,120.6420,/T,33.5358,Ari
+2006-Jan-02 00:00,02,33,13.14,+,16,40,57.7,-0.571,4.457,0.78375024572645,14.8614541,119.8715,/T,33.8025,Ari
+2006-Jan-03 00:00,02,34,13.47,+,16,46,32.6,-0.550,4.453,0.79236500521378,14.9689214,119.1098,/T,34.0595,Ari
+2006-Jan-04 00:00,02,35,15.96,+,16,52,14.5,-0.523,4.454,0.80104071550073,15.0725261,118.3569,/T,34.3070,Ari
+2006-Jan-05 00:00,02,36,20.56,+,16,58,02.8,-0.487,4.465,0.80977518809526,15.1724248,117.6126,/T,34.5451,Ari

@@ -1,0 +1,95 @@
+schema: rafaelia.reference_seed_sources.v0.1
+created: '2026-06-16'
+status: seed_sources
+purpose: >-
+  Referências estruturantes iniciais para governança científica, bibliográfica,
+  autoria, DOI, citação e responsabilidade humana no uso de IA.
+
+sources:
+  - id: REF_STD_001
+    name: FAIR Principles
+    organization: GO FAIR
+    url: 'https://www.go-fair.org/fair-principles/'
+    domain: [governanca_dados, metadata, provenance]
+    supports:
+      - metadados ricos
+      - identificadores persistentes
+      - referências qualificadas
+      - proveniência detalhada
+      - reuso
+    internal_use:
+      - InfoPrime
+      - data_manifest
+      - claim_to_reference_matrix
+    state: SOURCE_FOUND
+
+  - id: REF_STD_002
+    name: DataCite Metadata Schema
+    organization: DataCite
+    url: 'https://schema.datacite.org/'
+    domain: [doi, metadata, citation]
+    supports:
+      - identificação de recurso
+      - citação
+      - recuperação
+      - metadados uniformes
+    internal_use:
+      - DOI package
+      - release metadata
+      - publication_doi_pipeline
+    state: SOURCE_FOUND
+
+  - id: REF_STD_003
+    name: Citation File Format / CITATION.cff
+    organization: Citation File Format project
+    url: 'https://citation-file-format.github.io/'
+    domain: [software_citation, dataset_citation, github, zenodo]
+    supports:
+      - citação legível por humano
+      - citação legível por máquina
+      - GitHub citation metadata
+      - Zenodo release metadata
+    internal_use:
+      - CITATION.cff
+      - repo citation
+      - release preparation
+    state: SOURCE_FOUND
+
+  - id: REF_STD_004
+    name: CRediT Contributor Role Taxonomy
+    organization: NISO / CRediT
+    url: 'https://credit.niso.org/'
+    domain: [authorship, contribution, research_integrity]
+    supports:
+      - 14 roles de contribuição
+      - accountability
+      - research assessment
+      - integridade
+    internal_use:
+      - contribution ledger
+      - authorship policy
+      - AI-assisted disclosure
+    state: SOURCE_FOUND
+
+  - id: REF_STD_005
+    name: ICMJE Recommendations — Authors and Contributors
+    organization: International Committee of Medical Journal Editors
+    url: 'https://www.icmje.org/recommendations/browse/roles-and-responsibilities/defining-the-role-of-authors-and-contributors.html'
+    domain: [authorship, responsibility, AI_disclosure, medical_publishing]
+    supports:
+      - autoria humana responsável
+      - critérios de autoria
+      - reconhecimento de colaboradores
+      - declaração de uso de IA assistiva
+      - IA não deve ser autora
+    internal_use:
+      - academic_integrity
+      - AI viva human responsibility
+      - publication package
+    state: SOURCE_FOUND
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

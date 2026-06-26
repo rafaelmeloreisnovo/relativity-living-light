@@ -28,3 +28,9 @@ regiao_de_validade:
   z_min: 0.0
   z_max: 2.4
   note: "Regiao onde os dados reais existem. Fora disso e extrapolacao, nao prova."
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

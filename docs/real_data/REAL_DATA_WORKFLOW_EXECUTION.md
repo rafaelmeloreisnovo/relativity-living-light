@@ -21,6 +21,19 @@ Este documento registra o caminho operacional para acionar a coleta, auditoria e
 5. Manter `strict_real_data=true` para impedir preenchimento falso quando um arquivo real obrigatório estiver ausente.
 6. Manter `commit_light_artifacts=false` quando não quiser que a CI faça commit automático de relatórios leves.
 
+
+## Gate automático de contrato real-data
+
+Além do workflow manual completo, o repositório possui o gate `.github/workflows/real-data-contract-ci.yml` (`Real Data Contract CI`) para PRs e pushes que alterem workflows, scripts, inventário, dados reais ou testes. Esse gate instala `requirements.txt`, valida `tools/docs_inventory.py --check`, executa `scripts/compute_rll_real_pipeline.py --data-source repo`, verifica o manifesto gerado e faz upload do artifact `real-data-contract-<run_id>` com `MANIFEST.json`, `COMPUTE_REPORT.md` e tabelas processadas.
+
+Comandos locais equivalentes ao gate:
+
+```bash
+python3 tools/docs_inventory.py --check
+python3 scripts/compute_rll_real_pipeline.py --output-dir /tmp/rll-real-run --real-data-dir data/real --data-source repo
+python -m pytest -q tests/test_compute_rll_real_pipeline_contract.py tests/test_desi_dr2_bao_materialized.py
+```
+
 ## Dados reais e fonte primária
 
 O workflow chama `scripts/download_real_cosmology_inputs.sh` para Pantheon+SH0ES quando a materialização está habilitada. Esse script baixa somente os arquivos oficiais do repositório público `PantheonPlusSH0ES/DataRelease` e grava checksums em `data/real/downloaded_real_cosmology_inputs.sha256`.

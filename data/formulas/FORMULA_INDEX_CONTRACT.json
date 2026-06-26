@@ -1,0 +1,50 @@
+{
+  "schema": "rafaelia.formula_index_contract.v1",
+  "status": "contract_ready",
+  "source_artifact": "data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json",
+  "full_import_status": "TOKEN_VAZIO_until_full_formulas_json_or_zip_is_materialized_in_repo_or_release",
+  "formula_id_algorithm": "FORM-{category_prefix}-{sha256(source + newline + category + newline + expression)[0:12].upper()}",
+  "category_prefix": {
+    "cosmology_metrics": "COS",
+    "integridade_e_criptografia": "INT",
+    "geral": "GEN"
+  },
+  "required_fields": [
+    "formula_id",
+    "source",
+    "category",
+    "expression",
+    "expression_sha256",
+    "search_text",
+    "claim_gate",
+    "script_tester",
+    "result_status"
+  ],
+  "claim_gates": {
+    "cosmology_metrics": "GATE_COSMOLOGY_DATA_LOADER_COVARIANCE_CI",
+    "integridade_e_criptografia": "GATE_INTEGRITY_CRYPTO_REPRODUCIBILITY_CI",
+    "geral": "GATE_SYMBOLIC_GENERAL_REVIEW"
+  },
+  "result_status": {
+    "candidate_link_only": "script tester candidate exists but claim is not promoted",
+    "indexed_no_result_linked": "formula indexed with no result artifact linked",
+    "validated_result_linked": "formula has script, CI and result artifact linked"
+  },
+  "expected_verified_counts": {
+    "total_formulas": 486,
+    "source_count": 53,
+    "categories": {
+      "geral": 388,
+      "cosmology_metrics": 91,
+      "integridade_e_criptografia": 7
+    }
+  },
+  "repository_bridge": {
+    "CONVERSATIONS_CHUNKS_PRIVATE": "conversation chunks, memory bridge, chunk manifests and summaries",
+    "RMRCTI": "documented method in CONVERSATIONS_CHUNKS_PRIVATE memory_bridge/maps/RMRCTI_INTEGRATION.md; primary source points to llamaRafaelia rmrCti directory",
+    "Rafaelia_Private": "private corpus and symbolic invariants",
+    "GAIA_phi": "deterministic core and guard/vecdb engines",
+    "llamaRafaelia": "local inference runtime and RMRCTI primary source path",
+    "RLL": "scientific validation, loaders, CI and claim gates"
+  }
+}

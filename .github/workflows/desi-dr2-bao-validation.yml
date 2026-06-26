@@ -1,0 +1,65 @@
+name: DESI DR2 BAO validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data/real/cosmology/desi_bao_dr2_cobaya/**'
+      - 'scripts/check_desi_dr2_bao_covariance.py'
+      - 'scripts/smoke_desi_dr2_bao_covariance_loader.py'
+      - 'tests/test_desi_dr2_bao_covariance_loader.py'
+      - '.github/workflows/desi-dr2-bao-validation.yml'
+  pull_request:
+    paths:
+      - 'data/real/cosmology/desi_bao_dr2_cobaya/**'
+      - 'scripts/check_desi_dr2_bao_covariance.py'
+      - 'scripts/smoke_desi_dr2_bao_covariance_loader.py'
+      - 'tests/test_desi_dr2_bao_covariance_loader.py'
+      - '.github/workflows/desi-dr2-bao-validation.yml'
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  desi-dr2-bao:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify ARM64 runner
+        run: |
+          test "$(uname -m)" = "aarch64"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install DESI DR2 BAO test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+
+      - name: Validate DESI DR2 BAO loader without external deps
+        run: python scripts/smoke_desi_dr2_bao_covariance_loader.py
+
+      - name: Validate DESI DR2 BAO loader tests
+        run: python tests/test_desi_dr2_bao_covariance_loader.py
+
+
+      - name: Run DESI DR2 BAO covariance chi2 smoke
+        run: python scripts/check_desi_dr2_bao_covariance.py
+
+      - name: Show DESI DR2 BAO result
+        run: cat results/desi_dr2_bao_covariance_chi2.json
+
+      - name: Upload DESI DR2 BAO result
+        uses: actions/upload-artifact@v4
+        with:
+          name: desi-dr2-bao-covariance-chi2
+          path: results/desi_dr2_bao_covariance_chi2.json

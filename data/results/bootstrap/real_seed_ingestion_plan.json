@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1",
+  "status": "real_seed_ingestion_plan_generated",
+  "claim_allowed": false,
+  "total_items": 19,
+  "routes": [
+    "compact_remnant_boundary",
+    "high_z_smbh_seeds",
+    "historical_impulse_slingshot",
+    "orbital_shape_angular_momentum",
+    "residual_gravity_structures",
+    "wandering_dark_compact_mass"
+  ],
+  "items": [
+    {"record_id": "REAL_SEED_GW230529_181500", "module": "compact_remnant_boundary", "route_id": "compact_remnant_boundary", "expected_output": "data/results/compact_objects/remnant_boundary_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_PSR_J0740_6620", "module": "compact_remnant_boundary", "route_id": "compact_remnant_boundary", "expected_output": "data/results/compact_objects/remnant_boundary_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_OGLE_2011_BLG_0462", "module": "wandering_black_holes", "route_id": "wandering_dark_compact_mass", "expected_output": "data/results/compact_objects/wandering_bh_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_LMC_HYPERVELOCITY_SMBH", "module": "historical_impulse_slingshot", "route_id": "historical_impulse_slingshot", "expected_output": "data/results/kinematics/historical_impulse_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_UHZ1_HIGHZ_SMBH", "module": "high_z_smbh_seeds", "route_id": "high_z_smbh_seeds", "expected_output": "data/results/high_z_smbh/seed_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_GW190814", "module": "compact_remnant_boundary", "route_id": "compact_remnant_boundary", "expected_output": "data/results/compact_objects/remnant_boundary_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_PSR_J0952_0607", "module": "compact_remnant_boundary", "route_id": "compact_remnant_boundary", "expected_output": "data/results/compact_objects/remnant_boundary_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_GAIA_BH1", "module": "wandering_black_holes", "route_id": "wandering_dark_compact_mass", "expected_output": "data/results/compact_objects/wandering_bh_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_GAIA_BH2", "module": "wandering_black_holes", "route_id": "wandering_dark_compact_mass", "expected_output": "data/results/compact_objects/wandering_bh_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_GAIA_BH3", "module": "residual_gravity_structures", "route_id": "residual_gravity_structures", "expected_output": "data/results/structure/residual_gravity_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_S5_HVS1", "module": "historical_impulse_slingshot", "route_id": "historical_impulse_slingshot", "expected_output": "data/results/kinematics/historical_impulse_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_SEED_CEERS_1019", "module": "high_z_smbh_seeds", "route_id": "high_z_smbh_seeds", "expected_output": "data/results/high_z_smbh/seed_validation.json", "claim_allowed": false},
+    {"record_id": "TOKEN_VAZIO_EARTH_MOON_ORBIT_SHAPE_001", "module": "orbital_shape_angular_momentum", "route_id": "orbital_shape_angular_momentum", "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json", "claim_allowed": false},
+    {"record_id": "TOKEN_VAZIO_MARS_ORBIT_SHAPE_001", "module": "orbital_shape_angular_momentum", "route_id": "orbital_shape_angular_momentum", "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json", "claim_allowed": false},
+    {"record_id": "TOKEN_VAZIO_JUPITER_SYSTEM_001", "module": "orbital_shape_angular_momentum", "route_id": "orbital_shape_angular_momentum", "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_ORBIT_EARTH_HELIOCENTRIC_SHAPE_AM_V1", "module": "orbital_shape_angular_momentum", "route_id": "orbital_shape_angular_momentum", "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_ORBIT_MOON_GEOCENTRIC_SHAPE_AM_V1", "module": "orbital_shape_angular_momentum", "route_id": "orbital_shape_angular_momentum", "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1", "module": "orbital_shape_angular_momentum", "route_id": "orbital_shape_angular_momentum", "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json", "claim_allowed": false},
+    {"record_id": "REAL_ORBIT_JUPITER_HELIOCENTRIC_SHAPE_AM_V1", "module": "orbital_shape_angular_momentum", "route_id": "orbital_shape_angular_momentum", "expected_output": "data/results/orbital_dynamics/angular_momentum_shape_validation.json", "claim_allowed": false}
+  ],
+  "safe_conclusion": "This is a canonical summarized ingestion plan from the CI artifact. Raw data, checksums, baselines, and full metrics are still required before claims."
+}

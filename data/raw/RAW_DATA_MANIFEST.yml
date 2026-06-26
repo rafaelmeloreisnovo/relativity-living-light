@@ -1,0 +1,173 @@
+# RAW DATA MANIFEST
+# Status: custody scaffold
+# Purpose: register raw-data files, source metadata, sha256 hashes, and claim boundaries.
+
+schema_version: 0.1
+status: raw_data_manifest_scaffold
+claim_allowed: false
+
+policy:
+  raw_data_required_for_claim: true
+  checksum_required_for_local_data: true
+  source_url_required: true
+  access_date_utc_required: true
+  license_or_terms_required: true
+  baseline_required_for_metric_claim: true
+  uncertainty_required_for_metric_claim: true
+  no_claim_from_missing_raw_data: true
+
+fields:
+  - raw_id
+  - route_id
+  - record_id
+  - source_url
+  - access_date_utc
+  - license_or_terms
+  - source_version
+  - local_path
+  - sha256
+  - bytes
+  - raw_data_local
+  - status
+  - claim_allowed
+
+raw_paths:
+  compact_remnant_posteriors: data/raw/compact_objects/gw/posteriors/
+  compact_remnant_catalogs: data/raw/compact_objects/catalogs/
+  compact_remnant_eos_baselines: data/raw/compact_objects/eos_baselines/
+  orbital_ephemerides: data/raw/orbital_dynamics/ephemerides/
+  orbital_spice: data/raw/orbital_dynamics/spice/
+  orbital_gravity_models: data/raw/orbital_dynamics/gravity_models/
+  orbital_shape_models: data/raw/orbital_dynamics/shape_models/
+  gaia_astrometry: data/raw/astrometry/gaia_bh/
+  high_z_smbh: data/raw/high_z_smbh/
+  hypervelocity_kinematics: data/raw/kinematics/hypervelocity_stars/
+
+records:
+  - raw_id: RAW_PENDING_GW190814_POSTERIOR
+    route_id: compact_remnant_boundary
+    record_id: REAL_SEED_GW190814
+    source_url: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    license_or_terms: TOKEN_VAZIO
+    source_version: TOKEN_VAZIO
+    local_path: data/raw/compact_objects/gw/posteriors/TOKEN_VAZIO_GW190814_posterior.dat
+    sha256: TOKEN_VAZIO
+    bytes: null
+    raw_data_local: false
+    status: pending_raw_ingestion
+    claim_allowed: false
+    next_metric: mass_gap_overlap_probability
+
+  - raw_id: RAW_PENDING_GW230529_POSTERIOR
+    route_id: compact_remnant_boundary
+    record_id: REAL_SEED_GW230529_181500
+    source_url: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    license_or_terms: TOKEN_VAZIO
+    source_version: TOKEN_VAZIO
+    local_path: data/raw/compact_objects/gw/posteriors/TOKEN_VAZIO_GW230529_posterior.dat
+    sha256: TOKEN_VAZIO
+    bytes: null
+    raw_data_local: false
+    status: pending_raw_ingestion
+    claim_allowed: false
+    next_metric: mass_gap_overlap_probability
+
+  - raw_id: RAW_PENDING_EARTH_STATE_VECTOR
+    route_id: orbital_shape_angular_momentum
+    record_id: REAL_ORBIT_EARTH_HELIOCENTRIC_SHAPE_AM_V1
+    source_url: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    license_or_terms: TOKEN_VAZIO
+    source_version: TOKEN_VAZIO
+    local_path: data/raw/orbital_dynamics/ephemerides/TOKEN_VAZIO_earth_state_vectors.csv
+    sha256: TOKEN_VAZIO
+    bytes: null
+    raw_data_local: false
+    status: pending_raw_ingestion
+    claim_allowed: false
+    next_metric: state_vector_vs_reference_h_residual
+
+  - raw_id: RAW_PENDING_MARS_STATE_VECTOR
+    route_id: orbital_shape_angular_momentum
+    record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+    source_url: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    license_or_terms: TOKEN_VAZIO
+    source_version: TOKEN_VAZIO
+    local_path: data/raw/orbital_dynamics/ephemerides/TOKEN_VAZIO_mars_state_vectors.csv
+    sha256: TOKEN_VAZIO
+    bytes: null
+    raw_data_local: false
+    status: pending_raw_ingestion
+    claim_allowed: false
+    next_metric: state_vector_vs_reference_h_residual
+
+  - raw_id: RAW_PENDING_GAIA_BH1_ASTROMETRY
+    route_id: wandering_dark_compact_mass
+    record_id: REAL_SEED_GAIA_BH1
+    source_url: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    license_or_terms: TOKEN_VAZIO
+    source_version: TOKEN_VAZIO
+    local_path: data/raw/astrometry/gaia_bh/TOKEN_VAZIO_gaia_bh1_astrometry.csv
+    sha256: TOKEN_VAZIO
+    bytes: null
+    raw_data_local: false
+    status: pending_raw_ingestion
+    claim_allowed: false
+    next_metric: astrometric_dark_mass_consistency
+
+  - raw_id: RAW_PENDING_UHZ1_HIGHZ_CONTEXT
+    route_id: high_z_smbh_seeds
+    record_id: REAL_SEED_UHZ1_HIGHZ_SMBH
+    source_url: TOKEN_VAZIO
+    access_date_utc: TOKEN_VAZIO
+    license_or_terms: TOKEN_VAZIO
+    source_version: TOKEN_VAZIO
+    local_path: data/raw/high_z_smbh/TOKEN_VAZIO_uhz1_context_table.csv
+    sha256: TOKEN_VAZIO
+    bytes: null
+    raw_data_local: false
+    status: pending_raw_ingestion
+    claim_allowed: false
+    next_metric: Eddington_growth_feasibility_grid
+
+  - raw_id: RAW_JPL_HORIZONS_MARS_OBSERVER_2006_SAMPLE
+    route_id: orbital_shape_angular_momentum
+    record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+    source_url: "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='499'&OBJ_DATA='YES'&MAKE_EPHEM='YES'&EPHEM_TYPE='OBSERVER'&CENTER='500@399'&START_TIME='2006-01-01'&STOP_TIME='2006-01-20'&STEP_SIZE='1%20d'&QUANTITIES='1,9,20,23,24,29'"
+    access_date_utc: "2026-06-13"
+    license_or_terms: "NASA/JPL public API output; verify downstream reuse terms before redistribution outside this repository"
+    source_version: "Horizons API response observed as API VERSION 1.2; documentation page version 1.3 dated 2025 June"
+    local_path: data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_observer_2006_sample.csv
+    sha256: 9c8a018c46865766ae00a42340341207b7fe4ae974ca9ec3ccaca257a3eca6e8
+    bytes: 1146
+    raw_data_local: true
+    status: raw_file_present_hash_ready
+    claim_allowed: false
+    next_metric: observer_ephemeris_delta_deldot_profile
+
+  - raw_id: RAW_JPL_HORIZONS_MARS_VECTORS_2006_SAMPLE
+    route_id: orbital_shape_angular_momentum
+    record_id: REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1
+    source_url: "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%27499%27&OBJ_DATA=NO&MAKE_EPHEM=YES&EPHEM_TYPE=VECTORS&CENTER=%27500%4010%27&START_TIME=%272006-01-01%27&STOP_TIME=%272006-01-02%27&STEP_SIZE=%271%20d%27&OUT_UNITS=%27KM-S%27&VEC_TABLE=%272%27&CSV_FORMAT=YES&TIME_TYPE=TDB"
+    access_date_utc: generated_by_ci_runtime
+    license_or_terms: "NASA/JPL public API output; verify downstream reuse terms before redistribution outside this repository"
+    source_version: "Horizons API runtime response"
+    local_path: data/raw/orbital_dynamics/ephemerides/jpl_horizons_mars_vectors_2006_sample.csv
+    sha256: 32406d83e4fa91fdf3d0f4359a849503c4b33bfa8fef1b71fdf496231ba15c86
+    bytes: 359
+    raw_data_local: true
+    status: raw_file_present_hash_ready
+    claim_allowed: false
+    next_metric: state_vector_vs_reference_h_residual
+
+safe_conclusion: "This manifest creates custody slots and now includes two local raw JPL Horizons samples: observer ephemeris and heliocentric state vectors. Scientific claims remain blocked until baselines and uncertainty models exist."
+
+# Operational documentation consumers for metadata-only YAML.
+consumed_by:
+  - tools/generate_yml_audit_docs.py
+  - tools/docs_inventory.py
+  - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

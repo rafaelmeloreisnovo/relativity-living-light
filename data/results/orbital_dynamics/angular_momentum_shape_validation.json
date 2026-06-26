@@ -1,0 +1,139 @@
+{
+  "schema_version": "0.1",
+  "module": "orbital_shape_angular_momentum",
+  "input_file": "data/real/orbital_dynamics/orbital_shape_angular_momentum_seed_v1.csv",
+  "data_status": "external_only_seed_reference_metrics",
+  "claim_allowed": false,
+  "claim_boundary": "seed-level calculations only; raw ephemerides, vectors, gravity/shape models, uncertainty, and baselines are required before scientific claims",
+  "formulas": {
+    "specific_orbital_angular_momentum": "h = sqrt(mu_central * a * (1 - e^2))",
+    "mean_orbital_speed_proxy": "v ~= h / a",
+    "spin_angular_momentum_proxy": "S ~= Cbar * M * R^2 * omega",
+    "rotation_rate": "omega = 2*pi / rotation_period",
+    "flattening_from_radii": "f = (Req - Rpole) / Req"
+  },
+  "items": [
+    {
+      "record_id": "REAL_ORBIT_EARTH_HELIOCENTRIC_SHAPE_AM_V1",
+      "body_system": "Earth",
+      "central_body": "Sun",
+      "orbit_frame": "heliocentric",
+      "inputs": {
+        "mu_central_km3_s2": 132712440041.939,
+        "semi_major_axis_km": 149597870.7,
+        "eccentricity": 0.0167086,
+        "body_mass_kg": 5.9722e24,
+        "radius_reference_km": 6378.137,
+        "rotation_period_s": 86164.0905,
+        "normalized_moment_inertia": 0.3307,
+        "j2": 0.00108262668,
+        "flattening_seed": 0.0033528106647474805
+      },
+      "calculations_v1": {
+        "specific_orbital_angular_momentum_km2_s": 4455104465.588514,
+        "mean_orbital_speed_proxy_km_s": 29.78053393903363,
+        "spin_angular_momentum_proxy_kg_m2_s": 5.858815005749695e+33,
+        "rotation_rate_rad_s": 7.292115857915991e-05,
+        "computed_flattening_from_radii": 0.0033528599338645926
+      },
+      "source_reference": "NASA/JPL/IAU/WGS84 reference seed pointers",
+      "source_reference_url": "https://science.nasa.gov/earth/facts/",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    },
+    {
+      "record_id": "REAL_ORBIT_MOON_GEOCENTRIC_SHAPE_AM_V1",
+      "body_system": "Moon",
+      "central_body": "Earth-Moon barycentric context",
+      "orbit_frame": "geocentric",
+      "inputs": {
+        "mu_central_km3_s2": 403503.235573,
+        "semi_major_axis_km": 384400.0,
+        "eccentricity": 0.0549,
+        "body_mass_kg": 7.342e22,
+        "radius_reference_km": 1737.4,
+        "rotation_period_s": 2360591.5104,
+        "normalized_moment_inertia": 0.393,
+        "j2": null,
+        "flattening_seed": 0.0012082164432424975
+      },
+      "calculations_v1": {
+        "specific_orbital_angular_momentum_km2_s": 393241.84769543464,
+        "mean_orbital_speed_proxy_km_s": 1.023001684951703,
+        "spin_angular_momentum_proxy_kg_m2_s": 2.3182784189835273e+29,
+        "rotation_rate_rad_s": 2.6616995272150692e-06,
+        "computed_flattening_from_radii": 0.0012082158679016795
+      },
+      "source_reference": "NASA/JPL lunar reference seed pointers",
+      "source_reference_url": "https://science.nasa.gov/moon/facts/",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    },
+    {
+      "record_id": "REAL_ORBIT_MARS_HELIOCENTRIC_SHAPE_AM_V1",
+      "body_system": "Mars",
+      "central_body": "Sun",
+      "orbit_frame": "heliocentric",
+      "inputs": {
+        "mu_central_km3_s2": 132712440041.939,
+        "semi_major_axis_km": 227939200.0,
+        "eccentricity": 0.0934,
+        "body_mass_kg": 6.4171e23,
+        "radius_reference_km": 3396.2,
+        "rotation_period_s": 88642.6848,
+        "normalized_moment_inertia": 0.3662,
+        "j2": 0.00196045,
+        "flattening_seed": 0.005888934691714272
+      },
+      "calculations_v1": {
+        "specific_orbital_angular_momentum_km2_s": 5475990916.542538,
+        "mean_orbital_speed_proxy_km_s": 24.02391039602902,
+        "spin_angular_momentum_proxy_kg_m2_s": 1.9212356171174232e+32,
+        "rotation_rate_rad_s": 7.088216383964474e-05,
+        "computed_flattening_from_radii": 0.005888934691714269
+      },
+      "source_reference": "NASA/JPL planetary reference seed pointers",
+      "source_reference_url": "https://science.nasa.gov/mars/facts/",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    },
+    {
+      "record_id": "REAL_ORBIT_JUPITER_HELIOCENTRIC_SHAPE_AM_V1",
+      "body_system": "Jupiter",
+      "central_body": "Sun",
+      "orbit_frame": "heliocentric",
+      "inputs": {
+        "mu_central_km3_s2": 132712440041.939,
+        "semi_major_axis_km": 778479000.0,
+        "eccentricity": 0.0489,
+        "body_mass_kg": 1.89813e27,
+        "radius_reference_km": 71492.0,
+        "rotation_period_s": 35729.704,
+        "normalized_moment_inertia": 0.264,
+        "j2": 0.01469643,
+        "flattening_seed": 0.06487439153975214
+      },
+      "calculations_v1": {
+        "specific_orbital_angular_momentum_km2_s": 10152182154.879894,
+        "mean_orbital_speed_proxy_km_s": 13.041048191254863,
+        "spin_angular_momentum_proxy_kg_m2_s": 4.503967245909879e+38,
+        "rotation_rate_rad_s": 0.00017585327063385654,
+        "computed_flattening_from_radii": 0.0648743915403122
+      },
+      "source_reference": "NASA/JPL planetary reference seed pointers",
+      "source_reference_url": "https://science.nasa.gov/jupiter/facts/",
+      "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    }
+  ],
+  "required_next_data": [
+    "raw ephemeris state vectors from JPL Horizons or SPICE",
+    "gravity harmonics with source/version",
+    "shape or reference ellipsoid model with source/version",
+    "rotation and pole orientation model",
+    "uncertainty or covariance model",
+    "Kepler/Newton/N-body/J2 baseline comparison"
+  ],
+  "safe_conclusion": "First-pass orbital and spin seed metrics were produced; no final orbital-shape deformation claim is allowed.",
+  "status": "seed_metric_ready_claim_blocked"
+}

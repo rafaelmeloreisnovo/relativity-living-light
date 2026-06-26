@@ -1,96 +1,11 @@
 {
-  "generated_at": "2026-06-08T18:16:38.320141+00:00",
-  "git_commit": "a5d4e39e79278a5ce88714b6ba60053571566e61",
-  "summary": {
-    "tracked_files_total": 779,
-    "cataloged_files": 761,
-    "uncataloged_or_error_files": 18,
-    "total_bytes": 34371459,
-    "total_text_lines": 120292,
-    "markdown_files": 392,
-    "yml_yaml_files": 34,
-    "github_workflow_yml_files": 13,
-    "data_or_result_files": 82
-  },
-  "flags": {
-    "cosmology_validation_marker": 359,
-    "mentions_mock_or_placeholder": 70,
-    "mentions_synthetic": 60,
-    "token_vazio_declared": 19,
-    "result_artifact": 62
-  },
-  "errors": [
-    {
-      "path": "\"Matem\\303\\241tica.md\"",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_density_evolution_superposition_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_expansion_hz_superposition_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_mock_hubble_fit_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_mock_hubble_fit_v02.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_mock_supernova_fit_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_mock_supernova_fit_v02.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_mock_supernova_fit_v03.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_omega_s0_1d_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_omega_s0_1d_v02.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_omega_s0_wt_2d_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_zt_1d_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_zt_1d_v02.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_zt_1d_v03.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_zt_1d_v04.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_zt_wt_2d_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_posterior_zt_wt_2d_v02.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    },
-    {
-      "path": "figs/conceptual/concept_rotation_curves_superposition_v01.png",
-      "error": "FileNotFoundError(2, 'No such file or directory')"
-    }
-  ]
+  "tracked_files_total": 1068,
+  "cataloged_files": 1057,
+  "uncataloged_or_error_files": 0,
+  "total_bytes": 35324766,
+  "total_text_lines": 143805,
+  "markdown_files": 534,
+  "yml_yaml_files": 64,
+  "github_workflow_yml_files": 27,
+  "data_or_result_files": 154
 }

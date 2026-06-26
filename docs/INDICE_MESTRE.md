@@ -2,6 +2,7 @@
 ## Relativity Living Light
 
 **Atualizado em:** 2026-06-20
+**Atualizado em:** 2026-06-26
 **Regra:** secao principal lista apenas caminhos canonicos oficiais.
 
 ---
@@ -16,6 +17,7 @@ Este arquivo e a **navegacao canonica** da documentacao do repositorio.
 
 Encaminhamentos complementares:
 - Porta de entrada: [`README.md`](../README.md)
+- Mapa central de rastreabilidade: [`docs/RLL_TRACEABILITY_MAP.md`](RLL_TRACEABILITY_MAP.md)
 - Inventario bruto (`.md` e `.zip`): [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
 - Mapa Dark Matter/RLL: [`docs/DARKMATTER_RLL_LINK_MAP.md`](DARKMATTER_RLL_LINK_MAP.md)
 - Nota Dark Matter/nome/inventario: [`docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md`](DARKMATTER_NAMING_AND_INVENTORY_NOTE.md)
@@ -67,6 +69,10 @@ Encaminhamentos complementares:
 - [`schemas/rll_latentes_observations.schema.json`](../schemas/rll_latentes_observations.schema.json) - schema estrutural do catálogo RLL-LATENTES
 - [`src/rll/latentes.py`](../src/rll/latentes.py) - implementação determinística da validação, score, dry-run, Merkle e relatórios RLL-LATENTES
 - [`docs/RLL_CLAIM_BOUNDARIES.md`](RLL_CLAIM_BOUNDARIES.md)
+- [`docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md`](CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md) - registro mestre 3->8->9 de convergências independentes, com matriz e claim gate
+- [`docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md`](CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md) - convergência independente ETH/HLS para ruído-dissipação como variável de estado, sem promoção automática de claim
+- [`docs/C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md`](C09_TRANSMUTACAO_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md) - C09 candidata: transmutação nuclear/chrysopoeia via nêutrons de fusão, mapa de rotas e pendências
+- [`docs/RLL_PRE_MOVEMENT_SCALE_BRIDGE.md`](RLL_PRE_MOVEMENT_SCALE_BRIDGE.md) - ponte de escala para pre-movimento, impactos vetoriais, memoria dinamica e limites de promocao cosmologica
 - [`rll_equation_registry.yml`](../rll_equation_registry.yml)
 
 ## 1.1) Casos observacionais
@@ -78,6 +84,11 @@ Encaminhamentos complementares:
 ## 2) Governanca, organizacao e auditoria
 
 - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
+- [`docs/RLL_TRACEABILITY_MAP.md`](RLL_TRACEABILITY_MAP.md) - mapa central: cada claim/artifacto aponta para seu documento, status e proxima prova
+- [`docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md`](RLL_V1_TAG_ANCESTRALITY_AUDIT.md) - auditoria da tag `v1.0.0`, anterioridade da formula e observaveis
+- [`docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md`](RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md) - ledger de proveniencia celular/Termux e estados VERIFIED/DECLARED/TOKEN_VAZIO
+- [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](RLL_NEXT_WORK_DOCUMENTATION_PLAN.md) - plano operacional para inventario da tag, imagens, CSVs, estacoes de dados e non-post-hoc
+- [`docs/RLL_1234_CHUNK_TEXT_AUDIT.md`](RLL_1234_CHUNK_TEXT_AUDIT.md) - auditoria textual dos chunks do `1234.zip`
 - [`docs/CANONICAL_SOURCES.md`](CANONICAL_SOURCES.md)
 - [`docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md`](POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) **(fonte oficial para formatos no core e publicacao de artefatos externos)**
 - [`docs/RAFAELIA_REGIME_INDEX.md`](RAFAELIA_REGIME_INDEX.md) **(classificacao de regimes: formula, hipotese, dado, validacao, legado e simbolico)**
@@ -111,6 +122,7 @@ Encaminhamentos complementares:
 - [`docs/canonicos/19_ROADMAP_FALSIFICADORES_RLL.md`](canonicos/19_ROADMAP_FALSIFICADORES_RLL.md) - roadmap de testes e criterios de falsificacao
 - [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md) - checklist publico de documentos, governanca, seguranca e citabilidade
 - [`docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`](canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md) - limite nulo `Ωs0=0`, degenerescencia com ΛCDM e analogia metodologica com AION
+- [`docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md`](canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md) - vetor V_info tipado, equacao de observacao (F_prop/F_med/T), FSM com falsificadores Popper, Fisher/Shannon, integracao claim_state
 
 ---
 
