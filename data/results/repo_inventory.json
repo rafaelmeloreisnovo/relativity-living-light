@@ -3519,6 +3519,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/CONVERGENCIA_OBSERVACAO_SILENCIO_UTIL.md",
+    "bytes": 7803,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 298,
+    "sha256": "0e1222811424b12ccb39383343ae9cb8f340d2cfa0efc084589160bdc958473e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md",
     "bytes": 3054,
     "ext": ".md",
@@ -3907,11 +3916,11 @@
   },
   {
     "path": "docs/RAFAELIA_AI_REPO_BRIDGE.md",
-    "bytes": 3953,
+    "bytes": 5056,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 112,
-    "sha256": "0009f8f2ef73102c87a6d4add02564d7b9a8544cab2eae13818be268d2328302",
+    "linhas": 132,
+    "sha256": "20514aa694ddfd003a7905e909feba96e721572bfde6000c07e24e913de530a9",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -4213,12 +4222,12 @@
   },
   {
     "path": "docs/RLL_CLAIM_BOUNDARIES.md",
-    "bytes": 3508,
+    "bytes": 4985,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 61,
-    "sha256": "8c7b7118fddd9822589338ea324696b13825343a1a0a5848fb1d408a4e449a70",
-    "flags": "cosmology_validation_marker"
+    "linhas": 72,
+    "sha256": "96a41ea0df02ab59a621e124338ef4c452e986f5b9b5668a2ba194c50c81f676",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/RLL_CLAIM_GATE_LEDGER.md",
