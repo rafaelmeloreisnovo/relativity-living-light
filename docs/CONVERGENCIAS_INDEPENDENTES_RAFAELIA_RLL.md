@@ -19,22 +19,22 @@ Este registro existe para evitar dois erros simétricos:
 1. **subestimar** padrões independentes que aparecem em áreas diferentes;
 2. **superpromover** analogias como se fossem validação direta.
 
-## Escala 3 -> 8 -> 9
+## Escala 3 -> 8 -> 8+1
 
 ```text
-3 convergências  -> hat-trick mínimo: merece nota técnica e rastreio.
-8 convergências  -> matriz de recorrência: merece registro mestre e claim gate dedicado.
-9 convergências  -> regime combinatório: não eleva o claim; eleva o rigor exigido.
+3 convergências      -> hat-trick mínimo: merece nota técnica e rastreio.
+8 convergências      -> matriz de recorrência: merece registro mestre e claim gate dedicado.
+8 + 1 identificador  -> oito eixos externos mais C09 reservado; não é nona prova.
 ```
 
 Interpretação matemática controlada:
 
 ```text
-8 eixos  -> matriz 8x8 de cruzamentos potenciais.
-9 eixos  -> matriz 9x9 + tríades dirigidas + ordens possíveis.
+8 eixos externos -> matriz 8x8 de cruzamentos potenciais.
++1 reservado     -> C09 permanece protegido para fóton/plasma já usado no repositório.
 ```
 
-Portanto, a passagem de 8 para 9 não autoriza linguagem de prova. Ela aumenta o número de interações possíveis e exige mais disciplina documental.
+Portanto, a passagem de oito eixos para um identificador reservado não autoriza linguagem de prova. Ela aumenta disciplina de namespace e rastreabilidade.
 
 ## Regra de promoção
 
@@ -61,7 +61,7 @@ fonte externa ou artefato interno
 | `[V]` | validado por pipeline/CI/dado próprio |
 | `[VAZIO]` | lacuna marcada, sem promoção |
 
-## Matriz de nove convergências
+## Matriz de oito convergências externas
 
 | ID | Eixo | Padrão externo observado | Tradução RAFAELIA/RLL | Regime atual | Gate obrigatório |
 |---|---|---|---|---|---|
@@ -73,7 +73,12 @@ fonte externa ou artefato interno
 | C06 | Informação, entropia e seleção de modelos | AIC/BIC, Fisher/Shannon e Popper organizam comparação e falsificação | `TOKEN_VAZIO` e claim_state como disciplina anti-alucinação | `[E][I][C]` | registrar fórmula, fonte, script e resultado |
 | C07 | Grafos, redes e teia cósmica | estruturas complexas podem ser representadas por grafos e campos correlacionados | representação vetorial/topológica como ponte, não prova | `[C][H][M]` | exigir observável independente e métrica de ajuste |
 | C08 | Reprodutibilidade / FAIR / governança de evidência | ciência robusta exige dados rastreáveis, scripts e documentação versionada | bridge RAFAELIA -> artefato -> CI -> claim boundary | `[E][I][C]` | manter rastreabilidade e auditoria textual |
-| C09 | Reservado: fóton/plasma | já usado no repositório como `C09_photon_massless_dispersion` | manter rastreabilidade com `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` e Bíblia canônica | `[I][M]` | não reutilizar C09 para convergências externas |
+
+## Identificador reservado fora da contagem externa
+
+| ID | Uso reservado | Motivo | Gate obrigatório |
+|---|---|---|---|
+| C09 | fóton/plasma | já usado no repositório como `C09_photon_massless_dispersion` | não reutilizar C09 para convergências externas |
 
 ## Convergências externas fora da série Cxx
 
@@ -81,12 +86,13 @@ fonte externa ou artefato interno
 |---|---|---|---|---|---|
 | CONV-NUC-01 | Transmutação nuclear / chrysopoeia por nêutrons de fusão | símbolo histórico de transmutação encontra rota nuclear restrita via `198Hg(n,2n)197Hg -> 197Au` em preprint de fusão | mito/notícia -> preprint -> mecanismo -> pendência -> rota -> teste/TOKEN_VAZIO | `[E][C][H][M]` | tratar como candidata ativa; exige peer review, reprodução neutronics, segurança radiológica e separação química |
 
-## Nona convergência: regra de elevação
+## Regra de elevação
 
-A nona convergência não deve ser escrita como vitória automática. Ela abre um regime novo, mas não autoriza colisão de identificadores.
+A elevação não deve ser escrita como vitória automática. Ela abre um regime de organização, mas não autoriza colisão de identificadores.
 
 ```text
-C09 = reserved_internal_validation_path
+C01..C08    = eight_external_convergence_axes
+C09         = reserved_internal_photon_plasma_identifier
 CONV-NUC-01 = external_convergence_candidate
 ```
 
@@ -107,12 +113,14 @@ docs/CONVERGENCIA_NUCLEAR_CHRYSOPOEIA_MAPA_ROTAS.md
 
 ## Cubo e fatorial: uso permitido da metáfora
 
-A metáfora do cubo/fatorial é permitida apenas como linguagem de complexidade combinatória:
+A metáfora do cubo/fatorial é permitida apenas como linguagem de complexidade combinatória e deve explicitar o conjunto contado:
 
 ```text
-9^3 = 729 tríades ordenadas possíveis
-9! = 362880 ordens possíveis
+8^3 = 512 tríades ordenadas possíveis entre os oito eixos externos
+8! = 40320 ordens possíveis entre os oito eixos externos
 ```
+
+O identificador C09 não entra nessa contagem externa. Ele é uma reserva de namespace para preservar rastreabilidade com o caminho fóton/plasma já existente.
 
 Esses números não são evidência física. Eles indicam que, ao crescer o número de eixos, cresce também o risco de combinações espúrias. Por isso, a matriz precisa de gate, não de entusiasmo solto.
 
@@ -125,13 +133,13 @@ Esses números não são evidência física. Eles indicam que, ao crescer o núm
 Não escrever:
 
 ```text
-oito ou nove convergências provam RAFAELIA/RLL
+oito convergências ou um C09 reservado provam RAFAELIA/RLL
 ```
 
 Escrever:
 
 ```text
-nove eixos de convergência justificam uma matriz formal de validação e priorização experimental
+oito eixos de convergência externa justificam uma matriz formal de validação e priorização experimental; C09 fica reservado ao caminho fóton/plasma.
 ```
 
 ## Próximos passos
