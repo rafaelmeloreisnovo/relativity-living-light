@@ -1,24 +1,26 @@
 # WORKFLOW REFACTOR AUDIT
 
-Gerado em: `2026-06-26T19:52:53Z`  
-Commit auditado: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
+Gerado em: `2026-06-26T20:06:17Z`  
+Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
 
 ## Inventário pré-alteração obrigatório
 
-- `git status --short`: `M data/raw/RAW_DATA_MANIFEST.yml
- M data/results/repo_inventory.json
- M data/results/repo_inventory.tsv
- M data/results/repo_inventory_summary.json
- M docs/DOCUMENTATION_FULL_INVENTORY.md
- M docs/REAL_NUMBERS_REPORT.md
- M docs/yml/REAL_SYNTHETIC_BOUNDARY_AUDIT.md
+- `git status --short`: `M docs/yml/REAL_SYNTHETIC_BOUNDARY_AUDIT.md
  M docs/yml/WORKFLOW_EXECUTION_MAP.md
  M docs/yml/WORKFLOW_REFACTOR_AUDIT.md
  M docs/yml/YML_BLOCKED_ITEMS.md
  M docs/yml/YML_FILE_LEDGER.tsv
  M docs/yml/YML_NEXT_ACTIONS.md
- M docs/yml/YML_REFACTOR_PLAN.md`
-- `git rev-parse HEAD`: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
+ M docs/yml/YML_REFACTOR_PLAN.md
+ M scripts/validation/run_real_seed_validations.py
+ M tools/generate_yml_audit_docs.py
+?? data/results/compact_objects/wandering_bh_source_readiness.json
+?? data/results/structure/
+?? docs/yml/YML_PIPELINE_EXECUTION_READINESS.md
+?? scripts/validation/validate_residual_gravity_structures.py
+?? scripts/validation/validate_wandering_bh_candidates.py
+?? tests/test_seed_readiness_validators.py`
+- `git rev-parse HEAD`: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
 - Total YAML/YML: `67`
 - Total workflows: `27`
 
@@ -26,8 +28,8 @@ Commit auditado: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
 
 | comando | exit_code | resultado |
 |---|---:|---|
-| `git status --short` | 0 | ` M docs/yml/YML_REFACTOR_PLAN.md` |
-| `git rev-parse HEAD` | 0 | `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0` |
+| `git status --short` | 0 | `?? tests/test_seed_readiness_validators.py` |
+| `git rev-parse HEAD` | 0 | `623c7be20f0952cd5769615032f8d2d68a1a23e8` |
 | `python3 -c from pathlib import Path
 import yaml,sys
 failed=False
@@ -36,7 +38,8 @@ for p in files:
     try: yaml.safe_load(p.read_text(encoding='utf-8')); print('OK\t'+str(p))
     except Exception as e: failed=True; print('FAIL\t'+str(p)+'\t'+str(e))
 sys.exit(1 if failed else 0)` | 0 | `OK	validacao_real/sources.yml` |
-| `bash -lc python3 -m py_compile $(find scripts data/pipelines validacao_real -name "*.py" 2>/dev/null)` | 0 | `TOKEN_VAZIO` |
+| `bash -lc python3 -m py_compile $(find scripts data/pipelines validacao_real tools -name "*.py" 2>/dev/null)` | 0 | `TOKEN_VAZIO` |
+| `bash -lc find scripts -name "*.sh" -print0 2>/dev/null | xargs -0 -r bash -n` | 0 | `TOKEN_VAZIO` |
 | `python3 tools/audit_github_workflows.py --strict` | 0 | `Workflow audit OK: executable workflows are isolated and validation data is externalized.` |
 
 ## Workflows auditados

@@ -1,7 +1,7 @@
 # WORKFLOW EXECUTION MAP
 
-Gerado em: `2026-06-26T19:52:53Z`
-Commit auditado: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
+Gerado em: `2026-06-26T20:06:17Z`
+Commit auditado: `623c7be20f0952cd5769615032f8d2d68a1a23e8`
 
 ## Mapa workflow -> job -> step -> script/comando
 
@@ -502,7 +502,7 @@ Commit auditado: `154b8b6d2e1766fa8e630ad143b02c1d4bb34ca0`
 | `scripts/validation/check_claim_boundary.py` | `True` | 64 | True | False | False | False | True | `c1a03a5157074d1b621394caa554bacc8eb33b47365cd89e0c4fe34b9b3d0425` |
 | `scripts/validation/check_seed_artifact_contracts.py` | `True` | 64 | True | False | False | True | True | `76979ed687e064db11589536e71a8ceecd0597b494f5d41af8778609c016dbdf` |
 | `scripts/validation/real_seed_utils.py` | `True` | 118 | False | False | False | True | True | `424ac4a2cf2f6591ffd2b94b2e07d8b8f024a817190a6f62a9f7429044e4c792` |
-| `scripts/validation/run_real_seed_validations.py` | `True` | 111 | True | False | True | True | True | `45bc227dd9db9ff5a18cd787459a4c90d3f8d9d5ff0b122ce700835ccf2693fa` |
+| `scripts/validation/run_real_seed_validations.py` | `True` | 115 | True | False | True | True | True | `265d76433d0f6b44f1bc924c5f1da64e543fca65b7a33f7dd9f07ded25ad357d` |
 | `scripts/validation/validate_compact_remnant_boundary.py` | `True` | 78 | True | False | False | True | True | `aae40ab5ba791e3744c13377bc422ef41a8eedebaf508eb2b6d4b76f2bd635a7` |
 | `scripts/validation/validate_dark_lens_candidates.py` | `True` | 61 | True | False | False | True | True | `007e14239401a52464206272e8d80adf3a632b19b3f62d0e4909233796746dd9` |
 | `scripts/validation/validate_high_z_smbh_seeds.py` | `True` | 71 | True | False | False | False | True | `444abd65d998a12ec289255f9c60a43a10c3df99d5bcec81bd23cbe0db9fa51a` |

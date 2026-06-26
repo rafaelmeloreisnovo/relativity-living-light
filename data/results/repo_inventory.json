@@ -3078,6 +3078,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "data/results/compact_objects/wandering_bh_source_readiness.json",
+    "bytes": 1459,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 50,
+    "sha256": "a48c0d7c63ac387007096fc2b46612db53f3f9abcc1643b03bcdd6c327bd3ab8",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "data/results/compact_objects/wandering_bh_validation.json",
     "bytes": 1235,
     "ext": ".json",
@@ -3157,6 +3166,15 @@
     "linhas": 71,
     "sha256": "265d6ec7b22312c8759890fd1d6662ba20380f9adabe54f21b6ea464f113bf40",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/structure/residual_gravity_validation.json",
+    "bytes": 1526,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 50,
+    "sha256": "8f3b1d9177e26e40c6a7a2cca628bfdc3816397e9066822e8f0ee4721064ae5d",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "data/rll_latentes/examples/invalid_missing_falsifier.yml",
@@ -5972,7 +5990,7 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 337,
-    "sha256": "43e123b3e0f443a7e13830ffeb849f7110e1e49c7dab1838d77cd9e255f90798",
+    "sha256": "2c6478cb4b266651ad841e20bb78b054caa3c4c0711eb1666011376ca6db808e",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5981,16 +5999,16 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 533,
-    "sha256": "5582433706d523e48a53c600191d9efd668c3931a2678ba24dbbce056112fe75",
+    "sha256": "b6bd948ffca052195fcf546d34c957c69d43440f599580c911884176da89367a",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/WORKFLOW_REFACTOR_AUDIT.md",
-    "bytes": 11039,
+    "bytes": 11330,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 78,
-    "sha256": "0da18602a24f3d00c83364a5abf621f1f81a5cdce333dc7d4f5433c296f3bde0",
+    "linhas": 81,
+    "sha256": "f03235c42a24222c18404fe54c0cbd42a50ac01856a4e517133851ddc33b2562",
     "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5999,7 +6017,7 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 16,
-    "sha256": "d4b8be0e19e6046388a26ccafeb71b2724057da64c90f616181cd5a3303621e7",
+    "sha256": "10837f79481a65efeeb65c65d3a0f7880a73bff228517db52e7aa2af03925aee",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6008,17 +6026,26 @@
     "ext": ".tsv",
     "tipo": "data_or_result",
     "linhas": 68,
-    "sha256": "46f2c5eedd189c6e6afdfede1e95de68a99a20bee06b6e2cf8443c4914a1b0a0",
+    "sha256": "402489ac02f6e2e12b24cca710bf4ca963386305fbfc19a1e7231a27feea4c22",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_NEXT_ACTIONS.md",
-    "bytes": 1072,
+    "bytes": 1250,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 16,
-    "sha256": "5b1fe178f32637519f5ae325ca67fba5c0d44e620129b6f068ea81d28a774e9b",
+    "linhas": 17,
+    "sha256": "60aca3404ae5e4edebaedfd97a7769834664fcc2ccd25dddae3ff4d98652c75c",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/YML_PIPELINE_EXECUTION_READINESS.md",
+    "bytes": 31295,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 162,
+    "sha256": "cb182bf9678414f8928aac89c63a13d0cba7bb18fbce6f140de67d61621b56e8",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_REFACTOR_PLAN.md",
@@ -6026,7 +6053,7 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 17,
-    "sha256": "fdb75e6dd21a88ccb9a23532133624fae008de6bf186475c8ec58aa0adbca823",
+    "sha256": "fc02730c145ba5bf7b38b44498e278532da909ee52427d0b1d4af9c13b4a8e09",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -8299,11 +8326,11 @@
   },
   {
     "path": "scripts/validation/run_real_seed_validations.py",
-    "bytes": 3919,
+    "bytes": 4181,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 111,
-    "sha256": "45bc227dd9db9ff5a18cd787459a4c90d3f8d9d5ff0b122ce700835ccf2693fa",
+    "linhas": 115,
+    "sha256": "265d76433d0f6b44f1bc924c5f1da64e543fca65b7a33f7dd9f07ded25ad357d",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -8359,6 +8386,24 @@
     "linhas": 154,
     "sha256": "569818ede4940980515dd142e96c86d8d5817803426f73d5af55052b01573f92",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_residual_gravity_structures.py",
+    "bytes": 2687,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 74,
+    "sha256": "369f011e0019c1f491164962fea040d7dc122f895f8516fe42e97b6b69cd0c80",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_wandering_bh_candidates.py",
+    "bytes": 2651,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 73,
+    "sha256": "aa18bf26edd9fdfec49a8aec43c6f9601e47a00c396d9111da27ed754ee893ec",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "scripts/verify_pantheon_inputs.py",
@@ -8784,6 +8829,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_seed_readiness_validators.py",
+    "bytes": 1069,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 30,
+    "sha256": "df01a328d1088bd6353e707d6a8b91df765b6a683d0e04de5b38fd4a90eada5a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_sqrt3_2_freestanding_kernel.py",
     "bytes": 2653,
     "ext": ".py",
@@ -9145,11 +9199,11 @@
   },
   {
     "path": "tools/generate_yml_audit_docs.py",
-    "bytes": 21727,
+    "bytes": 26766,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 392,
-    "sha256": "15c98d032693ff071ba9ecd3187c3a551420a87e918c1038dc516f703db059f2",
+    "linhas": 500,
+    "sha256": "eeed64f42ca1cebcf1e1cfdd1255b2716d24f1ead386c33e35fb7ea0f21eb0ba",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
   },
   {

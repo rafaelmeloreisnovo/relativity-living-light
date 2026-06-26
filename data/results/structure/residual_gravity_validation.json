@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1",
+  "module": "gravitational_residual_memory_and_compact_gaps",
+  "source": "data/real/structure/residual_gravity_sources.yml",
+  "claim_allowed": false,
+  "claim_boundary": "readiness scan only; residual-gravity claims require mass/kinematic/lensing evidence and baselines",
+  "records": [
+    {
+      "id": "TOKEN_VAZIO_RES_GRAV_001",
+      "candidate_type": "residual_gravitational_structure",
+      "missing_fields": [
+        "dataset_name",
+        "provider",
+        "url_or_reference",
+        "local_path",
+        "checksum_sha256",
+        "raw_data_available"
+      ],
+      "status": "blocked_missing_observational_data"
+    },
+    {
+      "id": "TOKEN_VAZIO_ORPHAN_HALO_001",
+      "candidate_type": "orphan_halo_or_dark_residual",
+      "missing_fields": [
+        "dataset_name",
+        "provider",
+        "url_or_reference",
+        "local_path",
+        "checksum_sha256",
+        "raw_data_available"
+      ],
+      "status": "blocked_missing_observational_data"
+    },
+    {
+      "id": "TOKEN_VAZIO_HIST_IMPULSE_001",
+      "candidate_type": "historical_gravitational_impulse",
+      "missing_fields": [
+        "dataset_name",
+        "provider",
+        "url_or_reference",
+        "local_path",
+        "checksum_sha256",
+        "raw_data_available"
+      ],
+      "status": "blocked_missing_observational_data"
+    }
+  ],
+  "status": "blocked_missing_observational_data",
+  "rollback": "preserve source YAML; remove generated JSON or git revert this validator output"
+}
