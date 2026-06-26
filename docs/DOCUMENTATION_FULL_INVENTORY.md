@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1057 |
-| `cataloged_files` | 1046 |
+| `tracked_files_total` | 1059 |
+| `cataloged_files` | 1048 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 35138492 |
-| `total_text_lines` | 141506 |
-| `markdown_files` | 529 |
+| `total_bytes` | 35151264 |
+| `total_text_lines` | 141796 |
+| `markdown_files` | 531 |
 | `yml_yaml_files` | 64 |
 | `github_workflow_yml_files` | 27 |
 | `data_or_result_files` | 152 |
 
-**Total de arquivos catalogados:** 1046
+**Total de arquivos catalogados:** 1048
 
 ## Inventário completo
 
@@ -411,6 +411,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/COMPLETION_SUMMARY.md` | 8630 | `.md` | `documentation_md` | 332 | `1984a8fe250308989019a87d94ef6c324afaafdfbfffd39a1843b189e53c66fb` | `cosmology_validation_marker` |
 | `docs/CONCEPTUAL_FRAMEWORK.md` | 14549 | `.md` | `documentation_md` | 327 | `36f9f5f68502e5eb5de7f0b76383bb7355dc21fae4d8c5a8e00b47286e4e61e2` | `cosmology_validation_marker` |
 | `docs/CONVERGENCIAS_INDEPENDENTES_RAFAELIA_RLL.md` | 6103 | `.md` | `documentation_md` | 137 | `96464bec83872c546a455c0fc987a24babea5d59b3bda24eb8ec34fa8ac49f18` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md` | 8389 | `.md` | `documentation_md` | 214 | `969da22cf9728bbd6f783968f4bdb6c8d2beb5a5029e92a6e728e9d560487952` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md` | 5127 | `.md` | `documentation_md` | 111 | `7bb4d92b41815d45f7a754e9c3afdc92b055881ef9af76c3ab4a21ca8510dd5f` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/DARKMATTER_NAMING_AND_INVENTORY_NOTE.md` | 3054 | `.md` | `documentation_md` | 102 | `ad3ba6f5fc1b2c3d3432d680a017dfced6dc8a316c28065478a1d9bb7afa565f` | `cosmology_validation_marker` |
 | `docs/DARKMATTER_RLL_LINK_MAP.md` | 5537 | `.md` | `documentation_md` | 62 | `858e4da87a2365395197e91f8b671243d2c6aa31d5461b933f1d1e98edd8dec1` | `cosmology_validation_marker` |
@@ -432,7 +433,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/FRONTS_CLASSCAMB_VS_LN1PZ.md` | 1494 | `.md` | `documentation_md` | 24 | `4c190f57e68acccaa7ffb9140bd5d53d8c6562473f4c525df725003e7f0a14c1` | `cosmology_validation_marker` |
 | `docs/HOTFIX_REAL_VALIDATION_DATA_CONTRACT_2026-05-22.md` | 3687 | `.md` | `documentation_md` | 129 | `27b194661d177f204d5fe0016dd0fd163b5a56174fab91f025e86fbf67c9f84c` | `cosmology_validation_marker` |
 | `docs/IMPACT_REPORT_MULTI.md` | 20761 | `.md` | `documentation_md` | 529 | `994ad4bca2829f93fdde28bf06a3be48748c2445ea2fe6cc5c680ef17ec7cb8b` | `cosmology_validation_marker` |
-| `docs/INDICE_MESTRE.md` | 10580 | `.md` | `documentation_md` | 147 | `d56da25d68af03942453556313228aada76b7b568ff730dd95aef1cd53d17a50` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/INDICE_MESTRE.md` | 11049 | `.md` | `documentation_md` | 149 | `9dc053435d32d76829dc4f21e9127370d4ecf221a3fe93b5dca85aaf1ed8e6c5` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/LAGRANGIANO_EFT.md` | 3222 | `.md` | `documentation_md` | 146 | `9e895583405bc0a4dcb2e9429c06b215e5bfc2f3ee92d4ec97c819e5d359af51` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/MANIFESTO.md` | 6364 | `.md` | `documentation_md` | 142 | `71db6191732edf243aab8ce6dc6477c9136882ead2679452e735fad9a3dfb3c7` | `cosmology_validation_marker` |
 | `docs/MAPA CIENTIESPIRITUAL.md` | 1265 | `.md` | `documentation_md` | 34 | `575c516163040f31d7bf37f83af47c1f6fa8bea317cd914868a04b76bb79aba8` | `cosmology_validation_marker` |
@@ -444,6 +445,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/NATURE_ARTICLE_ANALYSIS.md` | 14965 | `.md` | `documentation_md` | 355 | `ce983364d33d5fcd066902561450fb4752b8d1fbd7ad8de8ee93f5e8e85036e5` | `cosmology_validation_marker` |
 | `docs/NEXT_THEORIES_AND_DERIVED_HYPOTHESES.md` | 2030 | `.md` | `documentation_md` | 92 | `ebbb4beea9faed2d2a9af397a947278621d82578d14b69583a51c46bd8c0d17c` | `cosmology_validation_marker` |
 | `docs/NORMATIZACAO_NOMES_ARQUIVOS_RLL.md` | 2525 | `.md` | `documentation_md` | 96 | `5597acd3bd77ba82a7efc8dc471b67765d6e1f71b054f077bb24898ae05a7d31` | `cosmology_validation_marker` |
+| `docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md` | 3843 | `.md` | `documentation_md` | 112 | `715d4f8b697f1086ac5e0aedafe3a966b73b802061a8a18a76f49b9a9669c35c` | `cosmology_validation_marker` |
 | `docs/PAPER_CORRIGIDO.tex` | 8640 | `.tex` | `other` | 0 | `a09f04c4eb6926a8d7279057f5c869dbddee1c7892c03e9f4286fe6f491c4ec3` | `cosmology_validation_marker` |
 | `docs/PERTURBACOES_CRESCIMENTO.md` | 6542 | `.md` | `documentation_md` | 229 | `3fc7c18ca6efd6e97ef6ac76d27496a49d4a0b15d40e8bba60b2bbbab66b1ff5` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/PIPELINE_ARTIFACTS_GUIDE.md` | 1612 | `.md` | `documentation_md` | 31 | `7516fa030b2e27d2f59ea5d60f4a1fe5f494d706d13f64c01e3a739a68e0791c` | `cosmology_validation_marker` |
@@ -454,7 +456,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/POSTDOC_ACADEMIC_PRESENTATION_REFERENCE_2026.md` | 7579 | `.md` | `documentation_md` | 128 | `604331a623983389c690dd10704e1ab767fd3e9f32bcda87560c5a7d738e2680` | `cosmology_validation_marker` |
 | `docs/POST_PHD_FORMAL_GAP_ANALYSIS.md` | 6232 | `.md` | `documentation_md` | 100 | `dfd96e557ee242934a3e4f2d052f3a6b77b76daa54b377b07b88a8b81c716ff4` | `mentions_synthetic,cosmology_validation_marker` |
 | `docs/PR385_SAFE_EXTRACTION_STATUS.md` | 1075 | `.md` | `documentation_md` | 37 | `3e62d42e716db271dbbd0902e373f7463437ca793f9dea987faaab0540156c4a` | `cosmology_validation_marker` |
-| `docs/RAFAELIA_AI_REPO_BRIDGE.md` | 4408 | `.md` | `documentation_md` | 137 | `33351682889a3335c9953138c0ffae0f871932860d677c47a37de7d7596aaee3` | `token_vazio_declared,cosmology_validation_marker` |
+| `docs/RAFAELIA_AI_REPO_BRIDGE.md` | 3587 | `.md` | `documentation_md` | 95 | `a87a9197da3981742b0c7f7f3f749517d1a7e5f2bcc8b9b64aa3af0498a645af` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RAFAELIA_FALSIFICATION_GATE.md` | 2791 | `.md` | `documentation_md` | 136 | `d5cb8982ce62774934b57da6eaff1142ef7217a5e001e8be0ae05f65b4ada5f3` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RAFAELIA_PRIORITY_MATRIX.md` | 2424 | `.md` | `documentation_md` | 60 | `017690d0498b682df99b75369e62a30272d97d5d173e4b959838a4e7a9f2efc0` | `cosmology_validation_marker` |
 | `docs/RAFAELIA_REGIME_INDEX.md` | 7367 | `.md` | `documentation_md` | 165 | `7f43740b93bfe2400baa8dc0b99813fe6528eacc0ce0d41959412b4be1e6f722` | `mentions_synthetic,cosmology_validation_marker` |
@@ -488,7 +490,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/RLL_CALCULABLE_EVIDENCE_SCAN_PROTOCOL.md` | 4272 | `.md` | `documentation_md` | 147 | `484bd67eaf1296ca7c46dda0c92233b9f3db64eb11daa3c3a418defe32357dd1` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_CERTAINTY_CALCULATION_BOUNDARY.md` | 2987 | `.md` | `documentation_md` | 104 | `ea5ee8f5cd5adecb259b997650c9817765d8455147bac866924a4fc773eeb450` | `cosmology_validation_marker` |
 | `docs/RLL_CI_DEPENDENCY_FAILURE.md` | 2200 | `.md` | `documentation_md` | 107 | `4b72fbcc454c25c93c7cfc060c054746af49a485a3501b43fb4f0dbc22474d80` | `cosmology_validation_marker` |
-| `docs/RLL_CLAIM_BOUNDARIES.md` | 2836 | `.md` | `documentation_md` | 54 | `7b678a0816f2cf1dedcb27505c082c185fde842fbc20f1be33508c645233da52` | `cosmology_validation_marker` |
+| `docs/RLL_CLAIM_BOUNDARIES.md` | 3728 | `.md` | `documentation_md` | 58 | `b708aa6012d8efc0492ef813212f3cf57ecc7730d9e4e63aa37a1dd40f401327` | `cosmology_validation_marker` |
 | `docs/RLL_CLAIM_GATE_LEDGER.md` | 6187 | `.md` | `documentation_md` | 155 | `9dadb2435b72d52c319fe80eb17e072d4daa9280b9abfba6da2d72f7fde45b4f` | `mentions_synthetic,token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_CMB_NONLINEAR_BACKEND.md` | 953 | `.md` | `documentation_md` | 43 | `7dff2c89286192d043b5298ab7e25a4c1dfd850510b9dc43d039c47572032ee0` | `mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker` |
 | `docs/RLL_CURRENT_RESULTS_PAPER_TABLE.md` | 6305 | `.md` | `documentation_md` | 134 | `223114a9c56fe67454d1f6c80d89097d0a60062da241ac7e5b174b34c1954742` | `token_vazio_declared,cosmology_validation_marker` |

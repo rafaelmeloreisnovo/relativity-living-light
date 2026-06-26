@@ -3492,6 +3492,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/CONVERGENCIA_BORDA_MULTIESCALA_BIOMIMETICA.md",
+    "bytes": 8389,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 214,
+    "sha256": "969da22cf9728bbd6f783968f4bdb6c8d2beb5a5029e92a6e728e9d560487952",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/CONVERGENCIA_ETH_HLS_TRANSICOES_FASE.md",
     "bytes": 5127,
     "ext": ".md",
@@ -3682,11 +3691,11 @@
   },
   {
     "path": "docs/INDICE_MESTRE.md",
-    "bytes": 10580,
+    "bytes": 11049,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 147,
-    "sha256": "d56da25d68af03942453556313228aada76b7b568ff730dd95aef1cd53d17a50",
+    "linhas": 149,
+    "sha256": "9dc053435d32d76829dc4f21e9127370d4ecf221a3fe93b5dca85aaf1ed8e6c5",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -3789,6 +3798,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/NOTA_DISSIPACAO_TERMO_CINETICA_GOTAS.md",
+    "bytes": 3843,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 112,
+    "sha256": "715d4f8b697f1086ac5e0aedafe3a966b73b802061a8a18a76f49b9a9669c35c",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/PAPER_CORRIGIDO.tex",
     "bytes": 8640,
     "ext": ".tex",
@@ -3880,11 +3898,11 @@
   },
   {
     "path": "docs/RAFAELIA_AI_REPO_BRIDGE.md",
-    "bytes": 4408,
+    "bytes": 3587,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 137,
-    "sha256": "33351682889a3335c9953138c0ffae0f871932860d677c47a37de7d7596aaee3",
+    "linhas": 95,
+    "sha256": "a87a9197da3981742b0c7f7f3f749517d1a7e5f2bcc8b9b64aa3af0498a645af",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -4186,11 +4204,11 @@
   },
   {
     "path": "docs/RLL_CLAIM_BOUNDARIES.md",
-    "bytes": 2836,
+    "bytes": 3728,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 54,
-    "sha256": "7b678a0816f2cf1dedcb27505c082c185fde842fbc20f1be33508c645233da52",
+    "linhas": 58,
+    "sha256": "b708aa6012d8efc0492ef813212f3cf57ecc7730d9e4e63aa37a1dd40f401327",
     "flags": "cosmology_validation_marker"
   },
   {
