@@ -26,8 +26,9 @@ def rll_background_status() -> dict:
         "class_transfer_adapter_contract": bool(class_transfer_exists),
         "class_transfer_source": str(RLL_CLASS_TRANSFER),
         "provides": ["E2(a)", "H/H0", "w_eff(a)", "Omega_m(a)", "Omega_s(a)", "dlnH_dlna", "delta_m(a)", "growth_rate(a)", "transfer handoff contract"],
-        "perturbations_exact": "linear_kernel_available_background_coupled",
-        "transfer_bridge": "contract_available",
+        "perturbations_exact": "TOKEN_VAZIO",
+        "linear_kernel_status": "linear_kernel_available_background_coupled" if kernel_exists else "TOKEN_VAZIO",
+        "transfer_bridge": "contract_available" if transfer_contract_exists else "TOKEN_VAZIO",
         "class_transfer_adapter": "contract_available" if class_transfer_exists else "TOKEN_VAZIO",
         "cmb_cl_exact": "TOKEN_VAZIO",
         "nonlinear_pk_exact": "TOKEN_VAZIO",
@@ -40,8 +41,9 @@ def rll_status(engine: str) -> dict:
         "engine": engine,
         "available": True,
         "model": "rll",
-        "status": "rll_background_kernel_transfer_adapter_contract_available",
-        "reason": "RLL background, linear kernel, transfer bridge, and CLASS/CAMB handoff contract are present; exact Cl and nonlinear P(k) still require native backend integration",
+        "status": "rll_exact_background_available",
+        "extended_status": "rll_background_kernel_transfer_adapter_contract_available",
+        "reason": "RLL exact background is present; linear kernel and transfer contracts may be present, while exact Cl and nonlinear P(k) still require native backend integration",
     })
     return status
 
