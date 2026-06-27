@@ -21,7 +21,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `.github/workflows/python-tests.yml` | `github_workflow_yml` | 693 | 35 | `e2cc2b8d7cfb435f4b86f861a1bcb9c2627e3c015d55037cca06ef9511815f44` |
 | `.github/workflows/raw-data-manifest-status.yml` | `github_workflow_yml` | 1702 | 60 | `fd81e390c43987d931f296589c2426379cd12ce17edf9d176dd84fedc74e573a` |
 | `.github/workflows/real-data-bootstrap-validation.yml` | `github_workflow_yml` | 2728 | 93 | `3d1fb515d1eaee0cfd5a77ee48e450b4752e7b712fec089f7d28ea5bb67fe497` |
-| `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12275 | 270 | `a71cff24c5d4cb1b007ed2e86429c33291461b65d337f622b822eae746eef675` |
+| `.github/workflows/real-data-complete-execution.yml` | `github_workflow_yml` | 12286 | 270 | `1e41b5d56d17694324024c03ccde459175fd06d999b3884fab208d52ee2550b7` |
 | `.github/workflows/real-data-contract-ci.yml` | `github_workflow_yml` | 4141 | 110 | `ec56874d6e657e226ae0cee551a5f9789f5403221258a252afc4c0acafd5f1fd` |
 | `.github/workflows/real-seed-ingestion-plan.yml` | `github_workflow_yml` | 2090 | 67 | `19a115f8cbe606b2d5619d2ffc697b88b638ccd0d3d3cf2431186cf601a260b8` |
 | `.github/workflows/real-seed-validation-v0.yml` | `github_workflow_yml` | 2479 | 73 | `48361385a0397c3ffa4aff7c75a063eac74a909ed90c532e89a8d1e11b5c4d76` |
@@ -41,9 +41,12 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/real/bootstrap/real_observational_seed_v1.yml` | `config_yml` | 9717 | 243 | `983e353dbda482e9afa8cb25fdfdf67bb3e0cc3ea43563aa07885333826acfe5` |
 | `data/real/bootstrap/real_seed_pipeline_orchestration.yml` | `config_yml` | 7887 | 227 | `b8f90f3fcdc9c2232cb6e686f7a305a5bdaccc3a2c8f3a7df84eee0ceb0d9a17` |
 | `data/real/compact_objects/remnant_boundary_sources.yml` | `config_yml` | 4817 | 147 | `656783efbd3afe5edbc3d41fdb5f50c3a709950aa4229af9c0ed18292b291fe4` |
-| `data/real/compact_objects/wandering_black_hole_sources.yml` | `config_yml` | 3610 | 117 | `2e3fcc600a4a7470c44ee89309648691e5a3bca40003df3070d5047313181e5f` |
+| `data/real/compact_objects/wandering_black_hole_sources.yml` | `config_yml` | 8122 | 190 | `a12ef4ab681d946d9b76ea8948cb7ec6aabefd804e22c740f6f8ed77d26c8ce2` |
 | `data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml` | `config_yml` | 3154 | 86 | `3611c3b97f799c057aed07ee7b823b9866b30e1731a0cfa0f328728b5670243b` |
 | `data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml` | `config_yml` | 3097 | 96 | `5125a06d02ee614e340ceb9f95d01f15e7d4bbaed271d0becefde4a28a04f2b9` |
+| `data/real/cosmology/fsigma8_perturbation_test.yml` | `config_yml` | 4365 | 100 | `6e56464f5058f8750a4b5f91484b17de2da5edef6b73b997f5b875117cf6f03f` |
+| `data/real/cosmology/h0_grid_expansion.yml` | `config_yml` | 3137 | 89 | `9a64cc3dd1cfbcc7c9c05f4e2db8b253c11069f40aece51873e703f6e5a6269e` |
+| `data/real/cosmology/weff_cpl_mapping.yml` | `config_yml` | 3780 | 80 | `cd029fdd4c5fc99ca36a2cf50e93f24ef5e8ebdffad86495dbe5c8708837cf8a` |
 | `data/real/high_z_smbh/high_z_seed_sources.yml` | `config_yml` | 4252 | 130 | `bdee494ef60c6d38740c2b59afdec5ad8984929d57b2eb0e6b81744163e36984` |
 | `data/real/kinematics/hypervelocity_sources.yml` | `config_yml` | 4189 | 129 | `00b7da1d4142a0acedd15bc5ce496b60f3075683c109032be9ef10e1180d74e8` |
 | `data/real/lensing/dark_lens_sources.yml` | `config_yml` | 4895 | 151 | `76e62fbad83495c18f74c8dc7b94bdf5f18d158eae57bbc28188da0f67366026` |
@@ -61,11 +64,12 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml` | `config_yml` | 6394 | 132 | `c9671d9af19ff795bc76e8a054dab6b3217e55f2eed39015464d5fdd1180d41e` |
 | `knowledge_ecosystem/reference_seed_sources.yml` | `config_yml` | 2926 | 95 | `9264067a6e18d643d597fc952a45adb95bb2298ac87a4a2208d1fa48353419ba` |
 | `knowledge_ecosystem/source_search_queue.yml` | `config_yml` | 4234 | 101 | `2eb433d16099e9afd49fd071904682f6675f6dcd7f079a124485fca4cad178db` |
+| `protocols/05_slingshot_zt_falsification.yml` | `config_yml` | 3761 | 94 | `86eb87d371b527f8937548d00d2cb40667610fb7b7f1b412462dcdbdf31fe0dd` |
 | `rll_equation_registry.yml` | `config_yml` | 4054 | 98 | `f332903e515ad070393a91b955b7886aeba016dbb3497fa5cf865182a380335f` |
 | `rll_inovacao_tecnologica_watch.yml` | `config_yml` | 1700 | 47 | `d9e02bb85b5f916fb7973ff0dea8eba40f58d544b4471cd1fa85233c25a0ed41` |
 | `tools/inventory_config.yml` | `config_yml` | 1240 | 62 | `d443542fdbe259cd9acaf91d032b4c7f4c5c487b826ca2e741542dfdfe0de979` |
 | `validacao_real/data/desi_dr2_bao.yml` | `config_yml` | 2692 | 105 | `580de8b8823d5d0b8e9926742c7953b8f8966120899014ed97212561cfa34796` |
 | `validacao_real/data/hz_cosmic_chronometers.yml` | `config_yml` | 1779 | 47 | `42619a71fa91071e2955b3a68bbaccffa22db7455720c98e1abaf861232ce116` |
-| `validacao_real/fetched/desi_dr2_bao.yml` | `config_yml` | 2495 | 104 | `9d7f1c710bceda0d789ff05221a0349b4b046cf235d76fa1b300fa345d67ba37` |
-| `validacao_real/fetched/hz_cosmic_chronometers.yml` | `config_yml` | 1665 | 111 | `3254fd368ec55f8f405d34caebc06ddcda320d6e6273c5bd2293d37f42cd8847` |
+| `validacao_real/fetched/desi_dr2_bao.yml` | `config_yml` | 2426 | 102 | `ac161802a730f88d009dc4152045847e62f609cf1518dadfbd699ae7bfa22905` |
+| `validacao_real/fetched/hz_cosmic_chronometers.yml` | `config_yml` | 1596 | 109 | `0ad054bb0b068daf649626fedb6e92c49f8506e8163e02bfe1eaa043198dcdf1` |
 | `validacao_real/sources.yml` | `config_yml` | 1479 | 36 | `ea086780f0472ee0a22a9dc71311fff48ff5292558e7d7998743658f201a82e5` |
