@@ -72,6 +72,7 @@ jobs:
             --out-csv artifacts/rll-real-run/tables/missing_placeholder_stub_scan.csv \
             --out-md artifacts/rll-real-run/reports/MISSING_PLACEHOLDER_STUB_SCAN.md \
             | tee artifacts/rll-real-run/reports/missing_placeholder_stub_scan.log
+          echo "[OK] Missing placeholder/stub scan generated." | tee artifacts/rll-real-run/reports/missing_placeholder_stub_scan.status
 
           if python3 tools/validate_to_add_migration.py > artifacts/rll-real-run/reports/to_add_migration_validation.log 2>&1; then
             cp data/results/to_add_migration_validation.json artifacts/rll-real-run/diagnostics/to_add_migration_validation.json
@@ -114,10 +115,10 @@ jobs:
       - run: |
           date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-real-run/RUN_UTC.txt
           git rev-parse HEAD > artifacts/rll-real-run/COMMIT_SHA.txt
-          find artifacts/rll-real-run -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/rll-real-run/CHECKSUMS.sha256
           test -f artifacts/rll-real-run/MANIFEST.json || echo '{}' > artifacts/rll-real-run/MANIFEST.json
           test -f artifacts/rll-real-run/COMPUTE_REPORT.md || echo '# COMPUTE_REPORT' > artifacts/rll-real-run/COMPUTE_REPORT.md
           test -f artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md || echo '# CLAIM_REFERENCE_AUDIT' > artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md
+          find artifacts/rll-real-run -type f ! -path '*/CHECKSUMS.sha256' -print0 | sort -z | xargs -0 sha256sum > artifacts/rll-real-run/CHECKSUMS.sha256
       - uses: actions/upload-artifact@v4
         with:
           name: rll-real-run-${{ github.run_id }}
