@@ -41,7 +41,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `data/real/bootstrap/real_observational_seed_v1.yml` | `config_yml` | 9717 | 243 | `983e353dbda482e9afa8cb25fdfdf67bb3e0cc3ea43563aa07885333826acfe5` |
 | `data/real/bootstrap/real_seed_pipeline_orchestration.yml` | `config_yml` | 7887 | 227 | `b8f90f3fcdc9c2232cb6e686f7a305a5bdaccc3a2c8f3a7df84eee0ceb0d9a17` |
 | `data/real/compact_objects/remnant_boundary_sources.yml` | `config_yml` | 4817 | 147 | `656783efbd3afe5edbc3d41fdb5f50c3a709950aa4229af9c0ed18292b291fe4` |
-| `data/real/compact_objects/wandering_black_hole_sources.yml` | `config_yml` | 8122 | 190 | `a12ef4ab681d946d9b76ea8948cb7ec6aabefd804e22c740f6f8ed77d26c8ce2` |
+| `data/real/compact_objects/wandering_black_hole_sources.yml` | `config_yml` | 8338 | 200 | `63cf639f7409bdfcaf089227afc386687963e793e72a7be5d342e6be8cee495e` |
 | `data/real/cosmology/DESI_BAO_MATH_ARTIFACTS.yml` | `config_yml` | 3154 | 86 | `3611c3b97f799c057aed07ee7b823b9866b30e1731a0cfa0f328728b5670243b` |
 | `data/real/cosmology/RLL_COSMO_VALIDATION_MATRIX.yml` | `config_yml` | 3097 | 96 | `5125a06d02ee614e340ceb9f95d01f15e7d4bbaed271d0becefde4a28a04f2b9` |
 | `data/real/cosmology/fsigma8_perturbation_test.yml` | `config_yml` | 4365 | 100 | `6e56464f5058f8750a4b5f91484b17de2da5edef6b73b997f5b875117cf6f03f` |

@@ -2619,12 +2619,21 @@
     "flags": "token_vazio_declared"
   },
   {
+    "path": "data/real/compact_objects/wandering_black_hole_sources.csv",
+    "bytes": 1389,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 4,
+    "sha256": "bf1a85f6feb7ebd4d34ae5193ab8620b818e3f77dda214e967343cfe7b2411cf",
+    "flags": ""
+  },
+  {
     "path": "data/real/compact_objects/wandering_black_hole_sources.yml",
-    "bytes": 8122,
+    "bytes": 8338,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 190,
-    "sha256": "a12ef4ab681d946d9b76ea8948cb7ec6aabefd804e22c740f6f8ed77d26c8ce2",
+    "linhas": 200,
+    "sha256": "63cf639f7409bdfcaf089227afc386687963e793e72a7be5d342e6be8cee495e",
     "flags": "token_vazio_declared"
   },
   {
@@ -3123,6 +3132,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "data/results/compact_objects/wandering_black_hole_sources_validation.json",
+    "bytes": 564,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 17,
+    "sha256": "f0d2f3abf5e419a759e82a6836bac67d95b866a3c56fcf6e8ede6abb722fa130",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "data/results/desi_dr2_bao_model_comparison.json",
     "bytes": 1097,
     "ext": ".json",
@@ -3192,6 +3210,15 @@
     "tipo": "data_or_result",
     "linhas": 71,
     "sha256": "265d6ec7b22312c8759890fd1d6662ba20380f9adabe54f21b6ea464f113bf40",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/repo_inventory_checksums.sha256",
+    "bytes": 595,
+    "ext": ".sha256",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "42ca2ea9eff6639cb77ab686f1baed69c12cbe29dbd7f654c2410e55dd0346c6",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -5949,6 +5976,33 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/science/RLL_CRUZAMENTOS_COMPLETOS.md",
+    "bytes": 12115,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 340,
+    "sha256": "d93611a3306c0b176ad70e1340c0803d45b068140898d2fcc532ef46b4c5681e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/RLL_OBSERVATIONAL_DATA_IMPLEMENTATION_REVIEW.md",
+    "bytes": 5900,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 164,
+    "sha256": "b408b442cee058e52731824b57ebde29943c5dca13855d805de040cdefcee7b2",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/RLL_OBSERVATIONAL_SOURCE_CAUTION.md",
+    "bytes": 2432,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 71,
+    "sha256": "30d8a6ad4a1ac7c21ca4385335319e2e6281536e01ce26e7fdd60f4c19134958",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/science/ROADMAP_NEXT_ACTIONS.md",
     "bytes": 5995,
     "ext": ".md",
@@ -7794,6 +7848,222 @@
     "flags": ""
   },
   {
+    "path": "results/pipeline-runs/28282780293/CHECKSUMS.sha256",
+    "bytes": 2340,
+    "ext": ".sha256",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "d2b85c9331904776272af391d9522771dd28123ae4d6613d61e90410ea62243b",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/COMMIT_SHA.txt",
+    "bytes": 41,
+    "ext": ".txt",
+    "tipo": "data_or_result",
+    "linhas": 1,
+    "sha256": "f1be3c776a51bccddd75964ccf94ad7c7a3780f9c38af03eda7ef4fd9fc39d4f",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/EXECUTION_PLAN.md",
+    "bytes": 689,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 16,
+    "sha256": "ba9295c66a765b51f745a62f79b0e91ffc0a4df6c22492f9174ea39e583eb87c",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/MANIFEST.json",
+    "bytes": 1208,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 32,
+    "sha256": "62d1ae41b1115a7d77987e9f4f0c36c16b8d577ff460f7794f20e8d8af6fed31",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/PIPELINE_REPORT.md",
+    "bytes": 1115,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 31,
+    "sha256": "5808fc9e34aa942db0d8954d20b7ee37d819f61dc0eeea6b8773d289349c8318",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/RUN_UTC.txt",
+    "bytes": 21,
+    "ext": ".txt",
+    "tipo": "data_or_result",
+    "linhas": 1,
+    "sha256": "576c5f6fa3df2d2b2c15e7e05b2562355b8e9715007625185e86dba888f9b304",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/checks/repository_files_depth5.txt",
+    "bytes": 46608,
+    "ext": ".txt",
+    "tipo": "data_or_result",
+    "linhas": 1084,
+    "sha256": "29d32769837f252e41db67bf7d7dfebe678e74b3491c6ae763a527ff5e4dc5af",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/download_real_cosmology_inputs.log",
+    "bytes": 522,
+    "ext": ".log",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "4b65a9e418806c90a97bb88c16d4d888f32629710836e5b958c1ccfb0da553b1",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/error_mode_usage.csv",
+    "bytes": 110,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 4,
+    "sha256": "3018c3afcf4de051da1dbc07a95e31950def91880fbd7de0029e951c594d2693",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/execution_timing_real.csv",
+    "bytes": 104,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 4,
+    "sha256": "f56b3d066f918ebf6476c79392fb58ec2ddf8a8132a21cd66ca6ab90895f07ef",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/model_comparison.json",
+    "bytes": 3304,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 98,
+    "sha256": "9eca62132cdfa4e87d78a8ed5ef5bfd6bf594dabb29723b8de0099730c0fec00",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/model_comparison_real.csv",
+    "bytes": 730,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 3,
+    "sha256": "601853a3317cbbc52fe375cecc4c67be9d52c1afaf33ee634d246fe910cfaed3",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/model_comparison_real_fit_metadata.json",
+    "bytes": 2289,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 115,
+    "sha256": "07b2fbbe669955c6f10b0f3cf745587406782662de25a42f2ac0d5b133701b54",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/pantheon_inputs.json",
+    "bytes": 630,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 21,
+    "sha256": "ae68f421ad68649d68d9a500e91cbf9afb8db52af12abd1a5f4b1405d882baca",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/pantheon_inputs.status",
+    "bytes": 26,
+    "ext": ".status",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "e72b4b762cc66d55ede55652e7a7974124d90917f24c3714f427acc41dbdd68f",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/real_data_materialization_audit.json",
+    "bytes": 12273,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 252,
+    "sha256": "54305512003c285d38cb52c641df507794635256c4d1d882e55eccccc28f7369",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/real_data_materialization_audit.log",
+    "bytes": 187,
+    "ext": ".log",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "027487e0540fa572b28ba61150b05850077815a300f31124d0195f5b4e94ad8f",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/real_data_materialization_audit.md",
+    "bytes": 1679,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 28,
+    "sha256": "800bc4c3f9b5e870130210ba1a1e1a4fc29b19236e5c7ba5e4ffbe67689afa52",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/real_data_policy_check.log",
+    "bytes": 65,
+    "ext": ".log",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "86575ef64d61bc6f297d236ec2a8a6c06f478fe1744afca27f13b4f4f4f33cab",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/real_source_signature_verification.log",
+    "bytes": 206,
+    "ext": ".log",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "0f8a6a01cc166135d5facb3ba3a13097dd3e432cb91d8e8e57a2ebe39830e7f0",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/real_source_signature_verification.md",
+    "bytes": 1202,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 18,
+    "sha256": "7007584f93ede89681a3ce670bb46ac647af87ad9063514766504e1d3dda5438",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/run_real_pantheon_validation.log",
+    "bytes": 353,
+    "ext": ".log",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "8a30e8d972a26a1fc8f54a2a6462fa2e416ee092a8c0a53a60d31852e09c60b5",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/run_real_pantheon_validation.status",
+    "bytes": 29,
+    "ext": ".status",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "171e8b771a41bd14265442f117777bb1e26153bfc15dbbf3debab4c86c2831cc",
+    "flags": ""
+  },
+  {
+    "path": "results/pipeline-runs/28282780293/reports/structure_d_real_validation.log",
+    "bytes": 1416,
+    "ext": ".log",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "f69fe86884e885060105753254380141deccbb3fe64186833293ca7d9751ec8b",
+    "flags": ""
+  },
+  {
     "path": "results/real/README.md",
     "bytes": 178,
     "ext": ".md",
@@ -8506,11 +8776,11 @@
   },
   {
     "path": "scripts/run_real_pantheon_validation.py",
-    "bytes": 12232,
+    "bytes": 14955,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 323,
-    "sha256": "67b4d24955c14ece457ff340e194801cdbdd065d87d7a59af280cdfb8990949b",
+    "linhas": 385,
+    "sha256": "23da65099760dfb8a32b135f7bb99aded56146a55e066ae2dbd9ade5283ca0ec",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -8709,6 +8979,15 @@
     "tipo": "source_code",
     "linhas": 103,
     "sha256": "4aa0bee438840728cb15e50c19d68d95688cb8c3c4bf92df547f9817ae64fd9b",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validation/validate_wandering_black_hole_sources.py",
+    "bytes": 7385,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 188,
+    "sha256": "eb2b2fbfb9e04b4623de51ff953c7a8138d51850d550b74a26984deb4eb96c5f",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
