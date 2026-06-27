@@ -1,0 +1,21 @@
+{
+  "all_present": true,
+  "data_dir": "data/pantheon",
+  "files": [
+    {
+      "description": "Pantheon+SH0ES light-curve parameter table",
+      "file": "lcparam_full_long_zhel.txt",
+      "sha256": "1cb0fc379ef066afdc2ffd1857681cc478024570d8a3eba284fb645775198cf8",
+      "size_bytes": 579283,
+      "status": "ok"
+    },
+    {
+      "description": "Pantheon+SH0ES combined statistical+systematic covariance matrix",
+      "file": "Pantheon+SH0ES_STAT+SYS.cov",
+      "sha256": "abf806d966485e64afdb359c87bffc0ecc00d05eff0a31ced66f247385df0fdc",
+      "size_bytes": 33284960,
+      "status": "ok"
+    }
+  ],
+  "missing": []
+}

@@ -1,0 +1,31 @@
+# Real Data Complete Execution Report
+
+Claim boundary: `No superiority claim unless real-data metrics pass predefined thresholds.`
+
+## Reports
+- `reports/download_real_cosmology_inputs.log`
+- `reports/error_mode_usage.csv`
+- `reports/execution_timing_real.csv`
+- `reports/model_comparison.json`
+- `reports/model_comparison_real.csv`
+- `reports/model_comparison_real_fit_metadata.json`
+- `reports/pantheon_inputs.json`
+- `reports/pantheon_inputs.status`
+- `reports/real_data_materialization_audit.json`
+- `reports/real_data_materialization_audit.log`
+- `reports/real_data_materialization_audit.md`
+- `reports/real_data_policy_check.log`
+- `reports/real_source_signature_verification.log`
+- `reports/real_source_signature_verification.md`
+- `reports/run_real_pantheon_validation.log`
+- `reports/run_real_pantheon_validation.status`
+- `reports/structure_d_real_validation.log`
+
+## Checks
+- `checks/repository_files_depth5.txt`
+
+## Failsafe / failover / rollback
+- no synthetic promotion
+- strict mode fails on missing required real inputs
+- lightweight commit is opt-in
+- workflow artifacts preserve rollback evidence

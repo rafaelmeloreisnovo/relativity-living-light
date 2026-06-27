@@ -1,0 +1,4 @@
+dataset_id,observable,error_mode
+real_hz,Hz,errors
+real_bao,DV_over_rs,errors
+real_cmb_shift,CMB_shift,errors
