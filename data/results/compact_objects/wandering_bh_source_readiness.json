@@ -1,47 +1,63 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "1.0",
   "module": "wandering_black_holes_and_lensing_gaps",
   "source": "data/real/compact_objects/wandering_black_hole_sources.yml",
   "claim_allowed": false,
   "claim_boundary": "readiness scan only; black-hole claims require lensing/dynamics, baseline alternatives, and checksums",
+  "operator_hint": "TOKEN_VAZIO is a truthful block, not an error; replace only with measured archive artifacts.",
   "records": [
     {
-      "id": "TOKEN_VAZIO_WBH_001",
-      "candidate_type": "wandering_bh",
+      "id": "RBH1_JWST_VAN_DOKKUM_2025",
+      "candidate_type": "runaway_supermassive_bh",
       "missing_fields": [
-        "dataset_name",
-        "provider",
-        "url_or_reference",
-        "local_path",
         "checksum_sha256",
         "raw_data_available"
       ],
+      "gate_summary": {
+        "reference_present": true,
+        "local_path_declared": true,
+        "checksum_present": false,
+        "raw_data_available": false,
+        "required_observables_mapped": true,
+        "claim_allowed": false,
+        "failsafe_closed": true
+      },
       "status": "blocked_missing_observational_data"
     },
     {
-      "id": "TOKEN_VAZIO_DARK_LENS_001",
-      "candidate_type": "dark_lens",
+      "id": "MANGA_12772_WBH_LIU_2025",
+      "candidate_type": "wandering_intermediate_mass_bh",
       "missing_fields": [
-        "dataset_name",
-        "provider",
-        "url_or_reference",
-        "local_path",
         "checksum_sha256",
         "raw_data_available"
       ],
+      "gate_summary": {
+        "reference_present": true,
+        "local_path_declared": true,
+        "checksum_present": false,
+        "raw_data_available": false,
+        "required_observables_mapped": true,
+        "claim_allowed": false,
+        "failsafe_closed": true
+      },
       "status": "blocked_missing_observational_data"
     },
     {
-      "id": "TOKEN_VAZIO_RECOIL_001",
-      "candidate_type": "recoiling_bh",
+      "id": "OGLE_2011_BLG_0462_DARK_LENS",
+      "candidate_type": "dark_lens_stellar_mass_bh",
       "missing_fields": [
-        "dataset_name",
-        "provider",
-        "url_or_reference",
-        "local_path",
         "checksum_sha256",
         "raw_data_available"
       ],
+      "gate_summary": {
+        "reference_present": true,
+        "local_path_declared": true,
+        "checksum_present": false,
+        "raw_data_available": false,
+        "required_observables_mapped": true,
+        "claim_allowed": false,
+        "failsafe_closed": true
+      },
       "status": "blocked_missing_observational_data"
     }
   ],
