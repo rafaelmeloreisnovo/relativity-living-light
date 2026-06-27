@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "claim_allowed": false,
+  "records": 3,
+  "csv_rows": 3,
+  "csv_sha256": "bf1a85f6feb7ebd4d34ae5193ab8620b818e3f77dda214e967343cfe7b2411cf",
+  "source_records": [
+    "RBH_1_JWST_RUNAWAY_SMBH",
+    "MANGA_12772_12704_WANDERING_MBH",
+    "NGC_3627_GALACTIC_CONTRAIL"
+  ],
+  "errors": [],
+  "warnings": [
+    "local raw files not materialized yet"
+  ],
+  "safe_conclusion": "real source metadata and observable table are present; claims remain blocked pending raw data, checksums, baselines, uncertainties, and executable metric artifacts"
+}
