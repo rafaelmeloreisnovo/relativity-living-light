@@ -1,0 +1,61 @@
+{
+  "run_utc": "2026-06-27T07:58:52Z",
+  "commit_sha": "a212e951bb7b0e99f7919f5a5b7761ea7e93d34f",
+  "book_scope": "real_data",
+  "dataset_group": "all",
+  "mode": "compute",
+  "status": "Parcial real em preparação",
+  "scope_objective": "auditar dados reais e χ² inicial.",
+  "chapters_used": [
+    "book/13_metodologia_dados_reais.md"
+  ],
+  "scientific_inputs": [
+    "docs/",
+    "data/",
+    "data/pipelines/structure_d/"
+  ],
+  "results_outputs": [
+    "results/"
+  ],
+  "ingestion_history_only": [
+    "to_Add/"
+  ],
+  "records": [
+    {
+      "group": "geomagnetic",
+      "Hipótese": "Validação depende de dados reais, métricas reproduzíveis e trilha canônica do livro.",
+      "Dado": "Grupo geomagnetic selecionado via dataset_group.",
+      "Modelo": "M(t), m(t), T_M",
+      "Métrica": "Comparação RLL vs referências externas com rastreabilidade.",
+      "Referência": "NOAA/NCEI IGRF14; NOAA/NCEI WMM2025; ESA Swarm; NASA South Atlantic Anomaly",
+      "Status": "blocked"
+    },
+    {
+      "group": "heliophysics",
+      "Hipótese": "Validação depende de dados reais, métricas reproduzíveis e trilha canônica do livro.",
+      "Dado": "Grupo heliophysics selecionado via dataset_group.",
+      "Modelo": "Φ_ext, SW, T_M, Φ_eff",
+      "Métrica": "Comparação RLL vs referências externas com rastreabilidade.",
+      "Referência": "NASA OMNI/SPDF; NMDB; GOES energetic particles; SPENVIS AE9/AP9",
+      "Status": "blocked"
+    },
+    {
+      "group": "cosmology",
+      "Hipótese": "Validação depende de dados reais, métricas reproduzíveis e trilha canônica do livro.",
+      "Dado": "Grupo cosmology selecionado via dataset_group.",
+      "Modelo": "E²(a), f(z), w(z), comparação RLL vs ΛCDM/w0waCDM",
+      "Métrica": "Comparação RLL vs referências externas com rastreabilidade.",
+      "Referência": "DESI DR2 BAO; Pantheon+ SNe Ia; Planck 2018 chains; H(z); fσ8",
+      "Status": "blocked"
+    }
+  ],
+  "allowed_status": [
+    "reference_only",
+    "metadata_ready",
+    "dry_run",
+    "fetched",
+    "computed",
+    "blocked"
+  ],
+  "promotion_guard": "pipeline não promove status para Real validado sem execução real com dados, métricas e reprodutibilidade"
+}

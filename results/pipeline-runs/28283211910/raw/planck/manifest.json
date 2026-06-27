@@ -1,0 +1,12 @@
+{
+  "source": "planck",
+  "group": "cosmology",
+  "url": "https://pla.esac.esa.int/",
+  "license": "ESA PLA terms",
+  "version": "Planck Legacy",
+  "heavy": true,
+  "manual_reason": "Planck archive products are large and product-specific; select products in ESA PLA before download.",
+  "run_utc": "2026-06-27T07:58:49.886558+00:00",
+  "status": "manual_materialization_required",
+  "reason": "Planck archive products are large and product-specific; select products in ESA PLA before download."
+}

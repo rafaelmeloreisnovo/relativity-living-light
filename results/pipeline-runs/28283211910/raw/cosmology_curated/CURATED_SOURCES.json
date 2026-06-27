@@ -1,0 +1,32 @@
+[
+  {
+    "name": "pantheon_readme.md",
+    "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/README.md",
+    "status": "fetched",
+    "sha256": "aebbe5d60292a548f008173b122073622f1f1c113af65ee988d29c53f51aa677"
+  },
+  {
+    "name": "desi_dr2_results_i_arxiv.html",
+    "url": "https://arxiv.org/abs/2503.14738",
+    "status": "fetched",
+    "sha256": "3eb18773acd00ea7a77f68efd79f1964ec2392ce78121c2aef63989135914c3f"
+  },
+  {
+    "name": "Hz_data_real.csv",
+    "source": "data/real/Hz_data_real.csv",
+    "status": "copied_from_repo",
+    "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6"
+  },
+  {
+    "name": "BAO_data_real.csv",
+    "source": "data/real/BAO_data_real.csv",
+    "status": "copied_from_repo",
+    "sha256": "1decb159dd8c276e356e1f2ca45028da0079302a0b7b279797d8e40aab0c9527"
+  },
+  {
+    "name": "CMB_shift_real.json",
+    "source": "data/real/CMB_shift_real.json",
+    "status": "copied_from_repo",
+    "sha256": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc"
+  }
+]
