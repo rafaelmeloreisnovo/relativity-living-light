@@ -1,0 +1,159 @@
+# Wandering / Recoiling Black Hole Source Ledger — REAL DATA FILLED
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Status: METADATA_READY — aguarda ingesta de arquivo local para claim_allowed=true
+# Schema: rll.compact_objects.wandering_bh.v1
+# Substitui: data/real/compact_objects/wandering_black_hole_sources.yml
+
+schema_version: "1.0"
+claim_allowed: false
+status: METADATA_READY_CLAIM_BLOCKED
+module: wandering_black_holes_and_lensing_gaps
+updated_utc: "2026-06-27"
+
+claim_policy:
+  no_superiority: true
+  require_checksum: true
+  require_baseline_comparison: true
+  publication_language: >
+    BH andante é fenômeno observacional independente do RLL.
+    RLL usa esses dados para testar se o setor magnético ΩB0·a⁻⁴
+    produz assinatura diferenciável de ΛCDM em ambientes de BH off-nuclear.
+
+falsifier_global: >
+  Se RLL com ΩB0>0 não produzir desvio mensurável em DM/rd ou DH/rd
+  nos tracers onde BH off-nuclear é confirmado (z~0.017), o setor
+  magnético é rejeitado nesse regime.
+
+source_records:
+
+  - id: RBH1_JWST_VAN_DOKKUM_2025
+    candidate_type: runaway_supermassive_bh
+    status: OBSERVATIONAL_CONFIRMED
+    dataset_name: "JWST NIRSpec IFU + HST imaging — RBH-1"
+    provider: "van Dokkum et al. 2025, ApJL 998 L27"
+    doi: "10.3847/2041-8213/adbaad"
+    arxiv: "2512.04166"
+    source_url: "https://arxiv.org/abs/2512.04166"
+    access_date_utc: "2026-06-27"
+    data_type: spectroscopic_imaging_bow_shock
+    raw_data_available: false
+    local_path: "data/real/compact_objects/rbh1_jwst_van_dokkum_2025.fits"
+    checksum_sha256: TOKEN_VAZIO
+    z_host: 0.964
+    observables_confirmed:
+      - bow_shock_velocity_km_s: 954
+      - velocity_difference_across_shock_km_s: 600
+      - wake_length_kpc: 62
+      - mass_estimate_msun: 1.0e7
+    rll_connection:
+      sector: magnetic_plasma
+      omega_B0_test: true
+      observable_proxy: "rotacao de Faraday no wake; dispersao de medida rádio"
+      falsifier: >
+        H_RLL(z=0.964) vs H_LCDM(z=0.964): diferença < 0.5% para Ωs0=0.02
+        Impacto em dL: Δ(dL)/dL ~ 0.2% — abaixo do limiar atual de DESI
+    claim_boundary:
+      rll_sensitivity_to_this_object: low_current_baseline
+      future_use: "Euclid/Roman wide-field survey para sistematica de BH fugitivos"
+      claim_allowed: false
+
+  - id: MANGA_12772_WBH_LIU_2025
+    candidate_type: wandering_intermediate_mass_bh
+    status: OBSERVATIONAL_CONFIRMED
+    dataset_name: "MaNGA + VLBA — MaNGA 12772-12704"
+    provider: "Liu, An, Mezcua et al. 2025, Science Bulletin"
+    doi: "10.1016/j.scib.2025.09.001"
+    arxiv: "2509.XXXXX"
+    source_url: "https://www.sciencedirect.com/science/article/pii/S2095927325008989"
+    access_date_utc: "2026-06-27"
+    data_type: radio_vlbi_optical_spectroscopy
+    raw_data_available: false
+    local_path: "data/real/compact_objects/manga_12772_wbh_liu_2025.fits"
+    checksum_sha256: TOKEN_VAZIO
+    z_host: 0.017
+    observables_confirmed:
+      - offset_from_center_kpc: 0.94
+      - brightness_temp_GHz: 1.0e9
+      - jet_extension_pc: 2.2
+      - variability_baseline_yr: 30
+    observables_required_for_rll:
+      - faraday_rotation_measure_rad_m2: null
+      - integrated_radio_flux_mJy: null
+      - spectral_index: null
+    physical_parameters:
+      z: 0.017
+      offset_kpc: 0.94
+      M_bh_msun: null
+    rll_connection:
+      sector: magnetic_plasma
+      omega_B0_test: true
+      priority: HIGH
+      rationale: >
+        z=0.017 está dentro do regime de validade RLL (z_min=0.0, z_max=2.4).
+        BH off-nuclear acretando lança jatos que perturbam campo B local.
+        Se ΩB0·a⁻⁴ acopla com campo B de AGN off-nuclear, assinatura em
+        rotação de Faraday é discriminadora vs ΛCDM.
+      falsifier: >
+        Medir RM (rotation measure) no ambiente do BH e comparar com
+        predição RLL (ΩB0>0) vs ΛCDM (ΩB0=0). Diferença > 3σ = evidência.
+    validation_script: "scripts/validation/validate_wandering_bh_candidates.py"
+    claim_boundary:
+      raw_data_required: [faraday_rotation, radio_flux, spectral_index]
+      claim_allowed: false
+
+  - id: OGLE_2011_BLG_0462_DARK_LENS
+    candidate_type: dark_lens_stellar_mass_bh
+    status: SEED_VERIFIED
+    dataset_name: "OGLE-2011-BLG-0462 microlensing event"
+    provider: "Sahu et al. 2022, ApJ; Lam et al. 2022, ApJL"
+    doi_sahu: "10.3847/1538-4357/ac739e"
+    doi_lam: "10.3847/2041-8213/ac7442"
+    source_url: "https://arxiv.org/abs/2201.13296"
+    access_date_utc: "2026-06-27"
+    data_type: microlensing_astrometric_hst
+    raw_data_available: false
+    local_path: "data/real/lensing/ogle_2011_blg_0462_hst.fits"
+    checksum_sha256: TOKEN_VAZIO
+    physical_parameters:
+      lens_mass_msun: 7.1
+      lens_mass_sigma: 1.3
+      lens_distance_kpc: 1.58
+      space_velocity_km_s: 45.0
+      z_effective: 0.0
+    rll_connection:
+      sector: dark_sector_local
+      priority: MEDIUM
+      rationale: >
+        BH isolado de massa estelar confirmado por microlensing.
+        Testa se população de BH silenciosos é consistente com
+        perfil de DM do RLL vs ΛCDM em galáxia espiral local.
+      falsifier: >
+        Distribuição de massa de BH silenciosos vs predição do
+        setor de superposição Ωs0 em z~0.
+    validation_script: "scripts/validation/validate_dark_lens_candidates.py"
+    claim_boundary:
+      lensing_mass_not_unique: true
+      claim_allowed: false
+
+fetch_instructions:
+  MANGA_12772:
+    step1: "Acessar MaNGA DR17: https://www.sdss.org/dr17/manga/"
+    step2: "Buscar plate-ifu MaNGA 12772-12704"
+    step3: "Download cube FITS: rsync -av rsync://data.sdss.org/dr17/manga/spectro/redux/..."
+    step4: "Calcular SHA256 e preencher checksum_sha256"
+    step5: "Mover para data/real/compact_objects/manga_12772_wbh_liu_2025.fits"
+  RBH1:
+    step1: "JWST MAST archive: https://mast.stsci.edu/"
+    step2: "Buscar program ID do van Dokkum 2025 (NIRSpec IFU)"
+    step3: "Download nível 3 reductions"
+    step4: "SHA256 + local_path"
+  OGLE_BLG:
+    step1: "HST archive: https://archive.stsci.edu/"
+    step2: "Buscar OGLE-2011-BLG-0462 nas propostas Sahu/Lam"
+    step3: "Download photometric + astrometric tables"
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_checksum_before_claim: true
+  require_observable_before_metric: true
+  require_baseline_before_interpretation: true

@@ -1,0 +1,153 @@
+# Hypervelocity Stars — Fonte Real para Slingshot Hills Mechanism
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Schema: rll.kinematics.hypervelocity.v1
+# Substitui: data/real/kinematics/hypervelocity_sources.yml (TOKEN_VAZIO)
+
+schema_version: "1.0"
+module: historical_impulse_slingshot
+status: METADATA_READY_CLAIM_BLOCKED
+claim_allowed: false
+updated_utc: "2026-06-27"
+
+physical_context: >
+  Estrelas hipervelozes (HVS) são ejetadas do centro galáctico via
+  mecanismo de Hills (1988): binária estelar capturada por Sgr A*,
+  um membro é capturado e o outro é ejetado a v > v_escape.
+  São análogos estelares do slingshot gravitacional — BH como
+  "planeja" e a estrela como "sonda" acelerada.
+
+connection_to_rll: >
+  HVS confirmam que Sgr A* atua como catapulta gravitacional real.
+  Se o setor plasmático ΩP0·a⁻⁴ do RLL acopla com ambiente de plasma
+  quente do centro galáctico, a distribuição de HVS pode ser
+  sensível a ΩP0 via potencial gravitacional modificado.
+  Efeito esperado: tiny (< 0.01%) mas testável em amostra grande (Gaia DR3).
+
+source_records:
+
+  - id: HVS_BROWN_2014_MMT_SURVEY
+    candidate_type: hypervelocity_star_hills_mechanism
+    status: CATALOG_PUBLIC
+    dataset_name: "MMT HVS Survey — 21 unbound HVS"
+    provider: "Brown, Geller, Kenyon 2014, ApJ 787 89"
+    doi: "10.1088/0004-637X/787/1/89"
+    arxiv: "1401.6913"
+    source_url: "https://arxiv.org/abs/1401.6913"
+    catalog_url: "https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=J/ApJ/787/89"
+    vizier_id: "J/ApJ/787/89"
+    access_date_utc: "2026-06-27"
+    data_type: spectroscopic_photometric_catalog
+    n_objects: 21
+    v_range_km_s: [300, 720]
+    mass_range_msun: [2.5, 4.0]
+    raw_data_available: true
+    local_path: "data/real/kinematics/brown_2014_hvs_catalog.csv"
+    checksum_sha256: TOKEN_VAZIO
+    fetch_command: >
+      wget -O data/real/kinematics/brown_2014_hvs_vizier.tsv
+        "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/ApJ/787/89/table1"
+    observables_available:
+      - object_id
+      - ra_deg
+      - dec_deg
+      - v_helio_km_s
+      - distance_kpc
+      - spectral_type
+    observables_needed_for_rll:
+      - galactocentric_velocity_km_s: "requer conversão v_helio→v_gal"
+      - traceback_probability_gc: "probabilidade de origem em Sgr A*"
+      - escape_velocity_at_position: "requer modelo de potencial galáctico"
+    rll_connection:
+      sector: plasma_local
+      priority: LOW
+      note: "Efeito RLL em potencial local z~0 é < 0.01% — uso didático e de pipeline"
+    falsifier: >
+      Distribuição de velocidades HVS deve ser consistente com
+      potencial galáctico ΛCDM. Desvio > 2σ indicaria componente
+      extra — possível sinal de ΩP0 local.
+
+  - id: HVS_GAIA_DR3_MARCHETTI_2022
+    candidate_type: hypervelocity_candidate_gaia
+    status: CATALOG_PUBLIC
+    dataset_name: "Gaia DR3 HVS candidates — 156 unbound stars"
+    provider: "Marchetti, Evans, Rossi 2022, MNRAS 515 767"
+    doi: "10.1093/mnras/stac1777"
+    arxiv: "2206.05799"
+    source_url: "https://arxiv.org/abs/2206.05799"
+    catalog_url: "https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=J/MNRAS/515/767"
+    access_date_utc: "2026-06-27"
+    data_type: astrometric_spectroscopic_gaia
+    n_objects: 156
+    raw_data_available: true
+    local_path: "data/real/kinematics/marchetti_2022_gaia_hvs.csv"
+    checksum_sha256: TOKEN_VAZIO
+    fetch_command: >
+      wget -O data/real/kinematics/marchetti_2022_gaia_hvs.tsv
+        "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/MNRAS/515/767/table1"
+    observables_available:
+      - source_id_gaia
+      - ra_deg
+      - dec_deg
+      - parallax_mas
+      - pmra_mas_yr
+      - pmdec_mas_yr
+      - radial_velocity_km_s
+      - v_total_galactocentric_km_s
+    rll_connection:
+      sector: kinematics_traceback
+      priority: MEDIUM
+      note: >
+        156 candidatos com 6D cinéticos permitem traceback ao GC.
+        Distribuição de velocidades de ejeção testa o potencial
+        gravitacional central — onde ΩP0 teria maior efeito.
+
+  - id: HVS_S5_LP_1_LS_1_KOPOSOV_2020
+    candidate_type: hypervelocity_star_confirmed_hills
+    status: GOLD_STANDARD
+    dataset_name: "S5-HVS1 — HVS mais rápida confirmada"
+    provider: "Koposov, Boubert et al. 2020, MNRAS 491 2465"
+    doi: "10.1093/mnras/stz2679"
+    arxiv: "1907.11725"
+    source_url: "https://arxiv.org/abs/1907.11725"
+    data_type: spectroscopic_astrometric_6D
+    raw_data_available: false
+    local_path: "data/real/kinematics/s5_hvs1_koposov_2020.csv"
+    checksum_sha256: TOKEN_VAZIO
+    physical_parameters:
+      v_galactocentric_km_s: 1755
+      distance_kpc: 9.0
+      traceback_gc_probability: 0.99
+      ejection_time_myr: 4.8
+      mass_msun: 2.35
+    rll_connection:
+      sector: plasma_slingshot_analogy
+      priority: GOLD
+      note: >
+        Velocidade de 1755 km/s confirma Sgr A* como catapulta real.
+        Gold standard para calibração de pipeline de traceback.
+        Conexão RLL: testar se modificação de potencial por ΩP0
+        altera tempo de ejeção estimado em > 0.01 Myr.
+    falsifier: >
+      t_ejection_RLL vs t_ejection_ΛCDM para S5-HVS1:
+      Diferença < 0.01 Myr → ΩP0 não detectável em HVS individuais.
+      Diferença > 0.1 Myr → ΩP0 tem efeito mensurável — testável com Gaia DR4.
+
+fetch_instructions:
+  vizier_method:
+    description: "Vizier CDS — acesso público, sem autenticação"
+    commands:
+      - >
+        wget -O data/real/kinematics/brown_2014.tsv
+          "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/ApJ/787/89/table1"
+      - >
+        wget -O data/real/kinematics/marchetti_2022.tsv
+          "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/MNRAS/515/767/table1"
+    note: "Funciona no Termux ARM32 sem autenticação"
+  sha256_after_download: >
+    sha256sum data/real/kinematics/*.tsv > data/real/kinematics/checksums.sha256
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_checksum_before_claim: true
+  require_galactocentric_conversion: true
+  require_escape_velocity_model: true
