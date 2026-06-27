@@ -41,7 +41,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install numpy pandas scipy matplotlib requests astropy pyyaml
       - run: mkdir -p artifacts/rll-real-run/{raw,processed,plots,tables,book,iml,formulas}
-      - run: python3 tools/docs_inventory.py --check
+      - name: Refresh and validate repository inventory
+        run: |
+          set -euo pipefail
+          python3 tools/docs_inventory.py | tee artifacts/rll-real-run/docs_inventory_refresh.log
+          python3 tools/docs_inventory.py --check | tee artifacts/rll-real-run/docs_inventory_check.log
       - run: |
           python3 scripts/fetch_real_sources.py \
             --dataset-group "${{ inputs.dataset_group }}" \
