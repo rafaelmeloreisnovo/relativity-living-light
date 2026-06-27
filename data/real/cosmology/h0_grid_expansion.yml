@@ -1,0 +1,89 @@
+# H₀ Grid Expansion — mitigates lower-bound optimizer artifacts
+# Generated: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Schema: rll.parameter_grid.h0_expansion.v1
+
+schema_version: "1.0"
+module: h0_grid_expansion
+status: READY_TO_RUN
+claim_allowed: false
+updated_utc: "2026-06-27"
+
+problem_identified:
+  artifact: "H₀ = 60.0 km/s/Mpc in joint_real_likelihood.json"
+  cause: "Optimizer can hit a lower grid bound; a boundary optimum is not a physical result."
+  evidence: >
+    If joint_real_likelihood.json reports H0=60.0 for LCDM, wCDM, CPL, and RLL,
+    treat it as a grid/prior artifact until a bounded re-scan confirms that the
+    optimum is internal to the allowed interval.
+  impact: "AIC/BIC and CMB-shift terms can be inflated by a boundary-constrained H₀."
+
+grid_corrected:
+  H0:
+    min: 64.0
+    max: 74.0
+    step: 0.5
+    prior_center: 67.4
+    prior_sigma: 2.0
+    note: "Covers Planck-like, DESI-like, and local-distance-ladder H₀ regimes without permitting the previous H0=60 boundary."
+  omega_m:
+    min: 0.28
+    max: 0.36
+    step: 0.01
+  omega_s0:
+    min: 0.0
+    max: 0.12
+    step: 0.01
+    note: "Includes 0.0 so the RLL sector has a null/ΛCDM-adjacent limit."
+  zt:
+    min: 0.5
+    max: 2.0
+    step: 0.1
+  wt:
+    min: 0.1
+    max: 0.8
+    step: 0.05
+
+execution:
+  script: "scripts/run_h0_grid_expansion.py"
+  command: >
+    python scripts/run_h0_grid_expansion.py
+      --bao data/real/cosmology/desi_dr2_bao_primary_points.csv
+      --hz data/real/Hz_data_real.csv
+      --out-json results/h0_grid_expansion_summary.json
+      --out-csv results/h0_grid_expansion_scan.csv
+  fallback_point_command: >
+    python rll_vs_lcdm.py
+      --bao data/real/cosmology/desi_dr2_bao_primary_points.csv
+      --hz data/real/Hz_data_real.csv
+      --adversary both
+      --h0 67.4
+      --omega-m 0.315
+      --omega-s0 0.05
+      --zt 1.2
+      --wt 0.35
+      --out-json results/h0_corrected_run.json
+      --out-csv results/h0_corrected_predictions.csv
+
+expected_outputs:
+  - results/h0_grid_expansion_summary.json
+  - results/h0_grid_expansion_scan.csv
+
+falsifiers:
+  - id: F_H0_01
+    test: "H₀ optimum must not sit on the corrected grid boundary."
+    metric: "64.0 < H0_best < 74.0"
+    if_fails: "Expand or redesign the H₀ grid before interpreting model comparisons."
+  - id: F_H0_02
+    test: "RLL and ΛCDM best H₀ values should be comparable under the same data."
+    metric: "|H₀_RLL − H₀_ΛCDM| < 1.0 km/s/Mpc"
+    if_fails: "RLL background is not H₀-degenerate with ΛCDM under this likelihood."
+  - id: F_H0_03
+    test: "RLL AIC penalty should remain small after H₀ is allowed to move inside the grid."
+    metric: "delta_aic_rll_minus_lcdm < 4.0"
+    if_fails: "RLL remains penalized even after H₀ boundary mitigation."
+
+quality_gates:
+  gate_1_grid: "Best H₀ must be internal, not a min/max boundary."
+  gate_2_data: "BAO and Hz input files must parse without dropped rows."
+  gate_3_output: "Summary JSON must include best_by_model and quality_gates."
+  gate_4_rollback: "Generated files are reproducible and can be removed or git-reverted without touching raw data."

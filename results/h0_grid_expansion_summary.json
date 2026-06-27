@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "module": "h0_grid_expansion",
+  "claim_allowed": false,
+  "inputs": {
+    "hz": "data/real/Hz_data_real.csv",
+    "bao": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+    "h0_grid": [
+      64.0,
+      74.0,
+      0.5
+    ]
+  },
+  "best_by_model": {
+    "lcdm": {
+      "model": "lcdm",
+      "H0": 68.0,
+      "chi2_hz": 23.100943416276998,
+      "chi2_bao": 15.38670265656041,
+      "chi2_total": 38.48764607283741,
+      "n_params": 3,
+      "aic": 44.48764607283741,
+      "bic": 49.97357026230469
+    },
+    "rll": {
+      "model": "rll",
+      "H0": 67.0,
+      "chi2_hz": 36.76514150377947,
+      "chi2_bao": 77.98458187180759,
+      "chi2_total": 114.74972337558705,
+      "n_params": 6,
+      "aic": 126.74972337558705,
+      "bic": 137.72157175452162
+    }
+  },
+  "comparisons": {
+    "delta_H0_rll_minus_lcdm": -1.0,
+    "delta_aic_rll_minus_lcdm": 82.26207730274965
+  },
+  "quality_gates": {
+    "gate_1_grid_lcdm_internal": true,
+    "gate_1_grid_rll_internal": true,
+    "gate_2_h0_degeneracy": false,
+    "gate_3_delta_aic": false
+  },
+  "status": "claim_blocked_quality_gate_failed",
+  "rollback": "Remove generated CSV/JSON or git revert; no raw data is changed."
+}

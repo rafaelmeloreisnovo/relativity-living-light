@@ -7,7 +7,7 @@ import json
 import math
 from pathlib import Path
 
-DEFAULT_REAL_FSIGMA8 = "data/real/cosmology/fsigma8_growth.csv"
+DEFAULT_REAL_FSIGMA8 = "data/real/cosmology/fsigma8_growth_real.csv"
 
 
 def exp_clip(x: float) -> float:
@@ -183,8 +183,10 @@ def evaluate_models(p: argparse.Namespace) -> tuple[dict, list[dict[str, float]]
         "models": {},
     }
     z_grid = prediction_grid(p)
+    rows_by_model: dict[str, list[dict[str, float]]] = {}
     for model in models:
         rows = integrate_growth(model, p)
+        rows_by_model[model] = rows
         for z in z_grid:
             pred = {
                 "model": model,
@@ -208,6 +210,40 @@ def evaluate_models(p: argparse.Namespace) -> tuple[dict, list[dict[str, float]]
             "fsigma8_z1": interp(rows, 1.0, "fsigma8"),
             "chi2_fsigma8": chi2,
             "n_data": len(data),
+        }
+    if {"lcdm", "rll"}.issubset(rows_by_model):
+        lcdm_rows = rows_by_model["lcdm"]
+        rll_rows = rows_by_model["rll"]
+        d_lcdm_z05 = interp(lcdm_rows, 0.5, "D")
+        d_rll_z05 = interp(rll_rows, 0.5, "D")
+        rel_d_z05 = abs(d_rll_z05 - d_lcdm_z05) / d_lcdm_z05
+        fs8_rll_z057 = interp(rll_rows, 0.57, "fsigma8")
+        chi2_lcdm = summary["models"]["lcdm"]["chi2_fsigma8"]
+        chi2_rll = summary["models"]["rll"]["chi2_fsigma8"]
+        finite = all(math.isfinite(float(pred["D"])) and math.isfinite(float(pred["f_growth"])) and math.isfinite(float(pred["fsigma8"])) for pred in all_predictions)
+        summary["comparisons"] = {
+            "D_lcdm_z0p5": d_lcdm_z05,
+            "D_rll_z0p5": d_rll_z05,
+            "relative_D_delta_z0p5": rel_d_z05,
+            "fsigma8_rll_z0p57": fs8_rll_z057,
+            "chi2_fsigma8_rll_minus_lcdm": None if chi2_lcdm is None or chi2_rll is None else chi2_rll - chi2_lcdm,
+        }
+        summary["falsifiers"] = {
+            "F_FS8_01": rel_d_z05 > 0.005,
+            "F_FS8_02": False if chi2_lcdm is None or chi2_rll is None else chi2_rll < chi2_lcdm,
+            "F_FS8_03": abs(fs8_rll_z057 - 0.427) < 2.0 * 0.066,
+        }
+        summary["quality_gates"] = {
+            "finite_predictions": finite,
+            "D_z0_normalized_lcdm": abs(summary["models"]["lcdm"]["D_z0"] - 1.0) < 1e-9,
+            "D_z0_normalized_rll": abs(summary["models"]["rll"]["D_z0"] - 1.0) < 1e-9,
+            "claim_allowed": False,
+        }
+        summary["status"] = "claim_blocked_internal_kernel" if finite else "failed_nonfinite_growth_kernel"
+        summary["claim_policy"] = {
+            "claim_allowed": False,
+            "reason": "Internal RK4 growth kernel only; CLASS/CAMB transfer validation remains TOKEN_VAZIO.",
+            "rollback": "Remove generated growth CSV/JSON or git revert; raw data is unchanged.",
         }
     return summary, all_predictions
 

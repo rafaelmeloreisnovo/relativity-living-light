@@ -59,3 +59,11 @@ def test_evaluate_all_models_contains_adversary_and_rll():
     assert set(summary["models"].keys()) == {"lcdm", "w0wa", "rll"}
     assert predictions
     assert summary["assumptions"]["nonlinear_power"] == "TOKEN_VAZIO"
+
+
+def test_evaluate_all_models_reports_claim_blocked_falsifiers():
+    g = load_module()
+    summary, _ = g.evaluate_models(params(data=None))
+    assert summary["claim_policy"]["claim_allowed"] is False
+    assert summary["quality_gates"]["finite_predictions"] is True
+    assert set(summary["falsifiers"].keys()) == {"F_FS8_01", "F_FS8_02", "F_FS8_03"}

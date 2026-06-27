@@ -1,0 +1,80 @@
+{
+  "params": {
+    "omega_m": 0.315,
+    "omega_s0": 0.02,
+    "zt": 1.0,
+    "wt": 0.3,
+    "w0": -1.0,
+    "wa": 0.0,
+    "sigma8_0": 0.811,
+    "a_min": 0.01,
+    "steps": 1000,
+    "data": "data/real/cosmology/fsigma8_growth_real.csv"
+  },
+  "data_policy": {
+    "covariance": "diagonal_only",
+    "full_covariance": "TOKEN_VAZIO",
+    "note": "chi2_fsigma8 uses the sigma column only unless a future covariance block is provided"
+  },
+  "assumptions": {
+    "equation": "D_xx + (2 + dlnH_dlna) D_x - 1.5 Omega_m(a) D = 0",
+    "normalization": "D(a=1)=1",
+    "regime": "linear_growth_smooth_dark_sector_GR_background",
+    "nonlinear_power": "TOKEN_VAZIO",
+    "boltzmann_cmb": "TOKEN_VAZIO",
+    "baryonic_feedback": "TOKEN_VAZIO"
+  },
+  "models": {
+    "lcdm": {
+      "D_z0": 1.0,
+      "f_z0": 0.5271032022620769,
+      "fsigma8_z0": 0.42748069703454433,
+      "D_z1": 0.6067531494069599,
+      "fsigma8_z1": 0.43140571237871617,
+      "chi2_fsigma8": 18.93911121377859,
+      "n_data": 16
+    },
+    "w0wa": {
+      "D_z0": 1.0,
+      "f_z0": 0.5271032022620769,
+      "fsigma8_z0": 0.42748069703454433,
+      "D_z1": 0.6067531494069599,
+      "fsigma8_z1": 0.43140571237871617,
+      "chi2_fsigma8": 18.93911121377859,
+      "n_data": 16
+    },
+    "rll": {
+      "D_z0": 1.0,
+      "f_z0": 0.5262471732862104,
+      "fsigma8_z0": 0.4267864575351167,
+      "D_z1": 0.608621056849058,
+      "fsigma8_z1": 0.4260707415618341,
+      "chi2_fsigma8": 17.923462780913514,
+      "n_data": 16
+    }
+  },
+  "comparisons": {
+    "D_lcdm_z0p5": 0.7689222097947996,
+    "D_rll_z0p5": 0.7695337507411839,
+    "relative_D_delta_z0p5": 0.000795322255742191,
+    "fsigma8_rll_z0p57": 0.46887385380068075,
+    "chi2_fsigma8_rll_minus_lcdm": -1.0156484328650777
+  },
+  "falsifiers": {
+    "F_FS8_01": false,
+    "F_FS8_02": true,
+    "F_FS8_03": true
+  },
+  "quality_gates": {
+    "finite_predictions": true,
+    "D_z0_normalized_lcdm": true,
+    "D_z0_normalized_rll": true,
+    "claim_allowed": false
+  },
+  "status": "claim_blocked_internal_kernel",
+  "claim_policy": {
+    "claim_allowed": false,
+    "reason": "Internal RK4 growth kernel only; CLASS/CAMB transfer validation remains TOKEN_VAZIO.",
+    "rollback": "Remove generated growth CSV/JSON or git revert; raw data is unchanged."
+  }
+}
