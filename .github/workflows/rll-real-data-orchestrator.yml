@@ -40,7 +40,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install numpy pandas scipy matplotlib requests astropy pyyaml
-      - run: mkdir -p artifacts/rll-real-run/{raw,processed,plots,tables,book,iml,formulas}
+      - run: mkdir -p artifacts/rll-real-run/{raw,processed,plots,tables,book,iml,formulas,diagnostics,reports}
       - name: Refresh and validate repository inventory
         run: |
           set -euo pipefail
@@ -61,6 +61,37 @@ jobs:
             ${{ inputs.fetch_spenvis_reference && '--fetch-spenvis-reference' || '--no-fetch-spenvis-reference' }}
       - if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' }}
         run: python3 scripts/compute_rll_real_pipeline.py --output-dir artifacts/rll-real-run --data-source "${{ inputs.real_data_source }}"
+      - name: Run gap scan and RLL diagnostic artifacts
+        if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' }}
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/rll-real-run/diagnostics artifacts/rll-real-run/tables artifacts/rll-real-run/reports
+
+          python3 tools/scan_missing_placeholders.py \
+            --out-json artifacts/rll-real-run/diagnostics/missing_placeholder_stub_scan.json \
+            --out-csv artifacts/rll-real-run/tables/missing_placeholder_stub_scan.csv \
+            --out-md artifacts/rll-real-run/reports/MISSING_PLACEHOLDER_STUB_SCAN.md \
+            | tee artifacts/rll-real-run/reports/missing_placeholder_stub_scan.log
+
+          if python3 scripts/run_h0_grid_expansion.py \
+            --out-json artifacts/rll-real-run/diagnostics/h0_grid_expansion_summary.json \
+            --out-csv artifacts/rll-real-run/tables/h0_grid_expansion_scan.csv \
+            > artifacts/rll-real-run/reports/h0_grid_expansion.log 2>&1; then
+            echo "[OK] H0 grid expansion generated." | tee artifacts/rll-real-run/reports/h0_grid_expansion.status
+          else
+            cat artifacts/rll-real-run/reports/h0_grid_expansion.log
+            echo "[BLOQUEADO] H0 grid expansion failed; claim remains blocked." | tee artifacts/rll-real-run/reports/h0_grid_expansion.status
+          fi
+
+          if python3 scripts/map_rll_to_w0wa_eff.py \
+            --out-json artifacts/rll-real-run/diagnostics/rll_w0wa_eff_map.json \
+            --out-csv artifacts/rll-real-run/tables/rll_w0wa_eff_map.csv \
+            > artifacts/rll-real-run/reports/rll_w0wa_eff_map.log 2>&1; then
+            echo "[OK] RLL to w0wa mapper generated." | tee artifacts/rll-real-run/reports/rll_w0wa_eff_map.status
+          else
+            cat artifacts/rll-real-run/reports/rll_w0wa_eff_map.log
+            echo "[BLOQUEADO] RLL to w0wa mapper failed; claim remains blocked." | tee artifacts/rll-real-run/reports/rll_w0wa_eff_map.status
+          fi
       - if: ${{ inputs.run_plots && (inputs.mode == 'plots' || inputs.mode == 'full' || inputs.mode == 'compute') }}
         run: python3 scripts/generate_rll_plots.py
       - if: ${{ inputs.pipeline_scope == 'book' || inputs.pipeline_scope == 'all' || inputs.pipeline_scope == 'rll' }}
