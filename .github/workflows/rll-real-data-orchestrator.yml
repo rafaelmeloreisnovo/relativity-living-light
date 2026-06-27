@@ -73,6 +73,15 @@ jobs:
             --out-md artifacts/rll-real-run/reports/MISSING_PLACEHOLDER_STUB_SCAN.md \
             | tee artifacts/rll-real-run/reports/missing_placeholder_stub_scan.log
 
+          if python3 tools/validate_to_add_migration.py > artifacts/rll-real-run/reports/to_add_migration_validation.log 2>&1; then
+            cp data/results/to_add_migration_validation.json artifacts/rll-real-run/diagnostics/to_add_migration_validation.json
+            cp docs/TO_ADD_MIGRATION_STATUS.md artifacts/rll-real-run/reports/TO_ADD_MIGRATION_STATUS.md
+            echo "[OK] to_Add migration validates." | tee artifacts/rll-real-run/reports/to_add_migration_validation.status
+          else
+            cat artifacts/rll-real-run/reports/to_add_migration_validation.log
+            echo "[BLOQUEADO] to_Add migration validation failed; claim remains blocked." | tee artifacts/rll-real-run/reports/to_add_migration_validation.status
+          fi
+
           if python3 scripts/run_h0_grid_expansion.py \
             --out-json artifacts/rll-real-run/diagnostics/h0_grid_expansion_summary.json \
             --out-csv artifacts/rll-real-run/tables/h0_grid_expansion_scan.csv \
