@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_RESULTS = ROOT / "data" / "results"
 MODEL_COMPARISON_JSON = DATA_RESULTS / "model_comparison.json"
 PANTHEON_SUMMARY_JSON = DATA_RESULTS / "pantheon_fit_summary.json"
+MODEL_SELECTION_SUMMARY_JSON = ROOT / "results" / "rll_model_comparison_summary.json"
 EXPECTED_SOURCE = "data/results/pantheon_fit_summary.json"
 
 AIC_TENTATIVE_THRESHOLD = 2.0
@@ -88,7 +89,6 @@ def interpret_model_comparison(delta: dict) -> dict:
 
 
 
-
 def _sha256_file(path: Path) -> str:
     import hashlib
     h=hashlib.sha256()
@@ -115,7 +115,7 @@ def _environment_info() -> dict:
     from importlib.metadata import PackageNotFoundError, version
 
     pkgs = {}
-    for name in ("numpy", "scipy", "pandas", "pytest"):
+    for name in ("numpy", "scipy", "pandas", "pytest", "jsonschema"):
         try:
             pkgs[name] = version(name)
         except PackageNotFoundError:
@@ -135,6 +135,7 @@ def validate_model_comparison_payload(payload: dict) -> None:
             raise ValueError(f"missing required field: {key}")
     if payload["k_rll"] != 5 or payload["k_lcdm"] != 2:
         raise ValueError("k_rll/k_lcdm mismatch")
+
 
 def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
     source = EXPECTED_SOURCE
@@ -241,6 +242,22 @@ def _retain_existing_artifact(reason: str) -> bool:
     return False
 
 
+def _summary_diagnostics() -> str:
+    data_results_files = sorted(p.relative_to(ROOT).as_posix() for p in DATA_RESULTS.glob("*")) if DATA_RESULTS.exists() else []
+    diagnostics = {
+        "expected_summary": EXPECTED_SOURCE,
+        "expected_exists": PANTHEON_SUMMARY_JSON.exists(),
+        "model_selection_summary": MODEL_SELECTION_SUMMARY_JSON.relative_to(ROOT).as_posix(),
+        "model_selection_summary_exists": MODEL_SELECTION_SUMMARY_JSON.exists(),
+        "data_results_files": data_results_files,
+        "route_hint": (
+            "Pantheon normalization requires docs/panteon_likelihood.py output. "
+            "If results/rll_model_comparison_summary.json exists instead, the CLI routed to rll_vs_lcdm.py."
+        ),
+    }
+    return json.dumps(diagnostics, indent=2, ensure_ascii=False)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run minimal real Pantheon+ validation and emit auditable model_comparison.json")
     parser.add_argument("--skip-verify", action="store_true", help="Skip verify_pantheon_inputs step")
@@ -255,7 +272,22 @@ def main() -> None:
         steps.append(("verify", [sys.executable, "scripts/verify_pantheon_inputs.py", "--json"]))
     if not args.skip_preflight:
         steps.append(("preflight", [sys.executable, "-m", "rll.cli", "preflight-real", "--json"]))
-    steps.append(("run_real", [sys.executable, "-m", "rll.cli", "run", "--data", "real", "--model", "both", "--with-covariance"]))
+    steps.append((
+        "run_real",
+        [
+            sys.executable,
+            "-m",
+            "rll.cli",
+            "run",
+            "--data",
+            "real",
+            "--model",
+            "both",
+            "--with-covariance",
+            "--adversary",
+            "lcdm",
+        ],
+    ))
 
     for label, cmd in steps:
         completed = _run(cmd, env)
@@ -268,7 +300,8 @@ def main() -> None:
     if not PANTHEON_SUMMARY_JSON.exists():
         raise FileNotFoundError(
             f"Expected summary not found: {PANTHEON_SUMMARY_JSON}. "
-            "Real pipeline did not produce the required artifact."
+            "Real Pantheon pipeline did not produce the required artifact.\n"
+            f"Diagnostics:\n{_summary_diagnostics()}"
         )
 
     missing = [p for p in _pantheon_files() if not p.exists()]
