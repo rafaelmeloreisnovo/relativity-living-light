@@ -6,6 +6,7 @@ on:
       - '**/*.yml'
       - '**/*.yaml'
       - 'tools/check_yml_operational_contracts.py'
+      - 'tools/yml_orchestrator.py'
       - 'schemas/yml_role.schema.json'
   workflow_dispatch:
 
@@ -28,5 +29,13 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --upgrade pip pyyaml
 
-      - name: Check YML operational contracts
-        run: python3 tools/check_yml_operational_contracts.py
+      - name: Run single YML orchestrator
+        run: python3 tools/yml_orchestrator.py --out-dir artifacts/yml-orchestrator
+
+      - name: Upload YML orchestrator artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yml-orchestrator-${{ github.run_id }}
+          path: artifacts/yml-orchestrator/
+          retention-days: 30
