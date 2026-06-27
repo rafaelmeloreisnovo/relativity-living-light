@@ -1,0 +1,118 @@
+[
+  {
+    "source": "igrf14",
+    "group": "geomagnetic",
+    "url": "https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field",
+    "license": "NOAA public data",
+    "version": "IGRF14",
+    "heavy": false,
+    "run_utc": "2026-06-27T08:10:54.197978+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/igrf14/payload.bin",
+        "sha256": "3078354aea1ac35a1db9b7b124e0cef251a055653d18b79e7a4bc8d71efe28ce"
+      }
+    ]
+  },
+  {
+    "source": "wmm2025",
+    "group": "geomagnetic",
+    "url": "https://www.ncei.noaa.gov/index.php/products/world-magnetic-model/wmm-coefficients",
+    "license": "NOAA public data",
+    "version": "WMM2025",
+    "heavy": false,
+    "run_utc": "2026-06-27T08:10:54.616761+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/wmm2025/payload.bin",
+        "sha256": "036d1f48bf024ce1d5fe006286f8b287bbd62c45902e3bf5caf844337c0444ed"
+      }
+    ]
+  },
+  {
+    "source": "omni",
+    "group": "heliophysics",
+    "url": "https://omniweb.gsfc.nasa.gov/",
+    "license": "NASA open data",
+    "version": "OMNI/SPDF",
+    "heavy": false,
+    "run_utc": "2026-06-27T08:10:55.094786+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/omni/payload.bin",
+        "sha256": "11a4708f47c91fdc0c6693fc97f43f59d9d2308c132087dba488254aa7dd69a8"
+      }
+    ]
+  },
+  {
+    "source": "nmdb",
+    "group": "heliophysics",
+    "url": "https://www.nmdb.eu/",
+    "license": "NMDB terms",
+    "version": "current",
+    "heavy": false,
+    "run_utc": "2026-06-27T08:10:55.477256+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/nmdb/payload.bin",
+        "sha256": "2c3c0167b62c3cda6ad2b4f72a2c930de32f2b6f8f248b63a8c41aacda6e58ba"
+      }
+    ]
+  },
+  {
+    "source": "desi",
+    "group": "cosmology",
+    "url": "https://data.desi.lbl.gov/",
+    "license": "DESI data policy",
+    "version": "DR2",
+    "heavy": true,
+    "manual_reason": "DESI bulk data are large and should be selected from the data portal before materialization.",
+    "run_utc": "2026-06-27T08:10:56.154422+00:00",
+    "status": "manual_materialization_required",
+    "reason": "DESI bulk data are large and should be selected from the data portal before materialization."
+  },
+  {
+    "source": "pantheon",
+    "group": "cosmology",
+    "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/README.md",
+    "license": "repository license",
+    "version": "DataRelease",
+    "heavy": false,
+    "run_utc": "2026-06-27T08:10:56.154608+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/pantheon/payload.bin",
+        "sha256": "aebbe5d60292a548f008173b122073622f1f1c113af65ee988d29c53f51aa677"
+      }
+    ]
+  },
+  {
+    "source": "planck",
+    "group": "cosmology",
+    "url": "https://pla.esac.esa.int/",
+    "license": "ESA PLA terms",
+    "version": "Planck Legacy",
+    "heavy": true,
+    "manual_reason": "Planck archive products are large and product-specific; select products in ESA PLA before download.",
+    "run_utc": "2026-06-27T08:10:56.321543+00:00",
+    "status": "manual_materialization_required",
+    "reason": "Planck archive products are large and product-specific; select products in ESA PLA before download."
+  },
+  {
+    "source": "spenvis_reference",
+    "group": "heliophysics",
+    "url": "https://www.spenvis.oma.be/",
+    "license": "SPENVIS terms",
+    "version": "reference",
+    "heavy": true,
+    "manual_reason": "SPENVIS workflows require portal/session configuration before exporting data.",
+    "run_utc": "2026-06-27T08:10:56.321773+00:00",
+    "status": "manual_materialization_required",
+    "reason": "SPENVIS workflows require portal/session configuration before exporting data."
+  }
+]

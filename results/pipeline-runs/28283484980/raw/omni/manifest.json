@@ -1,0 +1,16 @@
+{
+  "source": "omni",
+  "group": "heliophysics",
+  "url": "https://omniweb.gsfc.nasa.gov/",
+  "license": "NASA open data",
+  "version": "OMNI/SPDF",
+  "heavy": false,
+  "run_utc": "2026-06-27T08:10:55.094786+00:00",
+  "status": "fetched",
+  "files": [
+    {
+      "path": "raw/omni/payload.bin",
+      "sha256": "11a4708f47c91fdc0c6693fc97f43f59d9d2308c132087dba488254aa7dd69a8"
+    }
+  ]
+}

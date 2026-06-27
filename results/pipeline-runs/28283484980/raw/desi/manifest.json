@@ -1,0 +1,12 @@
+{
+  "source": "desi",
+  "group": "cosmology",
+  "url": "https://data.desi.lbl.gov/",
+  "license": "DESI data policy",
+  "version": "DR2",
+  "heavy": true,
+  "manual_reason": "DESI bulk data are large and should be selected from the data portal before materialization.",
+  "run_utc": "2026-06-27T08:10:56.154422+00:00",
+  "status": "manual_materialization_required",
+  "reason": "DESI bulk data are large and should be selected from the data portal before materialization."
+}

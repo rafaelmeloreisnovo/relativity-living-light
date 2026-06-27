@@ -1,0 +1,55 @@
+# FORMULAS_BY_SOURCE
+
+- RAFAELIA_COSMO_STRUCTURE_D/core/equations.md: 4
+- RAFAELIA_COSMO_STRUCTURE_D/paper/draft.md: 1
+- docs/ARQUITETURA_DUAS_RADIACOES_IMPLEMENTACAO.md: 4
+- docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md: 1
+- docs/COMPARACAO_DESI_2025.md: 3
+- docs/FORMALISMO_RAFAELIA_T7_E_COERENCIA.md: 10
+- docs/FORMALIZACAO_CONHECIMENTO_MULTILINGUE.md: 1
+- docs/FORMULAS_CANONICAS_INDEX.md: 6
+- docs/MAPA CIENTIESPIRITUAL.md: 1
+- docs/MAPA_RAFAELIA_TOTAL.md: 2
+- docs/MINI_PREPRINT_RLL_FOTOPERIODISMO.md: 1
+- docs/MODELO_COSMOLOGICO_UNIFICADO_MAGNETISMO_RADIACAO_PLASMA.md: 13
+- docs/PERTURBACOES_CRESCIMENTO.md: 2
+- docs/PLANO_ABCD_JWST_AGN_SMBH.md: 10
+- docs/PLANO_AD_AGN_JWST.md: 3
+- docs/RAFAELIA_UNIFIED_PAPER.md: 3
+- docs/README_HISTORICO_INTEGRAL_47d054c.md: 15
+- docs/README_ROOT_LEGACY_ARCHIVE.md: 15
+- docs/README_snippet.md: 1
+- docs/README_sup_unification_snippet.md: 1
+- docs/RLL_FRONTIER_STRUCTURE_INDEX.md: 1
+- docs/RLL_OUTPUT_STEM_SAFE_WRAPPER.md: 1
+- docs/RLL_RESPONSE_MEDIUM_EQUATIONS.md: 38
+- docs/RLL_ROBUST_FIT_CHECKLIST.md: 1
+- docs/RLL_STATISTICAL_FINANCIAL_METRICS.md: 20
+- docs/Relativity_Living_Light.md: 1
+- docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md: 3
+- docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md: 9
+- docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md: 1
+- docs/cases/SN2017egm_SUPERLUMINOUS_SUPERNOVA_MAGNETAR_ENGINE_RLL.md: 4
+- docs/ciencia_README_snippet.md: 1
+- docs/modules/lcdmpp_extension_framework.md: 10
+- docs/modules/structure_d_equations.md: 11
+- docs/rll_cosmology_postdoc_synthesis.md: 3
+- docs/rll_desi_bao_validation_matrix.md: 2
+- docs/rll_negative_weak_time_bridge.md: 1
+- docs/rll_runaway_black_hole_anomaly_index.md: 2
+- docs/root_md_archive/Readme_dha.md: 2
+- docs/root_md_archive/Readmedha3.md: 7
+- docs/yml/WORKFLOW_EXECUTION_MAP.md: 31
+- docs/yml/WORKFLOW_REFACTOR_AUDIT.md: 6
+- newadd/00_INDEX.md: 5
+- newadd/01_MATHEMATICS.md: 28
+- newadd/02_PHYSICS.md: 27
+- newadd/03_COMPUTATION.md: 30
+- newadd/03_Descricao_Academica_PhD_Completa.md: 1
+- newadd/04_GEOMETRY.md: 29
+- newadd/04_TM_m_inferencia_paper_ready.md: 15
+- newadd/05_STATISTICS.md: 25
+- newadd/06_ETHICS_SYSTEMS.md: 21
+- newadd/07_SYNTHESIS.md: 26
+- newadd/08_VALIDACAO_INICIAL_COERENCIA_AMOR_PROVA.md: 9
+- newadd/duplicates_archive/06_ETHICS_SYSTEMS (1).md: 19
