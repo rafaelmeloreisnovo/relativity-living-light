@@ -3,7 +3,7 @@
 # Updated: 2026-06-27
 # Claim policy: YAML files organize execution and custody; they do not prove scientific claims.
 
-schema_version: "0.3"
+schema_version: "0.4"
 claim_allowed: false
 policy:
   no_new_workflow_by_default: true
@@ -50,10 +50,10 @@ entries:
     runs_alone: true
     human_name: "Orquestrador de dados reais"
     role: "Fetch/compute/plot/book/formula orchestration for real-data run artifacts."
-    recent_fix: "Regenerates docs inventory before --check to avoid stale inventory failures."
+    recent_fix: "Runs docs inventory, gap scan, to_Add migration validation, H0 grid and w0wa diagnostics."
     artifacts:
       - artifacts/rll-real-run/
-    next_safe_action: "Run again after inventory-refresh patch."
+    next_safe_action: "Run after migration updates and inspect diagnostics/*.json."
     claim_allowed: false
 
   - path: .github/workflows/real-data-complete-execution.yml
@@ -136,6 +136,39 @@ entries:
       - docs/MISSING_PLACEHOLDER_STUB_SCAN.md
     claim_allowed: false
 
+  - path: docs/yml/TO_ADD_MIGRATION_LEDGER.yml
+    type: migration_ledger
+    level: E2
+    runs_alone: false
+    human_name: "Ledger de migração to_Add"
+    role: "Maps historical to_Add/RAFAELIA_COSMO_STRUCTURE_D bundle entries into canonical docs/data/results/scripts locations."
+    validator: tools/validate_to_add_migration.py
+    canonical_targets:
+      - data/pipelines/structure_d/
+      - data/inputs/structure_d/
+      - results/structure_d/
+      - docs/science/structure_d/
+    claim_allowed: false
+
+  - path: tools/validate_to_add_migration.py
+    type: migration_validator
+    level: E3
+    runs_alone: true
+    human_name: "Validador da migração to_Add"
+    role: "Validates that historical to_Add Structure D content has canonical paths and wrappers target data.pipelines.structure_d."
+    expected_outputs:
+      - data/results/to_add_migration_validation.json
+      - docs/TO_ADD_MIGRATION_STATUS.md
+    claim_allowed: false
+
+  - path: docs/science/structure_d/README.md
+    type: science_index
+    level: E1
+    runs_alone: false
+    human_name: "Índice canônico Structure D"
+    role: "Canonical documentation index for promoted Structure D material."
+    claim_allowed: false
+
   - path: docs/yml/TO_ADD_NEURO_ECHO_PHOTON_CHEMISTRY.yml
     type: frontier_intake
     level: E2
@@ -192,4 +225,4 @@ syslog_template:
   token_vazio: "[TOKEN_VAZIO] Known gap; do not infer."
   proximo: "[PROXIMO] Execute the smallest safe step that produces an artifact."
 
-safe_conclusion: "The repository now has a master YAML navigation layer, artifact gap ledger, placeholder scanner and frontier-science bridge. This improves orchestration usability but does not change any scientific claim boundary."
+safe_conclusion: "The repository now has a master YAML navigation layer, artifact gap ledger, placeholder scanner, to_Add migration validator and frontier-science bridge. This improves orchestration usability but does not change any scientific claim boundary."
