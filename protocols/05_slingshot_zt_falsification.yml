@@ -1,0 +1,94 @@
+# Slingshot Gravitacional × Ponto de Inflexão zt — Falsificação C01
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Schema: rll.slingshot_zt_falsification.v1
+# Propósito: verificar se zt é parâmetro físico real ou livre
+
+schema_version: "1.0"
+module: slingshot_zt_falsification
+status: HYPOTHESIS_TESTABLE
+claim_allowed: false
+updated_utc: "2026-06-27"
+
+analogy:
+  label: "Slingshot gravitacional × pericéntrico cosmológico"
+  epistemological_level: "PARABOLA_DIDATICA — ilumina, não valida"
+  physical_content: >
+    No slingshot orbital, o pericéntrico é o ponto de máxima curvatura
+    da trajetória onde transferência de energia cinética é máxima.
+    Na transição logística f(z), o ponto z_t é onde df/dz é máximo.
+    A analogia é estrutural — não ontológica.
+  mathematical_fact: >
+    df/dz = −f(z)·[1−f(z)] / wt
+    Máximo de |df/dz| ocorre em z = zt onde f(zt) = 0.5
+    Com wt=0.3: |df/dz|_max = 1/(4×0.3) = 0.833
+
+physical_question: >
+  O parâmetro zt é fisicamente determinado pelos dados
+  ou é livre demais para ser discriminador?
+
+test_C01_background:
+  desi_data: "data/real/cosmology/desi_dr2_bao_primary_points.csv"
+  hz_data: "data/real/Hz_data_real.csv"
+  tracers_z: [0.295, 0.510, 0.706, 0.934, 1.321, 1.484, 2.330]
+  question: >
+    O chi2_BAO como função de zt tem mínimo claro?
+    Ou zt é degenerado (chi2 plano)?
+
+scan_zt:
+  Os0: 0.02
+  Om: 0.315
+  H0: 67.4
+  wt: 0.3
+  zt_range: [0.3, 0.5, 0.7, 0.9, 1.0, 1.2, 1.5, 1.8, 2.0]
+  command: >
+    python3 scripts/slingshot_zt_falsification.py
+      --protocol protocols/05_slingshot_zt_falsification.yml
+      --out-dir results/zt_scan
+  expected_output_dir: "results/zt_scan/"
+
+BH_slingshot_connection:
+  physical_link: >
+    BH andantes com v~954 km/s (RBH-1) foram lançados em z_merger ~ 0.5–1.0.
+    Se a taxa de merger de galáxias pico em z ~ 1–2 e o zt do RLL
+    coincide com esse pico, zt tem interpretação física: é o redshift
+    onde o setor de superposição foi mais ativo.
+  testable: >
+    Comparar zt_otimo do fit BAO com z_pico de merger rate de galáxias.
+    Se zt_otimo ∈ [0.8, 1.5]: consistente com pico de AGN/merger.
+    Referência: Hopkins et al. 2007 (BH accretion history peak z~1-2)
+  epistemological_level: "HIPOTESE — não validada"
+
+falsifiers:
+  - id: F_ZT_01
+    test: >
+      chi2_BAO como função de zt deve ter mínimo em zt_min com
+      curvatura d²chi2/dzt² > 0 (poço real, não plato)
+    metric: "chi2_BAO(zt_min) < chi2_BAO(zt_min ± 0.3) em > 1 sigma"
+    if_true: "zt é constrangido pelos dados — parâmetro físico real"
+    if_false: "zt é livre — RLL não é discriminador em BAO"
+  - id: F_ZT_02
+    test: "zt_otimo BAO deve coincidir com zt_otimo Hz dentro de ±0.2"
+    metric: "|zt_BAO - zt_Hz| < 0.2"
+    if_fails: "Datasets inconsistentes com mesmo zt — tensão interna"
+  - id: F_ZT_03
+    test: "Para zt < 0.5: w_eff(z=0) deve ser < −0.85"
+    metric: "w_eff(z=0, zt=0.5) < -0.85"
+    if_fails: "Transição cedo demais — setor age como matéria no presente"
+
+recoil_velocity_connection:
+  data_rbh1:
+    v_km_s: 954
+    z_host: 0.964
+    implication: >
+      SMBH ejetado em z_host=0.964 ≈ 1.0 — coincide com zt candidato.
+      Se zt ~ 1.0 é o pico de mergers, RBH-1 é uma âncora observacional
+      para a época de transição do setor de superposição.
+  epistemological_label: "HIPOTESE — correlação temporal, não causalidade"
+  falsifier: >
+    Buscar distribuição de z de BH andantes confirmados.
+    Se pico em z~1±0.3, consistente com zt_RLL.
+    Dados futuros: Euclid, Roman (survey sistemático de BH fugitivos).
+
+claim_policy:
+  claim_allowed: false
+  reason: "Sem varredura de chi2(zt) materializada — TOKEN_VAZIO"

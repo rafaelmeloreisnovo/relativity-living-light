@@ -1,0 +1,82 @@
+{
+  "protocol": "/workspace/relativity-living-light/protocols/05_slingshot_zt_falsification.yml",
+  "scan": [
+    {
+      "zt": 0.3,
+      "chi2_hz": 27.013567790037577,
+      "chi2_bao": 31.08419419995016,
+      "chi2_total": 58.09776198998774
+    },
+    {
+      "zt": 0.5,
+      "chi2_hz": 27.074964924885276,
+      "chi2_bao": 32.39922181372451,
+      "chi2_total": 59.47418673860979
+    },
+    {
+      "zt": 0.7,
+      "chi2_hz": 27.20205336436907,
+      "chi2_bao": 34.001749921052394,
+      "chi2_total": 61.203803285421465
+    },
+    {
+      "zt": 0.9,
+      "chi2_hz": 27.37637920269601,
+      "chi2_bao": 35.597821024055186,
+      "chi2_total": 62.974200226751194
+    },
+    {
+      "zt": 1.0,
+      "chi2_hz": 27.465057877292747,
+      "chi2_bao": 36.2927073454412,
+      "chi2_total": 63.75776522273395
+    },
+    {
+      "zt": 1.2,
+      "chi2_hz": 27.604955059847885,
+      "chi2_bao": 37.338739575385524,
+      "chi2_total": 64.94369463523341
+    },
+    {
+      "zt": 1.5,
+      "chi2_hz": 27.602819613518022,
+      "chi2_bao": 37.9468044371028,
+      "chi2_total": 65.54962405062082
+    },
+    {
+      "zt": 1.8,
+      "chi2_hz": 27.183012793991026,
+      "chi2_bao": 37.421253817104414,
+      "chi2_total": 64.60426661109544
+    },
+    {
+      "zt": 2.0,
+      "chi2_hz": 26.606326770114986,
+      "chi2_bao": 36.45960835185658,
+      "chi2_total": 63.06593512197156
+    }
+  ],
+  "assessment": {
+    "claim_allowed": false,
+    "best": {
+      "zt_bao": 0.3,
+      "zt_hz": 2.0,
+      "zt_total": 0.3
+    },
+    "falsifiers": {
+      "F_ZT_01": {
+        "status": "FAIL",
+        "delta_chi2_bao_nearest_pm_0p3": 2.9175557211022323,
+        "curvature_bao_grid": null
+      },
+      "F_ZT_02": {
+        "status": "FAIL",
+        "abs_zt_bao_minus_hz": 1.7
+      },
+      "F_ZT_03": {
+        "status": "FAIL",
+        "w_eff_z0_at_zt_0p5": -0.8411308951190849
+      }
+    }
+  }
+}
