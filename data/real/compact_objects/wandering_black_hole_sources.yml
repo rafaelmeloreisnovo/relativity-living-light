@@ -1,25 +1,31 @@
-# Wandering / Recoiling Black Hole Source Ledger — metadata-ready, claim-blocked
-# Generated/updated: 2026-06-27
+# Wandering / Recoiling Black Hole Source Ledger — real observational, claim-blocked
+# Updated: 2026-06-27
 # Schema: rll.compact_objects.wandering_bh.v1
-# Operational stance: TOKEN_VAZIO is intentional where truth is unavailable.
+# Operational stance: use real source metadata and measured observables, but fail closed for RLL claims.
 
-schema_version: "1.0"
+schema_version: "1.1"
 claim_allowed: false
-status: METADATA_READY_CLAIM_BLOCKED
+status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
 module: wandering_black_holes_and_lensing_gaps
 updated_utc: "2026-06-27"
 
 claim_policy:
   no_superiority: true
-  require_checksum: true
+  require_checksum_for_local_raw: true
   require_baseline_comparison: true
-  token_vazio_is_valid: true
+  require_uncertainty_for_metric_claim: true
+  token_vazio_is_valid_for_missing_raw_data: true
   publication_language: >
     Wandering/off-nuclear black holes are independent observational phenomena.
-    RLL may only use these records as claim-blocked test targets for whether
-    the magnetic sector ΩB0·a^-4 yields a differentiable signature from ΛCDM
-    after raw files, checksums, observables, uncertainties, and baseline
-    comparisons are present.
+    RLL may only use these records as claim-blocked test targets after raw files,
+    checksums, observables, uncertainties, and baseline comparisons are present.
+
+csv_table:
+  path: data/real/compact_objects/wandering_black_hole_sources.csv
+  sha256: bf1a85f6feb7ebd4d34ae5193ab8620b818e3f77dda214e967343cfe7b2411cf
+  bytes: 1389
+  rows: 3
+  claim_allowed: false
 
 falsifier_global: >
   If RLL with ΩB0>0 produces no measurable deviation in DM/rd, DH/rd, or
@@ -28,41 +34,41 @@ falsifier_global: >
   rejected for that regime.
 
 operational_usability:
-  quick_read: "Every record stays claim_allowed=false until checksum_sha256, raw data, required observables, and baseline comparison are complete."
+  quick_read: "Three real observational source records are now tabulated, but every record remains claim_allowed=false until raw data, checksum, uncertainty, and baseline exist."
   process_map:
     - "1. Identify candidate and source reference."
-    - "2. Fetch raw or archive data into local_path."
-    - "3. Compute SHA256 and replace TOKEN_VAZIO only with measured checksum."
-    - "4. Extract observables with uncertainty model."
-    - "5. Compare RLL against ΛCDM/null baseline."
-    - "6. Keep claim_allowed=false unless every gate passes."
+    - "2. Record minimal observable numbers in CSV/YML."
+    - "3. Fetch raw/archive data into local_path when legally and technically possible."
+    - "4. Compute SHA256 and replace TOKEN_VAZIO only with measured checksum."
+    - "5. Extract observables with uncertainty model."
+    - "6. Compare RLL against ΛCDM/null baseline."
+    - "7. Keep claim_allowed=false unless every gate passes."
   failsafe: "Fail closed when raw data, checksum, uncertainty, or baseline is missing."
   rollback: "Revert this ledger or generated readiness JSON; no raw data is deleted by validation."
 
 source_records:
-  - id: RBH1_JWST_VAN_DOKKUM_2025
-    candidate_type: runaway_supermassive_bh
-    status: SOURCE_METADATA_UNVERIFIED_CLAIM_BLOCKED
-    verification_note: >
-      User-provided metadata retained as a provisional target. Independent
-      lookup did not confirm the DOI/arXiv pair during this update, so this
-      record is not treated as observationally confirmed by the repository.
-    dataset_name: "JWST NIRSpec IFU + HST imaging — RBH-1"
-    provider: "van Dokkum et al. 2025, ApJL 998 L27"
-    doi: "10.3847/2041-8213/adbaad"
+  - id: RBH_1_JWST_RUNAWAY_SMBH
+    candidate_type: runaway_supermassive_black_hole
+    status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
+    epistemic_status: source_claim_confirmed_by_authors_preprint_repo_claim_blocked
+    dataset_name: "JWST/NIRSpec IFU + HST imaging — RBH-1"
+    provider: "van Dokkum et al."
+    source_title: "JWST Confirmation of a Runaway Supermassive Black Hole via its Supersonic Bow Shock"
+    source_type: arxiv_preprint
     arxiv: "2512.04166"
     source_url: "https://arxiv.org/abs/2512.04166"
     access_date_utc: "2026-06-27"
     data_type: spectroscopic_imaging_bow_shock
     raw_data_available: false
-    local_path: "data/real/compact_objects/rbh1_jwst_van_dokkum_2025.fits"
+    local_path: TOKEN_VAZIO
     checksum_sha256: TOKEN_VAZIO
-    z_host: 0.964
-    observables_confirmed:
-      bow_shock_velocity_km_s: 954
-      velocity_difference_across_shock_km_s: 600
-      wake_length_kpc: 62
-      mass_estimate_msun: 1.0e7
+    z_host: 0.96
+    observables_recorded:
+      wake_length_kpc: 62.0
+      velocity_km_s: 954.0
+      velocity_err_plus_km_s: 110.0
+      velocity_err_minus_km_s: 126.0
+      minimum_mass_msun: 1.0e7
     observables_required_for_rll:
       - faraday_rotation_measure_rad_m2
       - radio_dispersion_measure
@@ -74,117 +80,121 @@ source_records:
       omega_B0_test: true
       observable_proxy: "Faraday rotation in wake; radio dispersion measure"
       falsifier: >
-        H_RLL(z=0.964) vs H_LCDM(z=0.964) difference below instrument/systematic
-        threshold after full covariance means no usable RLL claim for this object.
+        If RLL and ΛCDM/null plasma baselines are indistinguishable after full
+        covariance, this object yields no usable RLL claim.
     claim_boundary:
-      rll_sensitivity_to_this_object: low_current_baseline
-      future_use: "Euclid/Roman/JWST archival cross-check for runaway-BH systematics"
+      raw_data_required: true
       claim_allowed: false
 
-  - id: MANGA_12772_WBH_LIU_2025
-    candidate_type: wandering_intermediate_mass_bh
-    status: METADATA_READY_CLAIM_BLOCKED
-    dataset_name: "MaNGA + VLBA — MaNGA 12772-12704"
-    provider: "Liu, An, Mezcua et al. 2025, Science Bulletin"
-    doi: "10.1016/j.scib.2025.09.001"
-    arxiv: TOKEN_VAZIO
-    source_url: "https://www.sciencedirect.com/science/article/pii/S2095927325008989"
+  - id: MANGA_12772_12704_WANDERING_MBH
+    candidate_type: off_nuclear_accreting_massive_black_hole
+    status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
+    epistemic_status: candidate_from_vlbi_preprint_repo_claim_blocked
+    dataset_name: "MaNGA + multi-epoch VLBI — MaNGA 12772-12704"
+    provider: "Liu, An, Mezcua et al."
+    source_title: "A Jetted Wandering Massive Black Hole Candidate in a Dwarf Galaxy"
+    source_type: arxiv_preprint
+    arxiv: "2508.17293"
+    source_url: "https://arxiv.org/abs/2508.17293"
     access_date_utc: "2026-06-27"
     data_type: radio_vlbi_optical_spectroscopy
     raw_data_available: false
-    local_path: "data/real/compact_objects/manga_12772_wbh_liu_2025.fits"
+    local_path: TOKEN_VAZIO
     checksum_sha256: TOKEN_VAZIO
     z_host: 0.017
-    observables_confirmed:
+    observables_recorded:
       offset_from_center_kpc: 0.94
-      brightness_temp_K: 1.0e9
-      jet_extension_pc: 2.2
-      variability_baseline_yr: 30
+      brightness_temperature_lower_limit_K: 1.0e9
+      variability_baseline_yr: 30.0
+      parsec_scale_jet: true
     observables_required_for_rll:
-      faraday_rotation_measure_rad_m2: null
-      integrated_radio_flux_mJy: null
-      spectral_index: null
-      uncertainty_covariance: null
-      lcdm_baseline_prediction: null
-    physical_parameters:
-      z: 0.017
-      offset_kpc: 0.94
-      M_bh_msun: null
+      - faraday_rotation_measure_rad_m2
+      - integrated_radio_flux_mJy
+      - spectral_index
+      - uncertainty_covariance
+      - lcdm_baseline_prediction
     rll_connection:
       sector: magnetic_plasma
       omega_B0_test: true
       priority: HIGH
       rationale: >
-        z=0.017 is inside the repository's low-redshift RLL test window. An
-        off-nuclear accreting BH with jets can be mapped as a magnetic-plasma
+        Low redshift and off-nuclear accretion make this a useful magnetic-plasma
         target only after RM, flux, spectral index, and baseline uncertainties
         are ingested.
       falsifier: >
         Measure RM around the off-nuclear BH and compare RLL (ΩB0>0) against
-        ΛCDM/null plasma baseline. No >3σ differentiable residual means no RLL
+        ΛCDM/null plasma baseline. No differentiable residual means no RLL
         magnetic-sector evidence from this target.
-    validation_script: "scripts/validation/validate_wandering_bh_candidates.py"
     claim_boundary:
-      raw_data_required: [faraday_rotation, radio_flux, spectral_index]
+      raw_data_required: true
       claim_allowed: false
 
-  - id: OGLE_2011_BLG_0462_DARK_LENS
-    candidate_type: dark_lens_stellar_mass_bh
-    status: SEED_VERIFIED_CLAIM_BLOCKED
-    dataset_name: "OGLE-2011-BLG-0462 / MOA-2011-BLG-191 microlensing event"
-    provider: "Sahu et al. 2022, ApJ; Lam et al. 2022, ApJL"
-    doi_sahu: "10.3847/1538-4357/ac739e"
-    doi_lam: "10.3847/2041-8213/ac7442"
-    source_url: "https://arxiv.org/abs/2201.13296"
+  - id: NGC_3627_GALACTIC_CONTRAIL
+    candidate_type: massive_dark_object_disk_flyby_candidate
+    status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
+    epistemic_status: candidate_from_phangs_jwst_alma_preprint_repo_claim_blocked
+    dataset_name: "PHANGS-JWST + PHANGS-ALMA — NGC 3627 molecular contrail"
+    provider: "Zhao and Li"
+    source_title: "Galactic Contrail in NGC 3627 caused by Dwarf Galaxy Candidate or Massive Black Hole Flyby"
+    source_type: arxiv_preprint
+    arxiv: "2509.20832"
+    source_url: "https://arxiv.org/abs/2509.20832"
     access_date_utc: "2026-06-27"
-    data_type: microlensing_astrometric_hst
+    data_type: molecular_gas_dust_contrail
     raw_data_available: false
-    local_path: "data/real/lensing/ogle_2011_blg_0462_hst.fits"
+    local_path: TOKEN_VAZIO
     checksum_sha256: TOKEN_VAZIO
-    physical_parameters:
-      lens_mass_msun: 7.1
-      lens_mass_sigma: 1.3
-      lens_distance_kpc: 1.58
-      distance_sigma_kpc: 0.18
-      space_velocity_km_s: 45.0
-      z_effective: 0.0
+    observables_recorded:
+      contrail_length_kpc: 8.0
+      contrail_width_pc: 200.0
+      aspect_ratio: 40.0
+      turbulence_km_s: 10.0
+      flyby_velocity_lower_limit_km_s: 300.0
+      compact_object_mass_scale_msun: 1.0e6
+      crossing_time_myr: 20.0
+    observables_required_for_rll:
+      - gas_velocity_field
+      - dust_map
+      - CO_line_cube
+      - uncertainty_covariance
+      - standard_flyby_baseline
     rll_connection:
-      sector: dark_sector_local
+      sector: local_dark_compact_interaction
+      omega_B0_test: false
       priority: MEDIUM
       rationale: >
-        Isolated stellar-mass dark-lens BH seed. It can test whether silent BH
-        population assumptions are consistent with local dark-sector profiles,
-        but not until raw astrometry/photometry and alternative models are
-        ingested.
+        Useful as a real compact-object/disk-interaction target, not as direct
+        cosmology evidence. It can stress-test source custody and baseline logic.
       falsifier: >
-        Silent-BH mass and spatial distribution inconsistent with the RLL
-        superposition-sector prediction at z≈0 after selection effects and
-        ΛCDM/population baseline are applied.
-    validation_script: "scripts/validation/validate_dark_lens_candidates.py"
+        If standard dwarf-nucleus or massive-BH flyby explains the contrail within
+        uncertainties, no RLL-specific interpretation is allowed.
     claim_boundary:
-      lensing_mass_not_unique: true
-      raw_data_required: [hst_astrometry, ogle_photometry, moa_photometry, alternative_lens_models]
+      raw_data_required: true
       claim_allowed: false
 
 fetch_instructions:
-  MANGA_12772:
-    step1: "Access MaNGA DR17: https://www.sdss.org/dr17/manga/"
-    step2: "Search plate-ifu MaNGA 12772-12704"
-    step3: "Download cube FITS from SDSS SAS/rsync"
-    step4: "Compute SHA256 and fill checksum_sha256"
-    step5: "Move to data/real/compact_objects/manga_12772_wbh_liu_2025.fits"
-  RBH1:
-    step1: "Verify DOI/arXiv metadata before using the record"
-    step2: "Search JWST MAST archive for confirmed program ID"
-    step3: "Download level-3 reductions only after source verification"
-    step4: "Compute SHA256 and fill local_path"
-  OGLE_BLG:
-    step1: "Search HST archive for OGLE-2011-BLG-0462 / MOA-2011-BLG-191"
-    step2: "Download photometric and astrometric tables"
-    step3: "Compute SHA256 and preserve alternative-model comparison"
+  RBH_1:
+    step1: "Use arXiv:2512.04166 to identify data products and observational program IDs."
+    step2: "Search MAST/JWST/HST archives for released calibrated products."
+    step3: "Download only redistributable metadata or keep external-only boundary."
+    step4: "Compute SHA256 before replacing TOKEN_VAZIO."
+  MANGA_12772_12704:
+    step1: "Use arXiv:2508.17293 and MaNGA DR/SAS identifiers."
+    step2: "Fetch only allowed public MaNGA/VLBI metadata or keep external-only boundary."
+    step3: "Compute SHA256 before replacing TOKEN_VAZIO."
+  NGC_3627:
+    step1: "Use arXiv:2509.20832 to identify PHANGS-JWST/ALMA products."
+    step2: "Fetch allowed public tables/cubes or keep external-only boundary."
+    step3: "Compute SHA256 before replacing TOKEN_VAZIO."
 
 scan_requirements:
   fail_closed_if_missing_dataset: true
   require_checksum_before_claim: true
   require_observable_before_metric: true
   require_baseline_before_interpretation: true
+
+consumed_by:
+  - data/real/compact_objects/wandering_black_hole_sources.csv
+  - scripts/validation/validate_wandering_black_hole_sources.py
+  - docs/science/RLL_CRUZAMENTOS_COMPLETOS.md
+  - docs/science/RLL_OBSERVATIONAL_DATA_IMPLEMENTATION_REVIEW.md
