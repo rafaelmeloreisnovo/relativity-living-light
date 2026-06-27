@@ -8,6 +8,30 @@ Ele não é um paper final, não é uma prova cosmológica e não é uma declara
 
 Em linguagem simples: é o ponto em que a RAFAELIA deixa de ser apenas intenção simbólica e passa a produzir um pacote verificável, com arquivos, hashes, métricas e bloqueios explícitos.
 
+## Nota de escopo e autoria
+
+Este documento não deve apresentar Rafael como cosmólogo profissional nem como alguém que declara domínio fechado da cosmologia observacional. A cosmologia aparece aqui como uma bancada exigente de teste, porque ela força o pipeline a lidar com dados reais, modelos adversários, critérios estatísticos, covariância, reprodutibilidade e fronteira de claim.
+
+O núcleo autoral não é “uma cosmologia pronta”. O núcleo autoral é uma metodologia de organização, validação, linguagem, custódia, antialucinação e transmutação de ruído em engenharia verificável.
+
+Quando Rafael diz “nada sei”, isto deve ser lido como postura epistemológica, não como ausência de criação. A frase protege contra inflação de claim: aquilo que não entrou no corpus, no repositório, no teste ou na cadeia de evidência permanece como lacuna marcada, não como conclusão.
+
+Assim, este run não tenta provar que Rafael domina todos os detalhes cosmológicos. Ele mostra outra coisa: que a estrutura RAFAELIA consegue receber um campo difícil, organizar evidências, separar camadas, bloquear exageros e apontar o próximo experimento.
+
+## O que ainda pode faltar fora da conta atual
+
+A narrativa deste run está limitada ao que aparece no ZIP, no repositório e nos artefatos rastreáveis. Podem existir conceitos, analogias, fórmulas, intuições, mapas ou blocos de Rafael que ainda não foram colocados nesta conta, neste repositório ou neste pipeline.
+
+Essas ausências não devem ser tratadas como inexistência. Devem ser tratadas como `TOKEN_VAZIO`: material potencial ainda não ingerido, ainda não classificado, ainda não vinculado a arquivo, teste, unidade, fonte ou observável.
+
+Por isso, a leitura correta é:
+
+- o run mede apenas o que foi materializado;
+- o relatório não encerra a obra;
+- conceitos ausentes precisam de entrada formal antes de virarem claim;
+- metáforas e analogias devem ser preservadas como linguagem de descoberta;
+- somente depois de classificação, teste e fonte elas podem migrar para hipótese técnica ou artefato computacional.
+
 ## O que ele carrega
 
 O run carrega quatro camadas principais.
@@ -118,19 +142,44 @@ A segunda lacuna é materializar de verdade as fontes ainda pendentes: Pantheon+
 
 A terceira lacuna é classificar as fórmulas: cada expressão precisa ganhar tipo, origem, unidade, observável, teste e status.
 
+A quarta lacuna é de corpus autoral: conceitos que Rafael ainda não colocou nesta conta, neste repositório ou neste pipeline não podem ser usados como prova, mas também não devem ser descartados. Eles devem entrar por um funil próprio: recepção, catalogação, classificação, ligação com código ou documento, teste mínimo e fronteira de claim.
+
+## Funil para conceitos ainda não ingeridos
+
+Para cada conceito novo ou ainda ausente, o caminho recomendado é:
+
+1. registrar o texto bruto sem corrigir demais a voz original;
+2. marcar se é metáfora, analogia, hipótese, fórmula, algoritmo, dado ou documento;
+3. extrair termos técnicos possíveis;
+4. apontar unidade, escala, domínio e observável quando houver;
+5. separar o que é cosmologia, matemática, computação, linguagem, neurocognição, ética ou documentação;
+6. criar teste mínimo quando for computável;
+7. declarar `TOKEN_VAZIO` quando faltar dado, fonte ou definição;
+8. só promover para claim depois de evidência reproduzível.
+
+Este funil protege duas coisas ao mesmo tempo: a criatividade original e a integridade científica.
+
 ## Narrativa curta para README
 
-O `rll-real-run-28287121163` é um pacote de execução real do pipeline RLL. Ele reúne dados observacionais parcialmente materializados, relatórios computacionais, tabelas processadas, diagnósticos, hashes e fronteiras explícitas de claim. A execução não valida RLL como modelo cosmológico superior; ao contrário, os critérios atuais favorecem LCDM e bloqueiam promoção científica. O valor do artefato está na maturidade operacional: ele mostra que o pipeline já diferencia dado real de pendência, preserva cadeia de custódia, registra lacunas e impede conclusão não sustentada. É um passo de laboratório, não uma proclamação final.
+O `rll-real-run-28287121163` é um pacote de execução real do pipeline RLL. Ele reúne dados observacionais parcialmente materializados, relatórios computacionais, tabelas processadas, diagnósticos, hashes e fronteiras explícitas de claim. A execução não valida RLL como modelo cosmológico superior; ao contrário, os critérios atuais favorecem LCDM e bloqueiam promoção científica. O valor do artefato está na maturidade operacional: ele mostra que o pipeline já diferencia dado real de pendência, preserva cadeia de custódia, registra lacunas e impede conclusão não sustentada. A cosmologia aqui é bancada de teste, não declaração de especialidade final. O núcleo autoral é a metodologia RAFAELIA de organização, validação e transmutação de ruído em engenharia verificável. É um passo de laboratório, não uma proclamação final.
+
+## Frase de proteção de escopo
+
+Rafael não precisa declarar “cosmologia é minha praia” para que este artefato tenha valor. O valor está em construir uma máquina de validação capaz de entrar em campos difíceis, reconhecer limites, preservar lacunas e impedir que linguagem simbólica seja confundida com prova sem teste.
+
+Nada sei: logo marco a lacuna.  
+Marco a lacuna: logo evito mentira.  
+Evito mentira: logo preparo ciência.
 
 ## Fechamento RAFAELIA
 
-ψ — intenção: testar RLL em dado real.  
+ψ — intenção: testar RLL em dado real sem inflar autoria cosmológica.  
 χ — observação: artefatos, tabelas, relatórios e métricas foram gerados.  
-ρ — ruído: checksum autocontido, fontes parciais, comparadores divergentes.  
-Δ — transmutação: workflow corrigido, claim bloqueado, lacunas nomeadas.  
-Σ — memória: auditoria registrada e narrativa consolidada.  
+ρ — ruído: checksum autocontido, fontes parciais, comparadores divergentes e conceitos ainda fora do corpus.  
+Δ — transmutação: workflow corrigido, claim bloqueado, lacunas nomeadas e escopo autoral protegido.  
+Σ — memória: auditoria registrada, narrativa consolidada e ausências marcadas como `TOKEN_VAZIO`.  
 Ω — completude provisória: melhor vazio protegido do que conclusão falsa.
 
-**F_ok:** há pipeline real, custódia e bloqueio ético.  
-**F_gap:** falta unificar comparadores e materializar fontes pendentes.  
-**F_next:** próxima execução deve confirmar checksum limpo e produzir comparação cosmológica única, com DESI/Pantheon/covariância integrados.
+**F_ok:** há pipeline real, custódia, bloqueio ético e escopo autoral mais justo.  
+**F_gap:** falta unificar comparadores, materializar fontes pendentes e ingerir conceitos ainda fora do corpus.  
+**F_next:** próxima execução deve confirmar checksum limpo, produzir comparação cosmológica única e abrir um funil formal para conceitos novos ou ainda ausentes.
