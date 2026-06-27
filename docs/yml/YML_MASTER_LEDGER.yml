@@ -1,0 +1,138 @@
+# YML Master Ledger — RLL orchestration map
+# Status: operational navigation layer
+# Updated: 2026-06-27
+# Claim policy: YAML files organize execution and custody; they do not prove scientific claims.
+
+schema_version: "0.1"
+claim_allowed: false
+policy:
+  no_new_workflow_by_default: true
+  yaml_is_not_proof: true
+  proof_requires:
+    - executable_run
+    - artifact
+    - baseline
+    - uncertainty_or_error_model
+    - falsifier
+    - claim_boundary
+  token_vazio_is_valid_boundary: true
+
+human_syslog_states:
+  - OK
+  - PARCIAL
+  - BLOQUEADO
+  - TOKEN_VAZIO
+  - PROXIMO
+
+levels:
+  E0: "found but not classified"
+  E1: "metadata / documentation only"
+  E2: "consumed by tool or workflow"
+  E3: "generates artifact"
+  E4: "validated artifact with baseline"
+  E5: "external-review-ready reproducible route"
+
+entries:
+  - path: .github/workflows/START_MANUAL_HERE.yml
+    type: workflow
+    level: E3
+    runs_alone: true
+    human_name: "Comece por aqui"
+    role: "Manual orchestrator for selected YAML/profile checks."
+    artifacts:
+      - artifacts/manual-start/
+    next_safe_action: "Use metadata_only or dry_run before full validation."
+    claim_allowed: false
+
+  - path: .github/workflows/rll-real-data-orchestrator.yml
+    type: workflow
+    level: E3
+    runs_alone: true
+    human_name: "Orquestrador de dados reais"
+    role: "Fetch/compute/plot/book/formula orchestration for real-data run artifacts."
+    recent_fix: "Regenerates docs inventory before --check to avoid stale inventory failures."
+    artifacts:
+      - artifacts/rll-real-run/
+    next_safe_action: "Run again after inventory-refresh patch."
+    claim_allowed: false
+
+  - path: .github/workflows/real-data-complete-execution.yml
+    type: workflow
+    level: E3
+    runs_alone: true
+    human_name: "Execução completa de dados reais"
+    role: "Structure-D and Pantheon+ real validation with rollback artifacts."
+    artifacts:
+      - artifacts/real-data-complete/
+    next_safe_action: "Watch Pantheon+ alias compatibility and strict_real_data behavior."
+    claim_allowed: false
+
+  - path: data/raw/RAW_DATA_MANIFEST.yml
+    type: raw_data_manifest
+    level: E2
+    runs_alone: false
+    human_name: "Custódia bruta"
+    role: "Tracks raw-data source, local path, sha256, terms and claim boundary."
+    required_fields:
+      - source_url
+      - access_date_utc
+      - license_or_terms
+      - local_path
+      - sha256
+      - claim_allowed
+    next_safe_action: "Replace TOKEN_VAZIO only after measured file/hash exists."
+    claim_allowed: false
+
+  - path: data/real/compact_objects/wandering_black_hole_sources.yml
+    type: observational_source_ledger
+    level: E2
+    runs_alone: false
+    human_name: "Fontes BH andantes"
+    role: "Real observational source records for wandering/runaway black-hole routes."
+    companion_table: data/real/compact_objects/wandering_black_hole_sources.csv
+    validator: scripts/validation/validate_wandering_black_hole_sources.py
+    missing_for_claim:
+      - local raw files
+      - raw-data sha256
+      - uncertainty covariance
+      - standard baseline
+      - executable metric artifact
+    claim_allowed: false
+
+  - path: data/real/cosmology/h0_grid_expansion.yml
+    type: parameter_grid_manifest
+    level: E2
+    runs_alone: false
+    human_name: "Grid H0 corrigido"
+    role: "Defines H0 boundary-artifact mitigation grid."
+    script: scripts/run_h0_grid_expansion.py
+    expected_outputs:
+      - results/h0_grid_expansion_summary.json
+      - results/h0_grid_expansion_scan.csv
+    claim_allowed: false
+
+  - path: docs/science/RLL_CRUZAMENTOS_COMPLETOS.md
+    type: science_cross_map
+    level: E1
+    runs_alone: false
+    human_name: "Mapa de cruzamentos"
+    role: "Human-readable cross-map; not an executable proof."
+    next_safe_action: "Connect each [H] route to a script, artifact, baseline and falsifier."
+    claim_allowed: false
+
+  - path: data/results/compact_objects/wandering_black_hole_sources_validation.json
+    type: validation_artifact
+    level: E3
+    runs_alone: false
+    human_name: "Validação BH sources"
+    role: "PASS means metadata/CSV structure is valid; claims remain blocked."
+    claim_allowed: false
+
+syslog_template:
+  ok: "[OK] Route found and artifact generated."
+  parcial: "[PARCIAL] Metadata exists, but raw data or baseline is missing."
+  bloqueado: "[BLOQUEADO] Claim remains blocked until custody + metric + baseline are complete."
+  token_vazio: "[TOKEN_VAZIO] Known gap; do not infer."
+  proximo: "[PROXIMO] Execute the smallest safe step that produces an artifact."
+
+safe_conclusion: "The repository now has a master YAML navigation layer. It improves orchestration usability but does not change any scientific claim boundary."
