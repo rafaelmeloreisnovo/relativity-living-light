@@ -105,6 +105,65 @@ def _pantheon_files() -> list[Path]:
     ]
 
 
+def _ensure_pantheon_column_aliases() -> dict:
+    """Add legacy column aliases expected by docs/panteon_likelihood.py.
+
+    Pantheon+ real releases may expose the statistical magnitude uncertainty as
+    `mBERR`, `m_b_corr_err_DIAG`, or `MU_SH0ES_ERR_DIAG`, while the legacy RLL
+    loader accepts `dmb`, `dmu`, or `mb_err`. This shim updates only the CI/local
+    working copy of the text table before the legacy pipeline runs. It does not
+    promote claims, does not change covariance policy, and keeps the source hash
+    recorded by downstream artifacts after the compatibility pass.
+    """
+    lc_file = ROOT / "data" / "pantheon" / "lcparam_full_long_zhel.txt"
+    if not lc_file.exists():
+        return {
+            "status": "skipped_missing_lcparam",
+            "path": str(lc_file.relative_to(ROOT)),
+            "aliases_added": [],
+        }
+
+    original_text = lc_file.read_text(encoding="utf-8")
+    lines = original_text.splitlines()
+    if not lines:
+        raise ValueError(f"Pantheon+ lcparam file is empty: {lc_file}")
+
+    header = lines[0].split()
+    rows = [line.split() for line in lines[1:] if line.strip()]
+    aliases_added: list[dict[str, str]] = []
+
+    def add_alias(alias: str, candidates: list[str]) -> None:
+        nonlocal header, rows
+        if alias in header:
+            return
+        source = next((candidate for candidate in candidates if candidate in header), None)
+        if source is None:
+            return
+        source_index = header.index(source)
+        old_width = len(header)
+        for idx, row in enumerate(rows, start=2):
+            if len(row) != old_width:
+                raise ValueError(
+                    f"Pantheon+ lcparam row {idx} has {len(row)} columns; expected {old_width}."
+                )
+            row.append(row[source_index])
+        header.append(alias)
+        aliases_added.append({"alias": alias, "source": source})
+
+    add_alias("dmb", ["mBERR", "m_b_corr_err_DIAG", "MU_SH0ES_ERR_DIAG", "m_b_corr_err_RAW", "m_b_corr_err_VPEC"])
+    add_alias("mb_err", ["mBERR", "m_b_corr_err_DIAG", "MU_SH0ES_ERR_DIAG", "m_b_corr_err_RAW", "m_b_corr_err_VPEC"])
+
+    if aliases_added:
+        updated = " ".join(header) + "\n" + "\n".join(" ".join(row) for row in rows) + "\n"
+        lc_file.write_text(updated, encoding="utf-8")
+
+    return {
+        "status": "updated" if aliases_added else "already_compatible",
+        "path": str(lc_file.relative_to(ROOT)),
+        "aliases_added": aliases_added,
+    }
+
+
 def _git_commit_hash() -> str | None:
     cp = subprocess.run(["git","rev-parse","HEAD"], cwd=ROOT, capture_output=True, text=True, check=False)
     return cp.stdout.strip() if cp.returncode == 0 else None
@@ -147,7 +206,6 @@ def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
             if key in model_block:
                 return model_block[key]
         return None
-
     rll_chi2 = _metric(rll, "chi2")
     lcdm_chi2 = _metric(lcdm, "chi2")
     rll_aic = _metric(rll, "aic", "AIC")
@@ -267,6 +325,9 @@ def main() -> None:
     env = os.environ.copy()
     env["PYTHONPATH"] = str(ROOT / "src")
 
+    alias_meta = _ensure_pantheon_column_aliases()
+    print(f"[rll-real-validation] Pantheon+ column compatibility: {json.dumps(alias_meta, ensure_ascii=False)}")
+
     steps: list[tuple[str, list[str]]] = []
     if not args.skip_verify:
         steps.append(("verify", [sys.executable, "scripts/verify_pantheon_inputs.py", "--json"]))
@@ -313,6 +374,7 @@ def main() -> None:
     summary = json.loads(PANTHEON_SUMMARY_JSON.read_text(encoding="utf-8"))
     command_used = " ".join([sys.executable, "scripts/run_real_pantheon_validation.py"] + sys.argv[1:])
     normalized = _normalize_model_comparison(summary, command_used=command_used)
+    normalized["pantheon_column_compatibility"] = alias_meta
     DATA_RESULTS.mkdir(parents=True, exist_ok=True)
     MODEL_COMPARISON_JSON.write_text(json.dumps(normalized, indent=2, ensure_ascii=False), encoding="utf-8")
 
