@@ -3,7 +3,7 @@
 # Updated: 2026-06-27
 # Claim policy: YAML files organize execution and custody; they do not prove scientific claims.
 
-schema_version: "0.2"
+schema_version: "0.3"
 claim_allowed: false
 policy:
   no_new_workflow_by_default: true
@@ -136,6 +136,38 @@ entries:
       - docs/MISSING_PLACEHOLDER_STUB_SCAN.md
     claim_allowed: false
 
+  - path: docs/yml/TO_ADD_NEURO_ECHO_PHOTON_CHEMISTRY.yml
+    type: frontier_intake
+    level: E2
+    runs_alone: false
+    human_name: "Entrada neuro/eco/fóton/química"
+    role: "Preserves the user's neuro-electrochemical, echo/saturation and photon/electron-medium hypothesis with technical translation and claim boundary."
+    promoted_to:
+      - docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+      - docs/yml/FRONTIER_SCIENCE_CROSSMAP_2026.yml
+    requested_target: ".github/to_add/"
+    note: "Stored in docs/yml because direct connector creation under .github/to_add was blocked."
+    claim_allowed: false
+
+  - path: docs/yml/FRONTIER_SCIENCE_CROSSMAP_2026.yml
+    type: frontier_crossmap
+    level: E2
+    runs_alone: false
+    human_name: "Mapa fronteira ciência 2026"
+    role: "Cross-domain map for plasma, photon, radiation, chemistry, quantum, particles and neuro-electrochemistry."
+    companion_doc: docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+    next_safe_action: "Attach primary sources and create schema validator before promoting any scientific claim."
+    claim_allowed: false
+
+  - path: docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+    type: science_bridge_doc
+    level: E1
+    runs_alone: false
+    human_name: "Ponte neuroeletroquímica/eco/fóton-química"
+    role: "Academic explanation translating user analogies into testable electrochemical, echo-relaxation and photochemical observables."
+    next_safe_action: "Connect to sources, datasets and validators if this route becomes executable."
+    claim_allowed: false
+
   - path: docs/science/RLL_CRUZAMENTOS_COMPLETOS.md
     type: science_cross_map
     level: E1
@@ -160,4 +192,4 @@ syslog_template:
   token_vazio: "[TOKEN_VAZIO] Known gap; do not infer."
   proximo: "[PROXIMO] Execute the smallest safe step that produces an artifact."
 
-safe_conclusion: "The repository now has a master YAML navigation layer, artifact gap ledger, and placeholder scanner. This improves orchestration usability but does not change any scientific claim boundary."
+safe_conclusion: "The repository now has a master YAML navigation layer, artifact gap ledger, placeholder scanner and frontier-science bridge. This improves orchestration usability but does not change any scientific claim boundary."
