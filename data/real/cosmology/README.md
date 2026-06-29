@@ -34,3 +34,14 @@ Status: metadata_only / fetch-ready via orchestrator
 - `real_source_signatures.json` é gerado por `python tools/verify_real_source_signatures.py`.
 - O arquivo registra SHA256 local, amostra HTTP limitada, termos obrigatórios encontrados e status de revisão/failover por fonte.
 - Uma fonte bloqueada permanece marcada como revisão necessária; isso não autoriza preencher dados ausentes.
+
+## Materialização oficial Pantheon+SH0ES (não-binária)
+
+- `pantheon_plus/` contém arquivos oficiais selecionados do repositório público `PantheonPlusSH0ES/DataRelease`.
+- A política desta cópia é **sem binários e sem matrizes pesadas no git**: FITS, TAR e covariâncias de dezenas de MB ficam como materialização manual/failover a partir da origem oficial.
+- `pantheon_plus/MANIFEST.json` registra `source_url`, `size_bytes` e `sha256` por arquivo para rollback e auditoria.
+
+## Structure-D real data
+
+- O profile `structure_d_real_validation` agora inclui `real_fsigma8`, além de Hz, BAO e CMB shift.
+- O profile `structure_d_real_growth_validation` executa Hz + BAO + CMB shift + fσ8 real + pontos primários DESI DR2 BAO para validação expandida.
