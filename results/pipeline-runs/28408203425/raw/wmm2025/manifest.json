@@ -1,0 +1,16 @@
+{
+  "source": "wmm2025",
+  "group": "geomagnetic",
+  "url": "https://www.ncei.noaa.gov/index.php/products/world-magnetic-model/wmm-coefficients",
+  "license": "NOAA public data",
+  "version": "WMM2025",
+  "heavy": false,
+  "run_utc": "2026-06-29T22:58:23.794024+00:00",
+  "status": "fetched",
+  "files": [
+    {
+      "path": "raw/wmm2025/payload.bin",
+      "sha256": "9caaacde5c02ea1c8d890b515cf35501d7dfa9ce6a186bea49d10917a0e9a634"
+    }
+  ]
+}
