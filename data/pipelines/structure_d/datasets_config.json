@@ -13,7 +13,8 @@
       "active_datasets": [
         "real_hz",
         "real_bao",
-        "real_cmb_shift"
+        "real_cmb_shift",
+        "real_fsigma8"
       ]
     },
     "structure_d_partial_real": {
@@ -28,6 +29,16 @@
       "active_datasets": [
         "hz_cov_synth",
         "fsigma8_cov_synth"
+      ]
+    },
+    "structure_d_real_growth_validation": {
+      "run_name": "structure_d_real_growth_validation",
+      "active_datasets": [
+        "real_hz",
+        "real_bao",
+        "real_cmb_shift",
+        "real_fsigma8",
+        "real_desi_dr2_bao"
       ]
     }
   },

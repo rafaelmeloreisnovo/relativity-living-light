@@ -6,8 +6,12 @@ import json
 from pathlib import Path
 
 REQUIRED_FILES = {
-    "lcparam_full_long_zhel.txt": "Pantheon+SH0ES light-curve parameter table",
+    "Pantheon+SH0ES.dat": "Pantheon+SH0ES official distance/redshift table",
+}
+
+OPTIONAL_HEAVY_FILES = {
     "Pantheon+SH0ES_STAT+SYS.cov": "Pantheon+SH0ES combined statistical+systematic covariance matrix",
+    "Pantheon+SH0ES_STATONLY.cov": "Pantheon+SH0ES statistical-only covariance matrix",
 }
 
 
@@ -22,32 +26,43 @@ def _sha256(path: Path) -> str:
 def _build_report(data_dir: Path) -> dict[str, object]:
     files: list[dict[str, object]] = []
     missing: list[str] = []
-    for filename, description in REQUIRED_FILES.items():
+    def inspect(filename: str, description: str, required: bool) -> None:
         path = data_dir / filename
         if not path.exists():
-            missing.append(filename)
+            if required:
+                missing.append(filename)
             files.append(
                 {
                     "file": filename,
                     "description": description,
+                    "required": required,
                     "status": "missing",
                     "size_bytes": None,
                     "sha256": None,
                 }
             )
-            continue
+            return
         files.append(
             {
                 "file": filename,
                 "description": description,
+                "required": required,
                 "status": "ok",
                 "size_bytes": path.stat().st_size,
                 "sha256": _sha256(path),
             }
         )
+
+    for filename, description in REQUIRED_FILES.items():
+        inspect(filename, description, True)
+    for filename, description in OPTIONAL_HEAVY_FILES.items():
+        inspect(filename, description, False)
+
     return {
         "data_dir": str(data_dir),
+        "all_required_present": not missing,
         "all_present": not missing,
+        "missing_required": missing,
         "missing": missing,
         "files": files,
     }
@@ -78,7 +93,7 @@ def main() -> None:
             else:
                 print(f" - MISSING: {entry['file']}")
 
-    if not report["all_present"]:
+    if not report["all_required_present"]:
         raise SystemExit(2)
 
 

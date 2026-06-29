@@ -4,10 +4,11 @@ This directory is for user-supplied Pantheon+ files required by the repository's
 
 ## Required files
 
-1. `lcparam_full_long_zhel.txt` (required)
-2. `Pantheon+SH0ES_STAT+SYS.cov` (required)
+1. `Pantheon+SH0ES.dat` (required; official distance/redshift table)
+2. `Pantheon+SH0ES_STAT+SYS.cov` (optional heavy covariance; required only for full covariance likelihoods)
+3. `Pantheon+SH0ES_STATONLY.cov` (optional heavy covariance; required only for stat-only covariance likelihoods)
 
-> Without both files, `rll preflight-real` must fail with exit code `2`.
+> Without the required table, Pantheon+ preflight must fail with exit code `2`. Heavy covariance files are intentionally optional for lightweight source-custody checks.
 
 ## Provenance fields (record for each file)
 
@@ -32,7 +33,7 @@ For each file, record the following in your lab log or run manifest:
 python scripts/verify_pantheon_inputs.py --json
 ```
 
-This script reports `sha256`, `size_bytes`, and missing-file status for required inputs.
+This script reports `sha256`, `size_bytes`, `required`, and missing-file status for required and optional-heavy inputs.
 
 ## Minimal validation commands
 
