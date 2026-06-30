@@ -30,7 +30,7 @@ jobs:
           pip install numpy scipy matplotlib emcee dynesty
 
       - name: Executar pipeline Bayesiano
-        run: python run_full_analysis.py
+        run: python src/run_full_analysis.py
 
       - name: Upload dos artefatos
         uses: actions/upload-artifact@v4
