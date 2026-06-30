@@ -1,15 +1,15 @@
-name: RLL Scientific CI
+        name: RLL Scientific CI Hardened
 
 on:
   push:
   workflow_dispatch:
 
 jobs:
-  build:
+  rll:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -18,12 +18,21 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: |
-          pip install numpy pandas
+        run: pip install numpy pandas
 
+      # 🔥 CRÍTICO: garante estado limpo
+      - name: Prepare filesystem
+        run: |
+          mkdir -p validation_outputs
+          mkdir -p data
+
+      # 🔥 CRÍTICO: PYTHONPATH FIX
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=." >> $GITHUB_ENV
 
+      # ============================
+      # EXECUÇÃO CIENTÍFICA
+      # ============================
       - name: Run LCDM
         run: python -m validation.run_lcdm
 
@@ -36,8 +45,11 @@ jobs:
       - name: Falsification test
         run: python -m validation.check_falsification
 
-      - name: Upload outputs
+      # ============================
+      # OUTPUTS COMO ARTEFATO
+      # ============================
+      - name: Upload results
         uses: actions/upload-artifact@v4
         with:
-          name: rll-results
+          name: rll-scientific-results
           path: validation_outputs/
