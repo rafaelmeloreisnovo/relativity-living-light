@@ -1,4 +1,4 @@
-        name: RLL Scientific CI Hardened
+name: RLL Scientific CI Hardened
 
 on:
   push:
