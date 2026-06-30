@@ -1,0 +1,43 @@
+name: RLL Scientific CI
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install numpy pandas
+
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=." >> $GITHUB_ENV
+
+      - name: Run LCDM
+        run: python -m validation.run_lcdm
+
+      - name: Run RLL
+        run: python -m validation.run_rll
+
+      - name: Compare models
+        run: python -m validation.compare_models
+
+      - name: Falsification test
+        run: python -m validation.check_falsification
+
+      - name: Upload outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: rll-results
+          path: validation_outputs/
