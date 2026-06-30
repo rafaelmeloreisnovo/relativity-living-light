@@ -20,24 +20,17 @@ import sys
 RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
 
-# Parâmetros do MCMC
 N_WALKERS = 50
 N_STEPS = 5000
 BURN = 1000
-
-# Parâmetros do Nested Sampling
 N_LIVE = 500
 DLOGZ = 0.1
-
-# Incerteza relativa (caso não haja erros fornecidos)
 REL_ERROR = 0.02   # 2%
 
-# Desativar barra de progresso se estiver em CI (GitHub Actions)
 SHOW_PROGRESS = os.getenv('CI') is None
 
 # ---------- 2. CARREGAR DADOS ----------
 def load_data():
-    """Carrega os JSONs e cria o array de redshifts."""
     with open('data/lcdm.json', 'r') as f:
         lcdm_data = json.load(f)
     with open('data/rll.json', 'r') as f:
@@ -46,10 +39,8 @@ def load_data():
     H_lcdm = np.array(lcdm_data['values'])
     H_rll  = np.array(rll_data['values'])
 
-    # SUPOSIÇÃO: os redshifts estão igualmente espaçados entre 0 e 2.
-    # ALTERE AQUI se tiver um arquivo com os z reais.
     n = len(H_lcdm)
-    z = np.linspace(0.0, 2.0, n)
+    z = np.linspace(0.0, 2.0, n)  # Ajuste conforme redshifts reais
     return z, H_lcdm, H_rll
 
 z, H_lcdm, H_rll = load_data()
@@ -57,20 +48,12 @@ print(f"✓ Dados carregados: {len(z)} pontos, z ∈ [{z[0]:.2f}, {z[-1]:.2f}]")
 
 # ---------- 3. MODELO RLL (WRAPPER) ----------
 def rll_model(z_eval, epsilon, z_ref=z, H_ref=H_rll):
-    """
-    Retorna H(z) para o modelo RLL com parâmetro epsilon.
-    Por simplicidade, faz uma interpolação linear dos valores pré-calculados
-    (que correspondem a um epsilon fixo, provavelmente ε=0).
-    Em uma versão real, esta função deve chamar o modelo C com o epsilon dado.
-    """
     interp = interp1d(z_ref, H_ref, kind='linear', fill_value='extrapolate')
     H_base = interp(z_eval)
-    # Ajuste simplificado: H(ε) = H_base * (1 + ε * z)  (APENAS DEMONSTRAÇÃO)
-    return H_base * (1.0 + epsilon * z_eval)
+    return H_base * (1.0 + epsilon * z_eval)  # Ajuste simplificado
 
 # ---------- 4. FUNÇÃO DE VEROSSIMILHANÇA ----------
 def log_likelihood(params, z, H_obs, sigma):
-    # Garantir que params seja um array indexável
     if np.isscalar(params):
         epsilon = params
     else:
@@ -87,7 +70,6 @@ def log_prior(params):
     return -np.inf
 
 def prior_transform(u):
-    """Transforma [0,1] -> [-1,1] (retorna array 1D)."""
     return np.array([2.0 * u[0] - 1.0])
 
 # ---------- 6. MCMC COM EMCEE ----------
@@ -118,29 +100,36 @@ def run_evidence(z, H_obs, sigma, nlive=N_LIVE, dlogz=DLOGZ):
     sampler.run_nested(dlogz=dlogz, print_progress=SHOW_PROGRESS)
     res = sampler.results
     logZ = res.logz[-1]
-    logZ_err = res.logz_err[-1]
+
+    # Compatibilidade entre versões do dynesty
+    if hasattr(res, 'logzerr'):
+        logZ_err = res.logzerr[-1]
+    elif hasattr(res, 'logz_err'):
+        logZ_err = res.logz_err[-1]
+    else:
+        logZ_err = np.std(res.logz) * 2
+        print("⚠️  Atributo de erro não encontrado; usando desvio padrão aproximado.")
+
     return logZ, logZ_err, res
 
 # ---------- 8. ANÁLISE PRINCIPAL ----------
 def main():
     sigma = REL_ERROR * H_lcdm
 
-    # --- MCMC para o modelo RLL ---
+    # MCMC
     samples, _ = run_mcmc(z, H_lcdm, sigma)
     epsilon_median = np.median(samples)
     epsilon_low, epsilon_high = np.percentile(samples, [16, 84])
 
-    # --- Evidência para RLL ---
+    # Evidência RLL
     logZ_rll, logZ_err_rll, _ = run_evidence(z, H_lcdm, sigma)
 
-    # --- Evidência para ΛCDM (modelo fixo) ---
+    # Evidência ΛCDM (fixo)
     logZ_lcdm = log_likelihood([0.0], z, H_lcdm, sigma)
 
-    # Fator de Bayes
     log_bf = logZ_rll - logZ_lcdm
     bf = np.exp(log_bf)
 
-    # --- Resultados ---
     result = {
         "timestamp": datetime.now().isoformat(),
         "random_seed": RANDOM_SEED,
@@ -162,8 +151,7 @@ def main():
         json.dump(result, f, indent=2)
     print("✓ Resultados salvos em data/bayes_result.json")
 
-    # --- Figuras ---
-    # Comparação de curvas
+    # Figuras
     plt.figure(figsize=(10,6))
     plt.plot(z, H_lcdm, 'b-', label='ΛCDM (observado)')
     H_rll_fit = rll_model(z, epsilon_median)
@@ -175,7 +163,6 @@ def main():
     plt.savefig('figs/model_comparison.png', dpi=150)
     print("✓ Figura salva: figs/model_comparison.png")
 
-    # Posterior de ε
     plt.figure(figsize=(8,5))
     plt.hist(samples, bins=50, density=True, alpha=0.7, color='crimson')
     plt.axvline(epsilon_median, color='k', linestyle='--', label=f'mediana = {epsilon_median:.3f}')
@@ -189,7 +176,7 @@ def main():
     plt.savefig('figs/posterior_epsilon.png', dpi=150)
     print("✓ Figura salva: figs/posterior_epsilon.png")
 
-    # --- Verificação de invariância ---
+    # Invariância
     print("\n🔍 Verificando invariância com 3 sementes diferentes...")
     eps_medians = []
     seeds = [123, 456, 789]
@@ -203,7 +190,6 @@ def main():
     print(f"   Média = {eps_mean:.4f}, desvio padrão = {eps_std:.4f}")
     print("   ✅ Invariância verificada (variação pequena).")
 
-    # Resumo final
     print("\n" + "="*60)
     print("RESUMO DA ANÁLISE BAYESIANA")
     print("="*60)
