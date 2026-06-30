@@ -6,7 +6,7 @@ def load_real_data():
     files = glob.glob("data/*.csv")
 
     if not files:
-        print("⚠️ fallback simulado ativado")
+        print("⚠️ fallback simulado ativo")
         z = np.linspace(0.01, 1.5, 50)
         y = np.random.normal(70, 5, len(z))
         yerr = np.ones_like(z)
@@ -18,6 +18,6 @@ def load_real_data():
     y = df.iloc[:, 1].values if df.shape[1] > 1 else np.zeros_like(z)
     yerr = df.iloc[:, 2].values if df.shape[1] > 2 else np.ones_like(z)
 
-    print(f"📦 dataset real carregado: {files[0]} | N={len(z)}")
+    print(f"📦 DATA REAL: {files[0]} | N={len(z)}")
 
     return z, y, yerr
