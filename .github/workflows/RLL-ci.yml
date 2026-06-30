@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install Bayesian deps
+      run: pip install numpy pandas emcee scipy
+   
+    - name: Run Bayesian calibration
+   run: |
+    python -m validation.bayes_rll
+    python -m validation.bayes_compare
       - name: Checkout repo
         uses: actions/checkout@v4
 
