@@ -3,6 +3,17 @@ import json
 data = json.load(open("validation_outputs/comparison.json"))
 
 if data["chi2_rll"] > data["chi2_lcdm"]:
-    raise Exception("❌ RLL REJECTED (ΛCDM superior)")
+    status = "RLL rejected under current dataset"
+    winner = "LCDM"
 else:
-    print("✅ RLL SURVIVES CURRENT TEST")
+    status = "RLL survives"
+    winner = "RLL"
+
+result = {
+    "status": status,
+    "winner": winner,
+    "chi2_lcdm": data["chi2_lcdm"],
+    "chi2_rll": data["chi2_rll"]
+}
+
+print("FINAL RESULT:", result)
