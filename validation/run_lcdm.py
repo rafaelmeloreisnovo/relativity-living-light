@@ -9,10 +9,5 @@ if __name__ == "__main__":
     z, y, yerr = load_real_data()
     pred = lcdm(z)
 
-    result = {
-        "model": "LCDM",
-        "values": pred.tolist()
-    }
-
     with open("validation_outputs/lcdm.json", "w") as f:
-        json.dump(result, f)
+        json.dump({"model":"LCDM","values":pred.tolist()}, f)
