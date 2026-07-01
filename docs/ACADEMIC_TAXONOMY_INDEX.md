@@ -30,6 +30,7 @@ Documento índice acadêmico com taxonomia mínima para rastrear formulações, 
 |---|---|---|---|---|
 | FORM-001 | Ação EFT total: `S = ∫ d⁴x √(−g) [ R/(16πG) + L_m + L_r + L_sup ]` | [`/workspace/relativity-living-light/docs/LAGRANGIANO_EFT.md`](./LAGRANGIANO_EFT.md) | parcial real | Consistência dinâmica global (indireto em `H(z)`) |
 | FORM-002 | Lagrangiana canônica: `L_sup = −(1/2) g^{μν}∂_μφ∂_νφ − V(φ) + L_acoplamentos` | [`/workspace/relativity-living-light/docs/LAGRANGIANO_EFT.md`](./LAGRANGIANO_EFT.md) | parcial real | Assinatura de estabilidade e propagação |
+| FORM-002A | Cutoff scale EFT: `Λ = O(10⁻³ eV)` para o setor de energia escura, ou `Λ ≈ 10³ eV` se acoplado a matéria escura. Justificativa: a expansão em derivadas de `H` converge para redshifts `z < 5`. | [`/workspace/relativity-living-light/docs/LAGRANGIANO_EFT.md`](./LAGRANGIANO_EFT.md) | parcial real | Domínio de validade EFT |
 | FORM-003 | Evolução de crescimento linear: `D'' + [2 + d(lnH)/d(lna)]D' − (3/2)Ω_m(a)D = 0` | [`/workspace/relativity-living-light/docs/PERTURBACOES_CRESCIMENTO.md`](./PERTURBACOES_CRESCIMENTO.md) | parcial real | `fσ₈(z)` |
 | FORM-004 | Taxa observável de crescimento: `fσ₈(z) = f(z)·σ₈(0)·D(z)/D(0)` | [`/workspace/relativity-living-light/docs/PERTURBACOES_CRESCIMENTO.md`](./PERTURBACOES_CRESCIMENTO.md) | parcial real | `fσ₈(z)` |
 | FORM-005 | Regime canônico de som no escalar: `c_s² = 1` (com distinção de fluido efetivo) | [`/workspace/relativity-living-light/docs/VELOCIDADE_SOM.md`](./VELOCIDADE_SOM.md) | sintético | Critério `c_s² > 0` e estabilidade |
@@ -95,6 +96,7 @@ Documento índice acadêmico com taxonomia mínima para rastrear formulações, 
 |---|---|---|---|---|
 | FORM-001 | Ação EFT total: `S = ∫ d⁴x √(−g) [ R/(16πG) + L_m + L_r + L_sup ]` | `/workspace/relativity-living-light/docs/LAGRANGIANO_EFT.md` | parcial real | Consistência dinâmica global (indireto em `H(z)`) |
 | FORM-002 | Lagrangiana canônica: `L_sup = −(1/2) g^{μν}∂_μφ∂_νφ − V(φ) + L_acoplamentos` | `/workspace/relativity-living-light/docs/LAGRANGIANO_EFT.md` | parcial real | Assinatura de estabilidade e propagação |
+| FORM-002A | Cutoff scale EFT: `Λ = O(10⁻³ eV)` para o setor de energia escura, ou `Λ ≈ 10³ eV` se acoplado a matéria escura. Justificativa: a expansão em derivadas de `H` converge para redshifts `z < 5`. | `/workspace/relativity-living-light/docs/LAGRANGIANO_EFT.md` | parcial real | Domínio de validade EFT |
 | FORM-003 | Evolução de crescimento linear: `D'' + [2 + d(lnH)/d(lna)]D' − (3/2)Ω_m(a)D = 0` | `/workspace/relativity-living-light/docs/PERTURBACOES_CRESCIMENTO.md` | parcial real | `fσ₈(z)` |
 | FORM-004 | Taxa observável de crescimento: `fσ₈(z) = f(z)·σ₈(0)·D(z)/D(0)` | `/workspace/relativity-living-light/docs/PERTURBACOES_CRESCIMENTO.md` | parcial real | `fσ₈(z)` |
 | FORM-005 | Regime canônico de som no escalar: `c_s² = 1` (com distinção de fluido efetivo) | `/workspace/relativity-living-light/docs/VELOCIDADE_SOM.md` | sintético | Critério `c_s² > 0` e estabilidade |

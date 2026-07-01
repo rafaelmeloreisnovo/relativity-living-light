@@ -1,0 +1,4 @@
+# Chains, sampler caches, and binary posterior products are intentionally not versioned.
+*
+!.gitignore
+!README.md
