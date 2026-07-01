@@ -1,0 +1,125 @@
+schema: rll.real_cosmology_inputs.v1
+status: committed_real_inputs
+purpose: >-
+  Fonte de verdade YAML para os blocos cosmológicos reais usados nas rotas
+  locais de validação conjunta RLL/LCDM: H(z), DESI DR2 BAO, fσ8/RSD e CMB shift.
+claim_boundary: >-
+  Registro de fonte e materialização local não é validação científica, não confirma
+  RLL e não autoriza claim de superioridade contra LCDM, wCDM ou CPL.
+default_execution:
+  offline_first: true
+  no_synthetic_promotion: true
+  strict_missing_inputs: true
+  local_manifest_mirror: data/inputs/cosmology_joint/joint_real_inputs_manifest.json
+  source_signature_manifest: data/real/cosmology/real_source_signatures.json
+  validation_commands:
+    - python tools/validate_real_cosmology_inputs_yml.py
+    - python tools/validate_real_data_source_manifest.py
+    - python tools/validate_real_data_addition_registry.py
+inputs:
+  - dataset_id: hz_cosmic_chronometers_real
+    axis: expansion_Hz
+    domain: cosmology
+    state: REAL_VALIDATED_LIMITED
+    local_path: data/real/Hz_data_real.csv
+    observable_columns: [z, H, sigma]
+    error_policy: diagonal_sigma_H
+    primary_source:
+      title: Cosmic chronometers H(z) compilation route
+      url: https://arxiv.org/abs/2205.05701
+      source_type: literature_compilation
+    repository_consumers:
+      - data.pipelines.structure_d.run_all_real
+      - data.pipelines.structure_d.joint_real_likelihood
+    source_signature_ids: [real_hz]
+    required_checks:
+      - file_exists
+      - non_empty
+      - numeric_rows
+      - source_signature_registered
+    claim_blocked:
+      - H(z) source registration alone does not validate RLL.
+      - No H0-tension claim without full likelihood, covariance policy and baselines.
+  - dataset_id: desi_dr2_bao_primary_real
+    axis: bao_DESI_DR2
+    domain: cosmology
+    state: REAL_VALIDATED_LIMITED
+    local_path: data/real/cosmology/desi_dr2_bao_primary_points.csv
+    covariance_path: data/real/cosmology/desi_dr2_bao_covariance_summary.csv
+    observable_columns: [z_eff, observable, value, sigma]
+    error_policy: committed_primary_points_plus_covariance_summary
+    primary_source:
+      title: DESI DR2 BAO measurements
+      url: https://arxiv.org/abs/2503.14738
+      source_type: primary_paper
+    repository_consumers:
+      - data.pipelines.structure_d.joint_real_likelihood
+      - scripts.check_desi_dr2_bao_covariance
+    source_signature_ids: [real_desi_dr2_bao, real_desi_dr2_bao_supplement]
+    required_checks:
+      - file_exists
+      - non_empty
+      - numeric_rows
+      - covariance_file_exists
+      - source_signature_registered
+    claim_blocked:
+      - DESI DR2 BAO registration does not mean DESI confirms RLL.
+      - BAO-only evidence cannot be promoted to full cosmological validation.
+  - dataset_id: fsigma8_growth_real
+    axis: growth_fsigma8
+    domain: cosmology
+    state: REAL_VALIDATED_LIMITED
+    local_path: data/real/cosmology/fsigma8_growth_real.csv
+    observable_columns: [z, fsigma8, sigma]
+    error_policy: diagonal_sigma
+    primary_source:
+      title: fσ8/RSD growth compilation route
+      url: https://arxiv.org/abs/1204.4725
+      source_type: literature_measurement
+    repository_consumers:
+      - data.pipelines.structure_d.run_all_real
+      - data.pipelines.structure_d.joint_real_likelihood
+    source_signature_ids: [real_fsigma8_6dfgs_anchor, real_fsigma8_compilation]
+    required_checks:
+      - file_exists
+      - non_empty
+      - numeric_rows
+      - source_signature_registered
+    claim_blocked:
+      - fσ8 registration does not resolve S8 or growth tension.
+      - Growth claims require baseline comparison and covariance/systematics accounting.
+  - dataset_id: cmb_shift_planck2018_real
+    axis: cmb_shift
+    domain: cosmology
+    state: REAL_VALIDATED_LIMITED
+    local_path: data/real/CMB_shift_real.json
+    observable_columns: [R_obs, la_obs, sigma_R, sigma_la]
+    error_policy: diagonal_R_la_sigma
+    primary_source:
+      title: Planck 2018 cosmological parameters
+      url: https://arxiv.org/abs/1807.06209
+      source_type: primary_paper
+    repository_consumers:
+      - data.pipelines.structure_d.joint_real_likelihood
+    source_signature_ids: [real_cmb_shift]
+    required_checks:
+      - file_exists
+      - non_empty
+      - json_object
+      - source_signature_registered
+    claim_blocked:
+      - CMB shift summary is compressed evidence, not a replacement for full Planck chains.
+      - Do not infer precision-cosmology confirmation from this compressed block.
+failsafe:
+  missing_input: fail_strict_in_ci
+  synthetic_fixture_detected: block_promotion
+  network_failure: keep_committed_local_file_and_mark_review
+  rollback: restore previous committed dataset and rerun validators
+artifacts:
+  ci_upload:
+    workflow: .github/workflows/real-data-contract-ci.yml
+    artifact_name: real-data-contract-${{ github.run_id }}
+  expected_reports:
+    - artifacts/real-data-contract/MANIFEST.json
+    - artifacts/real-data-contract/COMPUTE_REPORT.md
+    - artifacts/real-data-contract/tables/model_comparison.csv

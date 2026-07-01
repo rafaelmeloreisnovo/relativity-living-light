@@ -45,3 +45,10 @@ Status: metadata_only / fetch-ready via orchestrator
 
 - O profile `structure_d_real_validation` agora inclui `real_fsigma8`, além de Hz, BAO e CMB shift.
 - O profile `structure_d_real_growth_validation` executa Hz + BAO + CMB shift + fσ8 real + pontos primários DESI DR2 BAO para validação expandida.
+
+## Contrato YAML canônico para cosmologia real
+
+- `real_cosmology_inputs.yml` é a fonte de verdade YAML para os blocos reais locais usados em validação conjunta: H(z), DESI DR2 BAO, fσ8/RSD e CMB shift.
+- O contrato aponta apenas para arquivos reais já materializados no repositório e preserva a fronteira de claim: registro/materialização de fonte não é validação científica nem confirmação de RLL.
+- Validação estrutural: `python tools/validate_real_cosmology_inputs_yml.py`.
+- Gate de CI: `.github/workflows/real-data-contract-ci.yml` valida o YAML antes de executar a computação com dados reais commitados.
