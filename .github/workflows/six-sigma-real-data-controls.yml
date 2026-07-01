@@ -1,0 +1,43 @@
+name: Six Sigma Real Data Controls
+
+on:
+  pull_request:
+    paths:
+      - "docs/operations/**"
+      - "docs/real_data/**"
+      - "docs/governance/**"
+      - "tools/validate_six_sigma_real_data_controls.py"
+      - ".github/workflows/six-sigma-real-data-controls.yml"
+  push:
+    paths:
+      - "docs/operations/**"
+      - "docs/real_data/**"
+      - "docs/governance/**"
+      - "tools/validate_six_sigma_real_data_controls.py"
+      - ".github/workflows/six-sigma-real-data-controls.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: six-sigma-real-data-controls-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  six-sigma-real-data-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate Six Sigma real-data controls
+        run: python tools/validate_six_sigma_real_data_controls.py
+
+      - name: Check documentation inventory
+        run: python3 tools/docs_inventory.py --check
