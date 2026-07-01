@@ -6,9 +6,17 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   rll-validation:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -26,26 +34,26 @@ jobs:
 
       - name: Load cosmological datasets
         run: |
-          python validation/load_data.py
+          python -m validation.load_data
 
-      - name: Run ΛCDM baseline fit
+      - name: Run LCDM baseline fit
         run: |
-          python validation/run_lcdm.py --output validation_outputs/lcdm.json
+          python -m validation.run_lcdm --output validation_outputs/lcdm.json
 
-      - name: Run RLL model (𝓡 = ΛCDM + β·𝓘)
+      - name: Run RLL model
         run: |
-          python validation/run_rll.py --output validation_outputs/rll.json
+          python -m validation.run_rll --output validation_outputs/rll.json
 
-      - name: Statistical comparison (χ² / AIC / BIC)
+      - name: Statistical comparison
         run: |
-          python validation/compare_models.py \
+          python -m validation.compare_models \
             --lcdm validation_outputs/lcdm.json \
             --rll validation_outputs/rll.json \
             --output validation_outputs/comparison.json
 
       - name: Generate report plots
         run: |
-          python validation/plot_results.py
+          python -m validation.plot_results
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -55,4 +63,4 @@ jobs:
 
       - name: Fail pipeline if RLL is invalid
         run: |
-          python validation/check_falsification.py
+          python -m validation.check_falsification
