@@ -42,7 +42,7 @@ on:
         default: true
         type: boolean
       commit_artifacts:
-        description: Commitar apenas manifestos/resultados leves em results/pipeline-runs/<run_id>
+        description: Commitar apenas manifestos/resultados leves em results/pipeline-runs/<run_id> por opt-in explícito
         required: true
         default: false
         type: boolean
@@ -64,11 +64,11 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
@@ -99,6 +99,7 @@ jobs:
         run: |
           date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-pipeline/RUN_UTC.txt
           echo "${GITHUB_SHA}" > artifacts/rll-pipeline/COMMIT_SHA.txt
+          printf '%s\n' "Commit is opt-in only via separate write-permission job; artifact upload is the default output." > artifacts/rll-pipeline/COMMIT_POLICY.txt
           (cd artifacts/rll-pipeline && find . -type f ! -name CHECKSUMS.sha256 -print0 | sort -z | xargs -0 sha256sum) > artifacts/rll-pipeline/CHECKSUMS.sha256
 
       - name: Upload artifact
@@ -108,9 +109,26 @@ jobs:
           path: artifacts/rll-pipeline/
           retention-days: ${{ fromJSON(inputs.retention_days) }}
 
+  commit-lightweight-artifacts:
+    needs: pipeline
+    if: ${{ inputs.commit_artifacts }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout for explicit opt-in commit
+        uses: actions/checkout@v4
+
+      - name: Download book pipeline artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: rll-book-pipeline-${{ github.run_id }}-${{ inputs.book_scope }}-${{ inputs.dataset_group }}-${{ inputs.mode }}
+          path: artifacts/rll-pipeline
+
       - name: Commit lightweight artifacts
-        if: ${{ inputs.commit_artifacts }}
         run: |
+          set -euo pipefail
           RUN_DIR="results/pipeline-runs/${{ github.run_id }}"
           mkdir -p "${RUN_DIR}"
           rsync -av --prune-empty-dirs \
