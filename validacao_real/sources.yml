@@ -1,9 +1,16 @@
 meta:
   schema: rll.validacao_real.sources.v1
-  version: 1
-  updated_utc: "2026-06-01"
-  principle: "Minimo que ja valida. Marca-se a regiao onde a regua cai; nao se calcula a imensidao."
-  claim_policy: "Nenhuma fonte declara descoberta. Cada fonte e ancora real para a prova RLL vs LCDM."
+  version: 2
+  updated_utc: "2026-07-01"
+  principle: "Fontes reais e payloads locais commitados são âncoras de teste; não são prova final por aparência ou anterioridade."
+  claim_policy: >
+    Nenhuma fonte declara descoberta, confirmação física ou superioridade estatística.
+    Cada fonte é âncora rastreável para teste RLL vs LCDM/CPL sob métrica,
+    baseline, incerteza/covariância e fronteira de claim explícita.
+  fallback_policy: >
+    embedded_fallback significa payload local commitado para reprodutibilidade em
+    runner sem rede. Não é download fresco, não é substituto de likelihood completa
+    e não pode ser promovido a validação científica sozinho.
 
 sources:
   - id: desi_dr2_bao
@@ -12,8 +19,9 @@ sources:
     embedded_fallback: data/desi_dr2_bao.yml
     remote:
       portal: "https://arxiv.org/abs/2503.14738"
-      note: "DESI DR2 Results II. Table IV. Fetch tenta o portal; se falhar, usa fallback embutido."
+      note: "DESI DR2 Results II. Table IV. Fetch tenta o portal; se falhar, usa payload local commitado com fronteira de claim."
     falsifier: "Se RLL nao reproduzir DM/rd, DH/rd, DV/rd dentro das barras DESI, o setor de superposicao e rejeitado nesse regime."
+    claim_boundary: "DESI DR2 BAO ancora teste; nao confirma RLL sem likelihood quantitativa e adversario."
 
   - id: hz_cosmic_chronometers
     domain: cosmology_expansion
@@ -21,13 +29,14 @@ sources:
     embedded_fallback: data/hz_cosmic_chronometers.yml
     remote:
       portal: "https://gitlab.com/mmoresco/CCcovariance"
-      note: "Compilacao de cronometros cosmicos (Moresco et al.), independente de modelo."
+      note: "Compilacao de cronometros cosmicos (Moresco et al.), independente de modelo; fallback local e snapshot commitado."
     falsifier: "Se RLL desviar sistematicamente de H(z) observado alem das barras, a transicao logistica e rejeitada."
+    claim_boundary: "H(z) ancora teste de expansao; nao resolve tensao H0 nem valida RLL sozinho."
 
 regiao_de_validade:
   z_min: 0.0
   z_max: 2.4
-  note: "Regiao onde os dados reais existem. Fora disso e extrapolacao, nao prova."
+  note: "Regiao onde estes dados existem. Fora disso e extrapolacao, nao prova."
 
 # Operational documentation consumers for metadata-only YAML.
 consumed_by:

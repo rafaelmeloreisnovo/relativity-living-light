@@ -4,22 +4,21 @@ on:
     inputs:
       pipeline_scope: {type: choice, required: true, default: all, options: [rll, iml, formulas, book, all]}
       dataset_group: {type: choice, required: true, default: all, options: [geomagnetic, heliophysics, cosmology, all]}
-      mode: {type: choice, required: true, default: full, options: [metadata_only, fetch, compute, plots, full]}
-      real_data_source: {type: choice, required: true, default: auto, options: [auto, materialized, repo]}
+      mode: {type: choice, required: true, default: metadata_only, options: [metadata_only, fetch, compute, plots, full]}
+      real_data_source: {type: choice, required: true, default: repo, options: [auto, materialized, repo]}
       book_scope: {type: choice, required: true, default: all, options: [methodology, real_data, scripts, observational_validation, desi_boss, amas_mcrp, all]}
       retention_days: {type: choice, required: true, default: '14', options: ['7','14','30','90']}
-      fetch_igrf14: {type: boolean, required: true, default: true}
-      fetch_wmm2025: {type: boolean, required: true, default: true}
-      fetch_omni: {type: boolean, required: true, default: true}
+      fetch_igrf14: {type: boolean, required: true, default: false}
+      fetch_wmm2025: {type: boolean, required: true, default: false}
+      fetch_omni: {type: boolean, required: true, default: false}
       fetch_nmdb: {type: boolean, required: true, default: false}
-      fetch_desi: {type: boolean, required: true, default: true}
-      fetch_pantheon: {type: boolean, required: true, default: true}
+      fetch_desi: {type: boolean, required: true, default: false}
+      fetch_pantheon: {type: boolean, required: true, default: false}
       fetch_planck: {type: boolean, required: true, default: false}
       fetch_spenvis_reference: {type: boolean, required: true, default: false}
       run_iml: {type: boolean, required: true, default: true}
       run_formulas: {type: boolean, required: true, default: true}
-      run_plots: {type: boolean, required: true, default: true}
-      commit_light_artifacts: {type: boolean, required: true, default: false}
+      run_plots: {type: boolean, required: true, default: false}
 permissions:
   contents: read
 
@@ -31,10 +30,10 @@ jobs:
   orchestrate:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: |
@@ -46,7 +45,8 @@ jobs:
           set -euo pipefail
           python3 tools/docs_inventory.py | tee artifacts/rll-real-run/docs_inventory_refresh.log
           python3 tools/docs_inventory.py --check | tee artifacts/rll-real-run/docs_inventory_check.log
-      - run: |
+      - name: Fetch declared sources only when explicitly enabled
+        run: |
           python3 scripts/fetch_real_sources.py \
             --dataset-group "${{ inputs.dataset_group }}" \
             --mode "${{ inputs.mode }}" \
@@ -115,6 +115,7 @@ jobs:
       - run: |
           date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-real-run/RUN_UTC.txt
           git rev-parse HEAD > artifacts/rll-real-run/COMMIT_SHA.txt
+          printf '%s\n' "This orchestrator is artifact-only. Commit artifacts through a reviewed PR, not an automatic push." > artifacts/rll-real-run/COMMIT_POLICY.txt
           test -f artifacts/rll-real-run/MANIFEST.json || echo '{}' > artifacts/rll-real-run/MANIFEST.json
           test -f artifacts/rll-real-run/COMPUTE_REPORT.md || echo '# COMPUTE_REPORT' > artifacts/rll-real-run/COMPUTE_REPORT.md
           test -f artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md || echo '# CLAIM_REFERENCE_AUDIT' > artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md
@@ -124,17 +125,3 @@ jobs:
           name: rll-real-run-${{ github.run_id }}
           path: artifacts/rll-real-run/
           retention-days: ${{ fromJSON(inputs.retention_days) }}
-      - if: ${{ inputs.commit_light_artifacts }}
-        run: |
-          DEST="results/pipeline-runs/${{ github.run_id }}"
-          mkdir -p "$DEST"
-          rsync -av --include='*/' --include='*.md' --include='*.json' --include='*.csv' --include='*.txt' --include='*.sha256' --include='*.png' --exclude='*' artifacts/rll-real-run/ "$DEST/"
-          git config user.name github-actions
-          git config user.email github-actions@users.noreply.github.com
-          git add "$DEST"
-          if git diff --cached --quiet; then
-            echo "No light artifacts to commit."
-          else
-            git commit -m "chore: add light pipeline artifacts for run ${{ github.run_id }}"
-            git push
-          fi
