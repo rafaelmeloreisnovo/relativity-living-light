@@ -1,6 +1,37 @@
 meta:
   schema: rll.validacao_real.caminhos_novos.v1
   generated_utc: "2026-06-04"
+  ontology:
+    artifact_kind: validation_registry
+    system_role: epistemic_router
+    canonical_path: docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml
+    lifecycle: active
+    owner_layer: docs/pipelines
+    canonical: true
+    root_copy_status: duplicate_legacy
+    consumed_by:
+      - tools/generate_yml_audit_docs.py
+      - tools/docs_inventory.py
+      - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md
+  epistemics:
+    default_state: DECLARED_BY_AUTHOR
+    current_state: METADATA_READY
+    allowed_states:
+      - VERIFIED
+      - DECLARED_BY_AUTHOR
+      - TOKEN_VAZIO
+      - CONTRADICTION
+      - METADATA_READY
+      - REAL_VALIDATED_BLOCKED
+    promotion_rule: >
+      Nenhum caminho passa a VERIFIED sem fonte publica rastreavel,
+      DOI ou URL quando aplicavel, data de acesso, hash ou artefato commitado,
+      comando executado, metrica produzida, baseline ou adversario e claim boundary.
+    claim_boundary: >
+      Este YAML organiza caminhos possiveis de validacao. Ele nao afirma descoberta,
+      superioridade estatistica ou verdade fisica. Cada caminho e uma rota de teste
+      e permanece bloqueado para claim cientifico ate evidencia externa, execucao,
+      metrica, baseline e erro ou covariancia quando aplicavel.
   principle: >
     Apenas caminhos AINDA NAO presentes no repositorio, cada um ancorado em
     dataset publico real e com falsificador explicito. Adversario padrao = w0waCDM
