@@ -1,0 +1,126 @@
+schema: rll.required_data_gap_registry.v1
+status: active_gap_registry
+created_utc: "2026-07-01T00:00:00Z"
+owner_layer: docs/science
+purpose: >-
+  Machine-readable registry of route-level data, baseline, metric and execution
+  gaps that block RLL validation routes.
+claim_boundary: >-
+  This registry records absences and required inputs only. It does not validate
+  RLL and does not approve any scientific claim.
+claim_allowed: false
+promotion_policy:
+  default_state: TOKEN_VAZIO
+  required_for_test_ready:
+    - materialized_data_or_primary_reference
+    - checksum_or_source_signature
+    - baseline
+    - metric
+    - uncertainty_or_error_policy
+    - executable_command_or_artifact
+    - falsifier
+
+gaps:
+  - id: GAP-COSMO-ROBUST-FIT
+    route: cosmology_background
+    priority: P0
+    state: TOKEN_VAZIO_ROBUST_FIT
+    linked_theses: [LT-001]
+    needed_data_or_artifact: robust_joint_cosmology_fit_runs
+    target_path: results/structure_d/robust_joint_real_runs/
+    baselines: [LCDM, wCDM, CPL_w0waCDM]
+    metrics: [chi2, AIC, AICc, BIC, frequency_Os0_zero, delta_against_CPL]
+    required_evidence: [versioned_output_dir, seed_grid, input_hash_manifest, no_smoke_overwrite]
+    falsifier: RLL remains inactive or worse than CPL under robust comparable runs.
+    next_action: implement_versioned_robust_fit_output_contract
+
+  - id: GAP-COSMO-SUPERNOVA
+    route: cosmology_background
+    priority: P0
+    state: TOKEN_VAZIO_SUPERNOVA
+    linked_theses: [LT-001]
+    needed_data_or_artifact: covariance_aware_supernova_likelihood
+    target_path: data/real/cosmology/supernovae/
+    baselines: [LCDM_supernova, CPL_supernova]
+    metrics: [supernova_chi2, joint_delta_AICc]
+    required_evidence: [primary_release_reference, local_data_file, covariance_or_error_model, checksum, ingestion_command]
+    falsifier: Supernova data do not improve active RLL against CPL under fair accounting.
+    next_action: create_supernova_data_contract_and_ingestion_manifest
+
+  - id: GAP-COSMO-GROWTH
+    route: cosmology_growth
+    priority: P0
+    state: TOKEN_VAZIO_GROWTH_BACKEND
+    linked_theses: [LT-002]
+    needed_data_or_artifact: external_growth_benchmark
+    target_path: results/growth_benchmark/
+    baselines: [LCDM_growth, CPL_growth]
+    metrics: [fsigma8_residuals, growth_chi2, growth_delta_AICc]
+    required_evidence: [solver_name, version_or_environment, executable_command, output_artifact, parameter_mapping]
+    falsifier: Growth does not distinguish or improve RLL against CPL-like baselines.
+    next_action: add_growth_benchmark_contract
+
+  - id: GAP-COSMO-CMB
+    route: cosmology_background
+    priority: P1
+    state: TOKEN_VAZIO_CMB_COVARIANCE
+    linked_theses: [LT-001, LT-002]
+    needed_data_or_artifact: complete_cmb_compressed_covariance_or_likelihood
+    target_path: data/real/cosmology/cmb/
+    baselines: [LCDM_CMB, CPL_CMB]
+    metrics: [CMB_chi2_or_prior_penalty, joint_delta_AICc]
+    required_evidence: [source_reference, local_vector_or_interface, covariance_or_prior_semantics, checksum]
+    falsifier: CMB constraints keep RLL inactive or worse than CPL.
+    next_action: define_CMB_compressed_covariance_contract
+
+  - id: GAP-SIREN-DISTANCE
+    route: late_universe_sirens
+    priority: P2
+    state: TOKEN_VAZIO_DATASET
+    linked_theses: [LT-003]
+    needed_data_or_artifact: standard_siren_distance_catalog
+    target_path: data/real/gravitational_waves/standard_sirens/
+    baselines: [LCDM_siren, CPL_siren]
+    metrics: [H0_posterior_shift, w0_wa_constraints, RLL_delta_AICc_against_CPL]
+    required_evidence: [source_reference, local_catalog_or_likelihood, checksum, selection_note]
+    falsifier: SIREN plus BAO/SN constraints prefer LCDM or CPL while RLL remains inactive.
+    next_action: create_standard_siren_source_manifest
+
+  - id: GAP-REMNANT-POSTERIORS
+    route: compact_remnant_boundary
+    priority: P0
+    state: TOKEN_VAZIO_RAW_POSTERIORS
+    linked_theses: [LT-004]
+    needed_data_or_artifact: public_compact_remnant_posterior_samples
+    target_path: data/real/compact_objects/posteriors/
+    baselines: [published_boundary_baseline, population_baseline]
+    metrics: [mass_gap_overlap_probability, posterior_boundary_crossing_rate, false_positive_rate]
+    required_evidence: [event_list, posterior_files, sha256_manifest, source_reference, ingestion_command]
+    falsifier: Public posteriors show no reproducible boundary signal beyond standard baselines.
+    next_action: ingest_public_posterior_sample_manifest
+
+  - id: GAP-SMBH-SEEDS
+    route: high_z_smbh_seeds
+    priority: P2
+    state: TOKEN_VAZIO_BASELINES
+    linked_theses: [LT-005]
+    needed_data_or_artifact: high_z_smbh_table_and_seed_baselines
+    target_path: data/real/high_z_smbh/
+    baselines: [light_seed, heavy_seed, direct_collapse, super_Eddington_growth]
+    metrics: [growth_time_feasibility, seed_mass_required, baseline_confusion_matrix]
+    required_evidence: [candidate_table, host_property_columns, uncertainty_columns, source_reference, checksum]
+    falsifier: Standard seed and growth channels explain the table without RLL-specific improvement.
+    next_action: create_high_z_smbh_schema_and_baseline_grid
+
+  - id: GAP-ASTROMETRY-CANDIDATES
+    route: wandering_dark_compact_mass
+    priority: P2
+    state: TOKEN_VAZIO_ASTROMETRY
+    linked_theses: [LT-006]
+    needed_data_or_artifact: astrometric_candidate_manifest
+    target_path: data/real/dark_compact_candidates/
+    baselines: [luminous_counterpart_baseline, contaminant_baseline, stellar_remnant_baseline]
+    metrics: [astrometric_mass_consistency, counterpart_exclusion_score, contaminant_probability]
+    required_evidence: [candidate_table, astrometric_columns, photometry_or_RV_reference, checksum]
+    falsifier: Candidates are explained by ordinary counterpart or contaminant baselines.
+    next_action: create_candidate_schema_and_raw_data_manifest
