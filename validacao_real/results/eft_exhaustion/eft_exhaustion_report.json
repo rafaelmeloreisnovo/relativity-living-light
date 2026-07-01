@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "reconstruction_csv": "validacao_real/results/eft_exhaustion/eft_reconstruction.csv"
+  },
+  "background": {
+    "equation": "E^2(a)=Omega_m a^-3+Omega_r a^-4+Omega_Lambda+alpha S(a)",
+    "omega_total_a1": 1.0
+  },
+  "eft_reconstruction": {
+    "reason": "TOKEN_VAZIO: canonical kinetic density becomes negative; no derived canonical EFT proof",
+    "valid": false
+  },
+  "final_decision": "REJEITADO COMO EFT",
+  "model_comparison": {
+    "RLL_vs_LCDM": "TOKEN_VAZIO",
+    "RLL_vs_w0waCDM": "TOKEN_VAZIO"
+  },
+  "observational_validation": {
+    "BAO": "TOKEN_VAZIO",
+    "DESI DR2": "TOKEN_VAZIO",
+    "Pantheon+": "TOKEN_VAZIO",
+    "Planck 2018": "TOKEN_VAZIO",
+    "SN Ia": "TOKEN_VAZIO",
+    "reason": "TOKEN_VAZIO: this command does not fabricate or download missing likelihood data; use existing real-data pipelines when materialized"
+  },
+  "parameter_exhaustion": {
+    "grid_points": 12,
+    "non_identifiable": true,
+    "reason": "TOKEN_VAZIO: par\u00e2metros n\u00e3o identific\u00e1veis em alpha=0 ou k=0"
+  },
+  "parameters": {
+    "a_t": 0.5,
+    "alpha": 0.01,
+    "k": 10.0,
+    "omega_lambda": null,
+    "omega_m": 0.315,
+    "omega_r": 9e-05
+  },
+  "stability_eft": {
+    "Q_s": "TOKEN_VAZIO",
+    "c_s2": "TOKEN_VAZIO",
+    "decision": "REJEITADO COMO EFT",
+    "stable": false
+  }
+}
