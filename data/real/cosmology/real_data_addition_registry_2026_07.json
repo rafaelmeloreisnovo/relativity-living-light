@@ -1,0 +1,159 @@
+{
+  "schema": "rll.real_data_addition_registry.v1",
+  "generated_utc": "2026-07-01T00:00:00Z",
+  "purpose": "Register additional real-data source targets without promoting them to validation claims before materialization, checksum, metric output, baseline comparison and claim boundary.",
+  "claim_boundary": "Source registration is not scientific validation. No superiority claim unless real-data metrics pass predefined thresholds under reproducible commands and complete provenance.",
+  "allowed_states": [
+    "SOURCE_REGISTERED_ONLY",
+    "DOWNLOAD_READY",
+    "MATERIALIZED_WITH_CHECKSUM",
+    "INGESTION_READY",
+    "REAL_VALIDATED_BLOCKED",
+    "REAL_VALIDATED_LIMITED"
+  ],
+  "rows": [
+    {
+      "dataset_id": "pantheon_plus_sh0es_official_release",
+      "domain": "supernovae",
+      "state": "DOWNLOAD_READY",
+      "primary_source": "PantheonPlusSH0ES/DataRelease",
+      "source_url": "https://github.com/PantheonPlusSH0ES/DataRelease",
+      "local_expected_paths": [
+        "data/pantheon/Pantheon+SH0ES.dat",
+        "data/pantheon/Pantheon+SH0ES_STAT+SYS.cov",
+        "data/pantheon/lcparam_full_long_zhel.txt"
+      ],
+      "existing_repository_support": [
+        "scripts/download_real_cosmology_inputs.sh",
+        "docs/real_data/REAL_DATA_REQUIRED_INPUTS.md",
+        "docs/real_data/pantheon_plus_optimizer_audit.md"
+      ],
+      "promotion_requirements": [
+        "download official files from primary source",
+        "record sha256 for each local file",
+        "cross-check data-vector and covariance semantics against official Pantheon+/CosmoSIS likelihood",
+        "run docs/panteon_likelihood.py with optimizer diagnostics",
+        "write non-overwriting run artifact with manifest"
+      ],
+      "claim_blocked": [
+        "Pantheon+ confirms RLL",
+        "RLL beats LCDM",
+        "RLL is validated"
+      ]
+    },
+    {
+      "dataset_id": "desi_dr2_bao_official_measurements",
+      "domain": "bao",
+      "state": "REAL_VALIDATED_BLOCKED",
+      "primary_source": "DESI DR2 BAO official publication and collaboration data products",
+      "source_url": "https://arxiv.org/abs/2503.14738",
+      "local_expected_paths": [
+        "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+        "data/real/desi_dr2_bao_covariance.csv",
+        "data/real/desi_dr2_bao_provenance.json"
+      ],
+      "existing_repository_support": [
+        "data/real/cosmology/real_source_signatures.json",
+        "docs/real_data/desi_rll_cpl_mapping_audit.md",
+        "results/structure_d/joint_real_likelihood.json"
+      ],
+      "promotion_requirements": [
+        "confirm exact official table/covariance provenance",
+        "verify local table and covariance ordering",
+        "record checksum for table and covariance",
+        "document observable semantics: DM/rd, DH/rd, DV/rd or equivalent",
+        "run joint likelihood with LCDM, wCDM, CPL and RLL under identical optimizer settings"
+      ],
+      "claim_blocked": [
+        "DESI confirms RLL",
+        "high DESI/RLL compatibility without quantitative mapping",
+        "RLL beats CPL"
+      ]
+    },
+    {
+      "dataset_id": "desi_dr2_lya_and_extended_bao_context",
+      "domain": "bao_lya_context",
+      "state": "SOURCE_REGISTERED_ONLY",
+      "primary_source": "DESI DR2 Ly-alpha and extended BAO literature context",
+      "source_url": "https://arxiv.org/abs/2510.21976",
+      "local_expected_paths": [],
+      "existing_repository_support": [
+        "docs/real_data/desi_rll_cpl_mapping_audit.md"
+      ],
+      "promotion_requirements": [
+        "locate primary collaboration data product, not only secondary analysis",
+        "materialize official measurement and covariance if used",
+        "separate literature context from chi2-ready dataset"
+      ],
+      "claim_blocked": [
+        "secondary literature context used as direct data",
+        "Ly-alpha context promoted to validation without primary measurement/covariance"
+      ]
+    },
+    {
+      "dataset_id": "union31_supernova_compilation_context",
+      "domain": "supernovae_context",
+      "state": "SOURCE_REGISTERED_ONLY",
+      "primary_source": "Union3.1 / host-property corrected supernova compilation literature",
+      "source_url": "https://arxiv.org/abs/2601.19424",
+      "local_expected_paths": [],
+      "existing_repository_support": [
+        "docs/real_data/desi_rll_cpl_mapping_audit.md"
+      ],
+      "promotion_requirements": [
+        "locate official data release or machine-readable table",
+        "record source version and checksum",
+        "compare against Pantheon+ and DES/Dovekie as separate supernova routes",
+        "never merge supernova compilations without dataset label and covariance policy"
+      ],
+      "claim_blocked": [
+        "Union3.1 used as committed dataset before official materialization",
+        "SN compilation differences ignored in DESI-era model comparison"
+      ]
+    },
+    {
+      "dataset_id": "des_dovekie_recalibration_context",
+      "domain": "supernovae_calibration_context",
+      "state": "SOURCE_REGISTERED_ONLY",
+      "primary_source": "DES/Dovekie photometric recalibration literature",
+      "source_url": "https://arxiv.org/abs/2506.05471",
+      "local_expected_paths": [],
+      "existing_repository_support": [
+        "docs/real_data/desi_rll_cpl_mapping_audit.md"
+      ],
+      "promotion_requirements": [
+        "locate official DES/Dovekie data product if publicly released",
+        "record photometric-calibration version",
+        "treat calibration as a systematic branch, not a replacement for Pantheon+ without audit"
+      ],
+      "claim_blocked": [
+        "Dovekie cited as direct validation data without materialized files",
+        "supernova calibration uncertainty ignored"
+      ]
+    },
+    {
+      "dataset_id": "planck_2018_cmb_reference_or_likelihood",
+      "domain": "cmb",
+      "state": "REAL_VALIDATED_BLOCKED",
+      "primary_source": "Planck 2018 official products / Planck Legacy Archive",
+      "source_url": "https://arxiv.org/abs/1807.06209",
+      "local_expected_paths": [
+        "data/real/CMB_shift_real.json"
+      ],
+      "existing_repository_support": [
+        "data/real/cosmology/real_source_signatures.json",
+        "results/structure_d/joint_real_likelihood_covariance_manifest.json"
+      ],
+      "promotion_requirements": [
+        "declare whether using compressed shift prior, official likelihood, chain, or bibliographic comparison",
+        "record exact Planck product and version",
+        "record covariance or prior covariance if compressed",
+        "keep CMB-shift claims limited until likelihood/prior semantics are explicit"
+      ],
+      "claim_blocked": [
+        "Planck number used without version/likelihood/prior semantics",
+        "CMB validates RLL without explicit covariance"
+      ]
+    }
+  ]
+}
