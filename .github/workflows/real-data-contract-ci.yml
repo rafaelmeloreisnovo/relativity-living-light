@@ -62,6 +62,9 @@ jobs:
       - name: Check generated inventory is current
         run: python3 tools/docs_inventory.py --check
 
+      - name: Validate real cosmology YAML contract
+        run: python3 tools/validate_real_cosmology_inputs_yml.py
+
       - name: Compute pipeline from committed real data
         run: |
           set -euo pipefail
