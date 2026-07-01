@@ -36,6 +36,7 @@ jobs:
 
       - name: Build mock catalog for ln(1+z) extraction
         run: |
+          mkdir -p results/dha
           python - <<'PY2'
           import numpy as np, pandas as pd
           z = np.linspace(0.1, 6.0, 500)
