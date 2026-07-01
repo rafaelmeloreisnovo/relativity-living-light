@@ -34,6 +34,19 @@ Rule: latent theses are test programs, not validation claims.
 
 ---
 
+## Required data gap registry
+
+| Artifact | Role |
+|---|---|
+| `data/real_sources/rll_required_data_gap_registry.yml` | route-level missing-data and missing-artifact registry |
+| `docs/science/RLL_REQUIRED_DATA_GAPS_IMPLEMENTATION.md` | implementation note for gaps and required evidence |
+| `tools/validate_required_data_gap_registry.py` | registry validator |
+| `tests/test_required_data_gap_registry.py` | CI coverage |
+
+Rule: a registered gap is a required next input, not proof that the input is already present.
+
+---
+
 ## Counts
 
 ```text
@@ -44,6 +57,8 @@ raw_data_complete_routes: 0
 claim_allowed_true_routes: 0
 latent_theses_registered: 6
 latent_theses_claim_allowed_true: 0
+required_data_gaps_registered: 8
+required_data_gap_claim_allowed_true: 0
 ```
 
 ---
@@ -58,6 +73,7 @@ latent_theses_claim_allowed_true: 0
 5. negative results ledger
 6. TOKEN_VAZIO priority ledger
 7. latent thesis registry with falsifiers and baselines
+8. required data gap registry with route-level missing inputs
 ```
 
 ---
@@ -72,6 +88,7 @@ latent_theses_claim_allowed_true: 0
 5. covariance/error models
 6. cosmology_background remains blocked for final RLL claim
 7. latent theses still require route-specific data, metrics and falsifier execution
+8. P0 gaps still require materialized inputs or executable artifacts
 ```
 
 ---
@@ -100,4 +117,4 @@ mass_gap_overlap_probability
 
 ## Safe conclusion
 
-The repository now has a working validation scaffold, multiple seed-level artifacts and a formal latent-thesis registry. It is still claim-gated: stronger claims require data, checksums, baselines, error models and executed falsifier metrics.
+The repository now has a working validation scaffold, multiple seed-level artifacts, a latent-thesis registry and a required-data gap registry. It is still claim-gated: stronger claims require materialized data, checksums, baselines, error models and executed falsifier metrics.
