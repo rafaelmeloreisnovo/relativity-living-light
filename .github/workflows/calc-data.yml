@@ -1,0 +1,45 @@
+name: Calcular/Processar dados reais
+
+on:
+  push:
+    paths:
+      - 'data/raw/**'
+  workflow_run:
+    workflows: ["Importar dados reais"]
+    types:
+      - completed
+
+jobs:
+  calc:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install requirements
+        run: python -m pip install --upgrade pip && pip install pandas numpy
+
+      - name: Run calculations
+        run: |
+          mkdir -p data/processed
+          python scripts/calc_data.py --in data/raw/data.json --out data/processed/results.json
+
+      - name: Commit results (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed/results.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Process: resultados atualizados (calc-data workflow)"
+            git push --set-upstream origin $GITHUB_REF || git push
+          else
+            echo "Nenhuma mudança nos resultados processados."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
