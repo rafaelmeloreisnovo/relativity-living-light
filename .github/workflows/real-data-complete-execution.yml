@@ -6,7 +6,7 @@ on:
       execution_mode:
         description: "audit_only checks registry; materialize downloads official inputs; validate runs real-data validations; full runs all."
         required: true
-        default: full
+        default: audit_only
         type: choice
         options:
           - audit_only
@@ -16,27 +16,22 @@ on:
       materialize_pantheon:
         description: "Download Pantheon+SH0ES official files from the public DataRelease repository."
         required: true
-        default: true
+        default: false
         type: boolean
       run_structure_d:
         description: "Run Structure-D real validation after data checks."
         required: true
-        default: true
+        default: false
         type: boolean
       run_pantheon_validation:
         description: "Run Pantheon+ real validation when Pantheon+ files are present."
         required: true
-        default: true
+        default: false
         type: boolean
       strict_real_data:
         description: "Fail instead of silently fabricating data when a required real source/check is missing."
         required: true
         default: true
-        type: boolean
-      commit_light_artifacts:
-        description: "Commit only lightweight reports/manifests/checksums under results/pipeline-runs/<run_id>."
-        required: true
-        default: false
         type: boolean
       retention_days:
         description: "Artifact retention days."
@@ -50,7 +45,7 @@ on:
           - "90"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: real-data-complete-${{ github.ref }}
@@ -71,6 +66,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -95,14 +92,14 @@ jobs:
           - run_structure_d: ${{ inputs.run_structure_d }}
           - run_pantheon_validation: ${{ inputs.run_pantheon_validation }}
           - strict_real_data: ${{ inputs.strict_real_data }}
-          - commit_light_artifacts: ${{ inputs.commit_light_artifacts }}
+          - commit_policy: artifact_only_reviewed_pr_required
           - claim_boundary: $CLAIM_BOUNDARY
 
           ## Failsafe / failover / rollback
           - Never promote mock/synthetic/example/placeholder files as real data.
           - Download only from documented public primary sources.
           - Write new run artifacts under $RUN_DIR first.
-          - Commit only lightweight reports when explicitly requested.
+          - This workflow does not push to the repository. Commit artifacts through a reviewed PR.
           - If a required real input is missing and strict mode is true, fail the workflow instead of fabricating data.
           PLAN
           find . -maxdepth 5 -type f \
@@ -211,12 +208,13 @@ jobs:
           payload = {
               'schema': 'rll.real_data_complete_execution.v1',
               'claim_boundary': 'No superiority claim unless real-data metrics pass predefined thresholds.',
+              'commit_policy': 'artifact_only_reviewed_pr_required',
               'reports': reports,
               'checks': checks,
               'failsafe': [
                   'no synthetic promotion',
                   'strict mode fails on missing required real inputs',
-                  'lightweight commit is opt-in',
+                  'no automatic push from this workflow',
                   'workflow artifacts preserve rollback evidence',
               ],
           }
@@ -225,6 +223,7 @@ jobs:
               '# Real Data Complete Execution Report',
               '',
               f"Claim boundary: `{payload['claim_boundary']}`",
+              f"Commit policy: `{payload['commit_policy']}`",
               '',
               '## Reports',
               *[f'- `{item}`' for item in reports],
@@ -240,31 +239,10 @@ jobs:
           PY
           (cd "$RUN_DIR" && find . -type f ! -name CHECKSUMS.sha256 -print0 | sort -z | xargs -0 sha256sum) > "$RUN_DIR/CHECKSUMS.sha256"
 
-      - name: Upload complete real-data artifact
+      - name: Upload complete real-data artifact without committing
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: real-data-complete-${{ github.run_id }}
           path: artifacts/real-data-complete/
           retention-days: ${{ fromJSON(inputs.retention_days) }}
-
-      - name: Commit lightweight artifacts
-        if: ${{ inputs.commit_light_artifacts }}
-        run: |
-          set -euo pipefail
-          DEST="results/pipeline-runs/${{ github.run_id }}"
-          mkdir -p "$DEST"
-          rsync -av --prune-empty-dirs \
-            --include='*/' \
-            --include='*.md' --include='*.json' --include='*.csv' --include='*.txt' --include='*.sha256' --include='*.log' --include='*.status' \
-            --exclude='*' \
-            "$RUN_DIR/" "$DEST/"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$DEST"
-          if git diff --cached --quiet; then
-            echo "No lightweight artifacts to commit."
-          else
-            git commit -m "ci(real-data): complete execution artifacts ${{ github.run_id }}"
-            git push
-          fi
