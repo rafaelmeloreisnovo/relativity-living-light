@@ -1,21 +1,37 @@
-name: Calcular/Processar dados reais
+name: Calcular/Processar dados reais — guarded audit
 
 on:
-  push:
-    paths:
-      - 'data/raw/**'
-  workflow_run:
-    workflows: ["Importar dados reais"]
-    types:
-      - completed
+  workflow_dispatch:
+    inputs:
+      input_path:
+        description: 'Caminho no repositório para JSON/CSV já commitado; padrão data/raw/data.json'
+        required: false
+        default: 'data/raw/data.json'
+      output_name:
+        description: 'Nome do artifact gerado'
+        required: false
+        default: 'processed-data-audit-results'
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  calc:
+  calc-audit:
     runs-on: ubuntu-latest
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -25,21 +41,35 @@ jobs:
       - name: Install requirements
         run: python -m pip install --upgrade pip && pip install pandas numpy
 
-      - name: Run calculations
+      - name: Run calculations in audit workspace
         run: |
-          mkdir -p data/processed
-          python scripts/calc_data.py --in data/raw/data.json --out data/processed/results.json
-
-      - name: Commit results (if changed)
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/processed/results.json || true
-          if ! git diff --cached --quiet; then
-            git commit -m "Process: resultados atualizados (calc-data workflow)"
-            git push --set-upstream origin $GITHUB_REF || git push
-          else
-            echo "Nenhuma mudança nos resultados processados."
+          set -euo pipefail
+          INPUT_PATH="${{ github.event.inputs.input_path }}"
+          if [ ! -f "$INPUT_PATH" ]; then
+            echo "Input file not found: $INPUT_PATH" >&2
+            echo "This guarded workflow does not fetch or commit raw data automatically." >&2
+            exit 2
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mkdir -p _audit/processed
+          python scripts/calc_data.py --in "$INPUT_PATH" --out _audit/processed/results.json
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          p = Path('_audit/processed/results.json')
+          payload = {
+              'schema': 'rll.calc_data_audit_manifest.v1',
+              'input_path': '${{ github.event.inputs.input_path }}',
+              'artifact_path': str(p),
+              'sha256': hashlib.sha256(p.read_bytes()).hexdigest(),
+              'bytes': p.stat().st_size,
+              'claim_boundary': 'Processed audit artifact only. This workflow does not commit results and does not validate RLL, dark matter, dark energy, or cosmology claims.'
+          }
+          Path('_audit/processed/calc_manifest.json').write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Upload processed audit artifact without committing
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.inputs.output_name }}
+          path: _audit/processed/
+          if-no-files-found: error
