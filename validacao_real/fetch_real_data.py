@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
-"""Fetch real cosmology data for the RLL proof.
+"""Fetch/materialize declared real-data anchors for the RLL validation route.
 
-Strategy: download-with-fallback. The script attempts the official portal for
-each source. If the network is unreachable (e.g. inside a restricted Action
-runner), it uses the embedded real data already committed under data/.
+Strategy: remote-reachability check plus committed local fallback. The script
+attempts the declared public portal for each source. If the network is
+unreachable inside a restricted runner, it uses the committed embedded payload
+under validacao_real/data/ and records that provenance explicitly.
+
+Important boundary:
+- embedded fallback means a committed local snapshot/payload was used;
+- it is not a fresh remote download;
+- it must not be promoted to a new scientific validation claim by itself.
 
 No heavy dependencies: standard library + PyYAML only.
 """
@@ -23,6 +29,12 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 OUT = HERE / "fetched"
 TIMEOUT = 20
+CLAIM_BOUNDARY = (
+    "Committed local fallback payloads are provenance anchors only. "
+    "Remote reachability or fallback materialization does not validate RLL, "
+    "does not prove superiority over LCDM/CPL, and does not replace a full "
+    "likelihood with baseline, metric, uncertainty/covariance and report."
+)
 
 
 def utc_now() -> str:
@@ -39,7 +51,11 @@ def try_download(url: str) -> bytes | None:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             return r.read()
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        print(f"  remote unreachable ({exc.__class__.__name__}); using embedded fallback")
+        print(
+            "  remote unreachable "
+            f"({exc.__class__.__name__}); using committed local fallback "
+            "without promoting it as a fresh remote download"
+        )
         return None
 
 
@@ -51,12 +67,16 @@ def materialize(source: dict) -> dict:
 
     raw = try_download(portal) if portal else None
     payload = load_yaml(fallback)
+    used = "remote_reachable_committed_payload" if raw else "committed_embedded_fallback_remote_unreachable"
     provenance = {
         "source_id": sid,
         "fetched_utc": utc_now(),
         "portal": portal,
         "remote_bytes": (len(raw) if raw else 0),
-        "used": "remote_then_validated_fallback" if raw else "embedded_fallback",
+        "used": used,
+        "fallback_path": str(fallback.relative_to(HERE)),
+        "fallback_state": "committed_local_payload_not_fresh_remote_download",
+        "claim_boundary": CLAIM_BOUNDARY,
         "n_points": len(payload.get("points", [])),
     }
     return {"payload": payload, "provenance": provenance}
@@ -65,7 +85,11 @@ def materialize(source: dict) -> dict:
 def main() -> int:
     sources = load_yaml(HERE / "sources.yml")["sources"]
     OUT.mkdir(exist_ok=True)
-    manifest = {"generated_utc": utc_now(), "sources": []}
+    manifest = {
+        "generated_utc": utc_now(),
+        "claim_boundary": CLAIM_BOUNDARY,
+        "sources": [],
+    }
 
     for source in sources:
         result = materialize(source)
@@ -76,6 +100,7 @@ def main() -> int:
 
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(f"\nmanifest -> {(OUT / 'manifest.json').relative_to(HERE)}")
+    print(f"claim boundary -> {CLAIM_BOUNDARY}")
     return 0
 
 
