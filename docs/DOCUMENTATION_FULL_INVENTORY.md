@@ -7,17 +7,17 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 
 | Métrica | Valor |
 |---|---:|
-| `tracked_files_total` | 1420 |
-| `cataloged_files` | 1409 |
+| `tracked_files_total` | 1424 |
+| `cataloged_files` | 1413 |
 | `uncataloged_or_error_files` | 0 |
-| `total_bytes` | 39329842 |
-| `total_text_lines` | 179688 |
-| `markdown_files` | 641 |
+| `total_bytes` | 39340965 |
+| `total_text_lines` | 179972 |
+| `markdown_files` | 643 |
 | `yml_yaml_files` | 86 |
 | `github_workflow_yml_files` | 31 |
 | `data_or_result_files` | 347 |
 
-**Total de arquivos catalogados:** 1409
+**Total de arquivos catalogados:** 1413
 
 ## Inventário completo
 
@@ -675,7 +675,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/operations/REAL_DATA_OPERATIONAL_EXCELLENCE.md` | 3296 | `.md` | `documentation_md` | 91 | `0cb709218edd37cf0e00063ebb4969aa3566e809d66be9bf10a6425bc584f07d` | `mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker` |
 | `docs/operations/RLL_COSMOLOGY_NEXT_STEPS_2026-06-27.md` | 2321 | `.md` | `documentation_md` | 49 | `e75193f8ed840d6a9c4e6017a9506f16b4288f24fe285d2410c563a7790d4d25` | `token_vazio_declared,cosmology_validation_marker` |
 | `docs/operations/SIX_SIGMA_REAL_DATA_OPERATING_SYSTEM.md` | 4739 | `.md` | `documentation_md` | 141 | `538e28c550997f4483698739297609897b383b4ca50e345691b9ee12d4daf19c` | `mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker` |
-| `docs/panteon_likelihood.py` | 18029 | `.py` | `source_code` | 539 | `554512261915626e6eaca2b3d5a86dd7227381eb8f3a2e137e692131c20292d8` | `cosmology_validation_marker` |
+| `docs/panteon_likelihood.py` | 21168 | `.py` | `source_code` | 620 | `d6b17dbdb407209c14d0f30d33a835fd9d8ad06fe49a6d86e6a9bf3d2f497b5b` | `cosmology_validation_marker` |
 | `docs/physics_benchmarks/README.md` | 1056 | `.md` | `documentation_md` | 38 | `eb98af8742b666242193fe789e3865cf2f478300166de4ecf8a9cfc6d4b9d035` | `cosmology_validation_marker` |
 | `docs/pipelines/COSMOLOGY_VALIDATION_STACK.md` | 1402 | `.md` | `documentation_md` | 33 | `e7f9bc6816f73109e989472a0592740434a25fec6602732ac310cbbd9f95f658` | `cosmology_validation_marker` |
 | `docs/pipelines/GEOMAGNETIC_VALIDATION_PIPELINE.md` | 1548 | `.md` | `documentation_md` | 39 | `71a51043b08b4ada97e629abbe24d3b7ed7cd21a06c0f58e5c3a8fdb52c637b8` | `cosmology_validation_marker` |
@@ -691,6 +691,8 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `docs/real_data/REAL_DATA_REQUIRED_INPUTS.md` | 4373 | `.md` | `documentation_md` | 110 | `818726c2b7f20bc901e63887ecbfbd2533d47ecce86542c0f4d6ee3b0b92cb6c` | `mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/real_data/REAL_DATA_WORKFLOW_EXECUTION.md` | 3784 | `.md` | `documentation_md` | 66 | `8f60f6bbf3b27d2f298bea2bdcc4fc1953fe2b0c69641e4fade50de07a68bbed` | `mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker` |
 | `docs/real_data/RLL_REAL_DATA_INGESTION_REPORT_2026.md` | 1716 | `.md` | `documentation_md` | 40 | `63ad49265ba44bb91d88cb6c6da1b8197d69dd60e7c2de8400a5bf4d0f54629d` | `cosmology_validation_marker` |
+| `docs/real_data/desi_rll_cpl_mapping_audit.md` | 1327 | `.md` | `documentation_md` | 22 | `7a21072e6db51d6285f32bdc87a7faee75f0cd6fc2fa136b3808d1750dd82182` | `cosmology_validation_marker` |
+| `docs/real_data/pantheon_plus_optimizer_audit.md` | 1577 | `.md` | `documentation_md` | 26 | `dcf7c8e09355e84479b2adc774219e106f0aeee43cdd7190548116184698e883` | `cosmology_validation_marker` |
 | `docs/requirements.txt` | 333 | `.txt` | `other` | 18 | `7c6225d12cbc4267b7b0dc5de458c2a2bf3b9ec071d20537e97c829381ec6568` | `cosmology_validation_marker` |
 | `docs/rll_audit_gap_report.py` | 5362 | `.py` | `source_code` | 165 | `bea143c48f962e18e436f4821f0e73d52dedeb0e2e09ab3d0e254b6505a442e9` | `cosmology_validation_marker` |
 | `docs/rll_cosmology_postdoc_synthesis.md` | 1817 | `.md` | `documentation_md` | 45 | `1c9cc20cde8173ac920300495fc522f027f05c96d9d129c1a155e643330016cf` | `cosmology_validation_marker` |
@@ -1243,7 +1245,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `scripts/check_desi_dr2_bao_covariance.py` | 4767 | `.py` | `source_code` | 133 | `25337be7feb5fc620bc607eb65b508ea76812112e9a86139d61851c8673d2774` | `cosmology_validation_marker` |
 | `scripts/check_rll_background.py` | 3217 | `.py` | `source_code` | 93 | `db2dc693fba9e863d0bc2aa4e19a9b86b48c611d4aabd5f0c18ca224bca9825f` | `token_vazio_declared,cosmology_validation_marker` |
 | `scripts/check_rll_growth.py` | 10745 | `.py` | `source_code` | 292 | `cdef9b356a75e2421f4c62a424adb8d9f5322b4541ea24ca58f0bf23cf35cffb` | `token_vazio_declared,cosmology_validation_marker` |
-| `scripts/check_structure_d_model_dataset_coverage.sh` | 2850 | `.sh` | `source_code` | 74 | `0ff1934ae15fc3bbb824438e38daf5b8768ecd3b10648ddcd48544fa1c9397ad` | `cosmology_validation_marker` |
+| `scripts/check_structure_d_model_dataset_coverage.sh` | 2712 | `.sh` | `source_code` | 77 | `335c71a5b8b04925eab3b142215bc5e1c98b3255a5f0f626e185c4d2d9241b5b` | `cosmology_validation_marker` |
 | `scripts/check_structure_d_required_outputs.sh` | 1790 | `.sh` | `source_code` | 72 | `ad980b2c79fba82b949f18b3bb0337ee34d0b40abcf1106e7d3d40efcec55684` | `cosmology_validation_marker` |
 | `scripts/compute_desi_dr2_bao_zml.py` | 10946 | `.py` | `source_code` | 301 | `ca92cbe58092ccfcd5804edfc01fa077fc55e59af3ea7ba0bc6207d3737ff372` | `mentions_synthetic,cosmology_validation_marker` |
 | `scripts/compute_rll_real_pipeline.py` | 12540 | `.py` | `source_code` | 330 | `dd16ed6eddfc8fdd864eab20a909c9438f23b645efeb5a64c06c4cfadbd6b0ee` | `mentions_synthetic,cosmology_validation_marker` |
@@ -1328,6 +1330,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `tests/test_orbital_outputs.py` | 856 | `.py` | `source_code` | 19 | `48b9ffd2a8c4589bb104f6a1e92fb941f0cc156f0e532d1dc36b89c7934dc76e` | `cosmology_validation_marker` |
 | `tests/test_panteon_likelihood_covariance.py` | 2323 | `.py` | `source_code` | 73 | `3012e2bf1e992c360d4c4ba3aa7bcf2489e6fae2bdba36a6df904a9a6e0bdcaf` | `cosmology_validation_marker` |
 | `tests/test_pantheon_freestanding.py` | 1476 | `.py` | `source_code` | 48 | `1364c30b27a471ea793e7e81abd9968abdfe8910b5fabd987caf3ee0b06037f5` | `cosmology_validation_marker` |
+| `tests/test_pantheon_optimizer_guard.py` | 2098 | `.py` | `source_code` | 63 | `fb3a4cf0901eb8fc67819785c9d691831999d5b085202777d886dba795ac73c9` | `cosmology_validation_marker` |
 | `tests/test_preflight_real_json.py` | 1121 | `.py` | `source_code` | 39 | `3ee099424b9b18b41f9fef4f35af816610167fbb57dcb3a6538512916bd25b56` | `cosmology_validation_marker` |
 | `tests/test_real_data_materialization_audit.py` | 1896 | `.py` | `source_code` | 46 | `0a35f6b2b1d993217c2de4f7b562fa414d6aa27cd3ece36f166d0f9e37a76a8a` | `mentions_synthetic,cosmology_validation_marker` |
 | `tests/test_real_profile_light_integration.py` | 4631 | `.py` | `source_code` | 136 | `b26e8175e9f68457b8e7d14a4e387fa3094b2700b2bfb581d0fc078088545163` | `mentions_mock_or_placeholder,cosmology_validation_marker` |
@@ -1427,11 +1430,12 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `validation/bayes_compare.py` | 594 | `.py` | `source_code` | 24 | `bfbc820bdd82b8ac663132270d81577e3c4ba8ef447921c05a9a7a10e82e97e4` | `` |
 | `validation/bayes_rll.py` | 1161 | `.py` | `source_code` | 54 | `e447825129150d6ec4acc4da2905d4f6b33535852b5fa63a1894878e9e6803ec` | `` |
 | `validation/check_falsification.py` | 398 | `.py` | `source_code` | 19 | `f7f391f21291660e19d05b57dd8c39b57c94fc058e40470727ae7c9cbfae11ef` | `` |
-| `validation/compare_models.py` | 784 | `.py` | `source_code` | 30 | `6e777ffe0e19cf8ecb7cf5fc7da6d0b6301e10d3896bfd9269841e9aa823400e` | `` |
-| `validation/load_data.py` | 599 | `.py` | `source_code` | 23 | `2873e86d9ca0ed5336fdd811711238d9966a79e806d73417e928aceda67a3d3c` | `` |
+| `validation/compare_models.py` | 1128 | `.py` | `source_code` | 38 | `78d03391f066770760362457ff3c6157ef818f19fbd8cca7072e589e398b2e68` | `` |
+| `validation/load_data.py` | 1805 | `.py` | `source_code` | 50 | `a024b22eae89ad54647f44b3431520f12368a04d412acff4849926cefab61424` | `mentions_synthetic` |
+| `validation/plot_results.py` | 1264 | `.py` | `source_code` | 36 | `44d938f4f3847c91297dab8fc54db568e9ba49012b8ad383335e0bda2da673cd` | `mentions_mock_or_placeholder` |
 | `validation/requirements_bayes.txt` | 25 | `.txt` | `other` | 4 | `d44591673339ce03d92a37d7bffdc4932e09842850ff19fe4ca54fe54a366e3a` | `` |
-| `validation/run_lcdm.py` | 437 | `.py` | `source_code` | 18 | `18b7c5488b29a6f2bc117871bd94dc6bb17d17d7fd439bffa8af75b171bfa494` | `` |
-| `validation/run_rll.py` | 452 | `.py` | `source_code` | 18 | `b693924f6085304d97be7910f6adbb6e672ead3e4b5670d35ae5a6c0ae0a53bd` | `` |
+| `validation/run_lcdm.py` | 589 | `.py` | `source_code` | 27 | `7080916cc36202f5b91b7153643ca02c6e7c49feea8162a2d23e0aefc93c24a3` | `` |
+| `validation/run_rll.py` | 606 | `.py` | `source_code` | 27 | `a03389171a5d9fa2f4d3b7d72520dd2495ba19ae837a8b70a43111211446a2af` | `` |
 
 ## Arquivos com erro/lacuna
 

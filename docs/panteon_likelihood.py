@@ -17,12 +17,12 @@ from datetime import datetime, timezone
 
 import numpy as np
 from scipy.integrate import quad
-from scipy.optimize import minimize
+from scipy.optimize import differential_evolution, minimize
 
 
 C_KMS = 299792.458
 H0 = 70.0
-SCRIPT_VERSION = 'v1.1.0'
+SCRIPT_VERSION = 'v1.2.0'
 
 
 def ensure_dir(path):
@@ -304,6 +304,90 @@ def chi2_lcdm(theta, z_hel, mu_obs, c_inv):
     return float(delta @ c_inv @ delta)
 
 
+def _finite_difference_gradient_norm(objective, x, bounds, args):
+    x = np.asarray(x, dtype=float)
+    grad = np.zeros_like(x)
+    for i, value in enumerate(x):
+        lo, hi = bounds[i]
+        step = max(1.0e-6, abs(value) * 1.0e-6)
+        x_hi = x.copy()
+        x_lo = x.copy()
+        x_hi[i] = min(hi, value + step)
+        x_lo[i] = max(lo, value - step)
+        denom = x_hi[i] - x_lo[i]
+        if denom <= 0:
+            continue
+        grad[i] = (objective(x_hi, *args) - objective(x_lo, *args)) / denom
+    return float(np.linalg.norm(grad, ord=2))
+
+
+def _run_global_then_local_optimizer(objective, initial, bounds, args, label):
+    initial = np.asarray(initial, dtype=float)
+    initial_chi2 = float(objective(initial, *args))
+
+    global_res = differential_evolution(
+        objective,
+        bounds=bounds,
+        args=args,
+        seed=1729,
+        polish=False,
+        updating='immediate',
+        workers=1,
+        tol=1.0e-6,
+        maxiter=80,
+        popsize=10,
+    )
+
+    candidates = [initial, np.asarray(global_res.x, dtype=float)]
+    local_results = [
+        minimize(
+            objective,
+            candidate,
+            args=args,
+            method='L-BFGS-B',
+            bounds=bounds,
+            options={'maxiter': 1000, 'ftol': 1.0e-10},
+        )
+        for candidate in candidates
+    ]
+    res = min(local_results, key=lambda item: float(item.fun))
+
+    movement = float(np.linalg.norm(np.asarray(res.x, dtype=float) - initial, ord=2))
+    gradient_norm = _finite_difference_gradient_norm(objective, res.x, bounds, args)
+    initial_gradient_norm = _finite_difference_gradient_norm(objective, initial, bounds, args)
+    nit = int(getattr(res, 'nit', 0) or 0)
+    nfev = int(getattr(res, 'nfev', 0) or 0) + int(getattr(global_res, 'nfev', 0) or 0)
+    final_chi2 = float(res.fun)
+    message = f"global: {getattr(global_res, 'message', '')}; local: {getattr(res, 'message', '')}"
+
+    diagnostics = {
+        'optimizer': 'scipy.differential_evolution_plus_L-BFGS-B_polish',
+        'initial_chi2': initial_chi2,
+        'final_chi2': final_chi2,
+        'nit': nit + int(getattr(global_res, 'nit', 0) or 0),
+        'nfev': nfev,
+        'parameter_movement_l2': movement,
+        'initial_gradient_norm': initial_gradient_norm,
+        'final_gradient_norm': gradient_norm,
+        'success': bool(getattr(res, 'success', False)),
+        'message': message,
+    }
+
+    stopped_at_initial = movement <= 1.0e-8 and diagnostics['nit'] <= 1
+    large_evidence = (initial_chi2 > 1.0e6) or (initial_gradient_norm > 1.0e5)
+    if stopped_at_initial and large_evidence:
+        raise RuntimeError(
+            f'{label} optimizer guard failed: stopped at initial point despite large chi2/gradient evidence. '
+            f'diagnostics={diagnostics}'
+        )
+    if not np.isfinite(final_chi2):
+        raise RuntimeError(f'{label} optimizer returned non-finite chi2. diagnostics={diagnostics}')
+    if not bool(getattr(res, 'success', False)) and final_chi2 >= initial_chi2:
+        raise RuntimeError(f'{label} optimizer failed without improvement. diagnostics={diagnostics}')
+
+    return res, diagnostics
+
+
 def info_criteria(chi2, k, n):
     aic = chi2 + 2 * k
     bic = chi2 + k * np.log(n)
@@ -315,28 +399,23 @@ def fit_models(z_hel, mu_obs, c_inv):
 
     rll_init = np.array([0.30, 0.05, 1.0, 0.30, -19.3])
     rll_bounds = [(0.05, 0.8), (0.0, 0.3), (0.05, 3.0), (0.03, 1.5), (-20.5, -17.5)]
-    res_rll = minimize(
+    res_rll, diagnostics_rll = _run_global_then_local_optimizer(
         chi2_rll,
         rll_init,
-        args=(z_hel, mu_obs, c_inv),
-        method='L-BFGS-B',
-        bounds=rll_bounds,
+        rll_bounds,
+        (z_hel, mu_obs, c_inv),
+        'RLL',
     )
 
     lcdm_init = np.array([0.30, -19.3])
     lcdm_bounds = [(0.05, 0.8), (-20.5, -17.5)]
-    res_lcdm = minimize(
+    res_lcdm, diagnostics_lcdm = _run_global_then_local_optimizer(
         chi2_lcdm,
         lcdm_init,
-        args=(z_hel, mu_obs, c_inv),
-        method='L-BFGS-B',
-        bounds=lcdm_bounds,
+        lcdm_bounds,
+        (z_hel, mu_obs, c_inv),
+        'ΛCDM',
     )
-
-    if not res_rll.success:
-        raise RuntimeError(f'Ajuste RLL falhou: {res_rll.message}')
-    if not res_lcdm.success:
-        raise RuntimeError(f'Ajuste ΛCDM falhou: {res_lcdm.message}')
 
     chi2_best_rll = float(res_rll.fun)
     chi2_best_lcdm = float(res_lcdm.fun)
@@ -358,6 +437,7 @@ def fit_models(z_hel, mu_obs, c_inv):
             'chi2': chi2_best_rll,
             'AIC': float(aic_rll),
             'BIC': float(bic_rll),
+            'optimizer_diagnostics': diagnostics_rll,
         },
         'lcdm': {
             'best_fit': {
@@ -368,6 +448,7 @@ def fit_models(z_hel, mu_obs, c_inv):
             'chi2': chi2_best_lcdm,
             'AIC': float(aic_lcdm),
             'BIC': float(bic_lcdm),
+            'optimizer_diagnostics': diagnostics_lcdm,
         },
     }
 

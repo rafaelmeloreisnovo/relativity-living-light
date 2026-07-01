@@ -5869,11 +5869,11 @@
   },
   {
     "path": "docs/panteon_likelihood.py",
-    "bytes": 18029,
+    "bytes": 21168,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 539,
-    "sha256": "554512261915626e6eaca2b3d5a86dd7227381eb8f3a2e137e692131c20292d8",
+    "linhas": 620,
+    "sha256": "d6b17dbdb407209c14d0f30d33a835fd9d8ad06fe49a6d86e6a9bf3d2f497b5b",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -6009,6 +6009,24 @@
     "tipo": "documentation_md",
     "linhas": 40,
     "sha256": "63ad49265ba44bb91d88cb6c6da1b8197d69dd60e7c2de8400a5bf4d0f54629d",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/real_data/desi_rll_cpl_mapping_audit.md",
+    "bytes": 1327,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 22,
+    "sha256": "7a21072e6db51d6285f32bdc87a7faee75f0cd6fc2fa136b3808d1750dd82182",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/real_data/pantheon_plus_optimizer_audit.md",
+    "bytes": 1577,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 26,
+    "sha256": "dcf7c8e09355e84479b2adc774219e106f0aeee43cdd7190548116184698e883",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -10981,11 +10999,11 @@
   },
   {
     "path": "scripts/check_structure_d_model_dataset_coverage.sh",
-    "bytes": 2850,
+    "bytes": 2712,
     "ext": ".sh",
     "tipo": "source_code",
-    "linhas": 74,
-    "sha256": "0ff1934ae15fc3bbb824438e38daf5b8768ecd3b10648ddcd48544fa1c9397ad",
+    "linhas": 77,
+    "sha256": "335c71a5b8b04925eab3b142215bc5e1c98b3255a5f0f626e185c4d2d9241b5b",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -11742,6 +11760,15 @@
     "tipo": "source_code",
     "linhas": 48,
     "sha256": "1364c30b27a471ea793e7e81abd9968abdfe8910b5fabd987caf3ee0b06037f5",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_pantheon_optimizer_guard.py",
+    "bytes": 2098,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 63,
+    "sha256": "fb3a4cf0901eb8fc67819785c9d691831999d5b085202777d886dba795ac73c9",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -12637,21 +12664,30 @@
   },
   {
     "path": "validation/compare_models.py",
-    "bytes": 784,
+    "bytes": 1128,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 30,
-    "sha256": "6e777ffe0e19cf8ecb7cf5fc7da6d0b6301e10d3896bfd9269841e9aa823400e",
+    "linhas": 38,
+    "sha256": "78d03391f066770760362457ff3c6157ef818f19fbd8cca7072e589e398b2e68",
     "flags": ""
   },
   {
     "path": "validation/load_data.py",
-    "bytes": 599,
+    "bytes": 1805,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 23,
-    "sha256": "2873e86d9ca0ed5336fdd811711238d9966a79e806d73417e928aceda67a3d3c",
-    "flags": ""
+    "linhas": 50,
+    "sha256": "a024b22eae89ad54647f44b3431520f12368a04d412acff4849926cefab61424",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "validation/plot_results.py",
+    "bytes": 1264,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 36,
+    "sha256": "44d938f4f3847c91297dab8fc54db568e9ba49012b8ad383335e0bda2da673cd",
+    "flags": "mentions_mock_or_placeholder"
   },
   {
     "path": "validation/requirements_bayes.txt",
@@ -12664,20 +12700,20 @@
   },
   {
     "path": "validation/run_lcdm.py",
-    "bytes": 437,
+    "bytes": 589,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 18,
-    "sha256": "18b7c5488b29a6f2bc117871bd94dc6bb17d17d7fd439bffa8af75b171bfa494",
+    "linhas": 27,
+    "sha256": "7080916cc36202f5b91b7153643ca02c6e7c49feea8162a2d23e0aefc93c24a3",
     "flags": ""
   },
   {
     "path": "validation/run_rll.py",
-    "bytes": 452,
+    "bytes": 606,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 18,
-    "sha256": "b693924f6085304d97be7910f6adbb6e672ead3e4b5670d35ae5a6c0ae0a53bd",
+    "linhas": 27,
+    "sha256": "a03389171a5d9fa2f4d3b7d72520dd2495ba19ae837a8b70a43111211446a2af",
     "flags": ""
   }
 ]
