@@ -1,0 +1,153 @@
+schema_version: "2026-07-01"
+name: "rll.joint_cosmology.real_inputs"
+purpose: "YML bridge for committed real cosmology inputs used by the joint H(z)+DESI DR2 BAO+f_sigma8+CMB-shift route."
+status: "metadata_ready_with_materialized_inputs"
+claim_boundary: >
+  This YML registers committed real-input files, hashes, source references and
+  allowed use in audit/model-comparison pipelines. It does not validate RLL,
+  dark matter, dark energy, CMB, LCDM alternatives, or any superiority claim.
+  Scientific claims remain blocked until metric output, baseline/adversary,
+  covariance/error policy, reproducible run artifact and claim boundary are all present.
+
+ontology:
+  artifact_kind: source_manifest
+  system_role: real_input_router
+  canonical_path: data/real_sources/rll_joint_cosmology_real_inputs.iml.yml
+  lifecycle: active
+  owner_layer: data/real_sources
+  consumed_by:
+    - data/inputs/cosmology_joint/joint_real_inputs_manifest.json
+    - data/real/cosmology/real_source_signatures.json
+    - tools/verify_real_source_signatures.py
+    - tools/docs_inventory.py
+    - docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml
+
+epistemics:
+  current_state: METADATA_READY
+  allowed_states:
+    - VERIFIED
+    - DECLARED_BY_AUTHOR
+    - TOKEN_VAZIO
+    - CONTRADICTION
+    - METADATA_READY
+    - REAL_VALIDATED_BLOCKED
+    - MATERIALIZED_WITH_CHECKSUM
+    - SOURCE_NEEDS_REVIEW
+  promotion_rule: >
+    A listed input may support a limited real-data model-comparison claim only
+    when its local file exists, checksum is recorded, source signature is checked,
+    observable semantics are declared, error/covariance policy is declared, and
+    a downstream run artifact reports metrics against baseline/adversary models.
+  claim_allowed:
+    - "Committed real-input files are registered with source references and local hashes."
+    - "The default joint route can refer to these inputs without fabricating missing files."
+  claim_blocked:
+    - "RLL is validated by this YML."
+    - "RLL beats LCDM, wCDM or CPL."
+    - "DESI DR2 confirms RLL."
+    - "Planck/CMB validates RLL."
+    - "A compressed CMB-shift summary is equivalent to the full Planck likelihood."
+
+source_signature_manifest: data/real/cosmology/real_source_signatures.json
+joint_inputs_manifest: data/inputs/cosmology_joint/joint_real_inputs_manifest.json
+
+real_inputs:
+  - dataset_id: real_hz
+    axis: expansion_Hz
+    state: MATERIALIZED_WITH_CHECKSUM
+    local_path: data/real/Hz_data_real.csv
+    local_sha256: "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6"
+    source_url: https://arxiv.org/abs/2205.05701
+    source_status: source_verified
+    verified_utc: "2026-06-04T05:59:07Z"
+    observable: H_obs
+    error_policy: diagonal_sigma_H
+    provenance_note: "Cosmic-chronometer H(z) source check for the materialized expansion table."
+    use_allowed_for:
+      - joint_background_smoke_test
+      - expansion_axis_audit
+    claim_boundary: "H(z) input row/table only; not standalone RLL validation."
+
+  - dataset_id: real_desi_dr2_bao
+    axis: bao_DESI_DR2
+    state: MATERIALIZED_WITH_CHECKSUM
+    local_path: data/real/cosmology/desi_dr2_bao_primary_points.csv
+    local_sha256: "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69"
+    covariance_summary_path: data/real/cosmology/desi_dr2_bao_covariance_summary.csv
+    covariance_summary_sha256: "e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e"
+    source_url: https://arxiv.org/abs/2503.14738
+    supplement_url: https://zenodo.org/records/16644577
+    source_status: source_verified
+    verified_utc: "2026-06-04T05:59:07Z"
+    observable: "DV_over_rd, DM_over_rd, DH_over_rd"
+    error_policy: "committed covariance summary; full external supplement remains separately audited"
+    provenance_note: "DESI DR2 BAO paper and supplementary archive source checks for primary BAO measurements."
+    use_allowed_for:
+      - joint_background_smoke_test
+      - BAO_axis_audit
+      - CPL_adversary_mapping_audit
+    claim_boundary: "DESI DR2 BAO input supports testing only; it does not confirm RLL without quantitative likelihood and adversary comparison."
+
+  - dataset_id: real_fsigma8_6dfgs_anchor
+    axis: growth_fsigma8
+    state: MATERIALIZED_WITH_CHECKSUM
+    local_path: data/real/cosmology/fsigma8_growth_real.csv
+    local_sha256: "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211"
+    source_url: https://arxiv.org/abs/1204.4725
+    source_status: source_verified
+    verified_utc: "2026-06-04T05:59:08Z"
+    observable: fs8
+    error_policy: diagonal_sigma
+    provenance_note: "6dFGS f_sigma8 anchor source check for growth materialization."
+    use_allowed_for:
+      - growth_axis_audit
+      - joint_growth_penalty_check
+    claim_boundary: "Growth input supports a limited growth-axis check; it is not a CLASS/CAMB replacement."
+
+  - dataset_id: real_fsigma8_compilation
+    axis: growth_fsigma8
+    state: SOURCE_NEEDS_REVIEW
+    local_path: data/real/cosmology/fsigma8_growth_real.csv
+    local_sha256: "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211"
+    source_url: https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209
+    source_status: source_needs_review
+    source_error: "HTTPError: 403 during source-signature check"
+    verified_utc: "2026-06-04T05:59:08Z"
+    observable: fs8
+    error_policy: diagonal_sigma
+    provenance_note: "Compilation/source-page check retained as explicit provenance risk."
+    use_allowed_for:
+      - provenance_risk_audit
+    claim_boundary: "This source route must not be promoted until the source-signature failure is reviewed."
+
+  - dataset_id: real_cmb_shift
+    axis: cmb_shift
+    state: MATERIALIZED_WITH_CHECKSUM
+    local_path: data/real/CMB_shift_real.json
+    local_sha256: "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc"
+    source_url: https://arxiv.org/abs/1807.06209
+    source_status: source_verified
+    verified_utc: "2026-06-04T05:59:09Z"
+    observable: "R_obs, la_obs"
+    error_policy: diagonal_R_la_sigma
+    provenance_note: "Planck 2018 source check for CMB-shift summary values."
+    use_allowed_for:
+      - compressed_CMB_shift_audit
+      - joint_background_smoke_test
+    claim_boundary: "Compressed CMB-shift summary only; not the full Planck likelihood."
+
+coherent_yaml_targets:
+  - path: docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml
+    use: "Reference this manifest for real inputs already materialized in the repository."
+  - path: data/real_sources/rll_pantheon_real_validation.iml.yml
+    use: "Keep Pantheon+ as a separate dedicated supernova likelihood route."
+  - path: .github/workflows/import-data.yml
+    use: "May fetch explicit URL as artifact-only audit; must not commit generated data."
+  - path: .github/workflows/calc-data.yml
+    use: "May process committed or artifact-provided data as artifact-only audit; must not commit generated results."
+
+non_goals:
+  - "Do not embed raw CSV or JSON tables into YAML."
+  - "Do not replace source manifests with YML prose."
+  - "Do not promote source_registered or metadata_ready to real_validated."
+  - "Do not merge unrelated public catalog samples into cosmology likelihood inputs."
