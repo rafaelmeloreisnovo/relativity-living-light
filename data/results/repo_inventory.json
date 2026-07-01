@@ -234,6 +234,15 @@
     "flags": ""
   },
   {
+    "path": ".github/workflows/calc-data.yml",
+    "bytes": 2506,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 75,
+    "sha256": "af20da4045da06d503d540016fabfe75147d6b415a295585a74e8c81cc0f983d",
+    "flags": ""
+  },
+  {
     "path": ".github/workflows/canonical-route-artifacts.yml",
     "bytes": 4182,
     "ext": ".yml",
@@ -315,6 +324,15 @@
     "flags": ""
   },
   {
+    "path": ".github/workflows/import-data.yml",
+    "bytes": 2469,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 76,
+    "sha256": "dc68542c41ad83520e33bf03dfe958ac1bb8c6abe26c2c001df992474e99e938",
+    "flags": "mentions_synthetic"
+  },
+  {
     "path": ".github/workflows/orbital-shape-angular-momentum-validation.yml",
     "bytes": 2046,
     "ext": ".yml",
@@ -370,11 +388,11 @@
   },
   {
     "path": ".github/workflows/real-data-contract-ci.yml",
-    "bytes": 4141,
+    "bytes": 4367,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 110,
-    "sha256": "ec56874d6e657e226ae0cee551a5f9789f5403221258a252afc4c0acafd5f1fd",
+    "linhas": 119,
+    "sha256": "b5dd7563e40566fdb0d9a4c4da2aa65c3fb87ca75e716d8f0b4a031962a69843",
     "flags": "mentions_synthetic"
   },
   {
@@ -2908,11 +2926,11 @@
   },
   {
     "path": "data/real/cosmology/README.md",
-    "bytes": 2754,
+    "bytes": 3386,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 47,
-    "sha256": "a8572aa5a5a125f8cc1f98883d3342e456f4eb849b47179cf740e1807a8354fe",
+    "linhas": 54,
+    "sha256": "d32ede691f8010be41d965847f9eccfc1f8073fdbfd143e3804f3ea38cd6072a",
     "flags": ""
   },
   {
@@ -3159,6 +3177,24 @@
     "flags": ""
   },
   {
+    "path": "data/real/cosmology/real_cosmology_inputs.yml",
+    "bytes": 5077,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 125,
+    "sha256": "6c337f28e81abde36119bca048d738f4060ffcac8e93d3d239106c5060c4037f",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "data/real/cosmology/real_data_addition_registry_2026_07.json",
+    "bytes": 6837,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 159,
+    "sha256": "9ce91fc9c577fb7dca04d2d10b2336467a03c60a7794bc2edad8e06d0ed1a1dd",
+    "flags": ""
+  },
+  {
     "path": "data/real/cosmology/real_source_signatures.json",
     "bytes": 8528,
     "ext": ".json",
@@ -3355,6 +3391,15 @@
     "linhas": 74,
     "sha256": "0601028aa75f57c942cfec78d88a3c525cba6071a2d9d64d68ed769429c98a51",
     "flags": "mentions_mock_or_placeholder"
+  },
+  {
+    "path": "data/real_sources/rll_joint_cosmology_real_inputs.iml.yml",
+    "bytes": 7207,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 153,
+    "sha256": "c67a8f1ac624cdea6419a2458c52ce0a1ea7e7820697ce66bcc4b300054d2e37",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "data/real_sources/rll_pantheon_real_validation.iml.yml",
@@ -5923,11 +5968,11 @@
   },
   {
     "path": "docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml",
-    "bytes": 7654,
+    "bytes": 10918,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 163,
-    "sha256": "1c878a71056de0d17257a8431ab13934dd0327d0ea1d2e634fb71015257d891b",
+    "linhas": 230,
+    "sha256": "a0d9cd45160b1a2f9943107aaa66ced58c429a9b1fce38754928d3018e567083",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5985,12 +6030,30 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
-    "path": "docs/real_data/REAL_DATA_REQUIRED_INPUTS.md",
-    "bytes": 4373,
+    "path": "docs/real_data/PUBLIC_ASTRONOMY_CATALOG_FETCHER.md",
+    "bytes": 3701,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 110,
-    "sha256": "818726c2b7f20bc901e63887ecbfbd2533d47ecce86542c0f4d6ee3b0b92cb6c",
+    "linhas": 119,
+    "sha256": "feaba194fc45ba8ebbbe928e2265323751bd8333cc8adadac41287e957282047",
+    "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/real_data/REAL_DATA_ADDITION_LEDGER_2026_07.md",
+    "bytes": 3651,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 90,
+    "sha256": "d97947858d4fe8f443f8c0f759b594ad50a0b1ee129ae19f2b41a0167b51e42a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/real_data/REAL_DATA_REQUIRED_INPUTS.md",
+    "bytes": 5387,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 134,
+    "sha256": "66a6f7254ca28f65e3593ee8f3d6aadebebd776a98bbb4787ec70f8e20cc9024",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
@@ -10962,6 +11025,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/calc_data.py",
+    "bytes": 1926,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 62,
+    "sha256": "51bea4266bb8cacbb5af8c0c8f11ffed6f7a4b23c265fdade556c6841947d49f",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/check_convention_conflicts.sh",
     "bytes": 1523,
     "ext": ".sh",
@@ -11088,6 +11160,15 @@
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "scripts/detect_synthetic.py",
+    "bytes": 2545,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 70,
+    "sha256": "630d51332abd8aeb7878495eec419dd724cb2a35c3284df63f2fd401e39fe2bb",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
     "path": "scripts/download_real_cosmology_inputs.sh",
     "bytes": 3661,
     "ext": ".sh",
@@ -11115,6 +11196,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/fetch_public_astronomy_catalog_samples.py",
+    "bytes": 12708,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 332,
+    "sha256": "db5467e7ba7a1c62066a98150002038f5343c841a1f67cbf1492afb4798b5e37",
+    "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
     "path": "scripts/fetch_real_sources.py",
     "bytes": 12841,
     "ext": ".py",
@@ -11130,6 +11220,15 @@
     "tipo": "source_code",
     "linhas": 25,
     "sha256": "e67151201d5735e4111f38415f91664f3d946b704b2bed29b23258085af03a5a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/import_data.py",
+    "bytes": 2238,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 76,
+    "sha256": "858cfbfd41367c2d6cf688117329d3df490cc441ec37aa7a824deb31dae9ade3",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -11944,11 +12043,11 @@
   },
   {
     "path": "tests/test_structure_d_model_coverage.py",
-    "bytes": 922,
+    "bytes": 970,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 27,
-    "sha256": "fc0fe6cc1aad9b4548190eca1282dcfc2022460c7e1625c912460a62d6cc3314",
+    "sha256": "bbf159024dc085bca0f4d972e27ed7cb2950a7178c296653c5d4cec2e8beca1c",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -12363,6 +12462,33 @@
     "tipo": "source_code",
     "linhas": 170,
     "sha256": "772155c21ccf3995292130bfd7246545a4c9c00c3426c64e8f091aedd5e54424",
+    "flags": ""
+  },
+  {
+    "path": "tools/validate_public_astronomy_catalog_fetcher.py",
+    "bytes": 2323,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 77,
+    "sha256": "4542950d3e93b3f1dea55d116e0b0eb9bf7e631162e27e3bc63da03866850c36",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "tools/validate_real_cosmology_inputs_yml.py",
+    "bytes": 5242,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 137,
+    "sha256": "959d08b35ccd0d5741cc0b2ba3810aeef612595eaa1b9d5737ea0e5ab05fdfe8",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "tools/validate_real_data_addition_registry.py",
+    "bytes": 2877,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 87,
+    "sha256": "c9e1fa5837aaf2374167a3d22e49dccc38f2defbe41c4236bee123beadf51ce7",
     "flags": ""
   },
   {
