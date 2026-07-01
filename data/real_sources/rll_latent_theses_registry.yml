@@ -1,0 +1,242 @@
+schema: rll.latent_theses_registry.v1
+status: active_claim_gated_registry
+created_utc: "2026-07-01T00:00:00Z"
+owner_layer: docs/science
+purpose: >-
+  Formal registry for RLL latent theses/hypotheses that are scientifically
+  interesting but not yet claim-approved. Each thesis must remain separated
+  from validation claims until raw data, checksum, baseline, error/covariance,
+  metric and falsifier gates pass.
+claim_boundary: >-
+  This registry does not validate RLL, does not assert that RLL beats LCDM,
+  wCDM or CPL, and does not promote recent-paper alignment to observational
+  confirmation. It exists to turn latent ideas into auditable test programs.
+allowed_claim: >-
+  RLL has claim-gated latent research routes that can be tested against public
+  data and competing baselines.
+blocked_claims:
+  - RLL is confirmed as physical cosmology.
+  - RLL beats LCDM, wCDM or CPL.
+  - DESI, Pantheon+, Planck, JWST, LVK or Gaia confirm RLL.
+  - A symbolic analogy, metaphor, seed catalog, YAML registry or smoke run is observational proof.
+validation_policy:
+  required_before_claim:
+    - raw_or_primary_data_path
+    - sha256_or_source_signature
+    - baseline_or_adversary_model
+    - metric
+    - uncertainty_or_covariance_policy
+    - falsifier
+    - reproducible_command_or_artifact
+    - negative_result_handling
+  default_state: TOKEN_VAZIO
+  claim_allowed_default: false
+  promotion_rule: >-
+    A latent thesis can move from TOKEN_VAZIO to TEST_READY only after data,
+    baseline, metric and falsifier are registered. It can move to CLAIM_REVIEW
+    only after a reproducible run artifact reports metrics against adversaries
+    and the claim-boundary gate remains explicit.
+
+recent_context_policy:
+  description: >-
+    Recent papers and datasets are context for hypothesis selection, not proof.
+    They must be cited and rechecked when used in a paper or external claim.
+  source_families_to_review:
+    - DESI_DR2_BAO_and_dynamic_dark_energy
+    - PantheonPlus_or_DES_Y5_supernovae
+    - Planck_or_ACT_CMB_constraints
+    - LVK_GWOSC_compact_remnant_posteriors
+    - JWST_Chandra_high_z_SMBH_catalogs
+    - Gaia_OGLE_astrometry_and_microlensing
+    - CLASS_CAMB_growth_benchmarks
+
+theses:
+  - id: LT-001
+    title: RLL dynamic-transition sector versus CPL
+    route: cosmology_background
+    maturity: LATENT_ACTIVE
+    state: TOKEN_VAZIO_ROBUST_FIT
+    claim_allowed: false
+    thesis_statement: >-
+      Test whether an RLL dynamic-transition sector can remain active with
+      Os0 > 0 and survive chi2, AIC, AICc and BIC comparison against LCDM,
+      wCDM and CPL under robust real-data fits.
+    current_evidence:
+      repo_artifact: results/structure_d/joint_real_likelihood.json
+      current_diagnostic: "Smoke run has Os0=0.0 and RLL is not preferred."
+      current_limit: "maxiter=3 smoke/sanity; not a final cosmological fit."
+    required_data:
+      - H_z_cosmic_chronometers
+      - DESI_DR2_BAO
+      - PantheonPlus_or_equivalent_supernovae
+      - CMB_compressed_or_likelihood
+      - fsigma8_growth
+    baselines:
+      - LCDM
+      - wCDM
+      - CPL_w0waCDM
+    metrics:
+      - chi2
+      - AIC
+      - AICc
+      - BIC
+      - frequency_Os0_zero
+      - delta_against_CPL
+    falsifier: >-
+      If RLL remains LCDM-like with Os0=0.0 or remains worse than CPL under
+      robust seeds and comparable covariance/error policy, strong RLL
+      cosmology claims remain blocked.
+    next_action: run_multi_seed_robust_fit
+
+  - id: LT-002
+    title: Growth-sector discriminator for RLL versus dark-energy degeneracy
+    route: cosmology_growth
+    maturity: LATENT_ACTIVE
+    state: TOKEN_VAZIO_GROWTH_BACKEND
+    claim_allowed: false
+    thesis_statement: >-
+      Test whether growth observables, rather than background distances alone,
+      distinguish an RLL transition sector from CPL or interacting-dark-energy
+      degeneracies.
+    current_evidence:
+      repo_artifact: data/real/cosmology/fsigma8_growth_real.csv
+      current_diagnostic: "f_sigma8 input exists, but external growth benchmark remains incomplete."
+      current_limit: "No CLASS/CAMB-backed growth validation is claim-ready."
+    required_data:
+      - fsigma8_RSD
+      - S8_or_lensing_constraints
+      - DESI_BAO_context
+    baselines:
+      - LCDM_growth
+      - CPL_growth
+      - interacting_dark_energy_or_equivalent_adversary
+    metrics:
+      - fsigma8_residuals
+      - S8_consistency
+      - growth_chi2
+      - growth_delta_AICc
+    falsifier: >-
+      If RLL cannot produce distinguishable and better growth behavior than
+      CPL/adversary models after CLASS/CAMB or equivalent benchmarking, the
+      growth thesis remains blocked.
+    next_action: add_CLASS_CAMB_or_equivalent_growth_benchmark
+
+  - id: LT-003
+    title: CMB-independent late-universe RLL test with standard sirens
+    route: late_universe_sirens
+    maturity: LATENT_SEED
+    state: TOKEN_VAZIO_DATASET
+    claim_allowed: false
+    thesis_statement: >-
+      Test RLL as a late-universe transition model using a CMB-independent
+      combination of GW standard sirens, BAO and supernovae.
+    current_evidence:
+      repo_artifact: docs/science/VALIDATION_DASHBOARD.md
+      current_diagnostic: "Route is conceptual; no GW-siren likelihood is materialized."
+      current_limit: "No host/catalog/luminosity-distance dataset is registered."
+    required_data:
+      - GWTC_standard_sirens_or_dark_siren_catalog
+      - DESI_DR2_BAO
+      - PantheonPlus_DESY5_or_equivalent_SNe
+    baselines:
+      - LCDM
+      - CPL_w0waCDM
+    metrics:
+      - H0_posterior_shift
+      - w0_wa_constraints
+      - RLL_delta_AICc_against_CPL
+    falsifier: >-
+      If CMB-independent siren+BAO+SNe constraints prefer CPL/LCDM and RLL
+      does not remain active or competitive, the siren thesis remains blocked.
+    next_action: create_standard_siren_data_contract
+
+  - id: LT-004
+    title: Compact-remnant boundary and mass-gap overlap
+    route: compact_remnant_boundary
+    maturity: PRIORITY_TEST_ROUTE
+    state: TOKEN_VAZIO_RAW_POSTERIORS
+    claim_allowed: false
+    thesis_statement: >-
+      Evaluate whether RLL-inspired transition metrics can provide a falsifiable
+      compact-remnant boundary test using LVK/GWOSC posterior samples.
+    current_evidence:
+      repo_artifact: docs/science/VALIDATION_DASHBOARD.md
+      current_diagnostic: "Dashboard marks this as the recommended next route."
+      current_limit: "No raw LVK/GWOSC posterior samples are registered with checksum."
+    required_data:
+      - LVK_GWOSC_posterior_samples
+      - compact_object_mass_gap_reference
+    baselines:
+      - astrophysical_population_baseline
+      - published_mass_gap_boundary_baseline
+    metrics:
+      - mass_gap_overlap_probability
+      - posterior_boundary_crossing_rate
+      - false_positive_rate
+    falsifier: >-
+      If posterior samples do not show a reproducible boundary signal beyond
+      standard population baselines, the compact-remnant thesis remains blocked.
+    next_action: ingest_LVK_GWOSC_posteriors_with_sha256
+
+  - id: LT-005
+    title: High-redshift SMBH seed-regime classifier
+    route: high_z_smbh_seeds
+    maturity: LATENT_SEED
+    state: TOKEN_VAZIO_BASELINES
+    claim_allowed: false
+    thesis_statement: >-
+      Operationalize RLL language as a testable classifier of early SMBH
+      seed/growth regimes rather than as an immediate cosmological explanation.
+    current_evidence:
+      repo_artifact: docs/science/VALIDATION_DASHBOARD.md
+      current_diagnostic: "Seed route exists, but raw JWST/Chandra table and baselines are missing."
+      current_limit: "No Eddington/light-seed/heavy-seed/direct-collapse baseline grid exists."
+    required_data:
+      - JWST_high_z_SMBH_candidates
+      - Chandra_or_Xray_context
+      - host_galaxy_properties
+    baselines:
+      - light_seed
+      - heavy_seed
+      - direct_collapse
+      - super_Eddington_growth
+    metrics:
+      - growth_time_feasibility
+      - seed_mass_required
+      - accretion_regime_classification
+      - baseline_confusion_matrix
+    falsifier: >-
+      If standard seed/growth channels explain the catalog without RLL-specific
+      predictive improvement, the thesis remains a classifier experiment only.
+    next_action: create_high_z_SMBH_source_table_schema
+
+  - id: LT-006
+    title: Wandering or dark compact-object triage
+    route: wandering_dark_compact_mass
+    maturity: LATENT_SEED
+    state: TOKEN_VAZIO_ASTROMETRY
+    claim_allowed: false
+    thesis_statement: >-
+      Build an auditable triage pipeline for dark compact-object candidates
+      using astrometric consistency, luminous-counterpart exclusion and claim gates.
+    current_evidence:
+      repo_artifact: docs/science/VALIDATION_DASHBOARD.md
+      current_diagnostic: "Seed route exists; no complete astrometric/microlensing dataset is registered."
+      current_limit: "No Gaia/OGLE raw table, RV table or light-curve provenance is committed."
+    required_data:
+      - Gaia_astrometry
+      - OGLE_or_microlensing_light_curves
+      - radial_velocity_or_counterpart_catalog
+    baselines:
+      - luminous_counterpart_baseline
+      - background_AGN_or_contaminant_baseline
+      - stellar_remnant_baseline
+    metrics:
+      - astrometric_dark_mass_consistency
+      - luminous_counterpart_exclusion_score
+      - contaminant_probability
+    falsifier: >-
+      If candidates are explained by luminous counterparts, background AGN,
+      stellar contamination or weak astrometric evidence, dark-compact claims
+      remain blocked.
+    next_action: define_candidate_schema_and_raw_data_manifest
