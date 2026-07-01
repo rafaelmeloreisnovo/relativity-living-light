@@ -1,29 +1,36 @@
-name: Importar dados reais
+name: Importar dados reais — guarded audit
 
 on:
   workflow_dispatch:
     inputs:
       real_data_url:
-        description: 'URL da API ou arquivo (opcional — se não setado, usa SPACE_DATA_URL padrão ou secret REAL_DATA_URL)'
+        description: 'URL pública explícita para auditoria de importação; obrigatório'
+        required: true
+      output_name:
+        description: 'Nome do artifact gerado'
         required: false
-  schedule:
-    - cron: '0 2 * * *' # diário às 02:00 UTC (ajuste se quiser)
+        default: 'raw-data-audit-sample'
 
 permissions:
-  contents: write
+  contents: read
 
-env:
-  # default public data source (não sensível) — SpaceX launches API
-  SPACE_DATA_URL: "https://api.spacexdata.com/v4/launches"
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  import:
+  import-audit:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -33,40 +40,37 @@ jobs:
       - name: Install requirements
         run: python -m pip install --upgrade pip && pip install requests pandas
 
-      - name: Run synthetic detector (lista arquivos sintéticos)
+      - name: Run synthetic detector as report-only guard
         run: |
-          python scripts/detect_synthetic.py --report-only
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Importar dados reais (busca e salva em data/raw/data.json)
-        id: import
-        run: |
-          # prioriza input, senão usa SPACE_DATA_URL, senão secret REAL_DATA_URL
-          if [ -n "${{ github.event.inputs.real_data_url }}" ]; then
-            export REAL_DATA_URL="${{ github.event.inputs.real_data_url }}"
-          elif [ -n "${{ env.SPACE_DATA_URL }}" ]; then
-            export REAL_DATA_URL="${{ env.SPACE_DATA_URL }}"
+          if [ -f scripts/detect_synthetic.py ]; then
+            python scripts/detect_synthetic.py --report-only
           else
-            export REAL_DATA_URL="${{ secrets.REAL_DATA_URL }}"
+            echo "scripts/detect_synthetic.py not found; skipping report-only guard"
           fi
-          export REAL_DATA_API_KEY="${{ secrets.REAL_DATA_API_KEY }}"
-          mkdir -p data/raw
-          python scripts/import_data.py --out data/raw/data.json --url "$REAL_DATA_URL"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REAL_DATA_API_KEY: ${{ secrets.REAL_DATA_API_KEY }}
 
-      - name: Commit and push imported data (if changed)
+      - name: Import explicit public data URL into audit workspace
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/raw/data.json || true
-          if ! git diff --cached --quiet; then
-            git commit -m "Import: dados reais atualizados (import-data workflow)"
-            git push --set-upstream origin $GITHUB_REF || git push
-          else
-            echo "Nenhuma mudança nos dados brutos."
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          set -euo pipefail
+          mkdir -p _audit/raw
+          python scripts/import_data.py --out _audit/raw/data.json --url "${{ github.event.inputs.real_data_url }}"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          p = Path('_audit/raw/data.json')
+          payload = {
+              'schema': 'rll.import_data_audit_manifest.v1',
+              'source_url': '${{ github.event.inputs.real_data_url }}',
+              'artifact_path': str(p),
+              'sha256': hashlib.sha256(p.read_bytes()).hexdigest(),
+              'bytes': p.stat().st_size,
+              'claim_boundary': 'Imported audit artifact only. This workflow does not commit data and does not validate RLL, dark matter, dark energy, or cosmology claims.'
+          }
+          Path('_audit/raw/import_manifest.json').write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Upload audit artifact without committing
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.inputs.output_name }}
+          path: _audit/raw/
+          if-no-files-found: error
