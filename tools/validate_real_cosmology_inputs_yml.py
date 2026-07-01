@@ -40,7 +40,52 @@ REQUIRED_INPUT_FIELDS = {
     "required_checks",
     "claim_blocked",
 }
-BLOCKED_CLAIMS = ("validates RLL", "confirms RLL", "beats LCDM", "beats CPL", "resolve S8")
+
+GLOBAL_BOUNDARY_TERMS = ("não é validação científica", "não confirma RLL", "não autoriza claim")
+BLOCKING_MARKERS = (
+    "does not",
+    "do not",
+    "cannot",
+    "not ",
+    "no ",
+    "sem ",
+    "não ",
+    "nao ",
+    "requer",
+    "require",
+    "requires",
+    "blocked",
+)
+SCIENTIFIC_TOPIC_TERMS = (
+    "rll",
+    "lcdm",
+    "wcdm",
+    "cpl",
+    "desi",
+    "bao",
+    "planck",
+    "cmb",
+    "h0",
+    "s8",
+    "growth",
+    "likelihood",
+    "cosmolog",
+    "validation",
+    "validação",
+)
+PROMOTION_PATTERNS = (
+    "validates rll",
+    "confirms rll",
+    "beats lcdm",
+    "beats cpl",
+    "proves rll",
+    "resolve s8",
+    "resolves s8",
+    "confirma rll",
+    "valida rll",
+    "vence lcdm",
+    "vence cpl",
+)
 
 
 def fail(message: str) -> None:
@@ -80,6 +125,24 @@ def validate_local_file(row: dict[str, Any]) -> None:
             fail(f"{row['dataset_id']}: JSON input must be an object")
 
 
+def validate_claim_blocked(dataset_id: str, entries: Any) -> None:
+    if not isinstance(entries, list) or not entries:
+        fail(f"{dataset_id}: claim_blocked must be a non-empty list")
+    text = "\n".join(str(item) for item in entries).strip()
+    lowered = text.lower()
+    if not lowered:
+        fail(f"{dataset_id}: claim_blocked must not be blank")
+    if not any(marker in lowered for marker in BLOCKING_MARKERS):
+        fail(f"{dataset_id}: claim_blocked must use explicit blocking language")
+    if not any(term in lowered for term in SCIENTIFIC_TOPIC_TERMS):
+        fail(f"{dataset_id}: claim_blocked must name the scientific claim/topic being blocked")
+
+    # If high-risk promotion phrases appear, they must appear only in blocked context.
+    for pattern in PROMOTION_PATTERNS:
+        if pattern in lowered and not any(marker in lowered for marker in BLOCKING_MARKERS):
+            fail(f"{dataset_id}: promotion phrase lacks explicit blocking context: {pattern}")
+
+
 def main() -> int:
     data = load_yaml(MANIFEST)
     missing = REQUIRED_TOP_LEVEL - set(data)
@@ -88,12 +151,16 @@ def main() -> int:
     if data["schema"] != "rll.real_cosmology_inputs.v1":
         fail(f"unexpected schema: {data['schema']!r}")
     boundary = str(data.get("claim_boundary", ""))
-    for term in ("não é validação científica", "não confirma RLL", "não autoriza claim"):
+    for term in GLOBAL_BOUNDARY_TERMS:
         if term not in boundary:
             fail(f"claim_boundary must contain: {term}")
     execution = data.get("default_execution") or {}
-    if execution.get("offline_first") is not True or execution.get("no_synthetic_promotion") is not True:
-        fail("default_execution must enforce offline_first and no_synthetic_promotion")
+    if execution.get("offline_first") is not True:
+        fail("default_execution must enforce offline_first")
+    if execution.get("no_synthetic_promotion") is not True:
+        fail("default_execution must enforce no_synthetic_promotion")
+    if execution.get("strict_missing_inputs") is not True:
+        fail("default_execution must enforce strict_missing_inputs")
 
     signatures = load_signature_ids()
     seen: set[str] = set()
@@ -117,17 +184,14 @@ def main() -> int:
         if not str(source.get("url", "")).startswith("https://"):
             fail(f"{dataset_id}: primary_source.url must be https")
         if "source_signature_registered" in row.get("required_checks", []):
-            signature_ids = row.get("source_signature_ids") or [dataset_id]
+            signature_ids = row.get("source_signature_ids") or []
+            if not signature_ids:
+                fail(f"{dataset_id}: source_signature_ids must be non-empty")
             missing_signatures = [str(item) for item in signature_ids if str(item) not in signatures]
             if missing_signatures:
                 fail(f"{dataset_id}: missing source_signature_ids in real_source_signatures.json: {missing_signatures}")
         validate_local_file(row)
-        blocked = "\n".join(str(item) for item in row.get("claim_blocked", []))
-        if not blocked:
-            fail(f"{dataset_id}: claim_blocked must not be empty")
-        if any(claim in blocked for claim in BLOCKED_CLAIMS):
-            # Required: blocked list must mention blocked claims, not promotion requirements.
-            pass
+        validate_claim_blocked(dataset_id, row.get("claim_blocked"))
 
     print(f"OK: {MANIFEST.relative_to(ROOT)} ({len(inputs)} real cosmology inputs)")
     return 0
