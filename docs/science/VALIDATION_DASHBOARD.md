@@ -21,6 +21,19 @@ This dashboard summarizes what exists, what is blocked, and what the next measur
 
 ---
 
+## Latent thesis registry
+
+| Artifact | Role |
+|---|---|
+| `data/real_sources/rll_latent_theses_registry.yml` | registry of claim-gated latent theses |
+| `docs/science/RLL_LATENT_THESES_AND_RECENT_DATA_CROSSWALK.md` | formal crosswalk from recent-data context to hypotheses/tests |
+| `tools/validate_latent_theses_registry.py` | registry validator |
+| `tests/test_latent_theses_registry.py` | CI coverage |
+
+Rule: latent theses are test programs, not validation claims.
+
+---
+
 ## Counts
 
 ```text
@@ -29,6 +42,8 @@ active_seed_routes: 6
 computed_seed_routes: 5+
 raw_data_complete_routes: 0
 claim_allowed_true_routes: 0
+latent_theses_registered: 6
+latent_theses_claim_allowed_true: 0
 ```
 
 ---
@@ -42,6 +57,7 @@ claim_allowed_true_routes: 0
 4. orchestration map
 5. negative results ledger
 6. TOKEN_VAZIO priority ledger
+7. latent thesis registry with falsifiers and baselines
 ```
 
 ---
@@ -55,6 +71,7 @@ claim_allowed_true_routes: 0
 4. baselines per route
 5. covariance/error models
 6. cosmology_background remains blocked for final RLL claim
+7. latent theses still require route-specific data, metrics and falsifier execution
 ```
 
 ---
@@ -83,4 +100,4 @@ mass_gap_overlap_probability
 
 ## Safe conclusion
 
-The repository now has a working validation scaffold and multiple seed-level artifacts. It is not yet a final scientific proof engine because raw data, checksums, baselines, and error models are still missing.
+The repository now has a working validation scaffold, multiple seed-level artifacts and a formal latent-thesis registry. It is still claim-gated: stronger claims require data, checksums, baselines, error models and executed falsifier metrics.
