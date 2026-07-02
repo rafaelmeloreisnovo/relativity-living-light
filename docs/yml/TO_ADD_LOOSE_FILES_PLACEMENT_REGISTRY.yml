@@ -1,0 +1,172 @@
+# to_Add Loose Files Placement Registry
+# Scope: classify loose historical intake files before any movement.
+# Claim: placement metadata only; not scientific proof.
+
+schema: rll.to_add_loose_files_placement_registry.v1
+updated_utc: "2026-07-02"
+claim_allowed: false
+status: placement_registry_only
+source_directory: to_Add/
+
+policy:
+  to_add_is_historical_intake: true
+  no_new_executable_logic_in_to_add: true
+  do_not_move_before_validation: true
+  do_not_delete_authorial_material: true
+  canonical_execution_roots:
+    - data/pipelines/
+    - data/inputs/
+    - results/
+    - docs/
+  claim_boundary: >
+    This registry proposes coherent canonical locations for loose files in to_Add/.
+    It does not move files, validate science, promote claims, or replace the
+    migration validator.
+
+placement_rules:
+  - rule: governance_and_migration_status
+    target_root: docs/
+    applies_to:
+      - historical README/status notes
+      - controlled-intake status
+      - migration reports
+  - rule: audit_and_backlog
+    target_root: docs/audits/
+    applies_to:
+      - audit reports
+      - broken-link TODOs
+      - historical gap lists
+  - rule: scientific_structure_d_docs
+    target_root: docs/science/structure_d/
+    applies_to:
+      - Structure D scientific notes
+      - Structure D model boundaries
+      - Structure D physics limitations
+  - rule: publication_drafts
+    target_root: PapersPub/
+    applies_to:
+      - paper drafts
+      - publication-facing narratives
+  - rule: graph_and_inventory_artifacts
+    target_root: data/results/ or docs/audits/
+    applies_to:
+      - link graphs
+      - size reports
+      - repository survey tables
+  - rule: executable_code
+    target_root: data/pipelines/structure_d/
+    applies_to:
+      - Python implementation files
+      - pipeline entrypoints
+      - model/growth/likelihood code
+
+loose_files:
+  - source: to_Add/README.md
+    artifact_kind: controlled_legacy_readme
+    epistemic_state: METADATA_READY
+    current_action: keep_in_place
+    proposed_canonical_role: docs/TO_ADD_MIGRATION_STATUS.md
+    claim_allowed: historical intake status only
+    claim_blocked: canonical scientific evidence
+    next_action: keep as local intake notice; update status through docs/TO_ADD_MIGRATION_STATUS.md
+
+  - source: to_Add/TODO_GAPS.md
+    artifact_kind: broken_link_backlog
+    epistemic_state: AUDIT_PENDING
+    current_action: classify_before_move
+    proposed_canonical_role: docs/audits/TO_ADD_BROKEN_LINKS_BACKLOG.md
+    claim_allowed: link repair backlog
+    claim_blocked: scientific validation
+    next_action: convert to audit backlog after checking whether links still fail in current tree
+
+  - source: to_Add/AUDIT_REPORT.md
+    artifact_kind: historical_audit_report
+    epistemic_state: DECLARED_BY_AUTHOR
+    current_action: classify_before_move
+    proposed_canonical_role: docs/audits/TO_ADD_HISTORICAL_AUDIT_REPORT.md
+    claim_allowed: historical technical-scientific audit note
+    claim_blocked: current validation result
+    next_action: promote as historical audit only, with date and claim boundary preserved
+
+  - source: to_Add/STRUCTURE_D.md
+    artifact_kind: structure_d_science_note
+    epistemic_state: AUDIT_PENDING
+    current_action: classify_before_move
+    proposed_canonical_role: docs/science/structure_d/HISTORICAL_STRUCTURE_D_NOTE.md
+    claim_allowed: historical Structure D conceptual note
+    claim_blocked: current executable source or final physics claim
+    next_action: compare with docs/science/structure_d/ before promotion
+
+  - source: to_Add/PAPER_A_DRAFT.md
+    artifact_kind: paper_draft
+    epistemic_state: DECLARED_BY_AUTHOR
+    current_action: classify_before_move
+    proposed_canonical_role: PapersPub/00_legacy_intake/PAPER_A_DRAFT.md
+    claim_allowed: publication draft candidate
+    claim_blocked: peer-reviewed paper or validated result
+    next_action: move only after adding citation, authorship, license and claim-boundary review
+
+  - source: to_Add/MODEL_B_CLOSED.md
+    artifact_kind: closed_model_note
+    epistemic_state: AUDIT_PENDING
+    current_action: classify_before_move
+    proposed_canonical_role: docs/science/structure_d/closed_models/MODEL_B_CLOSED.md
+    claim_allowed: closed or deprecated model record
+    claim_blocked: active winning model claim
+    next_action: preserve as negative/closed-model ledger entry if still scientifically relevant
+
+  - source: to_Add/PHYSICS_LIMITS_C.md
+    artifact_kind: physics_limit_note
+    epistemic_state: AUDIT_PENDING
+    current_action: classify_before_move
+    proposed_canonical_role: docs/science/structure_d/PHYSICS_LIMITS_C.md
+    claim_allowed: limitation and boundary note
+    claim_blocked: proof of physical model
+    next_action: reconcile with current RLL limitations and TOKEN_VAZIO markers
+
+  - source: to_Add/LINK_GRAPH.json
+    artifact_kind: graph_artifact
+    epistemic_state: METADATA_READY
+    current_action: classify_before_move
+    proposed_canonical_role: data/results/to_add_link_graph.json
+    claim_allowed: repository-link graph artifact
+    claim_blocked: scientific evidence
+    next_action: validate JSON shape and source before canonical promotion
+
+  - source: to_Add/TOP_MD_BY_SIZE.csv
+    artifact_kind: repository_survey_table
+    epistemic_state: METADATA_READY
+    current_action: classify_before_move
+    proposed_canonical_role: data/results/to_add_top_md_by_size.csv
+    claim_allowed: documentation size survey
+    claim_blocked: scientific result
+    next_action: validate CSV columns and regenerate from current inventory if needed
+
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/
+    artifact_kind: historical_structure_d_bundle_tree
+    epistemic_state: CONTROLLED_LEGACY_INTAKE
+    current_action: keep_in_place_as_history
+    proposed_canonical_role: docs/yml/TO_ADD_MIGRATION_LEDGER.yml
+    claim_allowed: provenance for promoted Structure D material
+    claim_blocked: current canonical execution root
+    next_action: use tools/validate_to_add_migration.py and canonical paths under data/pipelines/structure_d/
+
+blocked_actions:
+  - add new executable logic under to_Add/
+  - treat to_Add/ as current scientific evidence
+  - delete loose authorial files before classification
+  - move paper drafts without authorship, license and citation review
+  - promote historical reports as current validation results
+  - promote generated graphs/tables without schema validation
+
+safe_next_steps:
+  - run python3 tools/validate_to_add_migration.py
+  - create docs/audits/TO_ADD_BROKEN_LINKS_BACKLOG.md from TODO_GAPS.md after checking current links
+  - promote historical audit report with explicit historical date and claim boundary
+  - compare STRUCTURE_D.md with docs/science/structure_d/ before moving or merging
+  - validate LINK_GRAPH.json and TOP_MD_BY_SIZE.csv before moving to data/results/
+
+safe_conclusion: >
+  Loose files in to_Add/ now have proposed coherent canonical roles. This registry
+  does not move files or promote claims; it provides a safe map for the next
+  migration step.
