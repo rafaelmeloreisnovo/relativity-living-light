@@ -37,27 +37,106 @@ jobs:
 
       - name: Validate every YAML file with a real parser
         run: |
+          mkdir -p artifacts/yml-syntax-validation
           python - <<'PY'
           from pathlib import Path
-          import yaml, sys, hashlib
+          import json
+          import yaml
+          import sys
+          import hashlib
 
+          out_dir = Path('artifacts/yml-syntax-validation')
+          out_dir.mkdir(parents=True, exist_ok=True)
           files = sorted(
               p for p in [*Path('.').rglob('*.yml'), *Path('.').rglob('*.yaml')]
               if '.git/' not in str(p)
           )
+          rows = []
           failed = 0
           for p in files:
               raw = p.read_bytes()
-              sha = hashlib.sha256(raw).hexdigest()[:12]
+              sha = hashlib.sha256(raw).hexdigest()
+              status = 'OK'
+              error = ''
+              documents = 0
               try:
-                  list(yaml.safe_load_all(raw.decode('utf-8')))
-                  print(f'OK   {sha}  {p}')
-              except Exception as e:
+                  documents = len(list(yaml.safe_load_all(raw.decode('utf-8'))))
+                  print(f'OK   {sha[:12]}  {p}')
+              except Exception as exc:
                   failed += 1
-                  print(f'FAIL {sha}  {p}  {e}')
+                  status = 'FAIL'
+                  error = str(exc).replace('\n', ' ')
+                  print(f'FAIL {sha[:12]}  {p}  {error}')
+              rows.append({
+                  'path': str(p),
+                  'sha256': sha,
+                  'sha256_12': sha[:12],
+                  'documents': documents,
+                  'status': status,
+                  'error': error,
+              })
+
+          summary = {
+              'schema': 'rll.yml_syntax_validation_artifacts.v1',
+              'total_yaml_files': len(files),
+              'failed_yaml_files': failed,
+              'passed_yaml_files': len(files) - failed,
+              'claim_boundary': 'YAML parseability is structural evidence only; it does not validate scientific claims.',
+              'artifact_policy': 'Upload TSV/JSON/Markdown reports so the YAML gate can be consulted after the workflow run.',
+          }
+          (out_dir / 'yaml_parse_summary.json').write_text(
+              json.dumps(summary, indent=2, ensure_ascii=False) + '\n', encoding='utf-8'
+          )
+          with (out_dir / 'yaml_parse_report.tsv').open('w', encoding='utf-8') as fh:
+              fh.write('path\tstatus\tdocuments\tsha256\terror\n')
+              for row in rows:
+                  fh.write(
+                      f"{row['path']}\t{row['status']}\t{row['documents']}\t{row['sha256']}\t{row['error']}\n"
+                  )
+          md = [
+              '# YAML Syntax Validation Report',
+              '',
+              f"- total_yaml_files: `{summary['total_yaml_files']}`",
+              f"- passed_yaml_files: `{summary['passed_yaml_files']}`",
+              f"- failed_yaml_files: `{summary['failed_yaml_files']}`",
+              f"- claim_boundary: `{summary['claim_boundary']}`",
+              '',
+              '| status | sha256_12 | path | error |',
+              '|---|---|---|---|',
+          ]
+          for row in rows:
+              md.append(f"| {row['status']} | `{row['sha256_12']}` | `{row['path']}` | {row['error']} |")
+          (out_dir / 'YAML_PARSE_REPORT.md').write_text('\n'.join(md) + '\n', encoding='utf-8')
           print(f'\nTOTAL={len(files)} FAILED={failed}')
           sys.exit(1 if failed else 0)
           PY
 
       - name: Validate workflow isolation (repo audit tool)
-        run: python3 tools/audit_github_workflows.py --strict
+        shell: bash
+        run: |
+          mkdir -p artifacts/yml-syntax-validation
+          set +e
+          python3 tools/audit_github_workflows.py --strict | tee artifacts/yml-syntax-validation/workflow_audit.log
+          status=${PIPESTATUS[0]}
+          python - <<PY
+          import json
+          from pathlib import Path
+          payload = {
+              'schema': 'rll.workflow_audit_status.v1',
+              'status_code': int(${status}),
+              'passed': int(${status}) == 0,
+              'claim_boundary': 'Workflow hygiene audit confirms structure/isolation only; it does not validate scientific claims.',
+          }
+          Path('artifacts/yml-syntax-validation/workflow_audit_status.json').write_text(
+              json.dumps(payload, indent=2, ensure_ascii=False) + '\n', encoding='utf-8'
+          )
+          PY
+          exit "$status"
+
+      - name: Upload consultable YAML validation artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: yml-syntax-validation-${{ github.run_id }}
+          path: artifacts/yml-syntax-validation/
+          retention-days: 14
