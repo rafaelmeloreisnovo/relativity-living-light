@@ -6,9 +6,13 @@
 
 ## Purpose
 
-This directory preserves a complementary preface fragment about mechanics, language, philosophy and sacred interpretation.
+This directory preserves complementary fragments that work like post-credits scenes for related repositories.
 
-It uses images such as pulleys, flexible ropes, rope weight, bearings, bushings, friction, fluids and viscosity to discuss transmission, resistance, mediation and loss.
+They preserve in-session integrations about mechanics, language, philosophy and sacred interpretation so that future repositories can reuse the bridge without losing the path that produced it.
+
+Mechanical images include pulleys, flexible ropes, rope weight, bearings, bushings, friction, fluids and viscosity.
+
+Interpretive layers include linguistics, letters, philosophy, theology and epistemic method.
 
 ## Boundary
 
@@ -19,3 +23,4 @@ It does not validate RLL, does not select a cosmological model and does not repl
 ## Files
 
 - `PREFACE_FRAGMENT.md` — ludic transcultural preface fragment.
+- `POST_CREDITS_BRIDGE.md` — session-continuity note for future repositories and cross-repository previews.
