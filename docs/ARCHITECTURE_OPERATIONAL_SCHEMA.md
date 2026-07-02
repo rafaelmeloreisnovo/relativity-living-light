@@ -124,7 +124,7 @@ claim or input
   → uncertainty/covariance when applicable
   → claim boundary
   → audit/review state
-  → VERIFIED, DECLARED_BY_AUTHOR, TOKEN_VAZIO, CONTRADICTION or CLAIM_BLOCKED
+  → VERIFIED, VERIFIED_LIMITED, DECLARED_BY_AUTHOR, TOKEN_VAZIO, CONTRADICTION or CLAIM_BLOCKED
 ```
 
 ---
@@ -134,6 +134,7 @@ claim or input
 | State | Meaning |
 |---|---|
 | `VERIFIED` | Evidence is located and traceable. |
+| `VERIFIED_LIMITED` | Evidence is located for a narrow behavior, but does not validate the whole relationship, integration or model. |
 | `DECLARED_BY_AUTHOR` | Declared, but not independently established in current evidence. |
 | `TOKEN_VAZIO` | Required evidence is missing or intentionally blank. |
 | `CONTRADICTION` | Evidence contradicts the claim. |
@@ -168,7 +169,17 @@ avoid silent overwrite of canonical outputs
 block claims until metric, baseline and uncertainty/covariance are available
 ```
 
-### 8.3 to_Add material
+### 8.3 Cross-repo relationship registries
+
+```text
+relationship rows must name an explicit next verification action
+accepted action verbs: Verify, Define, Check, Keep
+VERIFIED_LIMITED is allowed only for narrow observed behavior
+VERIFIED_LIMITED must not be read as validated integration
+blocked claims must remain present for non-verified relationships
+```
+
+### 8.4 to_Add material
 
 ```text
 classify before moving
@@ -176,91 +187,4 @@ preserve original intake
 promote only through registry and audit
 mark historical reports as historical
 never treat to_Add/ as current scientific execution root
-```
-
-### 8.4 Public-facing architecture language
-
-Avoid:
-
-```text
-no gaps
-FAIR 8.4/10 unless measured and sourced
-peer-ready as acceptance
-post-PhD as proof
-ROI or valuation without formal review
-Big Tech compliant as certification
-RLL validated as final science
-```
-
-Use instead:
-
-```text
-reviewable
-claim-bounded
-metadata-ready
-audit-ready
-professionalized
-falsifiable research program
-current result remains bounded
-```
-
----
-
-## 9. Health indicators
-
-Health indicators must be measured or explicitly marked as goals.
-
-| Indicator type | Correct state |
-|---|---|
-| measured | include source, command or artifact |
-| estimated | mark as estimate |
-| aspirational | mark as target |
-| unknown | mark `TOKEN_VAZIO_METRIC` |
-
-No fixed FAIR score, TRL score, coverage number, issue count, PR count, ROI or maturity score should be stated here unless it is backed by a current artifact or command.
-
----
-
-## 10. FAQ
-
-### Does this operational schema validate RLL?
-
-No. It organizes navigation and operating rules.
-
-### Can RLL use real data?
-
-Yes, but real-data use does not automatically mean final validation. Evidence still needs source, execution, metric, baseline, uncertainty/covariance and claim boundary.
-
-### Is professional documentation useful?
-
-Yes. It makes review easier and overclaim harder.
-
-### Is professional documentation proof?
-
-No.
-
-### Can analogies, parables and myths appear in this repository?
-
-Yes, when explicitly labeled as analogies. They can illuminate classification, detection and evidence states; they do not replace data, formulas, baselines or falsifiers.
-
----
-
-## 11. Contribution rule
-
-Changes to this file should keep it subordinate to `ARCHITECTURE.md` and should not add unsupported certification, validation, valuation or maturity claims.
-
-Use a narrow commit message such as:
-
-```text
-docs(architecture): clarify operational schema boundary
-```
-
----
-
-## Final rule
-
-```text
-Operational architecture is a map.
-A map is not the territory.
-A map helps evidence travel without pretending it already arrived.
 ```
