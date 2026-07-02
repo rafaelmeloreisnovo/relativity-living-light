@@ -76,6 +76,9 @@ jobs:
       - name: Validate real cosmology YAML contract
         run: python3 tools/validate_real_cosmology_inputs_yml.py
 
+      - name: Validate real dataset variance registry
+        run: python3 tools/validate_real_dataset_variance_registry.py
+
       - name: Compute pipeline from committed real data
         run: |
           set -euo pipefail
