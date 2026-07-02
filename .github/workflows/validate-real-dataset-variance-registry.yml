@@ -1,0 +1,38 @@
+name: Validate Real Dataset Variance Registry
+
+on:
+  pull_request:
+    paths:
+      - data/real/cosmology/variance_policy_registry_minimal.csv
+      - data/real/cosmology/dataset_routes_minimal.csv
+      - tools/validate_real_dataset_variance_registry.py
+      - docs/real_data/REAL_DATA_VARIANCE_REGISTRY.md
+      - .github/workflows/validate-real-dataset-variance-registry.yml
+  push:
+    branches:
+      - main
+    paths:
+      - data/real/cosmology/variance_policy_registry_minimal.csv
+      - data/real/cosmology/dataset_routes_minimal.csv
+      - tools/validate_real_dataset_variance_registry.py
+      - docs/real_data/REAL_DATA_VARIANCE_REGISTRY.md
+      - .github/workflows/validate-real-dataset-variance-registry.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-real-dataset-variance-registry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate registry structure
+        run: python tools/validate_real_dataset_variance_registry.py
