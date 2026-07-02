@@ -1,0 +1,48 @@
+name: Validate Cross-Repo Relationship Registry
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
+      - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
+      - tools/validate_cross_repo_relationship_registry.py
+      - tests/test_cross_repo_relationship_registry.py
+      - .github/workflows/validate-cross-repo-relationship-registry.yml
+  push:
+    branches: [main]
+    paths:
+      - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
+      - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
+      - tools/validate_cross_repo_relationship_registry.py
+      - tests/test_cross_repo_relationship_registry.py
+      - .github/workflows/validate-cross-repo-relationship-registry.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-cross-repo-relationship-registry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate registry
+        run: python tools/validate_cross_repo_relationship_registry.py
+
+      - name: Run registry tests
+        run: python -m pytest -q tests/test_cross_repo_relationship_registry.py
