@@ -2,6 +2,7 @@
   "artifacts": {
     "json_report": "validacao_real/results/eft_exhaustion/eft_exhaustion_report.json",
     "markdown_report": "validacao_real/results/eft_exhaustion/eft_exhaustion_report.md",
+    "parameter_scan_csv": "validacao_real/results/eft_exhaustion/parameter_scan.csv",
     "reconstruction_csv": "validacao_real/results/eft_exhaustion/eft_reconstruction.csv"
   },
   "background": {
@@ -47,6 +48,26 @@
     "model_comparison_csv": "materialized"
   },
   "parameter_exhaustion": {
+    "finite_scan": {
+      "a_t_range_scanned": [
+        0.0,
+        1.0
+      ],
+      "alpha_range_scanned": [
+        0.0,
+        0.05
+      ],
+      "grid_points": 64,
+      "invalid_background_points": 0,
+      "k_range_scanned": [
+        0.0,
+        20.0
+      ],
+      "non_identifiable_points": 28,
+      "samples_per_axis": 4,
+      "stable_canonical_points": 0,
+      "truncation_notice": "TOKEN_VAZIO: alpha,k exigem [0, infinito]; execu\u00e7\u00e3o computacional usa corte finito declarado"
+    },
     "grid_points": 12,
     "non_identifiable": true,
     "reason": "TOKEN_VAZIO: par\u00e2metros n\u00e3o identific\u00e1veis em alpha=0 ou k=0"

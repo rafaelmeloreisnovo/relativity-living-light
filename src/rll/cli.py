@@ -14,7 +14,9 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
-def _run_script(path: Path, module: str | None = None, script_args: list[str] | None = None) -> None:
+def _run_script(
+    path: Path, module: str | None = None, script_args: list[str] | None = None
+) -> None:
     script_args = script_args or []
     original_argv = sys.argv[:]
     sys.argv = [str(path), *script_args]
@@ -92,7 +94,9 @@ def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
         warning_message = None
         script_args: tuple[str, ...] = ()
     else:
-        use_model_selection = (adversary_supplied and adversary != "lcdm") or with_growth
+        use_model_selection = (
+            adversary_supplied and adversary != "lcdm"
+        ) or with_growth
         if use_model_selection:
             script = root / "rll_vs_lcdm.py"
             module = None
@@ -108,7 +112,9 @@ def _calcular_plano_execucao(args: argparse.Namespace) -> ExecutionPlan:
             )
 
     if model not in {"rll", "both", "lcdm", "w0wa"}:
-        warning_message = f"Aviso: --model={model} será tratado no fluxo comparativo disponível."
+        warning_message = (
+            f"Aviso: --model={model} será tratado no fluxo comparativo disponível."
+        )
 
     return ExecutionPlan(
         script=script,
@@ -198,15 +204,30 @@ def cmd_latentes(args: argparse.Namespace) -> None:
 
 def cmd_eft_exhaust(args: argparse.Namespace) -> None:
     forwarded = [
-        "--out-dir", str(args.out_dir),
-        "--omega-m", str(args.omega_m),
-        "--omega-r", str(args.omega_r),
-        "--alpha", str(args.alpha),
-        "--k", str(args.k),
-        "--a-t", str(args.a_t),
-        "--grid", str(args.grid),
-        "--validation-summary", str(args.validation_summary),
-        "--model-comparison-csv", str(args.model_comparison_csv),
+        "--out-dir",
+        str(args.out_dir),
+        "--omega-m",
+        str(args.omega_m),
+        "--omega-r",
+        str(args.omega_r),
+        "--alpha",
+        str(args.alpha),
+        "--k",
+        str(args.k),
+        "--a-t",
+        str(args.a_t),
+        "--grid",
+        str(args.grid),
+        "--validation-summary",
+        str(args.validation_summary),
+        "--model-comparison-csv",
+        str(args.model_comparison_csv),
+        "--scan-alpha-max",
+        str(args.scan_alpha_max),
+        "--scan-k-max",
+        str(args.scan_k_max),
+        "--scan-samples",
+        str(args.scan_samples),
     ]
     if args.omega_lambda is not None:
         forwarded.extend(["--omega-lambda", str(args.omega_lambda)])
@@ -220,7 +241,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    run_parser = subparsers.add_parser("run", help="Executa pipelines sintético ou real")
+    run_parser = subparsers.add_parser(
+        "run", help="Executa pipelines sintético ou real"
+    )
     run_parser.add_argument(
         "--data",
         choices=["synthetic", "real"],
@@ -272,12 +295,13 @@ def build_parser() -> argparse.ArgumentParser:
     )
     preflight_parser.set_defaults(func=cmd_preflight_real)
 
-
     eft_parser = subparsers.add_parser(
         "eft-exhaust",
         help="Executa motor conservador de exaustão/falsificação EFT do RLL",
     )
-    eft_parser.add_argument("--out-dir", type=Path, default=Path("validacao_real/results/eft_exhaustion"))
+    eft_parser.add_argument(
+        "--out-dir", type=Path, default=Path("validacao_real/results/eft_exhaustion")
+    )
     eft_parser.add_argument("--omega-m", type=float, default=0.315)
     eft_parser.add_argument("--omega-r", type=float, default=9.0e-5)
     eft_parser.add_argument("--omega-lambda", type=float, default=None)
@@ -285,8 +309,19 @@ def build_parser() -> argparse.ArgumentParser:
     eft_parser.add_argument("--k", type=float, default=10.0)
     eft_parser.add_argument("--a-t", type=float, default=0.5)
     eft_parser.add_argument("--grid", type=int, default=256)
-    eft_parser.add_argument("--validation-summary", type=Path, default=Path("validacao_real/results/validation_summary.json"))
-    eft_parser.add_argument("--model-comparison-csv", type=Path, default=Path("validacao_real/results/model_comparison.csv"))
+    eft_parser.add_argument(
+        "--validation-summary",
+        type=Path,
+        default=Path("validacao_real/results/validation_summary.json"),
+    )
+    eft_parser.add_argument(
+        "--model-comparison-csv",
+        type=Path,
+        default=Path("validacao_real/results/model_comparison.csv"),
+    )
+    eft_parser.add_argument("--scan-alpha-max", type=float, default=0.05)
+    eft_parser.add_argument("--scan-k-max", type=float, default=20.0)
+    eft_parser.add_argument("--scan-samples", type=int, default=5)
     eft_parser.set_defaults(func=cmd_eft_exhaust)
 
     latentes_parser = subparsers.add_parser(
@@ -298,7 +333,9 @@ def build_parser() -> argparse.ArgumentParser:
         choices=["validate", "plan", "fetch", "score", "report", "verify"],
         help="Subcomando RLL-LATENTES",
     )
-    latentes_parser.add_argument("--catalog", type=Path, default=latentes.DEFAULT_CATALOG)
+    latentes_parser.add_argument(
+        "--catalog", type=Path, default=latentes.DEFAULT_CATALOG
+    )
     latentes_parser.add_argument("--schema", type=Path, default=latentes.DEFAULT_SCHEMA)
     latentes_parser.add_argument("--root", type=Path, default=Path("."))
     latentes_parser.add_argument("--source-id", default=None)
