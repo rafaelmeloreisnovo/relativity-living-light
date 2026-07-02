@@ -52,3 +52,12 @@ Status: metadata_only / fetch-ready via orchestrator
 - O contrato aponta apenas para arquivos reais já materializados no repositório e preserva a fronteira de claim: registro/materialização de fonte não é validação científica nem confirmação de RLL.
 - Validação estrutural: `python tools/validate_real_cosmology_inputs_yml.py`.
 - Gate de CI: `.github/workflows/real-data-contract-ci.yml` valida o YAML antes de executar a computação com dados reais commitados.
+
+## Importação real com failover, watchdog, rollback e tags
+
+- A rota executável principal é `scripts/compute_rll_real_pipeline.py`; ela lê dados reais materializados em `artifacts/.../raw/cosmology_curated` no modo `auto` e usa os arquivos reais versionados em `data/real` como failover explícito, sem promover fixtures sintéticas.
+- Cada execução publica `MANIFEST.json`, `COMPUTE_REPORT.md`, `TAGS.json`, `WATCHDOG.json`, `CHECKSUMS.sha256` e tabelas processadas para upload pelo workflow `.github/workflows/real-data-contract-ci.yml`.
+- `WATCHDOG.json` falha a execução quando entradas reais obrigatórias faltam, quando contagens ficam vazias ou quando incertezas deixam de ser positivas.
+- Escritas de artefatos são atômicas e preservam `*.bak` quando substituem saída anterior, permitindo rollback local auditável.
+- Tags GitHub (`refs/tags/...`) e `RLL_IMPORT_TAGS` são autodetectadas apenas como proveniência de publicação; não autorizam claim científico nem release promocional.
+
