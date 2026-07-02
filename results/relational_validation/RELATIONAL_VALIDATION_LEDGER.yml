@@ -76,23 +76,31 @@ entries:
     artifact_paths:
       - results/relational_validation/packages/ACADEMIC_CORR_001/package.yml
       - results/relational_validation/packages/ACADEMIC_CORR_001/relation_graph.json
+      - schemas/relational_validation_package.schema.json
+      - schemas/relation_graph.schema.json
+      - tools/validate_academic_correlation_package.py
+      - tests/test_academic_correlation_package_validator.py
+      - tests/test_numeric_representation_semantics.py
+      - .github/workflows/validate-academic-correlation-package.yml
+      - docs/formulas/RAFAELIA_SYMBOL_TABLE.md
+      - docs/yml/PROOF_OBLIGATION_REGISTRY.yml
     metric_names:
-      - TOKEN_VAZIO_METRIC_UNTIL_VALIDATOR_EXISTS
+      - TOKEN_VAZIO_METRIC_UNTIL_TESTED_AXIS_EXISTS
     baseline_or_adversary: >-
       LCDM, wCDM and CPL/w0waCDM for cosmology axes; derivation-required
-      baseline for proof axes; synthetic null and stability baselines for
+      baseline for formula axes; synthetic null and stability baselines for
       graph/chaos axes.
     uncertainty_or_covariance_status: TOKEN_VAZIO_UNCERTAINTY_FOR_NUMERICAL_AXES
     contradiction_check: TOKEN_VAZIO_CONTRADICTION_CHECK
-    reproducibility_command: TOKEN_VAZIO_COMMAND
+    reproducibility_command: >-
+      python tools/validate_academic_correlation_package.py
     claim_allowed: false
     claim_blocked:
-      - academic_correlation_as_scientific_validation
-      - analogy_as_proof
-      - proof_without_derivation
-      - self_reference_as_circular_evidence
+      - academic_correlation_as_validation
+      - analogy_as_evidence
+      - formula_without_derivation_path
       - promotion_without_metric_baseline_uncertainty_and_boundary
     next_gate: >-
-      Create schemas and validator for academic-correlation packages, then add
-      one tested axis with concrete metrics, baseline/adversary, uncertainty
-      status, contradiction check and reproducibility command.
+      Keep ACADEMIC_CORR_001 pending until one concrete relation axis has
+      metric, baseline/adversary, uncertainty status, contradiction check and
+      output artifact. The current validator and workflow check structure only.
