@@ -26,6 +26,7 @@ Este repositório inclui agora um pacote público organizado para leitura, audit
 - Checklist de publicação: [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md)
 - Limite nulo e AION: [`docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`](docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md)
 - Modelo Vetorial Informacional (MVICS): [`docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md`](docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md)
+- Detecção imperfeita e estados de prova: [`docs/canonicos/23_LOBO_DETECCAO_IMPERFEITA_E_ESTADOS_DE_PROVA.md`](docs/canonicos/23_LOBO_DETECCAO_IMPERFEITA_E_ESTADOS_DE_PROVA.md)
 
 Regra de leitura: metáfora ilumina, mas não valida; dado, predição, cálculo e falsificador sustentam a camada científica.
 
