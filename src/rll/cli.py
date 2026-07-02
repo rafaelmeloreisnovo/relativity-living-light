@@ -205,6 +205,8 @@ def cmd_eft_exhaust(args: argparse.Namespace) -> None:
         "--k", str(args.k),
         "--a-t", str(args.a_t),
         "--grid", str(args.grid),
+        "--validation-summary", str(args.validation_summary),
+        "--model-comparison-csv", str(args.model_comparison_csv),
     ]
     if args.omega_lambda is not None:
         forwarded.extend(["--omega-lambda", str(args.omega_lambda)])
@@ -283,6 +285,8 @@ def build_parser() -> argparse.ArgumentParser:
     eft_parser.add_argument("--k", type=float, default=10.0)
     eft_parser.add_argument("--a-t", type=float, default=0.5)
     eft_parser.add_argument("--grid", type=int, default=256)
+    eft_parser.add_argument("--validation-summary", type=Path, default=Path("validacao_real/results/validation_summary.json"))
+    eft_parser.add_argument("--model-comparison-csv", type=Path, default=Path("validacao_real/results/model_comparison.csv"))
     eft_parser.set_defaults(func=cmd_eft_exhaust)
 
     latentes_parser = subparsers.add_parser(

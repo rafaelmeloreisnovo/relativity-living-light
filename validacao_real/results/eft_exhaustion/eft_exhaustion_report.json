@@ -1,5 +1,7 @@
 {
   "artifacts": {
+    "json_report": "validacao_real/results/eft_exhaustion/eft_exhaustion_report.json",
+    "markdown_report": "validacao_real/results/eft_exhaustion/eft_exhaustion_report.md",
     "reconstruction_csv": "validacao_real/results/eft_exhaustion/eft_reconstruction.csv"
   },
   "background": {
@@ -10,18 +12,39 @@
     "reason": "TOKEN_VAZIO: canonical kinetic density becomes negative; no derived canonical EFT proof",
     "valid": false
   },
+  "evidence_audit": {
+    "missing_required_baselines": [
+      "w0waCDM"
+    ],
+    "missing_required_datasets": [
+      "DESI DR2",
+      "Pantheon+",
+      "Planck 2018",
+      "SN Ia"
+    ],
+    "source_artifacts": {
+      "model_comparison_csv": "validacao_real/results/model_comparison.csv",
+      "validation_summary": "validacao_real/results/validation_summary.json"
+    }
+  },
   "final_decision": "REJEITADO COMO EFT",
   "model_comparison": {
-    "RLL_vs_LCDM": "TOKEN_VAZIO",
+    "RLL_vs_LCDM": {
+      "baseline": "LCDM",
+      "decision_by_delta_aic": "rejeitado",
+      "delta_aic_rll_minus_baseline": 9.506999999999998,
+      "delta_bic_rll_minus_baseline": 13.1203,
+      "delta_chi2_rll_minus_baseline": 5.506999999999998
+    },
     "RLL_vs_w0waCDM": "TOKEN_VAZIO"
   },
   "observational_validation": {
-    "BAO": "TOKEN_VAZIO",
+    "BAO": "materialized_summary",
     "DESI DR2": "TOKEN_VAZIO",
     "Pantheon+": "TOKEN_VAZIO",
     "Planck 2018": "TOKEN_VAZIO",
     "SN Ia": "TOKEN_VAZIO",
-    "reason": "TOKEN_VAZIO: this command does not fabricate or download missing likelihood data; use existing real-data pipelines when materialized"
+    "model_comparison_csv": "materialized"
   },
   "parameter_exhaustion": {
     "grid_points": 12,
