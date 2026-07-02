@@ -53,11 +53,58 @@ def test_watchdog_marks_dry_run_and_safe_stems() -> None:
     assert watchdog["planned_runs"] == 2
 
 
-def test_plan_output_uses_rollback_backup(tmp_path) -> None:
+def test_existing_output_policy_fail_blocks_collision(tmp_path) -> None:
+    plan = matrix.build_plan([1], 100)
+    stem = plan[0]["output_stem"]
+    (tmp_path / f"{stem}.json").write_text("{}\n", encoding="utf-8")
+
+    with pytest.raises(ValueError, match="already exist"):
+        matrix.apply_existing_output_policy(plan, "fail", tmp_path)
+
+
+def test_existing_output_policy_suffix_allocates_failover_stem(tmp_path) -> None:
+    plan = matrix.build_plan([1], 100)
+    stem = plan[0]["output_stem"]
+    (tmp_path / f"{stem}.json").write_text("{}\n", encoding="utf-8")
+
+    resolved, actions, conflicts = matrix.apply_existing_output_policy(plan, "suffix", tmp_path)
+
+    assert conflicts[stem]
+    assert actions[0]["action"] == "suffix_failover"
+    assert resolved[0]["output_stem"] == f"{stem}_failover_1"
+    assert resolved[0]["command"].endswith(f"--output-stem {stem}_failover_1")
+
+
+def test_existing_output_policy_skip_removes_conflicting_run(tmp_path) -> None:
+    plan = matrix.build_plan([1, 2], 100)
+    first_stem = plan[0]["output_stem"]
+    (tmp_path / f"{first_stem}.csv").write_text("old\n", encoding="utf-8")
+
+    resolved, actions, conflicts = matrix.apply_existing_output_policy(plan, "skip", tmp_path)
+
+    assert first_stem in conflicts
+    assert actions[0]["action"] == "skip_existing"
+    assert [item["seed"] for item in resolved] == [2]
+
+
+def test_plan_output_does_not_create_artificial_backup_on_first_write(tmp_path) -> None:
+    output = tmp_path / "robust_fit_plan.json"
+
+    assert matrix.main(["--seeds", "1", "--maxiter", "100", "--prefix", "pytest_plan", "--plan-output", str(output)]) == 0
+
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    backup = output.with_suffix(output.suffix + ".bak")
+    assert not backup.exists()
+    assert payload["mode"] == "dry_run"
+    assert payload["failsafe"]["atomic_plan_output"] is True
+    assert payload["watchdog"]["overall_status"] == "pass"
+
+
+def test_plan_output_uses_rollback_backup_when_replacing(tmp_path) -> None:
     output = tmp_path / "robust_fit_plan.json"
     output.write_text('{"old": true}\n', encoding="utf-8")
 
-    assert matrix.main(["--seeds", "1", "--maxiter", "100", "--plan-output", str(output)]) == 0
+    assert matrix.main(["--seeds", "1", "--maxiter", "100", "--prefix", "pytest_plan", "--plan-output", str(output)]) == 0
 
     payload = json.loads(output.read_text(encoding="utf-8"))
     backup = output.with_suffix(output.suffix + ".bak")
