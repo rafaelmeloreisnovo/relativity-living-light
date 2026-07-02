@@ -64,3 +64,35 @@ entries:
       Add the first concrete relational-validation package with source paths,
       log paths, artifact paths, metrics, baseline/adversary, contradiction
       check, reproducibility command and explicit claim boundary.
+
+  - claim_id: ACADEMIC_CORR_001
+    relation_graph_id: REL_GRAPH_ACADEMIC_CORR_001
+    state: RELATIONAL_PENDING
+    source_paths:
+      - docs/research/ACADEMIC_CORRELATION_CANDIDATE_MAP.md
+      - results/relational_validation/README.md
+      - results/relational_validation/RELATIONAL_VALIDATION_LEDGER.yml
+    log_paths: []
+    artifact_paths:
+      - results/relational_validation/packages/ACADEMIC_CORR_001/package.yml
+      - results/relational_validation/packages/ACADEMIC_CORR_001/relation_graph.json
+    metric_names:
+      - TOKEN_VAZIO_METRIC_UNTIL_VALIDATOR_EXISTS
+    baseline_or_adversary: >-
+      LCDM, wCDM and CPL/w0waCDM for cosmology axes; derivation-required
+      baseline for proof axes; synthetic null and stability baselines for
+      graph/chaos axes.
+    uncertainty_or_covariance_status: TOKEN_VAZIO_UNCERTAINTY_FOR_NUMERICAL_AXES
+    contradiction_check: TOKEN_VAZIO_CONTRADICTION_CHECK
+    reproducibility_command: TOKEN_VAZIO_COMMAND
+    claim_allowed: false
+    claim_blocked:
+      - academic_correlation_as_scientific_validation
+      - analogy_as_proof
+      - proof_without_derivation
+      - self_reference_as_circular_evidence
+      - promotion_without_metric_baseline_uncertainty_and_boundary
+    next_gate: >-
+      Create schemas and validator for academic-correlation packages, then add
+      one tested axis with concrete metrics, baseline/adversary, uncertainty
+      status, contradiction check and reproducibility command.
