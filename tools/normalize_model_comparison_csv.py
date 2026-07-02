@@ -37,12 +37,19 @@ def _case_insensitive_lookup(row: dict[str, str], key: str) -> str | None:
 
 
 def _append_missing(fieldnames: list[str], required: Iterable[str]) -> list[str]:
+    """Append required columns when their exact output names are absent.
+
+    Alias columns are intentionally exact-case outputs: `AIC` and `aic` are
+    different compatibility columns because downstream readers may require the
+    lowercase spelling even when the source CSV already contains uppercase AIC.
+    """
+
     out = list(fieldnames)
-    existing = {name.lower() for name in out}
+    existing = set(out)
     for name in required:
-        if name.lower() not in existing:
+        if name not in existing:
             out.append(name)
-            existing.add(name.lower())
+            existing.add(name)
     return out
 
 
