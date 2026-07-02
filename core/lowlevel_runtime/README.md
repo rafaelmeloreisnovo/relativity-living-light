@@ -51,6 +51,7 @@ gcc -ffreestanding -fno-builtin -nostdlib -c core/lowlevel_runtime/c/pantheon_fr
 - `rll_sqrt3_2_decay_q16` implementa `R_{n+1}=Entrada_n+h*R_n` sem heap.
 - `rll_sqrt3_2_hex_grid_q16` gera coordenadas de grid triangular/hexagonal em Q16.16.
 - `rll_sqrt3_2_cosmo_pivot_q16` expõe `a_h=sqrt(3)/2` e `z_h=2/sqrt(3)-1` como pivô diagnóstico, não como constante cosmológica fundamental.
+- `rll_sqrt3_2_spiral_step_q16` gera a próxima evolução espiral dimensional em setores de 60°, usando a altura do triângulo equilátero como componente `y`/altura auditável.
 
 Build/teste focal:
 ```bash
