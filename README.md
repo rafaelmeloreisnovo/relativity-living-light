@@ -37,6 +37,7 @@ Regra de leitura: metáfora ilumina, mas não valida; dado, predição, cálculo
 A leitura de claims do RLL/MCRP deve passar pelo mapa central de rastreabilidade antes de qualquer conclusão:
 
 - Mapa central: [`docs/RLL_TRACEABILITY_MAP.md`](docs/RLL_TRACEABILITY_MAP.md)
+- Arquitetura operacional claim-bounded: [`ARCHITECTURE.md`](ARCHITECTURE.md)
 - Arquitetura segura claim-gated: [`docs/architecture/ARCHITECTURE_CLAIM_GATED.md`](docs/architecture/ARCHITECTURE_CLAIM_GATED.md)
 - Registry cross-repo evidence-gated: [`docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md`](docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md)
 - Auditoria da tag `v1.0.0`: [`docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md`](docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md)
@@ -73,12 +74,13 @@ Para formalização adicional, consulte `docs/README_ADVERTENCIA_DOI.md`.
 ---
 
 ## Carta de apresentação institucional
-Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um formato adequado para pós-PhD: verificável, citável, multilíngue e com governança documental.
+
+Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em formato de revisão acadêmico-profissional: verificável, citável, multilíngue e com governança documental, sem que isso substitua validação científica externa.
 
 ### Objetivos desta refatoração
 - Preservar integralmente dados, trilhas autorais e histórico técnico.
-- Elevar o padrão de forma para revisão por pares, bancas e colaborações internacionais.
-- Conectar fundamentos matemáticos, física, cognição linguística e validação observacional em uma navegação coerente.
+- Elevar o padrão de forma para revisão técnica externa, bancas e colaborações internacionais.
+- Conectar fundamentos matemáticos, física, cognição linguística e rotas de validação observacional com fronteiras explícitas de claim.
 
 ## Painel de governança GitHub (selos)
 - **Licença e conformidade**: badge de licença + `LICENSE.md`.
@@ -95,22 +97,23 @@ Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um
 
 ## Leitura recomendada (ordem canônica)
 1. `README.md` (este documento)
-2. `docs/architecture/ARCHITECTURE_CLAIM_GATED.md`
-3. `docs/RLL_TRACEABILITY_MAP.md`
-4. `docs/INDICE_MESTRE.md`
-5. `docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md`
-6. `docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`
-7. `docs/ACADEMIC_TAXONOMY_INDEX.md`
-8. `docs/REFERENCES.md`
-9. `docs/DOCUMENTATION_FULL_INVENTORY.md`
+2. `ARCHITECTURE.md`
+3. `docs/architecture/ARCHITECTURE_CLAIM_GATED.md`
+4. `docs/RLL_TRACEABILITY_MAP.md`
+5. `docs/INDICE_MESTRE.md`
+6. `docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md`
+7. `docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`
+8. `docs/ACADEMIC_TAXONOMY_INDEX.md`
+9. `docs/REFERENCES.md`
+10. `docs/DOCUMENTATION_FULL_INVENTORY.md`
 
 ---
 
 O RLL/MCRP passa a separar validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon+/Planck testam a camada cosmológica.
 
-# README — Edição Técnica Pós‑Doc (2026)
+# README — Edição Técnica Profissional (2026)
 
-> **Status**: revisão ultra formal com indexação semântica, rastreabilidade metodológica e atualização conceitual alinhada a práticas de mercado (MLOps científico, FAIR data, reproducibility-by-design e governança de evidência).
+> **Status**: revisão formal com indexação semântica, rastreabilidade metodológica e atualização conceitual inspirada por práticas de ciência computacional, FAIR data, reproducibility-by-design e governança de evidência, sem substituir validação científica.
 
 ## Índice Estruturado
 - [1. Escopo e finalidade](#1-escopo-e-finalidade)
@@ -125,10 +128,11 @@ Este arquivo foi normalizado para **uso acadêmico-profissional** com linguagem 
 
 ## 2. Fundamentos técnico-científicos
 - **Reprodutibilidade**: processos, decisões e resultados devem ser rastreáveis.
-- **Integração teoria-dados**: hipótese, modelagem, inferência e validação observacional são tratadas como pipeline único.
+- **Integração teoria-dados**: hipótese, modelagem, inferência e validação observacional são tratadas como pipeline com fronteiras explícitas de claim.
 - **Estado da arte**: adoção de boas práticas contemporâneas de documentação técnica para pesquisa computacional e ciência de dados.
 
 ## 3. Arquitetura documental e encadeamento por índices
+- Arquitetura operacional: `ARCHITECTURE.md`
 - Índice mestre: `docs/INDICE_MESTRE.md`
 - Mapa de rastreabilidade: `docs/RLL_TRACEABILITY_MAP.md`
 - Arquitetura segura claim-gated: `docs/architecture/ARCHITECTURE_CLAIM_GATED.md`
@@ -141,7 +145,7 @@ Este arquivo foi normalizado para **uso acadêmico-profissional** com linguagem 
 1. Consistência terminológica e semântica.
 2. Conectividade entre hipóteses, métodos, resultados e limitações.
 3. Priorização de evidência verificável e versionamento explícito.
-4. Preparação para revisão técnica externa (peer-style).
+4. Preparação para revisão técnica externa em estilo de auditoria, sem pressupor aceitação ou validação final.
 
 ## 5. Referências bibliográficas
 1. Wilkinson, M. D., et al. (2016). *The FAIR Guiding Principles for scientific data management and stewardship*. Scientific Data, 3, 160018.
