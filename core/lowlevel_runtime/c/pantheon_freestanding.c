@@ -15,6 +15,16 @@
 #define RLL_INV_SQRT3_2_Q16_I64 75674ll
 #define RLL_COSMO_Z_H_Q16 10138u
 
+static rll_i64 rll_sqrt3_2_pow_radius_q16(rll_u32 step, rll_i64 radius0_q16) {
+    rll_u32 i = 0u;
+    rll_i64 radius_q16 = radius0_q16;
+    while (i < step) {
+        radius_q16 = rll_sqrt3_2_project_q16(radius_q16);
+        i++;
+    }
+    return radius_q16;
+}
+
 rll_i64 rll_sqrt3_2_project_q16(rll_i64 x_q16) {
     return (x_q16 * RLL_SQRT3_2_Q16_I64) >> 16;
 }
@@ -42,6 +52,39 @@ rll_sqrt3_2_pivot_q16 rll_sqrt3_2_cosmo_pivot_q16(void) {
     return p;
 }
 
+rll_sqrt3_2_spiral_q16 rll_sqrt3_2_spiral_step_q16(rll_u32 step, rll_i64 radius0_q16) {
+    rll_sqrt3_2_spiral_q16 p;
+    rll_i64 half_radius_q16;
+    rll_i64 height_q16;
+    rll_u32 sector = step % 6u;
+
+    p.radius_q16 = rll_sqrt3_2_pow_radius_q16(step, radius0_q16);
+    half_radius_q16 = p.radius_q16 >> 1;
+    height_q16 = rll_sqrt3_2_project_q16(p.radius_q16);
+    p.equilateral_height_q16 = height_q16;
+    p.sector60 = sector;
+
+    if (sector == 0u) {
+        p.x_q16 = p.radius_q16;
+        p.y_q16 = 0ll;
+    } else if (sector == 1u) {
+        p.x_q16 = half_radius_q16;
+        p.y_q16 = height_q16;
+    } else if (sector == 2u) {
+        p.x_q16 = -half_radius_q16;
+        p.y_q16 = height_q16;
+    } else if (sector == 3u) {
+        p.x_q16 = -p.radius_q16;
+        p.y_q16 = 0ll;
+    } else if (sector == 4u) {
+        p.x_q16 = -half_radius_q16;
+        p.y_q16 = -height_q16;
+    } else {
+        p.x_q16 = half_radius_q16;
+        p.y_q16 = -height_q16;
+    }
+    return p;
+}
 
 #if defined(__linux__) && defined(__x86_64__)
 #define RLL_SYS_WRITE 1ull

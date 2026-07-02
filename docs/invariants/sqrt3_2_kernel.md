@@ -218,6 +218,7 @@ rll_sqrt3_2_reverse_q16(x_q16)
 rll_sqrt3_2_decay_q16(state_q16, input_q16)
 rll_sqrt3_2_hex_grid_q16(row, col, side_q16)
 rll_sqrt3_2_cosmo_pivot_q16()
+rll_sqrt3_2_spiral_step_q16(step, radius0_q16)
 ```
 
 Garantias do escopo atual:
@@ -227,3 +228,4 @@ Garantias do escopo atual:
 - fixed-point Q16.16 explícito;
 - rota de rollback aproximada por `2/sqrt(3)`;
 - pivô cosmológico exportado como diagnóstico (`a_h`, `z_h`), não como constante fundamental.
+- evolução espiral discreta por setores de 60° com raio `r_n = r_0*(sqrt(3)/2)^n` e altura de triângulo equilátero `h_n = r_n*sqrt(3)/2`, sem trigonometria runtime nem heap.
