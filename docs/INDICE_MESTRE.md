@@ -148,3 +148,5 @@ Encaminhamentos complementares:
 - Fonte official unica para consulta e citacao:
   - [`docs/canonicos/00_COMO_LER.md`](canonicos/00_COMO_LER.md)
   - [`docs/canonicos/06_COMPARACOES_DETALHADAS.md`](canonicos/06_COMPARACOES_DETALHADAS.md)
+
+- `docs/canonicos/23_LOBO_DETECCAO_IMPERFEITA_E_ESTADOS_DE_PROVA.md` — detecção imperfeita, fadiga, falsificação e estados de prova.
