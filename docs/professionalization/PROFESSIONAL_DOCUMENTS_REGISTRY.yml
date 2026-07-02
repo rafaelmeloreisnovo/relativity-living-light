@@ -75,11 +75,31 @@ professional_documents:
     next_action: >
       Apply the checklist to high-visibility documents before external sharing.
 
+  - path: docs/professionalization/EXTERNAL_REVIEW_PACKET.md
+    title: External Review Packet
+    ontology: external_review_packet
+    quality_state: review_ready
+    epistemic_state: METADATA_READY
+    audience:
+      - university_faculty
+      - research_centers
+      - independent_scientific_advisors
+      - software_reproducibility_auditors
+      - funders
+    claim_allowed: >
+      External reviewers now have a concise route through the professionalization, governance and evidence-boundary documents.
+    claim_blocked: >
+      The packet does not validate RLL, refute RLL, determine commercial value, create legal rights or replace peer review.
+    next_action: >
+      Use the packet to guide one narrow external review or reproducibility task.
+
 related_governance:
   - path: docs/governance/OPERATIONAL_EXCELLENCE_INTEGRITY_CHARTER.md
     relation: parent_governance_anchor
   - path: docs/yml/YML_ONTO_EPISTEMIC_REGISTRY.md
     relation: state_vocabulary_anchor
+  - path: docs/governance/PROFESSIONALIZATION_CHARTER_LINK.md
+    relation: professionalization_governance_bridge
 
 blocked_uses:
   - promote scientific claim from document polish alone
@@ -87,9 +107,10 @@ blocked_uses:
   - declare market value without valuation method and external review
   - treat institutional readiness as institutional acceptance
   - hide TOKEN_VAZIO blockers for presentation quality
+  - treat external review routing as external endorsement
 
 next_responsible_actions:
-  - add a concise external-review packet index
   - link professionalization docs from the main documentation index when appropriate
   - add a validator only if the document set stabilizes
   - keep claims bounded during future polish
+  - use the external review packet to define one narrow review task
