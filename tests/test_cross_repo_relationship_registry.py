@@ -34,7 +34,7 @@ def test_duplicate_relationship_id_is_rejected() -> None:
         "Relationship": "Candidate relation",
         "State": "HYPOTHESIS",
         "Safe reading": "candidate",
-        "Blocked claim": "validated integration",
+        "Blocked claim": "working integration without owning-repo evidence",
         "Next verification": "Verify owning repository",
     }
     with pytest.raises(ValueError, match="duplicate"):
