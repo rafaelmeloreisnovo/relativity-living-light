@@ -31,11 +31,23 @@
       "sha256": "d9c6ebb3e2ed1f959160a19e9bed89993a6ea98235a92fc618a0602d69d11072"
     }
   },
-  "claim_boundary": "Formula extraction and categorization do not promote scientific claims without data, loader, covariance, test and CI gate.",
+  "curated_supplements": {
+    "RAFAELIA_FORMAL_UNIFIED_CORE.md": {
+      "path": "data/formulas/RAFAELIA_FORMAL_UNIFIED_CORE.md",
+      "kind": "curated_formula_supplement",
+      "status": "mathematical_operational_core / claim_boundary",
+      "bytes": 4205,
+      "sha256": "28a2dd26158c84d61c23109733cabfa91d360909549920dbdcedd90d1f9e8ddb",
+      "claim_allowed": false,
+      "claim_boundary": "Curated formula supplement. Defines equations and operating layers only; does not validate physics, cosmology, neuroscience or quantum hardware."
+    }
+  },
+  "claim_boundary": "Formula extraction, categorization and curated formula supplements do not promote scientific claims without data, loader, covariance, test and CI gate.",
   "required_next_gate": [
     "store full formulas.json in repo or release artifact",
     "validate schema in CI",
     "map each formula to claim_gate and source",
-    "link formula ids to scripts/results where available"
+    "link formula ids to scripts/results where available",
+    "implement and test RAFAELIA formal core before any scientific claim promotion"
   ]
 }
