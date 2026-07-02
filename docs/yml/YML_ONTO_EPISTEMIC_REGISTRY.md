@@ -2,7 +2,7 @@
 
 ## Status
 
-`metadata_ready`
+`metadata_ready / governance_record / claim_boundary`
 
 ## Finalidade
 
@@ -80,6 +80,10 @@ O que não pode ser promovido a claim?
 
 ## 3. Regra de promoção
 
+A promoção de estado deve ser evidencial, não estética.
+
+Fluxo mínimo recomendado:
+
 ```text
 TOKEN_VAZIO
 → DECLARED_BY_AUTHOR
@@ -89,95 +93,130 @@ TOKEN_VAZIO
 
 `METADATA_READY` não vira `REAL_VALIDATED` automaticamente.
 
-Para promoção, exigir:
+Para promoção a validação real, exigir:
 
 1. fonte externa rastreável;
 2. URL, DOI ou referência pública quando aplicável;
 3. data de acesso;
 4. hash/checksum ou artefato commitado;
 5. comando executado;
-6. ambiente ou workflow identificado;
+6. ambiente, script ou workflow identificado;
 7. artefato produzido;
 8. métrica gerada;
 9. baseline ou adversário definido;
 10. covariância/erro quando aplicável;
 11. fronteira explícita de claim;
-12. registro no mapa de rastreabilidade.
+12. registro em manifesto, índice ou nota de auditoria.
 
 ---
 
-## 4. Claim boundary obrigatório
+## 4. Regras contra inflação
+
+Proibido:
+
+```text
+YAML parseou → teoria validada
+workflow rodou → modelo venceu
+mock funcionou → dado real confirmado
+documento existe → claim científico provado
+```
+
+Permitido:
+
+```text
+YAML parseou → METADATA_READY
+workflow rodou → EXECUTION_EVIDENCE
+mock funcionou → SYNTHETIC_ONLY
+documento existe → governance_record ou declared_by_author
+```
+
+---
+
+## 5. Claim boundary obrigatório
+
+Todo YAML que toca dados, validação, resultados ou rotas científicas deve conter ou apontar para uma fronteira de claim.
+
+Modelo mínimo:
 
 ```yaml
 claim_boundary: >
-  Este arquivo organiza metadados, caminhos ou contratos.
+  Este arquivo organiza metadados, caminhos, fontes, contratos ou rotas.
   Ele não prova superioridade científica, nem valida fisicamente o modelo.
-  Claims científicos exigem fonte, execução, métrica, baseline, erro/covariância
-  quando aplicável e rastreabilidade completa.
+  Claims científicos exigem fonte, execução, métrica, baseline,
+  erro/covariância quando aplicável e rastreabilidade completa.
 ```
 
 ---
 
-## 5. Cabeçalho recomendado para YAML de dados/configuração
+## 6. Estados por localização
+
+| Local | Estado ontológico provável | Observação |
+|---|---|---|
+| `.github/workflows/*.yml` | `workflow_executable` | Deve ter `permissions`; preferir `timeout-minutes` e `concurrency` |
+| `data/**/*.yml` | `data_contract` ou `source_manifest` | Deve declarar fonte, schema, consumidor e claim boundary |
+| `docs/pipelines/**/*.yml` | `validation_registry` ou `pipeline_config` | Deve declarar canonicidade e consumidores |
+| `validacao_real/**/*.yml` | `source_manifest` ou `data_contract` | Deve bloquear claim sem execução real |
+| `docs/yml/*.md` | `governance_record` | Documenta auditoria; não prova claim físico |
+| raiz `*.yml` | `legacy_mirror` ou `pipeline_config` | Deve ser justificado, migrado ou marcado como não canônico |
+
+---
+
+## 7. Registro mínimo por YAML relevante
 
 ```yaml
-ontology:
-  artifact_kind: validation_registry
-  system_role: epistemic_router
-  canonical_path: docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml
-  lifecycle: active
-  owner_layer: docs/pipelines
+artifact:
+  path: TOKEN_VAZIO
+  ontology_class: TOKEN_VAZIO
+  epistemic_state: TOKEN_VAZIO
+  canonical: false
+  duplicate_of: TOKEN_VAZIO
   consumed_by:
-    - tools/generate_yml_audit_docs.py
-    - tools/docs_inventory.py
-    - .github/workflows/START_MANUAL_HERE.yml
-
-epistemics:
-  default_state: DECLARED_BY_AUTHOR
-  allowed_states:
-    - VERIFIED
-    - DECLARED_BY_AUTHOR
     - TOKEN_VAZIO
-    - CONTRADICTION
-    - METADATA_READY
-    - REAL_VALIDATED_BLOCKED
-  promotion_rule: >
-    A rota só passa a VERIFIED quando houver fonte pública rastreável,
-    DOI/URL quando aplicável, data de acesso, hash ou artefato commitado,
-    comando executado, métrica produzida, baseline/adversário e claim_boundary.
-  claim_boundary: >
-    Metadata-ready YAML não implica validação científica.
+  produced_by:
+    - TOKEN_VAZIO
+  claim_allowed:
+    - TOKEN_VAZIO
+  claim_blocked:
+    - TOKEN_VAZIO
+  evidence_required:
+    - TOKEN_VAZIO
+  next_action: TOKEN_VAZIO
 ```
 
 ---
 
-## 6. Regras para mock, synthetic, demo e placeholder
+## 8. Relação com auditoria
 
-Qualquer arquivo ou step contendo `mock`, `synthetic`, `example`, `demo`, `placeholder`, `sample` ou `fake` deve ser classificado como:
+Mudanças em YAML devem ser registradas de forma consultável quando alterarem regime, canonicidade, validação, fonte, contrato, workflow ou fronteira de claim.
 
-```text
-SYNTHETIC_ONLY
-```
-
-ou, no mínimo:
+Diretórios relacionados:
 
 ```text
-METADATA_READY / CLAIM_BLOCKED
+docs/audits/
+docs/yml/
+docs/governance/
+data/real/
+.github/workflows/
 ```
-
-Nunca como:
-
-```text
-REAL_VALIDATED
-```
-
-sem prova contrária explícita.
 
 ---
 
-## 7. Critério final
+## 9. Fronteira final
 
-Um YAML está bem organizado quando responde:
+Este registro organiza linguagem, estados e regras para YAML.
+
+Ele não:
+
+- valida RLL;
+- refuta RLL;
+- escolhe modelo cosmológico;
+- altera outputs;
+- promove mock ou sintético;
+- substitui fonte, execução, métrica, baseline, covariância ou falsificador.
+
+## Critério final
+
+Um YAML bem classificado deve responder:
 
 ```text
 O que sou?
