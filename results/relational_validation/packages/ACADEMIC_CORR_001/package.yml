@@ -1,0 +1,86 @@
+schema: rll.relational_validation_package.v1
+claim_id: ACADEMIC_CORR_001
+relation_graph_id: REL_GRAPH_ACADEMIC_CORR_001
+state: RELATIONAL_PENDING
+
+claim:
+  text: >-
+    Academic, mathematical and heuristic correlations may identify candidate
+    research paths for RLL/RAFAELIA, but they do not validate scientific claims
+    until tested through evidence packages.
+  domain: academic_correlation_mapping
+  claim_boundary: >-
+    This package records candidate relations only. It does not prove RLL,
+    RAFAELIA, cosmology, chaos, graph theory, number theory or formal mathematics.
+  claim_allowed: false
+  claim_blocked:
+    - correlation_as_validation
+    - analogy_as_proof
+    - numerical_result_without_derivation_as_proof
+    - self_reference_as_circular_evidence
+    - public_paper_similarity_as_endorsement
+
+sources:
+  - path: docs/research/ACADEMIC_CORRELATION_CANDIDATE_MAP.md
+    role: candidate_map
+    evidence_state: DECLARED_BY_AUTHOR_WITH_EXTERNAL_ANCHORS
+  - path: results/relational_validation/README.md
+    role: relational_validation_policy
+    evidence_state: VERIFIED_PATH
+  - path: results/relational_validation/RELATIONAL_VALIDATION_LEDGER.yml
+    role: ledger_policy
+    evidence_state: VERIFIED_PATH
+
+external_anchors:
+  - id: DESI_DR2_BAO_2025
+    role: cosmology_dynamic_dark_energy_context
+    boundary: adversarial_context_not_RLL_validation
+  - id: PLANCK_2018_PARAMETERS
+    role: LCDM_CMB_anchor
+    boundary: baseline_context_not_RLL_validation
+  - id: FAIR_2016
+    role: machine_actionable_metadata_context
+    boundary: metadata_not_truth
+  - id: ADAPTIVE_NETWORKS_CHAOS
+    role: graph_dynamics_vocabulary_context
+    boundary: vocabulary_not_equivalence
+  - id: FORMAL_PROOF_ASSISTANTS
+    role: proof_path_context
+    boundary: formalization_plan_not_proof
+
+relation_axes:
+  - AXIS-01_DESI_CPL_RLL_DYNAMIC_DARK_ENERGY
+  - AXIS-02_GROWTH_DISCRIMINATOR
+  - AXIS-03_RAFAELIA_ADAPTIVE_GRAPH_DYNAMICS
+  - AXIS-04_CHAOS_BIFURCATION_SYNCHRONIZATION
+  - AXIS-05_PROOF_PATH_OBLIGATION
+  - AXIS-06_BASE_ZERO_BASE_ONE_NOTATION
+  - AXIS-07_PROOF_DEPTH_CAUTION
+  - AXIS-08_HIDDEN_RELATION_MINING
+
+source_paths:
+  - docs/research/ACADEMIC_CORRELATION_CANDIDATE_MAP.md
+  - results/relational_validation/README.md
+  - results/relational_validation/RELATIONAL_VALIDATION_LEDGER.yml
+log_paths: []
+artifact_paths:
+  - results/relational_validation/packages/ACADEMIC_CORR_001/relation_graph.json
+metric_names:
+  - TOKEN_VAZIO_METRIC_UNTIL_VALIDATOR_EXISTS
+baseline_or_adversary: >-
+  For cosmology axes: LCDM, wCDM and CPL/w0waCDM. For formal proof axes:
+  derivation-required baseline. For graph/chaos axes: synthetic null model and
+  stability/recurrence baseline.
+uncertainty_or_covariance_status: TOKEN_VAZIO_UNCERTAINTY_FOR_NUMERICAL_AXES
+contradiction_check: TOKEN_VAZIO_CONTRADICTION_CHECK
+reproducibility_command: TOKEN_VAZIO_COMMAND
+claim_allowed: false
+claim_blocked:
+  - unsupported_claim_promotion
+  - academic_correlation_as_scientific_validation
+  - heuristic_relation_as_proof
+  - proof_without_derivation
+next_gate: >-
+  Add schema and validator for academic correlation packages, then materialize
+  one tested axis with source paths, metrics, baseline/adversary, contradiction
+  check, uncertainty status and reproducibility command.
