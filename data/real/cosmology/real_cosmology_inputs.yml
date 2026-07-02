@@ -16,6 +16,7 @@ default_execution:
     - python tools/validate_real_cosmology_inputs_yml.py
     - python tools/validate_real_data_source_manifest.py
     - python tools/validate_real_data_addition_registry.py
+    - python tools/validate_real_dataset_variance_registry.py
 inputs:
   - dataset_id: hz_cosmic_chronometers_real
     axis: expansion_Hz
