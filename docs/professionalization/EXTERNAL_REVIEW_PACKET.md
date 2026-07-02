@@ -35,6 +35,19 @@ Relativity Living Light should be reviewed as a **claim-gated falsifiable resear
 | Professional registry | `docs/professionalization/PROFESSIONAL_DOCUMENTS_REGISTRY.yml` | Machine-readable state of professional documents | Registry classifies; it does not prove |
 | Professional bridge | `docs/governance/PROFESSIONALIZATION_CHARTER_LINK.md` | Links professionalization to governance | Presentation cannot hide blockers |
 | YML state logic | `docs/yml/YML_ONTO_EPISTEMIC_REGISTRY.md` | Ontological and epistemic state vocabulary | Metadata-ready is not real-validated |
+| Narrow task | `docs/professionalization/NARROW_EXTERNAL_REVIEW_TASK.md` | One bounded evidence-boundary audit task | Framing audit is not scientific validation |
+
+## Current narrow review task
+
+The first actionable external review task is:
+
+```text
+docs/professionalization/NARROW_EXTERNAL_REVIEW_TASK.md
+```
+
+Its goal is to audit whether the professional-facing documents preserve the boundary between professional presentation, institutional readiness, external review routing, scientific validation, legal conclusions and market valuation.
+
+This task is intentionally narrow: it reviews documentation boundaries only. It does not review cosmological truth, model comparison, legal/IP status or commercial value.
 
 ## Suggested 30-minute review path
 
@@ -45,6 +58,7 @@ Relativity Living Light should be reviewed as a **claim-gated falsifiable resear
 4. Inspect PROFESSIONAL_DOCUMENTS_REGISTRY.yml.
 5. Check the governance bridge.
 6. Ask whether any claim lacks evidence, baseline, metric or boundary.
+7. If time is limited, complete NARROW_EXTERNAL_REVIEW_TASK.md instead of expanding scope.
 ```
 
 ## Suggested 2-hour review path
