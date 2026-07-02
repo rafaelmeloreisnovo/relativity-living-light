@@ -24,6 +24,14 @@ states:
     - CLAIM_BLOCKED
     - AUDIT_PENDING
 
+task_states:
+  - proposed
+  - active
+  - pass_with_boundaries
+  - pass_with_minor_edits
+  - claim_boundary_weak
+  - review_blocked
+
 professional_documents:
   - path: docs/professionalization/README.md
     title: Professionalization Layer
@@ -93,6 +101,24 @@ professional_documents:
     next_action: >
       Use the packet to guide one narrow external review or reproducibility task.
 
+  - path: docs/professionalization/NARROW_EXTERNAL_REVIEW_TASK.md
+    title: Narrow External Review Task
+    ontology: narrow_external_review_task
+    quality_state: review_ready
+    epistemic_state: METADATA_READY
+    task_state: active
+    audience:
+      - university_faculty
+      - research_advisors
+      - reproducibility_auditors
+      - technical_collaborators
+    claim_allowed: >
+      The professionalization layer now has one bounded review task for auditing evidence-boundary discipline.
+    claim_blocked: >
+      The task does not validate RLL, review cosmological truth, determine market value or create legal/IP conclusions.
+    next_action: >
+      Have an external or independent reviewer complete the evidence-boundary audit note.
+
 related_governance:
   - path: docs/governance/OPERATIONAL_EXCELLENCE_INTEGRITY_CHARTER.md
     relation: parent_governance_anchor
@@ -108,9 +134,10 @@ blocked_uses:
   - treat institutional readiness as institutional acceptance
   - hide TOKEN_VAZIO blockers for presentation quality
   - treat external review routing as external endorsement
+  - treat a completed boundary audit as scientific validation
 
 next_responsible_actions:
   - link professionalization docs from the main documentation index when appropriate
   - add a validator only if the document set stabilizes
   - keep claims bounded during future polish
-  - use the external review packet to define one narrow review task
+  - have an external or independent reviewer complete the narrow evidence-boundary task
