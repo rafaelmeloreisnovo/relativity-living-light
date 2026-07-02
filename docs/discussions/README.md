@@ -8,7 +8,7 @@
 
 This folder stores source-grounded draft posts for GitHub Discussions.
 
-The drafts are intended to support review and community feedback without inflating scientific claims.
+The drafts support review and community feedback without inflating scientific claims.
 
 ## Claim boundary
 
@@ -24,6 +24,14 @@ They are prompts for discussion, review and prioritization.
 - `docs/professionalization/EXTERNAL_REVIEW_PACKET.md`
 - `docs/professionalization/NARROW_EXTERNAL_REVIEW_TASK.md`
 
+## Drafts
+
+- `01_REVIEW_BOUNDARY.md`
+- `02_DATA_BOUNDARY.md`
+- `03_NEXT_TEST.md`
+- `04_METADATA_STATE.md`
+- `05_EXTERNAL_REVIEW_TASK.md`
+
 ## Use
 
-Copy a draft from `SOURCE_GROUNDED_DISCUSSION_DRAFTS.md` into GitHub Discussions and preserve the claim boundary.
+Copy one draft into GitHub Discussions and preserve its source anchors and claim boundary.
