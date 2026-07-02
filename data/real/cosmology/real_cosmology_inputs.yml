@@ -115,6 +115,8 @@ failsafe:
   synthetic_fixture_detected: block_promotion
   network_failure: keep_committed_local_file_and_mark_review
   rollback: restore previous committed dataset and rerun validators
+  watchdog: require positive row counts, positive uncertainties and present non-empty real inputs
+  tag_autodetection: GitHub tag refs and RLL_IMPORT_TAGS annotate provenance only; they never promote claims
 artifacts:
   ci_upload:
     workflow: .github/workflows/real-data-contract-ci.yml
@@ -123,3 +125,6 @@ artifacts:
     - artifacts/real-data-contract/MANIFEST.json
     - artifacts/real-data-contract/COMPUTE_REPORT.md
     - artifacts/real-data-contract/tables/model_comparison.csv
+    - artifacts/real-data-contract/TAGS.json
+    - artifacts/real-data-contract/WATCHDOG.json
+    - artifacts/real-data-contract/CHECKSUMS.sha256

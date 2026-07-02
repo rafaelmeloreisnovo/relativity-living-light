@@ -93,6 +93,9 @@ jobs:
           test -s artifacts/real-data-contract/tables/Hz_processed.csv
           test -s artifacts/real-data-contract/tables/BAO_processed.csv
           test -s artifacts/real-data-contract/tables/model_comparison.csv
+          test -s artifacts/real-data-contract/TAGS.json
+          test -s artifacts/real-data-contract/WATCHDOG.json
+          test -s artifacts/real-data-contract/CHECKSUMS.sha256
           python - <<'PY'
           import json
           from pathlib import Path
@@ -109,6 +112,10 @@ jobs:
               raise SystemExit('missing scale-bridge claim boundary')
           if 'Phi_pre' not in validation_status.get('local_dynamic_layer', []):
               raise SystemExit('missing Phi_pre local dynamic layer marker')
+          if manifest.get('watchdog', {}).get('overall_status') != 'pass':
+              raise SystemExit('watchdog did not pass')
+          if 'TAGS.json' not in manifest.get('outputs', []):
+              raise SystemExit('tag autodetection artifact missing')
           print('real-data compute manifest contract OK')
           PY
 
