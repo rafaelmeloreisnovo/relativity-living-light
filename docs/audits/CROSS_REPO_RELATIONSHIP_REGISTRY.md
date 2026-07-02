@@ -20,6 +20,7 @@ rafaelmeloreisnovo/termux-app-rafacodephi
 
 ```text
 VERIFIED             evidence located and checked in the owning repository
+VERIFIED_LIMITED     evidence located for a narrow behavior, not full integration
 DECLARED_BY_AUTHOR   declared but not independently verified here
 HYPOTHESIS           plausible integration relationship needing test
 TOKEN_VAZIO          required evidence not found yet
@@ -31,7 +32,7 @@ CLAIM_BLOCKED        cannot be promoted without evidence/test/artifact
 | ID | Relationship | State | Safe reading | Blocked claim | Next verification |
 |---|---|---|---|---|---|
 | RLL-CQ-001 | RLL may export numerical payloads to ChipQuantum | HYPOTHESIS | Candidate data-contract route | RLL already feeds a verified kernel | Verify actual consumer schema in ChipQuantum |
-| RLL-CQ-002 | Q16.16 may be the required numeric bridge | HYPOTHESIS / CLAIM_BLOCKED | Possible fixed-point interface | Q16.16 conversion must be implemented now | Inspect ChipQuantum code/tests and define exact scale/range/overflow policy |
+| RLL-CQ-002 | Q16.16 may be the required numeric bridge | HYPOTHESIS / CLAIM_BLOCKED | Possible fixed-point interface | Q16.16 conversion must be implemented now | Define exact scale/range/overflow policy after checking ChipQuantum code/tests |
 | RLL-CQ-003 | Attractor count 42 may be shared conceptual invariant | DECLARED_BY_AUTHOR | Cross-repo invariant candidate | 42-attractor implementation is complete | Verify attractor table, tests and build logs in ChipQuantum |
 | CQ-TX-001 | ChipQuantum binaries may run under Termux/mobile | HYPOTHESIS | Runtime integration candidate | Mobile execution is validated | Verify build artifact, ABI, loader path and runtime logs |
 | TX-RLL-001 | Termux/mobile logs may feed back into RLL audit | HYPOTHESIS | Feedback/attestation route | Mobile result validates RLL | Define log schema, checksum and ingestion path |
