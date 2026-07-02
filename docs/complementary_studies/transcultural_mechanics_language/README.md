@@ -20,7 +20,10 @@ This material is not scientific validation.
 
 It does not validate RLL, does not select a cosmological model and does not replace data, equations, baselines, uncertainty or falsification.
 
+Only the coherent, constructive and respectful layer should be reused. Do not use these fragments for doctrinal dispute, sectarian judgment, attack on any tradition, or replacement of evidence by metaphor.
+
 ## Files
 
 - `PREFACE_FRAGMENT.md` — ludic transcultural preface fragment.
 - `POST_CREDITS_BRIDGE.md` — session-continuity note for future repositories and cross-repository previews.
+- `EDITORIAL_SAFETY_GATE.md` — safety gate defining respectful use, blocked use and the good-part rule.
