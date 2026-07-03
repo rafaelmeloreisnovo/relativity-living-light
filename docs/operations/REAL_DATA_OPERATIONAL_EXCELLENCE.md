@@ -108,9 +108,9 @@ The canonical manifest for committed cosmology real-data inputs is:
 data/real/cosmology/observational_sources_manifest.json
 ```
 
-Operational consumers must reference canonical real inputs by `source_id`, `sha256`, `local_path`, and `dataset_type` instead of copying free-form status strings. `data/pipelines/structure_d/datasets_config.json` is the Structure-D consumer of these fields, and `data/inputs/cosmology_joint/joint_real_inputs_manifest.json` consumes the same source identifiers for the joint real likelihood route.
+`data/pipelines/structure_d/datasets_config.json` must mirror each canonical real dataset with the exact `source_id`, `sha256`, `local_path`, and `dataset_type` values from that manifest. `data/inputs/cosmology_joint/joint_real_inputs_manifest.json` is a downstream consumer: it lists only the same ordered `source_id`s and resolves `sha256`, `local_path`, and `dataset_type` from the canonical manifest instead of duplicating per-source status fields.
 
-Real observational entries must pass the path boundary enforced by `data.pipelines.structure_d.synthetic_real_boundary.validate_real_dataset_manifest_entry`: any real dataset path containing `synthetic`, `mock`, `demo`, `fixture`, or `example` is invalid. Explicit test fixtures may be marked as regression fixtures, but they are classified as `synthetic_regression_test` and remain blocked from real validation.
+Real observational entries must pass the path boundary enforced by `data.pipelines.structure_d.synthetic_real_boundary.validate_real_dataset_manifest_entry`: any real dataset path containing `synthetic`, `mock`, `demo`, `fixture`, or `example` is invalid. Explicit test fixtures may be marked as regression fixtures, but they are classified as `synthetic_regression_test` and remain blocked from real validation. Run `python tools/validate_real_data_boundaries.py` to verify the canonical manifest, Structure-D consumer, joint source-id consumer, and synthetic path boundary together.
 
 ## Synthetic preservation rule
 
