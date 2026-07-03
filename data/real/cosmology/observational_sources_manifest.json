@@ -72,5 +72,37 @@
       "claim_allowed": "Cosmic chronometer H(z) measurements are registered as candidate public real-data sources.",
       "claim_blocked": "No expansion-history fit is implied before measurement-level provenance and error policy are recorded."
     }
+  ],
+  "canonical_local_real_sources": [
+    {
+      "source_id": "real_hz",
+      "local_path": "data/real/Hz_data_real.csv",
+      "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_bao",
+      "local_path": "data/real/BAO_data_real.csv",
+      "sha256": "1decb159dd8c276e356e1f2ca45028da0079302a0b7b279797d8e40aab0c9527",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_cmb_shift",
+      "local_path": "data/real/CMB_shift_real.json",
+      "sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_fsigma8_compilation",
+      "local_path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_desi_dr2_bao",
+      "local_path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
+      "dataset_type": "real_observational"
+    }
   ]
 }

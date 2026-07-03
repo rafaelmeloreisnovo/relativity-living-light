@@ -88,7 +88,10 @@ def find_unapproved_synthetic_paths(
 def enforce_real_validation_input_boundary(metadata: Mapping[str, Any]) -> dict[str, Any]:
     """Block real-validation inputs that route through synthetic/mock artifacts."""
 
-    dataset_type = classify_dataset_type(dict(metadata))
+    classification_metadata = dict(metadata)
+    if _truthy(classification_metadata.get("regression_fixture")):
+        classification_metadata.pop("dataset_type", None)
+    dataset_type = classify_dataset_type(classification_metadata)
     paths = [normalize_repo_path(path) for path in _as_sequence(metadata.get("path")) + _as_sequence(metadata.get("paths"))]
     violating_paths = [
         path
@@ -105,6 +108,50 @@ def enforce_real_validation_input_boundary(metadata: Mapping[str, Any]) -> dict[
             "Real validation input paths are observational and contain no synthetic/mock/fixture markers."
             if allowed
             else "Real validation cannot consume synthetic/mock/demo/example/fixture artifacts unless they are explicit test fixtures."
+        ),
+    }
+
+
+def validate_real_dataset_manifest_entry(metadata: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate canonical real-dataset metadata before real-validation use.
+
+    Real observational entries must carry source_id, sha256, local_path,
+    dataset_type, and may not point at synthetic/mock/demo/fixture/example
+    paths. Test fixtures are classified explicitly as regression fixtures and
+    are never accepted as real validation inputs.
+    """
+
+    classification_metadata = dict(metadata)
+    if _truthy(classification_metadata.get("regression_fixture")):
+        classification_metadata.pop("dataset_type", None)
+    dataset_type = classify_dataset_type(classification_metadata)
+    paths = [
+        normalize_repo_path(path)
+        for path in _as_sequence(metadata.get("local_path"))
+        + _as_sequence(metadata.get("path"))
+        + _as_sequence(metadata.get("paths"))
+    ]
+    violating_paths = [
+        path
+        for path in paths
+        if looks_like_synthetic_path(path)
+        and not (is_approved_synthetic_path(path) and _truthy(metadata.get("regression_fixture")))
+    ]
+    missing_fields = [
+        field
+        for field in ("source_id", "sha256", "local_path", "dataset_type")
+        if not str(metadata.get(field, "")).strip()
+    ]
+    valid = dataset_type == "real_observational" and not violating_paths and not missing_fields
+    return {
+        "valid": valid,
+        "dataset_type": dataset_type,
+        "violating_paths": violating_paths,
+        "missing_fields": missing_fields,
+        "reason": (
+            "Canonical real dataset entry is complete and path-clean."
+            if valid
+            else "Real dataset entries require source_id, sha256, local_path, dataset_type and path-clean real inputs."
         ),
     }
 

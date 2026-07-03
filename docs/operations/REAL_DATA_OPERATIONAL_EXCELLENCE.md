@@ -89,3 +89,33 @@ Before merging real-data additions, verify:
 ## Boundary
 
 This operational layer improves readiness. It does not prove RLL, does not validate cosmology, and does not authorize superiority claims.
+
+## Canonical cosmology source manifest
+
+The canonical manifest for committed cosmology real-data inputs is:
+
+```text
+data/real/cosmology/observational_sources_manifest.json
+```
+
+Operational consumers must reference canonical real inputs by `source_id`, `sha256`, `local_path`, and `dataset_type` instead of copying free-form status strings. `data/pipelines/structure_d/datasets_config.json` is the Structure-D consumer of these fields, and `data/inputs/cosmology_joint/joint_real_inputs_manifest.json` consumes the same source identifiers for the joint real likelihood route.
+
+Real observational entries must pass the path boundary enforced by `data.pipelines.structure_d.synthetic_real_boundary.validate_real_dataset_manifest_entry`: any real dataset path containing `synthetic`, `mock`, `demo`, `fixture`, or `example` is invalid. Explicit test fixtures may be marked as regression fixtures, but they are classified as `synthetic_regression_test` and remain blocked from real validation.
+
+## Synthetic preservation rule
+
+Synthetic artifacts are allowed only under these preservation zones:
+
+```text
+data/synthetic/
+results/synthetic/
+tests/fixtures/
+```
+
+Legacy synthetic artifacts outside those zones are tolerated only when they are registered in:
+
+```text
+data/synthetic/LEGACY_SYNTHETIC_MANIFEST.json
+```
+
+Those exceptions must keep `scientific_use_allowed: false` and a synthetic dataset type. They are compatibility records, not real-data sources, and must not be promoted into real validation manifests.

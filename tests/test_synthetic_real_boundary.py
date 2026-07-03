@@ -9,6 +9,7 @@ from data.pipelines.structure_d.synthetic_real_boundary import (
     classify_dataset_type,
     enforce_claim_boundary,
     enforce_real_validation_input_boundary,
+    validate_real_dataset_manifest_entry,
     find_unapproved_synthetic_paths,
     interpret_model_comparison,
     load_legacy_synthetic_manifest,
@@ -145,3 +146,36 @@ def test_current_real_artifacts_keep_claim_allowed_false() -> None:
                 if isinstance(gate, dict) and "claim_allowed" in gate:
                     assert gate["claim_allowed"] is False
     assert checked
+
+
+def test_real_dataset_manifest_entry_requires_clean_real_paths() -> None:
+    ok = validate_real_dataset_manifest_entry(
+        {
+            "dataset_type": "real_observational",
+            "source_id": "real_hz",
+            "local_path": "data/real/Hz_data_real.csv",
+            "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+        }
+    )
+    assert ok["valid"] is True
+
+    blocked = validate_real_dataset_manifest_entry(
+        {
+            "dataset_type": "real_observational",
+            "source_id": "bad",
+            "local_path": "data/real/demo_catalog.csv",
+            "sha256": "abc",
+        }
+    )
+    assert blocked["valid"] is False
+    assert blocked["violating_paths"] == ["data/real/demo_catalog.csv"]
+
+    fixture = validate_real_dataset_manifest_entry(
+        {
+            "dataset_type": "real_observational",
+            "local_path": "tests/fixtures/mock_real.csv",
+            "regression_fixture": True,
+        }
+    )
+    assert fixture["valid"] is False
+    assert fixture["dataset_type"] == "synthetic_regression_test"

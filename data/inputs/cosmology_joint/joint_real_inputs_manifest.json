@@ -9,7 +9,11 @@
       "path": "data/real/Hz_data_real.csv",
       "observable": "H_obs",
       "error_policy": "diagonal_sigma_H",
-      "notes": "Materialized H(z) table with source tags per row."
+      "notes": "Materialized H(z) table with source tags per row.",
+      "source_id": "real_hz",
+      "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+      "local_path": "data/real/Hz_data_real.csv",
+      "dataset_type": "real_observational"
     },
     {
       "axis": "bao_DESI_DR2",
@@ -17,21 +21,33 @@
       "covariance_summary_path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
       "observable": "DV_over_rd, DM_over_rd, DH_over_rd",
       "error_policy": "13x13 covariance reconstructed from committed diagonal errors plus same-bin DM/DH correlations; BGS DV remains diagonal.",
-      "notes": "Full external DESI supplement remains an external heavy archive; this manifest uses the committed primary likelihood table and committed covariance summary."
+      "notes": "Full external DESI supplement remains an external heavy archive; this manifest uses the committed primary likelihood table and committed covariance summary.",
+      "source_id": "real_desi_dr2_bao",
+      "sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
+      "local_path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "dataset_type": "real_observational"
     },
     {
       "axis": "growth_fsigma8",
       "path": "data/real/cosmology/fsigma8_growth_real.csv",
       "observable": "fs8",
       "error_policy": "diagonal_sigma",
-      "notes": "Real fσ8/RSD compilation materialized from literature tables; replaces synthetic smooth growth fixture in the joint real route."
+      "notes": "Real fσ8/RSD compilation materialized from literature tables; replaces synthetic smooth growth fixture in the joint real route.",
+      "source_id": "real_fsigma8_compilation",
+      "sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
+      "local_path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "dataset_type": "real_observational"
     },
     {
       "axis": "cmb_shift",
       "path": "data/real/CMB_shift_real.json",
       "observable": "R_obs, la_obs",
       "error_policy": "diagonal_R_la_sigma",
-      "notes": "Planck 2018 shift-parameter summary stored locally."
+      "notes": "Planck 2018 shift-parameter summary stored locally.",
+      "source_id": "real_cmb_shift",
+      "sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
+      "local_path": "data/real/CMB_shift_real.json",
+      "dataset_type": "real_observational"
     }
   ],
   "failsafe": {
@@ -43,5 +59,12 @@
   "source_signature_outputs": [
     "results/audit/real_source_signature_verification.json",
     "results/audit/real_source_signature_verification.md"
+  ],
+  "canonical_observational_sources_manifest": "data/real/cosmology/observational_sources_manifest.json",
+  "source_ids": [
+    "real_hz",
+    "real_desi_dr2_bao",
+    "real_fsigma8_compilation",
+    "real_cmb_shift"
   ]
 }
