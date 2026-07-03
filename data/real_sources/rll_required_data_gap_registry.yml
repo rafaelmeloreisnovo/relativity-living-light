@@ -63,15 +63,25 @@ gaps:
   - id: GAP-COSMO-CMB
     route: cosmology_background
     priority: P1
-    state: TOKEN_VAZIO_CMB_COVARIANCE
+    state: TOKEN_VAZIO_CMB_NATIVE_BACKEND
     linked_theses: [LT-001, LT-002]
     needed_data_or_artifact: complete_cmb_compressed_covariance_or_likelihood
-    target_path: data/real/cosmology/cmb/
+    target_path: data/real/CMB_shift_real.json
     baselines: [LCDM_CMB, CPL_CMB]
     metrics: [CMB_chi2_or_prior_penalty, joint_delta_AICc]
     required_evidence: [source_reference, local_vector_or_interface, covariance_or_prior_semantics, checksum]
     falsifier: CMB constraints keep RLL inactive or worse than CPL.
-    next_action: define_CMB_compressed_covariance_contract
+    next_action: replace_compressed_R_la_Ob_h2_prior_with_native_CLASS_or_CAMB_Cl_likelihood
+    progress_note: >-
+      2026-07-03: committed the Planck 2018 (Chen, Huang & Wang 2019, arXiv:1808.05724)
+      compressed R/l_A/Ob_h2 mean vector and full 3x3 covariance in
+      data/real/CMB_shift_real.json, and wired
+      data.pipelines.structure_d.joint_real_likelihood to a covariance-aware CMB
+      chi2 term (chi2_with_covariance) instead of a diagonal R,la-only term.
+      This closes the compressed-covariance sub-gap but does not close the
+      broader gap: it is still a compressed prior, not a native CLASS/CAMB
+      C_l likelihood, so the gap state remains TOKEN_VAZIO* and no RLL
+      superiority claim is authorized by this alone.
 
   - id: GAP-SIREN-DISTANCE
     route: late_universe_sirens

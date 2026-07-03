@@ -94,15 +94,22 @@ inputs:
     domain: cosmology
     state: REAL_VALIDATED_LIMITED
     local_path: data/real/CMB_shift_real.json
-    observable_columns: [R_obs, la_obs, sigma_R, sigma_la]
-    error_policy: diagonal_R_la_sigma
+    observable_columns: [R_obs, la_obs, ob_h2_obs, R_sig, la_sig, ob_h2_sig, covariance, correlation_matrix]
+    error_policy: full_3x3_covariance_R_la_Ob_h2_with_diagonal_R_la_fallback
     primary_source:
       title: Planck 2018 cosmological parameters
       url: https://arxiv.org/abs/1807.06209
       source_type: primary_paper
+    secondary_source:
+      title: Distance Priors from Planck Final Release (Chen, Huang & Wang 2019)
+      url: https://arxiv.org/abs/1808.05724
+      source_type: derived_compressed_likelihood
+      note: >-
+        Source of the committed R, l_A, Ob_h2 mean vector and 3x3 correlation
+        matrix (Table I, base LCDM, Planck 2018 TT,TE,EE+lowE).
     repository_consumers:
       - data.pipelines.structure_d.joint_real_likelihood
-    source_signature_ids: [real_cmb_shift]
+    source_signature_ids: [real_cmb_shift, real_cmb_shift_covariance]
     required_checks:
       - file_exists
       - non_empty

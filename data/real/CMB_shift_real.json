@@ -5,5 +5,29 @@
   "la_obs": 301.471,
   "la_sig": 0.090,
   "survey": "Planck2018",
-  "reference": "Planck 2018 VI"
+  "reference": "Planck 2018 VI",
+  "ob_h2_obs": 0.02236,
+  "ob_h2_sig": 0.00015,
+  "parameter_order": ["R", "la", "ob_h2"],
+  "covariance": [
+    [2.116e-05, 0.000189382, -4.554e-07],
+    [0.000189382, 0.00801025, -4.43025e-06],
+    [-4.554e-07, -4.43025e-06, 2.25e-08]
+  ],
+  "correlation_matrix": [
+    [1.0, 0.46, -0.66],
+    [0.46, 1.0, -0.33],
+    [-0.66, -0.33, 1.0]
+  ],
+  "covariance_construction": "covariance_ij = correlation_ij * sigma_i * sigma_j, with la_sig symmetrized from the reported +0.089/-0.090 as 0.0895 for the la row/column of the matrix only; R_sig and ob_h2_sig are used as reported. Verified positive-definite (all eigenvalues > 0).",
+  "primary_source": {
+    "title": "Distance Priors from Planck Final Release",
+    "authors": "Lu Chen, Qing-Guo Huang, Ke Wang (2019)",
+    "url": "https://arxiv.org/abs/1808.05724",
+    "doi": "10.1088/1475-7516/2019/02/028",
+    "table": "Table I, base LCDM row, Planck 2018 TT,TE,EE+lowE",
+    "extraction_note": "correlation_matrix is the 3x3 principal submatrix (R, l_A, Omega_b h^2) of the paper's published 4x4 correlation matrix over {R, l_A, Omega_b h^2, n_s}; n_s is dropped because it is not a fitted parameter in this repository's cosmology models. A principal submatrix of a valid correlation matrix is itself a valid marginal correlation matrix, so this restriction is mathematically exact, not an approximation of the correlations among the retained three parameters. Extracted directly from the arXiv PDF text (page 3, Table I) rather than from an automated web summary, after an earlier automated extraction produced a non-positive-definite (invalid) matrix that was discarded."
+  },
+  "claim_boundary": "This compressed CMB distance-prior block (R, l_A, Omega_b h^2 and their covariance) is a provenance anchor for a covariance-aware CMB chi2 term. It is not a replacement for the full Planck likelihood/chains, and materializing it does not by itself confirm or validate RLL against LCDM/CPL.",
+  "retrieved_utc": "2026-07-03T00:00:00Z"
 }
