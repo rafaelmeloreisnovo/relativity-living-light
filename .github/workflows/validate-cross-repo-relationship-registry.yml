@@ -41,6 +41,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install test dependencies
+        run: pip install pytest
+
       - name: Validate registry
         run: python tools/validate_cross_repo_relationship_registry.py
 
