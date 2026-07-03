@@ -147,7 +147,7 @@
     },
     "hz_cov_synth": {
       "format": "csv",
-      "path": "data/inputs/structure_d/Hz_cov.csv",
+      "path": "data/synthetic/structure_d/Hz_cov.csv",
       "observable": "Hz",
       "error_model": "covariance",
       "columns": {
@@ -155,16 +155,18 @@
         "value": "Hz",
         "covariance": null
       },
-      "covariance_path": "data/inputs/structure_d/Hz_cov_matrix.csv",
+      "covariance_path": "data/synthetic/structure_d/Hz_cov_matrix.csv",
       "metadata": {
         "survey": "inputs_structure_d_covariance",
         "redshift_range": "[0.0, 3.0]",
-        "reference": "local_input_covariance"
-      }
+        "reference": "local_input_covariance",
+        "regression_fixture": true
+      },
+      "dataset_type": "synthetic_regression_test"
     },
     "fsigma8_cov_synth": {
       "format": "csv",
-      "path": "data/inputs/structure_d/fsigma8_cov.csv",
+      "path": "data/synthetic/structure_d/fsigma8_cov.csv",
       "observable": "fs8",
       "error_model": "covariance",
       "columns": {
@@ -172,12 +174,14 @@
         "value": "fs8",
         "covariance": null
       },
-      "covariance_path": "data/inputs/structure_d/fsigma8_cov_matrix.csv",
+      "covariance_path": "data/synthetic/structure_d/fsigma8_cov_matrix.csv",
       "metadata": {
         "survey": "inputs_structure_d_covariance",
         "redshift_range": "[0.0, 3.0]",
-        "reference": "local_input_covariance"
-      }
+        "reference": "local_input_covariance",
+        "regression_fixture": true
+      },
+      "dataset_type": "synthetic_regression_test"
     },
     "real_fsigma8": {
       "format": "csv",

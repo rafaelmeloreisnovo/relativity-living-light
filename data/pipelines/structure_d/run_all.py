@@ -508,7 +508,7 @@ def _write_reproduction_contract(profile_name, covariance_policy, bayes, bayes_m
         "dirty_worktree": dirty_worktree,
         "covariance_policy": covariance_policy,
         "covariance_policy_supported": SUPPORTED_COVARIANCE_POLICIES,
-        "mock_data_contract": "data/inputs/structure_d/mock_data_contract.json",
+        "mock_data_contract": "data/synthetic/structure_d/mock_data_contract.json",
         "required_outputs": REQUIRED_OUTPUTS,
         "optional_outputs": [
             {

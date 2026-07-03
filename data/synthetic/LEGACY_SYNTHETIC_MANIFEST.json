@@ -16,8 +16,9 @@
       "reason_for_classification": "Path is under data/examples and contains benchmark presets with a non-cosmological claim boundary; example inputs are code-sanity assets, not observational data.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": true,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "c2cff4b374c9a9103ff7a3900e279e4936ef9eb81f7fc12c0ab080b5c8ef369c"
+      "migration_status": "migrated_with_temporary_legacy_alias",
+      "sha256": "c2cff4b374c9a9103ff7a3900e279e4936ef9eb81f7fc12c0ab080b5c8ef369c",
+      "compatibility_alias_retained": true
     },
     {
       "original_path": "data/iml/daise_input.example.json",
@@ -27,8 +28,9 @@
       "reason_for_classification": "Filename uses .example.json and provides demonstration input for the IML pipeline rather than measured observational data.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": true,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "4399cd4c9a96acc33569919bd8b8f0e419254846cd2656963d9433cdcd7c962b"
+      "migration_status": "migrated_with_temporary_legacy_alias",
+      "sha256": "4399cd4c9a96acc33569919bd8b8f0e419254846cd2656963d9433cdcd7c962b",
+      "compatibility_alias_retained": true
     },
     {
       "original_path": "data/inputs/structure_d/mock_data_contract.json",
@@ -38,8 +40,9 @@
       "reason_for_classification": "Filename explicitly declares a mock data contract for Structure-D examples; it may validate code contracts but cannot be used as real evidence.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": true,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "9054a1e6d5ed8f6199b5fc5e6b9db97030bb4964bd28be104cf7e65daf8deb77"
+      "migration_status": "migrated_with_temporary_legacy_alias",
+      "sha256": "9054a1e6d5ed8f6199b5fc5e6b9db97030bb4964bd28be104cf7e65daf8deb77",
+      "compatibility_alias_retained": true
     },
     {
       "original_path": "data/posterior_unified_synth.csv",
@@ -49,8 +52,9 @@
       "reason_for_classification": "Filename explicitly contains synth; retained only as a legacy synthetic posterior sanity dataset.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": true,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "1ff8978bfb7e6af880193d197800ba4cf0d784f367ff71f63d3dcfa704e5c1f7"
+      "migration_status": "migrated_with_temporary_legacy_alias",
+      "sha256": "1ff8978bfb7e6af880193d197800ba4cf0d784f367ff71f63d3dcfa704e5c1f7",
+      "compatibility_alias_retained": true
     },
     {
       "original_path": "data/rll_latentes/examples/invalid_missing_falsifier.yml",
@@ -60,8 +64,9 @@
       "reason_for_classification": "Located under examples and used as an intentionally invalid catalog fixture for validator tests, not as observational evidence.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": true,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "aaa9313b8de599f4d3c7b65438b10aff1e92472c2a85376f4e911904e7214cde"
+      "migration_status": "migrated_with_temporary_legacy_alias",
+      "sha256": "aaa9313b8de599f4d3c7b65438b10aff1e92472c2a85376f4e911904e7214cde",
+      "compatibility_alias_retained": true
     },
     {
       "original_path": "data/rll_latentes/examples/valid_minimal.yml",
@@ -71,8 +76,9 @@
       "reason_for_classification": "Located under examples and used as a minimal validator fixture with example.org source metadata, not as observational evidence.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": true,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "f3266b086ca9a324398cb4cf9909559c42d46a48b6a8d72f6d98a17f01d94bf8"
+      "migration_status": "migrated_with_temporary_legacy_alias",
+      "sha256": "f3266b086ca9a324398cb4cf9909559c42d46a48b6a8d72f6d98a17f01d94bf8",
+      "compatibility_alias_retained": true
     },
     {
       "original_path": "results/dha/mock_catalog.csv",
@@ -82,8 +88,9 @@
       "reason_for_classification": "Filename explicitly declares a mock catalog; result is diagnostic/code-sanity only.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": true,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "2e1a4e01c7fe2d1cb618bdfdabac35692ce2f48ed33b45dede84ea94a647e66d"
+      "migration_status": "migrated_with_temporary_legacy_alias",
+      "sha256": "2e1a4e01c7fe2d1cb618bdfdabac35692ce2f48ed33b45dede84ea94a647e66d",
+      "compatibility_alias_retained": true
     },
     {
       "original_path": "figs/archive/mock_H_fit.png",
@@ -93,8 +100,10 @@
       "reason_for_classification": "Filename explicitly declares a mock H-fit figure; figure is illustrative and cannot support scientific claims.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": false,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "1ceafda0168efd473f91fa7ee7bcdc766f2bd61302d33b5d813187d801fe5877"
+      "migration_status": "source_manifest_only_binary_ci_artifact_not_committed",
+      "sha256": "1ceafda0168efd473f91fa7ee7bcdc766f2bd61302d33b5d813187d801fe5877",
+      "compatibility_alias_retained": true,
+      "binary_artifact_not_committed": true
     },
     {
       "original_path": "figs/archive/mock_SN_fit.png",
@@ -104,8 +113,10 @@
       "reason_for_classification": "Filename explicitly declares a mock SN-fit figure; figure is illustrative and cannot support scientific claims.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": false,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2"
+      "migration_status": "source_manifest_only_binary_ci_artifact_not_committed",
+      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2",
+      "compatibility_alias_retained": true,
+      "binary_artifact_not_committed": true
     },
     {
       "original_path": "figs/paper/mock_H_fit.png",
@@ -115,8 +126,10 @@
       "reason_for_classification": "Filename explicitly declares a mock H-fit paper figure; figure is illustrative and cannot support scientific claims.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": false,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "1ceafda0168efd473f91fa7ee7bcdc766f2bd61302d33b5d813187d801fe5877"
+      "migration_status": "source_manifest_only_binary_ci_artifact_not_committed",
+      "sha256": "1ceafda0168efd473f91fa7ee7bcdc766f2bd61302d33b5d813187d801fe5877",
+      "compatibility_alias_retained": true,
+      "binary_artifact_not_committed": true
     },
     {
       "original_path": "figs/paper/mock_SN_fit.png",
@@ -126,8 +139,10 @@
       "reason_for_classification": "Filename explicitly declares a mock SN-fit paper figure; figure is illustrative and cannot support scientific claims.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": false,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2"
+      "migration_status": "source_manifest_only_binary_ci_artifact_not_committed",
+      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2",
+      "compatibility_alias_retained": true,
+      "binary_artifact_not_committed": true
     },
     {
       "original_path": "figs/archive/duplicates_archive/mock_H_fit (2).png",
@@ -137,8 +152,10 @@
       "reason_for_classification": "Filename explicitly declares a duplicate mock H-fit figure; duplicate archive is illustrative only.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": false,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "1ceafda0168efd473f91fa7ee7bcdc766f2bd61302d33b5d813187d801fe5877"
+      "migration_status": "source_manifest_only_binary_ci_artifact_not_committed",
+      "sha256": "1ceafda0168efd473f91fa7ee7bcdc766f2bd61302d33b5d813187d801fe5877",
+      "compatibility_alias_retained": true,
+      "binary_artifact_not_committed": true
     },
     {
       "original_path": "figs/archive/duplicates_archive/mock_SN_fit (2).png",
@@ -148,8 +165,10 @@
       "reason_for_classification": "Filename explicitly declares a duplicate mock SN-fit figure; duplicate archive is illustrative only.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": false,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2"
+      "migration_status": "source_manifest_only_binary_ci_artifact_not_committed",
+      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2",
+      "compatibility_alias_retained": true,
+      "binary_artifact_not_committed": true
     },
     {
       "original_path": "figs/archive/duplicates_archive/mock_SN_fit (3).png",
@@ -159,8 +178,10 @@
       "reason_for_classification": "Filename explicitly declares a duplicate mock SN-fit figure; duplicate archive is illustrative only.",
       "scientific_use_allowed": false,
       "code_test_use_allowed": false,
-      "migration_status": "documented_legacy_in_place",
-      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2"
+      "migration_status": "source_manifest_only_binary_ci_artifact_not_committed",
+      "sha256": "66ce8b2142614291c3e217a4f62b4072eb4ca93501320501a9567e89bbf678f2",
+      "compatibility_alias_retained": true,
+      "binary_artifact_not_committed": true
     }
   ]
 }
