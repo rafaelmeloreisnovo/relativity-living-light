@@ -404,7 +404,7 @@ def growth_backend_benchmark_status(*, require_external: bool = False) -> dict[s
     available = [name for name, present in backends.items() if present]
     status = "available" if available else "skipped_missing_backend"
     claim_allowed = bool(available) and bool(require_external)
-    return {
+    result: dict[str, object] = {
         "status": status,
         "available_backends": available,
         "checked_backends": sorted(backends),
@@ -415,6 +415,21 @@ def growth_backend_benchmark_status(*, require_external: bool = False) -> dict[s
             else "CLASS/CAMB backend is not installed in this environment; D+/fσ8 remains an internal approximation."
         ),
     }
+    if claim_allowed:
+        result.update(
+            {
+                "source": available,
+                "metric": "fsigma8_residuals",
+                "baseline": ["LCDM_growth", "CPL_growth"],
+                "uncertainty_or_covariance_status": "external_backend_benchmark_required",
+                "command": "python -m data.pipelines.structure_d.joint_real_likelihood",
+                "claim_boundary": (
+                    "Backend availability is a technical evidence gate for running an external growth "
+                    "benchmark; it does not by itself confirm or validate RLL against LCDM/CPL."
+                ),
+            }
+        )
+    return result
 
 def load_parameter_origin_registry(registry: Mapping[str, object]) -> dict[str, object]:
     """Validate the minimal parameter-origin registry contract."""

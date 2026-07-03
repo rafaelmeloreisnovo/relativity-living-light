@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "rll.evolution_event.schema.v1",
   "title": "RLL Evolution Trail Event",
-  "description": "Schema de validação para cada linha JSONL de artifacts/EVOLUTION_TRAIL.jsonl",
+  "description": "Structural contract for each JSONL row of artifacts/EVOLUTION_TRAIL.jsonl. This schema records provenance/epistemic-state transitions only and does not validate scientific claims.",
   "type": "object",
   "required": [
     "timestamp_utc",
