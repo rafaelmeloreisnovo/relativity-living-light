@@ -279,11 +279,21 @@ def _load_desi_covariance(points: pd.DataFrame, summary: pd.DataFrame) -> tuple[
         if readiness.ready and full_cov.shape == (len(points), len(points)):
             return full_cov, {
                 "path": str(DESI_FULL_COV_PATH.relative_to(BASE_DIR)),
+                "source_path": str(DESI_FULL_COV_PATH.relative_to(BASE_DIR)),
                 "mode": readiness.mode,
                 "ready": readiness.ready,
                 "claim_allowed": readiness.claim_allowed,
                 "reason": readiness.reason,
                 "sha256": _sha256_file(DESI_FULL_COV_PATH),
+                "metric": "chi2_with_covariance",
+                "baseline": [MODEL_LCDM, MODEL_WCDM, MODEL_CPL],
+                "uncertainty_or_covariance_status": "official_full_covariance_matrix",
+                "command": "python -m data.pipelines.structure_d.joint_real_likelihood",
+                "claim_boundary": (
+                    "Covariance readiness is a technical evidence gate for using the official full "
+                    "DESI DR2 BAO covariance in chi2_with_covariance; it does not by itself confirm or "
+                    "validate RLL against LCDM/CPL."
+                ),
             }
     block_cov = build_desi_covariance(points, summary)
     readiness = covariance_readiness(block_cov, mode="block_summary")

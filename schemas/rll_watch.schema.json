@@ -1,6 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rll/rll_watch.schema.json",
   "title": "RLL Watch Configuration",
+  "description": "Structural contract for RLL watch/source-tracking configuration entries. This schema records source and vector metadata only and does not validate scientific claims.",
   "type": "object",
   "required": ["source", "vectors"],
   "properties": {
