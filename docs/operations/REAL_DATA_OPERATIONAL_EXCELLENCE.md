@@ -8,6 +8,16 @@
 
 This document defines operational practices for adding, checking and using real data in the repository without inflating claims.
 
+## Canonical GitHub Actions workflow
+
+The canonical real-data workflow is:
+
+```text
+.github/workflows/real-data-complete-execution.yml
+```
+
+Every auxiliary real-data workflow must point to it with `CANONICAL_REAL_DATA_WORKFLOW=.github/workflows/real-data-complete-execution.yml`, keep `permissions: contents: read`, use `persist-credentials: false`, upload artifacts through `actions/upload-artifact@v4`, emit final checksums, and declare an explicit claim boundary that prevents synthetic, mock, fixture, demo, example, or placeholder data from being promoted as real observational evidence. Shared CI helpers live in `tools/ci/real_data_workflow_policy.sh`; auxiliary workflows should call those helpers instead of reimplementing checksum and claim-boundary rules inline.
+
 ## Golden rule
 
 Real public source registration is not the same as local real-data validation.

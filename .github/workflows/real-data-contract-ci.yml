@@ -1,47 +1,47 @@
+# Auxiliary real-data workflow. Canonical policy: .github/workflows/real-data-complete-execution.yml
 name: Real Data Contract CI
-
 permissions:
   contents: read
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 on:
   pull_request:
-    branches: [main]
+    branches:
+    - main
     paths:
-      - '.github/workflows/**'
-      - 'scripts/compute_rll_real_pipeline.py'
-      - 'scripts/fetch_real_sources.py'
-      - 'scripts/import_raw_json_dataset.py'
-      - 'scripts/run_structure_d_robust_fit_matrix.py'
-      - 'tools/docs_inventory.py'
-      - 'data/real/**'
-      - 'docs/real_data/**'
-      - 'docs/DOCUMENTATION_FULL_INVENTORY.md'
-      - 'docs/REAL_NUMBERS_REPORT.md'
-      - 'docs/YML_WORKFLOWS_INDEX.md'
-      - 'data/results/repo_inventory.*'
-      - 'requirements.txt'
-      - 'tests/**'
+    - .github/workflows/**
+    - scripts/compute_rll_real_pipeline.py
+    - scripts/fetch_real_sources.py
+    - scripts/import_raw_json_dataset.py
+    - scripts/run_structure_d_robust_fit_matrix.py
+    - tools/docs_inventory.py
+    - data/real/**
+    - docs/real_data/**
+    - docs/DOCUMENTATION_FULL_INVENTORY.md
+    - docs/REAL_NUMBERS_REPORT.md
+    - docs/YML_WORKFLOWS_INDEX.md
+    - data/results/repo_inventory.*
+    - requirements.txt
+    - tests/**
   push:
-    branches: [main]
+    branches:
+    - main
     paths:
-      - '.github/workflows/**'
-      - 'scripts/compute_rll_real_pipeline.py'
-      - 'scripts/fetch_real_sources.py'
-      - 'scripts/import_raw_json_dataset.py'
-      - 'scripts/run_structure_d_robust_fit_matrix.py'
-      - 'tools/docs_inventory.py'
-      - 'data/real/**'
-      - 'docs/real_data/**'
-      - 'docs/DOCUMENTATION_FULL_INVENTORY.md'
-      - 'docs/REAL_NUMBERS_REPORT.md'
-      - 'docs/YML_WORKFLOWS_INDEX.md'
-      - 'data/results/repo_inventory.*'
-      - 'requirements.txt'
-      - 'tests/**'
+    - .github/workflows/**
+    - scripts/compute_rll_real_pipeline.py
+    - scripts/fetch_real_sources.py
+    - scripts/import_raw_json_dataset.py
+    - scripts/run_structure_d_robust_fit_matrix.py
+    - tools/docs_inventory.py
+    - data/real/**
+    - docs/real_data/**
+    - docs/DOCUMENTATION_FULL_INVENTORY.md
+    - docs/REAL_NUMBERS_REPORT.md
+    - docs/YML_WORKFLOWS_INDEX.md
+    - data/results/repo_inventory.*
+    - requirements.txt
+    - tests/**
   workflow_dispatch:
     inputs:
       real_data_source:
@@ -49,93 +49,74 @@ on:
         required: true
         default: repo
         type: choice
-        options: [repo, auto]
-
+        options:
+        - repo
+        - auto
 jobs:
   real-data-contract:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install contract dependencies
+      run: 'python -m pip install --upgrade pip
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        python -m pip install -r requirements.txt pytest pyyaml
 
-      - name: Install contract dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt pytest pyyaml
+        '
+    - name: Generate and check inventory in CI workspace
+      run: 'set -euo pipefail
 
-      - name: Generate and check inventory in CI workspace
-        run: |
-          set -euo pipefail
-          python3 tools/docs_inventory.py
-          python3 tools/docs_inventory.py --check
+        python3 tools/docs_inventory.py
 
-      - name: Validate real cosmology YAML contract
-        run: python3 tools/validate_real_cosmology_inputs_yml.py
+        python3 tools/docs_inventory.py --check
 
-      - name: Validate real dataset variance registry
-        run: python3 tools/validate_real_dataset_variance_registry.py
+        '
+    - name: Validate real cosmology YAML contract
+      run: python3 tools/validate_real_cosmology_inputs_yml.py
+    - name: Validate real dataset variance registry
+      run: python3 tools/validate_real_dataset_variance_registry.py
+    - name: Compute pipeline from committed real data
+      run: "set -euo pipefail\nSOURCE=\"${{ github.event.inputs.real_data_source || 'repo' }}\"\npython3 scripts/compute_rll_real_pipeline.py \\\n  --output-dir artifacts/real-data-contract \\\n  --real-data-dir data/real \\\n  --data-source \"$SOURCE\"\n"
+    - name: Validate contract outputs
+      run: "set -euo pipefail\ntest -s artifacts/real-data-contract/MANIFEST.json\ntest -s artifacts/real-data-contract/COMPUTE_REPORT.md\ntest -s artifacts/real-data-contract/tables/Hz_processed.csv\ntest -s artifacts/real-data-contract/tables/BAO_processed.csv\ntest -s artifacts/real-data-contract/tables/model_comparison.csv\ntest -s artifacts/real-data-contract/TAGS.json\ntest -s artifacts/real-data-contract/WATCHDOG.json\ntest -s artifacts/real-data-contract/CHECKSUMS.sha256\npython - <<'PY'\nimport json\nfrom pathlib import Path\nmanifest = json.loads(Path('artifacts/real-data-contract/MANIFEST.json').read_text(encoding='utf-8'))\nif manifest.get('status') != 'Real data computed from non-synthetic inputs':\n    raise SystemExit(f\"unexpected status: {manifest.get('status')!r}\")\ninputs = manifest.get('input_files') or []\nif len(inputs) != 3:\n    raise SystemExit(f'expected 3 real input files, got {len(inputs)}')\nif any(row.get('status') != 'used_real_non_synthetic' for row in inputs):\n\
+        \    raise SystemExit('all inputs must be marked used_real_non_synthetic')\nvalidation_status = manifest.get('validation_status') or {}\nif validation_status.get('claim_boundary') != 'local dynamic layer cannot be promoted to background cosmology without scale bridge':\n    raise SystemExit('missing scale-bridge claim boundary')\nif 'Phi_pre' not in validation_status.get('local_dynamic_layer', []):\n    raise SystemExit('missing Phi_pre local dynamic layer marker')\nif manifest.get('watchdog', {}).get('overall_status') != 'pass':\n    raise SystemExit('watchdog did not pass')\nif 'TAGS.json' not in manifest.get('outputs', []):\n    raise SystemExit('tag autodetection artifact missing')\nprint('real-data compute manifest contract OK')\nPY\n"
+    - name: Run focused real-data tests
+      run: python -m pytest -q tests/test_compute_rll_real_pipeline_contract.py tests/test_desi_dr2_bao_materialized.py tests/test_structure_d_robust_fit_matrix.py
+    - name: Run raw JSON import tests
+      run: python -m pytest -q tests/test_import_raw_json_dataset_basic.py tests/test_import_raw_json_dataset_invalid.py tests/test_import_raw_json_dataset_rollback.py tests/test_import_raw_json_dataset_array.py
+    - name: Upload real-data contract artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: real-data-contract-${{ github.run_id }}
+        path: artifacts/real-data-contract/
+        retention-days: 14
+    - name: Finalize canonical real-data policy checksums
+      if: always()
+      run: 'set -euo pipefail
 
-      - name: Compute pipeline from committed real data
-        run: |
-          set -euo pipefail
-          SOURCE="${{ github.event.inputs.real_data_source || 'repo' }}"
-          python3 scripts/compute_rll_real_pipeline.py \
-            --output-dir artifacts/real-data-contract \
-            --real-data-dir data/real \
-            --data-source "$SOURCE"
+        ARTIFACT_DIR="artifacts/workflow-policy/real-data-contract-ci/${{ github.job }}"
 
-      - name: Validate contract outputs
-        run: |
-          set -euo pipefail
-          test -s artifacts/real-data-contract/MANIFEST.json
-          test -s artifacts/real-data-contract/COMPUTE_REPORT.md
-          test -s artifacts/real-data-contract/tables/Hz_processed.csv
-          test -s artifacts/real-data-contract/tables/BAO_processed.csv
-          test -s artifacts/real-data-contract/tables/model_comparison.csv
-          test -s artifacts/real-data-contract/TAGS.json
-          test -s artifacts/real-data-contract/WATCHDOG.json
-          test -s artifacts/real-data-contract/CHECKSUMS.sha256
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          manifest = json.loads(Path('artifacts/real-data-contract/MANIFEST.json').read_text(encoding='utf-8'))
-          if manifest.get('status') != 'Real data computed from non-synthetic inputs':
-              raise SystemExit(f"unexpected status: {manifest.get('status')!r}")
-          inputs = manifest.get('input_files') or []
-          if len(inputs) != 3:
-              raise SystemExit(f'expected 3 real input files, got {len(inputs)}')
-          if any(row.get('status') != 'used_real_non_synthetic' for row in inputs):
-              raise SystemExit('all inputs must be marked used_real_non_synthetic')
-          validation_status = manifest.get('validation_status') or {}
-          if validation_status.get('claim_boundary') != 'local dynamic layer cannot be promoted to background cosmology without scale bridge':
-              raise SystemExit('missing scale-bridge claim boundary')
-          if 'Phi_pre' not in validation_status.get('local_dynamic_layer', []):
-              raise SystemExit('missing Phi_pre local dynamic layer marker')
-          if manifest.get('watchdog', {}).get('overall_status') != 'pass':
-              raise SystemExit('watchdog did not pass')
-          if 'TAGS.json' not in manifest.get('outputs', []):
-              raise SystemExit('tag autodetection artifact missing')
-          print('real-data compute manifest contract OK')
-          PY
+        mkdir -p "$ARTIFACT_DIR"
 
-      - name: Run focused real-data tests
-        run: python -m pytest -q tests/test_compute_rll_real_pipeline_contract.py tests/test_desi_dr2_bao_materialized.py tests/test_structure_d_robust_fit_matrix.py
+        . tools/ci/real_data_workflow_policy.sh
 
-      - name: Run raw JSON import tests
-        run: python -m pytest -q tests/test_import_raw_json_dataset_basic.py tests/test_import_raw_json_dataset_invalid.py tests/test_import_raw_json_dataset_rollback.py tests/test_import_raw_json_dataset_array.py
+        rll_real_data_write_claim_boundary "$ARTIFACT_DIR"
 
-      - name: Upload real-data contract artifact
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: real-data-contract-${{ github.run_id }}
-          path: artifacts/real-data-contract/
-          retention-days: 14
+        rll_real_data_assert_boundary_file "$ARTIFACT_DIR/CLAIM_BOUNDARY.md"
+
+        rll_real_data_write_checksums "$ARTIFACT_DIR"
+
+        '
+    env:
+      CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+      CLAIM_BOUNDARY: Auxiliary real-data workflow only; no RLL/cosmology/superiority claim and no synthetic, mock, fixture, demo, example, or placeholder promotion beyond explicit run checks.
+x-canonical-real-data-policy: Auxiliary real-data workflow; canonical policy is .github/workflows/real-data-complete-execution.yml. Synthetic/mock/fixture/demo/example/placeholder inputs cannot be promoted as real observational evidence.
