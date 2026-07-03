@@ -1,0 +1,18 @@
+{
+  "schema": "rll.evolution_watcher_failsafe_snapshot.v1",
+  "source_id": "planck_2018_cmb",
+  "label": "Planck 2018 CMB distance priors (R, l_A, Omega_b h^2) and covariance",
+  "created_utc": "2026-07-03T16:02:54Z",
+  "fingerprint": "c6eb3eb129ab35830822f7b92c0c801897d3041ce529b4c677afc7a834d4971e",
+  "files": [
+    {
+      "path": "data/real/CMB_shift_real.json",
+      "sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979"
+    }
+  ],
+  "epistemic_state": "VERIFIED",
+  "primary_source": {
+    "title": "Distance Priors from Planck Final Release (Chen, Huang & Wang 2019)",
+    "url": "https://arxiv.org/abs/1808.05724"
+  }
+}

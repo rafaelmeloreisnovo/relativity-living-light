@@ -1,8 +1,20 @@
 # EVOLUTION ROADMAP — RLL JSON Evolution Watcher
 
-**Última atualização:** 2026-07-02  
+**Última atualização:** 2026-07-03  
 **Princípio:** cada fase é autônoma, plug-n-play e entrega valor imediato —  
 não precisa da fase seguinte para funcionar.
+
+## Status de implementação (2026-07-03)
+
+| Fase | Status | Nota |
+|---|---|---|
+| Fase 0 — Bootstrap | **Implementada** | `tools/bootstrap_failsafe.py`; ver `docs/audits/EVOLUTION_WATCHER_IMPLEMENTATION_NOTE.md`. |
+| Fase 1 — Watcher | **Implementada** (local-first, sem rede) | `tools/rll_json_watcher.py`. Nunca baixa nem sobrescreve dado real commitado; o arquivo git é sempre a fonte de verdade. |
+| Fase 2 — CI/CD | **Não promovida de propósito** | `to_Add/data_evolution_watch.yml` usa `permissions: contents: write` + auto-commit (`git-auto-commit-action`), o que viola a política `audit_real_workflow_policy` adicionada em `tools/audit_github_workflows.py` (workflows "real data" devem ter `permissions.contents: read`, sem push automático). Precisa de redesenho como job read-only + upload-artifact antes de ir para `.github/workflows/`. |
+| Fase 3 — Documentação de auditoria | **Parcial** | `tools/generate_yml_audit_docs.py` já existe mas audita todo o repositório (não é específico à trilha); não implementa os comandos `--config/--trail/--output docs/audit/` descritos abaixo — essa seção do roadmap é aspiracional. |
+| Fase 4 — Promoção de órfãos | **Não implementada** | Fora de escopo desta rodada; `tools/promote_orphan.py` não existe ainda. |
+
+Fontes reais registradas em `RLL_JSON_EVOLUTION_WATCHER.yml`: `hz_cosmic_chronometers`, `desi_dr2_bao`, `pantheon_plus_shoes`, `planck_2018_cmb`, `fsigma8_growth`.
 
 ---
 
