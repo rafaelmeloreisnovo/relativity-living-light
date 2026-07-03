@@ -31,6 +31,54 @@ NON_WORKFLOW_EXTENSIONS = {
     ".txt",
 }
 
+
+CANONICAL_REAL_DATA_WORKFLOW = ".github/workflows/real-data-complete-execution.yml"
+SYNTHETIC_BOUNDARY_TERMS = ("synthetic", "mock", "fixture", "placeholder", "demo", "example")
+
+
+def workflow_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def is_real_data_workflow(path: Path, doc: dict, text: str) -> bool:
+    rel = path.relative_to(REPO).as_posix().lower()
+    name = str(doc.get("name", "")).lower()
+    haystack = "\n".join((rel, name, text.lower()))
+
+    markers = ("data/real/", "validacao_real", "real-data", "real data", "real_", "real-")
+    return any(marker in haystack for marker in markers)
+
+
+def audit_real_workflow_policy() -> list[str]:
+    errors: list[str] = []
+    for path in iter_workflow_yaml():
+        try:
+            doc = parse_yaml(path)
+            text = workflow_text(path)
+        except Exception:
+            continue
+        if not is_real_data_workflow(path, doc, text):
+            continue
+        rel = path.relative_to(REPO).as_posix()
+        permissions = doc.get("permissions") or {}
+        if not isinstance(permissions, dict) or permissions.get("contents") != "read":
+            errors.append(f"{rel}: real workflow must declare top-level permissions.contents: read")
+        if "actions/checkout@v4" in text and "persist-credentials: false" not in text:
+            errors.append(f"{rel}: real workflow checkout must set persist-credentials: false")
+        if "actions/upload-artifact@v4" not in text:
+            errors.append(f"{rel}: real workflow must upload artifacts with actions/upload-artifact@v4")
+        if "rll_real_data_write_checksums" not in text and ("CHECKSUMS.sha256" not in text or "sha256sum" not in text):
+            errors.append(f"{rel}: real workflow must build a final CHECKSUMS.sha256 with sha256sum")
+        if "CLAIM_BOUNDARY" not in text and "claim_boundary" not in text and "Claim Boundary" not in text:
+            errors.append(f"{rel}: real workflow must declare an explicit claim boundary")
+        lower = text.lower()
+        if not any(term in lower for term in SYNTHETIC_BOUNDARY_TERMS):
+            errors.append(f"{rel}: real workflow must declare boundary against synthetic/mock/fixture data")
+        if rel != CANONICAL_REAL_DATA_WORKFLOW:
+            if f"CANONICAL_REAL_DATA_WORKFLOW: {CANONICAL_REAL_DATA_WORKFLOW}" not in text and f"CANONICAL_REAL_DATA_WORKFLOW={CANONICAL_REAL_DATA_WORKFLOW}" not in text:
+                errors.append(f"{rel}: non-canonical real workflow must point to {CANONICAL_REAL_DATA_WORKFLOW}")
+    return errors
+
 REQUIRED_VALIDATION_FILES = [
     VALIDATION_BUNDLE / "sources.yml",
     VALIDATION_BUNDLE / "data" / "desi_dr2_bao.yml",
@@ -118,6 +166,7 @@ def main() -> int:
     errors.extend(audit_workflow_contracts())
     errors.extend(audit_workflow_directory_hygiene())
     errors.extend(audit_validation_bundle())
+    errors.extend(audit_real_workflow_policy())
 
     if errors:
         print("Workflow audit found issues:")

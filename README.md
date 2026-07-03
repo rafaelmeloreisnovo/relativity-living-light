@@ -32,6 +32,10 @@ Regra de leitura: metáfora ilumina, mas não valida; dado, predição, cálculo
 
 ---
 
+## Workflow canônico de dados reais
+
+O workflow canônico para execução completa, política de claims, checksums e artefatos de dados reais é [`.github/workflows/real-data-complete-execution.yml`](.github/workflows/real-data-complete-execution.yml). Workflows reais auxiliares devem declarar `CANONICAL_REAL_DATA_WORKFLOW=.github/workflows/real-data-complete-execution.yml`, herdar a fronteira contra dados sintéticos/mock/fixture/demo/example/placeholder, usar checkout sem persistência de credenciais, gerar checksums finais e publicar artefatos com `actions/upload-artifact@v4`.
+
 ## Rastreabilidade, anterioridade e cadeia de custódia
 
 A leitura de claims do RLL/MCRP deve passar pelo mapa central de rastreabilidade antes de qualquer conclusão:
