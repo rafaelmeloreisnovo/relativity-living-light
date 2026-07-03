@@ -112,14 +112,76 @@ jobs:
           python3 tools/iml/iml_pipeline.py --input artifacts/rll-real-run/iml/input.json --output artifacts/rll-real-run/iml/output.json
       - if: ${{ inputs.run_formulas && (inputs.pipeline_scope == 'formulas' || inputs.pipeline_scope == 'all') }}
         run: python3 tools/formula_artifact_builder.py --outdir artifacts/rll-real-run/formulas
-      - run: |
+      - name: Finalize artifact metadata and validation status
+        run: |
+          set -euo pipefail
           date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-real-run/RUN_UTC.txt
           git rev-parse HEAD > artifacts/rll-real-run/COMMIT_SHA.txt
-          printf '%s\n' "This orchestrator is artifact-only. Commit artifacts through a reviewed PR, not an automatic push." > artifacts/rll-real-run/COMMIT_POLICY.txt
-          test -f artifacts/rll-real-run/MANIFEST.json || echo '{}' > artifacts/rll-real-run/MANIFEST.json
-          test -f artifacts/rll-real-run/COMPUTE_REPORT.md || echo '# COMPUTE_REPORT' > artifacts/rll-real-run/COMPUTE_REPORT.md
-          test -f artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md || echo '# CLAIM_REFERENCE_AUDIT' > artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md
+          cat > artifacts/rll-real-run/COMMIT_POLICY.txt <<'EOF'
+          This orchestrator is artifact-only. Commit artifacts through a reviewed PR, not an automatic push.
+          Artifact upload is an operational delivery mechanism and does not imply scientific validation, claim acceptance, or evidence that required real-data reports were produced.
+          Scientific validation requires VALIDATION_STATUS.json with validated=true and an empty missing_required_artifacts list.
+          EOF
+
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          mode = os.environ["RLL_MODE"]
+          root = Path("artifacts/rll-real-run")
+          required = [
+              "MANIFEST.json",
+              "COMPUTE_REPORT.md",
+              "CLAIM_REFERENCE_AUDIT.md",
+          ]
+          missing = [name for name in required if not (root / name).is_file()]
+
+          if mode == "metadata_only":
+              placeholders = {
+                  "DIAGNOSTIC_PLACEHOLDER_MANIFEST.json": json.dumps(
+                      {
+                          "diagnostic_placeholder": True,
+                          "replaces": "MANIFEST.json",
+                          "reason": "metadata_only mode does not run the real-data compute pipeline",
+                      },
+                      indent=2,
+                      sort_keys=True,
+                  )
+                  + "\n",
+                  "DIAGNOSTIC_PLACEHOLDER_COMPUTE_REPORT.md": (
+                      "# Diagnostic placeholder compute report\n\n"
+                      "metadata_only mode did not run the real-data compute pipeline.\n"
+                  ),
+                  "DIAGNOSTIC_PLACEHOLDER_CLAIM_REFERENCE_AUDIT.md": (
+                      "# Diagnostic placeholder claim reference audit\n\n"
+                      "metadata_only mode did not run the real-data claim audit pipeline.\n"
+                  ),
+              }
+              for filename, content in placeholders.items():
+                  (root / filename).write_text(content, encoding="utf-8")
+
+          status = {
+              "validated": not missing,
+              "mode": mode,
+              "required_artifacts": required,
+              "missing_required_artifacts": missing,
+          }
+          (root / "VALIDATION_STATUS.json").write_text(
+              json.dumps(status, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+
+          if mode in {"compute", "full"} and missing:
+              print(
+                  "Missing required real pipeline artifacts for "
+                  f"{mode} mode: {', '.join(missing)}"
+              )
+              raise SystemExit(1)
+          PY
           find artifacts/rll-real-run -type f ! -path '*/CHECKSUMS.sha256' -print0 | sort -z | xargs -0 sha256sum > artifacts/rll-real-run/CHECKSUMS.sha256
+        env:
+          RLL_MODE: ${{ inputs.mode }}
       - uses: actions/upload-artifact@v4
         with:
           name: rll-real-run-${{ github.run_id }}
