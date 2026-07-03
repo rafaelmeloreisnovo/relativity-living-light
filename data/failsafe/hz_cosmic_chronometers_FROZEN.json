@@ -1,0 +1,18 @@
+{
+  "schema": "rll.evolution_watcher_failsafe_snapshot.v1",
+  "source_id": "hz_cosmic_chronometers",
+  "label": "H(z) cosmic chronometers compilation",
+  "created_utc": "2026-07-03T16:02:54Z",
+  "fingerprint": "b380d9ef75f605b2821ffaa5c51665f056c006ab716e40bca63c5ff73dfce4cd",
+  "files": [
+    {
+      "path": "data/real/Hz_data_real.csv",
+      "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6"
+    }
+  ],
+  "epistemic_state": "VERIFIED",
+  "primary_source": {
+    "title": "Cosmic chronometers H(z) compilation route",
+    "url": "https://arxiv.org/abs/2205.05701"
+  }
+}

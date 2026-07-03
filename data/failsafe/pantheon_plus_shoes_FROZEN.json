@@ -1,0 +1,18 @@
+{
+  "schema": "rll.evolution_watcher_failsafe_snapshot.v1",
+  "source_id": "pantheon_plus_shoes",
+  "label": "Pantheon+SH0ES supernova release manifest",
+  "created_utc": "2026-07-03T16:02:54Z",
+  "fingerprint": "d7bf365414e170343d4187f1db61898c941344004039efb869a1b2f73434682e",
+  "files": [
+    {
+      "path": "data/real/cosmology/pantheon_plus/MANIFEST.json",
+      "sha256": "d08203e9c7bee89c81e557867f5b8e968a277845b135e4554ef67739f5f25a4b"
+    }
+  ],
+  "epistemic_state": "DECLARED_BY_AUTHOR",
+  "primary_source": {
+    "title": "Pantheon+SH0ES DataRelease",
+    "url": "https://github.com/PantheonPlusSH0ES/DataRelease"
+  }
+}
