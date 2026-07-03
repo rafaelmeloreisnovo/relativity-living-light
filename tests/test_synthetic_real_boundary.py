@@ -11,6 +11,7 @@ from data.pipelines.structure_d.synthetic_real_boundary import (
     enforce_real_validation_input_boundary,
     validate_real_dataset_manifest_entry,
     find_unapproved_synthetic_paths,
+    main as synthetic_boundary_main,
     interpret_model_comparison,
     load_legacy_synthetic_manifest,
 )
@@ -179,3 +180,13 @@ def test_real_dataset_manifest_entry_requires_clean_real_paths() -> None:
     )
     assert fixture["valid"] is False
     assert fixture["dataset_type"] == "synthetic_regression_test"
+
+
+def test_synthetic_boundary_ci_gate_passes_for_cataloged_repo_paths() -> None:
+    legacy_paths = [entry["original_path"] for entry in load_legacy_synthetic_manifest()["entries"]]
+    approved_paths = [entry["proposed_boundary_path"] for entry in load_legacy_synthetic_manifest()["entries"]]
+    assert synthetic_boundary_main(legacy_paths + approved_paths) == 0
+
+
+def test_synthetic_boundary_ci_gate_fails_for_uncataloged_paths() -> None:
+    assert synthetic_boundary_main(["data/inputs/untracked_mock.csv"]) == 1

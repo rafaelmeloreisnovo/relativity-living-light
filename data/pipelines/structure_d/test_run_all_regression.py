@@ -19,7 +19,7 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
         self.generated_paths = [
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "Hz.csv"),
             os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "fsigma8.csv"),
-            os.path.join(run_all.BASE_DIR, "data", "inputs", "structure_d", "mock_data_contract.json"),
+            os.path.join(run_all.BASE_DIR, "data", "synthetic", "structure_d", "mock_data_contract.json"),
             os.path.join(run_all.RESULTS, "model_comparison.csv"),
             os.path.join(run_all.RESULTS, "covariance_usage.csv"),
             os.path.join(run_all.RESULTS, "rll_regime_summary.csv"),
@@ -76,7 +76,7 @@ class StructureDDefaultRegressionTest(unittest.TestCase):
 
         self.assertEqual(
             contract.get("mock_data_contract"),
-            "data/inputs/structure_d/mock_data_contract.json",
+            "data/synthetic/structure_d/mock_data_contract.json",
         )
         self.assertTrue(
             os.path.exists(

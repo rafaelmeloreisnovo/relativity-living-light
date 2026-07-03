@@ -300,3 +300,36 @@ def enforce_claim_boundary(dataset_type: str, metrics: dict | None = None) -> di
         "reason": reason,
         "publication_language": PUBLICATION_LANGUAGE,
     }
+
+
+def main(paths: Sequence[str | Path] | None = None) -> int:
+    """CI gate for unapproved synthetic-looking artifact paths.
+
+    By default this validates the legacy migration manifest itself: cataloged
+    legacy aliases remain allowed temporarily, and every proposed migration path
+    must live under an approved synthetic/fixture root. Callers may pass an
+    explicit path sequence to gate newly produced artifacts.
+    """
+
+    if paths is None:
+        manifest = load_legacy_synthetic_manifest()
+        paths = [
+            path
+            for entry in manifest.get("entries", [])
+            for path in (entry.get("original_path"), entry.get("proposed_boundary_path"))
+            if path
+        ]
+    violations = find_unapproved_synthetic_paths(paths)
+    if violations:
+        print("Unapproved synthetic/mock/demo/example/fixture paths found outside approved roots:")
+        for path in violations:
+            print(f"- {path}")
+        return 1
+    print("Synthetic path boundary check passed.")
+    return 0
+
+
+if __name__ == "__main__":
+    import sys
+
+    raise SystemExit(main(sys.argv[1:] or None))
