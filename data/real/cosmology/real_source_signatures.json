@@ -1,6 +1,6 @@
 {
   "schema": "rll.real_source_signatures.v1",
-  "generated_utc": "2026-06-04T05:59:09Z",
+  "generated_utc": "2026-07-03T09:53:01Z",
   "fetch_limit_bytes": 65536,
   "rows": [
     {
@@ -14,17 +14,17 @@
       "provenance_note": "Cosmic-chronometer H(z) source check for the materialized expansion table.",
       "local_exists": true,
       "local_sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
-      "verified_utc": "2026-06-04T05:59:07Z",
+      "verified_utc": "2026-07-03T09:52:59Z",
       "source_signature": {
         "ok": true,
         "status_code": 206,
         "final_url": "https://arxiv.org/abs/2205.05701",
         "content_type": "text/html; charset=utf-8",
-        "content_length": "51176",
+        "content_length": "46477",
         "etag": "",
         "last_modified": "Mon, 10 Apr 2023 00:11:49 GMT",
-        "sample_bytes": 51176,
-        "sample_sha256": "b931b3d395fe8920c86be2f3e7fcd5187bd41235cd731111452ab2a573051327",
+        "sample_bytes": 46477,
+        "sample_sha256": "1b96153f2dab720c1af2626f307e296dfed53f8c86948e2e1813a364775a6a6c",
         "terms_found": [
           "H(z=0.8)",
           "Moresco"
@@ -34,7 +34,7 @@
           "Moresco"
         ],
         "required_terms_ok": true,
-        "elapsed_seconds": 0.18087448599999334,
+        "elapsed_seconds": 0.48931912800003374,
         "error": ""
       },
       "status": "source_verified",
@@ -51,7 +51,7 @@
       "provenance_note": "DESI DR2 BAO paper source check for primary BAO measurements.",
       "local_exists": true,
       "local_sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
-      "verified_utc": "2026-06-04T05:59:07Z",
+      "verified_utc": "2026-07-03T09:52:59Z",
       "source_signature": {
         "ok": true,
         "status_code": 206,
@@ -61,7 +61,7 @@
         "etag": "",
         "last_modified": "Fri, 10 Oct 2025 01:08:47 GMT",
         "sample_bytes": 65536,
-        "sample_sha256": "0708c7d1f1523cc55b399db21266cd87fc2d01849460cc8bedcf4f4751b59487",
+        "sample_sha256": "b2218fadb454cf4b67e0fbd26ca5db7ab7c62ec3da8dc243c52bf6dda5d0fbf7",
         "terms_found": [
           "DESI DR2",
           "Baryon Acoustic Oscillations"
@@ -71,7 +71,7 @@
           "Baryon Acoustic Oscillations"
         ],
         "required_terms_ok": true,
-        "elapsed_seconds": 0.17549688700000843,
+        "elapsed_seconds": 0.21994371100004173,
         "error": ""
       },
       "status": "source_verified",
@@ -88,17 +88,17 @@
       "provenance_note": "DESI DR2 supplementary archive check for covariance/supporting data.",
       "local_exists": true,
       "local_sha256": "e28ca909bbd3c68399f59003e95560eb5fd0b25d209b5feaa66cd9cc19837b6e",
-      "verified_utc": "2026-06-04T05:59:08Z",
+      "verified_utc": "2026-07-03T09:53:00Z",
       "source_signature": {
         "ok": true,
         "status_code": 200,
         "final_url": "https://zenodo.org/records/16644577",
         "content_type": "text/html; charset=utf-8",
-        "content_length": "67510",
+        "content_length": "67500",
         "etag": "",
         "last_modified": "",
         "sample_bytes": 65536,
-        "sample_sha256": "f0926332265a537265b587f37cf2588464c221c32958b5131d336f7e731ccb72",
+        "sample_sha256": "cc0da83cbd2bc6c7005c98dd842b133a67dad2eb8ced233c9e5d919a1c40fea5",
         "terms_found": [
           "10.5281/zenodo.16644577",
           "DESI DR2"
@@ -108,7 +108,7 @@
           "DESI DR2"
         ],
         "required_terms_ok": true,
-        "elapsed_seconds": 0.9276091539995832,
+        "elapsed_seconds": 1.2484084220000113,
         "error": ""
       },
       "status": "source_verified",
@@ -125,17 +125,17 @@
       "provenance_note": "6dFGS fσ8 anchor source check for growth materialization.",
       "local_exists": true,
       "local_sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
-      "verified_utc": "2026-06-04T05:59:08Z",
+      "verified_utc": "2026-07-03T09:53:01Z",
       "source_signature": {
         "ok": true,
         "status_code": 206,
         "final_url": "https://arxiv.org/abs/1204.4725",
         "content_type": "text/html; charset=utf-8",
-        "content_length": "50470",
+        "content_length": "46758",
         "etag": "",
         "last_modified": "Thu, 04 Jun 2015 15:43:47 GMT",
-        "sample_bytes": 50470,
-        "sample_sha256": "61af6dfb4595d14fa188d98221204602684e63dd8a95ee63524b0906b4bf4f1c",
+        "sample_bytes": 46758,
+        "sample_sha256": "0dcb2b7ede4ae3677c60f911be040559a6a350c79a4833e6a9c0bd983658c4fc",
         "terms_found": [
           "6dF",
           "growth"
@@ -145,7 +145,7 @@
           "growth"
         ],
         "required_terms_ok": true,
-        "elapsed_seconds": 0.16218738399993526,
+        "elapsed_seconds": 0.20023665100006838,
         "error": ""
       },
       "status": "source_verified",
@@ -162,13 +162,13 @@
       "provenance_note": "Compilation/source-page check; HTTP failures are retained as explicit provenance risk.",
       "local_exists": true,
       "local_sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
-      "verified_utc": "2026-06-04T05:59:08Z",
+      "verified_utc": "2026-07-03T09:53:01Z",
       "source_signature": {
         "ok": false,
         "status_code": 403,
         "final_url": "https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209",
         "content_type": "text/html; charset=UTF-8",
-        "content_length": "5743",
+        "content_length": "5636",
         "etag": "",
         "last_modified": "",
         "sample_bytes": 0,
@@ -179,7 +179,7 @@
           "Cosmic Structure"
         ],
         "required_terms_ok": false,
-        "elapsed_seconds": 0.19586736300016128,
+        "elapsed_seconds": 0.2674051850001433,
         "error": "HTTPError: 403"
       },
       "status": "source_needs_review",
@@ -195,8 +195,8 @@
       ],
       "provenance_note": "Planck 2018 source check for CMB-shift summary values.",
       "local_exists": true,
-      "local_sha256": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc",
-      "verified_utc": "2026-06-04T05:59:09Z",
+      "local_sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
+      "verified_utc": "2026-07-03T09:53:01Z",
       "source_signature": {
         "ok": true,
         "status_code": 206,
@@ -206,7 +206,7 @@
         "etag": "",
         "last_modified": "Tue, 10 Aug 2021 00:30:47 GMT",
         "sample_bytes": 65536,
-        "sample_sha256": "e1753a5c1c50b216e64cecd36a833d912734617e49d32f11ec16383bddfafe10",
+        "sample_sha256": "4587d935d38258bb356f45788b72c3fcdc5e2f141feea9f0fb8fbe7dd665d288",
         "terms_found": [
           "Planck",
           "cosmological parameters"
@@ -216,7 +216,44 @@
           "cosmological parameters"
         ],
         "required_terms_ok": true,
-        "elapsed_seconds": 0.10080074699999386,
+        "elapsed_seconds": 0.21286871100005555,
+        "error": ""
+      },
+      "status": "source_verified",
+      "failover_policy": "keep committed local file and previous output; do not replace with partial download; inspect status/error before promotion"
+    },
+    {
+      "dataset_id": "real_cmb_shift_covariance",
+      "local_path": "data/real/CMB_shift_real.json",
+      "source_url": "https://arxiv.org/abs/1808.05724",
+      "required_terms": [
+        "distance priors",
+        "Planck"
+      ],
+      "provenance_note": "Chen, Huang & Wang (2019) Table I source check for the R/l_A/Omega_b h^2 mean vector and correlation matrix.",
+      "local_exists": true,
+      "local_sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
+      "verified_utc": "2026-07-03T09:53:01Z",
+      "source_signature": {
+        "ok": true,
+        "status_code": 206,
+        "final_url": "https://arxiv.org/abs/1808.05724",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": "41290",
+        "etag": "",
+        "last_modified": "Wed, 27 Feb 2019 14:32:49 GMT",
+        "sample_bytes": 41290,
+        "sample_sha256": "7be441d44a47b8274f287192763f45e1bdaa58f53bc51a138221672d082a28f8",
+        "terms_found": [
+          "distance priors",
+          "Planck"
+        ],
+        "required_terms": [
+          "distance priors",
+          "Planck"
+        ],
+        "required_terms_ok": true,
+        "elapsed_seconds": 0.21468844099990747,
         "error": ""
       },
       "status": "source_verified",

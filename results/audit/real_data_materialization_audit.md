@@ -8,7 +8,7 @@ It does not rename synthetic fixtures as real data; it records an explicit route
 - Real replacements ready: 5
 - Real replacements missing: 0
 - Configured datasets without route: 0
-- Inventory-only filesystem markers: 7
+- Inventory-only filesystem markers: 15
 
 ## Failsafe / failover / rollback
 

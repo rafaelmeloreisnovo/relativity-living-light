@@ -1,6 +1,6 @@
 # Real source signature verification
 
-- Sources verified: 5
+- Sources verified: 6
 - Sources needing review/failover: 1
 - Fetch limit per URL: 65536 bytes
 
@@ -12,6 +12,7 @@
 | real_fsigma8_6dfgs_anchor | source_verified | 206 | data/real/cosmology/fsigma8_growth_real.csv | https://arxiv.org/abs/1204.4725 |
 | real_fsigma8_compilation | source_needs_review | 403 | data/real/cosmology/fsigma8_growth_real.csv | https://academic.oup.com/mnras/article-abstract/452/3/2930/1750209 |
 | real_cmb_shift | source_verified | 206 | data/real/CMB_shift_real.json | https://arxiv.org/abs/1807.06209 |
+| real_cmb_shift_covariance | source_verified | 206 | data/real/CMB_shift_real.json | https://arxiv.org/abs/1808.05724 |
 
 ## Failsafe
 

@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import json
+
 import numpy as np
 import pandas as pd
+import pytest
 
 from data.pipelines.structure_d import joint_real_likelihood as joint
 
@@ -60,6 +63,52 @@ def test_rd_drag_is_derived_from_parameter_changes() -> None:
     assert np.isfinite(baseline)
     assert np.isfinite(shifted)
     assert baseline != shifted
+
+
+def test_cmb_shift_prediction_returns_R_lA_and_Ob_h2() -> None:
+    params = (67.7, 0.31, 0.69)
+    pred = joint.cmb_shift_prediction(joint.e2_lcdm, params, 0.0224, joint.Z_CMB_DEFAULT)
+
+    assert pred.shape == (3,)
+    assert pred[2] == 0.0224
+
+
+def test_committed_cmb_shift_file_carries_full_covariance() -> None:
+    cmb = json.loads(joint.CMB_SHIFT_PATH.read_text(encoding="utf-8"))
+
+    assert cmb["parameter_order"] == ["R", "la", "ob_h2"]
+    cov = np.asarray(cmb["covariance"], dtype=float)
+    assert cov.shape == (3, 3)
+    assert np.allclose(cov, cov.T)
+    assert np.all(np.linalg.eigvalsh(cov) > 0.0)
+
+
+def test_cmb_chi2_uses_full_covariance_when_available_and_matches_manual_computation() -> None:
+    inputs = joint.load_joint_inputs()
+    cmb = inputs["cmb"]
+    params = (67.7, 0.31, 0.69)
+    ob_h2 = 0.0224
+
+    chi2 = joint._cmb_chi2(cmb, joint.e2_lcdm, params, ob_h2)
+
+    pred = joint.cmb_shift_prediction(joint.e2_lcdm, params, ob_h2, float(cmb["z_CMB"]))
+    obs = np.array([cmb["R_obs"], cmb["la_obs"], cmb["ob_h2_obs"]], dtype=float)
+    cov = np.asarray(cmb["covariance"], dtype=float)
+    residual = obs - pred
+    expected = float(residual @ np.linalg.solve(cov, residual))
+
+    assert chi2 == pytest.approx(expected)
+    assert chi2 >= 0.0
+
+
+def test_cmb_chi2_falls_back_to_diagonal_without_committed_covariance() -> None:
+    cmb = {"z_CMB": 1089.92, "R_obs": 1.75, "la_obs": 301.0, "R_sig": 0.03, "la_sig": 0.35}
+    params = (67.7, 0.31, 0.69)
+
+    chi2 = joint._cmb_chi2(cmb, joint.e2_lcdm, params, 0.0224)
+
+    assert np.isfinite(chi2)
+    assert chi2 >= 0.0
 
 
 def test_committed_joint_real_json_exposes_dataset_type_claim_boundary_and_fnext() -> None:
