@@ -31,3 +31,17 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.jks
+*.keystore
+
+# Android native build intermediates
+.cxx/
+**/.cxx/
+
+# Generated at execution by scripts/bootstrap-gradle-wrapper.sh
+gradle/wrapper/gradle-wrapper.jar

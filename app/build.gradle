@@ -1,0 +1,100 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'org.rafaelia.rll'
+    compileSdk 35
+    ndkVersion '27.2.12479018'
+
+    defaultConfig {
+        applicationId 'org.rafaelia.rll'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0'
+
+        externalNativeBuild {
+            cmake {
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+                arguments '-DANDROID_STL=none'
+            }
+        }
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    signingConfigs {
+        release {
+            def storeFilePath = providers.gradleProperty('RLL_RELEASE_STORE_FILE')
+                .orElse(providers.environmentVariable('RLL_RELEASE_STORE_FILE'))
+            def storePasswordValue = providers.gradleProperty('RLL_RELEASE_STORE_PASSWORD')
+                .orElse(providers.environmentVariable('RLL_RELEASE_STORE_PASSWORD'))
+            def keyAliasValue = providers.gradleProperty('RLL_RELEASE_KEY_ALIAS')
+                .orElse(providers.environmentVariable('RLL_RELEASE_KEY_ALIAS'))
+            def keyPasswordValue = providers.gradleProperty('RLL_RELEASE_KEY_PASSWORD')
+                .orElse(providers.environmentVariable('RLL_RELEASE_KEY_PASSWORD'))
+
+            if (storeFilePath.present && storePasswordValue.present && keyAliasValue.present && keyPasswordValue.present) {
+                storeFile file(storeFilePath.get())
+                storePassword storePasswordValue.get()
+                keyAlias keyAliasValue.get()
+                keyPassword keyPasswordValue.get()
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+            debuggable true
+            jniDebuggable true
+        }
+        validationUnsigned {
+            initWith debug
+            applicationIdSuffix '.validation'
+            versionNameSuffix '-validation-unsigned'
+            signingConfig null
+            matchingFallbacks = ['debug']
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            debuggable false
+            jniDebuggable false
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+}
+
+tasks.register('verifyReleaseSigningConfigured') {
+    group = 'verification'
+    description = 'Fails unless all external release signing inputs are configured.'
+    doLast {
+        def required = [
+            'RLL_RELEASE_STORE_FILE',
+            'RLL_RELEASE_STORE_PASSWORD',
+            'RLL_RELEASE_KEY_ALIAS',
+            'RLL_RELEASE_KEY_PASSWORD'
+        ]
+        def missing = required.findAll { name ->
+            !providers.gradleProperty(name).isPresent() && !providers.environmentVariable(name).isPresent()
+        }
+        if (!missing.isEmpty()) {
+            throw new GradleException("Release signing is not configured. Missing: ${missing.join(', ')}")
+        }
+    }
+}
+
+tasks.matching { it.name == 'packageRelease' }.configureEach {
+    dependsOn tasks.named('verifyReleaseSigningConfigured')
+}
