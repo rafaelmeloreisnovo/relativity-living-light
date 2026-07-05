@@ -1,0 +1,17 @@
+{
+  "status": "desi_dr2_bao_covariance_chi2",
+  "results": {
+    "lcdm": {
+      "chi2_bao_desi_dr2": 28.96591953128496,
+      "n": 13
+    },
+    "w0wa": {
+      "chi2_bao_desi_dr2": 28.96591953128527,
+      "n": 13
+    },
+    "rll": {
+      "chi2_bao_desi_dr2": 93.80609384146017,
+      "n": 13
+    }
+  }
+}
