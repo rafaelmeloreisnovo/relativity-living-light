@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "script": "verify_cal_maya_arithmetic.py",
+    "date": "2026-07-07",
+    "token_vazio_id": "H-CAL-01",
+    "priority": "P2",
+    "description": "Verificação aritmética do ciclo maia de 52 anos e candidatos astrofísicos"
+  },
+  "arithmetic_verification": {
+    "haab_days": 365,
+    "tzolkin_days": 260,
+    "lcm_days": 18980,
+    "lcm_check_passed": true,
+    "haab_cycles_in_round": 52,
+    "tzolkin_cycles_in_round": 73,
+    "julian_years": 51.964408,
+    "tropical_years": 51.965518,
+    "nominal_52_years_days": 18993.0,
+    "discrepancy_days": -13.0,
+    "epistemic_status": "[E] — aritmética exata, sem ambiguidade"
+  },
+  "astrophysical_candidates": [
+    {
+      "name": "Schwabe solar cycle",
+      "period_years": 11.0,
+      "reference": "[H] observed ~1843, Schwabe; mean period ~11yr (range 9-14)",
+      "multiple_of_52": 4.724,
+      "nearest_integer_multiple": 5,
+      "residual_years": 3.0356,
+      "note": "5×11=55yr → |52-55|=3yr; not a close match"
+    },
+    {
+      "name": "Jupiter-Saturn synodic conjunction",
+      "period_years": 19.859,
+      "reference": "[H] J-S mean synodic ~19.859yr; 2.62×19.859≈52.03",
+      "multiple_of_52": 2.6167,
+      "nearest_integer_multiple": 3,
+      "residual_years": 7.6126,
+      "note": "2.62 is irrational — not a clean integer; |52.03-52|=0.03yr algebraically close"
+    },
+    {
+      "name": "Hale solar cycle (2× Schwabe)",
+      "period_years": 22.0,
+      "reference": "[H] Hale 1908 polarity reversal; ~22yr mean",
+      "multiple_of_52": 2.362,
+      "nearest_integer_multiple": 2,
+      "residual_years": 7.9644,
+      "note": "52/22 = 2.36... (irrational); not a close integer match"
+    },
+    {
+      "name": "Venus synodic period",
+      "period_days": 583.92,
+      "period_years": 1.5987,
+      "reference": "[E] Dresden Codex records 5 Venus synodic periods = 2920 days = 8 haab",
+      "count_in_calendar_round": 32.5045,
+      "nearest_integer": 33,
+      "residual_days": 289.36,
+      "note": "18980/583.92 ≈ 32.50; half-integer; 5 synodic periods = 8 Haab is the documented Maya synchrony [E]"
+    }
+  ],
+  "best_algebraic_match": {
+    "name": "Schwabe solar cycle",
+    "residual_years": 3.0356,
+    "note": "Melhor correspondência algébrica — requer efemérides para confirmação física"
+  },
+  "summary": {
+    "calendar_round_days": 18980,
+    "calendar_round_years_julian": 51.9644,
+    "passes_lcm_check": true,
+    "token_vazio_remaining": "Correspondência com efemérides reais (ciclos heliocêntricos precisos, dados de atividade solar, observações conjunção J-S) — requer dataset externo"
+  },
+  "epistemic_classification": {
+    "lcm_arithmetic": "[E] — comprovado por aritmética inteira",
+    "52_year_approximation": "[E] — 18980/365.25 = 51.961 anos Julianos",
+    "astrophysical_candidates": "[H] — candidatos identificados, sem confirmação de efemérides",
+    "causal_link_to_rll": "[VAZIO] — modulação periódica de H(z) local não investigada"
+  }
+}
