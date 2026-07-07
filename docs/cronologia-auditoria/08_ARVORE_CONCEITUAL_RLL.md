@@ -162,6 +162,17 @@ Script: `scripts/check_desi_dr2_bao_covariance.py` (covariância 13×13 completa
 | Pantheon+ SN Ia | arXiv:2202.04077 | 1624 (cosmo) | χ²=710.613 (ΛCDM=710.808) | [E] — `09_PANTHEON_RESULTADO_REAL.md` |
 | fσ₈ growth | Vários | presente | parcial | `scripts/check_rll_growth.py` |
 
+### Infraestrutura de Validação CI
+
+| Componente | Arquivo | Cobertura | Status | Marcação |
+|-----------|---------|-----------|--------|---------|
+| Pipeline CI | `.github/workflows/rll-validacao-cientifica-completa.yml` | 11 jobs P0/P1 | ⏳ run pendente | [C] estrutura validada |
+| Joint MCMC | `data/pipelines/structure_d/run_all.py` | Pantheon+ + DESI | ⚠️ TOKEN_VAZIO P0 | [C] script pronto |
+| Bayes Factor | `scripts/slingshot_zt_falsification.py --bayes-factor` | RLL vs ΛCDM | ⚠️ TOKEN_VAZIO P0 | [C] script pronto |
+| Contrato Falsificadores | `docs/cronologia-auditoria/CONTRATO_FALSIFICADORES_RLL.md` | F-COS-01..05 | 3/5 PASS (baseline) | [E]+[VAZIO] misto |
+
+**Próximo ato necessário**: Disparar pipeline via GitHub Actions → modo=completo → fecha G1 (MCMC) e G2 (Bayes Factor) do TOKEN_VAZIO Ledger.
+
 ---
 
 ## NÍVEL 4 — Hierarquia de Afirmações (N1–N4)

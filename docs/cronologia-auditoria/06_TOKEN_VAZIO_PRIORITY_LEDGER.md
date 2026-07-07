@@ -215,16 +215,82 @@ N=1624 SNe cosmológicas. Ratio RLL_original/RLL_optionA = 1.0000 (degenerados e
 
 ---
 
+---
+
+## GAPS ATUALIZADOS — Fase 7 (2026-07-07)
+
+### Gap P0-3 (χ² DESI Real): PRONTO PARA EXECUÇÃO
+
+**Status anterior**: ⚠️ TOKEN_VAZIO — scripts existem, execução completa não documentada
+
+**Status atual**: ⏳ **PRONTO PARA EXECUÇÃO** — pipeline `rll-validacao-cientifica-completa.yml` existe (PR #506 merged)
+
+**Para fechar**: Disparar o workflow em GitHub Actions → modo=completo. Job `fit_desi_bao` calcula χ² com parâmetros otimizados. Job `joint_mcmc_p0` fecha o joint MCMC P0.
+
+**Referência**: `.github/workflows/rll-validacao-cientifica-completa.yml` (11 jobs, PR #506)
+
+---
+
+### Gap G1: Pipeline Joint MCMC — Primeiro Run Pendente [NOVO P0]
+
+**Questão**: Qual é o χ² RLL real com parâmetros otimizados conjuntamente (Pantheon+ + DESI BAO)?
+
+**Por que P0**: O joint MCMC é o teste definitivo da viabilidade do modelo — sem ele, não há afirmação de superioridade sobre ΛCDM com parâmetros livres.
+
+**Status**: ⚠️ **TOKEN_VAZIO P0** — pipeline existe (Job 6: `joint_mcmc_p0`), primeiro run não executado
+
+**Para fechar**:
+```bash
+# GitHub Actions → rll-validacao-cientifica-completa → Run workflow
+# Inputs: modo=completo, commit_resultados=true
+# Job joint_mcmc_p0 usa: python -m data.pipelines.structure_d.run_all \
+#   --profile structure_d_real_validation --bayes --bayes-mode inference \
+#   --bayes-nwalkers 32 --bayes-nsteps 1000
+```
+
+**Resultado esperado**: `results/ci/joint_mcmc_*/joint_mcmc_summary.json` com posteriors {H₀, Ωm, Ωs0, z_t, w_t}
+
+---
+
+### Gap G2: Fator de Bayes RLL/ΛCDM [NOVO P0]
+
+**Questão**: ln(B₁₀) RLL vs ΛCDM — positivo, negativo, ou inconclusivo?
+
+**Por que P0**: Falsificador F-COS-04 ainda TOKEN_VAZIO. Sem Bayes Factor, não há resposta à pergunta "o RLL é preferido Bayesianamente?"
+
+**Status**: ⚠️ **TOKEN_VAZIO P0** — Job 7 (`bayes_factor_p0`) no pipeline; aguarda primeiro run
+
+**Para fechar**: Mesmo run do Gap G1. Job `bayes_factor_p0` depende de `joint_mcmc_p0`.
+
+---
+
+### CONTRATO_FALSIFICADORES — Baseline Estático Criado [FASE 7]
+
+**Status**: ✅ `docs/cronologia-auditoria/CONTRATO_FALSIFICADORES_RLL.md` criado como baseline estático
+
+**Valores conhecidos (pré-CI)**:
+- F-COS-01: ✅ PASS — ΔAIC=3.805 (resultados/pantheon_plus_resultado_real.txt)
+- F-COS-02: ✅ PASS — χ²_red=0.4386 (710.613/1620)
+- F-COS-05: ✅ PASS — χ²_DESI_nominal=93.81 < 150
+
+**Valores TOKEN_VAZIO (aguardam pipeline)**:
+- F-COS-03: z_t scan — aguarda Job 5 (`zt_falsification`)
+- F-COS-04: ln(B₁₀) — aguarda Job 7 (`bayes_factor_p0`)
+
+---
+
 ## Conclusão
 
-**Token Total**: 9 gaps + 1 gap G0 externo  
-**P0 (bloqueador)**: 3  
-**P1 (confiança)**: 3  
-**P2 (robustez)**: 2  
-**P3 (polish)**: 1  
+**Token Total**: 9 gaps originais + G0 externo + G1 + G2 novos (Fase 7)
+**P0 (bloqueador)**: 3 originais → 2 resolvidos, 2 novos (G1, G2)
+**P1 (confiança)**: 3
+**P2 (robustez)**: 2
+**P3 (polish)**: 1
 **G0 EXTERNO (Pantheon+)**: ✅ FECHADO em Fase 4
+**G1 (Pipeline MCMC)**: ⚠️ TOKEN_VAZIO P0 — pipeline existe, run pendente
+**G2 (Bayes Factor)**: ⚠️ TOKEN_VAZIO P0 — pipeline existe, run pendente
 
-**Ação Imediata**: Resolver P0 antes de qualquer publicação/preprint.
+**Ação Imediata**: Disparar `rll-validacao-cientifica-completa.yml` no modo=completo para fechar G1 e G2.
 
 **Método**: TOKEN_VAZIO preserva honestidade enquanto trabalho prossegue.
 
