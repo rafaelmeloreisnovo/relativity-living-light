@@ -18,6 +18,8 @@
 | H-GEO-03 | Solidificação diferencial ouro/quartzo sob alta pressão | Mineralgia | [H→E parcial] |
 | H-ELEC-01 | Efeito corona e acoplamento eletrostático planetário | Eletrodinâmica | [H] |
 | H-UNIV-01 | Espirais em espirais e proporção áurea como invariante geofísico | Universal | [C] |
+| H-ARQ-01 | Pedras de múltiplos ângulos — engenharia antissísmica andina | Arqueologia/Engenharia | [H/E misto] |
+| H-CAL-01 | Ciclo maia de 52 anos vs. periodicidade estelar | Arqueoastronomia | [E/H misto] |
 
 ---
 
@@ -75,6 +77,22 @@ A hipótese H-GEO-01 é complementar, não excludente da hipótese padrão.
 - **P1**: Isótopos Os/Ir/Ru nas amostras de itabirito — não coletados neste estudo
 - **P1**: Análise gravimétrica regional para morfologia de cratera antiga — não executada
 - **P2**: Dados sísmicos de reflexão da bacia — não compilados
+
+### Falsificadores Específicos — Retroalimentação R₃
+
+A Retroalimentação R₃ (2026-07-07) refina os testes de H-GEO-01 com cinco falsificadores nomeados e hierarquizados:
+
+| Falsificador | Técnica | Resultado positivo (SE impacto) | Resultado refutador |
+|-------------|---------|--------------------------------|---------------------|
+| **F01 — Quartzo de choque (PDFs)** | Microscopia petrográfica: Planar Deformation Features em quartzo | PDFs com orientações {0001}, {101̄3} em amostras de itabirito | Ausência de PDFs em amostragem sistemática (n > 50) |
+| **F02 — Shatter cones** | Mapeamento geológico de estruturas cônicas em rocha | Shatter cones orientados para ponto de impacto proposto | Ausência de shatter cones em toda a região QF |
+| **F03 — Anomalia Ir/Os** | Geoquímica: ICP-MS em perfil estratigráfico | Pico de Ir/Os na camada-limite do itabirito (razão Ir/Al > 10× background crustal) | Ir/Os crustais em todo o perfil — sem pico |
+| **F04 — Morfologia circular** | SRTM/LIDAR: análise morfométrica da bacia do Rio das Velhas | Bacia circular/elíptica centrada em ponto de impacto proposto | Forma fluvial irregular sem estrutura circular |
+| **F05 — Coesite/stishovite** | Microscopia eletrônica + difratometria (EBSD) | Presença de coesite (> 3 GPa) ou stishovite (> 10 GPa) em inclusões | Apenas quartzo α/β — ausência de polimorfos de ultra-alta pressão |
+
+**Lógica de falsificação conjunta [H]**: A ausência de **todos os cinco** falsificadores em amostragem sistemática refutaria H-GEO-01. A presença de **qualquer um** com orientação/posição prevista aumenta a plausibilidade, mas não confirma isoladamente (equifinalidade possível).
+
+**Status epistêmico pós-R₃**: TOKEN_VAZIO P1 — dados de campo necessários, amostragem não executada.
 
 ---
 
@@ -250,6 +268,104 @@ f(z) = 1 / (1 + exp(-sharpness × (z − z_t)))
 
 ---
 
+## H-ARQ-01 — Pedras de Múltiplos Ângulos — Engenharia Antissísmica Andina [H/E misto]
+
+### Premissa
+
+Estruturas pré-colombianas nos Andes (Sacsayhuamán, Ollantaytambo, Tiwanaku) utilizam blocos de pedra encaixados em múltiplos ângulos não-ortogonais, sem argamassa. A hipótese propõe que esta tecnologia constitui engenharia antissísmica empírica desenvolvida por observação sistemática de padrões de falha em terremotos andinos.
+
+### Evidência estabelecida [E]
+
+| Observação | Referência |
+|-----------|-----------|
+| Estruturas de Sacsayhuamán resistiram a terramotos modernos (ex: 1950, M6.9) enquanto construções coloniais colapsaram | [E] Hemming 2003; Protzen 1986 (JSAH 45:2) |
+| Blocos poligonais de Sacsayhuamán têm encaixes de 12 a 32 ângulos por bloco | [E] Gasparini & Margolies 1980 |
+| Região andina (zona de subducção Nazca-Sulamericana): M > 7 a cada ~5 anos | [E] USGS Seismic Catalog; Bird 2003 (G³) |
+| Catálogo sísmico histórico Peru (1586–presente) | [E] Silgado Ferro 1978; IGP Peru |
+
+### Mecanismo proposto [H]
+
+```
+Sismo (onda P + S) → força horizontal distribuída
+  Blocos ortogonais: plano de ruptura único → escorregamento ao longo da junta
+  Blocos poligonais: múltiplos planos de contato em ângulos diferentes
+    → nenhum plano paralelo à força aplicada em todas as direções
+    → energia absorvida por rearranjo microscópico de contatos
+    → estrutura retorna à posição sem ruptura por plano preferencial
+```
+
+**Predição testável [H]**: sob aceleração sísmica horizontal de ~0.3 g, modelo físico poligonal tem deslocamento relativo < 50% do modelo ortogonal à mesma espessura de parede.
+
+### Integração ao Modelo RLL [C analógica]
+
+O princípio de distribuição de energia por múltiplas interfaces angulares tem análogo na função de transição f(z): a transição logística distribui a variação de estado ao longo de Δz (controlado por w_t), minimizando a descontinuidade brusca na equação de estado. A energia de transição é "espalhada" em vez de concentrada em z_t único — analogia estrutural com os múltiplos ângulos dos blocos andinos. Esta é uma analogia **[C]**, não derivação formal.
+
+### Testável via
+
+| Teste | Método | Status |
+|-------|--------|--------|
+| Comparação histórica | Inventário de colapsos coloniais vs. pré-colombianos em sismos documentados | TOKEN_VAZIO P1 |
+| Experimento físico | Modelo reduzido em mesa sísmica: blocos poligonais vs. ortogonais | TOKEN_VAZIO P2 |
+| Análise computacional | FEM de estrutura poligonal sob carga sísmica horizontal (OpenSees) | TOKEN_VAZIO P2 |
+
+### TOKEN_VAZIO
+
+- **P1**: Estudo comparativo sistemático de danos coloniais vs. pré-colombianos em sismos históricos — não compilado aqui (fontes primárias: Silgado Ferro 1978; Tavera & Buforn 2001)
+- **P2**: Simulação FEM de estruturas poligonais com geometria real de Sacsayhuamán — não executada
+- **P2**: Dados geométricos precisos (ângulos de encaixe, áreas de contato) — disponíveis em literatura especializada mas não compilados neste estudo
+
+---
+
+## H-CAL-01 — Ciclo Maia de 52 Anos vs. Periodicidade Estelar [E/H misto]
+
+### Premissa
+
+O calendário maia integra o Tzolk'in (260 dias = 13 × 20) com o Haab' (365 dias) em um Calendário Redondo de 52 anos haab' = 18.980 dias = mmc(365, 260). A hipótese propõe que este ciclo de 52 anos codifica observação empírica de periodicidades astrofísicas — ciclos de atividade solar, alinhamentos planetários, ou períodos de visibilidade estelar no zênite das cidades maias.
+
+### Evidência estabelecida [E]
+
+| Elemento | Valor | Referência |
+|---------|-------|------------|
+| Ciclo Tzolk'in | 260 dias (13 × 20) | [E] Aveni 1980; Thompson 1950 |
+| Ciclo Haab' | 365 dias (18 × 20 + 5 wayeb') | [E] padrão calendárica maia |
+| Calendário Redondo | mmc(365, 260) = 18.980 dias = 52 × 365 = 73 × 260 | [E] aritmética exata |
+| Ciclo solar de Schwabe | ~11 anos (oscila 9–14 anos) | [E] Schwabe 1844; SIDC Brussels |
+| Ciclo de Hale | ~22 anos (~2 × Schwabe), campo magnético solar | [E] Hale et al. 1919 |
+| Conjunção sinódica de Vênus | 583.92 dias → 8 anos ≈ 5 ciclos (99.96%) | [E] Aveni 1980; astronomia de posição |
+
+### Análise de periodicidades candidatas [H]
+
+| Candidato | Período | Relação com 52 anos | Status |
+|----------|---------|---------------------|--------|
+| 4 × ciclo Schwabe (~11 anos) | ~44 anos | Discrepância de ~8 anos — impreciso | [H não-confirmado] |
+| 5 × ciclo Schwabe | ~55 anos | Discrepância de ~3 anos — próximo | [H plausível] |
+| Conjunção Jupiter-Saturno | 19.86 anos | 2.6 × 19.86 = 51.6 anos ≈ 52 anos | [H plausível — verificar efemérides] |
+| Ciclo de aparição de Sirius no zênite | depende de localidade | Varia por latitude — calculável | [H: não calculado] |
+
+### Integração ao Modelo RLL [VAZIO]
+
+O ciclo de 52 anos como modulação de H₀(t) local implicaria:
+```
+H_local(t) = H₀ + A · sin(2π t / 52 yr)
+```
+Dados históricos de H₀ (HST Key Project 2001: H₀ = 72±8; SH0ES 2022: H₀ = 73.04±1.04) têm incerteza de ~1 km/s/Mpc — insensíveis a qualquer modulação periódica em décadas. Conexão com RLL: TOKEN_VAZIO P3.
+
+### Testável via
+
+| Teste | Método | Status |
+|-------|--------|--------|
+| Conjunções planetárias | Efemérides Jupiter-Saturno-Vênus com janela de 52 anos (NASA Horizons) | TOKEN_VAZIO P1 |
+| Análise espectral solar | FFT/periodograma de SSN (1749–2026, SIDC) para pico em ~52 anos | TOKEN_VAZIO P2 |
+| Zenith astronomy maia | Calcular estrelas no zênite de Chichén Itzá/Copán com período ~52 anos | TOKEN_VAZIO P2 |
+
+### TOKEN_VAZIO
+
+- **P1**: Cálculo de efemérides planetárias (Jupiter-Saturno-Vênus) com janela de 52 anos — não executado (ferramentas: NASA JPL Horizons, VSOP87)
+- **P2**: Análise espectral de SSN (SIDC 1749–presente) para periodicidade ~52 anos — não executada
+- **P2**: Zenith astronomy das capitais maias e estrelas com período ~52 anos — não compilada
+
+---
+
 ## Tabela de Elementos Relevantes
 
 ### 56 Elementos-Chave para Referência
@@ -285,17 +401,98 @@ Nota do autor: "56 elementos mais importantes e 288 improváveis que seriam poss
 
 ---
 
-## Conexões com o Framework RLL
+## Acoplamento Formal: Hipóteses Geofísicas → Modelo RLL
 
-| Hipótese geofísica | Analogia no RLL | Nível |
-|-------------------|----------------|-------|
+### Tabela de Conexões
+
+| Hipótese geofísica | Analogia/Acoplamento no RLL | Nível |
+|-------------------|----------------------------|-------|
 | Transição de fase ouro→quartzo | Transição de fase cosmológica f(z) em z_t | [C] analógica |
 | Ondas sísmicas de período longo | Senoides da equação de Friedmann estendida | [C] analógica |
-| Espirais em espirais | Hierarquia de escalas em E(z) | [C] analógica |
-| Plasma atmosférico | Setor de superposição Ωs(z) no RLL | [H] extensão proposta |
-| Efeito corona planetário | Acoplamento não-linear entre setores cosm. | [VAZIO] |
+| Espirais em espirais (H-UNIV-01) | Hierarquia de escalas em E(z) | [C] analógica |
+| Plasma atmosférico (H-ELEC-01) | Setor de superposição Ωs(z) no RLL | [H] extensão proposta |
+| Efeito corona planetário | Acoplamento não-linear entre setores cosmológicos | [VAZIO] |
+| Blocos poligonais (H-ARQ-01) | Distribuição de Δz na transição logística f(z) | [C] analógica |
+| Ciclo 52 anos (H-CAL-01) | Modulação periódica em H₀(t) local | [VAZIO] |
 
-As conexões acima são **analógicas** [C], não derivações formais. A unificação matemática entre geofísica e cosmologia RLL é um TOKEN_VAZIO P1 aberto.
+### Acoplamentos Formais Detalhados
+
+#### H-GEO-01 ↔ Perturbação em Ωm(z) [H]
+
+Um evento de impacto discreto em z_impacto injetaria energia cinética localizada, representável como perturbação em ρ_matéria:
+
+```
+E²(z) = Ωm(1+z)³ + Ωr(1+z)⁴ + ΩΛ + Ωs·f(z)
+```
+
+Com perturbação de impacto: `Ωm → Ωm + δΩm · δ_Dirac(z − z_impacto)`
+
+Para evento na época arqueana (~2.4 Ga → z ≈ 0.18), a perturbação em Ωm seria `δΩm ≈ E_impacto / (ρ_crit · V_universo) ≈ 10⁻⁴⁰` — completamente imperceptível em escala cosmológica.
+
+**Status**: [H] — perturbação é fisicamente motivada mas numericamente irrelevante em escala cosmológica. Relevante apenas em escala local (geofísica regional).
+
+#### H-ELEC-01 ↔ Setor Plasmático Ωs(z) [H especulativo]
+
+O setor Ωs(z) do RLL, que transita com f(z), tem acoplamento proposto com plasma atmosférico:
+
+```
+Ωs(z) ≃ Ωs0 · f(z)    [fração que transita com a logística]
+```
+
+Densidade plasmática ionosférica: `~10⁻¹⁰ kg/m³` → razão com ρ_crit: `≈ 10⁻²⁶`. Contribuição a Ωs é completamente desprezível cosmologicamente.
+
+**Status**: [H especulativo] — acoplamento proposto como analogia de estrutura (plasma como "setor extra de matéria"), não como derivação de primeiros princípios. Contribuição numérica do plasma terrestre a Ωs cosmológico é [VAZIO] e fisicamente imperceptível.
+
+#### H-UNIV-01 ↔ f(z) como Limite de Fibonacci [C → verificar]
+
+A razão entre valores consecutivos da logística em redshifts de Fibonacci poderia convergir para φ:
+
+```
+Se z_n = F_n · z_unit (série de Fibonacci escalada),
+então f(z_{n+1}) / f(z_n) → φ no limite n→∞?
+```
+
+**Predição calculável**: com z_t = 0.8, w_t = 0.3, calcular f(z_n) para z_n = {0.1, 0.2, 0.3, 0.5, 0.8, 1.3, 2.1} (primeiros Fibonacci ×0.1). A convergência para φ requer demonstração — não é propriedade geral da logística, depende da escolha de z_n.
+
+**Status**: [C] — verificação numérica pendente; executável com scripts Python já no repositório.
+
+#### H-CAL-01 ↔ Modulação Periódica em H(z) [VAZIO]
+
+Ciclo de 52 anos maia como periodicidade em H₀(t):
+
+```
+H_local(t) = H₀ + A · sin(2π t / 52 yr)
+```
+
+Dados de múltiplas épocas: HST Key Project 2001 (H₀ = 72 ± 8), SH0ES 2022 (H₀ = 73.04 ± 1.04), TDCOSMO 2020 (H₀ = 74.2 ± 1.6). Incerteza de ~1 km/s/Mpc não permite detectar modulação em décadas.
+
+**Status**: [VAZIO] — sem evidência observacional, sem predição quantitativa de amplitude A. TOKEN_VAZIO P3.
+
+As conexões acima são **analógicas** [C] ou **especulativas** [H/VAZIO], não derivações formais. A unificação matemática entre geofísica e cosmologia RLL é TOKEN_VAZIO P1 aberto.
+
+---
+
+## Matriz Global de Evidências
+
+| Hipótese | Dataset necessário | Fonte/Disponibilidade | Prioridade | Status |
+|---------|------------------|-----------------------|-----------|--------|
+| H-GEO-01 | Razões Os/Ir/Ru em amostras de itabirito | GeoROC / literatura geoquímica | P1 | TOKEN_VAZIO |
+| H-GEO-01 | PDFs (quartzo de choque) em amostras | Laboratório petrográfico (microscopia) | P1 | TOKEN_VAZIO |
+| H-GEO-01 | Shatter cones em campo | Mapeamento geológico QF | P1 | TOKEN_VAZIO |
+| H-GEO-01 | Morfologia circular (SRTM/LIDAR) | NASA EarthData (acesso livre) | P1 | TOKEN_VAZIO |
+| H-GEO-01 | Coesite/stishovite em inclusões | Laboratório EBSD / difratometria | P2 | TOKEN_VAZIO |
+| H-GEO-02 | Simulação campo gravitacional colisão Lua-B | Software N-corpos (REBOUND, código aberto) | P1 | TOKEN_VAZIO |
+| H-GEO-02 | Dados sísmicos históricos da região MG | RSBR / USGS Seismic Catalog | P2 | TOKEN_VAZIO |
+| H-GEO-03 | Dados de inclusões fluidas, Ouro Preto | Literatura CPRM / UFOP | P3 | TOKEN_VAZIO |
+| H-ELEC-01 | Modelo quantitativo circuito atmosférico + camada salina | Física atmosférica padrão | P2 | TOKEN_VAZIO |
+| H-ELEC-01 | Correlação salinidade aerossóis × descargas | AERONET + ENTLN / GLD360 | P2 | TOKEN_VAZIO |
+| H-UNIV-01 | Razão amplitudes em sismograma RSBR | RSBR (acesso livre) | P3 | TOKEN_VAZIO |
+| H-UNIV-01 | Verificação numérica f(z)/φ (série Fibonacci) | Scripts Python já no repositório | P3 | TOKEN_VAZIO |
+| H-ARQ-01 | Estudo comparativo colapsos coloniais vs. pré-colombianos | Literatura histórica (Silgado Ferro 1978; IGP) | P1 | TOKEN_VAZIO |
+| H-ARQ-01 | Simulação FEM estrutura poligonal vs. ortogonal | OpenSees / Abaqus | P2 | TOKEN_VAZIO |
+| H-CAL-01 | Efemérides Jupiter-Saturno-Vênus (janela 52 anos) | NASA JPL Horizons (acesso livre) | P1 | TOKEN_VAZIO |
+| H-CAL-01 | Análise espectral SSN ~52 anos | SIDC Brussels (dados 1749–2026) | P2 | TOKEN_VAZIO |
+| H-CAL-01 | Zenith astronomy das capitais maias | USNO / software Stellarium | P2 | TOKEN_VAZIO |
 
 ---
 
