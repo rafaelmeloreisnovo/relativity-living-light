@@ -159,28 +159,102 @@ A incompatibilidade w_eff pode ser uma **assinatura distinguível** do RLL vs CP
 
 ---
 
-## 6. Estado TOKEN_VAZIO Desta Análise
+## 6. Opção B — Setor DE Puro com Dois Estados [E — FASE 11]
+
+### 6.1 Definição
+
+`ρ_B(z; w1, w2) = f(z)·(1+z)^{3(1+w1)} + (1−f(z))·(1+z)^{3(1+w2)}`
+
+com w1 = −1.0 (DE puro, endpoint baixo z) e w2 ∈ (−1, 0) livre (DE suave, endpoint alto z).
+
+**Diferença vs padrão**: substitui o endpoint matéria (w=0) por DE suave (w2 < 0) → w_eff sempre negativo.
+
+### 6.2 Resultado Numérico [E]
+
+Script: `scripts/verify_weff_opcao_b.py` — scan 36 combinações (w2, w_t).
+
+**Melhor ponto**: w2 = −0.50, w_t = 0.50 → **χ² = 14.8** (threshold < 10, FAIL)
+
+| z | w_eff_B | w_CPL alvo | Δ |
+|---|---------|-----------|---|
+| 0.295 | −0.809 | −0.671 | −0.138 |
+| 0.510 | −0.656 | −0.558 | −0.098 |
+| 0.706 | −0.501 | −0.459 | −0.042 |
+| 0.934 | −0.346 | −0.354 | +0.008 ✓ |
+| 1.321 | −0.232 | −0.210 | −0.022 |
+| 1.484 | −0.235 | −0.156 | −0.079 |
+
+**Propriedades**: w_eff_B sempre negativo ✅ | transição suave (w_t=0.5) melhora ajuste vs w_t=0.3.
+
+### 6.3 Análise da Opção B [H→E]
+
+**O que melhora**: χ²=14.8 dramaticamente melhor que padrão (1162.3) e Opção A (2232.2). w_eff_B permanece negativo em todo z — resolve o problema estrutural central do setor padrão.
+
+**O que ainda não passa**: χ²=14.8 > 10. O setor é sistematicamente ~0.05–0.14 mais negativo que o alvo CPL. A transição logística ainda produz curvatura excessiva em z~0.5–0.7.
+
+**Diagnóstico** [H]: Opção B é um avanço real. Otimização contínua de (z_t, w2, w_t) pode cruzar χ²<10 — **TOKEN_VAZIO P1 acionável**.
+
+---
+
+## 7. Opção C — Setor Duplo α·f + (1-α)·(1-f) + Matéria [E — FASE 11]
+
+### 7.1 Definição
+
+`ρ_C(z; α, r) = [α·f(z) + (1-α)·(1-f(z))] + r·(1-f(z))·(1+z)³`
+
+Scan: α ∈ [0.5, 1.0], r ∈ [0.0, 0.3], z_t=1.0, w_t=0.3.
+
+### 7.2 Resultado Numérico [E]
+
+Script: `scripts/verify_weff_opcao_c.py` — scan 35 combinações.
+
+**Melhor ponto**: α = 0.50, r = 0.05 → **χ² = 104.0** (FAIL)
+
+Nota estrutural: α=0.5, r=0 → setor constante → w_eff = −1 (χ²=940). α→1 → phantom (χ²=8659). O melhor ponto está no regime α=0.5, r pequeno — muito negativo em z<0.7.
+
+### 7.3 Análise da Opção C [H→E]
+
+**Diagnóstico** [E]: Opção C piora χ² em relação à Opção B. O espaço (α, r) com z_t=1.0 fixo não oferece os graus de liberdade necessários. Poderia melhorar com z_t livre — mas isso torna o modelo menos distinto do CPL.
+
+---
+
+## 8. Diagnóstico Estrutural Consolidado Completo [E — FASE 10+11]
+
+| Versão | χ² vs CPL DESI | w sempre negativo | Falha principal |
+|--------|----------------|-------------------|----------------|
+| RLL padrão | 1162.3 | ❌ (w>0 em z~0.5–2) | w positivo em alto z |
+| Opção A | 2232.2 | ✅ | phantom demais em alto z |
+| **Opção B** | **14.8** ← melhor | ✅ | ~0.08 muito negativo em todo z |
+| Opção C | 104.0 | ✅ | muito negativo em baixo z |
+| Threshold pass | < 10 | — | — |
+
+**Conclusão FASE 11** [E]: Opção B é a variante mais promissora. χ²=14.8 está 48% acima do threshold. Um refinamento contínuo de (z_t, w2, w_t) é o próximo passo natural — acionável via `scipy.optimize.minimize`.
+
+---
+
+## 9. Estado TOKEN_VAZIO Desta Análise (atualizado FASE 11)
 
 | Gap | P | Status |
 |-----|---|--------|
-| Scan paramétrico (zt, wt) executado | — | ✅ [E] FASE 10 — melhor chi²=608.7, nenhum ponto passa |
+| Scan paramétrico (zt, wt) executado | — | ✅ [E] FASE 10 — melhor χ²=608.7, nenhum ponto passa |
 | Opção A numérica calculada | — | ✅ [E] FASE 10 — ver tabela §3.2 |
-| Resolução da incompatibilidade | P0 | ⚠️ [H/VAZIO] — Opções B/C não testadas |
-| Opção B/C implementada | P1 | ⚠️ [VAZIO] — proposta, sem código |
-| Predição datada RLL sobre w_eff | P0 | ⚠️ [VAZIO] — necessária para falsificação |
+| Opção B implementada e escaneada | P1→✅ | ✅ [E] FASE 11 — melhor χ²=14.8; melhora estrutural confirmada |
+| Opção C implementada e escaneada | P1→✅ | ✅ [E] FASE 11 — melhor χ²=104.0; Opção B superior |
+| Opção B otimização contínua | P1 | ⚠️ [H] — scipy.minimize sobre (zt, w2, wt) pendente |
+| Predição datada RLL sobre w_eff | P0→✅ | ✅ [C] FASE 11 — ver `PREDICAO_DATADA_RLL.md` |
 
 ---
 
-## 7. Implicação para claim_allowed
+## 10. Implicação para claim_allowed
 
 A incompatibilidade w_eff não falsifica automaticamente o RLL — ela requer:
 
-1. **Clareza sobre o que RLL prediz**: é a assinatura w_eff positivo em z~0.7 uma predição do modelo, ou um artefato paramétrico?
-2. **Separação de setores**: o w_eff calculado aqui é do setor Ωs0 isolado. O w_eff total E(z) inclui Ωm + ΩΛ + Ωs0 e é dominado por ΩΛ a baixo z.
-3. **Teste com E(z) total**: o que importa para BAO é E(z), não w_eff do setor. O χ²_BAO=93.81 (parâmetros nominais) é relevante — o χ² com parâmetros otimizados está no TOKEN_VAZIO G1.
+1. **Clareza sobre o que RLL prediz**: w_eff positivo em z~0.7 é uma predição do setor padrão, não de Opção B. A variante Opção B tem w_eff sempre negativo.
+2. **Separação de setores**: o w_eff calculado aqui é do setor Ωs0 isolado. O w_eff total E(z) inclui Ωm + ΩΛ + Ωs0, dominado por ΩΛ a baixo z.
+3. **Teste com E(z) total**: o que importa para BAO é E(z), não w_eff do setor. O χ²_BAO=93.81 (parâmetros nominais) é relevante — otimização com parâmetros livres está no TOKEN_VAZIO G1.
 
-**Linha de integridade**: documentar a incompatibilidade sem mascarar. A análise mostra que o modelo requer revisão ou reinterpretação antes de reivindicar correspondência com DESI CPL.
+**Linha de integridade**: Opção B reduz dramaticamente a incompatibilidade (1162 → 14.8). O modelo não está descartado — está em fase de refinamento paramétrico.
 
 ---
 
-*Análise executada em FASE 10 (2026-07-07). Confirma diagnóstico de `08_ARVORE_CONCEITUAL_RLL.md §NÍVEL2` com cálculos numéricos explícitos.*
+*FASE 10 (2026-07-07): análise estrutural inicial. FASE 11 (2026-07-07): Opções B e C numericamente testadas. Próximo: otimização contínua Opção B.*

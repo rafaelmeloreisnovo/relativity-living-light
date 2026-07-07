@@ -279,18 +279,72 @@ N=1624 SNe cosmológicas. Ratio RLL_original/RLL_optionA = 1.0000 (degenerados e
 
 ---
 
-## Conclusão
+## GAPS RESOLVIDOS — FASE 11 (2026-07-07)
 
-**Token Total**: 9 gaps originais + G0 externo + G1 + G2 novos (Fase 7)
-**P0 (bloqueador)**: 3 originais → 2 resolvidos, 2 novos (G1, G2)
-**P1 (confiança)**: 3
-**P2 (robustez)**: 2
-**P3 (polish)**: 1
-**G0 EXTERNO (Pantheon+)**: ✅ FECHADO em Fase 4
-**G1 (Pipeline MCMC)**: ⚠️ TOKEN_VAZIO P0 — pipeline existe, run pendente
-**G2 (Bayes Factor)**: ⚠️ TOKEN_VAZIO P0 — pipeline existe, run pendente
+### Gap H1-WEFF: Opção B numericamente testada → FECHADO [E]
 
-**Ação Imediata**: Disparar `rll-validacao-cientifica-completa.yml` no modo=completo para fechar G1 e G2.
+**Questão original**: Setor DE puro com dois estados logisticamente interpolados poderia compatibilizar w_eff com CPL DESI?
+
+**Status**: ✅ **EXECUTADO** — `scripts/verify_weff_opcao_b.py` — scan 36 combinações (w2, w_t)
+
+**Resultado**: Melhor χ²=14.8 (w2=−0.5, w_t=0.5). Não passa threshold<10, mas melhora drasticamente vs padrão (1162.3) e Opção A (2232.2). w_eff sempre negativo ✅.
+
+**Implicação**: Opção B é a variante mais promissora. Otimização contínua pode cruzar χ²<10 (TOKEN_VAZIO P1 acionável).
+
+---
+
+### Gap H2-WEFF: Opção C numericamente testada → FECHADO [E]
+
+**Status**: ✅ **EXECUTADO** — `scripts/verify_weff_opcao_c.py` — scan 35 combinações (α, r)
+
+**Resultado**: Melhor χ²=104.0 (α=0.5, r=0.05). Opção C inferior à Opção B; espaço (α,r) com z_t fixo é insuficiente.
+
+---
+
+### Gap P0 PRED: Predição datada RLL → FECHADA [C]
+
+**Status**: ✅ **CRIADO** — `docs/canonicos/PREDICAO_DATADA_RLL.md`
+
+**Predições registradas** (antes de DESI DR3 e Euclid DR1):
+- P-RLL-01: w_eff > 0 em z~0.7–1.3 (setor padrão) — disfavorecida por DR2, distinguível futuramente
+- P-RLL-02: Transição E(z) em z~1.0 — aguarda MCMC (G1)
+- P-RLL-03: Ωs0 < 0.05 — aguarda MCMC (G1)
+- P-RLL-04: Degeneração padrão/Opção A ✅ verificada em FASE 4
+- P-RLL-05: Opção B cruzará χ²<10 com otimização — pendente
+
+---
+
+### Gap P1-WEFF-B-OPT: Otimização contínua Opção B [NOVO P1]
+
+**Questão**: Um scipy.minimize sobre (z_t, w2, w_t) pode levar χ²_Opção_B abaixo de 10?
+
+**Por que P1**: χ²=14.8 no scan discreto é ~50% acima do threshold. Otimização contínua é acionável sem dados externos.
+
+**Como fechar**: Criar `scripts/optimize_weff_opcao_b.py` com `scipy.optimize.minimize(chi2_b, x0=[1.0, -0.5, 0.5], bounds=[(0.3,1.5),(-0.95,-0.05),(0.1,0.8)], method='L-BFGS-B')`
+
+**Status**: ⚠️ **TOKEN_VAZIO P1** — scan feito, otimização pendente
+
+---
+
+## Conclusão (atualizada FASE 11)
+
+**Token Total**: 9 gaps originais + G0/G1/G2 + novos FASE 11
+**P0 (bloqueador)**: G1 (MCMC joint) + G2 (Bayes Factor) — ambos requerem pipeline manual
+**P1 (confiança)**: 3 originais + Gap 6 (justificativa parâmetros) + P1-WEFF-B-OPT
+**P2 (robustez)**: 2 originais
+**P3 (polish)**: 1 original
+
+**Fechados**:
+- G0 Pantheon+: ✅ FASE 4
+- H1-WEFF (Opção B): ✅ FASE 11 — χ²=14.8, melhora estrutural confirmada
+- H2-WEFF (Opção C): ✅ FASE 11 — χ²=104.0, Opção C inferior
+- Predição datada: ✅ FASE 11 — 5 predições registradas em `PREDICAO_DATADA_RLL.md`
+
+**Pendentes (requerem ação)**:
+- G1 (Pipeline MCMC): Disparar `rll-validacao-cientifica-completa.yml` modo=completo
+- G2 (Bayes Factor): Idem (Job 7)
+- P1-WEFF-B-OPT: Criar e rodar `scripts/optimize_weff_opcao_b.py`
+- Gap 6 (justificativa parâmetros): Ver `docs/canonicos/JUSTIFICATIVA_PARAMETROS_RLL.md` (FASE 12)
 
 **Método**: TOKEN_VAZIO preserva honestidade enquanto trabalho prossegue.
 
