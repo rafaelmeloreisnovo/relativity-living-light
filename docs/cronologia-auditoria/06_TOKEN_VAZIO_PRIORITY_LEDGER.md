@@ -189,13 +189,40 @@ python3 scripts/rll_vs_lcdm.py \
 
 ---
 
+## GAPS RESOLVIDOS — Fase 4 (2026-07-06)
+
+### Gap G0: Pantheon+SH0ES ausente do pipeline RLL → FECHADO [E]
+
+**Questão original**: χ² do RLL contra dataset Pantheon+ SNe Ia não calculado.
+
+**Status**: ✅ **FECHADO** — `docs/cronologia-auditoria/09_PANTHEON_RESULTADO_REAL.md`
+
+**Resultado real**:
+| Modelo | χ² | AIC | ΔAIC vs ΛCDM |
+|--------|-----|-----|-------------|
+| ΛCDM (k=2) | 710.808 | 714.808 | — |
+| CPL (k=4) | 710.390 | 718.390 | +3.582 |
+| RLL original (k=4) | 710.613 | 718.613 | +3.805 |
+| RLL Opção A (k=4) | 710.613 | 718.613 | +3.805 |
+
+N=1624 SNe cosmológicas. Ratio RLL_original/RLL_optionA = 1.0000 (degenerados em Pantheon+).
+
+**Classificação**: [E] cálculo direto contra dado observacional real.
+
+**Scripts**: `scripts/pantheon/load_pantheon.py`, `models_pantheon.py`, `run_rll_vs_pantheon.py`  
+**Dados**: `validacao_real/data/pantheon_data.dat` (1702 linhas, 1624 amostra cosmológica)  
+**Resultado**: `results/pantheon_plus_resultado_real.txt`
+
+---
+
 ## Conclusão
 
-**Token Total**: 9 gaps  
+**Token Total**: 9 gaps + 1 gap G0 externo  
 **P0 (bloqueador)**: 3  
 **P1 (confiança)**: 3  
 **P2 (robustez)**: 2  
-**P3 (polish)**: 1
+**P3 (polish)**: 1  
+**G0 EXTERNO (Pantheon+)**: ✅ FECHADO em Fase 4
 
 **Ação Imediata**: Resolver P0 antes de qualquer publicação/preprint.
 

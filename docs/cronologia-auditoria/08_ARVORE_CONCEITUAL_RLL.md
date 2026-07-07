@@ -159,7 +159,7 @@ Script: `scripts/check_desi_dr2_bao_covariance.py` (covariância 13×13 completa
 | DESI DR2 BAO | arXiv:2503.14738 | 13 | 93.81 (nominal) | [E] resultado; [H] otimização |
 | Moresco H(z) 2023 | arXiv:2201.07241 | 33 | [VAZIO] | aguarda execução |
 | Planck 2018 CMB | arXiv:1807.06209 | priors | [VAZIO] | aguarda execução |
-| Pantheon+ SN Ia | arXiv:2202.04077 | 1701 | [VAZIO] | aguarda execução |
+| Pantheon+ SN Ia | arXiv:2202.04077 | 1624 (cosmo) | χ²=710.613 (ΛCDM=710.808) | [E] — `09_PANTHEON_RESULTADO_REAL.md` |
 | fσ₈ growth | Vários | presente | parcial | `scripts/check_rll_growth.py` |
 
 ---
@@ -222,7 +222,7 @@ O RLL perde suporte se:
 | Sistemáticos (S na tupla) | P0 | ausência de análise de sistemáticos | [VAZIO] — bloqueia claim_allowed |
 | χ² conjunto completo | P0 | RLL colapsou para ΛCDM (Ωs0→0) | [E] resultado negativo registrado |
 | Moresco H(z) separado | P2 | χ² apenas com H(z) não calculado | [VAZIO] |
-| Pantheon+ separado | P2 | χ² apenas com SNe não calculado | [VAZIO] |
+| Pantheon+ separado | P2 | ✅ FECHADO — χ²=710.613 (1624 SNe, Nelder-Mead) | [E] `09_PANTHEON_RESULTADO_REAL.md` |
 | Performance ARM32 | P3 | Termux não testado | [VAZIO] |
 
 ### Regra de Resolução
