@@ -28,6 +28,9 @@ concurrency:
 
 env:
   PYTHON_VERSION: "3.11"
+  # Auditor hooks: non-canonical real workflows must declare these two env vars
+  CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+  SYNTHETIC_BOUNDARY: "synthetic, mock, fixture, placeholder, demo — proibidos como dados observacionais reais"
 
 # ─────────────────────────────────────────────────────────────────
 # JOB 1 · Setup e Verificação de Entradas
