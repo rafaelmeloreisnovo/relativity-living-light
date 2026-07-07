@@ -1,7 +1,7 @@
 {
   "pipeline": "rll-validacao-cientifica-completa",
   "job": "joint_mcmc_p0",
-  "timestamp_utc": "2026-07-07T08:03:37.392213+00:00",
+  "timestamp_utc": "2026-07-07T10:48:55.947609+00:00",
   "walkers": 32,
   "steps": 1000,
   "profile": "structure_d_real_validation",

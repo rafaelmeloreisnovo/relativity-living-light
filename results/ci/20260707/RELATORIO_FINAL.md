@@ -1,6 +1,6 @@
 # Relatório de Validação Científica RLL — 20260707
 
-**Pipeline**: rll-validacao-cientifica-completa | **Modo**: completo | **Run**: 28850939360 | **Commit**: bfa9cdda
+**Pipeline**: rll-validacao-cientifica-completa | **Modo**: completo | **Run**: 28860351117 | **Commit**: 3f436f0c
 
 ## Sumário Executivo
 
@@ -38,4 +38,4 @@
 > Canônico: `.github/workflows/real-data-complete-execution.yml`
 
 ---
-*Gerado em 2026-07-07T08:06:44.012469+00:00*
+*Gerado em 2026-07-07T10:52:03.328073+00:00*

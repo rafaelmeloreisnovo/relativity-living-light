@@ -1,8 +1,8 @@
 {
-  "run_id": "28850939360",
-  "commit": "bfa9cdda",
+  "run_id": "28860351117",
+  "commit": "3f436f0c",
   "run_date": "20260707",
-  "timestamp_utc": "2026-07-07T08:06:44.012578+00:00",
+  "timestamp_utc": "2026-07-07T10:52:03.328164+00:00",
   "modo": "completo",
   "pantheon_delta_aic": null,
   "desi_chi2_nominal": 93.81,
