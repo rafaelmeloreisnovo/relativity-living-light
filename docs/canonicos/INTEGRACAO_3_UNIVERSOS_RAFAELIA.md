@@ -50,12 +50,15 @@ E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ + Ωs0·[f(a) + (1−f(a))·a⁻³]
 | z_t | 0.8–1.0 | ajuste fenomenológico | [C] TOKEN_VAZIO P1 |
 | w_t | 0.3 | ajuste fenomenológico | [C] TOKEN_VAZIO P1 |
 
-### Estado de Validação (pós-FASE 8)
+### Estado de Validação (pós-FASE 12)
 
 | Dataset | N | χ²_RLL | χ²_ΛCDM | ΔAIC | Status |
 |---------|---|--------|---------|------|--------|
-| Pantheon+ SH0ES (SNe Ia) | 1624 | 710.613 | 710.808 | +3.805 | [E] ✅ F-COS-01/02 PASS |
+| Pantheon+ SH0ES (SNe Ia) | 1701 | 710.613 | 710.808 | +3.805 | [E] ✅ F-COS-01/02 PASS |
 | DESI DR2 BAO (params nominais) | 13 | 93.81 | 28.97 | — | [E] χ²_nom<150 → F-COS-05 PASS |
+| DESI w_eff — setor padrão | 6 | 1162.3 | — | — | [E] ✗ incompatível estruturalmente |
+| DESI w_eff — Opção B (melhor) | 6 | **14.8** | — | — | [E] ⚠️ χ²>10, mas melhoria 79× |
+| DESI w_eff — Opção C (melhor) | 6 | 104.0 | — | — | [E] ✗ inferior a Opção B |
 | Joint MCMC (Pantheon+ + DESI) | 64+ | TOKEN_VAZIO | TOKEN_VAZIO | — | ⚠️ [VAZIO P0] Gap G1 |
 | Bayes Factor ln(B₁₀) | — | — | — | — | ⚠️ [VAZIO P0] Gap G2 |
 
@@ -269,8 +272,8 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 
 **NÃO PODE afirmar [VAZIO]**:
 - Superioridade sobre ΛCDM (claim_allowed = false até MCMC conjunto e Bayes Factor)
-- Justificativa teórica de z_t, w_t, Ωs0 a partir de primeiros princípios
-- Compatibilidade com w_eff CPL DESI (trajetórias opostas em z~0.7–1.3)
+- Justificativa teórica de z_t, w_t, Ωs0 a partir de primeiros princípios (documentado em JUSTIFICATIVA_PARAMETROS_RLL.md)
+- Compatibilidade *plena* com w_eff CPL DESI: setor padrão χ²=1162, Opção B χ²=14.8 (ainda >10)
 
 ### Universo II — O que pode ser afirmado hoje
 
@@ -309,9 +312,9 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 
 | Ato | Como | Domínio |
 |-----|------|---------|
-| Derivação ou justificativa de z_t, w_t, Ωs0 | Comparar com f(R), EDE, Finsler na literatura | Universo I |
+| Otimização contínua Opção B (P-RLL-05) | `scripts/optimize_weff_opcao_b.py` + scipy.minimize → χ²<10? | Universo I |
+| Derivação ou justificativa de z_t, w_t, Ωs0 | MCMC joint (G1) restringirá observacionalmente; ver JUSTIFICATIVA_PARAMETROS_RLL.md | Universo I |
 | Dados de campo H-GEO-01 | Coleta amostral em Itabirito + análise Os/Ir | Universo II |
-| Resolver incompatibilidade w_eff CPL | Testar Opção A (inversão de transição) com BAO+CMB | Universo I |
 
 ### P2 — Robustez
 
@@ -344,4 +347,24 @@ RAFAELIA/RLL:
 
 ---
 
-*Fases 1–8 concluídas. Estado: aguardando primeiro run do pipeline CI para fechar P0 G1+G2.*
+---
+
+## Adendo FASE 11–12 (2026-07-07)
+
+### Novas verificações numéricas
+
+- **Opção B** (`verify_weff_opcao_b.py`): χ²_best = 14.8 em w2=−0.50, w_t=0.50 — w_eff sempre negativo. Melhoria de 79× sobre o setor padrão.
+- **Opção C** (`verify_weff_opcao_c.py`): χ²_best = 104.0 em α=0.50, r=0.05 — inferior à Opção B em toda a grade.
+- **Implicação arquitetural [E]**: o setor com matéria explícita (padrão, A, C) é estruturalmente incompatível com CPL DESI. A Opção B (DE puro em ambos os regimes) reduz, mas não elimina, a incompatibilidade.
+
+### Predições datadas (P-RLL-01..05)
+
+5 predições registradas em 2026-07-07 *antes* de DESI DR3 e Euclid DR1.  
+P-RLL-05 (Opção B cruzará χ²<10) é testável imediatamente por scipy.minimize.
+
+### Justificativa de parâmetros
+
+`JUSTIFICATIVA_PARAMETROS_RLL.md` documenta que z_t, w_t, Ωs0 são fenomenológicos sem derivação de primeiros princípios — resultado negativo honestamente registrado.  
+Resultado analítico [E]: equipartição interna do setor ocorre em z=0 (independente de z_t), não em z=z_t.
+
+*Fases 1–12 concluídas. Estado: aguardando primeiro run do pipeline CI para fechar P0 G1+G2.*
