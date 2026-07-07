@@ -1,0 +1,11 @@
+RESULTADO REAL — RLL vs Pantheon+SH0ES (dado observacional, nao sintetico)
+N SNe usadas (cosmo, sem calibradores): 1624
+
+lcdm: params=[np.float64(73.0638), np.float64(0.346)] chi2=710.808 chi2/dof=0.4382 AIC=714.808
+cpl: params=[np.float64(73.0178), np.float64(0.1401), np.float64(-0.7572), np.float64(0.7036)] chi2=710.390 chi2/dof=0.4385 AIC=718.390
+rll_original: params=[np.float64(72.9699), np.float64(0.2989), np.float64(-0.9037), np.float64(0.0729)] chi2=710.613 chi2/dof=0.4387 AIC=718.613
+rll_optionA: params=[np.float64(72.9699), np.float64(0.2989), np.float64(-0.8307), np.float64(-0.0729)] chi2=710.613 chi2/dof=0.4387 AIC=718.613
+
+Razao chi2(RLL_original)/chi2(RLL_OpcaoA) = 1.0000
+Classificacao epistemologica: [COD] — calculo direto contra dado real Pantheon+SH0ES.
+Gap G0 (Pantheon+ ausente) fechado nesta sessao.
