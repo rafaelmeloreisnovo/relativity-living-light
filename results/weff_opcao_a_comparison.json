@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "script": "verify_weff_opcao_a.py",
+    "date": "2026-07-07",
+    "phase": "FASE 10",
+    "description": "Comparação numérica w_eff setor RLL: padrão vs Opção A (transição invertida)"
+  },
+  "parameters": {
+    "z_t": 1.0,
+    "w_t": 0.3
+  },
+  "grid_comparison": [
+    {
+      "z": 0.0,
+      "f_z": 0.965555,
+      "w_eff_standard": -0.965555,
+      "w_eff_opcao_a": -0.034445,
+      "w_cpl_desi_target": null,
+      "regime_standard": "quintessence (-1<w<-0.5)",
+      "regime_opcao_a": "transitional (-0.5<w<0)"
+    },
+    {
+      "z": 0.1,
+      "f_z": 0.952574,
+      "w_eff_standard": -0.919858,
+      "w_eff_opcao_a": -0.049952,
+      "w_cpl_desi_target": null,
+      "regime_standard": "quintessence (-1<w<-0.5)",
+      "regime_opcao_a": "transitional (-0.5<w<0)"
+    },
+    {
+      "z": 0.295,
+      "f_z": 0.912934,
+      "w_eff_standard": -0.706812,
+      "w_eff_opcao_a": -0.106816,
+      "w_cpl_desi_target": -0.671,
+      "regime_standard": "quintessence (-1<w<-0.5)",
+      "regime_opcao_a": "transitional (-0.5<w<0)"
+    },
+    {
+      "z": 0.5,
+      "f_z": 0.841131,
+      "w_eff_standard": -0.226658,
+      "w_eff_opcao_a": -0.22945,
+      "w_cpl_desi_target": -0.563256,
+      "regime_standard": "transitional (-0.5<w<0)",
+      "regime_opcao_a": "transitional (-0.5<w<0)"
+    },
+    {
+      "z": 0.706,
+      "f_z": 0.727108,
+      "w_eff_standard": 0.367078,
+      "w_eff_opcao_a": -0.454345,
+      "w_cpl_desi_target": -0.459,
+      "regime_standard": "matter-like (w>0)",
+      "regime_opcao_a": "transitional (-0.5<w<0)"
+    },
+    {
+      "z": 0.934,
+      "f_z": 0.554779,
+      "w_eff_standard": 0.729448,
+      "w_eff_opcao_a": -0.842001,
+      "w_cpl_desi_target": -0.354,
+      "regime_standard": "matter-like (w>0)",
+      "regime_opcao_a": "quintessence (-1<w<-0.5)"
+    },
+    {
+      "z": 1.0,
+      "f_z": 0.5,
+      "w_eff_standard": 0.753086,
+      "w_eff_opcao_a": -0.975309,
+      "w_cpl_desi_target": -0.329442,
+      "regime_standard": "matter-like (w>0)",
+      "regime_opcao_a": "quintessence (-1<w<-0.5)"
+    },
+    {
+      "z": 1.321,
+      "f_z": 0.255403,
+      "w_eff_standard": 0.563097,
+      "w_eff_opcao_a": -1.621695,
+      "w_cpl_desi_target": -0.21,
+      "regime_standard": "matter-like (w>0)",
+      "regime_opcao_a": "phantom (w<-1)"
+    },
+    {
+      "z": 1.484,
+      "f_z": 0.166126,
+      "w_eff_standard": 0.410263,
+      "w_eff_opcao_a": -1.867295,
+      "w_cpl_desi_target": -0.156,
+      "regime_standard": "matter-like (w>0)",
+      "regime_opcao_a": "phantom (w<-1)"
+    },
+    {
+      "z": 1.5,
+      "f_z": 0.158869,
+      "w_eff_standard": 0.396183,
+      "w_eff_opcao_a": -1.886539,
+      "w_cpl_desi_target": null,
+      "regime_standard": "matter-like (w>0)",
+      "regime_opcao_a": "phantom (w<-1)"
+    },
+    {
+      "z": 2.0,
+      "f_z": 0.034445,
+      "w_eff_standard": 0.109099,
+      "w_eff_opcao_a": -2.029979,
+      "w_cpl_desi_target": null,
+      "regime_standard": "matter-like (w>0)",
+      "regime_opcao_a": "phantom (w<-1)"
+    },
+    {
+      "z": 3.0,
+      "f_z": 0.001271,
+      "w_eff_standard": 0.005541,
+      "w_eff_opcao_a": -1.253767,
+      "w_cpl_desi_target": null,
+      "regime_standard": "transitional (-0.5<w<0)",
+      "regime_opcao_a": "phantom (w<-1)"
+    }
+  ],
+  "chi2_vs_desi_cpl": {
+    "standard": 1162.32,
+    "opcao_a": 2232.184,
+    "threshold_pass": 10.0,
+    "standard_passes": false,
+    "opcao_a_passes": false
+  },
+  "structural_diagnosis": {
+    "standard_zero_crossing_z": 0.5,
+    "standard_regime_z07": "matter-like (w>0)",
+    "opcao_a_regime_z07": "transitional (-0.5<w<0)",
+    "standard_regime_z15": "matter-like (w>0)",
+    "opcao_a_regime_z15": "phantom (w<-1)"
+  },
+  "falsifiers": {
+    "F_WEFF_STANDARD_01": false,
+    "F_WEFF_OPCA0_A_01": false,
+    "neither_passes": true
+  },
+  "epistemic_status": "[E] análise numérica executada — nenhuma variante replica CPL DESI. Incompatibilidade é estrutural (arquitetura DE↔matéria vs DE suave). Resolução requer revisão do setor ou reinterpretação da assinatura.",
+  "next_steps": [
+    "[H] Opção B: setor com EOS evolutiva pura sem cruzamento de fase",
+    "[H] Opção C: setor duplo α·f + (1-α)·(1-f) + matéria separada",
+    "[VAZIO P0] Predição datada: se dados Euclid/DESI DR3 mostrarem w>0 em z~0.7, favorece RLL"
+  ]
+}
