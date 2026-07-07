@@ -1,0 +1,441 @@
+{
+  "meta": {
+    "script": "verify_weff_opcao_b.py",
+    "date": "2026-07-07",
+    "phase": "FASE 11",
+    "token_vazio_id": "H1-WEFF",
+    "description": "Opção B — setor DE puro com dois estados logisticamente interpolados"
+  },
+  "scan_config": {
+    "w1_fixed": -1.0,
+    "w2_grid": [
+      -0.9,
+      -0.8,
+      -0.7,
+      -0.6,
+      -0.5,
+      -0.4,
+      -0.3,
+      -0.2,
+      -0.15,
+      -0.1,
+      -0.07,
+      -0.05
+    ],
+    "wt_grid": [
+      0.2,
+      0.3,
+      0.5
+    ],
+    "z_t_fixed": 1.0,
+    "n_combinations": 36
+  },
+  "scan_results": [
+    {
+      "w1": -1.0,
+      "w2": -0.9,
+      "w_t": 0.2,
+      "chi2_vs_desi": 582.267,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.8,
+      "w_t": 0.2,
+      "chi2_vs_desi": 327.208,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.7,
+      "w_t": 0.2,
+      "chi2_vs_desi": 171.391,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.6,
+      "w_t": 0.2,
+      "chi2_vs_desi": 112.44,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.5,
+      "w_t": 0.2,
+      "chi2_vs_desi": 148.565,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.4,
+      "w_t": 0.2,
+      "chi2_vs_desi": 278.15,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.3,
+      "w_t": 0.2,
+      "chi2_vs_desi": 499.531,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.2,
+      "w_t": 0.2,
+      "chi2_vs_desi": 810.938,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.15,
+      "w_t": 0.2,
+      "chi2_vs_desi": 999.824,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.1,
+      "w_t": 0.2,
+      "chi2_vs_desi": 1210.517,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.07,
+      "w_t": 0.2,
+      "chi2_vs_desi": 1347.303,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.05,
+      "w_t": 0.2,
+      "chi2_vs_desi": 1442.782,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.9,
+      "w_t": 0.3,
+      "chi2_vs_desi": 594.293,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.8,
+      "w_t": 0.3,
+      "chi2_vs_desi": 332.969,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.7,
+      "w_t": 0.3,
+      "chi2_vs_desi": 155.609,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.6,
+      "w_t": 0.3,
+      "chi2_vs_desi": 61.106,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.5,
+      "w_t": 0.3,
+      "chi2_vs_desi": 48.164,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.4,
+      "w_t": 0.3,
+      "chi2_vs_desi": 115.49,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.3,
+      "w_t": 0.3,
+      "chi2_vs_desi": 261.827,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.2,
+      "w_t": 0.3,
+      "chi2_vs_desi": 485.926,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.15,
+      "w_t": 0.3,
+      "chi2_vs_desi": 626.743,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.1,
+      "w_t": 0.3,
+      "chi2_vs_desi": 786.524,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.07,
+      "w_t": 0.3,
+      "chi2_vs_desi": 891.428,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.05,
+      "w_t": 0.3,
+      "chi2_vs_desi": 965.105,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.9,
+      "w_t": 0.5,
+      "chi2_vs_desi": 639.092,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.8,
+      "w_t": 0.5,
+      "chi2_vs_desi": 390.305,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.7,
+      "w_t": 0.5,
+      "chi2_vs_desi": 200.683,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.6,
+      "w_t": 0.5,
+      "chi2_vs_desi": 74.675,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.5,
+      "w_t": 0.5,
+      "chi2_vs_desi": 14.83,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.4,
+      "w_t": 0.5,
+      "chi2_vs_desi": 22.405,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.3,
+      "w_t": 0.5,
+      "chi2_vs_desi": 97.828,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.2,
+      "w_t": 0.5,
+      "chi2_vs_desi": 241.002,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.15,
+      "w_t": 0.5,
+      "chi2_vs_desi": 337.873,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.1,
+      "w_t": 0.5,
+      "chi2_vs_desi": 451.504,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.07,
+      "w_t": 0.5,
+      "chi2_vs_desi": 527.693,
+      "passes": false
+    },
+    {
+      "w1": -1.0,
+      "w2": -0.05,
+      "w_t": 0.5,
+      "chi2_vs_desi": 581.812,
+      "passes": false
+    }
+  ],
+  "best_point": {
+    "w1": -1.0,
+    "w2": -0.5,
+    "w_t": 0.5,
+    "chi2_vs_desi": 14.83,
+    "passes": false
+  },
+  "best_profile": [
+    {
+      "z": 0.0,
+      "f_z": 0.880797,
+      "w_eff_b": -0.940399,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 0.1,
+      "f_z": 0.858149,
+      "w_eff_b": -0.906493,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 0.295,
+      "f_z": 0.803766,
+      "w_eff_b": -0.808688,
+      "w_cpl_desi": -0.671,
+      "delta": -0.137688
+    },
+    {
+      "z": 0.5,
+      "f_z": 0.731059,
+      "w_eff_b": -0.664016,
+      "w_cpl_desi": -0.563256,
+      "delta": -0.10076
+    },
+    {
+      "z": 0.706,
+      "f_z": 0.642906,
+      "w_eff_b": -0.500516,
+      "w_cpl_desi": -0.459,
+      "delta": -0.041516
+    },
+    {
+      "z": 0.934,
+      "f_z": 0.532952,
+      "w_eff_b": -0.345864,
+      "w_cpl_desi": -0.354,
+      "delta": 0.008136
+    },
+    {
+      "z": 1.0,
+      "f_z": 0.5,
+      "w_eff_b": -0.312207,
+      "w_cpl_desi": -0.329442,
+      "delta": 0.017235
+    },
+    {
+      "z": 1.321,
+      "f_z": 0.344795,
+      "w_eff_b": -0.231707,
+      "w_cpl_desi": -0.21,
+      "delta": -0.021707
+    },
+    {
+      "z": 1.484,
+      "f_z": 0.275279,
+      "w_eff_b": -0.234819,
+      "w_cpl_desi": -0.156,
+      "delta": -0.078819
+    },
+    {
+      "z": 1.5,
+      "f_z": 0.268941,
+      "w_eff_b": -0.236241,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 2.0,
+      "f_z": 0.119203,
+      "w_eff_b": -0.325055,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 3.0,
+      "f_z": 0.017986,
+      "w_eff_b": -0.45927,
+      "w_cpl_desi": null,
+      "delta": null
+    }
+  ],
+  "desi_comparison_best": [
+    {
+      "z": 0.295,
+      "w_eff_opcao_b": -0.808688,
+      "w_cpl_desi_target": -0.671,
+      "delta": -0.137688
+    },
+    {
+      "z": 0.51,
+      "w_eff_opcao_b": -0.656201,
+      "w_cpl_desi_target": -0.558,
+      "delta": -0.098201
+    },
+    {
+      "z": 0.706,
+      "w_eff_opcao_b": -0.500516,
+      "w_cpl_desi_target": -0.459,
+      "delta": -0.041516
+    },
+    {
+      "z": 0.934,
+      "w_eff_opcao_b": -0.345864,
+      "w_cpl_desi_target": -0.354,
+      "delta": 0.008136
+    },
+    {
+      "z": 1.321,
+      "w_eff_opcao_b": -0.231707,
+      "w_cpl_desi_target": -0.21,
+      "delta": -0.021707
+    },
+    {
+      "z": 1.484,
+      "w_eff_opcao_b": -0.234819,
+      "w_cpl_desi_target": -0.156,
+      "delta": -0.078819
+    }
+  ],
+  "w_eff_at_desi_redshifts": {
+    "0.295": -0.8087,
+    "0.51": -0.6562,
+    "0.706": -0.5005,
+    "0.934": -0.3459,
+    "1.321": -0.2317,
+    "1.484": -0.2348
+  },
+  "structural_analysis": {
+    "all_w_negative": true,
+    "monotone_increasing_w": false,
+    "best_chi2": 14.83,
+    "best_passes": false,
+    "any_combination_passes": false,
+    "n_passes": 0
+  },
+  "falsifiers": {
+    "F_WEFF_B_01_chi2_lt10": false,
+    "F_WEFF_B_02_always_negative": true,
+    "F_WEFF_B_03_monotone": false
+  },
+  "epistemic_status": "[E] scan numérico executado — FAIL: melhor χ²=14.83 >> 10. Diagnóstico estrutural: w_eff_B sempre negativo=True, monótono=False.",
+  "interpretation": "Opção B resolve o problema de w_eff positivo (setor padrão) mas não consegue reproduzir o perfil CPL DESI. O mecanismo: a transição logística entre dois estados DE produz bump em w_eff na região z~z_t, com amplitude insuficiente ou excessiva para atingir os alvos DESI. TOKEN_VAZIO H1-WEFF: compatibilidade estrutural requer setor sem transição abrupta."
+}
