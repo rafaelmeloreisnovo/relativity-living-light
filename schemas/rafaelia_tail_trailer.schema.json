@@ -63,6 +63,16 @@
     "flags": {
       "type": "string",
       "description": "Comma-separated uppercase flags."
+    },
+    "grid": {
+      "type": "string",
+      "enum": ["nerd", "none"],
+      "description": "Optional inspection grid. Use 'nerd' for a collapsed 'Dados para nerds' panel."
+    },
+    "dbg": {
+      "type": "string",
+      "enum": ["0", "1"],
+      "description": "Optional debug/inspection marker. It is not a security control."
     }
   },
   "examples": [
@@ -74,7 +84,9 @@
       "dt": "20260710",
       "prev": "MAIL-0006",
       "link": "DRV-0001,GIT-0093,CAL-0002",
-      "hash": "ab12cd34"
+      "hash": "ab12cd34",
+      "grid": "nerd",
+      "dbg": "1"
     }
   ]
 }
