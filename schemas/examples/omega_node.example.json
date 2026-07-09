@@ -1,0 +1,16 @@
+{
+  "node_id": "omega-node-example-001",
+  "kind": "semantic_fixture",
+  "value": {
+    "label": "Omega schema example node",
+    "epistemic_note": "Fixture only; no scientific claim."
+  },
+  "semantic_vector_ref": null,
+  "relation_weight": 0.5,
+  "evidence_score": 0.0,
+  "validation_score": 1.0,
+  "confidence": 0.5,
+  "parent": null,
+  "timestamp": "2026-07-09T00:00:00Z",
+  "hash": "TOKEN_VAZIO"
+}

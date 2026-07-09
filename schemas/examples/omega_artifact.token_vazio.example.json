@@ -1,0 +1,24 @@
+{
+  "artifact_id": "omega-artifact-example-token_vazio",
+  "title": "Example TOKEN_VAZIO artifact",
+  "origin_question": "How should a minimal token_vazio OmegaArtifact be represented without claim inflation?",
+  "context": "TOKEN_VAZIO: canonical Omega fixtures do not yet cover a full kernel runtime.",
+  "method": "Declare the missing runtime fixture instead of inventing a conclusion.",
+  "hypotheses": [],
+  "evidence": [],
+  "relations": [],
+  "revisions": [
+    {
+      "revision_id": "rev-2026-07-09-001",
+      "timestamp": "2026-07-09T00:00:00Z",
+      "summary": "Initial canonical example fixture."
+    }
+  ],
+  "limitations": [
+    "TOKEN_VAZIO: no Omega Kernel v4 runtime fixture exists in this layer."
+  ],
+  "status": "token_vazio",
+  "next_question": "What additional fixture coverage is required before runtime integration?",
+  "created_at": "2026-07-09T00:00:00Z",
+  "updated_at": "2026-07-09T00:00:00Z"
+}
