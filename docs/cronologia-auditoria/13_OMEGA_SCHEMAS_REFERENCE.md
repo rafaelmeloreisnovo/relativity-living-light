@@ -151,7 +151,10 @@ O script usa apenas biblioteca padrão do Python e verifica:
 2. se os campos principais existem em `required`;
 3. se os estados epistemológicos obrigatórios estão presentes;
 4. se a fórmula de relação foi preservada documentalmente;
-5. se a equação canônica Ω foi preservada documentalmente.
+5. se a equação canônica Ω foi preservada documentalmente;
+6. se os fixtures em `schemas/examples/` preservam campos obrigatórios principais;
+7. se exemplos `metaphor` não carregam evidência;
+8. se exemplos `token_vazio` declaram lacuna, não conclusão.
 
 Limite declarado:
 
@@ -167,7 +170,8 @@ Ele valida disciplina estrutural mínima dos schemas, não instâncias científi
 | Lacuna | Estado | Próximo gate |
 |---|---|---|
 | Validação completa de instâncias JSON Schema | TOKEN_VAZIO | decidir se `jsonschema` externo é aceitável no futuro |
-| Exemplos canônicos de `OmegaArtifact` | TOKEN_VAZIO | criar fixtures mínimos sem claims científicos |
+| Exemplos canônicos de `OmegaArtifact` | FECHADO nesta camada | fixtures mínimos em `schemas/examples/` sem claims científicos |
+| Validação completa de fixtures contra JSON Schema | TOKEN_VAZIO | requer biblioteca externa ou validador próprio completo |
 | Fórmula operacional de `weight` | TOKEN_VAZIO | definir se será calculada pelo produtor ou por validador futuro |
 | Política de promoção de `hypothesis` para `fact` | TOKEN_VAZIO | documento de governança semântica |
 | Integração com Ω Kernel v4 | TOKEN_VAZIO | especificação técnica futura |
@@ -178,4 +182,4 @@ Ele valida disciplina estrutural mínima dos schemas, não instâncias científi
 
 A camada de schemas cria um contrato de forma, não uma conclusão científica.
 
-O próximo passo natural é criar exemplos mínimos e fixtures de validação para demonstrar como `fact`, `hypothesis`, `metaphor`, `evidence`, `token_vazio` e `decision` aparecem em objetos reais sem promover metáfora a evidência.
+O próximo passo natural é definir uma política de governança semântica para promoção, bloqueio e rollback de estados epistêmicos sem promover metáfora a evidência.

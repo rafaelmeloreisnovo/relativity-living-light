@@ -33,6 +33,16 @@ A schema can verify that an object has the required fields and claim gates. It c
 | `omega_relation.schema.json` | Structural contract for RAFAELIA Ω weighted semantic relations. | preserves relation-weight formula |
 | `omega_schema.json` | Structural aggregate for RAFAELIA Ω architecture state. | preserves canonical Ω equation |
 
+## Omega examples
+
+Minimal RAFAELIA Ω fixtures live in `schemas/examples/`. They are didactic examples for structural validation only: they do not validate scientific claims, promote metaphors to evidence, or close TOKEN_VAZIO gaps.
+
+Validate schemas and examples with:
+
+```bash
+python3 scripts/validate_omega_schemas.py
+```
+
 ## Required discipline
 
 Every schema in this root should preserve:

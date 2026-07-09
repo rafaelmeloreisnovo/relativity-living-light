@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_DIR = ROOT / "schemas"
+EXAMPLE_DIR = SCHEMA_DIR / "examples"
 
 EPISTEMIC_STATES = {
     "fact",
@@ -80,6 +81,18 @@ EXPECTED = {
     },
 }
 
+EXAMPLES = {
+    "omega_artifact.fact.example.json": "omega_artifact.schema.json",
+    "omega_artifact.hypothesis.example.json": "omega_artifact.schema.json",
+    "omega_artifact.metaphor.example.json": "omega_artifact.schema.json",
+    "omega_artifact.evidence.example.json": "omega_artifact.schema.json",
+    "omega_artifact.token_vazio.example.json": "omega_artifact.schema.json",
+    "omega_artifact.decision.example.json": "omega_artifact.schema.json",
+    "omega_node.example.json": "omega_node.schema.json",
+    "omega_relation.example.json": "omega_relation.schema.json",
+    "omega_system.example.json": "omega_schema.json",
+}
+
 
 def load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:
@@ -135,6 +148,67 @@ def assert_formula_markers(schema_name: str, payload: dict) -> None:
         raise ValueError(f"{schema_name}: canonical Omega equation not found")
 
 
+def assert_example_required(example_name: str, schema_name: str, payload: dict) -> None:
+    missing = EXPECTED[schema_name] - set(payload)
+    if missing:
+        raise ValueError(f"{example_name}: missing fields required by {schema_name}: {sorted(missing)}")
+
+
+def assert_example_epistemic_state(example_name: str, payload: dict) -> None:
+    if not example_name.startswith("omega_artifact."):
+        return
+    expected_state = example_name.split(".")[1]
+    actual_state = payload.get("status")
+    if actual_state != expected_state:
+        raise ValueError(f"{example_name}: expected status {expected_state}, found {actual_state}")
+    if actual_state not in EPISTEMIC_STATES:
+        raise ValueError(f"{example_name}: unsupported epistemic status {actual_state}")
+
+
+def assert_no_metaphor_evidence_mix(example_name: str, payload: dict) -> None:
+    if example_name != "omega_artifact.metaphor.example.json":
+        return
+    if payload.get("evidence"):
+        raise ValueError(f"{example_name}: metaphor examples must not carry evidence entries")
+    text = json.dumps(payload, ensure_ascii=False).lower()
+    if "metaphor is not evidence" not in text and "metáfora não é evidência" not in text:
+        raise ValueError(f"{example_name}: must explicitly state that metaphor is not evidence")
+
+
+def assert_token_vazio_declares_gap(example_name: str, payload: dict) -> None:
+    if example_name != "omega_artifact.token_vazio.example.json":
+        return
+    text = json.dumps(payload, ensure_ascii=False).lower()
+    if "token_vazio" not in text:
+        raise ValueError(f"{example_name}: must explicitly declare TOKEN_VAZIO")
+    if not any(marker in text for marker in ("lacuna", "missing", "no omega kernel", "não existe", "no runtime")):
+        raise ValueError(f"{example_name}: TOKEN_VAZIO example must declare a gap, not a conclusion")
+
+
+def assert_relation_weight_consistency(example_name: str, payload: dict) -> None:
+    if example_name != "omega_relation.example.json":
+        return
+    expected_weight = payload["evidence"] * payload["coherence"] * payload["reproducibility"]
+    if abs(payload["weight"] - expected_weight) > 1e-12:
+        raise ValueError(
+            f"{example_name}: weight must follow Peso_relação = Evidência × Coerência × Reprodutibilidade"
+        )
+
+
+def validate_examples() -> None:
+    for example_name, schema_name in sorted(EXAMPLES.items()):
+        path = EXAMPLE_DIR / example_name
+        if not path.exists():
+            raise FileNotFoundError(f"Missing example fixture: {path}")
+        payload = load_json(path)
+        assert_example_required(example_name, schema_name, payload)
+        assert_example_epistemic_state(example_name, payload)
+        assert_no_metaphor_evidence_mix(example_name, payload)
+        assert_token_vazio_declares_gap(example_name, payload)
+        assert_relation_weight_consistency(example_name, payload)
+        print(f"OK: {path.relative_to(ROOT)}")
+
+
 def main() -> int:
     for schema_name in sorted(EXPECTED):
         path = SCHEMA_DIR / schema_name
@@ -146,6 +220,7 @@ def main() -> int:
         assert_epistemic_states(schema_name, payload)
         assert_formula_markers(schema_name, payload)
         print(f"OK: {path.relative_to(ROOT)}")
+    validate_examples()
     print("OK: Omega schema reference layer passed minimal validation")
     return 0
 
