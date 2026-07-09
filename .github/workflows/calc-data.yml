@@ -32,6 +32,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+  CLAIM_BOUNDARY: >-
+    This guarded workflow accepts only committed allowlisted real-data inputs.
+    It rejects synthetic, mock, fixture, placeholder, demo, and example data paths.
+    Processing output is a structural audit artifact only; it does not validate RLL,
+    dark matter, dark energy, or cosmology claims.
+
 jobs:
   calc-audit:
     runs-on: ubuntu-latest
@@ -67,6 +75,8 @@ jobs:
             *)
               echo "Input path is not in the guarded allowlist: $INPUT_PATH" >&2
               echo "This workflow intentionally processes only committed local JSON/CSV audit inputs." >&2
+              echo "Synthetic/mock/fixture/placeholder/demo/example data is outside this guarded real-data workflow." >&2
+              echo "Canonical real-data workflow: $CANONICAL_REAL_DATA_WORKFLOW" >&2
               exit 2
               ;;
           esac
@@ -99,10 +109,18 @@ jobs:
                   'data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv',
                   'data/real/cosmology_observational_seed_2026.csv',
               ],
-              'claim_boundary': 'Processed audit artifact only. This workflow does not commit results and does not validate RLL, dark matter, dark energy, or cosmology claims.'
+              'canonical_real_data_workflow': os.environ['CANONICAL_REAL_DATA_WORKFLOW'],
+              'claim_boundary': os.environ['CLAIM_BOUNDARY'],
           }
           Path('_audit/processed/calc_manifest.json').write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
           PY
+
+      - name: Build final checksums
+        run: |
+          set -euo pipefail
+          cd _audit/processed
+          sha256sum results.json calc_manifest.json > CHECKSUMS.sha256
+          cat CHECKSUMS.sha256
 
       - name: Upload processed audit artifact without committing
         uses: actions/upload-artifact@v4
