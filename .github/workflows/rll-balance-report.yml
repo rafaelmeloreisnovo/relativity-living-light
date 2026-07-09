@@ -1,0 +1,92 @@
+name: RLL Balance Report
+
+on:
+  workflow_dispatch:
+    inputs:
+      input_json:
+        description: "Path to JSON metrics file"
+        required: false
+        default: "artifacts/joint_real_likelihood.json"
+      metric:
+        description: "Decision metric: bic, aicc, aic, chi2, evidence, bayes_factor"
+        required: false
+        default: "bic"
+  push:
+    paths:
+      - "scripts/rll_balance_report.py"
+      - "docs/livro_vivo_bridge/RLL_BALANCE_SCRIPT_USAGE.md"
+      - ".github/workflows/rll-balance-report.yml"
+      - "**/*likelihood*.json"
+      - "**/*model*.json"
+      - "**/*balance*.json"
+  pull_request:
+    paths:
+      - "scripts/rll_balance_report.py"
+      - "docs/livro_vivo_bridge/RLL_BALANCE_SCRIPT_USAGE.md"
+      - ".github/workflows/rll-balance-report.yml"
+
+jobs:
+  balance-report:
+    name: Generate RLL balance report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Prepare input JSON
+        id: prepare
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          INPUT_JSON="${{ github.event.inputs.input_json || 'artifacts/joint_real_likelihood.json' }}"
+          METRIC="${{ github.event.inputs.metric || 'bic' }}"
+
+          mkdir -p artifacts/rll_balance
+
+          if [ -f "$INPUT_JSON" ]; then
+            echo "Using provided input: $INPUT_JSON"
+            cp "$INPUT_JSON" artifacts/rll_balance/input.json
+          else
+            echo "Input JSON not found: $INPUT_JSON"
+            echo "Creating minimal demo input so workflow still validates the script."
+            cat > artifacts/rll_balance/input.json <<'JSON'
+          {
+            "RLL":  {"chi2": 84.4824, "aicc": 103.1006, "bic": 117.7535},
+            "LCDM": {"chi2": 84.4824, "aicc": 95.5169,  "bic": 105.2768},
+            "wCDM": {"chi2": 83.7104, "aicc": 97.1841,  "bic": 108.6637},
+            "CPL":  {"chi2": 62.0717, "aicc": 78.0717,  "bic": 91.1839}
+          }
+          JSON
+          fi
+
+          echo "metric=$METRIC" >> "$GITHUB_OUTPUT"
+
+      - name: Run balance report
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/rll_balance_report.py \
+            --input artifacts/rll_balance/input.json \
+            --output-md artifacts/rll_balance/rll_balance_report.md \
+            --output-json artifacts/rll_balance/rll_balance_report.json \
+            --metric "${{ steps.prepare.outputs.metric }}"
+
+      - name: Show report summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          sed -n '1,120p' artifacts/rll_balance/rll_balance_report.md
+
+      - name: Upload RLL balance artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rll-balance-report
+          path: artifacts/rll_balance/
+          if-no-files-found: error
