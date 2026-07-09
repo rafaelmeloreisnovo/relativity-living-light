@@ -82,7 +82,8 @@
   "report_id": "20260709-132833-utc-rll-balance",
   "source_upload": {
     "file": "rll-balance-report.zip",
-    "sha256": "a verificar no ambiente de origem; checksums dos arquivos estão no manifest.json"
+    "sha256": "81808ae76e956e9e817e9b42b0eae46c2a9988d325c517bfd163cd07a2e5dc63",
+    "size_bytes": 2316
   },
   "status_epistemologico": "RESULTADO_COMPUTACIONAL",
   "tolerance": 1e-09
