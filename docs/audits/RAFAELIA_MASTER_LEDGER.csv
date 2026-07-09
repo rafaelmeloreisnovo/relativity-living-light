@@ -1,0 +1,10 @@
+family,item,path,status,evidence_level,risk,next_action
+cognitive,Arquitetura Cognitiva Evolutiva,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,VERIFIED,documented,medium,formalizar OmegaArtifact e vocabulário canônico
+integration,Integração de Conhecimento,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,VERIFIED,documented,medium,definir pesos de relação e critérios de validação
+governance,Omega Governance Architecture,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,VERIFIED,documented,low,derivar schemas de governança e auditoria
+kernel,Omega Kernel v3,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,VERIFIED,documented,medium,planejar v4 com OmegaNode e matriz semântica
+runtime,SIGIL_SOCKET / .verbo.sock,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,DECLARED_BY_AUTHOR,indexed evidence,high,abrir scripts socket_listen guard_socket verbo_socket_server
+edge,RAFAELIA Edge Cell,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,HYPOTHESIS,documented,medium,congelar demonstrador físico mínimo
+knowledge,Living Library / OmegaArtifact,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,HYPOTHESIS,documented,medium,criar schema JSON de artifact node relation evidence
+method,Coerência Operacional,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,VERIFIED,documented,low,manter ordem observação análise modelagem validação auditoria implementação
+safety,Separação epistemológica,docs/canonicos/24_RAFAELIA_MASTER_SPEC.md,VERIFIED,documented,low,aplicar estados VERIFIED DECLARED_BY_AUTHOR TOKEN_VAZIO CONTRADICTION HYPOTHESIS METAPHOR
