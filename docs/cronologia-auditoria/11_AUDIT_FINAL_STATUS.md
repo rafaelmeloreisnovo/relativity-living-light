@@ -70,7 +70,8 @@
 | DESI DR2 BAO (params nominais) | 13 | 93.81 | 28.97 | — | ✅ F-COS-05 PASS [E] |
 | DESI w_eff — setor padrão | 6 | 1162.3 | 0.0 | — | ✗ incompatível [E] |
 | DESI w_eff — Opção A (invertido) | 6 | 2232.2 | 0.0 | — | ✗ incompatível [E] |
-| DESI w_eff — Opção B (melhor) | 6 | **14.8** | 0.0 | — | ⚠️ χ²>10, mas próximo [E] |
+| DESI w_eff — Opção B (scan) | 6 | 14.8 | 0.0 | — | [E] melhoria 79× sobre padrão |
+| DESI w_eff — **Opção B (ótimo)** | 6 | **0.079** | 0.0 | — | ✅ **compatível** — P-RLL-05 CONFIRMADA [E] |
 | DESI w_eff — Opção C (melhor) | 6 | 104.0 | 0.0 | — | ✗ incompatível [E] |
 | Joint MCMC Pantheon+ + DESI | 64+ | TOKEN_VAZIO | TOKEN_VAZIO | — | ⚠️ G1 pendente |
 
@@ -113,7 +114,7 @@ Antes de DESI DR3 e Euclid DR1:
 | P-RLL-02 | Inflexão E(z) em z~1.0 | ⏳ aguarda MCMC joint (G1) |
 | P-RLL-03 | Ωs0 < 0.05 (sub-dominante) | ⏳ aguarda MCMC joint (G1) |
 | P-RLL-04 | Degeneração padrão/Opção A [verificada retroativamente] | ✅ [E] FASE 4 |
-| P-RLL-05 | Opção B cruzará χ²<10 com otimização contínua | ⏳ scipy.minimize pendente (P1) |
+| P-RLL-05 | Opção B cruzará χ²<10 com otimização contínua | ✅ **CONFIRMADA [E]** — χ²=0.079 (FASE 13) |
 
 ---
 
@@ -144,7 +145,8 @@ PODE AFIRMAR [N3-N4]:
   ✅ χ²_Pantheon = 710.613 (ΔAIC = +3.805 vs ΛCDM)
   ✅ χ²_DESI_nominal = 93.81 (parâmetros não otimizados para BAO)
   ✅ Incompatibilidade w_eff estrutural documentada [E] — resultado honesto
-  ✅ Opção B melhora χ²_weff de 1162→14.8 (melhoria de 79×)
+  ✅ Opção B (otimizada): χ²=0.079 — **compatível com CPL DESI** [E] (FASE 13)
+  ✅ P-RLL-05 CONFIRMADA: Opção B com w2=−0.282, z_t=1.752, w_t=1.500
   ✅ 3/5 falsificadores PASS com valores reais
   ✅ Predições datadas registradas antes de DESI DR3 e Euclid DR1
 

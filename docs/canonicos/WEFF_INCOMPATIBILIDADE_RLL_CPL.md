@@ -240,7 +240,7 @@ Nota estrutural: α=0.5, r=0 → setor constante → w_eff = −1 (χ²=940). α
 | Opção A numérica calculada | — | ✅ [E] FASE 10 — ver tabela §3.2 |
 | Opção B implementada e escaneada | P1→✅ | ✅ [E] FASE 11 — melhor χ²=14.8; melhora estrutural confirmada |
 | Opção C implementada e escaneada | P1→✅ | ✅ [E] FASE 11 — melhor χ²=104.0; Opção B superior |
-| Opção B otimização contínua | P1 | ⚠️ [H] — scipy.minimize sobre (zt, w2, wt) pendente |
+| Opção B otimização contínua | P1→✅ | ✅ [E] FASE 13 — χ²_opt=0.079 < 10; P-RLL-05 CONFIRMADA |
 | Predição datada RLL sobre w_eff | P0→✅ | ✅ [C] FASE 11 — ver `PREDICAO_DATADA_RLL.md` |
 
 ---
@@ -253,8 +253,48 @@ A incompatibilidade w_eff não falsifica automaticamente o RLL — ela requer:
 2. **Separação de setores**: o w_eff calculado aqui é do setor Ωs0 isolado. O w_eff total E(z) inclui Ωm + ΩΛ + Ωs0, dominado por ΩΛ a baixo z.
 3. **Teste com E(z) total**: o que importa para BAO é E(z), não w_eff do setor. O χ²_BAO=93.81 (parâmetros nominais) é relevante — otimização com parâmetros livres está no TOKEN_VAZIO G1.
 
-**Linha de integridade**: Opção B reduz dramaticamente a incompatibilidade (1162 → 14.8). O modelo não está descartado — está em fase de refinamento paramétrico.
+**Linha de integridade**: Opção B com parâmetros otimizados (w2=−0.282, z_t=1.752, w_t=1.500) é **compatível com CPL DESI** — χ²=0.079. O modelo não está descartado. O parâmetro w_t→limite superior sugere que a compatibilidade emerge quando a transição logística se torna muito larga (limite de dois fluidos DE), não de forma especificamente logística.
 
 ---
 
-*FASE 10 (2026-07-07): análise estrutural inicial. FASE 11 (2026-07-07): Opções B e C numericamente testadas. Próximo: otimização contínua Opção B.*
+## 11. Otimização Contínua Opção B — Resultado Final [E — FASE 13]
+
+### 11.1 Resultado
+
+`scripts/optimize_weff_opcao_b.py` com Nelder-Mead (10 pontos de partida, 2000 iterações cada):
+
+| Parâmetro | Valor ótimo | Scan discreto |
+|-----------|------------|---------------|
+| w2 | −0.2817 | −0.50 |
+| z_t | 1.7523 | 1.0 |
+| w_t | 1.500 (fronteira) | 0.50 |
+| **χ²** | **0.079** | **14.8** |
+
+**P-RLL-05: CONFIRMADA [E]** — χ²=0.079 < 10.
+
+### 11.2 Perfil w_eff no Ponto Ótimo
+
+| z | w_eff_opt | w_CPL alvo | Δ |
+|---|----------|-----------|---|
+| 0.295 | −0.6787 | −0.671 | −0.008 |
+| 0.510 | −0.5593 | −0.558 | −0.001 |
+| 0.706 | −0.4549 | −0.459 | +0.004 |
+| 0.934 | −0.3471 | −0.354 | +0.007 |
+| 1.321 | −0.2072 | −0.210 | +0.003 |
+| 1.484 | −0.1640 | −0.156 | −0.008 |
+
+Todos os desvios |Δ| < 0.01 ≪ σ=0.05.
+
+### 11.3 Interpretação Arquitetural
+
+Com w_t → 1.5 (transição muito larga), f(z) ≈ 0.5 uniformemente, e Opção B degenera para:
+
+`ρ_B ≈ 0.5·(1+z)⁰ + 0.5·(1+z)^{3(1+w2)} = 0.5 + 0.5·(1+z)^{3(1+w2)}`
+
+Isso é uma mistura de constante cosmológica (w=−1) e fluido com EOS w2=−0.282. Com w2 intermediário, este modelo de dois fluidos mimetiza CPL com w₀∈(−1, w2) e wa positivo. **O logístico f(z) não é necessário para compatibilidade com CPL — o grau de liberdade w2 é o mecanismo efetivo.**
+
+**Implicação [E]**: Opção B é compatível com CPL DESI mas a compatibilidade emerge no limite em que a transição logística perde identidade. Isso restringe a interpretação física: a assinatura logística do RLL (transição de fase localizada em z_t) é suavizada além da resolução do BAO no regime compatível com CPL.
+
+---
+
+*FASE 10 (2026-07-07): análise estrutural inicial. FASE 11 (2026-07-07): Opções B e C numericamente testadas. FASE 13 (2026-07-08): otimização contínua Opção B — P-RLL-05 CONFIRMADA [E], χ²=0.079.*
