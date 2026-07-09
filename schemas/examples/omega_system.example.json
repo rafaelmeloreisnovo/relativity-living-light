@@ -1,0 +1,45 @@
+{
+  "omega_system": "RAFAELIA Omega example system fixture",
+  "identity": {
+    "schema": "omega.aggregate.example.v1",
+    "claim_boundary": "fixture_only"
+  },
+  "artifacts": [
+    {
+      "artifact_id": "omega-artifact-example-fact"
+    },
+    {
+      "artifact_id": "omega-artifact-example-token_vazio"
+    }
+  ],
+  "nodes": [
+    {
+      "node_id": "omega-node-example-001"
+    }
+  ],
+  "relations": [
+    {
+      "relation_id": "omega-relation-example"
+    }
+  ],
+  "evidence_chain": [
+    {
+      "evidence_id": "ev-validator-command",
+      "status": "evidence",
+      "note": "Local validation script only."
+    }
+  ],
+  "governance": {
+    "claim_allowed": false,
+    "policy": "Do not promote metaphor or TOKEN_VAZIO to fact."
+  },
+  "audit": {
+    "created_at": "2026-07-09T00:00:00Z",
+    "validator": "scripts/validate_omega_schemas.py"
+  },
+  "rollback": {
+    "available": true,
+    "strategy": "Remove fixtures without touching workflows or scientific pipelines."
+  },
+  "next_state": "Add full JSON Schema instance validation only if external dependencies are approved."
+}

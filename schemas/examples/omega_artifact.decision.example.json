@@ -1,0 +1,33 @@
+{
+  "artifact_id": "omega-artifact-example-decision",
+  "title": "Example decision artifact",
+  "origin_question": "How should a minimal decision OmegaArtifact be represented without claim inflation?",
+  "context": "Decision to keep fixture validation lightweight and standard-library only.",
+  "method": "Operational constraint from schema reference layer.",
+  "hypotheses": [],
+  "evidence": [
+    {
+      "evidence_id": "ev-no-external-deps",
+      "status": "evidence",
+      "source_ref": "scripts/validate_omega_schemas.py",
+      "hash": "TOKEN_VAZIO"
+    }
+  ],
+  "relations": [
+    "omega-relation-example"
+  ],
+  "revisions": [
+    {
+      "revision_id": "rev-2026-07-09-001",
+      "timestamp": "2026-07-09T00:00:00Z",
+      "summary": "Initial canonical example fixture."
+    }
+  ],
+  "limitations": [
+    "Decision is operational; it is not a scientific result."
+  ],
+  "status": "decision",
+  "next_question": "What additional fixture coverage is required before runtime integration?",
+  "created_at": "2026-07-09T00:00:00Z",
+  "updated_at": "2026-07-09T00:00:00Z"
+}

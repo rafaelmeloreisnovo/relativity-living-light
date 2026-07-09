@@ -1,0 +1,28 @@
+{
+  "artifact_id": "omega-artifact-example-hypothesis",
+  "title": "Example hypothesis artifact",
+  "origin_question": "How should a minimal hypothesis OmegaArtifact be represented without claim inflation?",
+  "context": "A future Omega Kernel v4 may consume semantic nodes after governance review.",
+  "method": "Architectural planning example; not implemented here.",
+  "hypotheses": [
+    "Omega Kernel v4 can use OmegaNode objects as semantic routing inputs."
+  ],
+  "evidence": [],
+  "relations": [
+    "omega-relation-example"
+  ],
+  "revisions": [
+    {
+      "revision_id": "rev-2026-07-09-001",
+      "timestamp": "2026-07-09T00:00:00Z",
+      "summary": "Initial canonical example fixture."
+    }
+  ],
+  "limitations": [
+    "TOKEN_VAZIO: no runtime integration has been implemented or tested."
+  ],
+  "status": "hypothesis",
+  "next_question": "What additional fixture coverage is required before runtime integration?",
+  "created_at": "2026-07-09T00:00:00Z",
+  "updated_at": "2026-07-09T00:00:00Z"
+}

@@ -1,0 +1,13 @@
+{
+  "relation_id": "omega-relation-example",
+  "source_node": "omega-node-example-001",
+  "target_node": "omega-node-example-002",
+  "relation_type": "documents_fixture_link",
+  "evidence": 0.5,
+  "coherence": 1.0,
+  "reproducibility": 1.0,
+  "temporal_stability": 0.5,
+  "weight": 0.5,
+  "status": "hypothesis",
+  "created_at": "2026-07-09T00:00:00Z"
+}
