@@ -18,12 +18,16 @@ on:
     - .github/workflows/desi-dr2-bao-validation.yml
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 defaults:
   run:
     shell: bash
 jobs:
   desi-dr2-bao:
     runs-on: ubuntu-24.04-arm
+    timeout-minutes: 20
     steps:
     - name: Checkout
       uses: actions/checkout@v4
