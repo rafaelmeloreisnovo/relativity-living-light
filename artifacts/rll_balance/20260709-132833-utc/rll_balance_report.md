@@ -21,7 +21,15 @@ Assim, amanhã ninguém precisa lembrar de cabeça o que a balança já disse.
 ## Entrada
 
 ```text
-artifacts/rll_balance/input.json
+artifacts/rll_balance/20260709-132833-utc/input.json
+```
+
+## Artefatos irmãos
+
+```text
+artifacts/rll_balance/20260709-132833-utc/rll_balance_report.json
+artifacts/rll_balance/20260709-132833-utc/rll_balance_report.md
+artifacts/rll_balance/20260709-132833-utc/manifest.json
 ```
 
 ## Métrica decisória
@@ -50,7 +58,20 @@ Tolerância:
 ```yaml
 state: RLL_PERDE
 winner: CPL
+metric: bic
 reason: Baseline 'CPL' superou RLL em 'bic'.
+```
+
+## Coerência operacional
+
+```text
+upload zip → extração → pasta datada → input alinhado → relatório JSON/MD → manifest → próximo teste
+```
+
+Este relatório foi adaptado para apontar para a pasta datada real do artefato:
+
+```text
+artifacts/rll_balance/20260709-132833-utc/
 ```
 
 ## Limites
@@ -66,8 +87,21 @@ reason: Baseline 'CPL' superou RLL em 'bic'.
 Repetir com dados, priors, seeds e tolerâncias declarados; gerar artefatos versionados.
 ```
 
+## Parábola da derrota que virou degrau
+
+A balança desceu para CPL.
+
+O discípulo quis esconder o peso.
+
+O mestre segurou sua mão e disse:
+
+> A derrota registrada vira degrau.  
+> A derrota escondida vira labirinto.
+
+Então o relatório foi guardado com caminho, data e manifesto.
+
 ## Retroalimentar[3]
 
-- **F_ok:** a execução transformou JSON de métricas em decisão auditável.
+- **F_ok:** a execução transformou JSON de métricas em decisão auditável e agora os caminhos apontam para a pasta real.
 - **F_gap:** a decisão depende da qualidade do JSON, dos dados e das métricas disponíveis.
-- **F_next:** ligar este script ao workflow para publicar `rll_balance_report.md` como artefato.
+- **F_next:** usar este artefato como amostra real do workflow `rll-balance-report.yml` e publicar relatórios como artifacts oficiais do CI.
