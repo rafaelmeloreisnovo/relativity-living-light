@@ -20,13 +20,14 @@ cor = sorter visual
 label = classificação nativa
 anexo/link = corpo da prova
 hash/id = cadeia de custódia
+grid oculta = dados para nerds
 ```
 
 A parte humana deve permanecer legível, sem poluição visual. A cauda final é lida por parser, IA, script, rotina de auditoria ou indexador.
 
 ## 2. Motivação
 
-A arquitetura RAFAELIA já trata conhecimento como rede de relações, não como sequência linear. O Tail Protocol aplica esse princípio a objetos cotidianos de trabalho: Gmail, Google Calendar, Drive, GitHub, HTML, Markdown e ledgers.
+A arquitetura RAFAELIA trata conhecimento como rede de relações, não sequência linear. O Tail Protocol aplica esse princípio a objetos cotidianos de trabalho: Gmail, Google Calendar, Drive, GitHub, HTML, Markdown e ledgers.
 
 A inferência não substitui leitura real. Ela localiza o bloco. O protocolo aponta onde ler, como cruzar e como validar.
 
@@ -75,21 +76,13 @@ Motivos:
 | `hash` | `ab12cd34` | opcional | digest curto |
 | `cal` | `CAL-0001` | opcional | evento calendário associado |
 | `thr` | `THR-0001` | opcional | thread Gmail associada |
+| `grid` | `nerd` | opcional | indica presença de grid/revelação técnica |
+| `dbg` | `1` | opcional | indica dados técnicos para inspeção |
 
 ## 6. Famílias canônicas
 
 ```text
-email     mensagem/e-mail/thread
-cal       calendário/evento/revisão
- drive    arquivo/pasta/anexo
- git       commit/pr/issue/repo
-llm       modelo local/inferência/eval
-cti       RMR-CTI/memória/grafo
-socket    SIGIL_SOCKET/C14/runtime
-edge      hardware/sensor/ação física
-gov       política/auditoria/evidência
-paper     texto acadêmico/artigo
-ops       operação/execução/tarefa
+email   cal   drive   git   llm   cti   socket   edge   gov   paper   ops   doc   audit
 ```
 
 ## 7. Status canônicos curtos
@@ -106,42 +99,37 @@ ops       operação/execução/tarefa
 | `err` | error | erro observado |
 | `audit` | audit | auditoria/rastreio |
 
-## 8. Exemplos de subject/event title
+## 8. Grid oculta — Dados para nerds
 
-```text
-Revisar navegação semântica do Drive || raf:v1;id=DRV-0001;fam=drive;st=rev;dt=20260710;prev=MAIL-0007
+A camada `Dados para nerds` é uma inspeção recolhida por padrão. Ela não deve poluir o título humano, mas deve deixar visível, quando aberta, os dados técnicos do bloco.
+
+Uso recomendado em HTML:
+
+```html
+<details class="raf-nerd-grid">
+  <summary>Dados para nerds</summary>
+  <dl class="raf-grid">
+    <dt>raf</dt><dd>v1</dd>
+    <dt>id</dt><dd>MAIL-0007</dd>
+    <dt>fam</dt><dd>email</dd>
+    <dt>st</dt><dd>rev</dd>
+    <dt>dt</dt><dd>20260710</dd>
+    <dt>prev</dt><dd>MAIL-0006</dd>
+    <dt>links</dt><dd>DRV-0001, CAL-0002, GIT-0093</dd>
+    <dt>hash</dt><dd>ab12cd34</dd>
+  </dl>
+</details>
 ```
 
-```text
-Validar ponte NanoGPT + RMR-CTI || raf:v1;id=LLM-0003;fam=llm;st=hyp;dt=20260710;link=DRV-0001,GIT-0093
-```
+Regra:
 
 ```text
-Registrar prova de socket C14 || raf:v1;id=SOCK-0004;fam=socket;st=ev;dt=20260710;link=DRV-0040;hash=ab12cd34
+visível por padrão: título humano
+recolhido por padrão: dados para nerds
+machine-readable sempre: trailer ou data-raf-*
 ```
 
-## 9. Corpo de e-mail ou memorando
-
-O corpo pode usar bloco final expandido:
-
-```text
-Resumo humano aqui.
-
---- RAF_TRAILER
-raf=v1
-id=MAIL-0007
-fam=email
-st=ev
-date=2026-07-10
-prev=MAIL-0006
-links=DRV-0001,GIT-0093,CAL-0002
-flags=EMAIL_SELF,CALENDAR_ANCHOR,DRIVE_BODY,GITHUB_CONTRACT
---- END_RAF_TRAILER
-```
-
-## 10. HTML object / visible-hidden model
-
-Quando houver HTML, usar microestrutura com parte visível e metadado de máquina.
+## 9. HTML object / visible-hidden model
 
 ### Forma com `data-*`
 
@@ -150,11 +138,19 @@ Quando houver HTML, usar microestrutura com parte visível e metadado de máquin
      data-raf="v1"
      data-raf-id="MAIL-0007"
      data-raf-fam="email"
-     data-raf-st="ev"
+     data-raf-st="rev"
      data-raf-dt="20260710"
      data-raf-prev="MAIL-0006"
-     data-raf-link="DRV-0001,GIT-0093,CAL-0002">
+     data-raf-link="DRV-0001,GIT-0093,CAL-0002"
+     data-raf-grid="nerd">
   <span class="raf-visible">Revisar navegação semântica do Drive</span>
+  <details class="raf-nerd-grid">
+    <summary>Dados para nerds</summary>
+    <dl class="raf-grid">
+      <dt>id</dt><dd>MAIL-0007</dd>
+      <dt>links</dt><dd>DRV-0001,GIT-0093,CAL-0002</dd>
+    </dl>
+  </details>
 </div>
 ```
 
@@ -163,21 +159,23 @@ Quando houver HTML, usar microestrutura com parte visível e metadado de máquin
 ```html
 <div class="raf-block">
   <span class="raf-visible">Revisar navegação semântica do Drive</span>
-  <span class="raf-tail" hidden aria-hidden="true">raf:v1;id=MAIL-0007;fam=email;st=ev;dt=20260710;prev=MAIL-0006;link=DRV-0001,GIT-0093</span>
+  <span class="raf-tail" hidden aria-hidden="true">raf:v1;id=MAIL-0007;fam=email;st=ev;dt=20260710;prev=MAIL-0006;link=DRV-0001,GIT-0093;grid=nerd</span>
+  <details class="raf-nerd-grid">
+    <summary>Dados para nerds</summary>
+    <pre>raf:v1;id=MAIL-0007;fam=email;st=ev;dt=20260710;prev=MAIL-0006;link=DRV-0001,GIT-0093;grid=nerd</pre>
+  </details>
 </div>
 ```
 
-### Forma visível completa, compatível com e-mail simples
+### Forma textual compatível com e-mail/calendário
 
-```html
-<div class="raf-block">
-  Revisar navegação semântica do Drive || raf:v1;id=MAIL-0007;fam=email;st=ev;dt=20260710;prev=MAIL-0006
-</div>
+```text
+Revisar navegação semântica do Drive || raf:v1;id=MAIL-0007;fam=email;st=rev;dt=20260710;grid=nerd
 ```
 
-Recomendação: em Gmail/Calendar, preferir subject/title com trailer textual, porque é mais robusto que HTML oculto. Em documentos HTML próprios, usar `data-*` e/ou `<span hidden>`.
+Em Gmail/Calendar, preferir subject/title com trailer textual. Em documentos HTML próprios, usar `data-*`, `<details>` e/ou `<span hidden>`.
 
-## 11. Cores e labels
+## 10. Cores e labels
 
 Cores não carregam toda a semântica. Elas funcionam como sorter visual.
 
@@ -193,7 +191,7 @@ Cores não carregam toda a semântica. Elas funcionam como sorter visual.
 
 Labels Gmail e calendários podem repetir o status, mas a fonte técnica primária é o trailer.
 
-## 12. Cadeia de custódia leve
+## 11. Cadeia de custódia leve
 
 Cada bloco pode referenciar o anterior:
 
@@ -212,11 +210,12 @@ Drive id
 Git commit SHA
 hash do corpo
 hash dos anexos
+dados para nerds
 ```
 
 Isto não exige blockchain pesado no início. A cadeia nasce como trilha auditável. Depois pode ser endurecida com SHA-256, assinatura e ledger versionado.
 
-## 13. Parser mínimo
+## 12. Parser mínimo
 
 Pseudocódigo:
 
@@ -235,22 +234,24 @@ def parse_raf_tail(text):
     return {"visible": visible.strip(), "tail": fields}
 ```
 
-## 14. Regras de segurança
+## 13. Regras de segurança
 
 - Não colocar segredo, token, senha ou dado sensível no subject.
 - Para material sensível, usar `st=sens` e apontar para cofre/arquivo seguro.
 - Hash curto pode aparecer no subject; hash completo deve ficar no corpo/ledger.
 - HTML oculto não é controle de segurança; é apenas organização visual.
+- `Dados para nerds` é depuração/inspeção, não autenticação.
 - A fonte de verdade deve ser o bloco auditável: e-mail, evento, anexo, Drive ID, Git SHA, hash e ledger.
 
-## 15. Invariante
+## 14. Invariante
 
 ```text
 Humano entende sem ruído.
 Máquina rastreia sem adivinhar.
+Dados para nerds aparecem só quando chamados.
 ```
 
-## 16. Relação com RAFAELIA
+## 15. Relação com RAFAELIA
 
 O Tail Protocol implementa em escala cotidiana a invariante de preservação de relações:
 
@@ -264,10 +265,9 @@ Ele também respeita a separação:
 símbolo ≠ hipótese ≠ prova ≠ código ≠ log ≠ execução
 ```
 
-## 17. Próximos passos
+## 16. Próximos passos
 
-1. Criar schema JSON para trailer.
-2. Criar parser Python/JS mínimo.
-3. Criar exemplos para Gmail, Calendar, Drive, GitHub e HTML.
-4. Criar integração com RAFAELIA Work Evidence Chain.
-5. Criar fixtures e CI para validar trailers.
+1. Criar parser Python/JS mínimo.
+2. Criar fixtures para subject, calendar title, HTML e trailer expandido.
+3. Validar `grid=nerd` e `dbg=1` no schema.
+4. Criar relatório HTML com cards e grid `Dados para nerds`.
