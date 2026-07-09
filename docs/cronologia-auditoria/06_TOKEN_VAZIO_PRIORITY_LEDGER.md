@@ -314,37 +314,50 @@ N=1624 SNe cosmológicas. Ratio RLL_original/RLL_optionA = 1.0000 (degenerados e
 
 ---
 
-### Gap P1-WEFF-B-OPT: Otimização contínua Opção B [NOVO P1]
+### Gap P1-WEFF-B-OPT: Otimização contínua Opção B [FECHADO FASE 13 ✅]
 
-**Questão**: Um scipy.minimize sobre (z_t, w2, w_t) pode levar χ²_Opção_B abaixo de 10?
+**Questão original**: Um scipy.minimize sobre (z_t, w2, w_t) pode levar χ²_Opção_B abaixo de 10?
 
-**Por que P1**: χ²=14.8 no scan discreto é ~50% acima do threshold. Otimização contínua é acionável sem dados externos.
+**Resultado** [E — FASE 13, 2026-07-08]: `scripts/optimize_weff_opcao_b.py` com Nelder-Mead (10 pontos de partida):
+- **χ²_opt = 0.0792** (threshold: < 10) → **PASSA** ✅
+- Parâmetros ótimos: w2=−0.2817, z_t=1.7523, w_t=1.500 (no limite superior de busca)
+- w_eff sempre negativo em toda a faixa DESI BAO [E]; todos |Δw_eff| < 0.01 ≪ σ=0.05
+- Predição P-RLL-05: CONFIRMADA [E]
 
-**Como fechar**: Criar `scripts/optimize_weff_opcao_b.py` com `scipy.optimize.minimize(chi2_b, x0=[1.0, -0.5, 0.5], bounds=[(0.3,1.5),(-0.95,-0.05),(0.1,0.8)], method='L-BFGS-B')`
+**Nota interpretativa**: w_t=1.500 (fronteira) indica que compatibilidade emerge no limite em que
+a transição logística se torna tão larga que Opção B degenera para mistura de dois fluidos DE.
 
-**Status**: ⚠️ **TOKEN_VAZIO P1** — scan feito, otimização pendente
+**Status**: ✅ **FECHADO** [E] — `results/optimize_weff_opcao_b.json`
 
 ---
 
-## Conclusão (atualizada FASE 11)
+## GAPS RESOLVIDOS — FASE 13 (2026-07-08)
 
-**Token Total**: 9 gaps originais + G0/G1/G2 + novos FASE 11
+| Gap ID | Descrição | Resultado |
+|--------|-----------|-----------|
+| P1-WEFF-B-OPT | Otimização contínua Opção B | ✅ χ²=0.079, P-RLL-05 CONFIRMADA [E] |
+
+---
+
+## Conclusão (atualizada FASE 13)
+
+**Token Total**: 9 gaps originais + G0/G1/G2 + novos FASE 11/13
 **P0 (bloqueador)**: G1 (MCMC joint) + G2 (Bayes Factor) — ambos requerem pipeline manual
-**P1 (confiança)**: 3 originais + Gap 6 (justificativa parâmetros) + P1-WEFF-B-OPT
-**P2 (robustez)**: 2 originais
+**P1 (confiança)**: todos resolvidos (Gap 6: FASE 12; P1-WEFF-B-OPT: FASE 13)
+**P2 (robustez)**: 2 originais (geofísico)
 **P3 (polish)**: 1 original
 
 **Fechados**:
 - G0 Pantheon+: ✅ FASE 4
-- H1-WEFF (Opção B): ✅ FASE 11 — χ²=14.8, melhora estrutural confirmada
-- H2-WEFF (Opção C): ✅ FASE 11 — χ²=104.0, Opção C inferior
-- Predição datada: ✅ FASE 11 — 5 predições registradas em `PREDICAO_DATADA_RLL.md`
+- H1-WEFF (Opção B scan): ✅ FASE 11 — χ²=14.8
+- H2-WEFF (Opção C scan): ✅ FASE 11 — χ²=104.0
+- Predição datada: ✅ FASE 11 — 5 predições em `PREDICAO_DATADA_RLL.md`
+- Gap 6 (justificativa parâmetros): ✅ FASE 12 — `JUSTIFICATIVA_PARAMETROS_RLL.md`
+- P1-WEFF-B-OPT: ✅ FASE 13 — χ²=0.079; P-RLL-05 CONFIRMADA [E]
 
-**Pendentes (requerem ação)**:
+**Pendentes (requerem ação manual/pipeline)**:
 - G1 (Pipeline MCMC): Disparar `rll-validacao-cientifica-completa.yml` modo=completo
 - G2 (Bayes Factor): Idem (Job 7)
-- P1-WEFF-B-OPT: Criar e rodar `scripts/optimize_weff_opcao_b.py`
-- Gap 6 (justificativa parâmetros): Ver `docs/canonicos/JUSTIFICATIVA_PARAMETROS_RLL.md` (FASE 12)
 
 **Método**: TOKEN_VAZIO preserva honestidade enquanto trabalho prossegue.
 

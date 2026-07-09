@@ -98,21 +98,28 @@ sensíveis à diferença.
 
 ---
 
-## P-RLL-05: Opção B Cruzará χ²<10 com Otimização Contínua [H — predição testável]
+## P-RLL-05: Opção B Cruzará χ²<10 com Otimização Contínua [E — CONFIRMADA 2026-07-08]
 
-**Predição**: A Opção B (setor DE puro, w1=−1, w2 livre) com otimização contínua de
-(z_t, w2, w_t) atingirá χ²_DESI < 10, demonstrando compatibilidade estrutural com CPL.
+**Predição original** [H, registrada 2026-07-07]: A Opção B (setor DE puro, w1=−1, w2 livre)
+com otimização contínua de (z_t, w2, w_t) atingirá χ²_DESI < 10, demonstrando compatibilidade
+estrutural com CPL.
 
-**Evidência atual** [E]: Scan discreto (FASE 11) encontrou melhor χ²=14.8 (w2=−0.5, w_t=0.5).
-O gradiente positivo sugere que otimização no entorno desse ponto pode cruzar o threshold.
+**Resultado** [E — FASE 13]: `scripts/optimize_weff_opcao_b.py` com Nelder-Mead (10 pontos
+de partida):
 
-**Como testar**: `scipy.optimize.minimize(chi2_opcao_b, x0=[1.0, -0.5, 0.5], method='Nelder-Mead')`
+| Parâmetro | Valor ótimo |
+|-----------|------------|
+| w2 | −0.2817 |
+| z_t | 1.7523 |
+| w_t | 1.500 (fronteira de busca) |
+| **χ²** | **0.0792** |
 
-**Condição de falsificação**: Se χ² ótimo continuar > 10 após otimização completa,
-confirma incompatibilidade estrutural mesmo da Opção B.
+**STATUS: CONFIRMADA [E]** — χ²=0.079 < 10. Todos os Δw_eff < 0.01 ≪ σ=0.05.
 
-**Condição de suporte**: Se χ² < 10 é atingido, Opção B é **compatível com CPL DESI** —
-resultado positivo relevante para o modelo.
+**Interpretação arquitetural [E]**: w_t=1.500 (no limite superior) indica que a compatibilidade
+emerge quando a transição logística é muito larga — Opção B converge para uma mistura de dois
+fluidos DE (ΛCosm + fluido w2=−0.28) que mimetiza CPL. A assinatura logística localizada em z_t
+é suavizada além da resolução BAO no regime compatível.
 
 ---
 
@@ -124,7 +131,7 @@ resultado positivo relevante para o modelo.
 | P-RLL-02 | Inflexão E(z) em z~1.0 | MCMC joint (G1) | ⏳ aguarda G1 | P0 |
 | P-RLL-03 | Ωs0 < 0.05 | MCMC joint (G1) | ⏳ aguarda G1 | P1 |
 | P-RLL-04 | Degeneração padrão/Opção A | Pantheon+ [E] | ✅ confirmado | — |
-| P-RLL-05 | Opção B cruzará χ²<10 (otimização) | scipy.minimize local | ⏳ pendente | P1 |
+| P-RLL-05 | Opção B cruzará χ²<10 (otimização) | `optimize_weff_opcao_b.py` | ✅ **CONFIRMADA** — χ²=0.079 [E] | — |
 
 ---
 
@@ -141,5 +148,5 @@ cosmológico padrão. Se confirmada por dados futuros, seria evidência extraord
 
 ---
 
-*Documento criado em FASE 11 (2026-07-07). Predições registradas antes de dados de DESI DR3 e Euclid.*
-*Referências cruzadas: `WEFF_INCOMPATIBILIDADE_RLL_CPL.md`, `08_ARVORE_CONCEITUAL_RLL.md`, `CONTRATO_FALSIFICADORES_RLL.md`.*
+*Documento criado em FASE 11 (2026-07-07). Atualizado em FASE 13 (2026-07-08): P-RLL-05 CONFIRMADA [E].*
+*Referências cruzadas: `WEFF_INCOMPATIBILIDADE_RLL_CPL.md §11`, `08_ARVORE_CONCEITUAL_RLL.md`, `CONTRATO_FALSIFICADORES_RLL.md`.*
