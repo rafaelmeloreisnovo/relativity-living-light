@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rll/omega_schema.json",
+  "title": "RAFAELIA Omega Aggregate Schema",
+  "description": "Structural aggregate for RAFAELIA Omega. Canonical equation: Ω(t+1) = F(Ω(t), D(t), E(t), P(t)). This contract organizes architecture state and does not validate scientific claims.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "omega_system",
+    "identity",
+    "artifacts",
+    "nodes",
+    "relations",
+    "evidence_chain",
+    "governance",
+    "audit",
+    "rollback",
+    "next_state"
+  ],
+  "properties": {
+    "omega_system": {"type": "string", "minLength": 1},
+    "identity": {"type": "object", "additionalProperties": true},
+    "artifacts": {"type": "array", "items": {"type": "object"}},
+    "nodes": {"type": "array", "items": {"type": "object"}},
+    "relations": {"type": "array", "items": {"type": "object"}},
+    "evidence_chain": {"type": "array", "items": {"type": "object"}},
+    "governance": {"type": "object", "additionalProperties": true},
+    "audit": {"type": "object", "additionalProperties": true},
+    "rollback": {"type": "object", "additionalProperties": true},
+    "next_state": {"type": "string", "minLength": 1}
+  }
+}

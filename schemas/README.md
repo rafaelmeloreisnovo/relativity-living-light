@@ -28,6 +28,10 @@ A schema can verify that an object has the required fields and claim gates. It c
 |---|---|---|
 | `relational_validation_package.schema.json` | Structural contract for relational validation packages. | `claim_allowed=false` |
 | `relation_graph.schema.json` | Structural contract for claim-bounded relation graphs. | `claim_allowed=false` |
+| `omega_artifact.schema.json` | Structural contract for RAFAELIA Ω living knowledge units. | epistemic status required |
+| `omega_node.schema.json` | Structural contract for RAFAELIA Ω versioned semantic cells. | score fields are routing metadata |
+| `omega_relation.schema.json` | Structural contract for RAFAELIA Ω weighted semantic relations. | preserves relation-weight formula |
+| `omega_schema.json` | Structural aggregate for RAFAELIA Ω architecture state. | preserves canonical Ω equation |
 
 ## Required discipline
 
