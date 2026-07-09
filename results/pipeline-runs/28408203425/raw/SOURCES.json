@@ -1,0 +1,78 @@
+[
+  {
+    "source": "igrf14",
+    "group": "geomagnetic",
+    "url": "https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field",
+    "license": "NOAA public data",
+    "version": "IGRF14",
+    "heavy": false,
+    "run_utc": "2026-06-29T22:58:23.455282+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/igrf14/payload.bin",
+        "sha256": "276a81b983e7faf1dc256587b9a5c4b8618c6e8f47d1a4f3f2c0d440b525ff97"
+      }
+    ]
+  },
+  {
+    "source": "wmm2025",
+    "group": "geomagnetic",
+    "url": "https://www.ncei.noaa.gov/index.php/products/world-magnetic-model/wmm-coefficients",
+    "license": "NOAA public data",
+    "version": "WMM2025",
+    "heavy": false,
+    "run_utc": "2026-06-29T22:58:23.794024+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/wmm2025/payload.bin",
+        "sha256": "9caaacde5c02ea1c8d890b515cf35501d7dfa9ce6a186bea49d10917a0e9a634"
+      }
+    ]
+  },
+  {
+    "source": "omni",
+    "group": "heliophysics",
+    "url": "https://omniweb.gsfc.nasa.gov/",
+    "license": "NASA open data",
+    "version": "OMNI/SPDF",
+    "heavy": false,
+    "run_utc": "2026-06-29T22:58:24.095146+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/omni/payload.bin",
+        "sha256": "11a4708f47c91fdc0c6693fc97f43f59d9d2308c132087dba488254aa7dd69a8"
+      }
+    ]
+  },
+  {
+    "source": "desi",
+    "group": "cosmology",
+    "url": "https://data.desi.lbl.gov/",
+    "license": "DESI data policy",
+    "version": "DR2",
+    "heavy": true,
+    "manual_reason": "DESI bulk data are large and should be selected from the data portal before materialization.",
+    "run_utc": "2026-06-29T22:58:24.281278+00:00",
+    "status": "manual_materialization_required",
+    "reason": "DESI bulk data are large and should be selected from the data portal before materialization."
+  },
+  {
+    "source": "pantheon",
+    "group": "cosmology",
+    "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/README.md",
+    "license": "repository license",
+    "version": "DataRelease",
+    "heavy": false,
+    "run_utc": "2026-06-29T22:58:24.281451+00:00",
+    "status": "fetched",
+    "files": [
+      {
+        "path": "raw/pantheon/payload.bin",
+        "sha256": "aebbe5d60292a548f008173b122073622f1f1c113af65ee988d29c53f51aa677"
+      }
+    ]
+  }
+]

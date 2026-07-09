@@ -1,0 +1,31 @@
+{
+  "schema": "rll.relation_graph.v1",
+  "graph_id": "REL_GRAPH_ACADEMIC_CORR_001",
+  "claim_id": "ACADEMIC_CORR_001",
+  "claim_allowed": false,
+  "status": "RELATIONAL_PENDING",
+  "boundary": "Candidate academic and mathematical correlations only. No scientific validation is promoted.",
+  "nodes": [
+    {"id": "RLL", "kind": "repo_program"},
+    {"id": "RAFAELIA", "kind": "dynamic_core_candidate"},
+    {"id": "DESI_DR2", "kind": "external_literature_anchor"},
+    {"id": "PLANCK_2018", "kind": "external_literature_anchor"},
+    {"id": "CPL_w0waCDM", "kind": "baseline_adversary"},
+    {"id": "ADAPTIVE_NETWORKS", "kind": "academic_vocabulary_anchor"},
+    {"id": "CHAOS_SYNCHRONIZATION", "kind": "metric_candidate"},
+    {"id": "FORMAL_PROOF", "kind": "proof_obligation_anchor"},
+    {"id": "BASE_ZERO_BASE_ONE", "kind": "notation_semantics_seed"},
+    {"id": "NEGATIVE_LEDGER", "kind": "contradiction_check_required"}
+  ],
+  "edges": [
+    {"from": "DESI_DR2", "to": "RLL", "edge_type": "adversarial_context"},
+    {"from": "PLANCK_2018", "to": "RLL", "edge_type": "baseline_constraint"},
+    {"from": "CPL_w0waCDM", "to": "RLL", "edge_type": "required_adversary"},
+    {"from": "ADAPTIVE_NETWORKS", "to": "RAFAELIA", "edge_type": "formalization_template"},
+    {"from": "CHAOS_SYNCHRONIZATION", "to": "RAFAELIA", "edge_type": "metric_candidate"},
+    {"from": "FORMAL_PROOF", "to": "RAFAELIA", "edge_type": "proof_path_required"},
+    {"from": "BASE_ZERO_BASE_ONE", "to": "FORMAL_PROOF", "edge_type": "notation_semantics"},
+    {"from": "NEGATIVE_LEDGER", "to": "RLL", "edge_type": "promotion_guard"}
+  ],
+  "next_gate": "Create validator and one tested axis package with metrics, baseline, uncertainty and contradiction check."
+}

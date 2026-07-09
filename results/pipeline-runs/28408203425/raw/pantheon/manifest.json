@@ -1,0 +1,16 @@
+{
+  "source": "pantheon",
+  "group": "cosmology",
+  "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/README.md",
+  "license": "repository license",
+  "version": "DataRelease",
+  "heavy": false,
+  "run_utc": "2026-06-29T22:58:24.281451+00:00",
+  "status": "fetched",
+  "files": [
+    {
+      "path": "raw/pantheon/payload.bin",
+      "sha256": "aebbe5d60292a548f008173b122073622f1f1c113af65ee988d29c53f51aa677"
+    }
+  ]
+}

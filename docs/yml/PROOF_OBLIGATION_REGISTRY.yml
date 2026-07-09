@@ -1,0 +1,121 @@
+schema: rll.proof_obligation_registry.v1
+updated_utc: '2026-07-02T00:00:00Z'
+status: proof_obligation_registry
+claim_allowed: false
+
+purpose: >-
+  Track formulas, symbolic statements and numerical results that require an
+  explicit proof path, derivation path, test path or formalization route before
+  claim promotion.
+
+claim_boundary: >-
+  This registry does not prove mathematical, physical, cosmological,
+  neurological or hardware claims. It records proof obligations and keeps
+  results without derivation blocked.
+
+states:
+  - TOKEN_VAZIO_PROOF_PATH
+  - INFORMAL_DERIVATION_DECLARED
+  - TESTED_NUMERICALLY
+  - FORMALIZATION_CANDIDATE
+  - FORMALLY_VERIFIED
+  - CONTRADICTION_FOUND
+  - CLAIM_BLOCKED
+
+required_fields_per_entry:
+  - obligation_id
+  - statement
+  - artifact_paths
+  - assumptions
+  - derivation_path
+  - test_paths
+  - formalization_target
+  - proof_state
+  - claim_allowed
+  - claim_blocked
+  - next_gate
+
+entries:
+  - obligation_id: RAFAELIA_FORMAL_CORE_SYMBOLS
+    statement: >-
+      The RAFAELIA formal core can be implemented as a mathematical-operational
+      adaptive graph/lattice dynamical system only after symbol roles, domains,
+      update rules and stability constraints are explicit.
+    artifact_paths:
+      - data/formulas/RAFAELIA_FORMAL_UNIFIED_CORE.md
+      - docs/formulas/RAFAELIA_SYMBOL_TABLE.md
+    assumptions:
+      - discrete_time_update
+      - finite_real_state_values
+      - declared_graph_neighborhood
+      - epsilon_positive
+      - negative_diffusivity_explicitly_declared
+    derivation_path: INFORMAL_DERIVATION_DECLARED
+    test_paths:
+      - TOKEN_VAZIO_RAFAELIA_SIMULATION_TESTS
+    formalization_target: TOKEN_VAZIO_FORMAL_SYSTEM
+    proof_state: FORMALIZATION_CANDIDATE
+    claim_allowed: false
+    claim_blocked:
+      - validated_physics
+      - neuroscience_claim
+      - quantum_hardware_claim
+      - stability_claim_without_tests
+    next_gate: >-
+      Implement toy simulator, finite-output tests, baseline pure-diffusion
+      comparison, parameter bounds and synthetic-only artifact recording.
+
+  - obligation_id: BASE_ZERO_BASE_ONE_REPRESENTATION
+    statement: >-
+      Leading-zero numeric strings may preserve integer value under base-10
+      parsing while preserving different representation/state information as
+      strings or encoded forms.
+    artifact_paths:
+      - docs/research/ACADEMIC_CORRELATION_CANDIDATE_MAP.md
+      - tests/test_numeric_representation_semantics.py
+    assumptions:
+      - base10_integer_parsing
+      - string_representation_distinct_from_numeric_value
+      - indexing_convention_must_be_declared
+    derivation_path: INFORMAL_DERIVATION_DECLARED
+    test_paths:
+      - tests/test_numeric_representation_semantics.py
+    formalization_target: TOKEN_VAZIO_FORMAL_SYSTEM
+    proof_state: TESTED_NUMERICALLY
+    claim_allowed: false
+    claim_blocked:
+      - numerology_claim
+      - mathematical_proof_without_formal_derivation
+      - representation_equivalence_as_value_equivalence
+    next_gate: >-
+      If needed, formalize grammar for numeric strings and explicitly separate
+      value equality, representation equality, position/indexing and state
+      encoding.
+
+  - obligation_id: ACADEMIC_CORR_001_RELATION_GRAPH
+    statement: >-
+      The academic correlation graph is a candidate relation map and can only
+      move beyond RELATIONAL_PENDING after metrics, baselines, uncertainty
+      status, contradiction checks and reproducibility commands are concrete.
+    artifact_paths:
+      - results/relational_validation/packages/ACADEMIC_CORR_001/package.yml
+      - results/relational_validation/packages/ACADEMIC_CORR_001/relation_graph.json
+      - tools/validate_academic_correlation_package.py
+    assumptions:
+      - candidate_relations_are_not_validation
+      - graph_edges_are_proof_obligations_not_proofs
+      - source_paths_and_artifact_paths_must_exist
+    derivation_path: TOKEN_VAZIO_PROOF_PATH
+    test_paths:
+      - tests/test_academic_correlation_package_validator.py
+    formalization_target: schemas/relational_validation_package.schema.json
+    proof_state: CLAIM_BLOCKED
+    claim_allowed: false
+    claim_blocked:
+      - academic_correlation_as_validation
+      - analogy_as_proof
+      - public_paper_similarity_as_endorsement
+      - promotion_without_metrics
+    next_gate: >-
+      Materialize one tested axis package with concrete metric, baseline,
+      uncertainty status, contradiction check and reproducibility command.

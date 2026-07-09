@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "rll.evolution_event.schema.v1",
+  "title": "RLL Evolution Trail Event",
+  "description": "Structural contract for each JSONL row of artifacts/EVOLUTION_TRAIL.jsonl. This schema records provenance/epistemic-state transitions only and does not validate scientific claims.",
+  "type": "object",
+  "required": [
+    "timestamp_utc",
+    "source_id",
+    "action",
+    "schema_drift",
+    "epistemic_before",
+    "epistemic_after",
+    "fingerprint_before",
+    "fingerprint_after",
+    "artifact_path",
+    "rll_paths_affected",
+    "notes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+
+    "timestamp_utc": {
+      "type": "string",
+      "description": "ISO 8601 UTC timestamp do evento",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?$",
+      "examples": ["2026-07-02T06:00:00Z"]
+    },
+
+    "source_id": {
+      "type": "string",
+      "description": "ID único da fonte (campo 'id' em sources:) ou 'orphan:<path>'",
+      "minLength": 1,
+      "maxLength": 200,
+      "examples": ["desi_dr2_bao", "pantheon_plus_shoes", "orphan:temp.md"]
+    },
+
+    "action": {
+      "type": "string",
+      "description": "Ação executada neste evento",
+      "enum": [
+        "FETCH",
+        "UPDATE",
+        "ROLLBACK",
+        "FAILOVER",
+        "FAILSAFE",
+        "SCHEMA_DRIFT",
+        "BOOTSTRAP",
+        "ORPHAN_REGISTERED",
+        "ORPHAN_PROMOTED",
+        "ALL_SOURCES_FAILED",
+        "SKIP_EXISTING",
+        "CONTRADICTION_STAGED"
+      ]
+    },
+
+    "schema_drift": {
+      "type": "boolean",
+      "description": "true se o fingerprint de schema mudou em relação ao registro anterior"
+    },
+
+    "epistemic_before": {
+      "type": "string",
+      "description": "Estado epistêmico antes deste evento",
+      "enum": ["VERIFIED", "DECLARED_BY_AUTHOR", "TOKEN_VAZIO", "CONTRADICTION", "—"]
+    },
+
+    "epistemic_after": {
+      "type": "string",
+      "description": "Estado epistêmico resultante deste evento",
+      "enum": ["VERIFIED", "DECLARED_BY_AUTHOR", "TOKEN_VAZIO", "CONTRADICTION", "—"]
+    },
+
+    "fingerprint_before": {
+      "type": "string",
+      "description": "SHA-256 hex das chaves do schema antes do evento (vazio se primeiro run)",
+      "pattern": "^([0-9a-f]{64})?$",
+      "examples": ["", "a3f1c2d4e5b6a7f8a3f1c2d4e5b6a7f8a3f1c2d4e5b6a7f8a3f1c2d4e5b6a7f8"]
+    },
+
+    "fingerprint_after": {
+      "type": "string",
+      "description": "SHA-256 hex das chaves do schema após o evento",
+      "pattern": "^([0-9a-f]{64})?$",
+      "examples": ["b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9"]
+    },
+
+    "artifact_path": {
+      "type": "string",
+      "description": "Caminho relativo do artefato gerado (vazio se nenhum)",
+      "examples": [
+        "artifacts/desi_dr2_bao_20260702_060000.json",
+        ""
+      ]
+    },
+
+    "rll_paths_affected": {
+      "type": "array",
+      "description": "IDs de caminhos RLL afetados (de CAMINHOS_VALIDACAO_NOVOS.yml)",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["C01_w0wa_mapping", "C05_hubble_tension_evolving_de"]]
+    },
+
+    "notes": {
+      "type": "string",
+      "description": "Notas livres sobre o evento (origem, contagem de falhas, razão do rollback)",
+      "maxLength": 1000
+    }
+  },
+
+  "if": {
+    "properties": { "action": { "const": "ROLLBACK" } }
+  },
+  "then": {
+    "properties": {
+      "epistemic_after": {
+        "description": "Rollback sempre mantém ou rebaixa; nunca promove",
+        "not": { "const": "VERIFIED" }
+      }
+    }
+  },
+
+  "examples": [
+    {
+      "timestamp_utc": "2026-07-02T06:00:00Z",
+      "source_id": "desi_dr2_bao",
+      "action": "FETCH",
+      "schema_drift": false,
+      "epistemic_before": "TOKEN_VAZIO",
+      "epistemic_after": "VERIFIED",
+      "fingerprint_before": "",
+      "fingerprint_after": "a3f1c2d4e5b6a7f8a3f1c2d4e5b6a7f8a3f1c2d4e5b6a7f8a3f1c2d4e5b6a7f8",
+      "artifact_path": "artifacts/desi_dr2_bao_20260702_060000.json",
+      "rll_paths_affected": ["C01_w0wa_mapping"],
+      "notes": "origin=primary fail_count=0"
+    },
+    {
+      "timestamp_utc": "2026-07-02T06:01:00Z",
+      "source_id": "pantheon_plus_shoes",
+      "action": "CONTRADICTION_STAGED",
+      "schema_drift": false,
+      "epistemic_before": "VERIFIED",
+      "epistemic_after": "CONTRADICTION",
+      "fingerprint_before": "b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9",
+      "fingerprint_after": "b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9b4e2d3f5a6c7b8e9",
+      "artifact_path": "",
+      "rll_paths_affected": ["C01_w0wa_mapping", "C05_hubble_tension_evolving_de"],
+      "notes": "optimizer_scaling_guard FAIL: alpha collapsed to 0.0001; Δχ² artefactual"
+    }
+  ]
+}

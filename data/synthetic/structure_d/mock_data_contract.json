@@ -1,0 +1,28 @@
+{
+  "seed": 42,
+  "generated_at_utc": "2026-03-05T14:41:48.165556Z",
+  "datasets": {
+    "Hz.csv": {
+      "z_range": [
+        0.1,
+        2.0
+      ],
+      "sigma_range": [
+        3.0,
+        5.0
+      ],
+      "rows": 8
+    },
+    "fsigma8.csv": {
+      "z_range": [
+        0.1,
+        2.0
+      ],
+      "sigma_range": [
+        0.03,
+        0.06
+      ],
+      "rows": 7
+    }
+  }
+}

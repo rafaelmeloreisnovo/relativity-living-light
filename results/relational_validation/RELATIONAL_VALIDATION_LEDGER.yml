@@ -1,0 +1,106 @@
+schema: rll.relational_validation_ledger.v1
+updated_utc: '2026-07-02T00:00:00Z'
+status: relational_validation_regime
+claim_allowed: false
+
+purpose: >-
+  Track evolving relational-validation packages where logs, artifacts, metrics,
+  baselines and claim boundaries can converge into a review-ready evidence state.
+
+claim_boundary: >-
+  This ledger records evidence states. It does not promote claims by itself.
+  Promotion requires tested convergence across independent evidence paths.
+
+self_reference:
+  ledger_path: results/relational_validation/RELATIONAL_VALIDATION_LEDGER.yml
+  directory_readme: results/relational_validation/README.md
+  logs_root: results/relational_validation/logs/
+  artifacts_root: results/relational_validation/artifacts/
+  validator: tools/validate_relational_validation_ledger.py
+  rule: self_reference_is_traceability_not_evidence
+
+promotion_states:
+  - RELATIONAL_PENDING
+  - RELATIONAL_TESTED
+  - RELATIONAL_CONVERGENCE_CANDIDATE
+  - RELATIONAL_CONVERGENCE_BLOCKED
+  - RELATIONAL_VALIDATED_REVIEW_READY
+  - RELATIONAL_REFUTED
+
+required_fields_per_entry:
+  - claim_id
+  - relation_graph_id
+  - state
+  - source_paths
+  - log_paths
+  - artifact_paths
+  - metric_names
+  - baseline_or_adversary
+  - uncertainty_or_covariance_status
+  - contradiction_check
+  - reproducibility_command
+  - claim_allowed
+  - claim_blocked
+  - next_gate
+
+entries:
+  - claim_id: TOKEN_VAZIO_INITIAL_RELATIONAL_PACKAGE
+    relation_graph_id: TOKEN_VAZIO_RELATION_GRAPH
+    state: RELATIONAL_PENDING
+    source_paths: []
+    log_paths: []
+    artifact_paths: []
+    metric_names: []
+    baseline_or_adversary: TOKEN_VAZIO_BASELINE
+    uncertainty_or_covariance_status: TOKEN_VAZIO_UNCERTAINTY
+    contradiction_check: TOKEN_VAZIO_CONTRADICTION_CHECK
+    reproducibility_command: TOKEN_VAZIO_COMMAND
+    claim_allowed: false
+    claim_blocked:
+      - unsupported_claim_promotion
+      - self_reference_as_standalone_evidence
+      - promotion_without_metric_baseline_uncertainty_and_boundary
+    next_gate: >-
+      Add the first concrete relational-validation package with source paths,
+      log paths, artifact paths, metrics, baseline/adversary, contradiction
+      check, reproducibility command and explicit claim boundary.
+
+  - claim_id: ACADEMIC_CORR_001
+    relation_graph_id: REL_GRAPH_ACADEMIC_CORR_001
+    state: RELATIONAL_PENDING
+    source_paths:
+      - docs/research/ACADEMIC_CORRELATION_CANDIDATE_MAP.md
+      - results/relational_validation/README.md
+      - results/relational_validation/RELATIONAL_VALIDATION_LEDGER.yml
+    log_paths: []
+    artifact_paths:
+      - results/relational_validation/packages/ACADEMIC_CORR_001/package.yml
+      - results/relational_validation/packages/ACADEMIC_CORR_001/relation_graph.json
+      - schemas/relational_validation_package.schema.json
+      - schemas/relation_graph.schema.json
+      - tools/validate_academic_correlation_package.py
+      - tests/test_academic_correlation_package_validator.py
+      - tests/test_numeric_representation_semantics.py
+      - .github/workflows/validate-academic-correlation-package.yml
+      - docs/formulas/RAFAELIA_SYMBOL_TABLE.md
+      - docs/yml/PROOF_OBLIGATION_REGISTRY.yml
+    metric_names:
+      - TOKEN_VAZIO_METRIC_UNTIL_TESTED_AXIS_EXISTS
+    baseline_or_adversary: >-
+      LCDM, wCDM and CPL/w0waCDM for cosmology axes; derivation-required
+      baseline for formula axes; synthetic null and stability baselines for
+      graph/chaos axes.
+    uncertainty_or_covariance_status: TOKEN_VAZIO_UNCERTAINTY_FOR_NUMERICAL_AXES
+    contradiction_check: TOKEN_VAZIO_CONTRADICTION_CHECK
+    reproducibility_command: >-
+      python tools/validate_academic_correlation_package.py
+    claim_allowed: false
+    claim_blocked:
+      - academic_correlation_as_validation
+      - analogy_as_evidence
+      - formula_without_derivation_path
+      - promotion_without_metric_baseline_uncertainty_and_boundary
+    next_gate: >-
+      Keep ACADEMIC_CORR_001 pending until one concrete relation axis has
+      metric, baseline/adversary, uncertainty status, contradiction check and
+      output artifact. The current validator and workflow check structure only.

@@ -6,25 +6,37 @@
     {
       "script": "scripts/validation/validate_compact_remnant_boundary.py",
       "returncode": 0,
-      "stdout": "materialized in repository",
+      "stdout": "wrote data/results/compact_objects/remnant_boundary_validation.json",
       "stderr": ""
     },
     {
       "script": "scripts/validation/validate_dark_lens_candidates.py",
       "returncode": 0,
-      "stdout": "materialized in repository",
+      "stdout": "wrote data/results/compact_objects/wandering_bh_validation.json",
+      "stderr": ""
+    },
+    {
+      "script": "scripts/validation/validate_wandering_bh_candidates.py",
+      "returncode": 0,
+      "stdout": "wrote data/results/compact_objects/wandering_bh_source_readiness.json",
       "stderr": ""
     },
     {
       "script": "scripts/validation/validate_historical_impulse_candidates.py",
       "returncode": 0,
-      "stdout": "materialized in repository",
+      "stdout": "wrote data/results/kinematics/historical_impulse_validation.json",
       "stderr": ""
     },
     {
       "script": "scripts/validation/validate_high_z_smbh_seeds.py",
       "returncode": 0,
-      "stdout": "materialized in repository",
+      "stdout": "wrote data/results/high_z_smbh/seed_validation.json",
+      "stderr": ""
+    },
+    {
+      "script": "scripts/validation/validate_residual_gravity_structures.py",
+      "returncode": 0,
+      "stdout": "wrote data/results/structure/residual_gravity_validation.json",
       "stderr": ""
     }
   ],
@@ -44,6 +56,13 @@
       "claim_allowed": false
     },
     {
+      "path": "data/results/compact_objects/wandering_bh_source_readiness.json",
+      "exists": true,
+      "module": "wandering_black_holes_and_lensing_gaps",
+      "status": "blocked_missing_observational_data",
+      "claim_allowed": false
+    },
+    {
       "path": "data/results/kinematics/historical_impulse_validation.json",
       "exists": true,
       "module": "historical_impulse_slingshot",
@@ -55,6 +74,13 @@
       "exists": true,
       "module": "high_z_smbh_seeds",
       "status": "seed_metric_ready_claim_blocked",
+      "claim_allowed": false
+    },
+    {
+      "path": "data/results/structure/residual_gravity_validation.json",
+      "exists": true,
+      "module": "gravitational_residual_memory_and_compact_gaps",
+      "status": "blocked_missing_observational_data",
       "claim_allowed": false
     }
   ],

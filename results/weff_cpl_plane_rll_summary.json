@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "module": "weff_cpl_plane_mapping",
+  "claim_allowed": false,
+  "target_boundary": "User-provided CPL target; exact official DESI table row remains TOKEN_VAZIO until ingested.",
+  "target": {
+    "w0_seed": -0.838,
+    "wa_seed": -0.62,
+    "sigma_assumed": 0.05,
+    "values": {
+      "0.295": -0.671,
+      "0.51": -0.558,
+      "0.706": -0.459,
+      "0.934": -0.354,
+      "1.321": -0.21,
+      "1.484": -0.156
+    },
+    "convention": "user-provided table values; official DESI table remains TOKEN_VAZIO"
+  },
+  "seed": {
+    "zt": 1.0,
+    "wt": 0.3,
+    "monotonic_z0_to_zt": false
+  },
+  "best_scan": {
+    "zt": 0.3,
+    "wt": 0.55,
+    "chi2_weff_vs_cpl": 608.7466378295615,
+    "w_eff_z0": -0.6330803691083993
+  },
+  "n_scan_points": 120,
+  "falsifiers": {
+    "F_WEFF_01": false,
+    "F_WEFF_02": false,
+    "F_WEFF_03": true
+  },
+  "status": "claim_blocked_falsifier_failed",
+  "rollback": "Remove generated CSV/JSON or git revert; no raw data is changed."
+}

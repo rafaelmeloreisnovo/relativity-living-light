@@ -1,0 +1,74 @@
+{
+  "run_utc": "2026-06-27T07:51:00Z",
+  "commit_sha": "d84fc5358c3f970b1beabf7796eb615189efd291",
+  "book_scope": "all",
+  "dataset_group": "all",
+  "mode": "compute",
+  "status": "Parcial real em preparação",
+  "scope_objective": "methodology: validar rota metodológica. ; real_data: auditar dados reais e χ² inicial. ; scripts: mapear execução reprodutível. ; observational_validation: gerar rota de validação observacional completa. ; desi_boss: gerar manifesto de validação DESI/BOSS/Planck. ; amas_mcrp: ligar AMAS/SAA ao MCRP sem afirmar validação total.",
+  "chapters_used": [
+    "book/11_metodologia_pipeline_validacao.md",
+    "book/12_metodologia_dados_mock.md",
+    "book/13_metodologia_dados_reais.md",
+    "book/14_metodologia_notebooks_scripts.md",
+    "book/15_validacao_expansao_hz.md",
+    "book/16_validacao_supernovas_dmu.md",
+    "book/17_validacao_fracoes_energia.md",
+    "book/18_validacao_crescimento_fs8.md",
+    "book/19_validacao_lentes_aglomerados.md",
+    "book/20_validacao_rotacao_galaxias.md",
+    "book/21_validacao_desi_boss.md",
+    "book/22_validacao_jwst_agn_smbh.md",
+    "book/23_resultados_estatisticos.md",
+    "book/24_resultados_figuras_painel.md"
+  ],
+  "scientific_inputs": [
+    "docs/",
+    "data/",
+    "data/pipelines/structure_d/"
+  ],
+  "results_outputs": [
+    "results/"
+  ],
+  "ingestion_history_only": [
+    "to_Add/"
+  ],
+  "records": [
+    {
+      "group": "geomagnetic",
+      "Hipótese": "Validação depende de dados reais, métricas reproduzíveis e trilha canônica do livro.",
+      "Dado": "Grupo geomagnetic selecionado via dataset_group.",
+      "Modelo": "M(t), m(t), T_M",
+      "Métrica": "Comparação RLL vs referências externas com rastreabilidade.",
+      "Referência": "NOAA/NCEI IGRF14; NOAA/NCEI WMM2025; ESA Swarm; NASA South Atlantic Anomaly",
+      "Status": "blocked"
+    },
+    {
+      "group": "heliophysics",
+      "Hipótese": "Validação depende de dados reais, métricas reproduzíveis e trilha canônica do livro.",
+      "Dado": "Grupo heliophysics selecionado via dataset_group.",
+      "Modelo": "Φ_ext, SW, T_M, Φ_eff",
+      "Métrica": "Comparação RLL vs referências externas com rastreabilidade.",
+      "Referência": "NASA OMNI/SPDF; NMDB; GOES energetic particles; SPENVIS AE9/AP9",
+      "Status": "blocked"
+    },
+    {
+      "group": "cosmology",
+      "Hipótese": "Validação depende de dados reais, métricas reproduzíveis e trilha canônica do livro.",
+      "Dado": "Grupo cosmology selecionado via dataset_group.",
+      "Modelo": "E²(a), f(z), w(z), comparação RLL vs ΛCDM/w0waCDM",
+      "Métrica": "Comparação RLL vs referências externas com rastreabilidade.",
+      "Referência": "DESI DR2 BAO; Pantheon+ SNe Ia; Planck 2018 chains; H(z); fσ8",
+      "Status": "blocked"
+    }
+  ],
+  "allowed_status": [
+    "reference_only",
+    "metadata_ready",
+    "dry_run",
+    "fetched",
+    "computed",
+    "blocked"
+  ],
+  "promotion_guard": "pipeline não promove status para Real validado sem execução real com dados, métricas e reprodutibilidade"
+}

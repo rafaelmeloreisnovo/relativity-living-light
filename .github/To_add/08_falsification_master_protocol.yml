@@ -1,0 +1,170 @@
+# Protocolo Mestre de Falsificação RLL — 2026
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Schema: rll.falsification_master.v2
+# Extends: FALSIFIABILITY_PROTOCOL.md do repositório
+
+schema_version: "2.0"
+module: falsification_master_protocol
+status: OPERATIONAL
+claim_allowed: false
+updated_utc: "2026-06-27"
+
+axiom: >
+  TOKEN_VAZIO > fabricação.
+  Nenhum resultado é declarado até que dados reais, covariância correta
+  e comparação com ΛCDM estejam materializados e reproduzíveis.
+
+current_state_honest:
+  lcdm_wins_aic_bic: true
+  rll_chi2_excess_vs_lcdm: "+0.41 (joint 64 pts)"
+  h0_artifact_identified: true
+  h0_artifact_value: 60.0
+  fsigma8_backend_missing: true
+  claim_allowed: false
+
+falsifiers_C_series:
+
+  - id: C01
+    name: "f(z) → w_eff vs CPL DESI"
+    priority: 1
+    status: OPEN
+    claim_allowed: false
+    description: >
+      Verificar se trajetória w_eff_RLL(z) cai dentro do contorno
+      1σ DESI DR2 no plano w0-wa para algum (Os0, zt, wt).
+    data_required:
+      - "data/real/cosmology/desi_dr2_bao_primary_points.csv (13 pts — OK)"
+      - "data/real/Hz_data_real.csv (31 pts — OK)"
+      - "H₀ grid corrigido: [64, 74] passo 0.5"
+    scripts:
+      - "rll_vs_lcdm.py --adversary both --h0 67.4 --omega-s0 0.05 --zt 0.8 --wt 0.3"
+      - "scripts/compute_weff_cpl_mapping.py"
+    metric: "ΔAIC_RLL_vs_ΛCDM < 0 E chi2_per_pt < 2.0"
+    pass_condition: >
+      RLL reproduz observações com penalidade AIC < ΛCDM.
+      Trajetória w_eff(z) cruza região preferida por DESI.
+    fail_condition: >
+      ΔAIC > +4 para todo (Os0, zt, wt) físico.
+      → Setor de superposição rejeitado em BAO atual.
+    termux_command: >
+      python3 rll_vs_lcdm.py \
+        --bao data/real/cosmology/desi_dr2_bao_primary_points.csv \
+        --adversary both --h0 67.4 --omega-m 0.315 \
+        --omega-s0 0.05 --zt 0.8 --wt 0.3 \
+        --out-json results/c01_test_run.json
+
+  - id: C02
+    name: "H(z) + Tensão H₀"
+    priority: 2
+    status: OPEN_ARTIFACT_IDENTIFIED
+    claim_allowed: false
+    description: >
+      Verificar se RLL com H₀ livre (grid [64,74]) melhora
+      ajuste de cronômetros cósmicos vs ΛCDM.
+    artifact_fix_required: "Expandir grid H₀ de [60,72] para [64,74]"
+    data_required:
+      - "data/real/Hz_data_real.csv (31 pts)"
+    metric: >
+      chi2_Hz_RLL < chi2_Hz_ΛCDM E H₀_RLL ∈ [67, 73]
+    pass_condition: "RLL prefere H₀ entre Planck e SH0ES — alivia tensão"
+    fail_condition: "H₀_RLL = H₀_ΛCDM — setor não afeta background Hz"
+
+  - id: C03
+    name: "Setor magnético ΩB0 × BH andante"
+    priority: 3
+    status: DATA_GAP
+    claim_allowed: false
+    description: >
+      Testar se ΩB0·a⁻⁴ > 0 produz assinatura mensurável em
+      ambientes de BH off-nuclear (MaNGA 12772-12704, z=0.017).
+    data_required:
+      - "data/real/compact_objects/manga_12772_wbh_liu_2025.fits (AUSENTE)"
+      - "Rotation Measure do ambiente do AGN off-nuclear"
+    unblock_action: >
+      Baixar cubo MaNGA via SDSS DR17.
+      Calcular RM integrado na emissão off-nuclear.
+      Comparar com predição ΩB0 > 0 vs ΩB0 = 0.
+    metric: "ΔRM_pred / σ_RM_obs > 3σ"
+    falsifier: "ΔRM < 1σ → ΩB0 não detectável via RM de AGN off-nuclear"
+
+  - id: C05
+    name: "Tensão H₀ via f(z) transition"
+    priority: 2
+    status: OPEN
+    claim_allowed: false
+    description: >
+      Se zt é tal que f(z) ~ 0.5 em z ~ 0.5-0.8, o setor de superposição
+      age como DE mais cedo — aumenta E(z) nessa época —
+      comprimindo distâncias angulares e aliviando H₀ local vs CMB.
+    test: >
+      Calcular H₀_eff_RLL via inversão de D_A(z_CMB) com R_obs = 1.7502.
+      Comparar com H₀_eff_ΛCDM.
+    metric: "|H₀_eff_RLL - 73.0| < |H₀_eff_ΛCDM - 73.0|"
+    pass_condition: "RLL mais próximo de SH0ES que ΛCDM"
+
+  - id: C07
+    name: "RLL vs Finsler gravity e f(R)"
+    priority: 4
+    status: BACKGROUND_RESEARCH
+    claim_allowed: false
+    description: >
+      Diferenciar RLL de outras extensões de ΛCDM (f(R), Finsler, EDE).
+      RLL tem w_eff não-monotônico (pica em z_t). Isso é discriminador único.
+    test: >
+      Calcular w_eff(z) para f(R) Hu-Sawicki e EDE Poulin 2018.
+      Mostrar que trajetória w_eff_RLL é distinguível de ambos
+      em z ~ zt via DH/rd (tracer radial DESI).
+    metric: >
+      |DH_over_rd_RLL - DH_over_rd_fR| / sigma_DH > 1σ em z ~ zt
+
+  - id: C09
+    name: "Dispersão plasma via CHIME/FRB"
+    priority: 5
+    status: FUTURE_DATA
+    claim_allowed: false
+    description: >
+      Setor plasmático ΩP0·a⁻⁴ contribui para DM_cosmic (medida de dispersão)
+      de FRBs. Se ΩP0 > 0, DM_cosmic vs z diferirá de ΛCDM.
+    data_required:
+      - "CHIME/FRB Catalog 1 (2021) — 536 FRBs"
+      - "CHIME/FRB Catalog 2 (2024/2025) — em progresso"
+    current_status: "Catalog 1 público: https://www.chime-frb.ca/catalog"
+    metric: >
+      DM_cosmic_obs(z_FRB) vs DM_pred_RLL(z_FRB, ΩP0) chi2 < chi2_ΛCDM
+    termux_download: >
+      wget https://www.chime-frb.ca/static/data/catalog1.tar.gz
+      tar -xzf catalog1.tar.gz
+
+  - id: C10_NEW
+    name: "Euclid DR1 2025 — BAO + lensing fraco"
+    priority: 1
+    status: NEW_DATA_AVAILABLE
+    claim_allowed: false
+    description: >
+      Euclid DR1 foi lançado em 2025 com dados de lensing fraco
+      e clustering de galáxias para z=0.3-2.5.
+      Primeiro dataset que pode discriminar w(z) com precisão sub-percent.
+    source_url: "https://www.euclid-ec.org/science/euclid-data-releases/"
+    data_type: weak_lensing_galaxy_clustering_combined
+    relevance_to_rll: >
+      Lensing fraco mede σ8·Ωm^0.5 diretamente.
+      Se RLL suprime σ8 em z < zt, Euclid deve detectar.
+    action: "Monitorar Euclid DR1 papers e ingerir quando disponível"
+
+gate_to_publication:
+  required_all:
+    - C01_passed: false
+    - C02_passed: false
+    - H0_not_artifact: false
+    - fsigma8_with_backend: false
+    - reproduce_on_clean_env: false
+  current_gates_passed: 0
+  total_gates: 5
+  publication_ready: false
+
+termux_priority_sequence:
+  step1: "python3 rll_vs_lcdm.py --h0 67.4 --omega-s0 0.05 --zt 0.8 --wt 0.3 --adversary both"
+  step2: "python3 src/rll/rll_perturbation_kernel.py --omega-s0 0.02 --zt 1.0 --wt 0.3"
+  step3: "python3 scripts/compute_weff_cpl_mapping.py"
+  step4: "pytest tests/ -v --tb=short > results/test_run_$(date +%Y%m%d).log"
+  step5: "python3 scripts/build_real_validation_report.py"

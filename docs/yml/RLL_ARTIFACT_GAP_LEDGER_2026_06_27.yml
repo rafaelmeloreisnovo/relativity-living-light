@@ -1,0 +1,246 @@
+# RLL Artifact Gap Ledger — 2026-06-27
+# Purpose: map the CI artifacts, previous-answer references, missing pieces, placeholders and safe next actions.
+# Claim policy: this YAML is a navigation/custody ledger, not scientific proof.
+
+schema: rll.artifact_gap_ledger.v1
+updated_utc: "2026-06-27"
+claim_allowed: false
+source_runs:
+  - run_id: "28283484980"
+    artifact_name: "rll-real-run-28283484980"
+    workflow: "RLL Real Data Orchestrator"
+    commit_sha: "32da0439018873da3ca083fadd7a2edec382ab49"
+    run_utc: "2026-06-27T08:10:59Z"
+    status: "Parcial real em preparação"
+    mode: "compute"
+    dataset_group: "all"
+    book_scope: "all"
+  - run_id: "28282463159"
+    artifact_name: "start-manual-here-28282463159"
+    workflow: "START_MANUAL_HERE"
+    run_profile: "full_validation"
+    mode: "full"
+    strict_mode: true
+
+policy:
+  do_not_promote_claims_from_artifact_presence: true
+  no_synthetic_substitution: true
+  preserve_negative_results: true
+  placeholder_resolution_requires:
+    - source_or_reason
+    - local_path_or_external_status
+    - checksum_if_local
+    - baseline_if_claim_relevant
+    - uncertainty_or_error_model_if_scientific
+    - executable_artifact
+  statuses:
+    - OK
+    - PARCIAL
+    - BLOQUEADO
+    - TOKEN_VAZIO
+    - PROXIMO
+
+artifact_inventory:
+  rll_real_run:
+    root_files:
+      - CLAIM_REFERENCE_AUDIT.md
+      - COMMIT_SHA.txt
+      - CHECKSUMS.sha256
+      - COMPUTE_REPORT.md
+      - DATA_SOURCES.md
+      - FETCH_REPORT.md
+      - MANIFEST.json
+      - PIPELINE_REPORT.md
+      - RUN_UTC.txt
+      - SOURCES.md
+      - docs_inventory_check.log
+      - docs_inventory_refresh.log
+    data_tables:
+      - tables/Hz_processed.csv
+      - tables/BAO_processed.csv
+      - tables/model_comparison.csv
+      - tables/rll_components.csv
+      - tables/geomagnetic_metadata.csv
+    plots:
+      - plots/BAO_comparison.png
+      - plots/Hz_curve.png
+      - plots/chi2_barplot.png
+      - plots/data_sources_status.png
+      - plots/rll_components.png
+    formulas:
+      - formulas/formulas.csv
+      - formulas/formulas.json
+      - formulas/FORMULAS_BY_SOURCE.md
+      - formulas/FORMULAS_CLAIM_MAP.md
+      - formulas/FORMAL_ACADEMIC_REPORT.md
+    iml:
+      - iml/IML_MANIFEST.json
+      - iml/IML_REPORT.md
+      - iml/INPUT_SHA256.txt
+      - iml/input.json
+      - iml/output.json
+    raw_or_fetched:
+      - raw/igrf14/payload.bin
+      - raw/wmm2025/payload.bin
+      - raw/omni/payload.bin
+      - raw/nmdb/payload.bin
+      - raw/pantheon/payload.bin
+      - raw/cosmology_curated/Hz_data_real.csv
+      - raw/cosmology_curated/BAO_data_real.csv
+      - raw/cosmology_curated/CMB_shift_real.json
+      - raw/cosmology_curated/desi_dr2_results_i_arxiv.html
+      - raw/cosmology_curated/pantheon_readme.md
+  start_manual_here:
+    root_files:
+      - METHODOLOGY_SUMMARY.md
+      - SELECTION_PLAN.md
+      - probe/MANIFEST.json
+      - probe/PIPELINE_REPORT.md
+      - probe/SOURCES.md
+      - probe/CLAIM_REFERENCE_AUDIT.md
+      - probe/book/BOOK_ROUTE.md
+      - probe/book/CHAPTERS_USED.md
+      - probe/book/FILES_USED.md
+
+previous_answer_reference_points:
+  - id: P01_ci_auditable
+    statement: "CI rodando com inventário coerente e artifacts preservados."
+    evidence_files:
+      - docs_inventory_refresh.log
+      - docs_inventory_check.log
+      - MANIFEST.json
+      - CHECKSUMS.sha256
+    repository_followup:
+      - tools/docs_inventory.py
+      - .github/workflows/rll-real-data-orchestrator.yml
+    current_status: OK
+    claim_allowed: false
+  - id: P02_real_data_partial
+    statement: "Dados reais/parciais fetchados; DESI/Planck/SPENVIS ainda exigem materialização manual."
+    evidence_files:
+      - FETCH_REPORT.md
+      - DATA_SOURCES.md
+      - raw/SOURCES.json
+    missing_files_or_status:
+      - DESI bulk data: manual_materialization_required
+      - Planck archive products: manual_materialization_required
+      - SPENVIS session export: manual_materialization_required
+    current_status: PARCIAL
+    claim_allowed: false
+  - id: P03_model_comparison_negative
+    statement: "Comparação inicial LCDM x RLL gerou resultado desfavorável ao RLL nessa rodada."
+    evidence_files:
+      - tables/model_comparison.csv
+      - COMPUTE_REPORT.md
+    repository_followup:
+      - data/results/negative_results_ledger.json
+      - scripts/run_h0_grid_expansion.py
+    current_status: BLOQUEADO
+    claim_allowed: false
+  - id: P04_figures_and_tables
+    statement: "Gráficos e tabelas existem para inspeção visual e numérica."
+    evidence_files:
+      - plots/BAO_comparison.png
+      - plots/Hz_curve.png
+      - plots/chi2_barplot.png
+      - tables/Hz_processed.csv
+      - tables/BAO_processed.csv
+      - tables/model_comparison.csv
+    current_status: OK
+    claim_allowed: false
+  - id: P05_book_methodology_route
+    statement: "Existe trilha metodológica/livro com capítulos e seleção manual."
+    evidence_files:
+      - book/BOOK_ROUTE.md
+      - book/CHAPTERS_USED.md
+      - book/FILES_USED.md
+      - start-manual-here/SELECTION_PLAN.md
+    repository_followup:
+      - docs/EXECUTION_NEXT_PATCH_RLL_YML_DATA.md
+    current_status: OK
+    claim_allowed: false
+  - id: P06_formula_index
+    statement: "Fórmulas extraídas e indexadas."
+    evidence_files:
+      - formulas/formulas.csv
+      - formulas/formulas.json
+      - formulas/FORMULAS_BY_SOURCE.md
+      - formulas/FORMULAS_CLAIM_MAP.md
+    missing_files_or_status:
+      - formula-by-formula claim classification remains partial
+    current_status: PARCIAL
+    claim_allowed: false
+  - id: P07_iml_custody
+    statement: "IML roda com hash e relatório, mas não é prova científica."
+    evidence_files:
+      - iml/IML_MANIFEST.json
+      - iml/INPUT_SHA256.txt
+      - iml/IML_REPORT.md
+    current_status: OK
+    claim_allowed: false
+  - id: P08_h0_grid_next
+    statement: "H0 precisa de grid corrigido e artifact próprio."
+    evidence_files:
+      - data/real/cosmology/h0_grid_expansion.yml
+    repository_followup:
+      - scripts/run_h0_grid_expansion.py
+    expected_outputs:
+      - results/h0_grid_expansion_summary.json
+      - results/h0_grid_expansion_scan.csv
+    current_status: PROXIMO
+    claim_allowed: false
+  - id: P09_w0wa_mapper_next
+    statement: "RLL precisa ser mapeado para coordenadas efetivas w0/wa."
+    repository_followup:
+      - scripts/map_rll_to_w0wa_eff.py
+    expected_outputs:
+      - results/rll_w0wa_eff_map.json
+      - results/rll_w0wa_eff_map.csv
+    current_status: PROXIMO
+    claim_allowed: false
+  - id: P10_missing_placeholder_scan
+    statement: "Placeholder/stub/ausência precisam de scanner e ledger."
+    repository_followup:
+      - tools/scan_missing_placeholders.py
+    expected_outputs:
+      - data/results/missing_placeholder_stub_scan.json
+      - data/results/missing_placeholder_stub_scan.csv
+      - docs/MISSING_PLACEHOLDER_STUB_SCAN.md
+    current_status: PROXIMO
+    claim_allowed: false
+
+missing_placeholder_stub_policy:
+  categories:
+    token_vazio:
+      meaning: "Known gap intentionally protected."
+      action: "Resolve only with source/artifact/baseline/checksum or keep blocked."
+    placeholder:
+      meaning: "Mock/example/dummy content that must not be promoted."
+      action: "Replace with real fixture or label as example-only."
+    stub:
+      meaning: "Implementation shell or pass/NotImplemented."
+      action: "Implement executable function or mark explicit TOKEN_VAZIO."
+    todo_fixme:
+      meaning: "Unrouted future work."
+      action: "Convert to issue, ledger item, or executable test."
+    aborted_forgotten:
+      meaning: "Abandoned/skipped/deixado/esquecido work."
+      action: "Classify as blocked, obsolete, or next artifact route."
+
+execution_order:
+  - command: "python3 tools/docs_inventory.py"
+    expected: "inventory refreshed"
+  - command: "python3 tools/docs_inventory.py --check"
+    expected: "inventory coherent"
+  - command: "python3 tools/scan_missing_placeholders.py"
+    expected: "missing/stub/placeholder ledger generated"
+  - command: "python3 scripts/validation/validate_wandering_black_hole_sources.py"
+    expected: "source metadata validated, raw-data claim still blocked"
+  - command: "python3 scripts/run_h0_grid_expansion.py"
+    expected: "H0 boundary artifact scan generated"
+  - command: "python3 scripts/map_rll_to_w0wa_eff.py"
+    expected: "RLL-to-CPL diagnostic map generated"
+
+final_boundary:
+  status: "operationally_mapped_claim_blocked"
+  safe_sentence: "The project has an audit machine and gap ledger; it still must not claim RLL superiority without raw data, baseline, uncertainty and successful predefined quality gates."

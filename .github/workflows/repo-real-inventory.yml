@@ -1,78 +1,89 @@
+# Auxiliary real-data workflow. Canonical policy: .github/workflows/real-data-complete-execution.yml
 name: repo-real-inventory
-
 on:
-  workflow_dispatch:
-    inputs:
-      commit_inventory:
-        description: "Commit generated inventory back to the repository (explicit opt-in)."
-        required: true
-        default: false
-        type: boolean
+  workflow_dispatch: null
   push:
-    branches: [main]
+    branches:
+    - main
     paths-ignore:
-      - 'docs/DOCUMENTATION_FULL_INVENTORY.md'
-      - 'docs/REAL_NUMBERS_REPORT.md'
-      - 'docs/YML_WORKFLOWS_INDEX.md'
-      - 'data/results/repo_inventory.json'
-      - 'data/results/repo_inventory.tsv'
-      - 'data/results/repo_inventory_summary.json'
-
+    - docs/DOCUMENTATION_FULL_INVENTORY.md
+    - docs/REAL_NUMBERS_REPORT.md
+    - docs/YML_WORKFLOWS_INDEX.md
+    - data/results/repo_inventory.json
+    - data/results/repo_inventory.tsv
+    - data/results/repo_inventory_summary.json
 permissions:
-  contents: write
-
+  contents: read
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
-
 jobs:
   inventory:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout full repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - name: Checkout full repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+    - name: Generate real inventory from canonical tool
+      shell: bash
+      run: 'set -euo pipefail
 
-      - name: Generate real inventory from canonical tool
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 tools/docs_inventory.py
+        python3 tools/docs_inventory.py
 
-      - name: Build inventory checksums
-        shell: bash
-        run: |
-          set -euo pipefail
-          sha256sum docs/DOCUMENTATION_FULL_INVENTORY.md docs/REAL_NUMBERS_REPORT.md docs/YML_WORKFLOWS_INDEX.md data/results/repo_inventory.json data/results/repo_inventory.tsv data/results/repo_inventory_summary.json > data/results/repo_inventory_checksums.sha256
+        '
+    - name: Build inventory checksums and commit policy note
+      shell: bash
+      run: 'set -euo pipefail
 
-      - name: Upload generated inventory artifact
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: repo-real-inventory-${{ github.run_id }}
-          path: |
-            docs/DOCUMENTATION_FULL_INVENTORY.md
-            docs/REAL_NUMBERS_REPORT.md
-            docs/YML_WORKFLOWS_INDEX.md
-            data/results/repo_inventory.json
-            data/results/repo_inventory.tsv
-            data/results/repo_inventory_summary.json
-            data/results/repo_inventory_checksums.sha256
-          retention-days: 14
+        sha256sum docs/DOCUMENTATION_FULL_INVENTORY.md docs/REAL_NUMBERS_REPORT.md docs/YML_WORKFLOWS_INDEX.md data/results/repo_inventory.json data/results/repo_inventory.tsv data/results/repo_inventory_summary.json > data/results/repo_inventory_checksums.sha256
 
-      - name: Commit generated real inventory
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.commit_inventory }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/DOCUMENTATION_FULL_INVENTORY.md docs/REAL_NUMBERS_REPORT.md docs/YML_WORKFLOWS_INDEX.md data/results/repo_inventory.json data/results/repo_inventory.tsv data/results/repo_inventory_summary.json data/results/repo_inventory_checksums.sha256
-          if git diff --cached --quiet; then
-            echo "No inventory changes."
-            exit 0
-          fi
-          git commit -m "Generate measured repository inventory"
-          git push
+        printf ''%s\n'' "This workflow is artifact-only. Commit inventory updates through a reviewed pull request, not an automatic push." > data/results/repo_inventory_commit_policy.txt
+
+        '
+    - name: Upload generated inventory artifact without committing
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: repo-real-inventory-${{ github.run_id }}
+        path: 'docs/DOCUMENTATION_FULL_INVENTORY.md
+
+          docs/REAL_NUMBERS_REPORT.md
+
+          docs/YML_WORKFLOWS_INDEX.md
+
+          data/results/repo_inventory.json
+
+          data/results/repo_inventory.tsv
+
+          data/results/repo_inventory_summary.json
+
+          data/results/repo_inventory_checksums.sha256
+
+          data/results/repo_inventory_commit_policy.txt
+
+          '
+        retention-days: 14
+    - name: Finalize canonical real-data policy checksums
+      if: always()
+      run: 'set -euo pipefail
+
+        ARTIFACT_DIR="artifacts/workflow-policy/repo-real-inventory/${{ github.job }}"
+
+        mkdir -p "$ARTIFACT_DIR"
+
+        . tools/ci/real_data_workflow_policy.sh
+
+        rll_real_data_write_claim_boundary "$ARTIFACT_DIR"
+
+        rll_real_data_assert_boundary_file "$ARTIFACT_DIR/CLAIM_BOUNDARY.md"
+
+        rll_real_data_write_checksums "$ARTIFACT_DIR"
+
+        '
+    env:
+      CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+      CLAIM_BOUNDARY: Auxiliary real-data workflow only; no RLL/cosmology/superiority claim and no synthetic, mock, fixture, demo, example, or placeholder promotion beyond explicit run checks.
+x-canonical-real-data-policy: Auxiliary real-data workflow; canonical policy is .github/workflows/real-data-complete-execution.yml. Synthetic/mock/fixture/demo/example/placeholder inputs cannot be promoted as real observational evidence.

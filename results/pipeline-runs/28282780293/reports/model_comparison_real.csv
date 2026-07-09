@@ -1,0 +1,3 @@
+model,regime,chi2,AIC,BIC,N,k,dof,fit_params,fixed_params,datasets_used,run_name,profile_name,covariance_policy,H0,Om,OL,Ob_h2,Os0,zt,wt
+lcdm,real,123.71368774610883,131.71368774610883,138.9403377051901,45,4,41,"H0,Om,OL,Ob_h2",,"real_hz,real_bao,real_cmb_shift",structure_d_real_validation,structure_d_real_validation,prefer_full,69.28881631141483,0.2942322743566732,0.6432501407336927,0.026,,,
+rll_like_agn,real,123.60586470065675,137.60586470065675,150.252502129049,45,7,38,"H0,Om,OL,Os0,zt,wt,Ob_h2",,"real_hz,real_bao,real_cmb_shift",structure_d_real_validation,structure_d_real_validation,prefer_full,61.36602993036104,0.37447066722367767,0.8139174877886421,0.026,0.0034485651916693057,7.677091718738333,0.12475149139042395

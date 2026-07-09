@@ -1,0 +1,4 @@
+Audited 19 rows
+Wrote: results/audit/real_data_materialization_audit.csv
+Wrote: results/audit/real_data_materialization_audit.json
+Wrote: results/audit/real_data_materialization_audit.md

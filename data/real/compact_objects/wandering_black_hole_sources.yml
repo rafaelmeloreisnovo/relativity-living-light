@@ -1,117 +1,200 @@
-# Wandering / Silent Black Hole Source Ledger
-# Status: TOKEN_VAZIO protected source ledger
-# Purpose: map missing observational data needed to test wandering, recoiling, silent, dark-lens, and orphan compact-mass candidates.
+# Wandering / Recoiling Black Hole Source Ledger — real observational, claim-blocked
+# Updated: 2026-06-27
+# Schema: rll.compact_objects.wandering_bh.v1
+# Operational stance: use real source metadata and measured observables, but fail closed for RLL claims.
 
-schema_version: 0.1
+schema_version: "1.1"
 claim_allowed: false
-status: TOKEN_VAZIO
+status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
 module: wandering_black_holes_and_lensing_gaps
-linked_docs:
-  - docs/science/WANDERING_BLACK_HOLES_AND_LENSING_GAPS.md
-  - docs/science/DATA_GAP_SCAN_AND_STRUCTURE_LINKAGE.md
+updated_utc: "2026-06-27"
 
-required_evidence_channels:
-  - lensing
-  - microlensing
-  - astrometric_lensing
-  - stellar_kinematics
-  - hypervelocity_traceback
-  - gravitational_wave_history
-  - multiwavelength_accretion_constraints
+claim_policy:
+  no_superiority: true
+  require_checksum_for_local_raw: true
+  require_baseline_comparison: true
+  require_uncertainty_for_metric_claim: true
+  token_vazio_is_valid_for_missing_raw_data: true
+  publication_language: >
+    Wandering/off-nuclear black holes are independent observational phenomena.
+    RLL may only use these records as claim-blocked test targets after raw files,
+    checksums, observables, uncertainties, and baseline comparisons are present.
+
+csv_table:
+  path: data/real/compact_objects/wandering_black_hole_sources.csv
+  sha256: bf1a85f6feb7ebd4d34ae5193ab8620b818e3f77dda214e967343cfe7b2411cf
+  bytes: 1389
+  rows: 3
+  claim_allowed: false
+
+falsifier_global: >
+  If RLL with ΩB0>0 produces no measurable deviation in DM/rd, DH/rd, or
+  validated local magnetic-plasma observables in confirmed off-nuclear BH
+  tracers inside the declared redshift window, the magnetic-sector claim is
+  rejected for that regime.
+
+operational_usability:
+  quick_read: "Three real observational source records are now tabulated, but every record remains claim_allowed=false until raw data, checksum, uncertainty, and baseline exist."
+  process_map:
+    - "1. Identify candidate and source reference."
+    - "2. Record minimal observable numbers in CSV/YML."
+    - "3. Fetch raw/archive data into local_path when legally and technically possible."
+    - "4. Compute SHA256 and replace TOKEN_VAZIO only with measured checksum."
+    - "5. Extract observables with uncertainty model."
+    - "6. Compare RLL against ΛCDM/null baseline."
+    - "7. Keep claim_allowed=false unless every gate passes."
+  failsafe: "Fail closed when raw data, checksum, uncertainty, or baseline is missing."
+  rollback: "Revert this ledger or generated readiness JSON; no raw data is deleted by validation."
 
 source_records:
-  - id: TOKEN_VAZIO_WBH_001
-    candidate_type: wandering_bh
-    dataset_name: TOKEN_VAZIO
-    provider: TOKEN_VAZIO
-    url_or_reference: TOKEN_VAZIO
-    access_date_utc: TOKEN_VAZIO
-    data_type: TOKEN_VAZIO
+  - id: RBH_1_JWST_RUNAWAY_SMBH
+    candidate_type: runaway_supermassive_black_hole
+    status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
+    epistemic_status: source_claim_confirmed_by_authors_preprint_repo_claim_blocked
+    dataset_name: "JWST/NIRSpec IFU + HST imaging — RBH-1"
+    provider: "van Dokkum et al."
+    source_title: "JWST Confirmation of a Runaway Supermassive Black Hole via its Supersonic Bow Shock"
+    source_type: arxiv_preprint
+    arxiv: "2512.04166"
+    source_url: "https://arxiv.org/abs/2512.04166"
+    access_date_utc: "2026-06-27"
+    data_type: spectroscopic_imaging_bow_shock
     raw_data_available: false
     local_path: TOKEN_VAZIO
     checksum_sha256: TOKEN_VAZIO
-    observables_required:
-      - position
-      - proper_motion_or_velocity
-      - mass_estimate
-      - lensing_or_dynamical_signature
-      - luminous_counterpart_search
-      - multiwavelength_non_detection_or_accretion_state
-      - baseline_alternatives
-      - error_model
-    physical_parameters:
-      M_dark_msun: null
-      theta_E_arcsec: null
-      alpha_deflect_mas: null
-      v_kick_km_s: null
-      Delta_v_km_s: null
-      t_enc_myr: null
-      accretion_rate_state: unknown
-    validation_link:
-      script_expected: scripts/validation/validate_wandering_bh_candidates.py
-      metric_expected: TOKEN_VAZIO
-      baseline_model: TOKEN_VAZIO
+    z_host: 0.96
+    observables_recorded:
+      wake_length_kpc: 62.0
+      velocity_km_s: 954.0
+      velocity_err_plus_km_s: 110.0
+      velocity_err_minus_km_s: 126.0
+      minimum_mass_msun: 1.0e7
+    observables_required_for_rll:
+      - faraday_rotation_measure_rad_m2
+      - radio_dispersion_measure
+      - calibrated_spectrum
+      - uncertainty_covariance
+      - lcdm_baseline_prediction
+    rll_connection:
+      sector: magnetic_plasma
+      omega_B0_test: true
+      observable_proxy: "Faraday rotation in wake; radio dispersion measure"
+      falsifier: >
+        If RLL and ΛCDM/null plasma baselines are indistinguishable after full
+        covariance, this object yields no usable RLL claim.
     claim_boundary:
-      black_hole_confirmed: false
-      mass_carrier_required: true
-      lensing_or_dynamics_required: true
-      no_luminosity_is_not_proof: true
+      raw_data_required: true
       claim_allowed: false
-    status: TOKEN_VAZIO
 
-  - id: TOKEN_VAZIO_DARK_LENS_001
-    candidate_type: dark_lens
-    dataset_name: TOKEN_VAZIO
-    provider: TOKEN_VAZIO
-    url_or_reference: TOKEN_VAZIO
-    access_date_utc: TOKEN_VAZIO
-    data_type: TOKEN_VAZIO
+  - id: MANGA_12772_12704_WANDERING_MBH
+    candidate_type: off_nuclear_accreting_massive_black_hole
+    status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
+    epistemic_status: candidate_from_vlbi_preprint_repo_claim_blocked
+    dataset_name: "MaNGA + multi-epoch VLBI — MaNGA 12772-12704"
+    provider: "Liu, An, Mezcua et al."
+    source_title: "A Jetted Wandering Massive Black Hole Candidate in a Dwarf Galaxy"
+    source_type: arxiv_preprint
+    arxiv: "2508.17293"
+    source_url: "https://arxiv.org/abs/2508.17293"
+    access_date_utc: "2026-06-27"
+    data_type: radio_vlbi_optical_spectroscopy
     raw_data_available: false
     local_path: TOKEN_VAZIO
     checksum_sha256: TOKEN_VAZIO
-    observables_required:
-      - lens_geometry
-      - event_timescale_or_image_configuration
-      - lens_mass_posterior
-      - luminous_counterpart_search
-      - alternative_lens_models
-    validation_link:
-      script_expected: scripts/validation/validate_dark_lens_candidates.py
-      metric_expected: TOKEN_VAZIO
-      baseline_model: TOKEN_VAZIO
+    z_host: 0.017
+    observables_recorded:
+      offset_from_center_kpc: 0.94
+      brightness_temperature_lower_limit_K: 1.0e9
+      variability_baseline_yr: 30.0
+      parsec_scale_jet: true
+    observables_required_for_rll:
+      - faraday_rotation_measure_rad_m2
+      - integrated_radio_flux_mJy
+      - spectral_index
+      - uncertainty_covariance
+      - lcdm_baseline_prediction
+    rll_connection:
+      sector: magnetic_plasma
+      omega_B0_test: true
+      priority: HIGH
+      rationale: >
+        Low redshift and off-nuclear accretion make this a useful magnetic-plasma
+        target only after RM, flux, spectral index, and baseline uncertainties
+        are ingested.
+      falsifier: >
+        Measure RM around the off-nuclear BH and compare RLL (ΩB0>0) against
+        ΛCDM/null plasma baseline. No differentiable residual means no RLL
+        magnetic-sector evidence from this target.
     claim_boundary:
-      black_hole_confirmed: false
-      lensing_mass_only_is_not_unique: true
+      raw_data_required: true
       claim_allowed: false
-    status: TOKEN_VAZIO
 
-  - id: TOKEN_VAZIO_RECOIL_001
-    candidate_type: recoiling_bh
-    dataset_name: TOKEN_VAZIO
-    provider: TOKEN_VAZIO
-    url_or_reference: TOKEN_VAZIO
-    access_date_utc: TOKEN_VAZIO
-    data_type: TOKEN_VAZIO
+  - id: NGC_3627_GALACTIC_CONTRAIL
+    candidate_type: massive_dark_object_disk_flyby_candidate
+    status: REAL_SOURCE_METADATA_READY_CLAIM_BLOCKED
+    epistemic_status: candidate_from_phangs_jwst_alma_preprint_repo_claim_blocked
+    dataset_name: "PHANGS-JWST + PHANGS-ALMA — NGC 3627 molecular contrail"
+    provider: "Zhao and Li"
+    source_title: "Galactic Contrail in NGC 3627 caused by Dwarf Galaxy Candidate or Massive Black Hole Flyby"
+    source_type: arxiv_preprint
+    arxiv: "2509.20832"
+    source_url: "https://arxiv.org/abs/2509.20832"
+    access_date_utc: "2026-06-27"
+    data_type: molecular_gas_dust_contrail
     raw_data_available: false
     local_path: TOKEN_VAZIO
     checksum_sha256: TOKEN_VAZIO
-    observables_required:
-      - spatial_offset
-      - velocity_offset
-      - host_galaxy_model
-      - merger_history_or_alternative
-      - accretion_state
-    validation_link:
-      script_expected: scripts/validation/validate_wandering_bh_candidates.py
-      metric_expected: TOKEN_VAZIO
-      baseline_model: TOKEN_VAZIO
+    observables_recorded:
+      contrail_length_kpc: 8.0
+      contrail_width_pc: 200.0
+      aspect_ratio: 40.0
+      turbulence_km_s: 10.0
+      flyby_velocity_lower_limit_km_s: 300.0
+      compact_object_mass_scale_msun: 1.0e6
+      crossing_time_myr: 20.0
+    observables_required_for_rll:
+      - gas_velocity_field
+      - dust_map
+      - CO_line_cube
+      - uncertainty_covariance
+      - standard_flyby_baseline
+    rll_connection:
+      sector: local_dark_compact_interaction
+      omega_B0_test: false
+      priority: MEDIUM
+      rationale: >
+        Useful as a real compact-object/disk-interaction target, not as direct
+        cosmology evidence. It can stress-test source custody and baseline logic.
+      falsifier: >
+        If standard dwarf-nucleus or massive-BH flyby explains the contrail within
+        uncertainties, no RLL-specific interpretation is allowed.
     claim_boundary:
-      offset_is_not_unique_proof: true
+      raw_data_required: true
       claim_allowed: false
-    status: TOKEN_VAZIO
+
+fetch_instructions:
+  RBH_1:
+    step1: "Use arXiv:2512.04166 to identify data products and observational program IDs."
+    step2: "Search MAST/JWST/HST archives for released calibrated products."
+    step3: "Download only redistributable metadata or keep external-only boundary."
+    step4: "Compute SHA256 before replacing TOKEN_VAZIO."
+  MANGA_12772_12704:
+    step1: "Use arXiv:2508.17293 and MaNGA DR/SAS identifiers."
+    step2: "Fetch only allowed public MaNGA/VLBI metadata or keep external-only boundary."
+    step3: "Compute SHA256 before replacing TOKEN_VAZIO."
+  NGC_3627:
+    step1: "Use arXiv:2509.20832 to identify PHANGS-JWST/ALMA products."
+    step2: "Fetch allowed public tables/cubes or keep external-only boundary."
+    step3: "Compute SHA256 before replacing TOKEN_VAZIO."
 
 scan_requirements:
   fail_closed_if_missing_dataset: true
   require_checksum_before_claim: true
   require_observable_before_metric: true
   require_baseline_before_interpretation: true
+
+consumed_by:
+  - data/real/compact_objects/wandering_black_hole_sources.csv
+  - scripts/validation/validate_wandering_black_hole_sources.py
+  - docs/science/RLL_CRUZAMENTOS_COMPLETOS.md
+  - docs/science/RLL_OBSERVATIONAL_DATA_IMPLEMENTATION_REVIEW.md

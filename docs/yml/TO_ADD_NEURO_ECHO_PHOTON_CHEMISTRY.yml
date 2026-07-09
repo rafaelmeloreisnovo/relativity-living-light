@@ -1,0 +1,124 @@
+# TO_ADD — Neuro/Echo/Photon/Chemistry bridge
+# Source: user frontier note, 2026-06-27
+# Claim policy: structured hypothesis intake only; not proof.
+
+schema: rll.to_add.neuro_echo_photon_chemistry.v1
+updated_utc: "2026-06-27"
+claim_allowed: false
+source_context: >
+  User proposed that neural electrical activity may accelerate chemical transitions,
+  not as high-energy ionization, but as an electrochemical trigger for faster reactions;
+  also proposed an echo/saturation analogy where repeated echoes gain apparent noise,
+  similar to a liquid/air-column stabilization or hydraulic pulse system, and asked
+  whether electron/photon imaging and medium chemistry could involve related effects.
+
+status: structured_hypothesis_intake
+promotion_target:
+  requested_by_user: ".github/to_add/"
+  stored_here_because: "Direct creation under .github/to_add was unavailable through the connector; this file is the equivalent tracked intake ledger."
+  next_repo_targets:
+    - docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+    - docs/yml/FRONTIER_SCIENCE_CROSSMAP_2026.yml
+    - data/results/frontier_science_claim_boundary.json
+
+core_translation:
+  neuro_electrochemical_trigger:
+    user_language: "cérebro solta as partes elétricas para acelerar transição química"
+    technical_translation: >
+      In normal neurobiology, electrical activity is better framed as ionic membrane
+      depolarization and voltage-gated channel control. The electrical event triggers
+      chemical release mainly through Ca2+ influx and vesicle fusion, not through
+      high-energy ionization of tissue.
+    claim_status: "plausible_as_translation_not_new_physics"
+    claim_allowed: false
+  ionization_gate_boundary:
+    user_language: "ionização como gatilho"
+    technical_translation: >
+      Use 'electrochemical gating' or 'field/voltage-triggered reaction' as the safe term.
+      Reserve 'ionization' for cases with actual electron removal or ion-pair formation,
+      measured by spectroscopy, radiation chemistry, plasma chemistry or electrochemistry.
+    claim_status: "term_boundary_required"
+    claim_allowed: false
+  echo_saturation_noise:
+    user_language: "leitura de ecos com saturação adequada, eco parecendo ganhar ruído"
+    technical_translation: >
+      In MRI/NMR-like echo trains, signal commonly decays through relaxation/dephasing
+      while thermal/instrument noise remains, so apparent noise increases as SNR falls.
+      Saturation, repetition timing and echo spacing can reshape contrast and apparent
+      plateau/decay behavior.
+    claim_status: "analogy_to_echo_train_and_snr"
+    claim_allowed: false
+  hydraulic_column_analogy:
+    user_language: "coluna de ar em líquido/água com pressão, platô e fluxo"
+    technical_translation: >
+      Treat as hydraulic ram / pressure-accumulator analogy: pulsed energy, storage,
+      release, damping and plateau stabilization. Useful as a didactic analogy for
+      relaxation/echo stabilization, but not direct evidence for molecular mechanism.
+    claim_status: "didactic_analogy_only"
+    claim_allowed: false
+  photon_electron_medium_chemistry:
+    user_language: "foto do elétron e química do meio"
+    technical_translation: >
+      Photon-electron-medium coupling belongs to photochemistry, photoelectron dynamics,
+      solvation, dielectric response, scattering, relaxation and radiation chemistry.
+      The medium can control rate, lifetime, recombination, spectral line shape and
+      measured signal through viscosity, polarity, pH, ionic strength, redox state,
+      temperature and local fields.
+    claim_status: "testable_frontier_mapping"
+    claim_allowed: false
+
+observables_required:
+  neuro:
+    - membrane_voltage_or_proxy
+    - calcium_transient
+    - neurotransmitter_release_timing
+    - synaptic_delay
+    - metabolic_marker
+  echo_mri_nmr:
+    - sequence_type
+    - repetition_time_TR
+    - echo_time_TE
+    - T1_T2_T2star
+    - SNR_per_echo
+    - saturation_protocol
+  photon_electron_chemistry:
+    - photon_energy
+    - pulse_duration
+    - electron_yield_or_density
+    - spectrum
+    - medium_composition
+    - pH_or_ionic_strength
+    - temperature
+    - redox_state
+  hydraulic_analogy:
+    - pressure_pulse
+    - damping
+    - flow_rate
+    - reservoir_or_accumulator
+    - plateau_time
+
+blocked_claims:
+  - "Normal brain signaling is high-energy ionization."
+  - "MRI echo noise proves a chemical electron mechanism."
+  - "Hydraulic analogy proves photon/electron chemistry."
+  - "Medium chemistry validates RLL or RAFAELIA physics."
+  - "Apparent echo noise growth is new physics without SNR/relaxation analysis."
+
+safe_claims:
+  - "Electrical activity can trigger and coordinate chemical signaling in neural systems through electrochemical mechanisms."
+  - "Echo trains can show apparent noise growth when signal decays and noise floor remains."
+  - "Medium chemistry can alter photon/electron relaxation, transfer, scattering and measured spectra."
+  - "The hydraulic-column analogy is useful as a didactic model of pulsed energy storage, damping and plateau stabilization."
+
+next_artifacts:
+  - path: docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+    purpose: "Academic explanation with claim boundary."
+  - path: docs/yml/FRONTIER_SCIENCE_CROSSMAP_2026.yml
+    purpose: "Cross-domain map: plasma, photon, radiation, chemistry, quantum, particles, neuro/electrochemistry."
+  - path: scripts/validation/validate_frontier_science_crossmap.py
+    purpose: "Future schema validator for source, observable, energy/time scale and claim boundary."
+    status: TOKEN_VAZIO
+
+safe_conclusion: >
+  The user's idea can be preserved as a testable electrochemical/photochemical/echo analogy,
+  but must remain claim-blocked until observables, instruments, baselines and artifacts are supplied.

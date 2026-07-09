@@ -1,0 +1,82 @@
+# H₀ Grid Expansion — Corrige artefato H₀=60 do joint_real
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Problema identificado: otimizador bateu no limite inferior H₀=60.0
+# Schema: rll.parameter_grid.h0_expansion.v1
+
+schema_version: "1.0"
+module: h0_grid_expansion
+status: READY_TO_RUN
+claim_allowed: false
+updated_utc: "2026-06-27"
+
+problem_identified:
+  artifact: "H₀ = 60.0 km/s/Mpc no joint_real_likelihood.json"
+  cause: "Otimizador differential_evolution bateu no limite inferior do grid"
+  evidence: >
+    joint_real_likelihood.json mostra H0=60.0 para TODOS os modelos
+    (LCDM, wCDM, CPL, RLL). Isso indica constraint de grid, não resultado físico.
+  impact: "AIC/BIC inflados; chi2_CMB_shift=20.84 anormalmente alto para H₀ correto"
+
+grid_corrected:
+  H0:
+    min: 64.0
+    max: 74.0
+    step: 0.5
+    prior_center: 67.4
+    prior_sigma: 2.0
+    note: "Cobre tensão H₀: Planck=67.4, SH0ES=73.0, DESI=68.5"
+  omega_m:
+    min: 0.28
+    max: 0.36
+    step: 0.01
+  omega_s0:
+    min: 0.0
+    max: 0.12
+    step: 0.01
+    note: "Inclui 0.0 para limite nulo → ΛCDM"
+  zt:
+    min: 0.5
+    max: 2.0
+    step: 0.1
+  wt:
+    min: 0.1
+    max: 0.8
+    step: 0.05
+
+execution:
+  command: >
+    python3 rll_vs_lcdm.py
+      --bao data/real/cosmology/desi_dr2_bao_primary_points.csv
+      --hz data/real/Hz_data_real.csv
+      --adversary both
+      --h0 67.4
+      --omega-m 0.315
+      --omega-s0 0.05
+      --zt 1.2
+      --wt 0.35
+      --out-json results/h0_corrected_run.json
+      --out-csv results/h0_corrected_predictions.csv
+  note: "Rodar também com --h0 69.0, 71.0, 73.0 para varredura"
+
+expected_outputs:
+  - results/h0_corrected_run.json
+  - results/h0_corrected_predictions.csv
+
+falsifiers:
+  - id: F_H0_01
+    test: "H₀ ótimo RLL deve diferir de H₀ ótimo ΛCDM por < 1 km/s/Mpc"
+    metric: "|H₀_RLL − H₀_ΛCDM| < 1.0"
+    if_fails: "Setor de superposição não é degenerado com ΛCDM no background"
+  - id: F_H0_02
+    test: "chi2_CMB_shift deve cair abaixo de 5.0 com H₀ correto"
+    metric: "chi2_CMB_shift < 5.0"
+    if_fails: "Inconsistência RLL com CMB shift não é artefato de grid"
+  - id: F_H0_03
+    test: "ΔAIC_RLL_vs_ΛCDM deve ser < +4.0 com H₀ livre"
+    metric: "delta_aic_rll_minus_lcdm < 4.0"
+    if_fails: "RLL ainda penalizado mesmo com H₀ livre — Os0 não ajuda o fit"
+
+quality_gates:
+  gate_1_grid: "H₀ ótimo não deve ser limite de grid"
+  gate_2_cmb: "chi2_CMB < 10.0 para resultado válido"
+  gate_3_bao: "chi2_BAO_per_point < 2.0 em média"

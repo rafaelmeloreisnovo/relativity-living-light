@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_RESULTS = ROOT / "data" / "results"
 MODEL_COMPARISON_JSON = DATA_RESULTS / "model_comparison.json"
 PANTHEON_SUMMARY_JSON = DATA_RESULTS / "pantheon_fit_summary.json"
+MODEL_SELECTION_SUMMARY_JSON = ROOT / "results" / "rll_model_comparison_summary.json"
 EXPECTED_SOURCE = "data/results/pantheon_fit_summary.json"
 
 AIC_TENTATIVE_THRESHOLD = 2.0
@@ -88,7 +89,6 @@ def interpret_model_comparison(delta: dict) -> dict:
 
 
 
-
 def _sha256_file(path: Path) -> str:
     import hashlib
     h=hashlib.sha256()
@@ -105,6 +105,65 @@ def _pantheon_files() -> list[Path]:
     ]
 
 
+def _ensure_pantheon_column_aliases() -> dict:
+    """Add legacy column aliases expected by docs/panteon_likelihood.py.
+
+    Pantheon+ real releases may expose the statistical magnitude uncertainty as
+    `mBERR`, `m_b_corr_err_DIAG`, or `MU_SH0ES_ERR_DIAG`, while the legacy RLL
+    loader accepts `dmb`, `dmu`, or `mb_err`. This shim updates only the CI/local
+    working copy of the text table before the legacy pipeline runs. It does not
+    promote claims, does not change covariance policy, and keeps the source hash
+    recorded by downstream artifacts after the compatibility pass.
+    """
+    lc_file = ROOT / "data" / "pantheon" / "lcparam_full_long_zhel.txt"
+    if not lc_file.exists():
+        return {
+            "status": "skipped_missing_lcparam",
+            "path": str(lc_file.relative_to(ROOT)),
+            "aliases_added": [],
+        }
+
+    original_text = lc_file.read_text(encoding="utf-8")
+    lines = original_text.splitlines()
+    if not lines:
+        raise ValueError(f"Pantheon+ lcparam file is empty: {lc_file}")
+
+    header = lines[0].split()
+    rows = [line.split() for line in lines[1:] if line.strip()]
+    aliases_added: list[dict[str, str]] = []
+
+    def add_alias(alias: str, candidates: list[str]) -> None:
+        nonlocal header, rows
+        if alias in header:
+            return
+        source = next((candidate for candidate in candidates if candidate in header), None)
+        if source is None:
+            return
+        source_index = header.index(source)
+        old_width = len(header)
+        for idx, row in enumerate(rows, start=2):
+            if len(row) != old_width:
+                raise ValueError(
+                    f"Pantheon+ lcparam row {idx} has {len(row)} columns; expected {old_width}."
+                )
+            row.append(row[source_index])
+        header.append(alias)
+        aliases_added.append({"alias": alias, "source": source})
+
+    add_alias("dmb", ["mBERR", "m_b_corr_err_DIAG", "MU_SH0ES_ERR_DIAG", "m_b_corr_err_RAW", "m_b_corr_err_VPEC"])
+    add_alias("mb_err", ["mBERR", "m_b_corr_err_DIAG", "MU_SH0ES_ERR_DIAG", "m_b_corr_err_RAW", "m_b_corr_err_VPEC"])
+
+    if aliases_added:
+        updated = " ".join(header) + "\n" + "\n".join(" ".join(row) for row in rows) + "\n"
+        lc_file.write_text(updated, encoding="utf-8")
+
+    return {
+        "status": "updated" if aliases_added else "already_compatible",
+        "path": str(lc_file.relative_to(ROOT)),
+        "aliases_added": aliases_added,
+    }
+
+
 def _git_commit_hash() -> str | None:
     cp = subprocess.run(["git","rev-parse","HEAD"], cwd=ROOT, capture_output=True, text=True, check=False)
     return cp.stdout.strip() if cp.returncode == 0 else None
@@ -115,7 +174,7 @@ def _environment_info() -> dict:
     from importlib.metadata import PackageNotFoundError, version
 
     pkgs = {}
-    for name in ("numpy", "scipy", "pandas", "pytest"):
+    for name in ("numpy", "scipy", "pandas", "pytest", "jsonschema"):
         try:
             pkgs[name] = version(name)
         except PackageNotFoundError:
@@ -136,6 +195,7 @@ def validate_model_comparison_payload(payload: dict) -> None:
     if payload["k_rll"] != 5 or payload["k_lcdm"] != 2:
         raise ValueError("k_rll/k_lcdm mismatch")
 
+
 def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
     source = EXPECTED_SOURCE
     rll = summary.get("rll", {})
@@ -146,7 +206,6 @@ def _normalize_model_comparison(summary: dict, command_used: str) -> dict:
             if key in model_block:
                 return model_block[key]
         return None
-
     rll_chi2 = _metric(rll, "chi2")
     lcdm_chi2 = _metric(lcdm, "chi2")
     rll_aic = _metric(rll, "aic", "AIC")
@@ -241,6 +300,22 @@ def _retain_existing_artifact(reason: str) -> bool:
     return False
 
 
+def _summary_diagnostics() -> str:
+    data_results_files = sorted(p.relative_to(ROOT).as_posix() for p in DATA_RESULTS.glob("*")) if DATA_RESULTS.exists() else []
+    diagnostics = {
+        "expected_summary": EXPECTED_SOURCE,
+        "expected_exists": PANTHEON_SUMMARY_JSON.exists(),
+        "model_selection_summary": MODEL_SELECTION_SUMMARY_JSON.relative_to(ROOT).as_posix(),
+        "model_selection_summary_exists": MODEL_SELECTION_SUMMARY_JSON.exists(),
+        "data_results_files": data_results_files,
+        "route_hint": (
+            "Pantheon normalization requires docs/panteon_likelihood.py output. "
+            "If results/rll_model_comparison_summary.json exists instead, the CLI routed to rll_vs_lcdm.py."
+        ),
+    }
+    return json.dumps(diagnostics, indent=2, ensure_ascii=False)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run minimal real Pantheon+ validation and emit auditable model_comparison.json")
     parser.add_argument("--skip-verify", action="store_true", help="Skip verify_pantheon_inputs step")
@@ -250,12 +325,30 @@ def main() -> None:
     env = os.environ.copy()
     env["PYTHONPATH"] = str(ROOT / "src")
 
+    alias_meta = _ensure_pantheon_column_aliases()
+    print(f"[rll-real-validation] Pantheon+ column compatibility: {json.dumps(alias_meta, ensure_ascii=False)}")
+
     steps: list[tuple[str, list[str]]] = []
     if not args.skip_verify:
         steps.append(("verify", [sys.executable, "scripts/verify_pantheon_inputs.py", "--json"]))
     if not args.skip_preflight:
         steps.append(("preflight", [sys.executable, "-m", "rll.cli", "preflight-real", "--json"]))
-    steps.append(("run_real", [sys.executable, "-m", "rll.cli", "run", "--data", "real", "--model", "both", "--with-covariance"]))
+    steps.append((
+        "run_real",
+        [
+            sys.executable,
+            "-m",
+            "rll.cli",
+            "run",
+            "--data",
+            "real",
+            "--model",
+            "both",
+            "--with-covariance",
+            "--adversary",
+            "lcdm",
+        ],
+    ))
 
     for label, cmd in steps:
         completed = _run(cmd, env)
@@ -268,7 +361,8 @@ def main() -> None:
     if not PANTHEON_SUMMARY_JSON.exists():
         raise FileNotFoundError(
             f"Expected summary not found: {PANTHEON_SUMMARY_JSON}. "
-            "Real pipeline did not produce the required artifact."
+            "Real Pantheon pipeline did not produce the required artifact.\n"
+            f"Diagnostics:\n{_summary_diagnostics()}"
         )
 
     missing = [p for p in _pantheon_files() if not p.exists()]
@@ -280,6 +374,7 @@ def main() -> None:
     summary = json.loads(PANTHEON_SUMMARY_JSON.read_text(encoding="utf-8"))
     command_used = " ".join([sys.executable, "scripts/run_real_pantheon_validation.py"] + sys.argv[1:])
     normalized = _normalize_model_comparison(summary, command_used=command_used)
+    normalized["pantheon_column_compatibility"] = alias_meta
     DATA_RESULTS.mkdir(parents=True, exist_ok=True)
     MODEL_COMPARISON_JSON.write_text(json.dumps(normalized, indent=2, ensure_ascii=False), encoding="utf-8")
 

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rll/relational_validation_package.schema.json",
+  "title": "RLL Relational Validation Package",
+  "description": "Structural contract for claim-bounded relational validation packages. This schema is a metadata contract only and does not validate scientific claims.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema",
+    "claim_id",
+    "relation_graph_id",
+    "state",
+    "claim",
+    "source_paths",
+    "log_paths",
+    "artifact_paths",
+    "metric_names",
+    "baseline_or_adversary",
+    "uncertainty_or_covariance_status",
+    "contradiction_check",
+    "reproducibility_command",
+    "claim_allowed",
+    "claim_blocked",
+    "next_gate"
+  ],
+  "properties": {
+    "schema": {"const": "rll.relational_validation_package.v1"},
+    "claim_id": {"type": "string", "minLength": 1},
+    "relation_graph_id": {"type": "string", "minLength": 1},
+    "state": {
+      "type": "string",
+      "enum": [
+        "RELATIONAL_PENDING",
+        "RELATIONAL_TESTED",
+        "RELATIONAL_CONVERGENCE_CANDIDATE",
+        "RELATIONAL_CONVERGENCE_BLOCKED",
+        "RELATIONAL_VALIDATED_REVIEW_READY",
+        "RELATIONAL_REFUTED"
+      ]
+    },
+    "claim": {
+      "type": "object",
+      "required": ["text", "domain", "claim_boundary", "claim_allowed", "claim_blocked"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "domain": {"type": "string", "minLength": 1},
+        "claim_boundary": {"type": "string", "minLength": 1},
+        "claim_allowed": {"const": false},
+        "claim_blocked": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "source_paths": {"type": "array", "items": {"type": "string"}},
+    "log_paths": {"type": "array", "items": {"type": "string"}},
+    "artifact_paths": {"type": "array", "items": {"type": "string"}},
+    "metric_names": {"type": "array", "items": {"type": "string"}},
+    "baseline_or_adversary": {"type": "string", "minLength": 1},
+    "uncertainty_or_covariance_status": {"type": "string", "minLength": 1},
+    "contradiction_check": {"type": "string", "minLength": 1},
+    "reproducibility_command": {"type": "string", "minLength": 1},
+    "claim_allowed": {"const": false},
+    "claim_blocked": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "next_gate": {"type": "string", "minLength": 1}
+  }
+}

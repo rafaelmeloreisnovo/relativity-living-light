@@ -1,0 +1,228 @@
+# YML Master Ledger — RLL orchestration map
+# Status: operational navigation layer
+# Updated: 2026-06-27
+# Claim policy: YAML files organize execution and custody; they do not prove scientific claims.
+
+schema_version: "0.4"
+claim_allowed: false
+policy:
+  no_new_workflow_by_default: true
+  yaml_is_not_proof: true
+  proof_requires:
+    - executable_run
+    - artifact
+    - baseline
+    - uncertainty_or_error_model
+    - falsifier
+    - claim_boundary
+  token_vazio_is_valid_boundary: true
+
+human_syslog_states:
+  - OK
+  - PARCIAL
+  - BLOQUEADO
+  - TOKEN_VAZIO
+  - PROXIMO
+
+levels:
+  E0: "found but not classified"
+  E1: "metadata / documentation only"
+  E2: "consumed by tool or workflow"
+  E3: "generates artifact"
+  E4: "validated artifact with baseline"
+  E5: "external-review-ready reproducible route"
+
+entries:
+  - path: .github/workflows/START_MANUAL_HERE.yml
+    type: workflow
+    level: E3
+    runs_alone: true
+    human_name: "Comece por aqui"
+    role: "Manual orchestrator for selected YAML/profile checks."
+    artifacts:
+      - artifacts/manual-start/
+    next_safe_action: "Use metadata_only or dry_run before full validation."
+    claim_allowed: false
+
+  - path: .github/workflows/rll-real-data-orchestrator.yml
+    type: workflow
+    level: E3
+    runs_alone: true
+    human_name: "Orquestrador de dados reais"
+    role: "Fetch/compute/plot/book/formula orchestration for real-data run artifacts."
+    recent_fix: "Runs docs inventory, gap scan, to_Add migration validation, H0 grid and w0wa diagnostics."
+    artifacts:
+      - artifacts/rll-real-run/
+    next_safe_action: "Run after migration updates and inspect diagnostics/*.json."
+    claim_allowed: false
+
+  - path: .github/workflows/real-data-complete-execution.yml
+    type: workflow
+    level: E3
+    runs_alone: true
+    human_name: "Execução completa de dados reais"
+    role: "Structure-D and Pantheon+ real validation with rollback artifacts."
+    artifacts:
+      - artifacts/real-data-complete/
+    next_safe_action: "Watch Pantheon+ alias compatibility and strict_real_data behavior."
+    claim_allowed: false
+
+  - path: data/raw/RAW_DATA_MANIFEST.yml
+    type: raw_data_manifest
+    level: E2
+    runs_alone: false
+    human_name: "Custódia bruta"
+    role: "Tracks raw-data source, local path, sha256, terms and claim boundary."
+    required_fields:
+      - source_url
+      - access_date_utc
+      - license_or_terms
+      - local_path
+      - sha256
+      - claim_allowed
+    next_safe_action: "Replace TOKEN_VAZIO only after measured file/hash exists."
+    claim_allowed: false
+
+  - path: data/real/compact_objects/wandering_black_hole_sources.yml
+    type: observational_source_ledger
+    level: E2
+    runs_alone: false
+    human_name: "Fontes BH andantes"
+    role: "Real observational source records for wandering/runaway black-hole routes."
+    companion_table: data/real/compact_objects/wandering_black_hole_sources.csv
+    validator: scripts/validation/validate_wandering_black_hole_sources.py
+    missing_for_claim:
+      - local raw files
+      - raw-data sha256
+      - uncertainty covariance
+      - standard baseline
+      - executable metric artifact
+    claim_allowed: false
+
+  - path: data/real/cosmology/h0_grid_expansion.yml
+    type: parameter_grid_manifest
+    level: E2
+    runs_alone: false
+    human_name: "Grid H0 corrigido"
+    role: "Defines H0 boundary-artifact mitigation grid."
+    script: scripts/run_h0_grid_expansion.py
+    expected_outputs:
+      - results/h0_grid_expansion_summary.json
+      - results/h0_grid_expansion_scan.csv
+    claim_allowed: false
+
+  - path: docs/yml/RLL_ARTIFACT_GAP_LEDGER_2026_06_27.yml
+    type: artifact_gap_ledger
+    level: E2
+    runs_alone: false
+    human_name: "Ledger de artifacts e lacunas 2026-06-27"
+    role: "Maps CI artifacts, previous-answer references, missing files, placeholders, stubs and safe next actions."
+    source_runs:
+      - "rll-real-run-28283484980"
+      - "start-manual-here-28282463159"
+    scanner: tools/scan_missing_placeholders.py
+    next_safe_action: "Run scanner and convert findings into artifacts or explicit TOKEN_VAZIO."
+    claim_allowed: false
+
+  - path: tools/scan_missing_placeholders.py
+    type: scanner_tool
+    level: E3
+    runs_alone: true
+    human_name: "Scanner de placeholder/stub/ausência"
+    role: "Scans tracked text files for TOKEN_VAZIO, placeholder, stub, TODO, missing, skipped, abortado, esquecido and claim blocks."
+    expected_outputs:
+      - data/results/missing_placeholder_stub_scan.json
+      - data/results/missing_placeholder_stub_scan.csv
+      - docs/MISSING_PLACEHOLDER_STUB_SCAN.md
+    claim_allowed: false
+
+  - path: docs/yml/TO_ADD_MIGRATION_LEDGER.yml
+    type: migration_ledger
+    level: E2
+    runs_alone: false
+    human_name: "Ledger de migração to_Add"
+    role: "Maps historical to_Add/RAFAELIA_COSMO_STRUCTURE_D bundle entries into canonical docs/data/results/scripts locations."
+    validator: tools/validate_to_add_migration.py
+    canonical_targets:
+      - data/pipelines/structure_d/
+      - data/inputs/structure_d/
+      - results/structure_d/
+      - docs/science/structure_d/
+    claim_allowed: false
+
+  - path: tools/validate_to_add_migration.py
+    type: migration_validator
+    level: E3
+    runs_alone: true
+    human_name: "Validador da migração to_Add"
+    role: "Validates that historical to_Add Structure D content has canonical paths and wrappers target data.pipelines.structure_d."
+    expected_outputs:
+      - data/results/to_add_migration_validation.json
+      - docs/TO_ADD_MIGRATION_STATUS.md
+    claim_allowed: false
+
+  - path: docs/science/structure_d/README.md
+    type: science_index
+    level: E1
+    runs_alone: false
+    human_name: "Índice canônico Structure D"
+    role: "Canonical documentation index for promoted Structure D material."
+    claim_allowed: false
+
+  - path: docs/yml/TO_ADD_NEURO_ECHO_PHOTON_CHEMISTRY.yml
+    type: frontier_intake
+    level: E2
+    runs_alone: false
+    human_name: "Entrada neuro/eco/fóton/química"
+    role: "Preserves the user's neuro-electrochemical, echo/saturation and photon/electron-medium hypothesis with technical translation and claim boundary."
+    promoted_to:
+      - docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+      - docs/yml/FRONTIER_SCIENCE_CROSSMAP_2026.yml
+    requested_target: ".github/to_add/"
+    note: "Stored in docs/yml because direct connector creation under .github/to_add was blocked."
+    claim_allowed: false
+
+  - path: docs/yml/FRONTIER_SCIENCE_CROSSMAP_2026.yml
+    type: frontier_crossmap
+    level: E2
+    runs_alone: false
+    human_name: "Mapa fronteira ciência 2026"
+    role: "Cross-domain map for plasma, photon, radiation, chemistry, quantum, particles and neuro-electrochemistry."
+    companion_doc: docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+    next_safe_action: "Attach primary sources and create schema validator before promoting any scientific claim."
+    claim_allowed: false
+
+  - path: docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+    type: science_bridge_doc
+    level: E1
+    runs_alone: false
+    human_name: "Ponte neuroeletroquímica/eco/fóton-química"
+    role: "Academic explanation translating user analogies into testable electrochemical, echo-relaxation and photochemical observables."
+    next_safe_action: "Connect to sources, datasets and validators if this route becomes executable."
+    claim_allowed: false
+
+  - path: docs/science/RLL_CRUZAMENTOS_COMPLETOS.md
+    type: science_cross_map
+    level: E1
+    runs_alone: false
+    human_name: "Mapa de cruzamentos"
+    role: "Human-readable cross-map; not an executable proof."
+    next_safe_action: "Connect each [H] route to a script, artifact, baseline and falsifier."
+    claim_allowed: false
+
+  - path: data/results/compact_objects/wandering_black_hole_sources_validation.json
+    type: validation_artifact
+    level: E3
+    runs_alone: false
+    human_name: "Validação BH sources"
+    role: "PASS means metadata/CSV structure is valid; claims remain blocked."
+    claim_allowed: false
+
+syslog_template:
+  ok: "[OK] Route found and artifact generated."
+  parcial: "[PARCIAL] Metadata exists, but raw data or baseline is missing."
+  bloqueado: "[BLOQUEADO] Claim remains blocked until custody + metric + baseline are complete."
+  token_vazio: "[TOKEN_VAZIO] Known gap; do not infer."
+  proximo: "[PROXIMO] Execute the smallest safe step that produces an artifact."
+
+safe_conclusion: "The repository now has a master YAML navigation layer, artifact gap ledger, placeholder scanner, to_Add migration validator and frontier-science bridge. This improves orchestration usability but does not change any scientific claim boundary."

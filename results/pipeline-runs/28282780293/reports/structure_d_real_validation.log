@@ -1,0 +1,9 @@
+       model regime       chi2        AIC        BIC  N  k  dof               fit_params fixed_params                   datasets_used                    run_name                profile_name covariance_policy        H0       Om       OL  Ob_h2      Os0       zt       wt
+        lcdm   real 123.713688 131.713688 138.940338 45  4   41           H0,Om,OL,Ob_h2              real_hz,real_bao,real_cmb_shift structure_d_real_validation structure_d_real_validation       prefer_full 69.288816 0.294232 0.643250  0.026      NaN      NaN      NaN
+rll_like_agn   real 123.605865 137.605865 150.252502 45  7   38 H0,Om,OL,Os0,zt,wt,Ob_h2              real_hz,real_bao,real_cmb_shift structure_d_real_validation structure_d_real_validation       prefer_full 61.366030 0.374471 0.813917  0.026 0.003449 7.677092 0.124751
+
+Wrote: /home/runner/work/relativity-living-light/relativity-living-light/results/structure_d/model_comparison_real.csv
+Wrote: /home/runner/work/relativity-living-light/relativity-living-light/results/structure_d/model_comparison_real_fit_metadata.json
+Wrote: /home/runner/work/relativity-living-light/relativity-living-light/results/structure_d/execution_timing_real.csv
+Wrote: /home/runner/work/relativity-living-light/relativity-living-light/results/structure_d/execution_timing_real.json
+Wrote: /home/runner/work/relativity-living-light/relativity-living-light/results/structure_d/error_mode_usage.csv

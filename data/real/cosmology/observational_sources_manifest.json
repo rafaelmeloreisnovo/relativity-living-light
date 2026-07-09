@@ -1,0 +1,108 @@
+{
+  "schema": "rll.real_data.observational_sources.v1",
+  "status": "SOURCE_REGISTERED_REAL_VALIDATED_BLOCKED",
+  "generated_utc": "2026-07-01T00:00:00Z",
+  "claim_boundary": "This manifest registers public real-data sources. It does not assert scientific validation, model superiority, or successful ingestion.",
+  "promotion_requirements": [
+    "public_source_url_or_doi",
+    "accessed_utc",
+    "local_artifact_path",
+    "sha256_or_equivalent_checksum",
+    "ingestion_command",
+    "schema_validation_result",
+    "metric_output",
+    "baseline_or_adversary",
+    "uncertainty_or_covariance_policy_when_applicable",
+    "claim_boundary"
+  ],
+  "sources": [
+    {
+      "id": "DESI_DR1",
+      "domain": "spectroscopic_redshift_survey",
+      "source_type": "public_survey_release",
+      "public_reference": "arXiv:2503.14745",
+      "public_url": "https://arxiv.org/abs/2503.14745",
+      "expected_repository_layer": "data/real/cosmology/desi_dr1/",
+      "current_state": "SOURCE_REGISTERED",
+      "local_artifact_path": "TOKEN_VAZIO",
+      "checksum": "TOKEN_VAZIO",
+      "ingestion_command": "TOKEN_VAZIO",
+      "claim_allowed": "DESI DR1 is registered as a candidate public real-data source.",
+      "claim_blocked": "No RLL validation or model comparison is implied by this registration."
+    },
+    {
+      "id": "PANTHEON_PLUS_SH0ES",
+      "domain": "type_ia_supernova_distances",
+      "source_type": "public_compilation",
+      "public_reference": "Pantheon+SH0ES public data release",
+      "public_url": "https://github.com/PantheonPlusSH0ES/DataRelease",
+      "expected_repository_layer": "data/real/cosmology/pantheon_plus_sh0es/",
+      "current_state": "SOURCE_REGISTERED",
+      "local_artifact_path": "TOKEN_VAZIO",
+      "checksum": "TOKEN_VAZIO",
+      "ingestion_command": "TOKEN_VAZIO",
+      "claim_allowed": "Pantheon+SH0ES is registered as a candidate public real-data source.",
+      "claim_blocked": "No distance-modulus fit, H0 inference or RLL validation is implied."
+    },
+    {
+      "id": "PLANCK_2018_BASELINE",
+      "domain": "cmb_baseline_cosmology",
+      "source_type": "published_baseline",
+      "public_reference": "Planck 2018 results, arXiv:1807.06205",
+      "public_url": "https://arxiv.org/abs/1807.06205",
+      "expected_repository_layer": "data/real/cosmology/planck_2018/",
+      "current_state": "SOURCE_REGISTERED",
+      "local_artifact_path": "TOKEN_VAZIO",
+      "checksum": "TOKEN_VAZIO",
+      "ingestion_command": "TOKEN_VAZIO",
+      "claim_allowed": "Planck 2018 is registered as a baseline source.",
+      "claim_blocked": "No baseline parameter table is considered ingested until versioned and checked."
+    },
+    {
+      "id": "COSMIC_CHRONOMETERS_HZ",
+      "domain": "hubble_parameter_expansion_history",
+      "source_type": "literature_compilation_or_measurements",
+      "public_reference": "Cosmic chronometer H(z) literature",
+      "public_url": "https://arxiv.org/abs/2110.04304",
+      "expected_repository_layer": "data/real/cosmology/cosmic_chronometers_hz/",
+      "current_state": "SOURCE_REGISTERED",
+      "local_artifact_path": "TOKEN_VAZIO",
+      "checksum": "TOKEN_VAZIO",
+      "ingestion_command": "TOKEN_VAZIO",
+      "claim_allowed": "Cosmic chronometer H(z) measurements are registered as candidate public real-data sources.",
+      "claim_blocked": "No expansion-history fit is implied before measurement-level provenance and error policy are recorded."
+    }
+  ],
+  "canonical_local_real_sources": [
+    {
+      "source_id": "real_hz",
+      "local_path": "data/real/Hz_data_real.csv",
+      "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_bao",
+      "local_path": "data/real/BAO_data_real.csv",
+      "sha256": "1decb159dd8c276e356e1f2ca45028da0079302a0b7b279797d8e40aab0c9527",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_cmb_shift",
+      "local_path": "data/real/CMB_shift_real.json",
+      "sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_fsigma8_compilation",
+      "local_path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
+      "dataset_type": "real_observational"
+    },
+    {
+      "source_id": "real_desi_dr2_bao",
+      "local_path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
+      "dataset_type": "real_observational"
+    }
+  ]
+}

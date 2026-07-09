@@ -1,0 +1,3 @@
+source,status,note
+igrf14,pending_real_parser,sem fabricacao: parser geomagnetico deve ser executado com coeficientes reais
+wmm2025,pending_real_parser,sem fabricacao: parser WMM deve materializar coeficientes reais

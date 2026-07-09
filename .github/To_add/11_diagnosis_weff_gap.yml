@@ -1,0 +1,101 @@
+# Diagnóstico Crítico: w_eff RLL vs CPL DESI — Resultado Real
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# CALCULADO AGORA — não inferido
+
+schema_version: "1.0"
+module: weff_gap_diagnosis
+status: RESULTADO_REAL_CALCULADO
+updated_utc: "2026-06-27"
+claim_allowed: false
+
+resultado_real:
+  scan_combinations: 252
+  compatible_regions_chi2_lt_15: 0
+  best_params:
+    zt: 2.0
+    wt: 0.1
+    chi2: 576.84
+    w0_eff: -1.0000
+    wa_eff: -0.0000
+  baseline_params:
+    zt: 1.0
+    wt: 0.3
+    chi2: 2162.57
+    w0_eff: -0.9656
+    wa_eff: +0.3216
+
+interpretacao_honesta: >
+  O melhor (zt=2.0, wt=0.1) converge para w_eff ≈ -1 (ΛCDM puro).
+  Nenhuma combinação (Os0, zt, wt) com Ωs0=0.02 produz trajetória
+  compatível com CPL DESI (w0=-0.838, wa=-0.620).
+  O parâmetro wa_eff do RLL é ≈ 0 ou positivo — oposto ao DESI (wa<0).
+
+diagnostico_raiz: >
+  CPL DESI prefere w que se torna MAIS NEGATIVO com z crescente (wa<0).
+  Isso significa: DE mais forte no passado que no presente.
+  O setor RLL com f(z) logística faz o OPOSTO:
+  - Em z < zt: setor DE-like (w < 0) ← correto
+  - Em z > zt: setor matéria-like (w → 0) ← incompatível com DESI
+  A transição logística naturalmente produz wa > 0 (DE enfraquece no passado).
+  DESI prefere wa < 0 (DE mais forte no passado).
+
+implicacao: >
+  O modelo RLL como formulado (Ωs0·[f(z) + (1-f(z))·a⁻³]) é estruturalmente
+  incapaz de reproduzir a trajetória w(z) preferida por DESI DR2.
+
+opcoes_de_reformulacao:
+  opcao_A:
+    nome: "Inverter a transição"
+    descricao: >
+      Usar g(z) = 1 - f(z) = exp((z-zt)/wt) / (1 + exp((z-zt)/wt))
+      Isso faz o setor ser matéria-like em z < zt e DE-like em z > zt.
+      Resultado: wa_eff < 0 — compatível com DESI.
+    equation: >
+      E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ
+             + Ωs0·[(1-f(z))·1 + f(z)·a⁻³]
+    implication: >
+      Setor de superposição age como DE (w=-1) em z > zt
+      e como matéria (w=0) em z < zt.
+      Fisicamente: "condensação" do setor no presente.
+    w_eff_qualitative: "wa_eff < 0 → compatível com DESI"
+    status: HIPOTESE_A_TESTAR
+
+  opcao_B:
+    nome: "Adicionar setor DE puro independente"
+    descricao: >
+      Ωs0·f(z) = componente DE (w=-1)
+      Ωs0·(1-f(z))·a⁻³ = componente matéria
+      MAIS: Ωde·w_de(z) com w_de livre
+    status: MAIS_PARAMETROS_PENALIDADE_MAIOR
+
+  opcao_C:
+    nome: "Manter modelo atual — não compete com CPL"
+    descricao: >
+      O RLL não compete com CPL no espaço w(z).
+      Seu papel é diferente: testar se existência de sector de
+      superposição afeta H(z), fσ8, σ8 com Os0 como parâmetro físico.
+      CPL é parametrização fenomenológica; RLL é modelo de transição.
+    status: EPISTEMOLOGICAMENTE_CORRETO
+    implication: >
+      Não afirmar que RLL reproduz CPL.
+      Afirmar que RLL é modelo distinto com falsificadores próprios.
+
+recomendacao: >
+  Opção C é a mais honesta dado o estado atual.
+  Opção A é a mais promissora para futura comparação DESI.
+  Documentar este diagnóstico no repositório como AUDIT_WEFF_2026.md.
+
+falsificador_atualizado:
+  C01_revised: >
+    Falsificador C01 deve ser reformulado:
+    NÃO: "RLL reproduz CPL DESI"
+    SIM: "RLL com Opção A (g(z) invertida) tem ΔAIC < ΛCDM em DESI DR2"
+  status: TOKEN_VAZIO_AGUARDA_REFORMULACAO_DA_EQUACAO
+
+proximos_passos:
+  1: "Implementar Opção A em rll_vs_lcdm.py como flag --invert-transition"
+  2: "Rodar comparação: ΛCDM vs CPL vs RLL_original vs RLL_optionA"
+  3: "Documentar resultado honesto — qualquer que seja"
+  4: "Atualizar FALSIFIABILITY_PROTOCOL.md com este diagnóstico"
+
+token_vazio_preservado: true

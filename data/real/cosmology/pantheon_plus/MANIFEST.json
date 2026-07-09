@@ -1,0 +1,85 @@
+{
+  "source_project": "PantheonPlusSH0ES/DataRelease",
+  "source_repo": "https://github.com/PantheonPlusSH0ES/DataRelease",
+  "materialized_at_utc": "2026-06-27T08:00:36.496835+00:00",
+  "policy": "Non-binary selected official release files only; large covariance matrices, tar archives and FITS binaries intentionally excluded from git.",
+  "files": [
+    {
+      "path": "Pantheon+_Data/1_DATA/README",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+_Data/1_DATA/README",
+      "size_bytes": 171,
+      "sha256": "475fb5dcddb83e836d3105da07fc886db6583e6cc9cac1aebf138b2080388b8a",
+      "binary": false
+    },
+    {
+      "path": "Pantheon+_Data/1_DATA/all_redshifts_PVs.csv",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+_Data/1_DATA/all_redshifts_PVs.csv",
+      "size_bytes": 279184,
+      "sha256": "06641b9d3a54fc8ad1ce5a58dd11c6dce84af37e2f312326d2be0ca881a37d8a",
+      "binary": false
+    },
+    {
+      "path": "Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat",
+      "size_bytes": 579283,
+      "sha256": "1cb0fc379ef066afdc2ffd1857681cc478024570d8a3eba284fb645775198cf8",
+      "binary": false
+    },
+    {
+      "path": "Pantheon+_Data/4_DISTANCES_AND_COVAR/README",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+_Data/4_DISTANCES_AND_COVAR/README",
+      "size_bytes": 4056,
+      "sha256": "e2b0d262757f01c1794a938c78d32600a21e289b2a0320e5c660c4c6fc9aa87e",
+      "binary": false
+    },
+    {
+      "path": "Pantheon+_Data/README",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+_Data/README",
+      "size_bytes": 559,
+      "sha256": "0ee97297352a5ba4cd8103b21ffded8f9f01db75db93e193957dc05fdb195ac7",
+      "binary": false
+    },
+    {
+      "path": "README.md",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/README.md",
+      "size_bytes": 148,
+      "sha256": "aebbe5d60292a548f008173b122073622f1f1c113af65ee988d29c53f51aa677",
+      "binary": false
+    },
+    {
+      "path": "SH0ES_Data/R22_orig19_NIR.out",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/SH0ES_Data/R22_orig19_NIR.out",
+      "size_bytes": 130117,
+      "sha256": "3f2fe90d77f5899f68e836038552235604156033cc3ddb555da1c8d328d71318",
+      "binary": false
+    },
+    {
+      "path": "SH0ES_Data/README.md",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/SH0ES_Data/README.md",
+      "size_bytes": 2454,
+      "sha256": "fd845e484a184ad9740dddf26550db9d6d154d1631c1b30622dcecefe8ee7174",
+      "binary": false
+    },
+    {
+      "path": "SH0ES_Data/lstsq_results.txt",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/SH0ES_Data/lstsq_results.txt",
+      "size_bytes": 721,
+      "sha256": "37d2d423d06b6a2100c47578eb9b1c566a575caf6ade0ed61f6b9586d2a35c95",
+      "binary": false
+    },
+    {
+      "path": "SH0ES_Data/optical_wes_R22_for19fromR16.dat",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/SH0ES_Data/optical_wes_R22_for19fromR16.dat",
+      "size_bytes": 115019,
+      "sha256": "ebe99cc20c27bbbf32791a1a55cd3bc27a0ac3e79d59d8b971b9b365617ca51e",
+      "binary": false
+    },
+    {
+      "path": "SH0ES_Data/table2.README",
+      "source_url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/SH0ES_Data/table2.README",
+      "size_bytes": 815,
+      "sha256": "3747acd166dcb77eab2e6145a17116bc04f1d7283e972ec2db0ff823bcfcb8bf",
+      "binary": false
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rll/rll_latentes_observations.schema.json",
   "title": "RLL-LATENTES observation catalog",
+  "description": "Structural contract for the RLL-LATENTES observation catalog. This schema records candidate observation entries and orchestration metadata only and does not validate scientific claims.",
   "type": "object",
   "required": [
     "meta",

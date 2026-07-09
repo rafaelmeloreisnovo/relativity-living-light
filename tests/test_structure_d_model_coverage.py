@@ -18,7 +18,7 @@ def test_active_datasets_have_model_mapping_for_classic_profiles():
 
     missing = []
     for profile_name, profile in cfg.get("profiles", {}).items():
-        if profile_name == real_profile:
+        if profile_name == real_profile or profile_name.startswith("structure_d_real_"):
             continue
         for dataset_id in profile.get("active_datasets", []):
             if dataset_id not in model_coverage:

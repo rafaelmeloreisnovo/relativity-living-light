@@ -1,0 +1,121 @@
+# to_Add Migration Ledger
+# Scope: historical ingestion directory cleanup and promotion map
+# Claim: migration metadata only; not scientific proof.
+
+schema: rll.to_add_migration_ledger.v1
+updated_utc: "2026-06-27"
+claim_allowed: false
+source_directory: to_Add/
+status: controlled_legacy_intake
+
+policy:
+  to_add_is_not_operational: true
+  no_new_logic_in_to_add: true
+  canonical_execution_roots:
+    - data/pipelines/
+    - data/inputs/
+    - results/
+    - docs/
+  preserve_history_without_duplicate_logic: true
+
+bundles:
+  - bundle: to_Add/RAFAELIA_COSMO_STRUCTURE_D.zip
+    sha256: db3fa53131ab7922b47d5645e9bedb23f4110317fd5724ef97c84df55b744b92
+    status_before: "não iniciado in docs/ZIP_CONTENT_INDEX.md"
+    status_after: "promoted_and_wrapped"
+    official_execution:
+      - python -m data.pipelines.structure_d.make_example_data
+      - python -m data.pipelines.structure_d.run_all
+    canonical_paths:
+      code: data/pipelines/structure_d/
+      inputs: data/inputs/structure_d/
+      results: results/structure_d/
+      science_docs: docs/science/structure_d/
+      compat_wrappers: RAFAELIA_COSMO_STRUCTURE_D/rll_pipeline/
+      historical_intake: to_Add/RAFAELIA_COSMO_STRUCTURE_D/
+
+file_map:
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/README.md
+    canonical: RAFAELIA_COSMO_STRUCTURE_D/README.md
+    final_role: compatibility_notice
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/requirements.txt
+    canonical: .github/workflows/* and project dependency installation steps
+    final_role: dependency_hint_only
+    status: superseded
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/core/equations.md
+    canonical: docs/science/structure_d/EQUATIONS.md
+    final_role: science_documentation
+    status: promoted_lapidar
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/core/agn_feedback_bridge.md
+    canonical: docs/science/structure_d/AGN_FEEDBACK_BRIDGE.md
+    final_role: science_documentation
+    status: promoted_lapidar
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/data/README.md
+    canonical: data/inputs/structure_d/README.md
+    final_role: input_documentation
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/__init__.py
+    canonical: data/pipelines/structure_d/__init__.py
+    final_role: python_package
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/cosmo.py
+    canonical: data/pipelines/structure_d/cosmo.py
+    final_role: python_implementation
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/feedback_agn.py
+    canonical: data/pipelines/structure_d/feedback_agn.py
+    final_role: python_implementation
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/growth.py
+    canonical: data/pipelines/structure_d/growth.py
+    final_role: python_implementation
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/likelihood.py
+    canonical: data/pipelines/structure_d/likelihood.py
+    final_role: python_implementation
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/models.py
+    canonical: data/pipelines/structure_d/models.py
+    final_role: python_implementation
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/run_all.py
+    canonical: data/pipelines/structure_d/run_all.py
+    final_role: python_entrypoint
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/code/make_example_data.py
+    canonical: data/pipelines/structure_d/make_example_data.py
+    final_role: python_entrypoint
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/results/README.md
+    canonical: results/structure_d/README.md
+    final_role: output_documentation
+    status: promoted
+  - source: to_Add/RAFAELIA_COSMO_STRUCTURE_D/paper/draft.md
+    canonical: PapersPub/02_cosmology_growth_structure_d/draft.md
+    final_role: paper_draft
+    status: promoted_with_claim_boundary
+  - source: RAFAELIA_COSMO_STRUCTURE_D/paper/evidence_traceability.md
+    canonical: docs/science/structure_d/EVIDENCE_TRACEABILITY.md
+    final_role: evidence_traceability
+    status: promoted_lapidar
+
+compatibility_policy:
+  RAFAELIA_COSMO_STRUCTURE_D: "kept as legacy-compatible wrapper directory"
+  to_Add: "historical intake only; not imported by CI or science pipeline"
+  wrappers: "must import from data.pipelines.structure_d only"
+
+validation:
+  validator: tools/validate_to_add_migration.py
+  expected_outputs:
+    - data/results/to_add_migration_validation.json
+    - docs/TO_ADD_MIGRATION_STATUS.md
+
+blocked_actions:
+  - "Do not add new executable logic under to_Add/."
+  - "Do not use to_Add paths in current scientific claims."
+  - "Do not claim migration complete unless canonical paths and wrappers validate."
+
+safe_conclusion: >
+  The historical to_Add Structure D bundle has been promoted into canonical code,
+  documentation and result paths. to_Add remains as a controlled intake/historical area only.

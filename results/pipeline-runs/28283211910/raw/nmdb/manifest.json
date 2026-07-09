@@ -1,0 +1,16 @@
+{
+  "source": "nmdb",
+  "group": "heliophysics",
+  "url": "https://www.nmdb.eu/",
+  "license": "NMDB terms",
+  "version": "current",
+  "heavy": false,
+  "run_utc": "2026-06-27T07:58:49.161904+00:00",
+  "status": "fetched",
+  "files": [
+    {
+      "path": "raw/nmdb/payload.bin",
+      "sha256": "2c3c0167b62c3cda6ad2b4f72a2c930de32f2b6f8f248b63a8c41aacda6e58ba"
+    }
+  ]
+}

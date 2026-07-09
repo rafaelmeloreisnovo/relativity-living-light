@@ -1,0 +1,198 @@
+# Frontier Science Crossmap 2026
+# Domains: plasma, photon, radiation, chemistry, quantum, particles, neuro-electrochemistry
+# Claim policy: crossmap only; not proof.
+
+schema: rll.frontier_science_crossmap.v1
+updated_utc: "2026-06-27"
+claim_allowed: false
+purpose: >
+  Organize emerging science domains as testable routes with observables,
+  instruments, baselines and claim boundaries. This file prevents cross-domain
+  analogies from being promoted as proof without artifacts.
+
+unifying_operational_pattern:
+  sequence:
+    - excitation
+    - coupling
+    - transient_state
+    - medium_response
+    - relaxation_or_transition
+    - measured_signal
+    - noise_or_decay
+    - artifact
+    - claim_boundary
+  safe_sentence: "Energy/process claims require observables, instruments, baselines, uncertainty and artifact custody."
+
+required_fields_by_domain:
+  - primary_source
+  - observable
+  - energy_scale
+  - time_scale
+  - instrument_or_detector
+  - baseline_model
+  - uncertainty_model
+  - artifact_path
+  - claim_allowed
+
+domains:
+  neuro_electrochemical_transition:
+    status: hypothesis_bridge
+    core_question: "Can electrical activity be modeled as a transition gate for faster biochemical signaling?"
+    safe_translation: "Voltage/ionic gating triggers chemical signaling through channels, Ca2+ influx and vesicle fusion."
+    unsafe_translation: "Normal brain signaling is high-energy ionization."
+    observables:
+      - membrane_voltage
+      - Ca2_transient
+      - neurotransmitter_release
+      - synaptic_delay
+      - metabolic_marker
+    baseline_model:
+      - Hodgkin-Huxley-like electrophysiology
+      - synaptic vesicle release kinetics
+      - calcium-dependent fusion models
+    next_artifact: docs/science/NEURO_ELECTROCHEMICAL_ECHO_PHOTON_CHEMISTRY_BRIDGE.md
+    claim_allowed: false
+
+  echo_relaxation_saturation:
+    status: diagnostic_bridge
+    core_question: "Can apparent echo noise growth be explained by relaxation/dephasing and falling SNR?"
+    safe_translation: "Signal decays through T1/T2/T2* processes while noise floor remains, producing apparent noise increase."
+    observables:
+      - sequence_type
+      - TR
+      - TE
+      - T1
+      - T2
+      - T2star
+      - SNR_per_echo
+      - saturation_protocol
+    baseline_model:
+      - Bloch equation
+      - spin echo / gradient echo models
+      - noise floor model
+    claim_allowed: false
+
+  photon_electron_medium_chemistry:
+    status: frontier_bridge
+    core_question: "How does medium chemistry control photon-to-electron and electron-to-chemistry transitions?"
+    safe_translation: "Medium properties alter excitation, charge transfer, recombination, scattering, fluorescence and relaxation."
+    observables:
+      - photon_energy
+      - pulse_duration
+      - spectrum
+      - electron_yield
+      - medium_composition
+      - pH
+      - ionic_strength
+      - temperature
+      - redox_state
+    baseline_model:
+      - photochemistry kinetics
+      - photoelectron spectroscopy
+      - solvation dynamics
+      - radiation chemistry
+    claim_allowed: false
+
+  plasma_collective_regime:
+    status: mapped_need_sources
+    core_question: "When do particles become a collective plasma medium rather than independent trajectories?"
+    observables:
+      - electron_temperature
+      - ion_temperature
+      - density
+      - ionization_fraction
+      - emission_spectrum
+      - magnetic_field
+      - confinement_time
+    baseline_model:
+      - MHD
+      - kinetic plasma model
+      - gyrokinetic model
+      - collisional-radiative model
+    claim_allowed: false
+
+  strong_field_qed_radiation:
+    status: mapped_need_sources
+    core_question: "When does radiation backreact on charged particles in strong fields?"
+    observables:
+      - laser_intensity
+      - electron_energy
+      - photon_spectrum
+      - radiation_reaction_signature
+      - pair_yield
+    baseline_model:
+      - classical radiation reaction
+      - quantum radiation reaction
+      - Breit-Wheeler pair production
+    claim_allowed: false
+
+  attochemistry:
+    status: mapped_need_sources
+    core_question: "Can electron motion before nuclear rearrangement be measured and tied to chemical pathway selection?"
+    observables:
+      - attosecond_pulse_duration
+      - charge_migration
+      - transient_absorption
+      - molecular_fragment
+      - reaction_yield
+    baseline_model:
+      - time-dependent electronic structure
+      - pump-probe reconstruction
+      - nonadiabatic dynamics
+    claim_allowed: false
+
+  quantum_noise_and_correction:
+    status: mapped_need_sources
+    core_question: "Can quantum noise be tracked, mitigated or corrected in a reproducible claim-boundary pipeline?"
+    observables:
+      - physical_error_rate
+      - logical_error_rate
+      - circuit_depth
+      - syndrome_record
+      - threshold_or_break_even
+    baseline_model:
+      - surface code
+      - error mitigation
+      - fault tolerance threshold
+    claim_allowed: false
+
+  particles_subparticles_qcd_neutrino_dark:
+    status: mapped_need_sources
+    core_question: "How do extreme-energy particles reveal QCD, neutrino sources and dark-sector limits?"
+    observables:
+      - collision_energy
+      - event_topology
+      - particle_id
+      - neutrino_energy
+      - detector_exposure
+      - null_result_limit
+    baseline_model:
+      - Standard Model
+      - QCD hadronization
+      - astrophysical source model
+      - dark matter exclusion model
+    claim_allowed: false
+
+cross_domain_warnings:
+  - "Analogy is not evidence."
+  - "Medium effects are not automatically new physics."
+  - "Echo noise is not automatically chemical proof."
+  - "Photon/electron dynamics need instrument-specific observables."
+  - "Neural electrochemistry should not be called high-energy ionization unless ionization is directly measured."
+  - "RLL/RAFAELIA claims remain blocked without artifacts and baselines."
+
+next_actions:
+  - id: NEXT_FRONTIER_001
+    action: "Attach primary sources per domain."
+    status: TOKEN_VAZIO
+  - id: NEXT_FRONTIER_002
+    action: "Create validator schema for required_fields_by_domain."
+    status: TOKEN_VAZIO
+  - id: NEXT_FRONTIER_003
+    action: "Generate a frontier science claim-boundary report in CI."
+    status: TOKEN_VAZIO
+
+safe_conclusion: >
+  This crossmap turns frontier science analogies into testable routes. It does not
+  validate any model until source, observable, instrument, baseline, uncertainty
+  and artifact are supplied.

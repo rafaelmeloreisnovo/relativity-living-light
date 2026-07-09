@@ -67,6 +67,13 @@ SOURCES = [
         "required_terms": ["Planck", "cosmological parameters"],
         "provenance_note": "Planck 2018 source check for CMB-shift summary values.",
     },
+    {
+        "dataset_id": "real_cmb_shift_covariance",
+        "local_path": "data/real/CMB_shift_real.json",
+        "source_url": "https://arxiv.org/abs/1808.05724",
+        "required_terms": ["distance priors", "Planck"],
+        "provenance_note": "Chen, Huang & Wang (2019) Table I source check for the R/l_A/Omega_b h^2 mean vector and correlation matrix.",
+    },
 ]
 
 

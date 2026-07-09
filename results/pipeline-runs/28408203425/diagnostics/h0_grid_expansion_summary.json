@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.1",
+  "module": "h0_grid_expansion",
+  "claim_allowed": false,
+  "mode": "point_grid_scan_not_optimizer",
+  "inputs": {
+    "hz": "data/real/Hz_data_real.csv",
+    "bao": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+    "bao_covariance": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+    "h0_grid": [
+      64.0,
+      74.0,
+      0.5
+    ]
+  },
+  "fixed_parameters": {
+    "omega_m": 0.315,
+    "omega_s0": 0.05,
+    "zt": 1.2,
+    "wt": 0.35,
+    "w0": -0.3,
+    "wa": -1.84,
+    "rs_drag": 147.0
+  },
+  "best_by_model": {
+    "lcdm": {
+      "model": "lcdm",
+      "H0": 68.0,
+      "omega_m": 0.315,
+      "omega_s0": "",
+      "zt": "",
+      "wt": "",
+      "w0": "",
+      "wa": "",
+      "chi2_hz": 23.100943416276998,
+      "chi2_bao": 15.38670265656041,
+      "chi2_total": 38.48764607283741,
+      "n_params": 3,
+      "aic": 44.48764607283741,
+      "bic": 49.97357026230469
+    },
+    "w0wa": {
+      "model": "w0wa",
+      "H0": 64.0,
+      "omega_m": 0.315,
+      "omega_s0": "",
+      "zt": "",
+      "wt": "",
+      "w0": -0.3,
+      "wa": -1.84,
+      "chi2_hz": 24.845102964862136,
+      "chi2_bao": 53.91369073588987,
+      "chi2_total": 78.75879370075201,
+      "n_params": 5,
+      "aic": 88.75879370075201,
+      "bic": 97.90200068319749
+    },
+    "rll": {
+      "model": "rll",
+      "H0": 67.0,
+      "omega_m": 0.315,
+      "omega_s0": 0.05,
+      "zt": 1.2,
+      "wt": 0.35,
+      "w0": "",
+      "wa": "",
+      "chi2_hz": 36.76514150377947,
+      "chi2_bao": 77.98458187180759,
+      "chi2_total": 114.74972337558705,
+      "n_params": 6,
+      "aic": 126.74972337558705,
+      "bic": 137.72157175452162
+    }
+  },
+  "comparisons": {
+    "delta_H0_rll_minus_lcdm": -1.0,
+    "delta_aic_rll_minus_lcdm": 82.26207730274965,
+    "delta_aic_rll_minus_w0wa": 37.990929674835044
+  },
+  "quality_gates": {
+    "gate_1_grid_lcdm_internal": true,
+    "gate_1_grid_rll_internal": true,
+    "gate_2_h0_degeneracy_lcdm_rll": false,
+    "gate_3_delta_aic_rll_minus_lcdm_lt_4": false,
+    "gate_4_w0wa_adversary_present": true
+  },
+  "status": "claim_blocked_quality_gate_failed",
+  "safe_conclusion": "Use this artifact to detect H0 boundary behavior; do not use it as model-superiority evidence.",
+  "rollback": "Remove generated CSV/JSON or git revert; no raw data is changed."
+}

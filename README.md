@@ -26,16 +26,24 @@ Este repositório inclui agora um pacote público organizado para leitura, audit
 - Checklist de publicação: [`docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md`](docs/canonicos/20_CHECKLIST_PUBLICACAO_RAFAELIA_RLL.md)
 - Limite nulo e AION: [`docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md`](docs/canonicos/21_LIMITE_NULO_AION_E_CANCELAMENTO_DIFERENCIAL_RLL.md)
 - Modelo Vetorial Informacional (MVICS): [`docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md`](docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md)
+- Detecção imperfeita e estados de prova: [`docs/canonicos/23_LOBO_DETECCAO_IMPERFEITA_E_ESTADOS_DE_PROVA.md`](docs/canonicos/23_LOBO_DETECCAO_IMPERFEITA_E_ESTADOS_DE_PROVA.md)
 
 Regra de leitura: metáfora ilumina, mas não valida; dado, predição, cálculo e falsificador sustentam a camada científica.
 
 ---
+
+## Workflow canônico de dados reais
+
+O workflow canônico para execução completa, política de claims, checksums e artefatos de dados reais é [`.github/workflows/real-data-complete-execution.yml`](.github/workflows/real-data-complete-execution.yml). Workflows reais auxiliares devem declarar `CANONICAL_REAL_DATA_WORKFLOW=.github/workflows/real-data-complete-execution.yml`, herdar a fronteira contra dados sintéticos/mock/fixture/demo/example/placeholder, usar checkout sem persistência de credenciais, gerar checksums finais e publicar artefatos com `actions/upload-artifact@v4`.
 
 ## Rastreabilidade, anterioridade e cadeia de custódia
 
 A leitura de claims do RLL/MCRP deve passar pelo mapa central de rastreabilidade antes de qualquer conclusão:
 
 - Mapa central: [`docs/RLL_TRACEABILITY_MAP.md`](docs/RLL_TRACEABILITY_MAP.md)
+- Arquitetura operacional claim-bounded: [`ARCHITECTURE.md`](ARCHITECTURE.md)
+- Arquitetura segura claim-gated: [`docs/architecture/ARCHITECTURE_CLAIM_GATED.md`](docs/architecture/ARCHITECTURE_CLAIM_GATED.md)
+- Registry cross-repo evidence-gated: [`docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md`](docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md)
 - Auditoria da tag `v1.0.0`: [`docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md`](docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md)
 - Proveniência celular/Termux: [`docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md`](docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md)
 - Plano de documentação seguinte: [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md)
@@ -70,12 +78,13 @@ Para formalização adicional, consulte `docs/README_ADVERTENCIA_DOI.md`.
 ---
 
 ## Carta de apresentação institucional
-Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um formato adequado para pós-PhD: verificável, citável, multilíngue e com governança documental.
+
+Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em formato de revisão acadêmico-profissional: verificável, citável, multilíngue e com governança documental, sem que isso substitua validação científica externa.
 
 ### Objetivos desta refatoração
 - Preservar integralmente dados, trilhas autorais e histórico técnico.
-- Elevar o padrão de forma para revisão por pares, bancas e colaborações internacionais.
-- Conectar fundamentos matemáticos, física, cognição linguística e validação observacional em uma navegação coerente.
+- Elevar o padrão de forma para revisão técnica externa, bancas e colaborações internacionais.
+- Conectar fundamentos matemáticos, física, cognição linguística e rotas de validação observacional com fronteiras explícitas de claim.
 
 ## Painel de governança GitHub (selos)
 - **Licença e conformidade**: badge de licença + `LICENSE.md`.
@@ -92,20 +101,23 @@ Este repositório consolida a linha **Relativity Living Light (RLL/MCRP)** em um
 
 ## Leitura recomendada (ordem canônica)
 1. `README.md` (este documento)
-2. `docs/RLL_TRACEABILITY_MAP.md`
-3. `docs/INDICE_MESTRE.md`
-4. `docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`
-5. `docs/ACADEMIC_TAXONOMY_INDEX.md`
-6. `docs/REFERENCES.md`
-7. `docs/DOCUMENTATION_FULL_INVENTORY.md`
+2. `ARCHITECTURE.md`
+3. `docs/architecture/ARCHITECTURE_CLAIM_GATED.md`
+4. `docs/RLL_TRACEABILITY_MAP.md`
+5. `docs/INDICE_MESTRE.md`
+6. `docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md`
+7. `docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md`
+8. `docs/ACADEMIC_TAXONOMY_INDEX.md`
+9. `docs/REFERENCES.md`
+10. `docs/DOCUMENTATION_FULL_INVENTORY.md`
 
 ---
 
 O RLL/MCRP passa a separar validação em três blocos: geofísico local, heliosférico-radiativo e cosmológico. A AMAS/SAA é caso observacional local; DESI/Pantheon+/Planck testam a camada cosmológica.
 
-# README — Edição Técnica Pós‑Doc (2026)
+# README — Edição Técnica Profissional (2026)
 
-> **Status**: revisão ultra formal com indexação semântica, rastreabilidade metodológica e atualização conceitual alinhada a práticas de mercado (MLOps científico, FAIR data, reproducibility-by-design e governança de evidência).
+> **Status**: revisão formal com indexação semântica, rastreabilidade metodológica e atualização conceitual inspirada por práticas de ciência computacional, FAIR data, reproducibility-by-design e governança de evidência, sem substituir validação científica.
 
 ## Índice Estruturado
 - [1. Escopo e finalidade](#1-escopo-e-finalidade)
@@ -120,12 +132,15 @@ Este arquivo foi normalizado para **uso acadêmico-profissional** com linguagem 
 
 ## 2. Fundamentos técnico-científicos
 - **Reprodutibilidade**: processos, decisões e resultados devem ser rastreáveis.
-- **Integração teoria-dados**: hipótese, modelagem, inferência e validação observacional são tratadas como pipeline único.
+- **Integração teoria-dados**: hipótese, modelagem, inferência e validação observacional são tratadas como pipeline com fronteiras explícitas de claim.
 - **Estado da arte**: adoção de boas práticas contemporâneas de documentação técnica para pesquisa computacional e ciência de dados.
 
 ## 3. Arquitetura documental e encadeamento por índices
+- Arquitetura operacional: `ARCHITECTURE.md`
 - Índice mestre: `docs/INDICE_MESTRE.md`
 - Mapa de rastreabilidade: `docs/RLL_TRACEABILITY_MAP.md`
+- Arquitetura segura claim-gated: `docs/architecture/ARCHITECTURE_CLAIM_GATED.md`
+- Registry cross-repo evidence-gated: `docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md`
 - Inventário científico: `docs/ACADEMIC_TAXONOMY_INDEX.md`
 - Referências globais: `docs/REFERENCES.md`
 - Inventário documental: `docs/DOCUMENTATION_FULL_INVENTORY.md`
@@ -134,7 +149,7 @@ Este arquivo foi normalizado para **uso acadêmico-profissional** com linguagem 
 1. Consistência terminológica e semântica.
 2. Conectividade entre hipóteses, métodos, resultados e limitações.
 3. Priorização de evidência verificável e versionamento explícito.
-4. Preparação para revisão técnica externa (peer-style).
+4. Preparação para revisão técnica externa em estilo de auditoria, sem pressupor aceitação ou validação final.
 
 ## 5. Referências bibliográficas
 1. Wilkinson, M. D., et al. (2016). *The FAIR Guiding Principles for scientific data management and stewardship*. Scientific Data, 3, 160018.

@@ -1,0 +1,4 @@
+[rll-download] fetching https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2B_Data/4_DISTANCES_AND_COVAR/Pantheon%2BSH0ES.dat
+[rll-download] fetching https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2B_Data/4_DISTANCES_AND_COVAR/Pantheon%2BSH0ES_STAT%2BSYS.cov
+[rll-download] wrote /home/runner/work/relativity-living-light/relativity-living-light/data/real/downloaded_real_cosmology_inputs.sha256
+[rll-download] next: python scripts/run_real_pantheon_validation.py

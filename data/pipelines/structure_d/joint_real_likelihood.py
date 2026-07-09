@@ -213,14 +213,42 @@ def fsigma8_prediction(z: np.ndarray, e2_fn: Callable, params: tuple[float, ...]
 
 
 def cmb_shift_prediction(e2_fn: Callable, params: tuple[float, ...], ob_h2: float, z_cmb: float, cache: dict | None = None) -> np.ndarray:
+    """Predicted Planck-style compressed CMB distance priors [R, l_A, Ob_h2].
+
+    Ob_h2 is itself one of the three compressed CMB parameters (Chen, Huang &
+    Wang 2019); the model's own fitted Ob_h2 is its prediction for that slot.
+    """
+
     dc = comoving_distance_mpc(z_cmb, e2_fn, params, cache=cache)
     r_shift = np.sqrt(float(params[1])) * float(params[0]) * dc / C_KMS
     acoustic_scale = np.pi * dc / rd_drag_mpc(params[0], params[1], ob_h2)
-    return np.array([r_shift, acoustic_scale], dtype=float)
+    return np.array([r_shift, acoustic_scale, float(ob_h2)], dtype=float)
 
 
 def _chi2_diag(obs: np.ndarray, pred: np.ndarray, sigma: np.ndarray) -> float:
     return float(np.sum(((np.asarray(obs, dtype=float) - np.asarray(pred, dtype=float)) / np.asarray(sigma, dtype=float)) ** 2))
+
+
+def _cmb_chi2(cmb: dict, e2_fn: Callable, params: tuple[float, ...], ob_h2: float, cache: dict | None = None) -> float:
+    """CMB chi2 term: full [R, l_A, Ob_h2] covariance when committed, else diagonal [R, l_A].
+
+    The covariance-aware path uses the Planck 2018 (Chen, Huang & Wang 2019)
+    compressed distance-prior covariance committed in CMB_shift_real.json. The
+    diagonal fallback keeps older/minimal CMB fixtures (R, la only) working.
+    """
+
+    z_cmb = float(cmb.get("z_CMB", Z_CMB_DEFAULT))
+    pred = cmb_shift_prediction(e2_fn, params, ob_h2, z_cmb, cache=cache)
+    covariance = cmb.get("covariance")
+    parameter_order = cmb.get("parameter_order")
+    if covariance is not None and parameter_order == ["R", "la", "ob_h2"]:
+        obs = np.array([float(cmb["R_obs"]), float(cmb["la_obs"]), float(cmb["ob_h2_obs"])], dtype=float)
+        cov = np.asarray(covariance, dtype=float)
+        return chi2_with_covariance(obs, pred, cov)
+
+    obs = np.array([float(cmb["R_obs"]), float(cmb["la_obs"])], dtype=float)
+    sig = np.array([float(cmb["R_sig"]), float(cmb["la_sig"])], dtype=float)
+    return _chi2_diag(obs, pred[:2], sig)
 
 
 def load_parameter_registry() -> dict:
@@ -251,11 +279,21 @@ def _load_desi_covariance(points: pd.DataFrame, summary: pd.DataFrame) -> tuple[
         if readiness.ready and full_cov.shape == (len(points), len(points)):
             return full_cov, {
                 "path": str(DESI_FULL_COV_PATH.relative_to(BASE_DIR)),
+                "source_path": str(DESI_FULL_COV_PATH.relative_to(BASE_DIR)),
                 "mode": readiness.mode,
                 "ready": readiness.ready,
                 "claim_allowed": readiness.claim_allowed,
                 "reason": readiness.reason,
                 "sha256": _sha256_file(DESI_FULL_COV_PATH),
+                "metric": "chi2_with_covariance",
+                "baseline": [MODEL_LCDM, MODEL_WCDM, MODEL_CPL],
+                "uncertainty_or_covariance_status": "official_full_covariance_matrix",
+                "command": "python -m data.pipelines.structure_d.joint_real_likelihood",
+                "claim_boundary": (
+                    "Covariance readiness is a technical evidence gate for using the official full "
+                    "DESI DR2 BAO covariance in chi2_with_covariance; it does not by itself confirm or "
+                    "validate RLL against LCDM/CPL."
+                ),
             }
     block_cov = build_desi_covariance(points, summary)
     readiness = covariance_readiness(block_cov, mode="block_summary")
@@ -330,11 +368,7 @@ def evaluate_components(model: str, vector: np.ndarray, inputs: dict) -> dict[st
     fs8_pred = fsigma8_prediction(fs8_df["z"].to_numpy(dtype=float), e2_fn, params, sigma8)
     chi2_fs8 = _chi2_diag(fs8_df["fs8"].to_numpy(dtype=float), fs8_pred, fs8_df["sigma"].to_numpy(dtype=float))
 
-    cmb = inputs["cmb"]
-    cmb_obs = np.array([float(cmb["R_obs"]), float(cmb["la_obs"])], dtype=float)
-    cmb_sig = np.array([float(cmb["R_sig"]), float(cmb["la_sig"])], dtype=float)
-    cmb_pred = cmb_shift_prediction(e2_fn, params, ob_h2, float(cmb.get("z_CMB", Z_CMB_DEFAULT)), cache=cache)
-    chi2_cmb = _chi2_diag(cmb_obs, cmb_pred, cmb_sig)
+    chi2_cmb = _cmb_chi2(inputs["cmb"], e2_fn, params, ob_h2, cache=cache)
 
     total = chi2_hz + chi2_bao + chi2_fs8 + chi2_cmb
     return {
@@ -483,6 +517,12 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         },
         "rd_policy": "derived_power_law_from_H0_Om_Ob_h2_for_all_models",
         "bao_covariance_policy": inputs["desi_covariance_info"],
+        "cmb_covariance_policy": {
+            "path": str(CMB_SHIFT_PATH.relative_to(BASE_DIR)),
+            "mode": "full_3x3_R_la_Ob_h2" if inputs["cmb"].get("covariance") else "diagonal_R_la_only",
+            "primary_source": inputs["cmb"].get("primary_source", {}),
+            "sha256": _sha256_file(CMB_SHIFT_PATH),
+        },
         "growth_benchmark": growth_benchmark,
         "parameter_registry_policy": {
             "path": str(PARAMETER_REGISTRY_PATH.relative_to(BASE_DIR)),

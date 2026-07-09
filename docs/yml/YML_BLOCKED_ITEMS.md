@@ -1,7 +1,7 @@
 # YML BLOCKED ITEMS
 
-Gerado em: `2026-06-26T20:26:23Z`  
-Commit auditado: `3a48ed3fb4e86daf43b471337bfcdf9bdbb85fea`
+Gerado em: `2026-07-03T16:02:54Z`  
+Commit auditado: `929807336098e7edb7cfa2194dc2986fb6458deb`
 
 | classe | item | evidência | status | desbloqueio |
 |---|---|---|---|---|

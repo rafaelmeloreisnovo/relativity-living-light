@@ -1,95 +1,199 @@
+# Auxiliary real-data workflow. Canonical policy: .github/workflows/real-data-complete-execution.yml
 name: RLL Real Data Orchestrator
 on:
   workflow_dispatch:
     inputs:
-      pipeline_scope: {type: choice, required: true, default: all, options: [rll, iml, formulas, book, all]}
-      dataset_group: {type: choice, required: true, default: all, options: [geomagnetic, heliophysics, cosmology, all]}
-      mode: {type: choice, required: true, default: full, options: [metadata_only, fetch, compute, plots, full]}
-      real_data_source: {type: choice, required: true, default: auto, options: [auto, materialized, repo]}
-      book_scope: {type: choice, required: true, default: all, options: [methodology, real_data, scripts, observational_validation, desi_boss, amas_mcrp, all]}
-      retention_days: {type: choice, required: true, default: '14', options: ['7','14','30','90']}
-      fetch_igrf14: {type: boolean, required: true, default: true}
-      fetch_wmm2025: {type: boolean, required: true, default: true}
-      fetch_omni: {type: boolean, required: true, default: true}
-      fetch_nmdb: {type: boolean, required: true, default: false}
-      fetch_desi: {type: boolean, required: true, default: true}
-      fetch_pantheon: {type: boolean, required: true, default: true}
-      fetch_planck: {type: boolean, required: true, default: false}
-      fetch_spenvis_reference: {type: boolean, required: true, default: false}
-      run_iml: {type: boolean, required: true, default: true}
-      run_formulas: {type: boolean, required: true, default: true}
-      run_plots: {type: boolean, required: true, default: true}
-      commit_light_artifacts: {type: boolean, required: true, default: false}
+      pipeline_scope:
+        type: choice
+        required: true
+        default: all
+        options:
+        - rll
+        - iml
+        - formulas
+        - book
+        - all
+      dataset_group:
+        type: choice
+        required: true
+        default: all
+        options:
+        - geomagnetic
+        - heliophysics
+        - cosmology
+        - all
+      mode:
+        type: choice
+        required: true
+        default: metadata_only
+        options:
+        - metadata_only
+        - fetch
+        - compute
+        - plots
+        - full
+      real_data_source:
+        type: choice
+        required: true
+        default: repo
+        options:
+        - auto
+        - materialized
+        - repo
+      book_scope:
+        type: choice
+        required: true
+        default: all
+        options:
+        - methodology
+        - real_data
+        - scripts
+        - observational_validation
+        - desi_boss
+        - amas_mcrp
+        - all
+      retention_days:
+        type: choice
+        required: true
+        default: '14'
+        options:
+        - '7'
+        - '14'
+        - '30'
+        - '90'
+      fetch_igrf14:
+        type: boolean
+        required: true
+        default: false
+      fetch_wmm2025:
+        type: boolean
+        required: true
+        default: false
+      fetch_omni:
+        type: boolean
+        required: true
+        default: false
+      fetch_nmdb:
+        type: boolean
+        required: true
+        default: false
+      fetch_desi:
+        type: boolean
+        required: true
+        default: false
+      fetch_pantheon:
+        type: boolean
+        required: true
+        default: false
+      fetch_planck:
+        type: boolean
+        required: true
+        default: false
+      fetch_spenvis_reference:
+        type: boolean
+        required: true
+        default: false
+      run_iml:
+        type: boolean
+        required: true
+        default: true
+      run_formulas:
+        type: boolean
+        required: true
+        default: true
+      run_plots:
+        type: boolean
+        required: true
+        default: false
 permissions:
   contents: read
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
-
 jobs:
   orchestrate:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
-      - run: |
-          python -m pip install --upgrade pip
-          pip install numpy pandas scipy matplotlib requests astropy pyyaml
-      - run: mkdir -p artifacts/rll-real-run/{raw,processed,plots,tables,book,iml,formulas}
-      - run: python3 tools/docs_inventory.py --check
-      - run: |
-          python3 scripts/fetch_real_sources.py \
-            --dataset-group "${{ inputs.dataset_group }}" \
-            --mode "${{ inputs.mode }}" \
-            --output-dir artifacts/rll-real-run \
-            ${{ inputs.fetch_igrf14 && '--fetch-igrf14' || '--no-fetch-igrf14' }} \
-            ${{ inputs.fetch_wmm2025 && '--fetch-wmm2025' || '--no-fetch-wmm2025' }} \
-            ${{ inputs.fetch_omni && '--fetch-omni' || '--no-fetch-omni' }} \
-            ${{ inputs.fetch_nmdb && '--fetch-nmdb' || '--no-fetch-nmdb' }} \
-            ${{ inputs.fetch_desi && '--fetch-desi' || '--no-fetch-desi' }} \
-            ${{ inputs.fetch_pantheon && '--fetch-pantheon' || '--no-fetch-pantheon' }} \
-            ${{ inputs.fetch_planck && '--fetch-planck' || '--no-fetch-planck' }} \
-            ${{ inputs.fetch_spenvis_reference && '--fetch-spenvis-reference' || '--no-fetch-spenvis-reference' }}
-      - if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' }}
-        run: python3 scripts/compute_rll_real_pipeline.py --output-dir artifacts/rll-real-run --data-source "${{ inputs.real_data_source }}"
-      - if: ${{ inputs.run_plots && (inputs.mode == 'plots' || inputs.mode == 'full' || inputs.mode == 'compute') }}
-        run: python3 scripts/generate_rll_plots.py
-      - if: ${{ inputs.pipeline_scope == 'book' || inputs.pipeline_scope == 'all' || inputs.pipeline_scope == 'rll' }}
-        run: python3 scripts/rll_pipeline.py --book-scope "${{ inputs.book_scope }}" --dataset-group "${{ inputs.dataset_group }}" --mode "${{ inputs.mode == 'full' && 'compute' || inputs.mode }}" --output-dir artifacts/rll-real-run
-      - if: ${{ inputs.run_iml && (inputs.pipeline_scope == 'iml' || inputs.pipeline_scope == 'all') }}
-        run: |
-          printf '{"dados":[1,2,3,4],"coerencia_in":0.7,"coerencia0":0.5,"entropia0":0.5,"estado":"ACTIVE"}\n' > artifacts/rll-real-run/iml/input.json
-          python3 tools/iml/iml_pipeline.py --input artifacts/rll-real-run/iml/input.json --output artifacts/rll-real-run/iml/output.json
-      - if: ${{ inputs.run_formulas && (inputs.pipeline_scope == 'formulas' || inputs.pipeline_scope == 'all') }}
-        run: python3 tools/formula_artifact_builder.py --outdir artifacts/rll-real-run/formulas
-      - run: |
-          date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-real-run/RUN_UTC.txt
-          git rev-parse HEAD > artifacts/rll-real-run/COMMIT_SHA.txt
-          find artifacts/rll-real-run -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/rll-real-run/CHECKSUMS.sha256
-          test -f artifacts/rll-real-run/MANIFEST.json || echo '{}' > artifacts/rll-real-run/MANIFEST.json
-          test -f artifacts/rll-real-run/COMPUTE_REPORT.md || echo '# COMPUTE_REPORT' > artifacts/rll-real-run/COMPUTE_REPORT.md
-          test -f artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md || echo '# CLAIM_REFERENCE_AUDIT' > artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md
-      - uses: actions/upload-artifact@v4
-        with:
-          name: rll-real-run-${{ github.run_id }}
-          path: artifacts/rll-real-run/
-          retention-days: ${{ fromJSON(inputs.retention_days) }}
-      - if: ${{ inputs.commit_light_artifacts }}
-        run: |
-          DEST="results/pipeline-runs/${{ github.run_id }}"
-          mkdir -p "$DEST"
-          rsync -av --include='*/' --include='*.md' --include='*.json' --include='*.csv' --include='*.txt' --include='*.sha256' --include='*.png' --exclude='*' artifacts/rll-real-run/ "$DEST/"
-          git config user.name github-actions
-          git config user.email github-actions@users.noreply.github.com
-          git add "$DEST"
-          if git diff --cached --quiet; then
-            echo "No light artifacts to commit."
-          else
-            git commit -m "chore: add light pipeline artifacts for run ${{ github.run_id }}"
-            git push
-          fi
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - run: 'python -m pip install --upgrade pip
+
+        pip install numpy pandas scipy matplotlib requests astropy pyyaml
+
+        '
+    - run: mkdir -p artifacts/rll-real-run/{raw,processed,plots,tables,book,iml,formulas,diagnostics,reports}
+    - name: Refresh and validate repository inventory
+      run: 'set -euo pipefail
+
+        python3 tools/docs_inventory.py | tee artifacts/rll-real-run/docs_inventory_refresh.log
+
+        python3 tools/docs_inventory.py --check | tee artifacts/rll-real-run/docs_inventory_check.log
+
+        '
+    - name: Fetch declared sources only when explicitly enabled
+      run: "python3 scripts/fetch_real_sources.py \\\n  --dataset-group \"${{ inputs.dataset_group }}\" \\\n  --mode \"${{ inputs.mode }}\" \\\n  --output-dir artifacts/rll-real-run \\\n  ${{ inputs.fetch_igrf14 && '--fetch-igrf14' || '--no-fetch-igrf14' }} \\\n  ${{ inputs.fetch_wmm2025 && '--fetch-wmm2025' || '--no-fetch-wmm2025' }} \\\n  ${{ inputs.fetch_omni && '--fetch-omni' || '--no-fetch-omni' }} \\\n  ${{ inputs.fetch_nmdb && '--fetch-nmdb' || '--no-fetch-nmdb' }} \\\n  ${{ inputs.fetch_desi && '--fetch-desi' || '--no-fetch-desi' }} \\\n  ${{ inputs.fetch_pantheon && '--fetch-pantheon' || '--no-fetch-pantheon' }} \\\n  ${{ inputs.fetch_planck && '--fetch-planck' || '--no-fetch-planck' }} \\\n  ${{ inputs.fetch_spenvis_reference && '--fetch-spenvis-reference' || '--no-fetch-spenvis-reference' }}\n"
+    - if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' }}
+      run: python3 scripts/compute_rll_real_pipeline.py --output-dir artifacts/rll-real-run --data-source "${{ inputs.real_data_source }}"
+    - name: Run gap scan and RLL diagnostic artifacts
+      if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' }}
+      run: "set -euo pipefail\nmkdir -p artifacts/rll-real-run/diagnostics artifacts/rll-real-run/tables artifacts/rll-real-run/reports\n\npython3 tools/scan_missing_placeholders.py \\\n  --out-json artifacts/rll-real-run/diagnostics/missing_placeholder_stub_scan.json \\\n  --out-csv artifacts/rll-real-run/tables/missing_placeholder_stub_scan.csv \\\n  --out-md artifacts/rll-real-run/reports/MISSING_PLACEHOLDER_STUB_SCAN.md \\\n  | tee artifacts/rll-real-run/reports/missing_placeholder_stub_scan.log\necho \"[OK] Missing placeholder/stub scan generated.\" | tee artifacts/rll-real-run/reports/missing_placeholder_stub_scan.status\n\nif python3 tools/validate_to_add_migration.py > artifacts/rll-real-run/reports/to_add_migration_validation.log 2>&1; then\n  cp data/results/to_add_migration_validation.json artifacts/rll-real-run/diagnostics/to_add_migration_validation.json\n  cp docs/TO_ADD_MIGRATION_STATUS.md artifacts/rll-real-run/reports/TO_ADD_MIGRATION_STATUS.md\n  echo \"[OK] to_Add migration\
+        \ validates.\" | tee artifacts/rll-real-run/reports/to_add_migration_validation.status\nelse\n  cat artifacts/rll-real-run/reports/to_add_migration_validation.log\n  echo \"[BLOQUEADO] to_Add migration validation failed; claim remains blocked.\" | tee artifacts/rll-real-run/reports/to_add_migration_validation.status\nfi\n\nif python3 scripts/run_h0_grid_expansion.py \\\n  --out-json artifacts/rll-real-run/diagnostics/h0_grid_expansion_summary.json \\\n  --out-csv artifacts/rll-real-run/tables/h0_grid_expansion_scan.csv \\\n  > artifacts/rll-real-run/reports/h0_grid_expansion.log 2>&1; then\n  echo \"[OK] H0 grid expansion generated.\" | tee artifacts/rll-real-run/reports/h0_grid_expansion.status\nelse\n  cat artifacts/rll-real-run/reports/h0_grid_expansion.log\n  echo \"[BLOQUEADO] H0 grid expansion failed; claim remains blocked.\" | tee artifacts/rll-real-run/reports/h0_grid_expansion.status\nfi\n\nif python3 scripts/map_rll_to_w0wa_eff.py \\\n  --out-json artifacts/rll-real-run/diagnostics/rll_w0wa_eff_map.json\
+        \ \\\n  --out-csv artifacts/rll-real-run/tables/rll_w0wa_eff_map.csv \\\n  > artifacts/rll-real-run/reports/rll_w0wa_eff_map.log 2>&1; then\n  echo \"[OK] RLL to w0wa mapper generated.\" | tee artifacts/rll-real-run/reports/rll_w0wa_eff_map.status\nelse\n  cat artifacts/rll-real-run/reports/rll_w0wa_eff_map.log\n  echo \"[BLOQUEADO] RLL to w0wa mapper failed; claim remains blocked.\" | tee artifacts/rll-real-run/reports/rll_w0wa_eff_map.status\nfi\n"
+    - if: ${{ inputs.run_plots && (inputs.mode == 'plots' || inputs.mode == 'full' || inputs.mode == 'compute') }}
+      run: python3 scripts/generate_rll_plots.py
+    - if: ${{ inputs.pipeline_scope == 'book' || inputs.pipeline_scope == 'all' || inputs.pipeline_scope == 'rll' }}
+      run: python3 scripts/rll_pipeline.py --book-scope "${{ inputs.book_scope }}" --dataset-group "${{ inputs.dataset_group }}" --mode "${{ inputs.mode == 'full' && 'compute' || inputs.mode }}" --output-dir artifacts/rll-real-run
+    - if: ${{ inputs.run_iml && (inputs.pipeline_scope == 'iml' || inputs.pipeline_scope == 'all') }}
+      run: 'printf ''{"dados":[1,2,3,4],"coerencia_in":0.7,"coerencia0":0.5,"entropia0":0.5,"estado":"ACTIVE"}\n'' > artifacts/rll-real-run/iml/input.json
+
+        python3 tools/iml/iml_pipeline.py --input artifacts/rll-real-run/iml/input.json --output artifacts/rll-real-run/iml/output.json
+
+        '
+    - if: ${{ inputs.run_formulas && (inputs.pipeline_scope == 'formulas' || inputs.pipeline_scope == 'all') }}
+      run: python3 tools/formula_artifact_builder.py --outdir artifacts/rll-real-run/formulas
+    - run: 'date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-real-run/RUN_UTC.txt
+
+        git rev-parse HEAD > artifacts/rll-real-run/COMMIT_SHA.txt
+
+        printf ''%s\n'' "This orchestrator is artifact-only. Commit artifacts through a reviewed PR, not an automatic push." > artifacts/rll-real-run/COMMIT_POLICY.txt
+
+        test -f artifacts/rll-real-run/MANIFEST.json || echo ''{}'' > artifacts/rll-real-run/MANIFEST.json
+
+        test -f artifacts/rll-real-run/COMPUTE_REPORT.md || echo ''# COMPUTE_REPORT'' > artifacts/rll-real-run/COMPUTE_REPORT.md
+
+        test -f artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md || echo ''# CLAIM_REFERENCE_AUDIT'' > artifacts/rll-real-run/CLAIM_REFERENCE_AUDIT.md
+
+        find artifacts/rll-real-run -type f ! -path ''*/CHECKSUMS.sha256'' -print0 | sort -z | xargs -0 sha256sum > artifacts/rll-real-run/CHECKSUMS.sha256
+
+        '
+    - uses: actions/upload-artifact@v4
+      with:
+        name: rll-real-run-${{ github.run_id }}
+        path: artifacts/rll-real-run/
+        retention-days: ${{ fromJSON(inputs.retention_days) }}
+    - name: Finalize canonical real-data policy checksums
+      if: always()
+      run: 'set -euo pipefail
+
+        ARTIFACT_DIR="artifacts/workflow-policy/rll-real-data-orchestrator/${{ github.job }}"
+
+        mkdir -p "$ARTIFACT_DIR"
+
+        . tools/ci/real_data_workflow_policy.sh
+
+        rll_real_data_write_claim_boundary "$ARTIFACT_DIR"
+
+        rll_real_data_assert_boundary_file "$ARTIFACT_DIR/CLAIM_BOUNDARY.md"
+
+        rll_real_data_write_checksums "$ARTIFACT_DIR"
+
+        '
+    env:
+      CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+      CLAIM_BOUNDARY: Auxiliary real-data workflow only; no RLL/cosmology/superiority claim and no synthetic, mock, fixture, demo, example, or placeholder promotion beyond explicit run checks.
+x-canonical-real-data-policy: Auxiliary real-data workflow; canonical policy is .github/workflows/real-data-complete-execution.yml. Synthetic/mock/fixture/demo/example/placeholder inputs cannot be promoted as real observational evidence.

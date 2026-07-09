@@ -1,0 +1,143 @@
+meta:
+  schema: rll.professionalization.documents_registry.v1
+  status: governance_record
+  purpose: >
+    Registry of professional-facing documents and their evidence boundaries.
+    This registry classifies documents; it does not validate scientific claims.
+  claim_boundary: >
+    Professional documentation improves reviewability, but does not validate RLL,
+    determine market value, create legal conclusions or replace peer review.
+
+states:
+  document_quality:
+    - draft
+    - review_ready
+    - institutional_ready
+    - canonical
+    - deprecated
+  epistemic:
+    - VERIFIED
+    - DECLARED_BY_AUTHOR
+    - TOKEN_VAZIO
+    - CONTRADICTION
+    - METADATA_READY
+    - CLAIM_BLOCKED
+    - AUDIT_PENDING
+
+task_states:
+  - proposed
+  - active
+  - pass_with_boundaries
+  - pass_with_minor_edits
+  - claim_boundary_weak
+  - review_blocked
+
+professional_documents:
+  - path: docs/professionalization/README.md
+    title: Professionalization Layer
+    ontology: professionalization_index
+    quality_state: review_ready
+    epistemic_state: METADATA_READY
+    audience:
+      - maintainers
+      - reviewers
+      - collaborators
+    claim_allowed: >
+      The repository has a professionalization layer that organizes reviewer-facing documentation.
+    claim_blocked: >
+      This index does not validate RLL, determine institutional acceptance or assign market value.
+    next_action: >
+      Keep linked documents current as professional materials are added.
+
+  - path: docs/professionalization/INSTITUTIONAL_READINESS_DOSSIER.md
+    title: Institutional Readiness Dossier
+    ontology: institutional_review_dossier
+    quality_state: review_ready
+    epistemic_state: DECLARED_BY_AUTHOR
+    audience:
+      - universities
+      - research_centers
+      - independent_reviewers
+      - funders
+    claim_allowed: >
+      RLL can be presented as a claim-gated falsifiable research program in formation.
+    claim_blocked: >
+      The dossier does not claim RLL is validated, peer-reviewed, commercially valued or legally protected.
+    next_action: >
+      Link the dossier to current validation artifacts, negative ledgers and repository inventory in a future update.
+
+  - path: docs/professionalization/PROFESSIONAL_DOCUMENT_QUALITY_STANDARD.md
+    title: Professional Document Quality Standard
+    ontology: documentation_quality_standard
+    quality_state: review_ready
+    epistemic_state: METADATA_READY
+    audience:
+      - maintainers
+      - editors
+      - AI_assistants
+      - reviewers
+    claim_allowed: >
+      Professional-facing documents now have a minimum quality checklist and claim-boundary standard.
+    claim_blocked: >
+      Document quality does not imply scientific truth or institutional approval.
+    next_action: >
+      Apply the checklist to high-visibility documents before external sharing.
+
+  - path: docs/professionalization/EXTERNAL_REVIEW_PACKET.md
+    title: External Review Packet
+    ontology: external_review_packet
+    quality_state: review_ready
+    epistemic_state: METADATA_READY
+    audience:
+      - university_faculty
+      - research_centers
+      - independent_scientific_advisors
+      - software_reproducibility_auditors
+      - funders
+    claim_allowed: >
+      External reviewers now have a concise route through the professionalization, governance and evidence-boundary documents.
+    claim_blocked: >
+      The packet does not validate RLL, refute RLL, determine commercial value, create legal rights or replace peer review.
+    next_action: >
+      Use the packet to guide one narrow external review or reproducibility task.
+
+  - path: docs/professionalization/NARROW_EXTERNAL_REVIEW_TASK.md
+    title: Narrow External Review Task
+    ontology: narrow_external_review_task
+    quality_state: review_ready
+    epistemic_state: METADATA_READY
+    task_state: active
+    audience:
+      - university_faculty
+      - research_advisors
+      - reproducibility_auditors
+      - technical_collaborators
+    claim_allowed: >
+      The professionalization layer now has one bounded review task for auditing evidence-boundary discipline.
+    claim_blocked: >
+      The task does not validate RLL, review cosmological truth, determine market value or create legal/IP conclusions.
+    next_action: >
+      Have an external or independent reviewer complete the evidence-boundary audit note.
+
+related_governance:
+  - path: docs/governance/OPERATIONAL_EXCELLENCE_INTEGRITY_CHARTER.md
+    relation: parent_governance_anchor
+  - path: docs/yml/YML_ONTO_EPISTEMIC_REGISTRY.md
+    relation: state_vocabulary_anchor
+  - path: docs/governance/PROFESSIONALIZATION_CHARTER_LINK.md
+    relation: professionalization_governance_bridge
+
+blocked_uses:
+  - promote scientific claim from document polish alone
+  - assign legal rights from governance text alone
+  - declare market value without valuation method and external review
+  - treat institutional readiness as institutional acceptance
+  - hide TOKEN_VAZIO blockers for presentation quality
+  - treat external review routing as external endorsement
+  - treat a completed boundary audit as scientific validation
+
+next_responsible_actions:
+  - link professionalization docs from the main documentation index when appropriate
+  - add a validator only if the document set stabilizes
+  - keep claims bounded during future polish
+  - have an external or independent reviewer complete the narrow evidence-boundary task

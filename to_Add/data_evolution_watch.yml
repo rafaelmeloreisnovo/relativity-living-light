@@ -1,0 +1,342 @@
+name: RLL JSON Evolution Watcher
+
+# =============================================================================
+# Disparadores
+# =============================================================================
+on:
+  schedule:
+    - cron: "0 6 * * *" # 06:00 UTC todo dia
+
+  push:
+    paths:
+      - "data/**"
+      - "data2/**"
+      - "schemas/fingerprints/**"
+      - "results/evolution_watcher_manifest.json"
+      - "RLL_JSON_EVOLUTION_WATCHER.yml"
+      - "to_Add/data_evolution_watch.yml"
+
+  pull_request:
+    paths:
+      - "scripts/test_optimizer_scaling.py"
+      - "tools/rll_json_watcher.py"
+      - "tools/bootstrap_failsafe.py"
+      - "tools/generate_yml_audit_docs.py"
+      - "RLL_JSON_EVOLUTION_WATCHER.yml"
+      - "to_Add/data_evolution_watch.yml"
+
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "run | rollback | bootstrap | audit"
+        required: true
+        default: "run"
+        type: choice
+        options:
+          - run
+          - rollback
+          - bootstrap
+          - audit
+      source_id:
+        description: "ID da fonte (vazio = todas)"
+        required: false
+        default: ""
+      checkpoint:
+        description: "Checkpoint para rollback (latest | timestamp)"
+        required: false
+        default: "latest"
+
+# =============================================================================
+# Permissões mínimas
+# =============================================================================
+permissions:
+  contents: write # para commit dos snapshots atualizados
+  actions: read
+
+concurrency:
+  group: rll-json-evolution-watcher-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  RLL_WATCHER_CONFIG: RLL_JSON_EVOLUTION_WATCHER.yml
+  RLL_WATCHER_MANIFEST: results/evolution_watcher_manifest.json
+
+# =============================================================================
+# Jobs
+# =============================================================================
+jobs:
+  # ---------------------------------------------------------------------------
+  # 1. PRÉ-FLIGHT: verifica integridade do ambiente antes de qualquer fetch
+  # ---------------------------------------------------------------------------
+  preflight:
+    name: Pre-flight checks
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.resolve.outputs.mode }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install YAML parser
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml
+
+      - name: Resolve mode
+        id: resolve
+        env:
+          REQUESTED_MODE: ${{ github.event.inputs.mode || 'run' }}
+        run: |
+          set -euo pipefail
+          MODE="${REQUESTED_MODE:-run}"
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "Resolved mode: $MODE"
+
+      - name: Validate YAML config
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+
+          import yaml
+
+          config_path = Path(os.environ.get("RLL_WATCHER_CONFIG", "RLL_JSON_EVOLUTION_WATCHER.yml"))
+          cfg = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+          sources = cfg.get("sources", [])
+          ids = [s["id"] for s in sources]
+          print(f"Config OK — {len(sources)} sources: {ids}")
+          required_sections = [
+              "meta",
+              "schema_fingerprints",
+              "sources",
+              "global_failover",
+              "rollback_global",
+              "artifact_evolution_trail",
+          ]
+          missing = [s for s in required_sections if s not in cfg]
+          if missing:
+              print(f"MISSING sections: {missing}")
+              sys.exit(1)
+          PY
+
+  # ---------------------------------------------------------------------------
+  # 2. BOOTSTRAP: inicializa diretórios e snapshots congelados (primeira vez)
+  # ---------------------------------------------------------------------------
+  bootstrap:
+    name: Bootstrap failsafe snapshots
+    runs-on: ubuntu-latest
+    needs: preflight
+    if: needs.preflight.outputs.mode == 'bootstrap'
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bootstrap
+        run: |
+          python tools/bootstrap_failsafe.py \
+            --config "$RLL_WATCHER_CONFIG" \
+            --force
+
+      - name: Commit bootstrap artifacts
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(bootstrap): initialize failsafe snapshots [skip ci]"
+          file_pattern: "data/failsafe/** schemas/fingerprints/** results/evolution_watcher_manifest.json"
+
+  # ---------------------------------------------------------------------------
+  # 3. WATCHER: fetch → test → failover → rollback → trail (modo principal)
+  # ---------------------------------------------------------------------------
+  watch:
+    name: Evolution watch
+    runs-on: ubuntu-latest
+    needs: preflight
+    if: >
+      needs.preflight.outputs.mode == 'run' ||
+      github.event_name == 'schedule' ||
+      github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create required directories
+        run: mkdir -p data/failsafe data/rollback schemas/fingerprints artifacts results
+
+      - name: Run watcher
+        id: watcher
+        env:
+          SOURCE_ID: ${{ github.event.inputs.source_id || '' }}
+        run: |
+          set -euo pipefail
+          SOURCE_ARG=()
+          if [ -n "$SOURCE_ID" ]; then
+            SOURCE_ARG=(--source "$SOURCE_ID")
+          fi
+          python tools/rll_json_watcher.py \
+            --config "$RLL_WATCHER_CONFIG" \
+            "${SOURCE_ARG[@]}" \
+            --emit-summary 2>&1 | tee watcher_output.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Parse epistemic summary
+        id: summary
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+
+          trail = pathlib.Path("artifacts/EVOLUTION_TRAIL.jsonl")
+          if not trail.exists():
+              print("No trail yet")
+              raise SystemExit(0)
+
+          lines = [json.loads(line) for line in trail.read_text(encoding="utf-8").splitlines() if line.strip()]
+          latest = {}
+          for ev in lines:
+              latest[ev["source_id"]] = ev
+
+          contradictions = [s for s, e in latest.items() if e["epistemic_after"] == "CONTRADICTION"]
+          token_vazio = [s for s, e in latest.items() if e["epistemic_after"] == "TOKEN_VAZIO"]
+          verified = [s for s, e in latest.items() if e["epistemic_after"] == "VERIFIED"]
+          drifted = [s for s, e in latest.items() if e.get("schema_drift")]
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+              f.write("## RLL JSON Evolution Watcher — Run Summary\n\n")
+              f.write("| Estado | Fontes |\n|---|---|\n")
+              f.write(f"| ✅ VERIFIED | {', '.join(verified) or '—'} |\n")
+              f.write(f"| ⚠️ TOKEN_VAZIO | {', '.join(token_vazio) or '—'} |\n")
+              f.write(f"| 🔴 CONTRADICTION | {', '.join(contradictions) or '—'} |\n")
+              f.write(f"| 🔀 SCHEMA_DRIFT | {', '.join(drifted) or '—'} |\n")
+
+          if contradictions:
+              print(f"CONTRADICTIONS: {contradictions}")
+              raise SystemExit(1)
+          PY
+
+      - name: Upload evolution trail artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: "evolution-trail-${{ github.run_id }}"
+          path: |
+            artifacts/EVOLUTION_TRAIL.jsonl
+            results/evolution_watcher_manifest.json
+            watcher_output.txt
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload watcher output on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: "watcher-fail-${{ github.run_id }}"
+          path: watcher_output.txt
+          if-no-files-found: warn
+
+      - name: Commit updated snapshots and fingerprints
+        if: success()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: |
+            chore(watcher): update snapshots and fingerprints [run ${{ github.run_id }}]
+          file_pattern: |
+            data/rollback/**
+            schemas/fingerprints/**
+            results/evolution_watcher_manifest.json
+            artifacts/EVOLUTION_TRAIL.jsonl
+
+  # ---------------------------------------------------------------------------
+  # 4. ROLLBACK MANUAL
+  # ---------------------------------------------------------------------------
+  rollback:
+    name: Manual rollback
+    runs-on: ubuntu-latest
+    needs: preflight
+    if: needs.preflight.outputs.mode == 'rollback'
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+
+      - name: Execute rollback
+        env:
+          SOURCE_ID: ${{ github.event.inputs.source_id || '' }}
+          CHECKPOINT: ${{ github.event.inputs.checkpoint || 'latest' }}
+        run: |
+          set -euo pipefail
+          SOURCE_ARG=()
+          if [ -n "$SOURCE_ID" ]; then
+            SOURCE_ARG=(--source "$SOURCE_ID")
+          else
+            SOURCE_ARG=(--rollback-all)
+          fi
+          python tools/rll_json_watcher.py \
+            --config "$RLL_WATCHER_CONFIG" \
+            --rollback \
+            "${SOURCE_ARG[@]}" \
+            --checkpoint "$CHECKPOINT"
+
+      - name: Commit rollback state
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: |
+            fix(rollback): restore to checkpoint ${{ github.event.inputs.checkpoint || 'latest' }}
+            source: ${{ github.event.inputs.source_id || 'ALL' }}
+          file_pattern: "data/failsafe/** results/evolution_watcher_manifest.json artifacts/EVOLUTION_TRAIL.jsonl"
+
+  # ---------------------------------------------------------------------------
+  # 5. AUDIT DOCS: gera documentação de auditoria a partir dos estados
+  # ---------------------------------------------------------------------------
+  audit:
+    name: Generate audit docs
+    runs-on: ubuntu-latest
+    needs: preflight
+    if: needs.preflight.outputs.mode == 'audit'
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+
+      - name: Generate audit docs
+        run: |
+          python tools/generate_yml_audit_docs.py \
+            --config "$RLL_WATCHER_CONFIG" \
+            --trail artifacts/EVOLUTION_TRAIL.jsonl \
+            --output docs/audit/
+
+      - name: Commit audit docs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs(audit): regenerate epistemic state audit [skip ci]"
+          file_pattern: "docs/audit/**"

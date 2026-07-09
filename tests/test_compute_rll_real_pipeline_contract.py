@@ -84,6 +84,13 @@ def test_main_writes_manifest_and_tables_from_repo_inputs(tmp_path: Path, monkey
     assert (out / "tables" / "Hz_processed.csv").exists()
     assert (out / "tables" / "BAO_processed.csv").exists()
     assert (out / "tables" / "model_comparison.csv").exists()
+    manifest_outputs = set(manifest["outputs"])
+    assert {"TAGS.json", "WATCHDOG.json", "CHECKSUMS.sha256"} <= manifest_outputs
+    watchdog = json.loads((out / "WATCHDOG.json").read_text(encoding="utf-8"))
+    assert watchdog["overall_status"] == "pass"
+    assert "materialized real data" in watchdog["failover"]
+    checksums = (out / "CHECKSUMS.sha256").read_text(encoding="utf-8")
+    assert "MANIFEST.json" in checksums
 
 
 def test_validation_status_payload_separates_background_growth_and_local_dynamic_layers() -> None:
@@ -104,3 +111,26 @@ def test_validation_status_payload_separates_background_growth_and_local_dynamic
     assert "dart_ejecta_recoil_momentum_amplification" in status["scale_bridge_examples"]
     assert "non-operational until dimensions" in status["symbolic_complexity_marker"]
     assert status["claim_boundary"] == "local dynamic layer cannot be promoted to background cosmology without scale bridge"
+
+
+def test_tag_autodetection_from_github_env(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("GITHUB_REF", "refs/tags/v-test")
+    monkeypatch.setenv("GITHUB_SHA", "abc123")
+    monkeypatch.setenv("RLL_IMPORT_TAGS", "cosmology,bao")
+
+    payload = compute.detect_execution_tags()
+
+    assert payload["release_tag_detected"] is True
+    assert payload["autodetected_tags"] == ["bao", "cosmology", "v-test"]
+    assert payload["claim_policy"].startswith("tags annotate provenance")
+
+
+def test_atomic_write_keeps_rollback_backup(tmp_path: Path) -> None:
+    target = tmp_path / "artifact.json"
+    target.write_text("old", encoding="utf-8")
+
+    result = compute.atomic_write_text(target, "new")
+
+    assert target.read_text(encoding="utf-8") == "new"
+    assert result["rollback_available"] is True
+    assert Path(str(result["backup_path"])).read_text(encoding="utf-8") == "old"

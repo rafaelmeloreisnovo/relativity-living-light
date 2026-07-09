@@ -1,0 +1,2 @@
+[rll-real-validation] Pantheon+ column compatibility: {"status": "updated", "path": "data/pantheon/lcparam_full_long_zhel.txt", "aliases_added": [{"alias": "dmb", "source": "mBERR"}, {"alias": "mb_err", "source": "mBERR"}]}
+[rll-real-validation] wrote /home/runner/work/relativity-living-light/relativity-living-light/data/results/model_comparison.json

@@ -83,7 +83,31 @@ python scripts/run_real_pantheon_validation.py
 - Se a matriz de covariância falta, não calcular chi2 completo.
 - Se a fonte é resumo de artigo, marcar como `source_summary` ou `observed_seed`, nunca `validated_dataset`.
 
-## 6. Ordem operacional correta
+## 6. Registro adicional de dados reais — julho de 2026
+
+O arquivo abaixo registra novas fontes reais e contextos observacionais sem promovê-los automaticamente a validação:
+
+```text
+data/real/cosmology/real_data_addition_registry_2026_07.json
+```
+
+O registro inclui:
+
+- Pantheon+SH0ES oficial como `DOWNLOAD_READY`;
+- DESI DR2 BAO como `REAL_VALIDATED_BLOCKED` até confirmar tabela/covariância exatas;
+- DESI DR2 Lyα/extensões como `SOURCE_REGISTERED_ONLY` até localizar produto primário e covariância;
+- Union3.1 e DES/Dovekie como contexto de compilação/calibração de supernovas, não dados locais ainda;
+- Planck 2018 como `REAL_VALIDATED_BLOCKED` até distinguir prior comprimido, likelihood oficial, cadeia ou comparação bibliográfica.
+
+Validador associado:
+
+```bash
+python tools/validate_real_data_addition_registry.py
+```
+
+Esse registro aumenta a cobertura de fontes reais, mas mantém `CLAIM_BLOCKED` até haver arquivo local, checksum, schema, covariância/erro, baseline e métrica.
+
+## 7. Ordem operacional correta
 
 ```bash
 # 1. Baixar Pantheon+ oficial
@@ -96,7 +120,7 @@ python scripts/run_real_pantheon_validation.py
 cat data/results/model_comparison.json
 ```
 
-## 7. Forma correta de resposta científica
+## 8. Forma correta de resposta científica
 
 Uma resposta correta deve dizer:
 

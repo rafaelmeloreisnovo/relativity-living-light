@@ -1,0 +1,142 @@
+# High-z SMBH Seeds — Fontes Reais JWST 2024-2026
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Schema: rll.high_z_smbh.v1
+# Substitui: data/real/high_z_smbh/high_z_seed_sources.yml (TOKEN_VAZIO)
+
+schema_version: "1.0"
+module: high_z_smbh_seeds
+status: METADATA_READY_CLAIM_BLOCKED
+claim_allowed: false
+updated_utc: "2026-06-27"
+
+physical_context: >
+  JWST descobriu AGN massivos em z > 4 que desafiam modelos de crescimento
+  padrão (acreção Eddington desde z=30 insuficiente).
+  Conexão RLL: se o setor de superposição Ωs0 modifica H(z) em z > 2,
+  o volume de Hubble e a taxa de formação de halos mudam —
+  afetando a abundância esperada de SMBH massivos em alto z.
+
+connection_to_rll: >
+  N(M_BH > 1e9 M_sun, z > 6) é sensível a dV/dz via H(z).
+  Se RLL com Ωs0>0 aumenta dV/dz em z > zt vs ΛCDM,
+  prevê mais SMBH massivos — consistente com excesso JWST.
+  Efeito testável: Δ(dV/dz)/dV ~ 1-5% para Ωs0=0.02–0.08.
+
+desi_dr2_lya_anchor:
+  z_eff: 2.330
+  DM_over_rd: 38.988
+  sigma: 0.531
+  note: >
+    Lyman-alpha é o tracer DESI de maior z.
+    RLL com Ωs0=0.02 deve reproduzir este ponto dentro de 1σ.
+    Verificar com rll_vs_lcdm.py.
+
+source_records:
+
+  - id: JWST_LEUNG_2024_LITTLE_RED_DOTS
+    candidate_type: high_z_agn_jwst
+    status: PUBLISHED
+    dataset_name: "JWST Little Red Dots — AGN compactos z=4-8"
+    provider: "Leung et al. 2024, ApJ 969 89"
+    doi: "10.3847/1538-4357/ad4b26"
+    arxiv: "2309.04525"
+    source_url: "https://arxiv.org/abs/2309.04525"
+    access_date_utc: "2026-06-27"
+    data_type: jwst_nircam_nirspec_photometric_catalog
+    raw_data_available: false
+    local_path: "data/real/high_z_smbh/jwst_leung_2024_lrd_catalog.fits"
+    checksum_sha256: TOKEN_VAZIO
+    physical_parameters:
+      z_range: [4.0, 8.5]
+      M_bh_range_msun: [1.0e7, 1.0e9]
+      n_candidates: 341
+    rll_connection:
+      sector: cosmological_volume
+      priority: HIGH
+      test: >
+        Contar N(z) observado e comparar com N_pred_RLL vs N_pred_ΛCDM
+        usando dN/dz = φ(M_BH) × dV/dz × completeness(z)
+      dV_dz_formula: >
+        dV/dz = (c/H(z)) × (1+z)² × D_A²(z) × Ω_survey
+        H(z) diferente em RLL vs ΛCDM → N_pred diferente
+    falsifier: >
+      Se N_pred_RLL(z>6) > N_pred_ΛCDM em > 10% e N_obs JWST
+      está entre os dois: RLL alivia "too-early SMBH" problem.
+
+  - id: JWST_MAIOLINO_GN_Z11_2024
+    candidate_type: high_z_bh_confirmed_spectroscopic
+    status: GOLD_CONFIRMED
+    dataset_name: "GN-z11 — AGN confirmado em z=10.603"
+    provider: "Maiolino et al. 2024, Nature 627 59"
+    doi: "10.1038/s41586-024-07052-5"
+    arxiv: "2308.01230"
+    source_url: "https://arxiv.org/abs/2308.01230"
+    data_type: jwst_nirspec_spectroscopic
+    raw_data_available: false
+    local_path: "data/real/high_z_smbh/gn_z11_maiolino_2024.fits"
+    checksum_sha256: TOKEN_VAZIO
+    physical_parameters:
+      z: 10.603
+      M_bh_msun: 1.6e6
+      M_bh_sigma_msun: 0.4e6
+      eddington_ratio: ~5.0
+      note: "Super-Eddington accretion requerida em ΛCDM"
+    rll_connection:
+      sector: cosmological_volume_and_growth
+      priority: GOLD
+      test: >
+        H_RLL(z=10.603) vs H_ΛCDM(z=10.603):
+        Para Ωs0=0.02, zt=1.0: ambos dominados por Ωr·a⁻⁴ + Ωm·a⁻³
+        Diferença < 0.01% — setor RLL inativo em z >> zt.
+      implication: >
+        RLL NÃO muda H(z) em z >> zt. GN-z11 não é discriminador do RLL.
+        Isso é HONESTO — TOKEN_VAZIO preservado.
+    falsifier: >
+      H_RLL(z=10) ≈ H_ΛCDM(z=10) para qualquer Ωs0 razoável.
+      Se diferença > 0.1%: erro no código de background.
+
+  - id: JWST_BOGDAN_UHZ1_2023
+    candidate_type: high_z_bh_xray_overmassive
+    status: CONFIRMED_MULTIWAVELENGTH
+    dataset_name: "UHZ-1 — BH overmassive em z=10.073, Chandra+JWST"
+    provider: "Bogdan et al. 2024, Nature Astronomy 8 126"
+    doi: "10.1038/s41550-023-02111-9"
+    arxiv: "2305.15458"
+    source_url: "https://arxiv.org/abs/2305.15458"
+    data_type: chandra_xray_jwst_combined
+    raw_data_available: false
+    local_path: "data/real/high_z_smbh/uhz1_bogdan_2024.fits"
+    checksum_sha256: TOKEN_VAZIO
+    physical_parameters:
+      z: 10.073
+      M_bh_msun: 4.0e7
+      M_stellar_msun: 1.0e8
+      M_bh_over_M_star: 0.40
+      note: "M_BH/M_* = 40% vs ~0.1% em galáxias locais"
+    rll_connection:
+      sector: structure_growth
+      priority: MEDIUM
+      test: >
+        M_BH/M_* ratio depende de história de crescimento de halo.
+        Se D+(z) RLL difere de ΛCDM em z~5-10, M_stellar pode diferir.
+        Mas: zt=1.0 → setor inativo em z=10. Efeito negligível.
+      honest_assessment: "TOKEN_VAZIO — RLL não prevê diferença mensurável em z~10"
+
+fetch_mast_jwst:
+  description: "MAST STScI — arquivo público JWST"
+  url: "https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html"
+  commands:
+    gn_z11: >
+      # Buscar program_id=1345 (Maiolino et al. JADES)
+      # Download Level 3 NIRSpec MSA spectrum
+      # Arquivo: jw01345-o001_t001_nirspec_prism-clear_s3d.fits
+    uhz1: >
+      # Buscar program_id=2478 (Bogdan et al. DDT)
+      # Download Chandra Level 2 event file + JWST NIRCam mosaic
+  note: "Requer conta MAST (gratuita). No Termux usar mastquery Python package."
+
+scan_requirements:
+  fail_closed_if_missing_dataset: true
+  require_z_spectroscopic: true
+  require_mass_method_documented: true
+  require_completeness_correction: true

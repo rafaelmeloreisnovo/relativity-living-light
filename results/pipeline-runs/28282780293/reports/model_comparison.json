@@ -1,0 +1,98 @@
+{
+  "pipeline": "pantheon_oficial_prova_observacional",
+  "dataset": "pantheon+",
+  "generated_at": "2026-06-27T07:41:59.409514+00:00",
+  "source": "data/results/pantheon_fit_summary.json",
+  "command_used": "/opt/hostedtoolcache/Python/3.11.15/x64/bin/python scripts/run_real_pantheon_validation.py",
+  "git_commit_hash": "fdcda1911d9ab4129ca0445ee6cd03da52d1f941",
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.17.0-1018-azure-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "pandas": "3.0.3",
+      "pytest": null,
+      "jsonschema": "4.26.0"
+    }
+  },
+  "real_data_files_sha256": {
+    "data/pantheon/lcparam_full_long_zhel.txt": "5b08994856440d3449af994877a3a9b7cd636bb83c8df598c73a91d49d6a5fad",
+    "data/pantheon/Pantheon+SH0ES_STAT+SYS.cov": "abf806d966485e64afdb359c87bffc0ecc00d05eff0a31ced66f247385df0fdc"
+  },
+  "source_summary": "data/results/pantheon_fit_summary.json",
+  "n_obs": 1701,
+  "k_rll": 5,
+  "k_lcdm": 2,
+  "chi2_rll": 5680.256806608916,
+  "chi2_lcdm": 4605.0678165988365,
+  "AIC_rll": 5690.256806608916,
+  "AIC_lcdm": 4609.0678165988365,
+  "BIC_rll": 5717.451664570895,
+  "BIC_lcdm": 4619.945759783628,
+  "covariance_used": "Pantheon+SH0ES_STAT+SYS.cov",
+  "models": {
+    "rll": {
+      "k_params": 5,
+      "chi2": 5680.256806608916,
+      "aic": 5690.256806608916,
+      "bic": 5717.451664570895,
+      "log_likelihood": null,
+      "best_fit_params": {
+        "Om0": 0.3,
+        "Os0": 0.05,
+        "zt": 1.0,
+        "wt": 0.3,
+        "M_abs": -19.3,
+        "OL": 0.6499999999999999
+      }
+    },
+    "lcdm": {
+      "k_params": 2,
+      "chi2": 4605.0678165988365,
+      "aic": 4609.0678165988365,
+      "bic": 4619.945759783628,
+      "log_likelihood": null,
+      "best_fit_params": {
+        "Om0": 0.5936724605270033,
+        "M_abs": -19.32367486349028,
+        "OL": 0.4063275394729967
+      }
+    }
+  },
+  "delta": {
+    "delta_chi2_rll_minus_lcdm": 1075.1889900100796,
+    "delta_aic_rll_minus_lcdm": 1081.1889900100796,
+    "delta_bic_rll_minus_lcdm": 1097.5059047872674,
+    "interpretation_guardrail": "Quantitative comparison only; do not infer model superiority from these deltas alone.",
+    "interpretation_label": "lcdm_preferred",
+    "interpretation_reason": "At least one information-criterion delta is positive (RLL worse than LCDM).",
+    "thresholds_used": {
+      "aic_tentative": 2.0,
+      "aic_strong": 6.0,
+      "bic_tentative": 2.0,
+      "bic_strong": 6.0
+    },
+    "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds."
+  },
+  "delta_chi2_rll_minus_lcdm": 1075.1889900100796,
+  "delta_aic_rll_minus_lcdm": 1081.1889900100796,
+  "delta_bic_rll_minus_lcdm": 1097.5059047872674,
+  "interpretation_label": "lcdm_preferred",
+  "claim_boundary": "No superiority claim unless real-data metrics pass predefined thresholds.",
+  "publication_language": "RLL is a candidate effective dynamic-transition cosmology under real-data evaluation.",
+  "pantheon_column_compatibility": {
+    "status": "updated",
+    "path": "data/pantheon/lcparam_full_long_zhel.txt",
+    "aliases_added": [
+      {
+        "alias": "dmb",
+        "source": "mBERR"
+      },
+      {
+        "alias": "mb_err",
+        "source": "mBERR"
+      }
+    ]
+  }
+}

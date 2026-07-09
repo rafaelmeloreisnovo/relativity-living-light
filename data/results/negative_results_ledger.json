@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "status": "negative_results_and_blocked_claims_ledger",
   "claim_allowed": false,
   "purpose": "Record non-results, blocked claims, weaker-than-baseline outcomes, and explicit no-claim zones.",
@@ -73,6 +73,36 @@
       "evidence_status": "CI artifact exists with Earth, Moon, Mars, Jupiter seed metrics",
       "blocked_claim": "the route proves a new gravity, new deformation law, or RLL superiority over celestial mechanics",
       "next_test": "state-vector h comparison and shape-gravity residual against baseline models",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-008",
+      "route": "h0_grid_boundary",
+      "result_type": "boundary_artifact_risk",
+      "statement": "Any H0 solution sitting on a scan boundary must be treated as a grid artifact until a corrected interval or optimizer shows an internal best point.",
+      "evidence_status": "h0_grid_expansion manifest and runner now exist; actual corrected-run artifact is still required",
+      "blocked_claim": "H0 boundary value is a physical RLL result",
+      "next_test": "python scripts/run_h0_grid_expansion.py",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-009",
+      "route": "w0wa_effective_mapping",
+      "result_type": "diagnostic_only",
+      "statement": "RLL-to-w0wa effective mapping is a coordinate diagnostic, not a likelihood comparison or evidence calculation.",
+      "evidence_status": "mapper script now exists; real-data contours and likelihood artifacts remain required",
+      "blocked_claim": "RLL explains or beats CPL solely from w0_eff/wa_eff proximity",
+      "next_test": "python scripts/map_rll_to_w0wa_eff.py",
+      "claim_allowed": false
+    },
+    {
+      "id": "NEG-010",
+      "route": "growth_fsigma8_backend",
+      "result_type": "backend_missing_or_approximation_only",
+      "statement": "Growth/f_sigma8 must not be used as strong evidence while CLASS/CAMB or an explicitly declared approximation backend is missing.",
+      "evidence_status": "internal kernel exists, but backend_status must be recorded in every growth artifact",
+      "blocked_claim": "RLL is validated by f_sigma8 or solves S8 tension",
+      "next_test": "record backend_status and compare against LCDM with the same backend",
       "claim_allowed": false
     }
   ],

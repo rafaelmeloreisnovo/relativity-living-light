@@ -1,0 +1,132 @@
+schema: rll.evolution_watcher_config.v1
+meta:
+  version: 1
+  updated_utc: "2026-07-03T00:00:00Z"
+  purpose: >-
+    Central plug-n-play registry of committed real-data sources tracked by the
+    RLL JSON Evolution Watcher: local fingerprint check, epistemic-state trail
+    (artifacts/EVOLUTION_TRAIL.jsonl), failsafe snapshots (data/failsafe/), and
+    audit documentation. Interconnects the mathematical/observational inputs
+    (H(z), BAO, supernovae, CMB, growth) used by
+    data.pipelines.structure_d.joint_real_likelihood under one execution and
+    history contract, so new real-data artifacts and updates are traceable
+    over time rather than silently overwritten.
+  claim_boundary: >-
+    This config and everything it generates (trail events, manifest,
+    fingerprints, failsafe snapshots) are structural provenance
+    infrastructure. They do not validate RLL, do not confirm scientific
+    claims, and do not establish superiority over LCDM/CPL by themselves.
+    A source moving to epistemic state VERIFIED means its local file is
+    present, fingerprinted, and structurally readable — nothing more.
+
+schema_fingerprints:
+  algorithm: sha256
+  fingerprint_of: >-
+    Concatenated per-file sha256 (sorted by path) of each source's
+    local_paths, then sha256 of that concatenation. Any byte change to a
+    tracked file changes the fingerprint.
+  drift_policy: >-
+    schema_drift=true is recorded when a source's fingerprint changes between
+    two watcher runs. Drift alone does not imply corruption or error; it is a
+    trigger to review the change (see CONTRADICTION_LOG in docs/audit/).
+  fingerprint_dir: schemas/fingerprints
+
+sources:
+  - id: hz_cosmic_chronometers
+    label: "H(z) cosmic chronometers compilation"
+    domain: cosmology_expansion
+    local_paths:
+      - data/real/Hz_data_real.csv
+    primary_source:
+      title: "Cosmic chronometers H(z) compilation route"
+      url: https://arxiv.org/abs/2205.05701
+    epistemic_initial: VERIFIED
+    on_fail: FAILSAFE
+    max_snapshot_age_days: 365
+    rll_paths_affected: [C05_hubble_tension_evolving_de]
+
+  - id: desi_dr2_bao
+    label: "DESI DR2 BAO primary points and covariance summary"
+    domain: cosmology_bao
+    local_paths:
+      - data/real/cosmology/desi_dr2_bao_primary_points.csv
+      - data/real/cosmology/desi_dr2_bao_covariance_summary.csv
+    primary_source:
+      title: "DESI DR2 BAO measurements"
+      url: https://arxiv.org/abs/2503.14738
+    epistemic_initial: VERIFIED
+    on_fail: FAILSAFE
+    max_snapshot_age_days: 365
+    rll_paths_affected: [C01_w0wa_mapping]
+
+  - id: pantheon_plus_shoes
+    label: "Pantheon+SH0ES supernova release manifest"
+    domain: cosmology_supernovae
+    local_paths:
+      - data/real/cosmology/pantheon_plus/MANIFEST.json
+    primary_source:
+      title: "Pantheon+SH0ES DataRelease"
+      url: https://github.com/PantheonPlusSH0ES/DataRelease
+    epistemic_initial: DECLARED_BY_AUTHOR
+    on_fail: FAILSAFE
+    max_snapshot_age_days: 365
+    rll_paths_affected: [C01_w0wa_mapping]
+
+  - id: planck_2018_cmb
+    label: "Planck 2018 CMB distance priors (R, l_A, Omega_b h^2) and covariance"
+    domain: cosmology_cmb
+    local_paths:
+      - data/real/CMB_shift_real.json
+    primary_source:
+      title: "Distance Priors from Planck Final Release (Chen, Huang & Wang 2019)"
+      url: https://arxiv.org/abs/1808.05724
+    epistemic_initial: VERIFIED
+    on_fail: FAILSAFE
+    max_snapshot_age_days: 365
+    rll_paths_affected: [C05_hubble_tension_evolving_de]
+
+  - id: fsigma8_growth
+    label: "fsigma8/RSD growth compilation"
+    domain: cosmology_growth
+    local_paths:
+      - data/real/cosmology/fsigma8_growth_real.csv
+    primary_source:
+      title: "fsigma8/RSD growth compilation route"
+      url: https://arxiv.org/abs/1204.4725
+    epistemic_initial: VERIFIED
+    on_fail: FAILSAFE
+    max_snapshot_age_days: 365
+    rll_paths_affected: [C05_hubble_tension_evolving_de]
+
+  - id: _template_nova_fonte
+    label: "TEMPLATE — copy this block to register a new source; do not run as-is"
+    domain: TOKEN_VAZIO
+    local_paths: []
+    primary_source:
+      title: TOKEN_VAZIO
+      url: TOKEN_VAZIO
+    epistemic_initial: TOKEN_VAZIO
+    on_fail: FAILSAFE
+    max_snapshot_age_days: 365
+    rll_paths_affected: []
+    template_only: true
+
+global_failover:
+  strategy: local_committed_file_is_source_of_truth_no_silent_network_substitution
+  network_unreachable_policy: keep_committed_local_file_and_mark_review
+  note: >-
+    This watcher never overwrites a committed real-data file from a network
+    fetch. Network reachability (when checked) is provenance metadata only,
+    mirroring the pattern already used by tools/verify_real_source_signatures.py.
+
+rollback_global:
+  checkpoint_dir: data/failsafe
+  policy: >-
+    Rollback restores a source's tracked epistemic state and fingerprint
+    record to its last BOOTSTRAP/FAILSAFE snapshot in data/failsafe/. It does
+    not modify the committed real-data files themselves.
+
+artifact_evolution_trail:
+  path: artifacts/EVOLUTION_TRAIL.jsonl
+  schema: schemas/evolution_event.schema.json
+  manifest_path: results/evolution_watcher_manifest.json

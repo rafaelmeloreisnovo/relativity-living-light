@@ -1,0 +1,100 @@
+# fσ8 — RLL internal perturbation-kernel growth test
+# Generated: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Schema: rll.fsigma8_perturbation.v1
+
+schema_version: "1.0"
+module: fsigma8_perturbation_test
+status: READY_TO_RUN_INTERNAL_APPROX
+claim_allowed: false
+updated_utc: "2026-06-27"
+
+background:
+  gap_identified: >
+    joint_real_likelihood.json can report growth_benchmark status as skipped
+    when CLASS/CAMB is unavailable. This route uses the internal RLL RK4
+    perturbation kernel as a bounded approximation only.
+  kernel_available: "src/rll/rll_perturbation_kernel.py"
+  kernel_method: "RK4 ODE for linear growth perturbations on an RLL background"
+  data_available: "data/real/cosmology/fsigma8_growth_real.csv"
+  data_points: 16
+  claim_boundary: "No publication claim without CLASS/CAMB or equivalent Boltzmann/transfer validation."
+
+kernel_equations:
+  growth_ode: >
+    d²δ/d(lna)² + (2 + dlnH/dlna)·dδ/d(lna) = (3/2)·Ωm(a)·δ
+  drag_term: "drag = 2.0 + dlnh_dlna(a, Om, Os0, zt, wt)"
+  source_term: "source = 1.5 · omega_m_a(a, Om, Os0, zt, wt) · δ"
+  sigma8_approx: "σ8(z) ≈ σ8_0 · D+(z)/D+(0), with σ8_0=0.811"
+  fsigma8: "fσ8(z) = f(z)·σ8(z), f(z)=dlnD/dlna"
+
+data_real_points:
+  file: "data/real/cosmology/fsigma8_growth_real.csv"
+  n_points: 16
+  z_range: [0.020, 0.780]
+  representative_surveys: ["2M++", "6dFGS", "2MASS", "2dFGRS", "WiggleZ", "SDSS_LRG", "BOSS_CMASS", "VVDS"]
+  sigma8_fiducial: 0.811
+  note: "Current repository file has 16 rows (17 lines including header); uses diagonal sigma only; full covariance remains TOKEN_VAZIO."
+
+execution:
+  step1:
+    command: >
+      python src/rll/rll_perturbation_kernel.py
+        --omega-m 0.315 --omega-s0 0.02 --zt 1.0 --wt 0.3
+        --a-min 0.01 --steps 1000
+        --out-csv results/perturbation_rll_baseline.csv
+        --out-json results/perturbation_rll_baseline_summary.json
+    output: "results/perturbation_rll_baseline.csv"
+  step2:
+    command: >
+      python src/rll/rll_perturbation_kernel.py
+        --omega-m 0.315 --omega-s0 0.0 --zt 1.0 --wt 0.3
+        --a-min 0.01 --steps 1000
+        --out-csv results/perturbation_lcdm_equiv.csv
+        --out-json results/perturbation_lcdm_equiv_summary.json
+    output: "results/perturbation_lcdm_equiv.csv"
+    note: "Os0=0 is the ΛCDM-equivalent comparison route for this kernel."
+  step3:
+    script: "scripts/check_rll_growth.py"
+    command: >
+      python scripts/check_rll_growth.py
+        --omega-m 0.315 --omega-s0 0.02 --zt 1.0 --wt 0.3
+        --a-min 0.01 --steps 1000
+        --data data/real/cosmology/fsigma8_growth_real.csv
+        --out-json results/growth_comparison_rll_vs_lcdm.json
+        --out-csv results/growth_comparison_rll_vs_lcdm.csv
+    output: "results/growth_comparison_rll_vs_lcdm.json"
+
+expected_delta_sigma8:
+  prediction: >
+    With Os0=0.02 and zt=1.0, RLL should be checked for measurable growth
+    suppression against the Os0=0 baseline. Direction and amplitude are test
+    outputs, not assumed claims.
+  direction_hypothesis: "RLL may predict lower fσ8 than ΛCDM below the transition redshift."
+  s8_tension_note: "Any S8 relief claim requires full covariance and transfer-function validation."
+
+falsifiers:
+  - id: F_FS8_01
+    test: "D+(z)/D+(0) RLL must differ from ΛCDM by more than 0.5% for Os0=0.02."
+    metric: "|D+_RLL - D+_LCDM| / D+_LCDM > 0.005 at z=0.5"
+  - id: F_FS8_02
+    test: "χ²_fσ8 RLL should be lower than χ²_fσ8 ΛCDM under the same data and diagonal errors."
+    metric: "chi2_fs8_rll < chi2_fs8_lcdm"
+  - id: F_FS8_03
+    test: "fσ8(z=0.57) RLL should be within 2σ of BOSS_CMASS/Reid_2012."
+    data_point: "z=0.57, fσ8=0.427±0.066"
+    metric: "|fσ8_RLL(0.57) - 0.427| < 0.132"
+
+quality_gates:
+  - "Kernel must complete without NaN or overflow."
+  - "D+(z=0) normalized to 1.0 for LCDM and RLL."
+  - "All outputs must keep claim_allowed=false."
+  - "Rollback is removing generated CSV/JSON or git revert; raw data is unchanged."
+
+claim_policy:
+  claim_allowed: false
+  reason: >
+    Internal kernel is an approximation and uses diagonal fσ8 errors. It does
+    not include full transfer functions, nonlinear P(k), or CLASS/CAMB CMB/growth validation.
+  publication_language: >
+    RLL perturbation kernel provides an internal growth-rate estimate; full
+    CLASS/CAMB validation is required before publication claim.

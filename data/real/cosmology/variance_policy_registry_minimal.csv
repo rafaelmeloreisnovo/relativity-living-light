@@ -1,0 +1,5 @@
+dataset_id,axis,uncertainty_policy,covariance_status,claim_boundary
+real_hz,expansion_Hz,diagonal_sigma,diagonal_only,uncertainty policy only
+real_desi_dr2_bao,bao_DESI_DR2,covariance_summary,summary_only,covariance summary only
+real_fsigma8_6dfgs_anchor,growth_fsigma8,diagonal_sigma,diagonal_only,uncertainty policy only
+real_cmb_shift,cmb_shift,diagonal_sigma,compressed_summary_only,compressed summary only

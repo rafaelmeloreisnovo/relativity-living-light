@@ -1,0 +1,500 @@
+{
+  "meta": {
+    "script": "verify_weff_opcao_c.py",
+    "date": "2026-07-07",
+    "phase": "FASE 11",
+    "token_vazio_id": "H2-WEFF",
+    "description": "Opção C — setor duplo α·f + (1-α)·(1-f) + matéria separada"
+  },
+  "scan_config": {
+    "alpha_grid": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "r_grid": [
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "z_t": 1.0,
+    "w_t": 0.3,
+    "n_combinations": 35
+  },
+  "scan_results": [
+    {
+      "alpha": 0.5,
+      "r": 0.0,
+      "chi2_vs_desi": 940.015,
+      "passes": false,
+      "w_eff_z0": -1.0,
+      "w_eff_z1": -1.0
+    },
+    {
+      "alpha": 0.5,
+      "r": 0.05,
+      "chi2_vs_desi": 103.95,
+      "passes": false,
+      "w_eff_z0": -0.9929,
+      "w_eff_z1": -0.3968
+    },
+    {
+      "alpha": 0.5,
+      "r": 0.1,
+      "chi2_vs_desi": 108.501,
+      "passes": false,
+      "w_eff_z0": -0.9858,
+      "w_eff_z1": -0.0617
+    },
+    {
+      "alpha": 0.5,
+      "r": 0.2,
+      "chi2_vs_desi": 347.887,
+      "passes": false,
+      "w_eff_z0": -0.9718,
+      "w_eff_z1": 0.2991
+    },
+    {
+      "alpha": 0.5,
+      "r": 0.3,
+      "chi2_vs_desi": 611.692,
+      "passes": false,
+      "w_eff_z0": -0.958,
+      "w_eff_z1": 0.4902
+    },
+    {
+      "alpha": 0.6,
+      "r": 0.0,
+      "chi2_vs_desi": 1462.082,
+      "passes": false,
+      "w_eff_z0": -1.0125,
+      "w_eff_z1": -1.2222
+    },
+    {
+      "alpha": 0.6,
+      "r": 0.05,
+      "chi2_vs_desi": 206.906,
+      "passes": false,
+      "w_eff_z0": -1.0064,
+      "w_eff_z1": -0.5556
+    },
+    {
+      "alpha": 0.6,
+      "r": 0.1,
+      "chi2_vs_desi": 127.62,
+      "passes": false,
+      "w_eff_z0": -1.0004,
+      "w_eff_z1": -0.1852
+    },
+    {
+      "alpha": 0.6,
+      "r": 0.2,
+      "chi2_vs_desi": 287.037,
+      "passes": false,
+      "w_eff_z0": -0.9885,
+      "w_eff_z1": 0.2137
+    },
+    {
+      "alpha": 0.6,
+      "r": 0.3,
+      "chi2_vs_desi": 506.938,
+      "passes": false,
+      "w_eff_z0": -0.9768,
+      "w_eff_z1": 0.4248
+    },
+    {
+      "alpha": 0.7,
+      "r": 0.0,
+      "chi2_vs_desi": 2186.962,
+      "passes": false,
+      "w_eff_z0": -1.0215,
+      "w_eff_z1": -1.4444
+    },
+    {
+      "alpha": 0.7,
+      "r": 0.05,
+      "chi2_vs_desi": 340.541,
+      "passes": false,
+      "w_eff_z0": -1.0163,
+      "w_eff_z1": -0.7143
+    },
+    {
+      "alpha": 0.7,
+      "r": 0.1,
+      "chi2_vs_desi": 175.13,
+      "passes": false,
+      "w_eff_z0": -1.0111,
+      "w_eff_z1": -0.3086
+    },
+    {
+      "alpha": 0.7,
+      "r": 0.2,
+      "chi2_vs_desi": 257.167,
+      "passes": false,
+      "w_eff_z0": -1.0007,
+      "w_eff_z1": 0.1282
+    },
+    {
+      "alpha": 0.7,
+      "r": 0.3,
+      "chi2_vs_desi": 435.288,
+      "passes": false,
+      "w_eff_z0": -0.9905,
+      "w_eff_z1": 0.3595
+    },
+    {
+      "alpha": 0.8,
+      "r": 0.0,
+      "chi2_vs_desi": 3263.087,
+      "passes": false,
+      "w_eff_z0": -1.0285,
+      "w_eff_z1": -1.6667
+    },
+    {
+      "alpha": 0.8,
+      "r": 0.05,
+      "chi2_vs_desi": 499.779,
+      "passes": false,
+      "w_eff_z0": -1.0238,
+      "w_eff_z1": -0.873
+    },
+    {
+      "alpha": 0.8,
+      "r": 0.1,
+      "chi2_vs_desi": 243.746,
+      "passes": false,
+      "w_eff_z0": -1.0192,
+      "w_eff_z1": -0.4321
+    },
+    {
+      "alpha": 0.8,
+      "r": 0.2,
+      "chi2_vs_desi": 249.874,
+      "passes": false,
+      "w_eff_z0": -1.01,
+      "w_eff_z1": 0.0427
+    },
+    {
+      "alpha": 0.8,
+      "r": 0.3,
+      "chi2_vs_desi": 387.841,
+      "passes": false,
+      "w_eff_z0": -1.001,
+      "w_eff_z1": 0.2941
+    },
+    {
+      "alpha": 0.9,
+      "r": 0.0,
+      "chi2_vs_desi": 5053.62,
+      "passes": false,
+      "w_eff_z0": -1.0339,
+      "w_eff_z1": -1.8889
+    },
+    {
+      "alpha": 0.9,
+      "r": 0.05,
+      "chi2_vs_desi": 682.641,
+      "passes": false,
+      "w_eff_z0": -1.0297,
+      "w_eff_z1": -1.0317
+    },
+    {
+      "alpha": 0.9,
+      "r": 0.1,
+      "chi2_vs_desi": 328.94,
+      "passes": false,
+      "w_eff_z0": -1.0256,
+      "w_eff_z1": -0.5556
+    },
+    {
+      "alpha": 0.9,
+      "r": 0.2,
+      "chi2_vs_desi": 259.744,
+      "passes": false,
+      "w_eff_z0": -1.0174,
+      "w_eff_z1": -0.0427
+    },
+    {
+      "alpha": 0.9,
+      "r": 0.3,
+      "chi2_vs_desi": 358.781,
+      "passes": false,
+      "w_eff_z0": -1.0092,
+      "w_eff_z1": 0.2288
+    },
+    {
+      "alpha": 0.95,
+      "r": 0.0,
+      "chi2_vs_desi": 6492.436,
+      "passes": false,
+      "w_eff_z0": -1.0362,
+      "w_eff_z1": -2.0
+    },
+    {
+      "alpha": 0.95,
+      "r": 0.05,
+      "chi2_vs_desi": 782.959,
+      "passes": false,
+      "w_eff_z0": -1.0322,
+      "w_eff_z1": -1.1111
+    },
+    {
+      "alpha": 0.95,
+      "r": 0.1,
+      "chi2_vs_desi": 376.796,
+      "passes": false,
+      "w_eff_z0": -1.0283,
+      "w_eff_z1": -0.6173
+    },
+    {
+      "alpha": 0.95,
+      "r": 0.2,
+      "chi2_vs_desi": 269.924,
+      "passes": false,
+      "w_eff_z0": -1.0205,
+      "w_eff_z1": -0.0855
+    },
+    {
+      "alpha": 0.95,
+      "r": 0.3,
+      "chi2_vs_desi": 349.852,
+      "passes": false,
+      "w_eff_z0": -1.0127,
+      "w_eff_z1": 0.1961
+    },
+    {
+      "alpha": 1.0,
+      "r": 0.0,
+      "chi2_vs_desi": 8658.942,
+      "passes": false,
+      "w_eff_z0": -1.0383,
+      "w_eff_z1": -2.1111
+    },
+    {
+      "alpha": 1.0,
+      "r": 0.05,
+      "chi2_vs_desi": 889.492,
+      "passes": false,
+      "w_eff_z0": -1.0345,
+      "w_eff_z1": -1.1905
+    },
+    {
+      "alpha": 1.0,
+      "r": 0.1,
+      "chi2_vs_desi": 427.791,
+      "passes": false,
+      "w_eff_z0": -1.0308,
+      "w_eff_z1": -0.679
+    },
+    {
+      "alpha": 1.0,
+      "r": 0.2,
+      "chi2_vs_desi": 283.118,
+      "passes": false,
+      "w_eff_z0": -1.0233,
+      "w_eff_z1": -0.1282
+    },
+    {
+      "alpha": 1.0,
+      "r": 0.3,
+      "chi2_vs_desi": 344.127,
+      "passes": false,
+      "w_eff_z0": -1.0159,
+      "w_eff_z1": 0.1634
+    }
+  ],
+  "best_point": {
+    "alpha": 0.5,
+    "r": 0.05,
+    "chi2_vs_desi": 103.95,
+    "passes": false,
+    "w_eff_z0": -0.9929,
+    "w_eff_z1": -0.3968
+  },
+  "best_profile": [
+    {
+      "z": 0.0,
+      "f_z": 0.965555,
+      "w_eff_c": -0.992885,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 0.1,
+      "f_z": 0.952574,
+      "w_eff_c": -0.986424,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 0.295,
+      "f_z": 0.912934,
+      "w_eff_c": -0.957065,
+      "w_cpl_desi": -0.671,
+      "delta": -0.286065
+    },
+    {
+      "z": 0.5,
+      "f_z": 0.841131,
+      "w_eff_c": -0.877769,
+      "w_cpl_desi": -0.563256,
+      "delta": -0.314513
+    },
+    {
+      "z": 0.706,
+      "f_z": 0.727108,
+      "w_eff_c": -0.716206,
+      "w_cpl_desi": -0.459,
+      "delta": -0.257206
+    },
+    {
+      "z": 0.934,
+      "f_z": 0.554779,
+      "w_eff_c": -0.465972,
+      "w_cpl_desi": -0.354,
+      "delta": -0.111972
+    },
+    {
+      "z": 1.0,
+      "f_z": 0.5,
+      "w_eff_c": -0.396825,
+      "w_cpl_desi": -0.329442,
+      "delta": -0.067384
+    },
+    {
+      "z": 1.321,
+      "f_z": 0.255403,
+      "w_eff_c": -0.200309,
+      "w_cpl_desi": -0.21,
+      "delta": 0.009691
+    },
+    {
+      "z": 1.484,
+      "f_z": 0.166126,
+      "w_eff_c": -0.18173,
+      "w_cpl_desi": -0.156,
+      "delta": -0.02573
+    },
+    {
+      "z": 1.5,
+      "f_z": 0.158869,
+      "w_eff_c": -0.181487,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 2.0,
+      "f_z": 0.034445,
+      "w_eff_c": -0.194253,
+      "w_cpl_desi": null,
+      "delta": null
+    },
+    {
+      "z": 3.0,
+      "f_z": 0.001271,
+      "w_eff_c": -0.130399,
+      "w_cpl_desi": null,
+      "delta": null
+    }
+  ],
+  "desi_comparison_best": [
+    {
+      "z": 0.295,
+      "w_eff_opcao_c": -0.957065,
+      "w_cpl_target": -0.671,
+      "delta": -0.286065
+    },
+    {
+      "z": 0.51,
+      "w_eff_opcao_c": -0.871996,
+      "w_cpl_target": -0.558,
+      "delta": -0.313996
+    },
+    {
+      "z": 0.706,
+      "w_eff_opcao_c": -0.716206,
+      "w_cpl_target": -0.459,
+      "delta": -0.257206
+    },
+    {
+      "z": 0.934,
+      "w_eff_opcao_c": -0.465972,
+      "w_cpl_target": -0.354,
+      "delta": -0.111972
+    },
+    {
+      "z": 1.321,
+      "w_eff_opcao_c": -0.200309,
+      "w_cpl_target": -0.21,
+      "delta": 0.009691
+    },
+    {
+      "z": 1.484,
+      "w_eff_opcao_c": -0.18173,
+      "w_cpl_target": -0.156,
+      "delta": -0.02573
+    }
+  ],
+  "special_cases": {
+    "alpha=0.5_r=0.0": {
+      "chi2": 940.015,
+      "w_eff_z0": -1.0,
+      "w_eff_z1": -1.0
+    },
+    "alpha=0.5_r=0.1": {
+      "chi2": 108.501,
+      "w_eff_z0": -0.9858,
+      "w_eff_z1": -0.0617
+    },
+    "alpha=0.7_r=0.0": {
+      "chi2": 2186.962,
+      "w_eff_z0": -1.0215,
+      "w_eff_z1": -1.4444
+    },
+    "alpha=0.7_r=0.1": {
+      "chi2": 175.13,
+      "w_eff_z0": -1.0111,
+      "w_eff_z1": -0.3086
+    },
+    "alpha=0.9_r=0.0": {
+      "chi2": 5053.62,
+      "w_eff_z0": -1.0339,
+      "w_eff_z1": -1.8889
+    },
+    "alpha=0.9_r=0.1": {
+      "chi2": 328.94,
+      "w_eff_z0": -1.0256,
+      "w_eff_z1": -0.5556
+    },
+    "alpha=1.0_r=0.0": {
+      "chi2": 8658.942,
+      "w_eff_z0": -1.0383,
+      "w_eff_z1": -2.1111
+    },
+    "alpha=1.0_r=0.1": {
+      "chi2": 427.791,
+      "w_eff_z0": -1.0308,
+      "w_eff_z1": -0.679
+    }
+  },
+  "structural_analysis": {
+    "all_w_negative_at_best": true,
+    "best_chi2": 103.95,
+    "best_passes": false,
+    "any_combination_passes": false,
+    "n_passes": 0,
+    "note_alpha_0p5_r0": "ρ_C ≈ constante → w_eff ≈ -1 para α=0.5, r=0"
+  },
+  "falsifiers": {
+    "F_WEFF_C_01_chi2_lt10": false,
+    "F_WEFF_C_02_always_negative": true
+  },
+  "epistemic_status": "[E] scan numérico executado — FAIL: melhor χ²=103.95 >> 10. α=0.5, r=0.05.",
+  "interpretation": "Opção C com α livre adiciona grau de liberdade mas mantém o problema estrutural: a transição logística de fase ainda produz variação brusca em w_eff na região z~z_t. O parâmetro r (matéria) agrava a incompatibilidade em alto z. Para α=0.5, r=0: setor constante (w=-1) — não distinguível de ΩΛ. TOKEN_VAZIO H2-WEFF: espaço paramétrico (α,r) não resolve a incompatibilidade estrutural."
+}

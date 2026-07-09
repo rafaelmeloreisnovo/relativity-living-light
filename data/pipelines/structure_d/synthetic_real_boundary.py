@@ -88,7 +88,10 @@ def find_unapproved_synthetic_paths(
 def enforce_real_validation_input_boundary(metadata: Mapping[str, Any]) -> dict[str, Any]:
     """Block real-validation inputs that route through synthetic/mock artifacts."""
 
-    dataset_type = classify_dataset_type(dict(metadata))
+    classification_metadata = dict(metadata)
+    if _truthy(classification_metadata.get("regression_fixture")):
+        classification_metadata.pop("dataset_type", None)
+    dataset_type = classify_dataset_type(classification_metadata)
     paths = [normalize_repo_path(path) for path in _as_sequence(metadata.get("path")) + _as_sequence(metadata.get("paths"))]
     violating_paths = [
         path
@@ -105,6 +108,50 @@ def enforce_real_validation_input_boundary(metadata: Mapping[str, Any]) -> dict[
             "Real validation input paths are observational and contain no synthetic/mock/fixture markers."
             if allowed
             else "Real validation cannot consume synthetic/mock/demo/example/fixture artifacts unless they are explicit test fixtures."
+        ),
+    }
+
+
+def validate_real_dataset_manifest_entry(metadata: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate canonical real-dataset metadata before real-validation use.
+
+    Real observational entries must carry source_id, sha256, local_path,
+    dataset_type, and may not point at synthetic/mock/demo/fixture/example
+    paths. Test fixtures are classified explicitly as regression fixtures and
+    are never accepted as real validation inputs.
+    """
+
+    classification_metadata = dict(metadata)
+    if _truthy(classification_metadata.get("regression_fixture")):
+        classification_metadata.pop("dataset_type", None)
+    dataset_type = classify_dataset_type(classification_metadata)
+    paths = [
+        normalize_repo_path(path)
+        for path in _as_sequence(metadata.get("local_path"))
+        + _as_sequence(metadata.get("path"))
+        + _as_sequence(metadata.get("paths"))
+    ]
+    violating_paths = [
+        path
+        for path in paths
+        if looks_like_synthetic_path(path)
+        and not (is_approved_synthetic_path(path) and _truthy(metadata.get("regression_fixture")))
+    ]
+    missing_fields = [
+        field
+        for field in ("source_id", "sha256", "local_path", "dataset_type")
+        if not str(metadata.get(field, "")).strip()
+    ]
+    valid = dataset_type == "real_observational" and not violating_paths and not missing_fields
+    return {
+        "valid": valid,
+        "dataset_type": dataset_type,
+        "violating_paths": violating_paths,
+        "missing_fields": missing_fields,
+        "reason": (
+            "Canonical real dataset entry is complete and path-clean."
+            if valid
+            else "Real dataset entries require source_id, sha256, local_path, dataset_type and path-clean real inputs."
         ),
     }
 
@@ -253,3 +300,36 @@ def enforce_claim_boundary(dataset_type: str, metrics: dict | None = None) -> di
         "reason": reason,
         "publication_language": PUBLICATION_LANGUAGE,
     }
+
+
+def main(paths: Sequence[str | Path] | None = None) -> int:
+    """CI gate for unapproved synthetic-looking artifact paths.
+
+    By default this validates the legacy migration manifest itself: cataloged
+    legacy aliases remain allowed temporarily, and every proposed migration path
+    must live under an approved synthetic/fixture root. Callers may pass an
+    explicit path sequence to gate newly produced artifacts.
+    """
+
+    if paths is None:
+        manifest = load_legacy_synthetic_manifest()
+        paths = [
+            path
+            for entry in manifest.get("entries", [])
+            for path in (entry.get("original_path"), entry.get("proposed_boundary_path"))
+            if path
+        ]
+    violations = find_unapproved_synthetic_paths(paths)
+    if violations:
+        print("Unapproved synthetic/mock/demo/example/fixture paths found outside approved roots:")
+        for path in violations:
+            print(f"- {path}")
+        return 1
+    print("Synthetic path boundary check passed.")
+    return 0
+
+
+if __name__ == "__main__":
+    import sys
+
+    raise SystemExit(main(sys.argv[1:] or None))

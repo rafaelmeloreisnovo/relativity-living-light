@@ -3,21 +3,18 @@
 TEXTUAL_OUTPUTS = [
     'data/inputs/structure_d/Hz.csv',
     'data/inputs/structure_d/fsigma8.csv',
-    'data/inputs/structure_d/Hz_cov.csv',
-    'data/inputs/structure_d/Hz_cov_matrix.csv',
-    'data/inputs/structure_d/fsigma8_cov.csv',
-    'data/inputs/structure_d/fsigma8_cov_matrix.csv',
+    'data/synthetic/structure_d/Hz_cov.csv',
+    'data/synthetic/structure_d/Hz_cov_matrix.csv',
+    'data/synthetic/structure_d/fsigma8_cov.csv',
+    'data/synthetic/structure_d/fsigma8_cov_matrix.csv',
+    'data/synthetic/structure_d/mock_data_contract.json',
     'data/inputs/structure_d/mock_data_contract.json',
-    'data/inputs/structure_d/Hz_cov.csv',
-    'data/inputs/structure_d/Hz_cov_matrix.csv',
-    'data/inputs/structure_d/fsigma8_cov.csv',
-    'data/inputs/structure_d/fsigma8_cov_matrix.csv',
 ]
 
 import argparse
 import json
 import os
-import argparse
+import shutil
 from datetime import datetime, timezone
 
 import numpy as np
@@ -25,6 +22,9 @@ import pandas as pd
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 DATA = os.path.join(BASE_DIR, "data", "inputs", "structure_d")
+SYNTHETIC_DATA = os.path.join(BASE_DIR, "data", "synthetic", "structure_d")
+CONTRACT_RELATIVE_PATH = "data/synthetic/structure_d/mock_data_contract.json"
+LEGACY_CONTRACT_RELATIVE_PATH = "data/inputs/structure_d/mock_data_contract.json"
 
 
 def write_csv_checked(df, output_path):
@@ -52,10 +52,13 @@ def _write_covariance_products(z_values, values, sigma_values, csv_name, matrix_
     sigma_diag = np.diag(sigma_values)
     covariance = sigma_diag @ corr @ sigma_diag
 
-    write_csv_checked(
-        pd.DataFrame({"z": z_values, values.name: values.to_numpy(dtype=float)}),
-        os.path.join(DATA, csv_name),
-    )
+    os.makedirs(SYNTHETIC_DATA, exist_ok=True)
+    csv_df = pd.DataFrame({"z": z_values, values.name: values.to_numpy(dtype=float)})
+    write_csv_checked(csv_df, os.path.join(SYNTHETIC_DATA, csv_name))
+    np.savetxt(os.path.join(SYNTHETIC_DATA, matrix_name), covariance, delimiter=",", fmt="%.10g")
+
+    # Temporary compatibility aliases for older tests/scripts that still read data/inputs/structure_d.
+    write_csv_checked(csv_df, os.path.join(DATA, csv_name))
     np.savetxt(os.path.join(DATA, matrix_name), covariance, delimiter=",", fmt="%.10g")
 
 
@@ -113,42 +116,27 @@ def main(seed=42, generate_covariance=False):
         "covariance_generated": bool(generate_covariance),
     }
 
-    if generate_covariance:
-        hz_cov_df = hz_df[["z", "Hz"]].copy()
-        fs8_cov_df = fs8_df[["z", "fs8"]].copy()
-        hz_cov_matrix = _build_covariance(z_hz, sig_hz)
-        fs8_cov_matrix = _build_covariance(z_fs, sig_fs)
-
-        write_csv_checked(hz_cov_df, os.path.join(DATA, "Hz_cov.csv"))
-        write_matrix_checked(hz_cov_matrix, os.path.join(DATA, "Hz_cov_matrix.csv"))
-        write_csv_checked(fs8_cov_df, os.path.join(DATA, "fsigma8_cov.csv"))
-        write_matrix_checked(fs8_cov_matrix, os.path.join(DATA, "fsigma8_cov_matrix.csv"))
-
-        metadata["datasets"]["Hz_cov.csv"] = {
-            "rows": int(len(z_hz)),
-            "matrix_shape": [int(len(z_hz)), int(len(z_hz))],
-        }
-        metadata["datasets"]["fsigma8_cov.csv"] = {
-            "rows": int(len(z_fs)),
-            "matrix_shape": [int(len(z_fs)), int(len(z_fs))],
-        }
-
-    contract_path = os.path.join(DATA, "mock_data_contract.json")
+    os.makedirs(SYNTHETIC_DATA, exist_ok=True)
+    contract_path = os.path.join(SYNTHETIC_DATA, "mock_data_contract.json")
     with open(contract_path, "w", encoding="utf-8") as fp:
         json.dump(metadata, fp, ensure_ascii=False, indent=2)
+
+    legacy_contract_path = os.path.join(DATA, "mock_data_contract.json")
+    shutil.copy2(contract_path, legacy_contract_path)
 
     outputs = [
         "data/inputs/structure_d/Hz.csv",
         "data/inputs/structure_d/fsigma8.csv",
-        "data/inputs/structure_d/mock_data_contract.json",
+        CONTRACT_RELATIVE_PATH,
+        LEGACY_CONTRACT_RELATIVE_PATH,
     ]
     if generate_covariance:
         outputs.extend(
             [
-                "data/inputs/structure_d/Hz_cov.csv",
-                "data/inputs/structure_d/Hz_cov_matrix.csv",
-                "data/inputs/structure_d/fsigma8_cov.csv",
-                "data/inputs/structure_d/fsigma8_cov_matrix.csv",
+                "data/synthetic/structure_d/Hz_cov.csv",
+                "data/synthetic/structure_d/Hz_cov_matrix.csv",
+                "data/synthetic/structure_d/fsigma8_cov.csv",
+                "data/synthetic/structure_d/fsigma8_cov_matrix.csv",
             ]
         )
     print("Example data written: " + ", ".join(outputs))
@@ -169,11 +157,5 @@ if __name__ == "__main__":
         action="store_false",
         help="Disable covariance artifact generation.",
     )
-    parser.add_argument(
-        "--without-covariance",
-        action="store_true",
-        help="Disable covariance generation even if --with-covariance is present.",
-    )
     args = parser.parse_args()
-    generate_covariance = bool(args.with_covariance or not args.without_covariance)
-    main(seed=args.seed, generate_covariance=generate_covariance)
+    main(seed=args.seed, generate_covariance=args.generate_covariance)

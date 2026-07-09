@@ -1,0 +1,16 @@
+{
+  "source": "igrf14",
+  "group": "geomagnetic",
+  "url": "https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field",
+  "license": "NOAA public data",
+  "version": "IGRF14",
+  "heavy": false,
+  "run_utc": "2026-06-29T22:58:23.455282+00:00",
+  "status": "fetched",
+  "files": [
+    {
+      "path": "raw/igrf14/payload.bin",
+      "sha256": "276a81b983e7faf1dc256587b9a5c4b8618c6e8f47d1a4f3f2c0d440b525ff97"
+    }
+  ]
+}

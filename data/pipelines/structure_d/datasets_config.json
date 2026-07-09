@@ -13,7 +13,8 @@
       "active_datasets": [
         "real_hz",
         "real_bao",
-        "real_cmb_shift"
+        "real_cmb_shift",
+        "real_fsigma8"
       ]
     },
     "structure_d_partial_real": {
@@ -28,6 +29,16 @@
       "active_datasets": [
         "hz_cov_synth",
         "fsigma8_cov_synth"
+      ]
+    },
+    "structure_d_real_growth_validation": {
+      "run_name": "structure_d_real_growth_validation",
+      "active_datasets": [
+        "real_hz",
+        "real_bao",
+        "real_cmb_shift",
+        "real_fsigma8",
+        "real_desi_dr2_bao"
       ]
     }
   },
@@ -81,7 +92,11 @@
         "redshift_range": "[0.07, 2.34]",
         "reference": "Moresco2022+BOSS"
       },
-      "duplicate_z_policy": "erro"
+      "duplicate_z_policy": "erro",
+      "source_id": "real_hz",
+      "sha256": "1194fe2066dc3d92b4870cfb03d2cdbe2a316deae2e1355943f7f2ccca6d52b6",
+      "local_path": "data/real/Hz_data_real.csv",
+      "dataset_type": "real_observational"
     },
     "real_bao": {
       "format": "csv",
@@ -99,7 +114,11 @@
         "reference": "BOSS_DR12_DESI2024"
       },
       "duplicate_z_policy": "erro",
-      "z_order_policy": "sort"
+      "z_order_policy": "sort",
+      "source_id": "real_bao",
+      "sha256": "1decb159dd8c276e356e1f2ca45028da0079302a0b7b279797d8e40aab0c9527",
+      "local_path": "data/real/BAO_data_real.csv",
+      "dataset_type": "real_observational"
     },
     "real_cmb_shift": {
       "format": "json_scalars",
@@ -120,11 +139,15 @@
         "survey": "Planck2018",
         "redshift_range": "z=1089.92",
         "reference": "Planck2018_VI"
-      }
+      },
+      "source_id": "real_cmb_shift",
+      "sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
+      "local_path": "data/real/CMB_shift_real.json",
+      "dataset_type": "real_observational"
     },
     "hz_cov_synth": {
       "format": "csv",
-      "path": "data/inputs/structure_d/Hz_cov.csv",
+      "path": "data/synthetic/structure_d/Hz_cov.csv",
       "observable": "Hz",
       "error_model": "covariance",
       "columns": {
@@ -132,16 +155,18 @@
         "value": "Hz",
         "covariance": null
       },
-      "covariance_path": "data/inputs/structure_d/Hz_cov_matrix.csv",
+      "covariance_path": "data/synthetic/structure_d/Hz_cov_matrix.csv",
       "metadata": {
         "survey": "inputs_structure_d_covariance",
         "redshift_range": "[0.0, 3.0]",
-        "reference": "local_input_covariance"
-      }
+        "reference": "local_input_covariance",
+        "regression_fixture": true
+      },
+      "dataset_type": "synthetic_regression_test"
     },
     "fsigma8_cov_synth": {
       "format": "csv",
-      "path": "data/inputs/structure_d/fsigma8_cov.csv",
+      "path": "data/synthetic/structure_d/fsigma8_cov.csv",
       "observable": "fs8",
       "error_model": "covariance",
       "columns": {
@@ -149,12 +174,14 @@
         "value": "fs8",
         "covariance": null
       },
-      "covariance_path": "data/inputs/structure_d/fsigma8_cov_matrix.csv",
+      "covariance_path": "data/synthetic/structure_d/fsigma8_cov_matrix.csv",
       "metadata": {
         "survey": "inputs_structure_d_covariance",
         "redshift_range": "[0.0, 3.0]",
-        "reference": "local_input_covariance"
-      }
+        "reference": "local_input_covariance",
+        "regression_fixture": true
+      },
+      "dataset_type": "synthetic_regression_test"
     },
     "real_fsigma8": {
       "format": "csv",
@@ -172,7 +199,11 @@
         "reference": "Hudson_Turnbull_2013+Beutler_2012+compiled_fsigma8_table",
         "real_data_status": "materialized_real"
       },
-      "duplicate_z_policy": "primeira_ocorrencia"
+      "duplicate_z_policy": "primeira_ocorrencia",
+      "source_id": "real_fsigma8_compilation",
+      "sha256": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
+      "local_path": "data/real/cosmology/fsigma8_growth_real.csv",
+      "dataset_type": "real_observational"
     },
     "real_desi_dr2_bao": {
       "format": "csv",
@@ -192,7 +223,11 @@
         "covariance_summary": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
       },
       "duplicate_z_policy": "primeira_ocorrencia",
-      "z_order_policy": "sort"
+      "z_order_policy": "sort",
+      "source_id": "real_desi_dr2_bao",
+      "sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
+      "local_path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "dataset_type": "real_observational"
     }
   },
   "validation": {

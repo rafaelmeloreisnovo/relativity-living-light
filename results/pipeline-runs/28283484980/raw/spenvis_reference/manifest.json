@@ -1,0 +1,12 @@
+{
+  "source": "spenvis_reference",
+  "group": "heliophysics",
+  "url": "https://www.spenvis.oma.be/",
+  "license": "SPENVIS terms",
+  "version": "reference",
+  "heavy": true,
+  "manual_reason": "SPENVIS workflows require portal/session configuration before exporting data.",
+  "run_utc": "2026-06-27T08:10:56.321773+00:00",
+  "status": "manual_materialization_required",
+  "reason": "SPENVIS workflows require portal/session configuration before exporting data."
+}

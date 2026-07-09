@@ -6,32 +6,36 @@
   "inputs": [
     {
       "axis": "expansion_Hz",
-      "path": "data/real/Hz_data_real.csv",
       "observable": "H_obs",
       "error_policy": "diagonal_sigma_H",
-      "notes": "Materialized H(z) table with source tags per row."
+      "notes": "Materialized H(z) table with source tags per row.",
+      "source_id": "real_hz",
+      "canonical_source_fields": "resolved from canonical_observational_sources_manifest by source_id"
     },
     {
       "axis": "bao_DESI_DR2",
-      "path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
       "covariance_summary_path": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
       "observable": "DV_over_rd, DM_over_rd, DH_over_rd",
       "error_policy": "13x13 covariance reconstructed from committed diagonal errors plus same-bin DM/DH correlations; BGS DV remains diagonal.",
-      "notes": "Full external DESI supplement remains an external heavy archive; this manifest uses the committed primary likelihood table and committed covariance summary."
+      "notes": "Full external DESI supplement remains an external heavy archive; this manifest uses the committed primary likelihood table and committed covariance summary.",
+      "source_id": "real_desi_dr2_bao",
+      "canonical_source_fields": "resolved from canonical_observational_sources_manifest by source_id"
     },
     {
       "axis": "growth_fsigma8",
-      "path": "data/real/cosmology/fsigma8_growth_real.csv",
       "observable": "fs8",
       "error_policy": "diagonal_sigma",
-      "notes": "Real fσ8/RSD compilation materialized from literature tables; replaces synthetic smooth growth fixture in the joint real route."
+      "notes": "Real fσ8/RSD compilation materialized from literature tables; replaces synthetic smooth growth fixture in the joint real route.",
+      "source_id": "real_fsigma8_compilation",
+      "canonical_source_fields": "resolved from canonical_observational_sources_manifest by source_id"
     },
     {
       "axis": "cmb_shift",
-      "path": "data/real/CMB_shift_real.json",
       "observable": "R_obs, la_obs",
       "error_policy": "diagonal_R_la_sigma",
-      "notes": "Planck 2018 shift-parameter summary stored locally."
+      "notes": "Planck 2018 shift-parameter summary stored locally.",
+      "source_id": "real_cmb_shift",
+      "canonical_source_fields": "resolved from canonical_observational_sources_manifest by source_id"
     }
   ],
   "failsafe": {
@@ -43,5 +47,13 @@
   "source_signature_outputs": [
     "results/audit/real_source_signature_verification.json",
     "results/audit/real_source_signature_verification.md"
-  ]
+  ],
+  "canonical_observational_sources_manifest": "data/real/cosmology/observational_sources_manifest.json",
+  "source_ids": [
+    "real_hz",
+    "real_desi_dr2_bao",
+    "real_fsigma8_compilation",
+    "real_cmb_shift"
+  ],
+  "source_resolution_policy": "Resolve source_id against canonical_observational_sources_manifest; do not duplicate per-source status, sha256, local_path, or dataset_type in this consumer manifest."
 }

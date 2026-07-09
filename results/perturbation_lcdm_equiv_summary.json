@@ -1,0 +1,9 @@
+{
+  "status": "linear_perturbation_kernel_available",
+  "background": "src/rll/class_rll_background.c",
+  "regime": "GR matter perturbation on exact RLL background",
+  "delta_z0": 1.0,
+  "growth_rate_z0": 0.5271032022620769,
+  "cmb_cl_exact": "TOKEN_VAZIO",
+  "nonlinear_pk_exact": "TOKEN_VAZIO"
+}

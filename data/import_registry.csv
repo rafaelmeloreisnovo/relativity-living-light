@@ -1,0 +1,2 @@
+dataset_id,source_url_or_local_path,expected_shape,claim_boundary,promotion_blocked
+cmb_shift_planck2018_default,data/real/CMB_shift_real.json,object,import_only,true

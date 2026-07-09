@@ -7,11 +7,21 @@
   "desi_covariance_sha256": "668f2e9d9b6ec4e068c8ce35005a5355a60a00fbea6b3694277ff289232cdd73",
   "desi_covariance_readiness": {
     "path": "data/real/desi_dr2_bao_covariance.csv",
+    "source_path": "data/real/desi_dr2_bao_covariance.csv",
     "mode": "official_full",
     "ready": true,
     "claim_allowed": true,
     "reason": "official full covariance is valid",
-    "sha256": "4c95c45bf14f8eb49bf03fa512984448428920f7a2ba0a846dae30ed1da08658"
+    "sha256": "4c95c45bf14f8eb49bf03fa512984448428920f7a2ba0a846dae30ed1da08658",
+    "metric": "chi2_with_covariance",
+    "baseline": [
+      "LCDM_joint_real",
+      "wCDM_joint_real",
+      "CPL_w0waCDM_joint_real"
+    ],
+    "uncertainty_or_covariance_status": "official_full_covariance_matrix",
+    "command": "python -m data.pipelines.structure_d.joint_real_likelihood",
+    "claim_boundary": "Covariance readiness is a technical evidence gate for using the official full DESI DR2 BAO covariance in chi2_with_covariance; it does not by itself confirm or validate RLL against LCDM/CPL."
   },
   "growth_benchmark": {
     "status": "skipped_missing_backend",
@@ -28,8 +38,8 @@
     "data/real/cosmology/desi_dr2_bao_primary_points.csv": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
     "data/real/desi_dr2_bao_covariance.csv": "4c95c45bf14f8eb49bf03fa512984448428920f7a2ba0a846dae30ed1da08658",
     "data/real/cosmology/fsigma8_growth_real.csv": "3781a2fa7bce9ea600060f9feb6e74ba49f4baa4ce2e7344803295c912318211",
-    "data/real/CMB_shift_real.json": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc",
-    "data/inputs/cosmology_joint/parameter_origin_registry.json": "cc208aa639661f127187e94ceeb908b59a75a228aee2d44ac7f75ced31dea2b6"
+    "data/real/CMB_shift_real.json": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
+    "data/inputs/cosmology_joint/parameter_origin_registry.json": "c4c54baad5640dab81d85c8c037019aedbcdf011351b256bf5961c0dca269ee3"
   },
   "failsafe": {
     "atomic_write": true,

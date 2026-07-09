@@ -1,0 +1,33 @@
+{
+  "artifact_id": "omega-artifact-example-fact",
+  "title": "Example fact artifact",
+  "origin_question": "How should a minimal fact OmegaArtifact be represented without claim inflation?",
+  "context": "Repository fact: RAFAELIA Ω schema files exist in this working tree.",
+  "method": "Direct file presence inspection only.",
+  "hypotheses": [],
+  "evidence": [
+    {
+      "evidence_id": "ev-schema-file-presence",
+      "status": "evidence",
+      "source_ref": "schemas/omega_schema.json",
+      "hash": "TOKEN_VAZIO"
+    }
+  ],
+  "relations": [
+    "omega-relation-example"
+  ],
+  "revisions": [
+    {
+      "revision_id": "rev-2026-07-09-001",
+      "timestamp": "2026-07-09T00:00:00Z",
+      "summary": "Initial canonical example fixture."
+    }
+  ],
+  "limitations": [
+    "This example asserts only file presence, not scientific validity."
+  ],
+  "status": "fact",
+  "next_question": "What additional fixture coverage is required before runtime integration?",
+  "created_at": "2026-07-09T00:00:00Z",
+  "updated_at": "2026-07-09T00:00:00Z"
+}

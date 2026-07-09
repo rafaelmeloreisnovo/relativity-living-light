@@ -1,0 +1,137 @@
+# w_eff(z) RLL → Mapeamento no plano w0-wa CPL
+# Gerado: 2026-06-27 | ∆RafaelVerboΩ | RAFCODE-Φ
+# Schema: rll.weff_cpl_mapping.v1
+# Propósito: verificar se trajetória RLL cobre região preferida por DESI DR2
+
+schema_version: "1.0"
+module: weff_cpl_plane_mapping
+status: CALCULADO_PARCIALMENTE
+updated_utc: "2026-06-27"
+
+background:
+  desi_dr2_cpl_bestfit:
+    w0: -0.838
+    wa: -0.62
+    source: "DESI DR2 Results V, Table 1 (BAO+CMB+SNe)"
+    note: "Preferência 3.1σ por energia escura dinâmica"
+  desi_dr2_cpl_bestfit_joint_real_this_repo:
+    w0: -0.3
+    wa: -1.8357
+    source: "joint_real_likelihood.json desta sessão"
+    note: "Diverge do DESI oficial — provavelmente por H₀ artefato = 60"
+
+calculated_weff_rll:
+  parameters:
+    Om: 0.315
+    Os0: 0.02
+    zt: 1.0
+    wt: 0.3
+  table:
+    - z: 0.000
+      w_eff: -0.9656
+      f_z: 0.9656
+      w_cpl_desi: -0.838
+    - z: 0.100
+      w_eff: -0.9199
+      f_z: 0.9526
+      w_cpl_desi: -0.776
+    - z: 0.295
+      w_eff: -0.7641
+      f_z: 0.9145
+      w_cpl_desi: -0.671
+    - z: 0.510
+      w_eff: -0.3289
+      f_z: 0.8481
+      w_cpl_desi: -0.558
+    - z: 0.706
+      w_eff: +0.3671
+      f_z: 0.7271
+      w_cpl_desi: -0.459
+    - z: 0.934
+      w_eff: +0.7294
+      f_z: 0.5548
+      w_cpl_desi: -0.354
+    - z: 1.000
+      w_eff: +0.7531
+      f_z: 0.5000
+      w_cpl_desi: -0.328
+    - z: 1.321
+      w_eff: +0.5631
+      f_z: 0.2554
+      w_cpl_desi: -0.210
+    - z: 1.484
+      w_eff: +0.4451
+      f_z: 0.1691
+      w_cpl_desi: -0.156
+    - z: 2.330
+      w_eff: +0.0419
+      f_z: 0.0117
+      w_cpl_desi: 0.055
+
+diagnosis:
+  problem: >
+    w_eff_RLL(z=0.7–1.3) = +0.37 a +0.75 (matéria-like)
+    w_CPL_DESI(z=0.7–1.3) = −0.35 a −0.46 (DE dinâmica)
+    Trajetórias OPOSTAS nesta região.
+  root_cause: >
+    Com Os0=0.02 e zt=1.0, o setor de superposição migra para
+    comportamento matéria (w~0) exatamente onde DESI prefere DE (w~−1).
+  solution_A: >
+    Aumentar Os0 para 0.06–0.10 E mover zt para 0.3–0.5
+    (transição antes de z=0.5 — setor fica DE-like nos tracers DESI)
+  solution_B: >
+    Usar ΩB0 e ΩP0 como graus de liberdade adicionais para
+    achatar a trajetória w_eff(z) na região z=0.5–1.5
+
+parameter_scan_needed:
+  description: "Varredura para achar (Os0, zt, wt) que aproxima CPL DESI"
+  command: >
+    python3 -c "
+    import math, itertools
+    def f(z,zt,wt): return 1/(1+math.exp((z-zt)/wt))
+    def rho(z,zt,wt):
+        a=1/(1+z); fz=f(z,zt,wt)
+        return fz + (1-fz)*a**-3
+    def drho(z,zt,wt,h=1e-5):
+        a=1/(1+z); x=math.log(a)
+        def rf(aa):
+            zz=1/aa-1; ff=f(zz,zt,wt)
+            return ff+(1-ff)*aa**-3
+        return (rf(math.exp(x+h))-rf(math.exp(x-h)))/(2*h)
+    def weff(z,zt,wt):
+        rf=rho(z,zt,wt); dr=drho(z,zt,wt)
+        return -1-dr/(3*rf)
+    # Pontos DESI: z=[0.295, 0.51, 0.706, 0.934, 1.321, 1.484, 2.33]
+    z_desi=[0.295,0.51,0.706,0.934,1.321,1.484]
+    w_cpl=[-0.671,-0.558,-0.459,-0.354,-0.210,-0.156]
+    best=None; best_chi2=1e9
+    for zt in [i*0.1 for i in range(3,15)]:
+        for wt in [i*0.05 for i in range(2,12)]:
+            chi2=sum((weff(z,zt,wt)-wc)**2/0.05**2
+                     for z,wc in zip(z_desi,w_cpl))
+            if chi2<best_chi2:
+                best_chi2=chi2; best=(zt,wt)
+    print(f'Melhor (zt,wt)={best}  chi2={best_chi2:.2f}')
+    "
+
+falsifiers:
+  - id: F_WEFF_01
+    test: >
+      Existe (Os0, zt, wt) tal que w_eff_RLL(z) se aproxima de
+      w_CPL_DESI em todos os tracers com chi2 < 10?
+    metric: "chi2_weff_vs_cpl < 10.0"
+    if_true: "RLL pode ser implementação física do CPL DESI"
+    if_false: "RLL não reproduz trajetória w(z) preferida por DESI — rejeição C01"
+  - id: F_WEFF_02
+    test: "w_eff_RLL(z=0) deve ser < −0.7 para parâmetros viáveis"
+    metric: "w_eff(z=0) < -0.7"
+    if_fails: "Setor Os0 não age como DE no presente — incompatível com observações"
+  - id: F_WEFF_03
+    test: "Monotonia: w_eff deve ser decrescente de z=0 a z=z_t"
+    metric: "dw_eff/dz < 0 para z in [0, zt]"
+    if_fails: "Não-monotonia cria instabilidades físicas (ghost modes)"
+
+execution:
+  script_existing: "rll_vs_lcdm.py"
+  new_script_needed: "scripts/compute_weff_cpl_mapping.py"
+  output_target: "results/weff_cpl_plane_rll.csv"

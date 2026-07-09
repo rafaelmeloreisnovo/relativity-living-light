@@ -1,0 +1,5 @@
+id,axis,path,policy
+hz,expansion,data/real/Hz_data_real.csv,diagonal
+bao,bao,data/real/cosmology/desi_dr2_bao_primary_points.csv,covariance_summary
+growth,growth,data/real/cosmology/fsigma8_growth_real.csv,diagonal
+cmb,cmb,data/real/CMB_shift_real.json,compressed

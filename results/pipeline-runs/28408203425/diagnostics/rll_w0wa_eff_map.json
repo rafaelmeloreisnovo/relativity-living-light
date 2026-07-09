@@ -1,0 +1,35 @@
+{
+  "schema": "rll.w0wa_eff_mapper.v1",
+  "claim_allowed": false,
+  "mode": "diagnostic_mapping_not_fit",
+  "definition": "w0_eff=w_dark(a=1), wa_eff=-dw_dark/da at a=1",
+  "inputs": {
+    "omega_m": 0.315,
+    "omega_s0_min": 0.0,
+    "omega_s0_max": 0.12,
+    "omega_s0_step": 0.01,
+    "zt": 1.2,
+    "wt": 0.35,
+    "cpl_w0": -0.3,
+    "cpl_wa": -1.84,
+    "out_json": "artifacts/rll-real-run/diagnostics/rll_w0wa_eff_map.json",
+    "out_csv": "artifacts/rll-real-run/tables/rll_w0wa_eff_map.csv"
+  },
+  "rows": 13,
+  "best_distance_to_cpl_reference": {
+    "omega_m": 0.315,
+    "omega_s0": 0.0,
+    "omega_lambda": 0.685,
+    "zt": 1.2,
+    "wt": 0.35,
+    "w0_eff_dark": -1.0,
+    "wa_eff_dark": -0.0,
+    "cpl_w0_reference": -0.3,
+    "cpl_wa_reference": -1.84,
+    "distance_to_cpl_reference": 1.968654362756449,
+    "sector_w_z0": -0.9685856289684298,
+    "status": "mapped_claim_blocked",
+    "claim_allowed": false
+  },
+  "safe_conclusion": "This mapper locates RLL in CPL coordinates for diagnostics only; real-data preference requires likelihood artifacts and baselines."
+}

@@ -1,6 +1,45 @@
 meta:
   schema: rll.validacao_real.caminhos_novos.v1
   generated_utc: "2026-06-04"
+  ontology:
+    artifact_kind: validation_registry
+    system_role: epistemic_router
+    canonical_path: docs/pipelines/validation_paths/CAMINHOS_VALIDACAO_NOVOS.yml
+    lifecycle: active
+    owner_layer: docs/pipelines
+    canonical: true
+    root_copy_status: duplicate_legacy
+    consumed_by:
+      - tools/generate_yml_audit_docs.py
+      - tools/docs_inventory.py
+      - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md
+  epistemics:
+    default_state: DECLARED_BY_AUTHOR
+    current_state: METADATA_READY
+    allowed_states:
+      - VERIFIED
+      - DECLARED_BY_AUTHOR
+      - TOKEN_VAZIO
+      - CONTRADICTION
+      - METADATA_READY
+      - REAL_VALIDATED_BLOCKED
+    promotion_rule: >
+      Nenhum caminho passa a VERIFIED sem fonte publica rastreavel,
+      DOI ou URL quando aplicavel, data de acesso, hash ou artefato commitado,
+      comando executado, metrica produzida, baseline ou adversario e claim boundary.
+    claim_boundary: >
+      Este YAML organiza caminhos possiveis de validacao. Ele nao afirma descoberta,
+      superioridade estatistica ou verdade fisica. Cada caminho e uma rota de teste
+      e permanece bloqueado para claim cientifico ate evidencia externa, execucao,
+      metrica, baseline e erro ou covariancia quando aplicavel.
+  real_input_registry:
+    yml: data/real_sources/rll_joint_cosmology_real_inputs.iml.yml
+    json_manifest: data/inputs/cosmology_joint/joint_real_inputs_manifest.json
+    source_signatures: data/real/cosmology/real_source_signatures.json
+    claim_boundary: >
+      Dados reais registrados em YML servem como ponte de provenance para rotas
+      coerentes. Eles nao autorizam validacao cientifica automatica nem claim de
+      superioridade sem execucao, metrica, baseline, covariancia/erro e artefato.
   principle: >
     Apenas caminhos AINDA NAO presentes no repositorio, cada um ancorado em
     dataset publico real e com falsificador explicito. Adversario padrao = w0waCDM
@@ -31,6 +70,14 @@ caminhos:
     observavel: "traducao f(z) <-> w(z) = w0 + wa(1-a)"
     dataset_publico: "DESI DR2 (arXiv 2503.14738) + Pantheon+ + Planck 2018"
     fonte_recente: "Nature Astronomy 2025 s41550-025-02669-6; arXiv 2502.12667"
+    real_data_inputs:
+      registry: data/real_sources/rll_joint_cosmology_real_inputs.iml.yml
+      uses:
+        - real_desi_dr2_bao
+        - real_cmb_shift
+      pantheon_route: data/real_sources/rll_pantheon_real_validation.iml.yml
+      state: REAL_VALIDATED_BLOCKED
+      claim_boundary: "DESI/Pantheon/Planck inputs permitem teste de mapeamento; nao confirmam RLL."
     confirma_se: "f(z) reproduz w0>-1 em z~0 e w<-1 em z>0.5 (cruzamento phantom)"
     refuta_se: "f(z) nao consegue cruzar w=-1 sem instabilidade"
     nota: "Pre-requisito. Sem isto o RLL nao fala a lingua do DESI."
@@ -41,6 +88,13 @@ caminhos:
     observavel: "estabilidade da perturbacao ao cruzar w=-1"
     dataset_publico: "derivado de DESI DR2 + CMB"
     fonte_recente: "arXiv 2404.05722 (quintessencia/phantom)"
+    real_data_inputs:
+      registry: data/real_sources/rll_joint_cosmology_real_inputs.iml.yml
+      uses:
+        - real_desi_dr2_bao
+        - real_cmb_shift
+      state: REAL_VALIDATED_BLOCKED
+      claim_boundary: "Entradas reais contextualizam a regiao w0wa; estabilidade continua sendo teste teorico interno."
     confirma_se: "setor de superposicao cruza w=-1 sem divergencia de som c_s^2"
     refuta_se: "cruzamento gera instabilidade de gradiente (c_s^2<0)"
     nota: "Teste teorico interno, sem dado novo necessario."
@@ -51,6 +105,10 @@ caminhos:
     observavel: "perfil de densidade de halo em colapso (core->cusp)"
     dataset_publico: "simulacoes SIDM publicas; perfis de clusters (DES Y6)"
     fonte_recente: "ScienceDaily 2026-01-19 (KiSS-SIDM); PIRSA:26040113"
+    real_data_inputs:
+      state: TOKEN_VAZIO
+      registry: null
+      claim_boundary: "Nenhum input real materializado no repo para esta rota; nao preencher com simulacao ou noticia."
     confirma_se: "termo plasmatico Omega_P0 modula taxa de colapso observada"
     refuta_se: "colapso de halo independe de qualquer setor magneto-coerente"
     nota: "Liga setor plasmatico ao ambiente denso. Impressao digital RLL."
@@ -61,6 +119,10 @@ caminhos:
     observavel: "S8 = sigma8 sqrt(Om/0.3) via lente fraca"
     dataset_publico: "DES Year 6 (arXiv 2026, Abbott et al.)"
     fonte_recente: "phys.org 2026-01-22; constraints 2x mais apertados"
+    real_data_inputs:
+      state: TOKEN_VAZIO
+      registry: null
+      claim_boundary: "DES Y6 ainda nao esta materializado com arquivo, hash e covariancia neste repo."
     confirma_se: "RLL alivia tensao S8 sem piorar H(z)"
     refuta_se: "RLL exige S8 fora das barras DES Y6"
     nota: "Dataset novissimo, 6 anos completos. Ainda nao no repo."
@@ -71,6 +133,14 @@ caminhos:
     observavel: "H0 inferido local vs CMB sob energia escura evolutiva"
     dataset_publico: "SH0ES + Planck + DESI"
     fonte_recente: "ApJ 2026 DOI 10.3847/1538-4357/ae4738; phys.org 2026-03-26"
+    real_data_inputs:
+      registry: data/real_sources/rll_joint_cosmology_real_inputs.iml.yml
+      uses:
+        - real_desi_dr2_bao
+        - real_cmb_shift
+      pantheon_route: data/real_sources/rll_pantheon_real_validation.iml.yml
+      state: REAL_VALIDATED_BLOCKED
+      claim_boundary: "H0/tensao exige SH0ES/Pantheon/Planck/DESI com semantica correta; entradas atuais nao resolvem a tensao sozinhas."
     confirma_se: "transicao f(z) reduz tensao H0 abaixo de 3 sigma"
     refuta_se: "f(z) deixa tensao H0 inalterada ou pior"
     nota: "Framework recente liga energia escura evolutiva a tensao de Hubble."
@@ -81,6 +151,10 @@ caminhos:
     observavel: "excesso gamma do centro galactico vs ausencia em dwarfs"
     dataset_publico: "Fermi-LAT publico; JCAP 2026"
     fonte_recente: "ScienceDaily 2026-04-10 (duas formas de DM); JCAP"
+    real_data_inputs:
+      state: TOKEN_VAZIO
+      registry: null
+      claim_boundary: "Fermi-LAT/JCAP nao esta materializado no repo com arquivo, hash, ROI e likelihood."
     confirma_se: "setor escuro multi-componente do RLL preve assimetria centro/dwarf"
     refuta_se: "RLL preve sinais identicos em ambos (contradito pela ausencia)"
     nota: "Conecta as permutacoes de configuracao da fonte que voce descreveu."
@@ -91,6 +165,15 @@ caminhos:
     observavel: "aceleracao sem energia escura (Finsler-Friedmann)"
     dataset_publico: "mesmos H(z)+BAO+SNe"
     fonte_recente: "JCAP 2025 (10):050; ScienceDaily 2026-01-11"
+    real_data_inputs:
+      registry: data/real_sources/rll_joint_cosmology_real_inputs.iml.yml
+      uses:
+        - real_hz
+        - real_desi_dr2_bao
+        - real_cmb_shift
+      pantheon_route: data/real_sources/rll_pantheon_real_validation.iml.yml
+      state: REAL_VALIDATED_BLOCKED
+      claim_boundary: "H(z)+BAO+SNe/CMB podem comparar competidores; nao autorizam claim sem rodar baseline/adversario comum."
     confirma_se: "RLL preve residuo ambiental que gravidade modificada NAO preve"
     refuta_se: "Finsler ajusta tudo que RLL ajusta, sem setor extra"
     nota: "O competidor honesto. Define onde o RLL precisa ser distinto."
@@ -101,6 +184,10 @@ caminhos:
     observavel: "componente 'direct wave' na fase de merger BH-BH"
     dataset_publico: "LVK GWTC catalogues"
     fonte_recente: "PIRSA:26040063 (2026-04-27, direct wave)"
+    real_data_inputs:
+      state: TOKEN_VAZIO
+      registry: null
+      claim_boundary: "Catalogos LVK/GWTC nao estao materializados nesta rota YML com arquivo, hash e analise de forma de onda."
     confirma_se: "termo de plasma/superposicao deixa marca na fase de merger"
     refuta_se: "direct wave totalmente explicada por GR de vacuo"
     nota: "Componente recem-identificada. Liga ao seu caso LVK existente, mas e novo."
@@ -111,6 +198,10 @@ caminhos:
     observavel: "dispersao de foton em meio de plasma (E=pc + termo de meio)"
     dataset_publico: "FRB dispersion measures publicos (CHIME/FRB)"
     fonte_recente: "relativistic energy E^2=(mc^2)^2+(pc)^2; plasma dispersion"
+    real_data_inputs:
+      state: TOKEN_VAZIO
+      registry: null
+      claim_boundary: "CHIME/FRB nao esta materializado nesta rota com catalogo, hash e modelo de dispersao."
     confirma_se: "logistica fotonica preve atraso dependente de ambiente magnetico"
     refuta_se: "atraso totalmente explicado por dispersao de plasma padrao"
     nota: "Liga E=pc do foton sem massa ao setor de superposicao. Testavel via FRB."
@@ -121,6 +212,13 @@ caminhos:
     observavel: "sinal de wa que implica recolapso futuro"
     dataset_publico: "DESI + axion DE models"
     fonte_recente: "JCAP 2025 (09):055 (Luu, Qiu, Tye); ScienceDaily 2026-02-16"
+    real_data_inputs:
+      registry: data/real_sources/rll_joint_cosmology_real_inputs.iml.yml
+      uses:
+        - real_desi_dr2_bao
+        - real_cmb_shift
+      state: REAL_VALIDATED_BLOCKED
+      claim_boundary: "DESI/CMB podem contextualizar wa; destino cosmologico exige inferencia robusta e nao e claim deste YAML."
     confirma_se: "f(z) do RLL implica destino consistente com dados de wa<0"
     refuta_se: "f(z) so admite expansao eterna, contra preferencia de wa<0"
     nota: "Consequencia de longo prazo, baixa prioridade de teste imediato."
