@@ -107,7 +107,39 @@ python tools/validate_real_data_addition_registry.py
 
 Esse registro aumenta a cobertura de fontes reais, mas mantém `CLAIM_BLOCKED` até haver arquivo local, checksum, schema, covariância/erro, baseline e métrica.
 
-## 7. Ordem operacional correta
+## 7. URLs públicas para importação guardada
+
+O workflow auxiliar abaixo aceita uma URL HTTPS pública CSV/JSON e gera artifact temporário de auditoria, sem commit automático de dado bruto:
+
+```text
+.github/workflows/import-data.yml
+```
+
+O arquivo abaixo registra URLs `raw.githubusercontent.com` já prontas para esse workflow:
+
+```text
+data/real/cosmology/import_data_public_real_urls_2026_07_09.json
+```
+
+URL padrão configurada no workflow:
+
+```text
+https://raw.githubusercontent.com/instituto-Rafael/relativity-living-light/main/data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv
+```
+
+Exemplos de artifacts recomendados:
+
+| dado real | URL registrada | artifact sugerido |
+|---|---|---|
+| Master registry RLL | `data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv` | `rll-real-master-audit` |
+| H(z) cronômetros cósmicos | `data/real/Hz_data_real.csv` | `rll-hz-real-audit` |
+| DESI DR2 BAO primary points | `data/real/cosmology/desi_dr2_bao_primary_points.csv` | `rll-desi-dr2-bao-audit` |
+| Planck 2018 compressed CMB prior | `data/real/CMB_shift_real.json` | `rll-cmb-shift-real-audit` |
+| fσ8 growth compilation | `data/real/cosmology/fsigma8_growth_real.csv` | `rll-fsigma8-real-audit` |
+
+Fronteira: importar essas URLs prova apenas que o artefato foi baixado, normalizado para JSON e hasheado. Validação científica continua bloqueada até passar por loader, schema, erro/covariância, baseline e métrica.
+
+## 8. Ordem operacional correta
 
 ```bash
 # 1. Baixar Pantheon+ oficial
@@ -119,16 +151,3 @@ python scripts/run_real_pantheon_validation.py
 # 3. Conferir artefato final
 cat data/results/model_comparison.json
 ```
-
-## 8. Forma correta de resposta científica
-
-Uma resposta correta deve dizer:
-
-1. qual arquivo real foi usado;
-2. de qual fonte primária veio;
-3. qual checksum foi calculado;
-4. qual métrica foi gerada;
-5. qual conclusão é permitida;
-6. qual conclusão ainda é proibida.
-
-Sem isso, é só narrativa, não validação científica.
