@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/instituto-Rafael/relativity-living-light/schemas/rafaelia_tail_trailer.schema.json",
+  "title": "RAFAELIA Tail Trailer",
+  "description": "Machine-readable trailer for human-first subjects, titles, calendar events, HTML blocks and custody-chain memos.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["raf", "id", "fam", "st"],
+  "properties": {
+    "raf": {
+      "type": "string",
+      "enum": ["v1"]
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{1,15}-[0-9]{4,12}$"
+    },
+    "fam": {
+      "type": "string",
+      "enum": [
+        "email",
+        "cal",
+        "drive",
+        "git",
+        "llm",
+        "cti",
+        "socket",
+        "edge",
+        "gov",
+        "paper",
+        "ops",
+        "doc",
+        "audit"
+      ]
+    },
+    "st": {
+      "type": "string",
+      "enum": ["ev", "hyp", "act", "gap", "sens", "done", "rev", "err", "audit"]
+    },
+    "dt": {
+      "type": "string",
+      "pattern": "^[0-9]{8}$",
+      "description": "Compact date in YYYYMMDD format."
+    },
+    "prev": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{1,15}-[0-9]{4,12}$"
+    },
+    "link": {
+      "type": "string",
+      "description": "Comma-separated related block IDs or external short references."
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{6,128}$"
+    },
+    "cal": {
+      "type": "string"
+    },
+    "thr": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "string",
+      "description": "Comma-separated uppercase flags."
+    }
+  },
+  "examples": [
+    {
+      "raf": "v1",
+      "id": "MAIL-0007",
+      "fam": "email",
+      "st": "ev",
+      "dt": "20260710",
+      "prev": "MAIL-0006",
+      "link": "DRV-0001,GIT-0093,CAL-0002",
+      "hash": "ab12cd34"
+    }
+  ]
+}
