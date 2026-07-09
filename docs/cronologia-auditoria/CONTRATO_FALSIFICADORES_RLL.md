@@ -1,6 +1,6 @@
 # CONTRATO DE FALSIFICADORES — RLL v0.1.0
 
-**Data**: 20260708 | **Pipeline**: rll-validacao-cientifica-completa | **Run**: 28917198081 | **Commit**: 97e51086
+**Data**: 20260709 | **Pipeline**: rll-validacao-cientifica-completa | **Run**: 28995165927 | **Commit**: f1e5354d
 
 > *"Um modelo científico que não pode ser falsificado não é ciência — é dogma."* — RAFAELIA
 
@@ -46,4 +46,4 @@
 > Referência canônica: `.github/workflows/real-data-complete-execution.yml`
 
 ---
-*Gerado em 2026-07-08T04:25:40.292161+00:00 por rll-validacao-cientifica-completa*
+*Gerado em 2026-07-09T05:08:11.573798+00:00 por rll-validacao-cientifica-completa*
