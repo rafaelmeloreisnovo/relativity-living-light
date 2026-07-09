@@ -1,9 +1,11 @@
 {
   "schema": "rll.import_data.public_real_urls.v1",
   "generated_utc": "2026-07-09T00:00:00Z",
-  "purpose": "Expose safe public raw URLs for the guarded import-data workflow using already registered real observational assets in this repository.",
+  "corrected_utc": "2026-07-09T00:00:00Z",
+  "purpose": "Expose safe public raw URLs for the guarded import-data workflow using already registered materialized observational assets where available. Governance registries are explicitly marked as governance-only, not observational data.",
   "workflow": ".github/workflows/import-data.yml",
-  "default_real_data_url": "https://raw.githubusercontent.com/instituto-Rafael/relativity-living-light/main/data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv",
+  "default_real_data_url": "https://raw.githubusercontent.com/instituto-Rafael/relativity-living-light/main/data/real/Hz_data_real.csv",
+  "correction_note": "The previous default pointed to RLL_ALL_REAL_DATA_MASTER.csv, which is a governance registry, not an observational dataset. The default is now a materialized H(z) CSV.",
   "claim_boundary": "These URLs route public CSV/JSON artifacts into an audit workspace. They do not validate RLL, dark matter, dark energy, cosmology claims, or model superiority. Scientific promotion still requires provenance, checksum, schema validation, covariance/error policy, baseline comparison and metric output.",
   "url_policy": {
     "required_scheme": "https",
@@ -19,18 +21,6 @@
     "artifact_behavior": "download to _audit/raw/data.json and upload as a temporary GitHub Actions artifact without committing raw data"
   },
   "rows": [
-    {
-      "id": "rll_real_data_master_registry",
-      "domain": "real_data_governance",
-      "format": "csv",
-      "state": "DOWNLOAD_READY",
-      "local_path": "data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv",
-      "raw_url": "https://raw.githubusercontent.com/instituto-Rafael/relativity-living-light/main/data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv",
-      "github_blob_sha_at_registration": "adfa469c8f584399e6bfc81c5dc2573ddc3fdaa1",
-      "recommended_artifact_name": "rll-real-master-audit",
-      "claim_allowed": "Audit the master registry of real-data routes and TOKEN_VAZIO gaps.",
-      "claim_blocked": "Do not treat the registry itself as observational validation."
-    },
     {
       "id": "cosmic_chronometers_hz_real",
       "domain": "expansion_history_hz",
@@ -82,6 +72,18 @@
       "recommended_artifact_name": "rll-fsigma8-real-audit",
       "claim_allowed": "Audit materialized fσ8 growth rows with survey/method/reference labels.",
       "claim_blocked": "Do not claim growth validation without covariance/independence policy and baseline comparison."
+    },
+    {
+      "id": "rll_real_data_master_registry",
+      "domain": "real_data_governance",
+      "format": "csv",
+      "state": "GOVERNANCE_ONLY_NOT_OBSERVATIONAL_DATA",
+      "local_path": "data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv",
+      "raw_url": "https://raw.githubusercontent.com/instituto-Rafael/relativity-living-light/main/data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv",
+      "github_blob_sha_at_registration": "adfa469c8f584399e6bfc81c5dc2573ddc3fdaa1",
+      "recommended_artifact_name": "rll-real-master-governance-audit",
+      "claim_allowed": "Audit the master registry of real-data routes and TOKEN_VAZIO gaps.",
+      "claim_blocked": "Do not treat this registry as observational data or validation evidence."
     }
   ]
 }
