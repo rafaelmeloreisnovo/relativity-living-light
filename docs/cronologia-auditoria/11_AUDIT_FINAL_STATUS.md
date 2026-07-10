@@ -1,8 +1,8 @@
 # Auditoria Final de Status — Modelo RLL
 
-**Data**: 2026-07-07 | **Fase**: FASE 12 — Consolidação Final  
+**Data**: 2026-07-09 | **Fase**: FASE 13 — Otimização Opção B · P-RLL-05 CONFIRMADA  
 **Status epistêmico**: [E] resultado numérico confirmado · [C] convenção documentada · [VAZIO] lacuna aberta  
-**Escopo**: fases 1–12 do repositório `relativity-living-light`
+**Escopo**: fases 1–13 do repositório `relativity-living-light`
 
 > *Documento síntese. Para detalhes de cada fase, ver documentos individuais em `docs/cronologia-auditoria/`.*
 
@@ -23,7 +23,8 @@
 | 9 | Integração 3 Universos (cosmológico/geofísico/epistemológico) | INTEGRACAO_3_UNIVERSOS | ✅ merged PR #507 |
 | 10 | Análise incompatibilidade w_eff RLL vs CPL DESI | WEFF_INCOMPATIBILIDADE | ✅ merged PR #508 |
 | 11 | Opção B/C numérico + predições datadas + update Ledger | scripts/verify_weff_opcao_b/c.py, PREDICAO_DATADA | ✅ commit 65a503c |
-| 12 | Justificativa parâmetros + auditoria final + updates | JUSTIFICATIVA_PARAMETROS, este doc | 🔄 em curso |
+| 12 | Justificativa parâmetros + auditoria final + updates | JUSTIFICATIVA_PARAMETROS, este doc | ✅ merged PR #509 |
+| 13 | Otimização Opção B (scipy/Nelder-Mead) — P-RLL-05 CONFIRMADA | scripts/optimize_weff_opcao_b.py, results/optimize_weff_opcao_b.json | ✅ merged PR #510 |
 
 ---
 
@@ -38,6 +39,7 @@
 | H2-WEFF | Opção C w_eff vs CPL DESI | FASE 11 | χ²_best=104.0 (α=0.50, r=0.05) [E] |
 | P0-PRED | Predições datadas antes de DESI DR3 | FASE 11 | 5 predições em PREDICAO_DATADA_RLL.md [C] |
 | P1-JUST | Justificativa parâmetros RLL | FASE 12 | JUSTIFICATIVA_PARAMETROS_RLL.md [C/E] |
+| P1-WEFF-B-OPT | Otimização contínua Opção B (χ²<10?) | FASE 13 | χ²_opt=0.079 (w2=−0.282, z_t=1.752, w_t=1.500) [E] |
 
 ### 2.2 Gaps Abertos — Requerem Pipeline Manual
 
@@ -45,7 +47,7 @@
 |--------|-----------|-----------|--------------|
 | **G1** | **P0** | Joint MCMC Pantheon+ + DESI BAO | Disparar `rll-validacao-cientifica-completa` modo=completo |
 | **G2** | **P0** | Bayes Factor RLL/ΛCDM (ln B₁₀) | Mesmo pipeline → job `bayes_factor_p0` |
-| P1-WEFF-B-OPT | P1 | Otimização contínua Opção B (χ²<10?) | `scripts/optimize_weff_opcao_b.py` + scipy.minimize |
+| ~~P1-WEFF-B-OPT~~ | ~~P1~~ | ~~Otimização contínua Opção B~~ | **FECHADO [E] FASE 13** — χ²=0.079, w2=−0.282, z_t=1.752, w_t=1.500 |
 | P1-JUST | P1 | z_t, w_t, Ωs0 sem derivação de primeiros princípios | MCMC joint (G1) restringirá observacionalmente |
 
 ### 2.3 Gaps Geofísicos (Universo II)
@@ -83,10 +85,11 @@ A assinatura física do setor padrão (w_eff > 0 em z~0.7–1.3) é incompatíve
 |----------|-------------------|---------|-----------------|-------------|
 | Padrão (f + matéria) | DE→matéria via f(z) | 1162.3 | Sim (~z=0.45) | Não |
 | Opção A (1-f + matéria) | Matéria→DE via (1-f(z)) | 2232.2 | Sim (z<0) | Não |
-| **Opção B** (f·a^{3(1+w1)} + (1-f)·a^{3(1+w2)}) | **DE puro** em ambos os regimes | **14.8** | **Não** | **Não** (próximo) |
+| **Opção B scan** (f·a^{3(1+w1)} + (1-f)·a^{3(1+w2)}) | **DE puro** em ambos os regimes | **14.8** | **Não** | Não (scan) → **Sim (ótimo)** |
+| **Opção B ótimo** (Nelder-Mead, FASE 13) | DE puro, w2=−0.282, z_t=1.752, w_t=1.500 | **0.079** | Não | ✅ **Sim** — P-RLL-05 [E] |
 | Opção C (α·f + (1-α)·(1-f) + matéria) | Setor duplo com peso | 104.0 | Depende de r | Não |
 
-**Conclusão estrutural [E]**: Opção B reduz a incompatibilidade dramaticamente (1162→14.8). O problema arquitetural residual é que χ²=14.8 > 10. Otimização contínua (P1-WEFF-B-OPT) pode cruzar o limiar.
+**Conclusão estrutural [E]**: Opção B reduz a incompatibilidade dramaticamente (1162→14.8 scan; 0.079 ótimo). Otimização contínua FASE 13 confirmou P-RLL-05: χ²=0.079 < 10. A compatibilidade emerge no limite w_t→grande (transição logística suavizada além da resolução BAO), onde Opção B converge para mistura de dois fluidos DE (Λ + fluido w2=−0.28) que mimetiza CPL.
 
 ---
 
@@ -154,7 +157,9 @@ NÃO PODE AFIRMAR [VAZIO]:
   ✗ Superioridade sobre ΛCDM (claim_allowed = false)
   ✗ Bayes Factor favorável (ln B₁₀ > −5)
   ✗ Parâmetros z_t, w_t, Ωs0 a partir de primeiros princípios
-  ✗ Compatibilidade plena com w_eff CPL DESI (Opção B ainda χ²=14.8 > 10)
+  ✗ Assinatura logística localizada compatível com CPL DESI [nota: Opção B ótimo (χ²=0.079) é
+    compatível numericamente, mas a compatibilidade exige w_t=1.500 → transição não localizada →
+    Opção B converge para dois fluidos DE, não fase logística distinguível]
 ```
 
 ---
@@ -167,10 +172,11 @@ NÃO PODE AFIRMAR [VAZIO]:
    - Fecha G1 (MCMC joint): constrainge (H₀, Ωm, Ωs0, z_t, w_t) com dados combinados
    - Fecha G2 (Bayes Factor): ln(B₁₀) via Savage-Dickey ou nested sampling
 
-### P1 — Alta prioridade
+### P1 — Alta prioridade (CONCLUÍDO)
 
-2. **Otimização Opção B**: criar `scripts/optimize_weff_opcao_b.py` com `scipy.minimize`
-   sobre (z_t, w2, w_t) — verificar se χ² < 10 é atingível (Predição P-RLL-05)
+2. ✅ **Otimização Opção B** (FASE 13): `scripts/optimize_weff_opcao_b.py` executado — P-RLL-05
+   CONFIRMADA com χ²=0.079 (w2=−0.282, z_t=1.752, w_t=1.500). Interpretação arquitetural [E]:
+   compatibilidade emerge como mistura de dois fluidos DE, não como fase logística localizada.
 
 3. **MCMC joint restringirá** z_t, w_t, Ωs0 observacionalmente
    → fechará TOKEN_VAZIO P1 dos três parâmetros fenomenológicos
@@ -182,4 +188,5 @@ NÃO PODE AFIRMAR [VAZIO]:
 
 ---
 
-*Documento criado em FASE 12 (2026-07-07). Referências: todos os docs em `docs/cronologia-auditoria/` e `docs/canonicos/`.*
+*Documento criado em FASE 12 (2026-07-07). Atualizado em FASE 13 (2026-07-09): FASE 12 row marcada ✅, FASE 13 adicionada, P1-WEFF-B-OPT fechado [E], claim hierarchy e conclusões atualizadas.*  
+*Referências: todos os docs em `docs/cronologia-auditoria/` e `docs/canonicos/`.*
