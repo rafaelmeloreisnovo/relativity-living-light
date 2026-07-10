@@ -599,8 +599,6 @@ def _resolve_main_output_stem() -> str:
         return _CANONICAL_STEM
     if "/" in raw or "\\" in raw:
         return _CANONICAL_STEM
-    if ".." in Path(raw).parts:
-        return _CANONICAL_STEM
     if raw.endswith((".json", ".csv", ".tsv")):
         return _CANONICAL_STEM
     # Restrict to a safe character set to prevent shell injection or unexpected
