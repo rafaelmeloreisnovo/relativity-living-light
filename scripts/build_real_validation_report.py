@@ -58,20 +58,26 @@ def _extract_evidence_scan_summary(scan: dict | None) -> dict:
 
 
 def _render_evidence_scan_section(summary: dict) -> str:
+    def _safe(value: object) -> str:
+        if value is None:
+            return "TOKEN_VAZIO"
+        # Strip characters that could alter Markdown rendering.
+        return str(value).replace("|", "&#124;").replace("\n", " ").replace("\r", "")
+
     lines = ["", "## Evidence Scan", ""]
-    lines.append(f"- claim_status: **{summary['claim_status']}**")
-    lines.append(f"- claim_summary: {summary.get('claim_summary') or 'TOKEN_VAZIO'}")
-    lines.append(f"- best_by_AICc: {summary.get('best_by_AICc') or 'TOKEN_VAZIO'}")
-    lines.append(f"- best_by_BIC: {summary.get('best_by_BIC') or 'TOKEN_VAZIO'}")
-    lines.append(f"- H0_all_equal: {summary.get('H0_all_equal')}")
+    lines.append(f"- claim_status: **{_safe(summary['claim_status'])}**")
+    lines.append(f"- claim_summary: {_safe(summary.get('claim_summary'))}")
+    lines.append(f"- best_by_AICc: {_safe(summary.get('best_by_AICc'))}")
+    lines.append(f"- best_by_BIC: {_safe(summary.get('best_by_BIC'))}")
+    lines.append(f"- H0_all_equal: {_safe(summary.get('H0_all_equal'))}")
     aicc_delta = summary.get("delta_AICc_rll_minus_cpl")
     bic_delta = summary.get("delta_BIC_rll_minus_cpl")
-    lines.append(f"- Delta AICc RLL-CPL: {aicc_delta if aicc_delta is not None else 'TOKEN_VAZIO'}")
-    lines.append(f"- Delta BIC RLL-CPL: {bic_delta if bic_delta is not None else 'TOKEN_VAZIO'}")
+    lines.append(f"- Delta AICc RLL-CPL: {_safe(aicc_delta)}")
+    lines.append(f"- Delta BIC RLL-CPL: {_safe(bic_delta)}")
     blocking = summary.get("blocking_reasons", [])
-    lines.append(f"- blocking_reasons: {', '.join(blocking) if blocking else 'none'}")
+    lines.append(f"- blocking_reasons: {', '.join(_safe(r) for r in blocking) if blocking else 'none'}")
     warnings = summary.get("warnings", [])
-    lines.append(f"- warnings: {', '.join(warnings) if warnings else 'none'}")
+    lines.append(f"- warnings: {', '.join(_safe(w) for w in warnings) if warnings else 'none'}")
     return "\n".join(lines) + "\n"
 
 

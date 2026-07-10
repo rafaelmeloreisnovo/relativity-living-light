@@ -579,6 +579,9 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
 _OUTPUT_STEM_ENV = "STRUCTURE_D_JOINT_OUTPUT_STEM"
 _DEFAULT_OUTPUT_STEM = "joint_real_likelihood"
 _CANONICAL_STEM = "joint_real_likelihood"
+_SAFE_STEM_CHARS = frozenset(
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
+)
 
 
 def _resolve_main_output_stem() -> str:
@@ -589,9 +592,20 @@ def _resolve_main_output_stem() -> str:
     exposes is also respected, preventing accidental canonical-artifact overwrites during robust-fit runs.
     """
     raw = os.environ.get(_OUTPUT_STEM_ENV, _DEFAULT_OUTPUT_STEM).strip()
-    if not raw or raw in {".", ".."} or "/" in raw or "\\" in raw:
+    if not raw:
+        return _CANONICAL_STEM
+    # Reject absolute paths, path separators, traversal components, and extensions.
+    if raw.startswith(("/", "\\")) or raw in {".", ".."}:
+        return _CANONICAL_STEM
+    if "/" in raw or "\\" in raw:
+        return _CANONICAL_STEM
+    if ".." in Path(raw).parts:
         return _CANONICAL_STEM
     if raw.endswith((".json", ".csv", ".tsv")):
+        return _CANONICAL_STEM
+    # Restrict to a safe character set to prevent shell injection or unexpected
+    # filesystem behaviour when the stem is used directly in filenames.
+    if not all(c in _SAFE_STEM_CHARS for c in raw):
         return _CANONICAL_STEM
     return raw
 

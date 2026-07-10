@@ -5,7 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-_MODEL_COMPARISON_FIXTURE = {
+MODEL_COMPARISON_FIXTURE = {
     "n_obs": 10,
     "k_rll": 5,
     "k_lcdm": 2,
@@ -29,7 +29,7 @@ _MODEL_COMPARISON_FIXTURE = {
 
 def test_build_real_validation_report_generates_outputs(tmp_path: Path) -> None:
     input_json = tmp_path / "model_comparison.json"
-    input_json.write_text(json.dumps(_MODEL_COMPARISON_FIXTURE), encoding="utf-8")
+    input_json.write_text(json.dumps(MODEL_COMPARISON_FIXTURE), encoding="utf-8")
 
     out_json = tmp_path / "real_validation_report.json"
     out_table = tmp_path / "model_comparison_table.md"
@@ -61,7 +61,7 @@ def test_build_real_validation_report_generates_outputs(tmp_path: Path) -> None:
 def test_report_includes_evidence_scan_token_vazio_when_no_scan(tmp_path: Path) -> None:
     """When no evidence scan JSON exists the report embeds TOKEN_VAZIO claim_status."""
     input_json = tmp_path / "model_comparison.json"
-    input_json.write_text(json.dumps(_MODEL_COMPARISON_FIXTURE), encoding="utf-8")
+    input_json.write_text(json.dumps(MODEL_COMPARISON_FIXTURE), encoding="utf-8")
 
     out_json = tmp_path / "real_validation_report.json"
     out_table = tmp_path / "model_comparison_table.md"
@@ -97,7 +97,7 @@ def test_report_includes_evidence_scan_token_vazio_when_no_scan(tmp_path: Path) 
 def test_report_wires_evidence_scan_when_available(tmp_path: Path) -> None:
     """When a scan JSON is provided the report embeds its claim_status and key deltas."""
     input_json = tmp_path / "model_comparison.json"
-    input_json.write_text(json.dumps(_MODEL_COMPARISON_FIXTURE), encoding="utf-8")
+    input_json.write_text(json.dumps(MODEL_COMPARISON_FIXTURE), encoding="utf-8")
 
     scan_json = tmp_path / "rll_model_evidence_scan.json"
     scan_json.write_text(
