@@ -576,8 +576,41 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
     payload["outputs"] = outputs
     return payload
 
+_OUTPUT_STEM_ENV = "STRUCTURE_D_JOINT_OUTPUT_STEM"
+_DEFAULT_OUTPUT_STEM = "joint_real_likelihood"
+_CANONICAL_STEM = "joint_real_likelihood"
+_SAFE_STEM_CHARS = frozenset(
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
+)
+
+
+def _resolve_main_output_stem() -> str:
+    """Read STRUCTURE_D_JOINT_OUTPUT_STEM from environment, falling back to the canonical default.
+
+    When this module is executed directly (e.g. ``python -m data.pipelines.structure_d.joint_real_likelihood``),
+    this function ensures the same stem-override contract that ``scripts/run_structure_d_joint_likelihood.py``
+    exposes is also respected, preventing accidental canonical-artifact overwrites during robust-fit runs.
+    """
+    raw = os.environ.get(_OUTPUT_STEM_ENV, _DEFAULT_OUTPUT_STEM).strip()
+    if not raw:
+        return _CANONICAL_STEM
+    # Reject absolute paths, path separators, traversal components, and extensions.
+    if raw.startswith(("/", "\\")) or raw in {".", ".."}:
+        return _CANONICAL_STEM
+    if "/" in raw or "\\" in raw:
+        return _CANONICAL_STEM
+    if raw.endswith((".json", ".csv", ".tsv")):
+        return _CANONICAL_STEM
+    # Restrict to a safe character set to prevent shell injection or unexpected
+    # filesystem behaviour when the stem is used directly in filenames.
+    if not all(c in _SAFE_STEM_CHARS for c in raw):
+        return _CANONICAL_STEM
+    return raw
+
+
 def main() -> dict:
-    payload = run_joint_likelihood()
+    output_stem = _resolve_main_output_stem()
+    payload = run_joint_likelihood(output_stem=output_stem)
     print(pd.DataFrame(payload["rows"]).to_string(index=False))
     for output in payload["outputs"]:
         print(f"Wrote: {output['path']}")
