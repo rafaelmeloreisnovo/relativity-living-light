@@ -43,5 +43,14 @@ def test_execution_result_has_hashes_and_timestamps(tmp_path: Path) -> None:
     datetime.fromisoformat(result_payload["started_at"].replace("Z", "+00:00"))
     datetime.fromisoformat(result_payload["ended_at"].replace("Z", "+00:00"))
 
-    assert result_payload["stdout_sha256"] == hashlib.sha256(result_payload["stdout_truncated"].encode("utf-8")).hexdigest() or len(result_payload["stdout_truncated"]) == 4096
+    expected_stdout_parts = []
+    expected_stderr_parts = []
+    for args in ([ "status" ], [ "diff", "--stat" ]):
+        proc = subprocess.run(["git", *args], cwd=ROOT, text=True, capture_output=True, check=False)
+        expected_stdout_parts.append(f"$ git {' '.join(args)}\n{proc.stdout}")
+        expected_stderr_parts.append(f"$ git {' '.join(args)}\n{proc.stderr}")
+    expected_stdout = "\n".join(expected_stdout_parts)
+    expected_stderr = "\n".join(expected_stderr_parts)
+    assert result_payload["stdout_sha256"] == hashlib.sha256(expected_stdout.encode("utf-8")).hexdigest()
+    assert result_payload["stderr_sha256"] == hashlib.sha256(expected_stderr.encode("utf-8")).hexdigest()
     assert len(result_payload["stderr_sha256"]) == 64

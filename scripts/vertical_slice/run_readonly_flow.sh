@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 if [[ $# -lt 1 ]]; then
-  echo "Uso: $0 <intent_ir.json> [output_dir]" >&2
+  echo "Usage: $0 <intent_ir.json> [output_dir]" >&2
   exit 2
 fi
 
@@ -52,7 +52,7 @@ def validate_intent_schema(intent: dict[str, Any], schema: dict[str, Any]) -> No
     validator = Draft202012Validator(schema)
     errors = sorted(validator.iter_errors(intent), key=lambda e: list(e.path))
     if errors:
-        raise ValueError(f"intent_ir inválido: {errors[0].message}")
+        raise ValueError(f"intent_ir invalid: {errors[0].message}")
 
 
 def classify_gate(intent: dict[str, Any], capabilities: dict[str, Any], policy: dict[str, Any]) -> str:
