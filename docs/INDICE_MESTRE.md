@@ -89,6 +89,7 @@ Encaminhamentos complementares:
 - [`docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md`](RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md) - ledger de proveniencia celular/Termux e estados VERIFIED/DECLARED/TOKEN_VAZIO
 - [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](RLL_NEXT_WORK_DOCUMENTATION_PLAN.md) - plano operacional para inventario da tag, imagens, CSVs, estacoes de dados e non-post-hoc
 - [`docs/RLL_1234_CHUNK_TEXT_AUDIT.md`](RLL_1234_CHUNK_TEXT_AUDIT.md) - auditoria textual dos chunks do `1234.zip`
+- [`docs/governance/OPERATIONAL_EXCELLENCE_EXECUTION_FRAMEWORK.md`](governance/OPERATIONAL_EXCELLENCE_EXECUTION_FRAMEWORK.md) - framework de execucao para excelencia operacional, governanca continua, auditoria e pipelines
 - [`docs/CANONICAL_SOURCES.md`](CANONICAL_SOURCES.md)
 - [`docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md`](POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) **(fonte oficial para formatos no core e publicacao de artefatos externos)**
 - [`docs/RAFAELIA_REGIME_INDEX.md`](RAFAELIA_REGIME_INDEX.md) **(classificacao de regimes: formula, hipotese, dado, validacao, legado e simbolico)**
