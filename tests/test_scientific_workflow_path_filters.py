@@ -51,12 +51,14 @@ NON_SCIENCE_CHANGE_EXAMPLES = (
 
 
 def _workflow(path: str) -> dict:
-    return yaml.load(Path(path).read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+    return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
 
 
 def _pull_request_paths(path: str) -> list[str]:
     workflow = _workflow(path)
-    pull_request = workflow["on"]["pull_request"]
+    workflow_on = workflow.get("on", workflow.get(True))
+    assert isinstance(workflow_on, dict), f"{path} must define workflow triggers"
+    pull_request = workflow_on["pull_request"]
     assert isinstance(pull_request, dict), f"{path} must define pull_request settings"
     paths = pull_request.get("paths")
     assert isinstance(paths, list) and paths, f"{path} must define pull_request.paths"

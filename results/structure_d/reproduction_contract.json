@@ -2,7 +2,7 @@
   "command": "python -m data.pipelines.structure_d.run_all",
   "execution_path": "classic",
   "profile": "structure_d_partial_real",
-  "git_commit": "ea3f98b63e3851e39d906cf08602ab25005d2c2f",
+  "git_commit": "ec24f27669ae7a38e0a55c398cc402f813b08f86",
   "dirty_worktree": true,
   "covariance_policy": "prefer_full",
   "covariance_policy_supported": [
