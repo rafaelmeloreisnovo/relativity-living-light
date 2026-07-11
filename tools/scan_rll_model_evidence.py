@@ -273,6 +273,10 @@ def scan(input_csv: Path, registry: Path) -> EvidenceScan:
 
     if any(ms.dof_consistent is False for ms in model_scans):
         blocking.append("at least one model row has inconsistent N-k-dof")
+
+    claim_status = "CLAIM_BLOCKED"
+    summary = "Blocking metadata/gate failure prevents a positive RLL claim."
+
     if rll_scan is None:
         blocking.append("RLL row absent")
     elif rll_scan.delta_AICc_CPL is not None and rll_scan.delta_BIC_CPL is not None:

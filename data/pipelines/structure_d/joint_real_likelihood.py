@@ -12,12 +12,13 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import importlib.util
 import json
 import os
 import sys
 import time
 from pathlib import Path
-from typing import Callable
+from typing import Any, Callable
 
 import numpy as np
 import pandas as pd
@@ -45,6 +46,8 @@ TEXTUAL_OUTPUTS = [
     "results/structure_d/joint_real_likelihood.csv",
     "results/structure_d/joint_real_likelihood.json",
     "results/structure_d/joint_real_likelihood_covariance_manifest.json",
+    "results/audit/rll_model_evidence_scan.json",
+    "results/audit/rll_model_evidence_scan.md",
 ]
 
 BASE_DIR = Path(__file__).resolve().parents[3]
@@ -86,6 +89,66 @@ def _sha256_file(path: Path) -> str:
         for chunk in iter(lambda: fp.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+_SCANNER_PATH = BASE_DIR / "tools" / "scan_rll_model_evidence.py"
+_SCAN_JSON_OUT = BASE_DIR / "results" / "audit" / "rll_model_evidence_scan.json"
+_SCAN_MD_OUT = BASE_DIR / "results" / "audit" / "rll_model_evidence_scan.md"
+
+
+def _run_evidence_scan(csv_path: Path, registry_path: Path) -> dict[str, Any]:
+    """Run the calculable evidence scanner on *csv_path* and write audit outputs.
+
+    Returns a compact summary dict that is embedded in the pipeline payload under
+    ``evidence_scan``.  On any error the function logs a warning and returns a
+    TOKEN_VAZIO sentinel so that the pipeline itself never fails due to scanner
+    issues.
+    """
+    sentinel: dict[str, Any] = {
+        "claim_status": "TOKEN_VAZIO",
+        "claim_summary": "Evidence scanner could not be loaded.",
+        "best_by_AICc": None,
+        "best_by_BIC": None,
+        "H0_all_equal": None,
+        "blocking_reasons": [],
+        "warnings": [],
+        "scan_json": str(_SCAN_JSON_OUT.relative_to(BASE_DIR)),
+        "scan_md": str(_SCAN_MD_OUT.relative_to(BASE_DIR)),
+    }
+    if not _SCANNER_PATH.exists():
+        sentinel["claim_summary"] = f"Scanner not found: {_SCANNER_PATH}"
+        return sentinel
+    try:
+        spec = importlib.util.spec_from_file_location("scan_rll_model_evidence", _SCANNER_PATH)
+        if spec is None or spec.loader is None:
+            sentinel["claim_summary"] = "Cannot load scanner spec."
+            return sentinel
+        scanner = importlib.util.module_from_spec(spec)
+        # Register before exec_module so @dataclass __module__ lookups resolve.
+        sys.modules["scan_rll_model_evidence"] = scanner
+        spec.loader.exec_module(scanner)  # type: ignore[union-attr]
+        result = scanner.scan(csv_path, registry_path)
+        scanner.write_json(result, _SCAN_JSON_OUT)
+        scanner.write_markdown(result, _SCAN_MD_OUT)
+        rll_row = next((ms for ms in result.model_scans if ms.model == "RLL"), None)
+        return {
+            "claim_status": result.claim_status,
+            "claim_summary": result.claim_summary,
+            "best_by_AICc": result.best_by_AICc,
+            "best_by_BIC": result.best_by_BIC,
+            "H0_all_equal": result.H0_all_equal,
+            "blocking_reasons": result.blocking_reasons,
+            "warnings": result.warnings,
+            "missing_required_model_classes": result.missing_required_model_classes,
+            "delta_AICc_rll_minus_cpl": rll_row.delta_AICc_CPL if rll_row else None,
+            "delta_BIC_rll_minus_cpl": rll_row.delta_BIC_CPL if rll_row else None,
+            "rll_local_flags": rll_row.local_flags if rll_row else [],
+            "scan_json": str(_SCAN_JSON_OUT.relative_to(BASE_DIR)),
+            "scan_md": str(_SCAN_MD_OUT.relative_to(BASE_DIR)),
+        }
+    except Exception as exc:  # pragma: no cover - defensive guard
+        sentinel["claim_summary"] = f"Evidence scanner raised: {exc}"
+        return sentinel
 
 
 def _atomic_write_text(path: Path, text: str) -> dict[str, str | bool]:
@@ -496,6 +559,14 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
     outputs = []
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.csv", _rows_to_csv(rows)))
 
+    # Run the evidence scanner immediately after the CSV is written so that
+    # audit outputs are always current when the pipeline produces a new result.
+    evidence_scan = _run_evidence_scan(RESULTS / f"{output_stem}.csv", PARAMETER_REGISTRY_PATH)
+    # Only append scan output paths to the outputs list for the canonical run.
+    if output_stem == _CANONICAL_STEM:
+        outputs.append({"path": evidence_scan["scan_json"], "backup_path": "", "rollback_available": False})
+        outputs.append({"path": evidence_scan["scan_md"], "backup_path": "", "rollback_available": False})
+
     payload = {
         "schema": "rll.joint_real_likelihood.v2",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -538,6 +609,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         "model_deltas_vs_lcdm": _json_safe(model_deltas),
         "fnext": _json_safe(build_fnext_gate(rll_delta)),
         "rows": _json_safe(rows),
+        "evidence_scan": _json_safe(evidence_scan),
     }
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.json", json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n"))
 
