@@ -11,6 +11,7 @@ Last updated: 2026-07-10
 - `scripts/build_real_validation_report.py` now wires `rll_model_evidence_scan.json` (claim_status, best_by_AICc, best_by_BIC, H0_all_equal, blocking_reasons, warnings) into every generated report — closes the gap in issue #422.
 - `data/pipelines/structure_d/joint_real_likelihood.py` `main()` now reads `STRUCTURE_D_JOINT_OUTPUT_STEM` from the environment, preventing accidental canonical-artifact overwrites when run directly — closes the gap in issue #401.
 - Safe robust-fit runner: `scripts/run_structure_d_joint_likelihood.py` with `STRUCTURE_D_JOINT_OUTPUT_STEM`, `STRUCTURE_D_JOINT_SEED`, `STRUCTURE_D_JOINT_MAXITER`.
+- Rapport semântico em dinâmicas estruturais documentado: heurísticas em 8 direções, protocolo OMEGA transdisciplinar, taxonomia de derivadas e matriz de invariantes operacionais — closes issue #409; ver [`docs/governance/RAPPORT_SEMANTICS_STRUCTURAL_DYNAMICS.md`](RAPPORT_SEMANTICS_STRUCTURAL_DYNAMICS.md).
 
 ## Purpose
 
