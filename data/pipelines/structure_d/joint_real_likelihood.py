@@ -93,11 +93,16 @@ def _git_sha() -> str | None:
     """Return the current HEAD commit SHA, or None if git is unavailable."""
     try:
         return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=BASE_DIR, text=True).strip()
-    except Exception:
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
         return None
 
 
 # Registry-name aliases for parameters whose pipeline names differ from registry entries.
+# 'OL' (Omega_Lambda, a free background parameter) resolves to the registry's 'Om' entry
+# because the registry tracks the matter density concept and uses Omega_m as the canonical
+# label for the matter/energy-budget parameters; OL is separately fitted and always counted.
+# 'Ob_h2' is the pipeline label for the physical baryon density recorded as 'omega_b' in the
+# registry (Omega_b h^2).
 _K_ALIASES: dict[str, str] = {"OL": "Om", "Ob_h2": "omega_b"}
 
 # Status prefix that marks a parameter as required in k.
@@ -113,6 +118,10 @@ def k_from_registry(param_names: tuple[str, ...], registry: dict) -> int:
     ``status`` begins with ``must_report_in_k``.  Parameters that are absent
     from the registry are counted conservatively so that k never underestimates
     the true model complexity.
+
+    Registry ``name`` values are expected to be strings; any non-string value is
+    coerced with ``str()`` to match the validation applied in
+    ``_validate_model_parameter_registry``.
     """
     known = {str(p["name"]): p for p in registry.get("parameters", [])}
     count = 0
@@ -498,7 +507,7 @@ def _model_row(
         k = k_from_registry(param_names, registry)
     else:
         k = len(param_names)
-    registry_schema = str(registry.get("schema", "")) if registry is not None else None
+    registry_schema = registry.get("schema") if registry is not None else None
     base: dict[str, float | int | str | None] = {
         "model": model,
         "chi2": components["total"],
@@ -594,7 +603,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         "growth_benchmark": growth_benchmark,
         "parameter_registry_policy": {
             "path": str(PARAMETER_REGISTRY_PATH.relative_to(BASE_DIR)),
-            "schema": str(registry.get("schema", "")),
+            "schema": registry.get("schema"),
             "required_before_information_criteria": True,
             "sha256": _sha256_file(PARAMETER_REGISTRY_PATH),
             "commit_sha": commit_sha,
