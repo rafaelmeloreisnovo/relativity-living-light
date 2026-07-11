@@ -40,7 +40,13 @@ Minimal RAFAELIA Ω fixtures live in `schemas/examples/`. They are didactic exam
 
 `schemas/examples/information_evolution_trace.example.json` demonstrates how an unknown remote origin remains `TOKEN_VAZIO` while subsequent transformations become internally traceable. It does not prove the historical origin or external validity of the represented information.
 
-Validate schemas and examples with:
+Validate the information-evolution contract and its contiguous example chain with:
+
+```bash
+python scripts/validate_information_evolution_trace.py
+```
+
+Validate the Omega schemas and examples with:
 
 ```bash
 python3 scripts/validate_omega_schemas.py
