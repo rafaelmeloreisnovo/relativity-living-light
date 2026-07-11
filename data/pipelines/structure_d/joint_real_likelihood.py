@@ -146,7 +146,7 @@ def _run_evidence_scan(csv_path: Path, registry_path: Path) -> dict[str, Any]:
             "scan_json": str(_SCAN_JSON_OUT.relative_to(BASE_DIR)),
             "scan_md": str(_SCAN_MD_OUT.relative_to(BASE_DIR)),
         }
-    except Exception as exc:  # pragma: no cover - defensive guard
+    except (ImportError, AttributeError, OSError, ValueError, SystemExit) as exc:  # pragma: no cover - defensive guard
         sentinel["claim_summary"] = f"Evidence scanner raised: {exc}"
         return sentinel
 

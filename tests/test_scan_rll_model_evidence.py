@@ -13,15 +13,19 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 SCANNER_PATH = ROOT / "tools" / "scan_rll_model_evidence.py"
 
+# Load and register the module once at module level so that @dataclass __module__
+# lookups resolve correctly. Registration in sys.modules before exec_module is
+# required because Python's dataclass decorator looks up the class's module at
+# class-definition time and would raise AttributeError if the module is absent.
+_scanner_spec = importlib.util.spec_from_file_location("scan_rll_model_evidence", SCANNER_PATH)
+assert _scanner_spec is not None and _scanner_spec.loader is not None
+_scanner_module = importlib.util.module_from_spec(_scanner_spec)
+sys.modules.setdefault("scan_rll_model_evidence", _scanner_module)
+_scanner_spec.loader.exec_module(_scanner_module)  # type: ignore[union-attr]
+
 
 def load_scanner():
-    spec = importlib.util.spec_from_file_location("scan_rll_model_evidence", SCANNER_PATH)
-    assert spec is not None and spec.loader is not None
-    module = importlib.util.module_from_spec(spec)
-    # Register in sys.modules before exec so @dataclass __module__ lookups work.
-    sys.modules["scan_rll_model_evidence"] = module
-    spec.loader.exec_module(module)
-    return module
+    return _scanner_module
 
 
 def _write_minimal_csv(path: Path, rows: list[dict]) -> None:
