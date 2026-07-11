@@ -90,7 +90,7 @@ Encaminhamentos complementares:
 - [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](RLL_NEXT_WORK_DOCUMENTATION_PLAN.md) - plano operacional para inventario da tag, imagens, CSVs, estacoes de dados e non-post-hoc
 - [`docs/RLL_1234_CHUNK_TEXT_AUDIT.md`](RLL_1234_CHUNK_TEXT_AUDIT.md) - auditoria textual dos chunks do `1234.zip`
 - [`docs/governance/OPERATIONAL_EXCELLENCE_EXECUTION_FRAMEWORK.md`](governance/OPERATIONAL_EXCELLENCE_EXECUTION_FRAMEWORK.md) - framework de execucao para excelencia operacional, governanca continua, auditoria e pipelines
-- [`docs/governance/RAPPORT_SEMANTICS_STRUCTURAL_DYNAMICS.md`](governance/RAPPORT_SEMANTICS_STRUCTURAL_DYNAMICS.md) - levantamento de rapport semantico em dinamicas estruturais: heuristicas em 8 direcoes, protocolo OMEGA transdisciplinar, taxonomia de derivadas e matriz de invariantes operacionais
+- [`docs/governance/RLL_VECTRAS_SQRT3_2_GOVERNANCE_MATRIX.md`](governance/RLL_VECTRAS_SQRT3_2_GOVERNANCE_MATRIX.md) - matriz de governanca RLL ↔ Vectras ↔ sqrt3_2: separacao de responsabilidades, fricoes, guardas epistemologicas e criterios de decisao para PRs
 - [`docs/CANONICAL_SOURCES.md`](CANONICAL_SOURCES.md)
 - [`docs/POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md`](POLITICA_REPOSITORIO_TEXTO_E_ARTEFATOS.md) **(fonte oficial para formatos no core e publicacao de artefatos externos)**
 - [`docs/RAFAELIA_REGIME_INDEX.md`](RAFAELIA_REGIME_INDEX.md) **(classificacao de regimes: formula, hipotese, dado, validacao, legado e simbolico)**
