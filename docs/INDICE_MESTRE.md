@@ -98,6 +98,7 @@ Encaminhamentos complementares:
 - [`docs/DOCUMENTATION_FULL_INVENTORY.md`](DOCUMENTATION_FULL_INVENTORY.md)
 - [`docs/ZIP_CONTENT_INDEX.md`](ZIP_CONTENT_INDEX.md) *(inventario historico; nao normativo para armazenamento no core)*
 - [`docs/DATA_INTEGRITY_CHECKLIST.md`](DATA_INTEGRITY_CHECKLIST.md)
+- [`docs/AVALIACAO_HONESTA_ESTADO_ATUAL.md`](AVALIACAO_HONESTA_ESTADO_ATUAL.md) - avaliação honesta do estado atual: o que é forte, o que não está forte, próximos saltos necessários (issue #484)
 - [`docs/ADMIN.md`](ADMIN.md)
 - [`docs/AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md`](AUDITORIA_DOCUMENTAL_E_DIRETORIOS_2026-03-05.md)
 - [`docs/NORMATIZACAO_NOMES_ARQUIVOS_RLL.md`](NORMATIZACAO_NOMES_ARQUIVOS_RLL.md) - regras para nomes de arquivos, normalizacao e contagens
