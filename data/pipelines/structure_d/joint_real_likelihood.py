@@ -15,6 +15,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -91,64 +92,53 @@ def _sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-_SCANNER_PATH = BASE_DIR / "tools" / "scan_rll_model_evidence.py"
-_SCAN_JSON_OUT = BASE_DIR / "results" / "audit" / "rll_model_evidence_scan.json"
-_SCAN_MD_OUT = BASE_DIR / "results" / "audit" / "rll_model_evidence_scan.md"
-
-
-def _run_evidence_scan(csv_path: Path, registry_path: Path) -> dict[str, Any]:
-    """Run the calculable evidence scanner on *csv_path* and write audit outputs.
-
-    Returns a compact summary dict that is embedded in the pipeline payload under
-    ``evidence_scan``.  On any error the function logs a warning and returns a
-    TOKEN_VAZIO sentinel so that the pipeline itself never fails due to scanner
-    issues.
-    """
-    sentinel: dict[str, Any] = {
-        "claim_status": "TOKEN_VAZIO",
-        "claim_summary": "Evidence scanner could not be loaded.",
-        "best_by_AICc": None,
-        "best_by_BIC": None,
-        "H0_all_equal": None,
-        "blocking_reasons": [],
-        "warnings": [],
-        "scan_json": str(_SCAN_JSON_OUT.relative_to(BASE_DIR)),
-        "scan_md": str(_SCAN_MD_OUT.relative_to(BASE_DIR)),
-    }
-    if not _SCANNER_PATH.exists():
-        sentinel["claim_summary"] = f"Scanner not found: {_SCANNER_PATH}"
-        return sentinel
+def _git_sha() -> str | None:
+    """Return the current HEAD commit SHA, or None if git is unavailable."""
     try:
-        spec = importlib.util.spec_from_file_location("scan_rll_model_evidence", _SCANNER_PATH)
-        if spec is None or spec.loader is None:
-            sentinel["claim_summary"] = "Cannot load scanner spec."
-            return sentinel
-        scanner = importlib.util.module_from_spec(spec)
-        # Register before exec_module so @dataclass __module__ lookups resolve.
-        sys.modules["scan_rll_model_evidence"] = scanner
-        spec.loader.exec_module(scanner)  # type: ignore[union-attr]
-        result = scanner.scan(csv_path, registry_path)
-        scanner.write_json(result, _SCAN_JSON_OUT)
-        scanner.write_markdown(result, _SCAN_MD_OUT)
-        rll_row = next((ms for ms in result.model_scans if ms.model == "RLL"), None)
-        return {
-            "claim_status": result.claim_status,
-            "claim_summary": result.claim_summary,
-            "best_by_AICc": result.best_by_AICc,
-            "best_by_BIC": result.best_by_BIC,
-            "H0_all_equal": result.H0_all_equal,
-            "blocking_reasons": result.blocking_reasons,
-            "warnings": result.warnings,
-            "missing_required_model_classes": result.missing_required_model_classes,
-            "delta_AICc_rll_minus_cpl": rll_row.delta_AICc_CPL if rll_row else None,
-            "delta_BIC_rll_minus_cpl": rll_row.delta_BIC_CPL if rll_row else None,
-            "rll_local_flags": rll_row.local_flags if rll_row else [],
-            "scan_json": str(_SCAN_JSON_OUT.relative_to(BASE_DIR)),
-            "scan_md": str(_SCAN_MD_OUT.relative_to(BASE_DIR)),
-        }
-    except (ImportError, AttributeError, OSError, ValueError, SystemExit) as exc:  # pragma: no cover - defensive guard
-        sentinel["claim_summary"] = f"Evidence scanner raised: {exc}"
-        return sentinel
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=BASE_DIR, text=True).strip()
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
+        return None
+
+
+# Registry-name aliases for parameters whose pipeline names differ from registry entries.
+# 'OL' (Omega_Lambda, a free background parameter) resolves to the registry's 'Om' entry
+# because the registry tracks the matter density concept and uses Omega_m as the canonical
+# label for the matter/energy-budget parameters; OL is separately fitted and always counted.
+# 'Ob_h2' is the pipeline label for the physical baryon density recorded as 'omega_b' in the
+# registry (Omega_b h^2).
+_K_ALIASES: dict[str, str] = {"OL": "Om", "Ob_h2": "omega_b"}
+
+# Status prefix that marks a parameter as required in k.
+_K_REQUIRED_PREFIX = "must_report_in_k"
+
+
+def k_from_registry(param_names: tuple[str, ...], registry: dict) -> int:
+    """Compute k from the parameter-origin registry for the given fitted parameter names.
+
+    Every parameter in ``param_names`` is a free parameter being optimised.  This
+    function looks each one up in the registry (applying ``_K_ALIASES`` when the
+    pipeline name differs from the registry name) and counts those whose
+    ``status`` begins with ``must_report_in_k``.  Parameters that are absent
+    from the registry are counted conservatively so that k never underestimates
+    the true model complexity.
+
+    Registry ``name`` values are expected to be strings; any non-string value is
+    coerced with ``str()`` to match the validation applied in
+    ``_validate_model_parameter_registry``.
+    """
+    known = {str(p["name"]): p for p in registry.get("parameters", [])}
+    count = 0
+    for name in param_names:
+        registry_name = _K_ALIASES.get(name, name)
+        entry = known.get(registry_name)
+        if entry is None:
+            # Not found in registry: conservative fallback — count it in k.
+            count += 1
+            continue
+        status = str(entry.get("status", ""))
+        if status.startswith(_K_REQUIRED_PREFIX):
+            count += 1
+    return count
 
 
 def _atomic_write_text(path: Path, text: str) -> dict[str, str | bool]:
@@ -495,10 +485,33 @@ def _model_specific_values(model: str, vector: np.ndarray) -> dict[str, float]:
     return values
 
 
-def _model_row(model: str, vector: np.ndarray, components: dict[str, float], n_obs: int) -> dict[str, float | int | str]:
+def _model_row(
+    model: str,
+    vector: np.ndarray,
+    components: dict[str, float],
+    n_obs: int,
+    registry: dict | None = None,
+    commit_sha: str | None = None,
+) -> dict[str, float | int | str | None]:
+    """Build a result row for one model fit.
+
+    When *registry* is provided, ``k`` is derived from the parameter-origin
+    registry via :func:`k_from_registry` so that every fitted/free/nuisance
+    parameter counted by the registry is included.  This makes ``k``, and
+    therefore AIC/AICc/BIC, registry-driven rather than hard-coded.
+
+    ``registry_schema`` and ``commit_sha`` are embedded in each row so that
+    downstream consumers can audit the provenance of information criteria
+    without consulting a separate metadata file.
+    """
     vector = np.asarray(vector, dtype=float)
-    k = len(MODEL_PARAM_NAMES[model])
-    base = {
+    param_names = MODEL_PARAM_NAMES[model]
+    if registry is not None:
+        k = k_from_registry(param_names, registry)
+    else:
+        k = len(param_names)
+    registry_schema = registry.get("schema") if registry is not None else None
+    base: dict[str, float | int | str | None] = {
         "model": model,
         "chi2": components["total"],
         "AIC": aic(components["total"], k),
@@ -507,6 +520,8 @@ def _model_row(model: str, vector: np.ndarray, components: dict[str, float], n_o
         "N": n_obs,
         "k": k,
         "dof": n_obs - k,
+        "registry_schema": registry_schema,
+        "commit_sha": commit_sha,
         "chi2_Hz": components["Hz"],
         "chi2_DESI_DR2_BAO": components["DESI_DR2_BAO"],
         "chi2_fsigma8": components["fsigma8"],
@@ -549,8 +564,10 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
     for offset, model in enumerate(MODEL_ORDER):
         fitted[model] = fit_model(model, inputs, seed + offset, maxiter_by_model[model], tol)
 
+    registry = inputs["parameter_registry"]
+    commit_sha = _git_sha()
     n_obs = int(len(inputs["hz"]) + len(inputs["desi"]) + len(inputs["fs8"]) + 2)
-    rows = [_model_row(model, fitted[model][0], fitted[model][1], n_obs) for model in MODEL_ORDER]
+    rows = [_model_row(model, fitted[model][0], fitted[model][1], n_obs, registry=registry, commit_sha=commit_sha) for model in MODEL_ORDER]
     rows_by_model = {row["model"]: row for row in rows}
     rll_delta = _delta_against(rows_by_model, MODEL_RLL)
     model_deltas = {model: _delta_against(rows_by_model, model) for model in (MODEL_WCDM, MODEL_CPL, MODEL_RLL)}
@@ -597,8 +614,23 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         "growth_benchmark": growth_benchmark,
         "parameter_registry_policy": {
             "path": str(PARAMETER_REGISTRY_PATH.relative_to(BASE_DIR)),
+            "schema": registry.get("schema"),
             "required_before_information_criteria": True,
             "sha256": _sha256_file(PARAMETER_REGISTRY_PATH),
+            "commit_sha": commit_sha,
+            "k_derivation": "registry_driven",
+        },
+        "covariance_claim_gates": {
+            "desi_bao_claim_allowed": inputs["desi_covariance_info"].get("claim_allowed", False),
+            "desi_bao_mode": inputs["desi_covariance_info"].get("mode", "unknown"),
+            "cmb_claim_allowed": bool(inputs["cmb"].get("covariance")),
+            "cmb_mode": "full_3x3_R_la_Ob_h2" if inputs["cmb"].get("covariance") else "diagonal_R_la_only",
+            "growth_claim_allowed": bool(growth_benchmark.get("claim_allowed", False)),
+            "growth_status": growth_benchmark.get("status", "unknown"),
+            "fsigma8_claim_blocked_reason": (
+                None if bool(growth_benchmark.get("claim_allowed", False))
+                else "CLASS/CAMB backend absent; fσ8 remains an internal approximation proxy"
+            ),
         },
         "dataset_type": "real_observational",
         "claim_boundary": CLAIM_BOUNDARY,
