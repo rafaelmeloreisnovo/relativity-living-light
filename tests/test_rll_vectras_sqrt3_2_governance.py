@@ -35,7 +35,7 @@ def test_governance_matrix_contains_rll_responsibilities() -> None:
     assert "### RLL" in text
     assert "a_h = sqrt(3)/2" in text
     assert "z_h" in text
-    assert "delta_chi2" in text or "Delta_chi2" in text
+    assert "delta_chi2" in text
 
 
 def test_governance_matrix_contains_vectras_responsibilities() -> None:
@@ -65,8 +65,8 @@ def test_governance_matrix_cosmology_pivot_decision_present() -> None:
 
 def test_governance_matrix_pr_decision_criteria_present() -> None:
     text = _read()
-    assert "Critérios de decisão" in text or "Criterios de decisao" in text.lower() or "Critério de decisão" in text
-    assert "regressão" in text or "regressao" in text.lower() or "regressão" in text
+    assert "Critérios de decisão" in text
+    assert "regressão" in text
 
 
 def test_governance_matrix_cross_references_present() -> None:
