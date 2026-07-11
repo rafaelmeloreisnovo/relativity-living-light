@@ -12,13 +12,14 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import importlib.util
 import json
 import os
 import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Callable
+from typing import Any, Callable
 
 import numpy as np
 import pandas as pd
@@ -46,6 +47,8 @@ TEXTUAL_OUTPUTS = [
     "results/structure_d/joint_real_likelihood.csv",
     "results/structure_d/joint_real_likelihood.json",
     "results/structure_d/joint_real_likelihood_covariance_manifest.json",
+    "results/audit/rll_model_evidence_scan.json",
+    "results/audit/rll_model_evidence_scan.md",
 ]
 
 BASE_DIR = Path(__file__).resolve().parents[3]
@@ -573,6 +576,14 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
     outputs = []
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.csv", _rows_to_csv(rows)))
 
+    # Run the evidence scanner immediately after the CSV is written so that
+    # audit outputs are always current when the pipeline produces a new result.
+    evidence_scan = _run_evidence_scan(RESULTS / f"{output_stem}.csv", PARAMETER_REGISTRY_PATH)
+    # Only append scan output paths to the outputs list for the canonical run.
+    if output_stem == _CANONICAL_STEM:
+        outputs.append({"path": evidence_scan["scan_json"], "backup_path": "", "rollback_available": False})
+        outputs.append({"path": evidence_scan["scan_md"], "backup_path": "", "rollback_available": False})
+
     payload = {
         "schema": "rll.joint_real_likelihood.v2",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -630,6 +641,7 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         "model_deltas_vs_lcdm": _json_safe(model_deltas),
         "fnext": _json_safe(build_fnext_gate(rll_delta)),
         "rows": _json_safe(rows),
+        "evidence_scan": _json_safe(evidence_scan),
     }
     outputs.append(_atomic_write_text(RESULTS / f"{output_stem}.json", json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n"))
 
