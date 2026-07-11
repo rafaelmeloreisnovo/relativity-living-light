@@ -118,16 +118,17 @@ static u32 rvb_strlen(const char *s){
 }
 
 /* Verifica sufixo ".yml" (4 bytes finais).
- * Aritmetica branchless: ORing de todos os mismatches;
- * zero significa match exato. */
+ * Estrutura: guarda de comprimento (1 branch, necessario para evitar OOB),
+ * seguida de comparacao branchless via OR-reduction dos 4 mismatches;
+ * d==0 significa match exato — nenhum branch apos a guarda. */
 static u32 rvb_ends_yml(const char *name, u32 len){
-    /* guarda obrigatoria: len < 4 => retorna 0 */
+    /* guarda de comprimento: necessaria para acesso seguro aos 4 bytes finais */
     if(len < 4u) return 0u;
+    /* branchless: OR de todos os mismatches; zero => ".yml" exato */
     u32 d = ((u32)(u8)name[len - 4u] ^ (u32)'.')
           | ((u32)(u8)name[len - 3u] ^ (u32)'y')
           | ((u32)(u8)name[len - 2u] ^ (u32)'m')
           | ((u32)(u8)name[len - 1u] ^ (u32)'l');
-    /* branchless zero-check: d==0 <=> (d-1)>>31 & !d */
     return (u32)(d == 0u);
 }
 
@@ -324,6 +325,11 @@ SHA_S=$(sha256sum raf_scanner.c  | awk '{print $1}')
 SHA_M=$(sha256sum main.c         | awk '{print $1}')
 SHA_SCRIPT=$(sha256sum "$0"      | awk '{print $1}')
 
+# CFLAGS: multiplas flags separadas por espaco.
+# A expansao sem aspas abaixo ($CFLAGS) e INTENCIONAL: queremos
+# word-splitting para que cada flag chegue como argumento separado
+# ao compilador. Nao altere para "$CFLAGS".
+# shellcheck disable=SC2089
 CFLAGS="-O2 -m64 -march=x86-64 -ffreestanding -fno-builtin -fno-stack-protector \
 -fno-unwind-tables -fno-asynchronous-unwind-tables \
 -ffunction-sections -fdata-sections -fno-pic -fno-pie"
@@ -332,9 +338,9 @@ CLANG_VER=$("$CLANG" --version | awk 'NR==1{print;exit}')
 LLD_VER=$("$LLD" --version | awk 'NR==1{print;exit}')
 
 echo "[*] Compilando objetos..."
-# shellcheck disable=SC2086
+# shellcheck disable=SC2086,SC2090
 "$CLANG" $CFLAGS -c raf_scanner.c -o raf_scanner.o
-# shellcheck disable=SC2086
+# shellcheck disable=SC2086,SC2090
 "$CLANG" $CFLAGS -c main.c        -o main.o
 
 echo "[*] Ligando (estatico, sem loader)..."
