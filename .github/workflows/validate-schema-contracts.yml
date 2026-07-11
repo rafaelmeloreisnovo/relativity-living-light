@@ -8,6 +8,7 @@ on:
       - "fixtures/rmrcti_delta_p_observation.example.json"
       - "scripts/validate_omega_schemas.py"
       - "scripts/validate_semantic_governance_schemas.py"
+      - "scripts/validate_information_evolution_trace.py"
       - "scripts/validate_ambient_field_observation.py"
       - "scripts/validate_rmrcti_delta_p_observation.py"
       - "tools/validate_schemas_claim_boundary.py"
@@ -22,6 +23,7 @@ on:
       - "fixtures/rmrcti_delta_p_observation.example.json"
       - "scripts/validate_omega_schemas.py"
       - "scripts/validate_semantic_governance_schemas.py"
+      - "scripts/validate_information_evolution_trace.py"
       - "scripts/validate_ambient_field_observation.py"
       - "scripts/validate_rmrcti_delta_p_observation.py"
       - "tools/validate_schemas_claim_boundary.py"
@@ -54,6 +56,8 @@ jobs:
         run: python tools/validate_schemas_claim_boundary.py
       - name: Validate RAFAELIA Omega schema layer
         run: python scripts/validate_omega_schemas.py
+      - name: Validate information evolution custody trace
+        run: python scripts/validate_information_evolution_trace.py
       - name: Validate semantic-governance 7D schema layer
         run: python scripts/validate_semantic_governance_schemas.py
       - name: Validate ambient-field observation contract
