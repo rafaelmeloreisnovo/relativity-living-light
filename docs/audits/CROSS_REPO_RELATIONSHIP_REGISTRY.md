@@ -38,6 +38,10 @@ CLAIM_BLOCKED        cannot be promoted without evidence/test/artifact
 | TX-RLL-001 | Termux/mobile logs may feed back into RLL audit | HYPOTHESIS | Feedback/attestation route | Mobile result validates RLL | Define log schema, checksum and ingestion path |
 | RLL-DATA-001 | `data/raw/data.json` absence blocks calc-data workflow | VERIFIED_LIMITED | Guarded input behavior; not necessarily a bug | Missing file proves data failure | Check workflow definition and intended input policy before adding data |
 | RLL-DATA-002 | Synthetic fallback may help beta tests | CLAIM_BLOCKED | Only useful if explicitly synthetic | Synthetic fallback satisfies real-data validation | Keep synthetic output outside real-data claim paths |
+| RLL-VEC-001 | RLL sqrt3_2 kernel documents the geometric/cosmological invariant; Vectras executes it as Q16.16 freestanding | HYPOTHESIS | Candidate architecture split; RLL owns science, Vectras owns runtime | Vectras integration is production-ready | Verify Vectras build, ARM freestanding tests and rollback paths before any merge |
+| RLL-VEC-002 | Cosmology pivot (a_h, z_h) belongs to RLL; Vectras references the numeric constants only | HYPOTHESIS | Candidate responsibility boundary | Pivot is validated cosmological discovery | Define cross-reference link in Vectras pointing to docs/invariants/sqrt3_2_kernel.md |
+| RLL-VEC-003 | PR Vectras #1032 removes cosmological/pivot material; equivalent coverage must stay in RLL | CLAIM_BLOCKED | Migration path candidate; no regressions | Tests removed without replacement are acceptable | Check that all removed tests have equivalent contracts in RLL before approving Vectras #1032 |
+| RLL-VEC-004 | RLL PR #426 Real Data Contract CI failure blocks promotion of sqrt3_2 pivot as real-data result | CLAIM_BLOCKED | CI failure is a blocker, not a finding | Real Data Contract CI failure does not block the kernel | Check CI failure per docs/HOTFIX_REAL_VALIDATION_DATA_CONTRACT_2026-05-22.md before promoting any pivot result |
 
 ## Implantation policy
 
