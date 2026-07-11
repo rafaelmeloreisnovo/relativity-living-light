@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import sys
 import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -65,7 +64,7 @@ class ActionsClient:
     def dispatch(self, workflow_file: str, ref: str, inputs: dict[str, Any]) -> None:
         payload: dict[str, Any] = {"ref": ref}
         if inputs:
-            payload["inputs"] = {k: str(v).lower() if isinstance(v, bool) else str(v) for k, v in inputs.items()}
+            payload["inputs"] = {k: ("true" if v else "false") if isinstance(v, bool) else str(v) for k, v in inputs.items()}
         self._request("POST", f"/repos/{self.repository}/actions/workflows/{parse.quote(workflow_file)}/dispatches", payload)
 
     def list_workflow_runs(self, workflow_id: int, branch: str) -> list[dict[str, Any]]:
@@ -150,7 +149,10 @@ def find_dispatched_run(
     while time.time() < deadline:
         runs = client.list_workflow_runs(workflow_numeric_id, branch)
         for run in runs:
-            created = datetime.fromisoformat(str(run["created_at"]).replace("Z", "+00:00"))
+            created_raw = str(run["created_at"])
+            created = datetime.fromisoformat(
+                created_raw if not created_raw.endswith("Z") else created_raw.replace("Z", "+00:00")
+            )
             if created >= threshold:
                 return run
         time.sleep(5)
@@ -268,7 +270,7 @@ def main() -> int:
                         payload["workflows"].append(record)
                         break
             payload["workflows"].append(record)
-        except Exception as exc:  # noqa: BLE001
+        except (RuntimeError, ValueError, KeyError) as exc:
             record["dispatch"] = "error"
             record["status"] = "failed"
             record["conclusion"] = "error"
@@ -283,8 +285,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    try:
-        raise SystemExit(main())
-    except Exception as exc:  # noqa: BLE001
-        print(f"workflow orchestrator failed: {exc}", file=sys.stderr)
-        raise
+    raise SystemExit(main())

@@ -18,7 +18,7 @@ on:
         default: main
         type: string
       wait_for_completion:
-        description: "Wait each selected workflow and fail on non-success conclusions"
+        description: "Wait for each selected workflow and fail on non-success conclusions"
         required: true
         default: true
         type: boolean
@@ -44,7 +44,7 @@ concurrency:
 jobs:
   orchestrate-workflow-session:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 180
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -98,3 +98,17 @@ jobs:
           name: unified-workflow-session-${{ github.run_id }}
           path: artifacts/unified-workflow-session/
           retention-days: 14
+
+      - name: Finalize canonical real-data policy checksums
+        if: always()
+        run: |
+          set -euo pipefail
+          ARTIFACT_DIR="artifacts/workflow-policy/unified-workflow-session-orchestrator/${{ github.job }}"
+          mkdir -p "$ARTIFACT_DIR"
+          . tools/ci/real_data_workflow_policy.sh
+          rll_real_data_write_claim_boundary "$ARTIFACT_DIR"
+          rll_real_data_assert_boundary_file "$ARTIFACT_DIR/CLAIM_BOUNDARY.md"
+          rll_real_data_write_checksums "$ARTIFACT_DIR"
+        env:
+          CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+          CLAIM_BOUNDARY: Auxiliary real-data workflow only; no RLL/cosmology/superiority claim and no synthetic, mock, fixture, demo, example, or placeholder promotion beyond explicit run checks.
