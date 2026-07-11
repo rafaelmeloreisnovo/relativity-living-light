@@ -14,6 +14,12 @@ import pytest
 
 from tools.make_h0_rd_ablation_matrix import build_matrix, write_json, write_csv, write_markdown
 
+# Standard cosmological prior reference values
+PLANCK_H0_MEAN = 67.4
+PLANCK_H0_SIGMA = 0.5
+SHOES_H0_MEAN = 73.04
+SHOES_H0_SIGMA = 1.04
+
 # ---------------------------------------------------------------------------
 # Matrix structure
 # ---------------------------------------------------------------------------
@@ -85,8 +91,8 @@ def test_planck_prior_rows_have_correct_mean_and_sigma() -> None:
     planck_rows = [r for r in runs if r.H0_policy == "planck_prior"]
     assert planck_rows, "No Planck-prior rows found"
     for run in planck_rows:
-        assert run.H0_prior_mean == pytest.approx(67.4, abs=0.1)
-        assert run.H0_prior_sigma == pytest.approx(0.5, abs=0.05)
+        assert run.H0_prior_mean == pytest.approx(PLANCK_H0_MEAN, abs=0.1)
+        assert run.H0_prior_sigma == pytest.approx(PLANCK_H0_SIGMA, abs=0.05)
 
 
 def test_shoes_prior_rows_have_correct_mean_and_sigma() -> None:
@@ -95,8 +101,8 @@ def test_shoes_prior_rows_have_correct_mean_and_sigma() -> None:
     shoes_rows = [r for r in runs if r.H0_policy == "shoes_local_prior"]
     assert shoes_rows, "No SH0ES-prior rows found"
     for run in shoes_rows:
-        assert run.H0_prior_mean == pytest.approx(73.04, abs=0.1)
-        assert run.H0_prior_sigma == pytest.approx(1.04, abs=0.05)
+        assert run.H0_prior_mean == pytest.approx(SHOES_H0_MEAN, abs=0.1)
+        assert run.H0_prior_sigma == pytest.approx(SHOES_H0_SIGMA, abs=0.05)
 
 
 def test_broad_free_rows_have_no_prior_mean_or_sigma() -> None:
