@@ -14,6 +14,7 @@ import csv
 import hashlib
 import json
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -86,6 +87,46 @@ def _sha256_file(path: Path) -> str:
         for chunk in iter(lambda: fp.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _git_sha() -> str | None:
+    """Return the current HEAD commit SHA, or None if git is unavailable."""
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=BASE_DIR, text=True).strip()
+    except Exception:
+        return None
+
+
+# Registry-name aliases for parameters whose pipeline names differ from registry entries.
+_K_ALIASES: dict[str, str] = {"OL": "Om", "Ob_h2": "omega_b"}
+
+# Status prefix that marks a parameter as required in k.
+_K_REQUIRED_PREFIX = "must_report_in_k"
+
+
+def k_from_registry(param_names: tuple[str, ...], registry: dict) -> int:
+    """Compute k from the parameter-origin registry for the given fitted parameter names.
+
+    Every parameter in ``param_names`` is a free parameter being optimised.  This
+    function looks each one up in the registry (applying ``_K_ALIASES`` when the
+    pipeline name differs from the registry name) and counts those whose
+    ``status`` begins with ``must_report_in_k``.  Parameters that are absent
+    from the registry are counted conservatively so that k never underestimates
+    the true model complexity.
+    """
+    known = {str(p["name"]): p for p in registry.get("parameters", [])}
+    count = 0
+    for name in param_names:
+        registry_name = _K_ALIASES.get(name, name)
+        entry = known.get(registry_name)
+        if entry is None:
+            # Not found in registry: conservative fallback — count it in k.
+            count += 1
+            continue
+        status = str(entry.get("status", ""))
+        if status.startswith(_K_REQUIRED_PREFIX):
+            count += 1
+    return count
 
 
 def _atomic_write_text(path: Path, text: str) -> dict[str, str | bool]:
@@ -432,10 +473,33 @@ def _model_specific_values(model: str, vector: np.ndarray) -> dict[str, float]:
     return values
 
 
-def _model_row(model: str, vector: np.ndarray, components: dict[str, float], n_obs: int) -> dict[str, float | int | str]:
+def _model_row(
+    model: str,
+    vector: np.ndarray,
+    components: dict[str, float],
+    n_obs: int,
+    registry: dict | None = None,
+    commit_sha: str | None = None,
+) -> dict[str, float | int | str | None]:
+    """Build a result row for one model fit.
+
+    When *registry* is provided, ``k`` is derived from the parameter-origin
+    registry via :func:`k_from_registry` so that every fitted/free/nuisance
+    parameter counted by the registry is included.  This makes ``k``, and
+    therefore AIC/AICc/BIC, registry-driven rather than hard-coded.
+
+    ``registry_schema`` and ``commit_sha`` are embedded in each row so that
+    downstream consumers can audit the provenance of information criteria
+    without consulting a separate metadata file.
+    """
     vector = np.asarray(vector, dtype=float)
-    k = len(MODEL_PARAM_NAMES[model])
-    base = {
+    param_names = MODEL_PARAM_NAMES[model]
+    if registry is not None:
+        k = k_from_registry(param_names, registry)
+    else:
+        k = len(param_names)
+    registry_schema = str(registry.get("schema", "")) if registry is not None else None
+    base: dict[str, float | int | str | None] = {
         "model": model,
         "chi2": components["total"],
         "AIC": aic(components["total"], k),
@@ -444,6 +508,8 @@ def _model_row(model: str, vector: np.ndarray, components: dict[str, float], n_o
         "N": n_obs,
         "k": k,
         "dof": n_obs - k,
+        "registry_schema": registry_schema,
+        "commit_sha": commit_sha,
         "chi2_Hz": components["Hz"],
         "chi2_DESI_DR2_BAO": components["DESI_DR2_BAO"],
         "chi2_fsigma8": components["fsigma8"],
@@ -486,8 +552,10 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
     for offset, model in enumerate(MODEL_ORDER):
         fitted[model] = fit_model(model, inputs, seed + offset, maxiter_by_model[model], tol)
 
+    registry = inputs["parameter_registry"]
+    commit_sha = _git_sha()
     n_obs = int(len(inputs["hz"]) + len(inputs["desi"]) + len(inputs["fs8"]) + 2)
-    rows = [_model_row(model, fitted[model][0], fitted[model][1], n_obs) for model in MODEL_ORDER]
+    rows = [_model_row(model, fitted[model][0], fitted[model][1], n_obs, registry=registry, commit_sha=commit_sha) for model in MODEL_ORDER]
     rows_by_model = {row["model"]: row for row in rows}
     rll_delta = _delta_against(rows_by_model, MODEL_RLL)
     model_deltas = {model: _delta_against(rows_by_model, model) for model in (MODEL_WCDM, MODEL_CPL, MODEL_RLL)}
@@ -526,8 +594,23 @@ def run_joint_likelihood(output_stem: str = "joint_real_likelihood") -> dict:
         "growth_benchmark": growth_benchmark,
         "parameter_registry_policy": {
             "path": str(PARAMETER_REGISTRY_PATH.relative_to(BASE_DIR)),
+            "schema": str(registry.get("schema", "")),
             "required_before_information_criteria": True,
             "sha256": _sha256_file(PARAMETER_REGISTRY_PATH),
+            "commit_sha": commit_sha,
+            "k_derivation": "registry_driven",
+        },
+        "covariance_claim_gates": {
+            "desi_bao_claim_allowed": inputs["desi_covariance_info"].get("claim_allowed", False),
+            "desi_bao_mode": inputs["desi_covariance_info"].get("mode", "unknown"),
+            "cmb_claim_allowed": bool(inputs["cmb"].get("covariance")),
+            "cmb_mode": "full_3x3_R_la_Ob_h2" if inputs["cmb"].get("covariance") else "diagonal_R_la_only",
+            "growth_claim_allowed": bool(growth_benchmark.get("claim_allowed", False)),
+            "growth_status": growth_benchmark.get("status", "unknown"),
+            "fsigma8_claim_blocked_reason": (
+                None if bool(growth_benchmark.get("claim_allowed", False))
+                else "CLASS/CAMB backend absent; fσ8 remains an internal approximation proxy"
+            ),
         },
         "dataset_type": "real_observational",
         "claim_boundary": CLAIM_BOUNDARY,
