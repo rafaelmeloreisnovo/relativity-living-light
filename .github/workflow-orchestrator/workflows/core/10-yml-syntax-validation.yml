@@ -1,4 +1,5 @@
 id: yml_syntax_validation
+description: "Validate syntax for YAML workflow definitions."
 file: yml-syntax-validation.yml
 stage: 10
 enabled: true

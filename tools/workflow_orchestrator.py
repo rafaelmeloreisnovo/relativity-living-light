@@ -64,7 +64,7 @@ class ActionsClient:
     def dispatch(self, workflow_file: str, ref: str, inputs: dict[str, Any]) -> None:
         payload: dict[str, Any] = {"ref": ref}
         if inputs:
-            payload["inputs"] = {k: ("true" if v else "false") if isinstance(v, bool) else str(v) for k, v in inputs.items()}
+            payload["inputs"] = {k: format_workflow_input(v) for k, v in inputs.items()}
         self._request("POST", f"/repos/{self.repository}/actions/workflows/{parse.quote(workflow_file)}/dispatches", payload)
 
     def list_workflow_runs(self, workflow_id: int, branch: str) -> list[dict[str, Any]]:
@@ -78,7 +78,7 @@ class ActionsClient:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Dispatch and optionally wait for a catalog of workflows.")
-    parser.add_argument("--catalog", required=True, help="Path to workflow catalog yml.")
+    parser.add_argument("--catalog", required=True, help="Path to workflow catalog YAML.")
     parser.add_argument("--profile", required=True, help="Catalog profile name.")
     parser.add_argument("--ref", required=True, help="Git ref to dispatch against.")
     parser.add_argument("--wait", action="store_true", help="Wait for completion for selected workflows.")
@@ -88,7 +88,13 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_catalog(path: Path) -> dict[str, Any]:
+def format_workflow_input(value: Any) -> str:
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    return str(value)
+
+
+def load_and_expand_catalog(path: Path) -> dict[str, Any]:
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
     if not isinstance(data, dict):
         raise ValueError("catalog must be a YAML mapping")
@@ -112,7 +118,12 @@ def load_catalog(path: Path) -> dict[str, Any]:
             dir_path = (path.parent / dir_item).resolve()
             if not dir_path.exists() or not dir_path.is_dir():
                 raise ValueError(f"workflow catalog directory not found: {dir_item}")
-            for manifest in sorted(list(dir_path.rglob("*.yml")) + list(dir_path.rglob("*.yaml"))):
+            manifests = sorted(
+                file_path
+                for file_path in dir_path.rglob("*")
+                if file_path.is_file() and file_path.suffix.lower() in {".yml", ".yaml"}
+            )
+            for manifest in manifests:
                 manifest_data = yaml.safe_load(manifest.read_text(encoding="utf-8"))
                 if manifest_data is None:
                     continue
@@ -182,7 +193,7 @@ def find_dispatched_run(
         for run in runs:
             created_raw = str(run["created_at"])
             created = datetime.fromisoformat(
-                created_raw if not created_raw.endswith("Z") else created_raw.replace("Z", "+00:00")
+                created_raw.removesuffix("Z") + "+00:00" if created_raw.endswith("Z") else created_raw
             )
             if created >= threshold:
                 return run
@@ -237,7 +248,7 @@ def write_reports(output_dir: Path, payload: dict[str, Any]) -> None:
 
 def main() -> int:
     args = parse_args()
-    catalog = load_catalog(Path(args.catalog))
+    catalog = load_and_expand_catalog(Path(args.catalog))
     selected = select_workflows(catalog, args.profile)
     branch = branch_from_ref(args.ref)
 

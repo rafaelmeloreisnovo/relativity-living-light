@@ -1,4 +1,5 @@
 id: formulas_artifacts
+description: "Materialize formulas artifacts for scientific audit."
 file: formulas-artifacts.yml
 stage: 50
 enabled: true

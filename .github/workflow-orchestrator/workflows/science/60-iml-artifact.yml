@@ -1,4 +1,5 @@
 id: iml_artifact
+description: "Generate IML artifact outputs for session packaging."
 file: iml_artifact.yml
 stage: 60
 enabled: true

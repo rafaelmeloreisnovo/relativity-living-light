@@ -1,4 +1,5 @@
 id: real_data_complete_execution
+description: "Execute canonical real-data workflow in controlled audit mode."
 file: real-data-complete-execution.yml
 stage: 30
 enabled: true

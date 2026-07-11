@@ -1,4 +1,5 @@
 id: rll_real_data_orchestrator
+description: "Run artifact-focused RLL real-data orchestration."
 file: rll-real-data-orchestrator.yml
 stage: 40
 enabled: true

@@ -1,4 +1,5 @@
 id: start_manual_interop
+description: "Run manual interoperability orchestrator checks and probes."
 file: START_MANUAL_HERE.yml
 stage: 20
 enabled: true
