@@ -62,6 +62,10 @@ Resumo seguro atual:
 
 > A tag pública `v1.0.0` de 2025 já documenta a base RLL, incluindo formulação cosmológica, termo de superposição e observáveis planejados. As validações DESI/CPL/AICc/joint-real são maturações posteriores. Isso sustenta anterioridade documental/matemática da estrutura-base, mas não confirma verdade física nem vitória estatística.
 
+Avaliação honesta de estado (julho 2026):
+
+> **Relativity in Living Light é um programa autoral de pesquisa falsificável, com infraestrutura crescente de dados reais, CI, inventário, contratos e bloqueio de claims, ainda sem validação cosmológica forte.** Ver [`docs/AVALIACAO_HONESTA_ESTADO_ATUAL.md`](docs/AVALIACAO_HONESTA_ESTADO_ATUAL.md) para análise completa.
+
 ---
 
 ## Aviso de cronologia, DOI e prova técnica (referência 10.5281/zenodo.17188137)
