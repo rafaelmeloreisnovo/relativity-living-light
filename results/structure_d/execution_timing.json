@@ -1,18 +1,18 @@
 [
   {
     "block": "load",
-    "duration_seconds": 0.002265829000066333
+    "duration_seconds": 0.0026217210001959756
   },
   {
     "block": "fit",
-    "duration_seconds": 0.005848721999996087
+    "duration_seconds": 0.006839934999788966
   },
   {
     "block": "write",
-    "duration_seconds": 1.6000001323845936e-07
+    "duration_seconds": 1.1000020094797947e-07
   },
   {
     "block": "validate",
-    "duration_seconds": 0.0064846920000718455
+    "duration_seconds": 0.0073035710001931875
   }
 ]

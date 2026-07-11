@@ -5,6 +5,13 @@ on:
     branches: [ main, dev ]
   pull_request:
     branches: [ main ]
+    paths:
+      - .github/workflows/bayes_analysis.yml
+      - src/**
+      - data/**
+      - validation/**
+      - requirements*.txt
+      - pyproject.toml
   schedule:
     - cron: '0 0 * * 0'
 
