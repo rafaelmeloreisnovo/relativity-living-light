@@ -1,0 +1,7 @@
+id: formulas_artifacts
+file: formulas-artifacts.yml
+stage: 50
+enabled: true
+tags: [science, artifacts]
+wait_for_completion: true
+timeout_minutes: 30

@@ -1,0 +1,7 @@
+id: iml_artifact
+file: iml_artifact.yml
+stage: 60
+enabled: true
+tags: [science, artifacts]
+wait_for_completion: true
+timeout_minutes: 30

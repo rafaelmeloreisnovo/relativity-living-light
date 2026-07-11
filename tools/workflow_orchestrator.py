@@ -92,8 +92,39 @@ def load_catalog(path: Path) -> dict[str, Any]:
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
     if not isinstance(data, dict):
         raise ValueError("catalog must be a YAML mapping")
-    if "profiles" not in data or "workflows" not in data:
-        raise ValueError("catalog must contain profiles and workflows")
+    if "profiles" not in data:
+        raise ValueError("catalog must contain profiles")
+
+    workflow_items = data.get("workflows")
+    workflow_dirs = data.get("workflow_catalog_dirs")
+    if workflow_items is None and workflow_dirs is None:
+        raise ValueError("catalog must contain workflows or workflow_catalog_dirs")
+
+    if workflow_items is None:
+        workflow_items = []
+    if not isinstance(workflow_items, list):
+        raise ValueError("workflows must be a YAML list when provided")
+
+    if workflow_dirs is not None:
+        if not isinstance(workflow_dirs, list) or not all(isinstance(item, str) for item in workflow_dirs):
+            raise ValueError("workflow_catalog_dirs must be a YAML list of paths")
+        for dir_item in workflow_dirs:
+            dir_path = (path.parent / dir_item).resolve()
+            if not dir_path.exists() or not dir_path.is_dir():
+                raise ValueError(f"workflow catalog directory not found: {dir_item}")
+            for manifest in sorted(list(dir_path.rglob("*.yml")) + list(dir_path.rglob("*.yaml"))):
+                manifest_data = yaml.safe_load(manifest.read_text(encoding="utf-8"))
+                if manifest_data is None:
+                    continue
+                if isinstance(manifest_data, dict) and isinstance(manifest_data.get("workflows"), list):
+                    workflow_items.extend(manifest_data["workflows"])
+                    continue
+                if isinstance(manifest_data, dict):
+                    workflow_items.append(manifest_data)
+                    continue
+                raise ValueError(f"invalid workflow manifest: {manifest}")
+
+    data["workflows"] = workflow_items
     return data
 
 

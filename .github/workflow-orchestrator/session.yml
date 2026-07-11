@@ -1,0 +1,16 @@
+schema: rll.workflow_orchestrator.catalog.v2
+profiles:
+  full_session:
+    description: "Run the full cross-workflow session orchestration."
+    include_tags: [core, validation, real_data, science, artifacts]
+  quick_session:
+    description: "Run a compact interoperability session."
+    include_tags: [core, validation]
+  real_data_session:
+    description: "Run only real-data related workflows."
+    include_tags: [real_data, validation]
+
+workflow_catalog_dirs:
+  - workflows/core
+  - workflows/real_data
+  - workflows/science

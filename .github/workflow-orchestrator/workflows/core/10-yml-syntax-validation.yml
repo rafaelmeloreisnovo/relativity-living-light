@@ -1,0 +1,7 @@
+id: yml_syntax_validation
+file: yml-syntax-validation.yml
+stage: 10
+enabled: true
+tags: [core, validation]
+wait_for_completion: true
+timeout_minutes: 20

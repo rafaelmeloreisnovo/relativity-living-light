@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       profile:
-        description: "Execution profile from .github/workflow-orchestrator/catalog.yml"
+        description: "Execution profile from .github/workflow-orchestrator/session.yml"
         required: true
         default: full_session
         type: choice
@@ -68,7 +68,7 @@ jobs:
         run: |
           mkdir -p artifacts/unified-workflow-session
           args=(
-            --catalog .github/workflow-orchestrator/catalog.yml
+            --catalog .github/workflow-orchestrator/session.yml
             --profile "${{ inputs.profile }}"
             --ref "${{ inputs.ref }}"
             --output-dir artifacts/unified-workflow-session
