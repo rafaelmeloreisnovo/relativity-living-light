@@ -38,6 +38,7 @@ SEMANTIC_DIRECTIONS = (
 )
 SEMANTIC_UNIT_ID_PATTERN = r"STU-[A-Z0-9_]{2,24}-[0-9]{4,12}"
 PROMPT_TOKEN_PATTERN = r"[^\W_]+(?:['’-][^\W_]+)*"
+# Stable machine-readable labels; presentation layers may title-case them.
 REQUIRED_EVIDENCE_CATEGORIES = ("domain evidence", "operational authorization", "independent proof")
 NUMERIC_ID_DIGITS = 12
 
@@ -102,6 +103,7 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None, langua
 
     normalized = ucase_prompt(prompt)
     digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+    # Truncate the digest to a decimal-safe, fixed-width identifier.
     numeric_id = int(digest[:NUMERIC_ID_DIGITS], 16) % 10**NUMERIC_ID_DIGITS
     token_unit_id = unit_id or f"STU-PROMPT-{numeric_id:0{NUMERIC_ID_DIGITS}d}"
     if not re.fullmatch(SEMANTIC_UNIT_ID_PATTERN, token_unit_id):
@@ -150,6 +152,7 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None, langua
             },
             "d6_epistemic_gap": {
                 "evidence_state": "unobserved",
+                # JSON Schema arrays are mutable so callers can add observed gaps.
                 "missing_variables": list(REQUIRED_EVIDENCE_CATEGORIES),
                 "token_vazio": True,
                 "uncertainties": ["prompt-only analysis has no attached evidence"],
