@@ -36,6 +36,9 @@ SEMANTIC_DIRECTIONS = (
     "d6_epistemic_gap",
     "d7_operational_governance",
 )
+SEMANTIC_UNIT_ID_PATTERN = r"STU-[A-Z0-9_]{2,24}-[0-9]{4,12}"
+PROMPT_TOKEN_PATTERN = r"[^\W_]+(?:['’-][^\W_]+)*"
+PROMPT_GAPS = ("domain evidence", "operational authorization", "independent proof")
 
 
 @dataclass(frozen=True)
@@ -81,13 +84,14 @@ def ucase_prompt(prompt: str) -> str:
 
 
 def _prompt_tokens(prompt: str) -> list[dict[str, Any]]:
+    # [^\W_] means a Unicode word character excluding underscore.
     return [
         {"surface": match.group(0), "normalized": match.group(0), "index": index}
-        for index, match in enumerate(re.finditer(r"[^\W_]+(?:['’-][^\W_]+)*", prompt, re.UNICODE))
+        for index, match in enumerate(re.finditer(PROMPT_TOKEN_PATTERN, prompt, re.UNICODE))
     ]
 
 
-def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None) -> dict[str, Any]:
+def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None, language: str = "pt-BR") -> dict[str, Any]:
     """Create a conservative, schema-shaped seven-direction prompt analysis.
 
     The function records what can be established from the prompt alone. It does
@@ -99,15 +103,16 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None) -> dic
     digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
     numeric_id = int(digest[:12], 16) % 10**12
     token_unit_id = unit_id or f"STU-PROMPT-{numeric_id:012d}"
-    if not re.fullmatch(r"STU-[A-Z0-9_]{2,24}-[0-9]{4,12}", token_unit_id):
-        raise ValueError("unit_id must match the SemanticTokenUnit contract")
+    if not re.fullmatch(SEMANTIC_UNIT_ID_PATTERN, token_unit_id):
+        raise ValueError(f"unit_id must match {SEMANTIC_UNIT_ID_PATTERN}")
+    if not isinstance(language, str) or len(language) < 2:
+        raise ValueError("language must contain at least two characters")
 
     lexical_tokens = _prompt_tokens(normalized)
-    missing = ["domain evidence", "operational authorization", "independent proof"]
     payload = {
         "unit_id": token_unit_id,
         "raw_span": normalized,
-        "language": "pt-BR",
+        "language": language,
         "lexical_tokens": lexical_tokens,
         "views_7d": {
             "d1_lexical_structure": {
@@ -144,7 +149,7 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None) -> dic
             },
             "d6_epistemic_gap": {
                 "evidence_state": "unobserved",
-                "missing_variables": missing,
+                "missing_variables": list(PROMPT_GAPS),
                 "token_vazio": True,
                 "uncertainties": ["prompt-only analysis has no attached evidence"],
                 "falsifiers": ["attach verifiable source and reproduce the procedure"],
@@ -180,8 +185,10 @@ def validate_semantic_token_unit(payload: dict[str, Any]) -> None:
         raise ValueError("semantic token unit must contain the ordered seven directions")
     gap = payload["views_7d"]["d6_epistemic_gap"]
     governance = payload["views_7d"]["d7_operational_governance"]
-    if gap["token_vazio"] and (not gap["missing_variables"] or payload["epistemic_status"] != "gap"):
-        raise ValueError("TOKEN_VAZIO requires missing variables and epistemic_status=gap")
+    if gap["token_vazio"] and not gap["missing_variables"]:
+        raise ValueError("TOKEN_VAZIO requires missing variables")
+    if gap["token_vazio"] and payload["epistemic_status"] != "gap":
+        raise ValueError("TOKEN_VAZIO requires epistemic_status=gap")
     if gap["token_vazio"] and governance["execution_gate"] == "allow":
         raise ValueError("TOKEN_VAZIO cannot execute directly")
 
