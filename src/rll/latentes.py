@@ -38,7 +38,8 @@ SEMANTIC_DIRECTIONS = (
 )
 SEMANTIC_UNIT_ID_PATTERN = r"STU-[A-Z0-9_]{2,24}-[0-9]{4,12}"
 PROMPT_TOKEN_PATTERN = r"[^\W_]+(?:['’-][^\W_]+)*"
-PROMPT_GAPS = ("domain evidence", "operational authorization", "independent proof")
+REQUIRED_EVIDENCE_CATEGORIES = ("domain evidence", "operational authorization", "independent proof")
+NUMERIC_ID_DIGITS = 12
 
 
 @dataclass(frozen=True)
@@ -101,8 +102,8 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None, langua
 
     normalized = ucase_prompt(prompt)
     digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
-    numeric_id = int(digest[:12], 16) % 10**12
-    token_unit_id = unit_id or f"STU-PROMPT-{numeric_id:012d}"
+    numeric_id = int(digest[:NUMERIC_ID_DIGITS], 16) % 10**NUMERIC_ID_DIGITS
+    token_unit_id = unit_id or f"STU-PROMPT-{numeric_id:0{NUMERIC_ID_DIGITS}d}"
     if not re.fullmatch(SEMANTIC_UNIT_ID_PATTERN, token_unit_id):
         raise ValueError(f"unit_id must match {SEMANTIC_UNIT_ID_PATTERN}")
     if not isinstance(language, str) or len(language) < 2:
@@ -149,7 +150,7 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None, langua
             },
             "d6_epistemic_gap": {
                 "evidence_state": "unobserved",
-                "missing_variables": list(PROMPT_GAPS),
+                "missing_variables": list(REQUIRED_EVIDENCE_CATEGORIES),
                 "token_vazio": True,
                 "uncertainties": ["prompt-only analysis has no attached evidence"],
                 "falsifiers": ["attach verifiable source and reproduce the procedure"],
@@ -345,6 +346,12 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def print_json(payload: Any, *, sort_keys: bool = False) -> None:
+    """Emit consistent human-readable JSON for CLI responses."""
+
+    print(json.dumps(payload, indent=2, sort_keys=sort_keys, ensure_ascii=False))
+
+
 def write_dry_run_manifests(catalog: dict[str, Any], root: Path) -> list[Path]:
     """Materialize source manifests without network access or destructive writes."""
 
@@ -490,38 +497,38 @@ def main(argv: list[str] | None = None) -> int:
     catalog = validate_catalog(args.catalog, args.schema)
 
     if args.command == "validate":
-        print(json.dumps({"status": "ok", "sources": len(catalog["sources"]), "future_steps": len(catalog["future_steps"])}, sort_keys=True))
+        print_json({"status": "ok", "sources": len(catalog["sources"]), "future_steps": len(catalog["future_steps"])}, sort_keys=True)
         return 0
     if args.command == "plan":
         plan = [asdict(item) for item in build_plan(catalog)]
         if args.json:
-            print(json.dumps(plan, indent=2, sort_keys=True, ensure_ascii=False))
+            print_json(plan, sort_keys=True)
         else:
             for item in plan:
                 print(f"{item['source_id']} -> {item['ingest_target']}")
         return 0
     if args.command == "fetch":
         paths = write_dry_run_manifests(catalog, args.root)
-        print(json.dumps({"status": "dry_run", "written": [str(path) for path in paths]}, indent=2, sort_keys=True, ensure_ascii=False))
+        print_json({"status": "dry_run", "written": [str(path) for path in paths]}, sort_keys=True)
         return 0
     if args.command == "score":
         selected = args.source_id or catalog["sources"][0]["source_id"]
         score = score_latent(C=0.9, I=0.99, P=1.0, E=0.88, Rc=0.95, Ru=0.3, Am=0.2, Vb=0.1)
         status = classify_control(score, controls_present=False, null_rejected=False)
         path = write_score_csv(args.root, selected, score, status)
-        print(json.dumps({"status": status, "score_path": str(path), "S_L": score.S_L}, sort_keys=True))
+        print_json({"status": status, "score_path": str(path), "S_L": score.S_L}, sort_keys=True)
         return 0
     if args.command == "report":
-        print(json.dumps(run_dry_pipeline(args.catalog, args.schema, args.root, args.source_id), indent=2, sort_keys=True, ensure_ascii=False))
+        print_json(run_dry_pipeline(args.catalog, args.schema, args.root, args.source_id), sort_keys=True)
         return 0
     if args.command == "tokenize":
         prompt = args.prompt
         if args.prompt_file is not None:
             prompt = args.prompt_file.read_text(encoding="utf-8")
-        print(json.dumps(build_semantic_token_unit(prompt, unit_id=args.unit_id), indent=2, ensure_ascii=False))
+        print_json(build_semantic_token_unit(prompt, unit_id=args.unit_id))
         return 0
     if args.command == "verify":
-        print(json.dumps({"status": "verified", "schema": str(args.schema), "catalog": str(args.catalog)}, sort_keys=True))
+        print_json({"status": "verified", "schema": str(args.schema), "catalog": str(args.catalog)}, sort_keys=True)
         return 0
     parser.error(f"unknown command: {args.command}")
     return 2
