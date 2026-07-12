@@ -148,7 +148,11 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
         ):
             raise ValueError("workflow_files must be a YAML list of glob patterns")
         repo_root = path.parent.parent.parent.resolve()
-        existing_files = {str(item.get("file")) for item in workflow_items if isinstance(item, dict)}
+        existing_files = {
+            Path(str(item.get("file"))).name
+            for item in workflow_items
+            if isinstance(item, dict) and item.get("file")
+        }
         for pattern in workflow_files:
             matches = sorted(Path(item).resolve() for item in glob.glob(str(path.parent / pattern)))
             if not matches:
@@ -301,7 +305,9 @@ def find_dispatched_run(
     timeout_seconds: int = 180,
 ) -> dict[str, Any]:
     deadline = time.time() + timeout_seconds
-    threshold = dispatched_at - timedelta(seconds=30)
+    # Allow for GitHub API clock skew and dispatch queue latency while excluding
+    # runs observed before dispatch through known_run_ids.
+    threshold = dispatched_at - timedelta(minutes=2)
     known_run_ids = known_run_ids or set()
     while time.time() < deadline:
         runs = client.list_workflow_runs(workflow_numeric_id, branch)
