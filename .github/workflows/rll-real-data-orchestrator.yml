@@ -156,8 +156,8 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/fetch_real_sources.py \
-            --dataset-group "${{ inputs.dataset_group }}" \
-            --mode "${{ inputs.mode }}" \
+            --dataset-group "${{ inputs.dataset_group || 'all' }}" \
+            --mode "${{ inputs.mode || 'full' }}" \
             --output-dir "$RUN_DIR" \
             --no-fetch-igrf14 --no-fetch-wmm2025 --no-fetch-omni --no-fetch-nmdb \
             --no-fetch-desi --no-fetch-pantheon --no-fetch-planck --no-fetch-spenvis-reference
@@ -168,7 +168,7 @@ jobs:
           set -euo pipefail
           python scripts/compute_rll_real_pipeline.py \
             --output-dir "$RUN_DIR" \
-            --data-source "${{ inputs.real_data_source }}"
+            --data-source "${{ inputs.real_data_source || 'repo' }}"
 
       - name: real_3_compute - independent blocks and grouped consolidation
         if: ${{ inputs.mode == 'compute' || inputs.mode == 'plots' || inputs.mode == 'full' || github.event_name == 'schedule' }}
@@ -274,8 +274,8 @@ jobs:
           set -euo pipefail
           python scripts/rll_pipeline.py \
             --book-scope all \
-            --dataset-group "${{ inputs.dataset_group }}" \
-            --mode "${{ inputs.mode }}" \
+            --dataset-group "${{ inputs.dataset_group || 'all' }}" \
+            --mode "${{ inputs.mode || 'full' }}" \
             --output-dir "$RUN_DIR/book"
 
       - name: Finalize manifest and checksums
