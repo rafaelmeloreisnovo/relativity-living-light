@@ -192,9 +192,11 @@ jobs:
           reports.mkdir(parents=True, exist_ok=True)
 
           def mean_field(rows, field, source):
+              if not rows:
+                  raise SystemExit(f"real input has no rows: {source}")
               try:
                   return statistics.fmean(float(row[field]) for row in rows)
-              except (KeyError, TypeError, ValueError) as exc:
+              except (KeyError, TypeError, ValueError, statistics.StatisticsError) as exc:
                   raise SystemExit(
                       f"invalid numeric field {field!r} in {source}: {exc}"
                   ) from exc
@@ -258,15 +260,22 @@ jobs:
         run: |
           set -euo pipefail
           python - <<'PY'
-          import csv, hashlib, json
+          import csv
+          import hashlib
+          import json
           from pathlib import Path
           source = Path("data/real/Hz_data_real.csv")
           rows = list(csv.DictReader(source.open(encoding="utf-8", newline="")))
           if not rows:
               raise SystemExit("real H(z) source is empty")
+          try:
+              values = [round(float(row["H_obs"]) * 10) for row in rows]
+              redshifts = [round(float(row["z"]) * 1000) for row in rows]
+          except (KeyError, TypeError, ValueError) as exc:
+              raise SystemExit(f"invalid H(z) row in {source}: {exc}") from exc
           payload = {
-              "dados": [round(float(row["H_obs"]) * 10) for row in rows],
-              "redshift_milli": [round(float(row["z"]) * 1000) for row in rows],
+              "dados": values,
+              "redshift_milli": redshifts,
               "data_source": str(source),
               "data_source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
               "claim_boundary": "Input provenance only; no scientific endorsement.",
@@ -311,7 +320,7 @@ jobs:
           }
           (root / "MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
           PY
-          find "$RUN_DIR" -type f ! -name CHECKSUMS.sha256 -print0 | sort -z | xargs -0 sha256sum > "$RUN_DIR/CHECKSUMS.sha256"
+          find "$RUN_DIR" -type f ! -path '*/CHECKSUMS.sha256' -print0 | sort -z | xargs -0 sha256sum > "$RUN_DIR/CHECKSUMS.sha256"
 
       - name: Finalize canonical policy checksum
         if: always()
