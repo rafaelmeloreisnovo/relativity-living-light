@@ -15,6 +15,7 @@ from urllib import error, parse, request
 import yaml
 
 API_ROOT = "https://api.github.com"
+RUN_DISCOVERY_CLOCK_SKEW = timedelta(minutes=2)
 
 
 @dataclass
@@ -307,7 +308,7 @@ def find_dispatched_run(
     deadline = time.time() + timeout_seconds
     # Allow for GitHub API clock skew and dispatch queue latency while excluding
     # runs observed before dispatch through known_run_ids.
-    threshold = dispatched_at - timedelta(minutes=2)
+    threshold = dispatched_at - RUN_DISCOVERY_CLOCK_SKEW
     known_run_ids = known_run_ids or set()
     while time.time() < deadline:
         runs = client.list_workflow_runs(workflow_numeric_id, branch)
