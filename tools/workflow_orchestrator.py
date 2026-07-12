@@ -151,9 +151,9 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
     if max_in_flight != 1:
         raise ValueError("execution.max_in_flight must be 1")
     data["execution"] = {
-        "mode": "sequential",
+        "mode": mode,
         "stage_barrier": True,
-        "max_in_flight": 1,
+        "max_in_flight": max_in_flight,
     }
     return data
 
@@ -320,12 +320,9 @@ def main() -> int:
             record["dispatch"] = "ok"
             record["status"] = "dispatched"
 
-            # The canonical session is deliberately single-flight. The CLI
-            # flag remains useful for legacy catalogs, but cannot disable the
-            # safety barrier declared by session.yml.
-            must_wait = catalog["execution"]["mode"] == "sequential" or (
-                args.wait and workflow.wait_for_completion
-            )
+            # The canonical session is deliberately single-flight; the CLI
+            # flag cannot disable the safety barrier declared by session.yml.
+            must_wait = True
             if must_wait:
                 run = find_dispatched_run(client, workflow_numeric_id, branch, dispatched_at)
                 final_run = wait_for_completion(client, int(run["id"]), workflow.timeout_minutes)
