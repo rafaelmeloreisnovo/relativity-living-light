@@ -27,7 +27,6 @@ Status: metadata_only / fetch-ready via orchestrator
   `desi_dr2_bao_primary_points.csv`, `desi_dr2_bao_covariance_summary.csv`, and
   `fsigma8_growth_real.csv`. Each file retains its source path and SHA256
   in `CURATED_SOURCES.json`.
-  in `CURATED_SOURCES.json`.
 - The canonical workflow `.github/workflows/real-data-complete-execution.yml`
   packages these inputs under `artifacts/real-data-complete/inputs/` and publishes
   `REAL_INPUTS.json`. The operational sequence is: stage 30 audits/materializes,
