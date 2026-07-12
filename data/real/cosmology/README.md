@@ -20,8 +20,19 @@ Status: metadata_only / fetch-ready via orchestrator
   - `artifacts/rll-real-run/raw/SOURCES.json`
   - `artifacts/rll-real-run/raw/cosmology_curated/CURATED_SOURCES.json`
   - `artifacts/rll-real-run/raw/cosmology_curated/Hz_data_real.csv`
-  - `artifacts/rll-real-run/raw/cosmology_curated/BAO_data_real.csv`
+  - `artifacts/rll-real-run/raw/cosmology_curated/desi_dr2_bao_primary_points.csv`
+  - `artifacts/rll-real-run/raw/cosmology_curated/fsigma8_growth_real.csv`
   - `artifacts/rll-real-run/raw/cosmology_curated/CMB_shift_real.json`
+- A importação curada também preserva os demais inputs do contrato conjunto:
+  `desi_dr2_bao_primary_points.csv`, `desi_dr2_bao_covariance_summary.csv` e
+  `fsigma8_growth_real.csv`. Cada arquivo mantém seu caminho de origem e SHA256
+  em `CURATED_SOURCES.json`.
+- O workflow canônico `.github/workflows/real-data-complete-execution.yml`
+  empacota esses inputs em `artifacts/real-data-complete/inputs/` e publica
+  `REAL_INPUTS.json`. A sequência operacional é: estágio 30 audita/materializa,
+  estágio 40 executa a rota auxiliar, e os estágios 50/60 geram fórmulas/IML.
+  O IML usa somente `Hz_data_real.csv`; DESI, fσ8 e CMB permanecem na rota
+  conjunta Structure-D, evitando misturar observáveis ou semânticas.
 
 ## Materialização real adicional — crescimento `fσ8`
 
@@ -67,4 +78,3 @@ Status: metadata_only / fetch-ready via orchestrator
 - `data.pipelines.structure_d.joint_real_likelihood._cmb_chi2` usa essa covariância completa (via `chi2_with_covariance`) quando presente, com fallback diagonal `[R, l_A]` para fixtures antigas/mínimas.
 - Fontes assinadas: `real_cmb_shift` (Planck 2018 VI, valores compressos) e `real_cmb_shift_covariance` (Chen, Huang & Wang 2019, matriz de correlação) em `real_source_signatures.json`.
 - Isso fecha a sub-lacuna de covariância comprimida em `GAP-COSMO-CMB`; a lacuna permanece `TOKEN_VAZIO*` porque ainda falta um backend nativo CLASS/CAMB (C_l completo) — ver `data/real_sources/rll_required_data_gap_registry.yml`.
-

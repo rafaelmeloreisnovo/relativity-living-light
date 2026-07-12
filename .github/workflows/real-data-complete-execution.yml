@@ -169,6 +169,63 @@ jobs:
           cp results/audit/real_data_materialization_audit.md "$RUN_DIR/reports/" || true
           cp results/audit/real_data_materialization_audit.json "$RUN_DIR/reports/" || true
 
+      - name: Package canonical real inputs for downstream pipelines
+        if: always()
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import shutil
+          from pathlib import Path
+
+          import yaml
+
+          root = Path(".")
+          artifact_root = Path("artifacts/real-data-complete/inputs")
+          contract = yaml.safe_load(
+              Path("data/real/cosmology/real_cosmology_inputs.yml").read_text(
+                  encoding="utf-8"
+              )
+          )
+          paths = {
+              "data/real/rll_real_sources_manifest_2026.yml",
+              "data/real/cosmology/real_cosmology_inputs.yml",
+              "data/real/cosmology/real_source_signatures.json",
+          }
+          for entry in contract["inputs"]:
+              paths.add(entry["local_path"])
+              if entry.get("covariance_path"):
+                  paths.add(entry["covariance_path"])
+
+          records = []
+          for relative in sorted(paths):
+              source = root / relative
+              if not source.is_file():
+                  raise SystemExit(f"canonical real input missing: {relative}")
+              destination = artifact_root / relative
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(source, destination)
+              records.append(
+                  {
+                      "path": relative,
+                      "artifact_path": str(destination.relative_to(Path("artifacts/real-data-complete"))),
+                      "sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+                  }
+              )
+
+          manifest = {
+              "schema": "rll.canonical_real_input_artifacts.v1",
+              "contract": "data/real/cosmology/real_cosmology_inputs.yml",
+              "claim_boundary": "Input provenance only; no scientific endorsement.",
+              "records": records,
+          }
+          (artifact_root / "REAL_INPUTS.json").write_text(
+              json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
       - name: Run Structure-D real validation
         if: ${{ inputs.run_structure_d && (inputs.execution_mode == 'validate' || inputs.execution_mode == 'full') }}
         run: |
