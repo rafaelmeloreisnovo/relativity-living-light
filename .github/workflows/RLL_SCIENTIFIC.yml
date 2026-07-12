@@ -12,6 +12,7 @@ on:
       - data/**
       - requirements*.txt
       - pyproject.toml
+  workflow_dispatch:
 
 permissions:
   contents: read

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import glob
 import json
 import os
 import time
@@ -108,8 +109,9 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
 
     workflow_items = data.get("workflows")
     workflow_dirs = data.get("workflow_catalog_dirs")
-    if workflow_items is None and workflow_dirs is None:
-        raise ValueError("catalog must contain workflows or workflow_catalog_dirs")
+    workflow_files = data.get("workflow_files")
+    if workflow_items is None and workflow_dirs is None and workflow_files is None:
+        raise ValueError("catalog must contain workflows, workflow_catalog_dirs, or workflow_files")
 
     if workflow_items is None:
         workflow_items = []
@@ -139,6 +141,51 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
                     workflow_items.append(manifest_data)
                     continue
                 raise ValueError(f"invalid workflow manifest: {manifest}")
+
+    if workflow_files is not None:
+        if not isinstance(workflow_files, list) or not all(
+            isinstance(item, str) for item in workflow_files
+        ):
+            raise ValueError("workflow_files must be a YAML list of glob patterns")
+        for pattern in workflow_files:
+            matches = sorted(Path(item).resolve() for item in glob.glob(str(path.parent / pattern)))
+            if not matches:
+                raise ValueError(f"workflow file pattern matched nothing: {pattern}")
+            for workflow_path in matches:
+                if workflow_path.name == "unified-workflow-session-orchestrator.yml":
+                    continue
+                workflow_data = yaml.safe_load(workflow_path.read_text(encoding="utf-8")) or {}
+                workflow_on = workflow_data.get("on", workflow_data.get(True, {})) or {}
+                dispatch = workflow_on.get("workflow_dispatch")
+                if dispatch is None:
+                    raise ValueError(
+                        f"workflow must support workflow_dispatch for orchestration: "
+                        f"{workflow_path.relative_to(path.parent.parent.parent)}"
+                    )
+                input_config = dispatch.get("inputs", {}) if isinstance(dispatch, dict) else {}
+                inputs = {}
+                if isinstance(input_config, dict):
+                    for input_name, config in input_config.items():
+                        if isinstance(config, dict) and "default" in config:
+                            inputs[input_name] = config["default"]
+                workflow_id = workflow_path.stem.replace("-", "_").lower()
+                tags = ["all"]
+                if "real" in workflow_id or "data" in workflow_id:
+                    tags.append("real_data")
+                if any(token in workflow_id for token in ("validate", "test", "ci", "syntax", "check")):
+                    tags.append("validation")
+                workflow_items.append(
+                    {
+                        "id": workflow_id,
+                        "file": workflow_path.name,
+                        "stage": 100,
+                        "enabled": True,
+                        "tags": tags,
+                        "wait_for_completion": True,
+                        "timeout_minutes": 60,
+                        "inputs": inputs,
+                    }
+                )
 
     data["workflows"] = workflow_items
     execution = data.get("execution") or {}
@@ -233,19 +280,26 @@ def find_dispatched_run(
     workflow_numeric_id: int,
     branch: str,
     dispatched_at: datetime,
+    known_run_ids: set[int] | None = None,
     timeout_seconds: int = 180,
 ) -> dict[str, Any]:
     deadline = time.time() + timeout_seconds
-    threshold = dispatched_at - timedelta(minutes=1)
+    threshold = dispatched_at - timedelta(seconds=30)
+    known_run_ids = known_run_ids or set()
     while time.time() < deadline:
         runs = client.list_workflow_runs(workflow_numeric_id, branch)
+        candidates = []
         for run in runs:
+            if int(run["id"]) in known_run_ids:
+                continue
             created_raw = str(run["created_at"])
             created = datetime.fromisoformat(
                 created_raw.removesuffix("Z") + "+00:00" if created_raw.endswith("Z") else created_raw
             )
             if created >= threshold:
-                return run
+                candidates.append((created, run))
+        if candidates:
+            return max(candidates, key=lambda item: item[0])[1]
         time.sleep(5)
     raise RuntimeError("dispatched workflow run was not found in time")
 
@@ -346,6 +400,10 @@ def main() -> int:
             assert client is not None
             meta = client.workflow_by_file(workflow.file)
             workflow_numeric_id = int(meta["id"])
+            known_run_ids = {
+                int(run["id"])
+                for run in client.list_workflow_runs(workflow_numeric_id, branch)
+            }
             dispatched_at = datetime.now(timezone.utc)
             client.dispatch(workflow.file, args.ref, workflow.inputs)
             record["dispatch"] = "ok"
@@ -353,7 +411,13 @@ def main() -> int:
 
             # The canonical session is deliberately single-flight: completion
             # is the barrier before the next workflow is dispatched.
-            run = find_dispatched_run(client, workflow_numeric_id, branch, dispatched_at)
+            run = find_dispatched_run(
+                client,
+                workflow_numeric_id,
+                branch,
+                dispatched_at,
+                known_run_ids=known_run_ids,
+            )
             final_run = wait_for_completion(client, int(run["id"]), workflow.timeout_minutes)
             record["status"] = str(final_run.get("status", "unknown"))
             record["conclusion"] = str(final_run.get("conclusion", "unknown"))
