@@ -34,7 +34,7 @@ on:
         default: "14"
         options: ["7", "14", "30", "90"]
   schedule:
-    # Daily UTC run keeps the operational artifact cadence independent of runner locale.
+    # Runs daily at 02:15 UTC, independent of the runner or repository locale.
     - cron: "15 2 * * *"
 
 permissions:
@@ -191,9 +191,9 @@ jobs:
           diagnostics.mkdir(parents=True, exist_ok=True)
           reports.mkdir(parents=True, exist_ok=True)
 
-          def mean_csv_field(rows, field, source):
+          def mean_csv_field(rows, field, source, block):
               if not rows:
-                  raise SystemExit(f"real input has no rows: {source}")
+                  raise SystemExit(f"real_3 {block} block: real input has no rows: {source}")
               try:
                   return statistics.fmean(float(row[field]) for row in rows)
               except (KeyError, TypeError, ValueError, statistics.StatisticsError) as exc:
@@ -215,7 +215,7 @@ jobs:
           block_hz = write_block("hz", {
               "group": "cosmology",
               "rows": len(hz_rows),
-              "mean_H_obs": mean_csv_field(hz_rows, "H_obs", hz),
+              "mean_H_obs": mean_csv_field(hz_rows, "H_obs", hz, "hz"),
               "sha256": hashlib.sha256(hz.read_bytes()).hexdigest(),
           })
 
@@ -225,7 +225,7 @@ jobs:
           block_bao = write_block("bao", {
               "group": "cosmology",
               "rows": len(bao_rows),
-              "mean_DV_over_rs": mean_csv_field(bao_rows, "DV_over_rs", bao),
+              "mean_DV_over_rs": mean_csv_field(bao_rows, "DV_over_rs", bao, "bao"),
               "sha256": hashlib.sha256(bao.read_bytes()).hexdigest(),
           })
 
@@ -311,9 +311,10 @@ jobs:
           import json
           from pathlib import Path
           root = Path("artifacts/rll-real-run")
-          files = sorted(str(path.relative_to(root)) for path in root.rglob("*") if path.is_file())
+          files = sorted(str(path.relative_to(root)) for path in root.rglob("**/*") if path.is_file())
           required_dirs = ["raw", "processed", "tables", "plots", "reports", "diagnostics", "book"]
           commit_sha = (root / "COMMIT_SHA.txt").read_text(encoding="utf-8").strip()
+          # v2 adds fixed directories, input hashes, and real_3 grouped summaries.
           manifest = {
               "schema": "rll.real_data_orchestrator.v2",
               "run_id": "${{ github.run_id }}",
