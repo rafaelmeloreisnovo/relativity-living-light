@@ -34,7 +34,7 @@ on:
         type: boolean
       overrides:
         description: "JSON workflow input overrides, keyed by catalog workflow id"
-        required: true
+        required: false
         default: "{}"
         type: string
 

@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import copy
 import json
 import os
 import time
@@ -194,12 +193,12 @@ def apply_overrides(
     if unknown:
         raise ValueError(f"override references unselected workflow(s): {', '.join(unknown)}")
 
-    result = copy.deepcopy(selected)
+    result = list(selected)
     for workflow_id, values in overrides.items():
         if not isinstance(values, dict):
             raise ValueError(f"overrides.{workflow_id} must be a JSON object")
         workflow = next(item for item in result if item.workflow_id == workflow_id)
-        workflow.inputs.update(values)
+        workflow.inputs = {**workflow.inputs, **values}
     return result
 
 

@@ -161,8 +161,16 @@ jobs:
         rows = list(csv.DictReader(source.open(encoding="utf-8", newline="")))
         if not rows:
             raise SystemExit(f"real-data source is empty: {source}")
-        values = [round(float(row["H_obs"]) * 10) for row in rows]
-        redshifts = [round(float(row["z"]) * 1000) for row in rows]
+        values = []
+        redshifts = []
+        for index, row in enumerate(rows, start=2):
+            try:
+                values.append(round(float(row["H_obs"]) * 10))
+                redshifts.append(round(float(row["z"]) * 1000))
+            except (TypeError, ValueError, KeyError) as exc:
+                raise SystemExit(
+                    f"invalid numeric H(z) row {index} in {source}: {row}"
+                ) from exc
         source_sha256 = hashlib.sha256(source.read_bytes()).hexdigest()
         payload = {
             "dados": values,
