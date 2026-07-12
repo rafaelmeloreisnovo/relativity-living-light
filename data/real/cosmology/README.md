@@ -23,16 +23,17 @@ Status: metadata_only / fetch-ready via orchestrator
   - `artifacts/rll-real-run/raw/cosmology_curated/desi_dr2_bao_primary_points.csv`
   - `artifacts/rll-real-run/raw/cosmology_curated/fsigma8_growth_real.csv`
   - `artifacts/rll-real-run/raw/cosmology_curated/CMB_shift_real.json`
-- A importação curada também preserva os demais inputs do contrato conjunto:
-  `desi_dr2_bao_primary_points.csv`, `desi_dr2_bao_covariance_summary.csv` e
-  `fsigma8_growth_real.csv`. Cada arquivo mantém seu caminho de origem e SHA256
-  em `CURATED_SOURCES.json`.
-- O workflow canônico `.github/workflows/real-data-complete-execution.yml`
-  empacota esses inputs em `artifacts/real-data-complete/inputs/` e publica
-  `REAL_INPUTS.json`. A sequência operacional é: estágio 30 audita/materializa,
-  estágio 40 executa a rota auxiliar, e os estágios 50/60 geram fórmulas/IML.
-  O IML usa somente `Hz_data_real.csv`; DESI, fσ8 e CMB permanecem na rota
-  conjunta Structure-D, evitando misturar observáveis ou semânticas.
+- The curated import also preserves the remaining inputs from the joint contract:
+  `desi_dr2_bao_primary_points.csv`, `desi_dr2_bao_covariance_summary.csv`, and
+  `fsigma8_growth_real.csv`. Each file retains its source path and SHA256
+  in `CURATED_SOURCES.json`.
+  in `CURATED_SOURCES.json`.
+- The canonical workflow `.github/workflows/real-data-complete-execution.yml`
+  packages these inputs under `artifacts/real-data-complete/inputs/` and publishes
+  `REAL_INPUTS.json`. The operational sequence is: stage 30 audits/materializes,
+  stage 40 runs the auxiliary route, and stages 50/60 generate formulas/IML.
+  IML uses only `Hz_data_real.csv`; DESI, fσ8, and CMB remain on the joint
+  Structure-D route to avoid mixing observables or semantics.
 
 ## Materialização real adicional — crescimento `fσ8`
 
