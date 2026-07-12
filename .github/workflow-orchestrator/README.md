@@ -5,7 +5,6 @@ This directory centralizes the evolvable orchestration structure for GitHub Acti
 - `session.yml` is the single orchestrator entry file (profiles, directories to load, and the single-flight execution policy).
 - `workflows/` is the modular directory tree with nested manifests that replace direct listing in one monolithic catalog.
 - `tools/workflow_orchestrator.py` reads `session.yml`, expands `workflow_catalog_dirs`, and dispatches workflows as one unified session.
-- `session.yml` is the single parent policy: `execution.mode: sequential`, `stage_barrier: true`, and `max_in_flight: 1` ensure that one workflow completes before the next is dispatched.
 
 ## Schema Evolution
 
