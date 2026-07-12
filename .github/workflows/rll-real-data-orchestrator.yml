@@ -121,6 +121,55 @@ jobs:
           python tools/docs_inventory.py | tee "$RUN_DIR/diagnostics/docs_inventory_refresh.log"
           python tools/docs_inventory.py --check | tee "$RUN_DIR/diagnostics/docs_inventory_check.log"
 
+      - name: Record complete real-data and YAML custody
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import subprocess
+          from pathlib import Path
+
+          root = Path(".")
+          output = Path("artifacts/rll-real-run/raw/REPOSITORY_CUSTODY.json")
+
+          tracked = subprocess.run(
+              ["git", "ls-files", "-z", "--", "data/real", "*.yml", "*.yaml"],
+              check=True,
+              capture_output=True,
+          ).stdout.split(b"\0")
+          paths = sorted({Path(item.decode("utf-8")) for item in tracked if item})
+
+          records = []
+          for path in paths:
+              absolute = root / path
+              if not absolute.is_file():
+                  continue
+              digest = hashlib.sha256(absolute.read_bytes()).hexdigest()
+              records.append({
+                  "path": path.as_posix(),
+                  "bytes": absolute.stat().st_size,
+                  "sha256": digest,
+                  "category": "real_data" if path.as_posix().startswith("data/real/") else "yaml",
+              })
+
+          real_data = [item for item in records if item["category"] == "real_data"]
+          yaml_files = [item for item in records if item["category"] == "yaml"]
+          payload = {
+              "schema": "rll.repository_custody.v1",
+              "commit_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+              "real_data_files": len(real_data),
+              "yaml_files": len(yaml_files),
+              "records": records,
+              "claim_boundary": (
+                  "Custody, provenance and reproducibility metadata only; "
+                  "file presence and hashes do not establish scientific validity."
+              ),
+          }
+          output.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+          print(f"Recorded custody for {len(real_data)} real-data files and {len(yaml_files)} YAML files")
+          PY
+
       - name: Hotfix gate - rll
         if: ${{ inputs.pipeline_scope == 'rll' || inputs.pipeline_scope == 'all' || github.event_name == 'schedule' }}
         run: |
