@@ -10,6 +10,13 @@ profiles:
     description: "Run only real-data related workflows."
     include_tags: [real_data, validation]
 
+# One parent session owns execution. A stage must finish before the next stage
+# is dispatched, preventing the catalog from launching every workflow at once.
+execution:
+  mode: sequential
+  stage_barrier: true
+  max_in_flight: 1
+
 workflow_catalog_dirs:
   - workflows/core
   - workflows/real_data

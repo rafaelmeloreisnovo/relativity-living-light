@@ -136,6 +136,25 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
                 raise ValueError(f"invalid workflow manifest: {manifest}")
 
     data["workflows"] = workflow_items
+    execution = data.get("execution") or {}
+    if not isinstance(execution, dict):
+        raise ValueError("execution must be a YAML mapping")
+    mode = execution.get("mode", "sequential")
+    if mode != "sequential":
+        raise ValueError("execution.mode must be 'sequential'")
+    if execution.get("stage_barrier", True) is not True:
+        raise ValueError("execution.stage_barrier must be true")
+    max_in_flight = execution.get("max_in_flight", 1)
+    # bool is a subclass of int, but true/false are invalid concurrency values.
+    if isinstance(max_in_flight, bool) or not isinstance(max_in_flight, int):
+        raise ValueError("execution.max_in_flight must be an integer")
+    if max_in_flight != 1:
+        raise ValueError("execution.max_in_flight must be 1")
+    data["execution"] = {
+        "mode": mode,
+        "stage_barrier": True,
+        "max_in_flight": max_in_flight,
+    }
     return data
 
 
@@ -258,6 +277,7 @@ def main() -> int:
         "ref": args.ref,
         "dry_run": args.dry_run,
         "wait": args.wait,
+        "execution": catalog["execution"],
         "failed": False,
         "workflows": [],
     }
@@ -300,17 +320,18 @@ def main() -> int:
             record["dispatch"] = "ok"
             record["status"] = "dispatched"
 
-            if args.wait and workflow.wait_for_completion:
-                run = find_dispatched_run(client, workflow_numeric_id, branch, dispatched_at)
-                final_run = wait_for_completion(client, int(run["id"]), workflow.timeout_minutes)
-                record["status"] = str(final_run.get("status", "unknown"))
-                record["conclusion"] = str(final_run.get("conclusion", "unknown"))
-                record["html_url"] = str(final_run.get("html_url", ""))
-                if record["conclusion"] != "success":
-                    payload["failed"] = True
-                    if args.fail_fast:
-                        payload["workflows"].append(record)
-                        break
+            # The canonical session is deliberately single-flight: completion
+            # is the barrier before the next workflow is dispatched.
+            run = find_dispatched_run(client, workflow_numeric_id, branch, dispatched_at)
+            final_run = wait_for_completion(client, int(run["id"]), workflow.timeout_minutes)
+            record["status"] = str(final_run.get("status", "unknown"))
+            record["conclusion"] = str(final_run.get("conclusion", "unknown"))
+            record["html_url"] = str(final_run.get("html_url", ""))
+            if record["conclusion"] != "success":
+                payload["failed"] = True
+                if args.fail_fast:
+                    payload["workflows"].append(record)
+                    break
             payload["workflows"].append(record)
         except (RuntimeError, ValueError, KeyError) as exc:
             record["dispatch"] = "error"
