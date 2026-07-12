@@ -32,6 +32,11 @@ on:
         required: true
         default: false
         type: boolean
+      overrides:
+        description: "JSON workflow input overrides, keyed by catalog workflow id"
+        required: true
+        default: "{}"
+        type: string
 
 permissions:
   contents: read
@@ -71,6 +76,7 @@ jobs:
             --catalog .github/workflow-orchestrator/session.yml
             --profile "${{ inputs.profile }}"
             --ref "${{ inputs.ref }}"
+            --overrides '${{ inputs.overrides }}'
             --output-dir artifacts/unified-workflow-session
           )
           if [ "${{ inputs.wait_for_completion }}" = "true" ]; then
