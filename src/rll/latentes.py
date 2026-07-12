@@ -13,6 +13,7 @@ import csv
 import hashlib
 import json
 import math
+import re
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -26,6 +27,15 @@ DEFAULT_SCHEMA = Path("schemas/rll_latentes_observations.schema.json")
 LATENT_SCORE_FIELDS = ("C", "I", "P", "E", "Rc", "Ru", "Am", "Vb")
 FNV64_OFFSET = 0xCBF29CE484222325
 FNV64_PRIME = 0x100000001B3
+SEMANTIC_DIRECTIONS = (
+    "d1_lexical_structure",
+    "d2_entity_domain",
+    "d3_relational_isogonic",
+    "d4_antagonic_constraints",
+    "d5_causal_temporal",
+    "d6_epistemic_gap",
+    "d7_operational_governance",
+)
 
 
 @dataclass(frozen=True)
@@ -57,6 +67,122 @@ class PipelinePlan:
     report_target: str
     suggested_command: str
     rollback: str
+
+
+def ucase_prompt(prompt: str) -> str:
+    """Normalize a prompt without discarding its Unicode characters."""
+
+    if not isinstance(prompt, str):
+        raise TypeError("prompt must be a string")
+    normalized = " ".join(prompt.split())
+    if not normalized:
+        raise ValueError("prompt must not be empty")
+    return normalized.upper()
+
+
+def _prompt_tokens(prompt: str) -> list[dict[str, Any]]:
+    return [
+        {"surface": match.group(0), "normalized": match.group(0), "index": index}
+        for index, match in enumerate(re.finditer(r"[^\W_]+(?:['’-][^\W_]+)*", prompt, re.UNICODE))
+    ]
+
+
+def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None) -> dict[str, Any]:
+    """Create a conservative, schema-shaped seven-direction prompt analysis.
+
+    The function records what can be established from the prompt alone. It does
+    not infer domain facts, causal claims, authorization, or evidence that the
+    input does not provide.
+    """
+
+    normalized = ucase_prompt(prompt)
+    digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:12].upper()
+    token_unit_id = unit_id or f"STU-PROMPT-{digest}"
+    if not re.fullmatch(r"STU-[A-Z0-9_]{2,24}-[0-9]{4,12}", token_unit_id):
+        raise ValueError("unit_id must match the SemanticTokenUnit contract")
+
+    lexical_tokens = _prompt_tokens(normalized)
+    missing = ["domain evidence", "operational authorization", "independent proof"]
+    payload = {
+        "unit_id": token_unit_id,
+        "raw_span": normalized,
+        "language": "pt-BR",
+        "lexical_tokens": lexical_tokens,
+        "views_7d": {
+            "d1_lexical_structure": {
+                "normalized_form": normalized,
+                "syntactic_roles": [],
+                "ambiguities": ["semantic roles require explicit interpretation"],
+            },
+            "d2_entity_domain": {
+                "domains": ["unclassified"],
+                "entities": [item["normalized"] for item in lexical_tokens],
+                "domain_variables": [],
+                "units": [],
+            },
+            "d3_relational_isogonic": {
+                "isogonic_links": [],
+                "dependencies": [],
+                "analogical_links": [],
+                "invariants": [],
+            },
+            "d4_antagonic_constraints": {
+                "antagonic_links": [],
+                "constraints": [],
+                "contradictions": [],
+                "failure_modes": [],
+            },
+            "d5_causal_temporal": {
+                "causes": [],
+                "effects": [],
+                "forward_paths": [],
+                "backward_paths": [],
+                "derivative_paths": [],
+                "antiderivative_paths": [],
+                "temporal_scope": "unspecified",
+            },
+            "d6_epistemic_gap": {
+                "evidence_state": "unobserved",
+                "missing_variables": missing,
+                "token_vazio": True,
+                "uncertainties": ["prompt-only analysis has no attached evidence"],
+                "falsifiers": ["attach verifiable source and reproduce the procedure"],
+            },
+            "d7_operational_governance": {
+                "intended_action": "classify and route for review",
+                "execution_gate": "human_review",
+                "audit_required": True,
+                "next_action": "supply evidence, authorization, and acceptance criteria",
+                "runtime_target": "governed prompt analysis",
+            },
+        },
+        "evidence_refs": [],
+        "uncertainty": 1.0,
+        "epistemic_status": "gap",
+        "use_policy": {
+            "privacy": "unknown",
+            "training_eligibility": "unknown",
+            "retention": "session",
+            "purpose": "inference",
+            "owner": "user",
+        },
+        "created_at": utc_now_iso(),
+    }
+    validate_semantic_token_unit(payload)
+    return payload
+
+
+def validate_semantic_token_unit(payload: dict[str, Any]) -> None:
+    """Enforce the safety invariants that prevent a gap becoming an assertion."""
+
+    if tuple(payload.get("views_7d", {})) != SEMANTIC_DIRECTIONS:
+        raise ValueError("semantic token unit must contain the ordered seven directions")
+    gap = payload["views_7d"]["d6_epistemic_gap"]
+    governance = payload["views_7d"]["d7_operational_governance"]
+    if gap["token_vazio"] and (not gap["missing_variables"] or payload["epistemic_status"] != "gap"):
+        raise ValueError("TOKEN_VAZIO requires missing variables and epistemic_status=gap")
+    if gap["token_vazio"] and governance["execution_gate"] == "allow":
+        raise ValueError("TOKEN_VAZIO cannot execute directly")
 
 
 def utc_now_iso() -> str:
@@ -341,6 +467,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     score_parser.add_argument("--source-id", default=None)
     report_parser = subparsers.add_parser("report", help="Run all seven steps in dry-run mode")
     report_parser.add_argument("--source-id", default=None)
+    tokenize_parser = subparsers.add_parser("tokenize", help="Build a governed seven-direction prompt unit")
+    prompt_group = tokenize_parser.add_mutually_exclusive_group(required=True)
+    prompt_group.add_argument("--prompt")
+    prompt_group.add_argument("--prompt-file", type=Path)
+    tokenize_parser.add_argument("--unit-id", default=None)
     subparsers.add_parser("verify", help="Validate catalog and emit provenance-ready status")
     return parser
 
@@ -374,6 +505,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "report":
         print(json.dumps(run_dry_pipeline(args.catalog, args.schema, args.root, args.source_id), indent=2, sort_keys=True, ensure_ascii=False))
+        return 0
+    if args.command == "tokenize":
+        prompt = args.prompt
+        if args.prompt_file is not None:
+            prompt = args.prompt_file.read_text(encoding="utf-8")
+        print(json.dumps(build_semantic_token_unit(prompt, unit_id=args.unit_id), indent=2, ensure_ascii=False))
         return 0
     if args.command == "verify":
         print(json.dumps({"status": "verified", "schema": str(args.schema), "catalog": str(args.catalog)}, sort_keys=True))
