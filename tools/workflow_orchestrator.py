@@ -320,20 +320,18 @@ def main() -> int:
             record["dispatch"] = "ok"
             record["status"] = "dispatched"
 
-            # The canonical session is deliberately single-flight; the CLI
-            # flag cannot disable the safety barrier declared by session.yml.
-            must_wait = True
-            if must_wait:
-                run = find_dispatched_run(client, workflow_numeric_id, branch, dispatched_at)
-                final_run = wait_for_completion(client, int(run["id"]), workflow.timeout_minutes)
-                record["status"] = str(final_run.get("status", "unknown"))
-                record["conclusion"] = str(final_run.get("conclusion", "unknown"))
-                record["html_url"] = str(final_run.get("html_url", ""))
-                if record["conclusion"] != "success":
-                    payload["failed"] = True
-                    if args.fail_fast:
-                        payload["workflows"].append(record)
-                        break
+            # The canonical session is deliberately single-flight: completion
+            # is the barrier before the next workflow is dispatched.
+            run = find_dispatched_run(client, workflow_numeric_id, branch, dispatched_at)
+            final_run = wait_for_completion(client, int(run["id"]), workflow.timeout_minutes)
+            record["status"] = str(final_run.get("status", "unknown"))
+            record["conclusion"] = str(final_run.get("conclusion", "unknown"))
+            record["html_url"] = str(final_run.get("html_url", ""))
+            if record["conclusion"] != "success":
+                payload["failed"] = True
+                if args.fail_fast:
+                    payload["workflows"].append(record)
+                    break
             payload["workflows"].append(record)
         except (RuntimeError, ValueError, KeyError) as exc:
             record["dispatch"] = "error"
