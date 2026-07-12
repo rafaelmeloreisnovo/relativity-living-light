@@ -166,7 +166,7 @@ jobs:
             --no-fetch-desi --no-fetch-pantheon --no-fetch-planck --no-fetch-spenvis-reference
 
       - name: Compute RLL real pipeline
-        if: ${{ inputs.mode == 'compute' || inputs.mode == 'plots' || inputs.mode == 'full' || github.event_name == 'schedule' }}
+        if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' || github.event_name == 'schedule' }}
         run: |
           set -euo pipefail
           python scripts/compute_rll_real_pipeline.py \
@@ -174,7 +174,7 @@ jobs:
             --data-source "${{ inputs.real_data_source || 'repo' }}"
 
       - name: real_3_compute - independent blocks and grouped consolidation
-        if: ${{ inputs.mode == 'compute' || inputs.mode == 'plots' || inputs.mode == 'full' || github.event_name == 'schedule' }}
+        if: ${{ inputs.mode == 'compute' || inputs.mode == 'full' || github.event_name == 'schedule' }}
         run: |
           set -euo pipefail
           python - <<'PY'
@@ -194,12 +194,16 @@ jobs:
           def mean_csv_field(rows, field, source, block):
               if not rows:
                   raise SystemExit(f"real_3 {block} block: real input has no rows: {source}")
-              try:
-                  return statistics.fmean(float(row[field]) for row in rows)
-              except (KeyError, TypeError, ValueError, statistics.StatisticsError) as exc:
-                  raise SystemExit(
-                      f"invalid numeric field {field!r} in {source}: {exc}"
-                  ) from exc
+              values = []
+              for index, row in enumerate(rows, start=2):
+                  try:
+                      values.append(float(row[field]))
+                  except (KeyError, TypeError, ValueError) as exc:
+                      raise SystemExit(
+                          f"invalid numeric field {field!r} in {source}, "
+                          f"real_3 {block} block, row {index}: {exc}"
+                      ) from exc
+              return statistics.fmean(values)
 
           def write_block(name, payload):
               payload["block"] = name
@@ -314,7 +318,8 @@ jobs:
           files = sorted(str(path.relative_to(root)) for path in root.rglob("**/*") if path.is_file())
           required_dirs = ["raw", "processed", "tables", "plots", "reports", "diagnostics", "book"]
           commit_sha = (root / "COMMIT_SHA.txt").read_text(encoding="utf-8").strip()
-          # v2 adds fixed directories, input hashes, and real_3 grouped summaries.
+          # v1 tracked generated files and a claim boundary; v2 additionally
+          # requires fixed directories, input hashes, and real_3 grouped summaries.
           manifest = {
               "schema": "rll.real_data_orchestrator.v2",
               "run_id": "${{ github.run_id }}",
@@ -345,7 +350,7 @@ jobs:
         with:
           name: rll-real-run-${{ github.run_id }}
           path: artifacts/rll-real-run/
-          # fromJSON converts the controlled scheduled default to the integer expected by v4.
+          # fromJSON converts the controlled scheduled default to the integer expected by actions/upload-artifact@v4.
           retention-days: ${{ fromJSON(inputs.retention_days || '14') }}
 
       - name: Upload policy artifact
