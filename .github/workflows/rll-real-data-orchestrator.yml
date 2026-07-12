@@ -191,7 +191,7 @@ jobs:
           diagnostics.mkdir(parents=True, exist_ok=True)
           reports.mkdir(parents=True, exist_ok=True)
 
-          def mean_field(rows, field, source):
+          def mean_csv_field(rows, field, source):
               if not rows:
                   raise SystemExit(f"real input has no rows: {source}")
               try:
@@ -215,7 +215,7 @@ jobs:
           block_hz = write_block("hz", {
               "group": "cosmology",
               "rows": len(hz_rows),
-              "mean_H_obs": mean_field(hz_rows, "H_obs", hz),
+              "mean_H_obs": mean_csv_field(hz_rows, "H_obs", hz),
               "sha256": hashlib.sha256(hz.read_bytes()).hexdigest(),
           })
 
@@ -225,7 +225,7 @@ jobs:
           block_bao = write_block("bao", {
               "group": "cosmology",
               "rows": len(bao_rows),
-              "mean_DV_over_rs": mean_field(bao_rows, "DV_over_rs", bao),
+              "mean_DV_over_rs": mean_csv_field(bao_rows, "DV_over_rs", bao),
               "sha256": hashlib.sha256(bao.read_bytes()).hexdigest(),
           })
 
@@ -276,8 +276,13 @@ jobs:
           payload = {
               "dados": values,
               "redshift_milli": redshifts,
+              "coerencia_in": 0.7,
+              "coerencia0": 0.5,
+              "entropia0": 0.5,
+              "estado": "ACTIVE",
               "data_source": str(source),
               "data_source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+              "data_encoding": "H_obs*10 rounded; z*1000 rounded",
               "claim_boundary": "Input provenance only; no scientific endorsement.",
           }
           output = Path("artifacts/rll-real-run/processed/iml/input.json")
@@ -339,7 +344,7 @@ jobs:
         with:
           name: rll-real-run-${{ github.run_id }}
           path: artifacts/rll-real-run/
-          # Scheduled runs use the controlled 14-day default; manual runs select 7/14/30/90.
+          # fromJSON converts the controlled scheduled default to the integer expected by v4.
           retention-days: ${{ fromJSON(inputs.retention_days || '14') }}
 
       - name: Upload policy artifact
