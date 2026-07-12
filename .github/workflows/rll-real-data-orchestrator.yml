@@ -34,7 +34,7 @@ on:
         default: "14"
         options: ["7", "14", "30", "90"]
   schedule:
-    # Runs daily at 02:15 UTC, independent of the runner or repository locale.
+    # GitHub Actions cron is UTC; this runs daily at 02:15 UTC.
     - cron: "15 2 * * *"
 
 permissions:
@@ -273,7 +273,7 @@ jobs:
           source = Path("data/real/Hz_data_real.csv")
           rows = list(csv.DictReader(source.open(encoding="utf-8", newline="")))
           if not rows:
-              raise SystemExit("real H(z) source is empty")
+              raise SystemExit(f"real H(z) source is empty: {source}")
           try:
               values = [round(float(row["H_obs"]) * 10) for row in rows]
               redshifts = [round(float(row["z"]) * 1000) for row in rows]
@@ -322,7 +322,8 @@ jobs:
           commit_sha = (root / "COMMIT_SHA.txt").read_text(encoding="utf-8").strip()
           # v1 tracked generated files and a claim boundary; v2 additionally
           # requires fixed directories, input hashes, and real_3 grouped summaries.
-          # Bump the version only for breaking changes to this artifact contract.
+          # The version tracks structural artifact-contract changes; v1 -> v2
+          # made the fixed layout, hashes, and real_3 summaries explicit.
           manifest = {
               "schema": "rll.real_data_orchestrator.v2",
               "run_id": "${{ github.run_id }}",
