@@ -136,6 +136,21 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
                 raise ValueError(f"invalid workflow manifest: {manifest}")
 
     data["workflows"] = workflow_items
+    execution = data.get("execution") or {}
+    if not isinstance(execution, dict):
+        raise ValueError("execution must be a YAML mapping")
+    mode = execution.get("mode", "sequential")
+    if mode != "sequential":
+        raise ValueError("execution.mode must be 'sequential'")
+    if execution.get("stage_barrier", True) is not True:
+        raise ValueError("execution.stage_barrier must be true")
+    if int(execution.get("max_in_flight", 1)) != 1:
+        raise ValueError("execution.max_in_flight must be 1")
+    data["execution"] = {
+        "mode": "sequential",
+        "stage_barrier": True,
+        "max_in_flight": 1,
+    }
     return data
 
 
@@ -258,6 +273,7 @@ def main() -> int:
         "ref": args.ref,
         "dry_run": args.dry_run,
         "wait": args.wait,
+        "execution": catalog["execution"],
         "failed": False,
         "workflows": [],
     }
@@ -300,7 +316,13 @@ def main() -> int:
             record["dispatch"] = "ok"
             record["status"] = "dispatched"
 
-            if args.wait and workflow.wait_for_completion:
+            # The canonical session is deliberately single-flight. The CLI
+            # flag remains useful for legacy catalogs, but cannot disable the
+            # safety barrier declared by session.yml.
+            must_wait = catalog["execution"]["mode"] == "sequential" or (
+                args.wait and workflow.wait_for_completion
+            )
+            if must_wait:
                 run = find_dispatched_run(client, workflow_numeric_id, branch, dispatched_at)
                 final_run = wait_for_completion(client, int(run["id"]), workflow.timeout_minutes)
                 record["status"] = str(final_run.get("status", "unknown"))
