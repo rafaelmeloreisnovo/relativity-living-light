@@ -541,11 +541,11 @@
   },
   {
     "path": ".github/workflows/rll-real-data-orchestrator.yml",
-    "bytes": 15881,
+    "bytes": 17941,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 369,
-    "sha256": "6609ea1d14c8ae2c4e8ec91d2d1ef36e3e7d5f0aabd90f9b7a9be0f63f369f77",
+    "linhas": 418,
+    "sha256": "6c92e191aa71931d558b995692634527e24432f880206ec100e7159fb610bca7",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
@@ -10126,30 +10126,57 @@
   },
   {
     "path": "results/audit/real_data_materialization_audit.csv",
-    "bytes": 7506,
+    "bytes": 9110,
     "ext": ".csv",
     "tipo": "data_or_result",
-    "linhas": 21,
-    "sha256": "f56ef0de8385cc7bd29d4173c3e89ce153855beaabc5ad1fc3a26da0127a9c46",
+    "linhas": 26,
+    "sha256": "9a8967f879bea188eb6b157737565162374387bc234a5142ce980c1ee8a20c30",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/audit/real_data_materialization_audit.csv.bak",
+    "bytes": 7506,
+    "ext": ".bak",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "f56ef0de8385cc7bd29d4173c3e89ce153855beaabc5ad1fc3a26da0127a9c46",
+    "flags": ""
   },
   {
     "path": "results/audit/real_data_materialization_audit.json",
-    "bytes": 12946,
+    "bytes": 15925,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 265,
-    "sha256": "7fbcba794f89f52767fd4753cd5b2596eec0c1a9a8e8071e7a4896b66f75ea6f",
+    "linhas": 330,
+    "sha256": "c7aac933b2d15c52ba052917ec28774097bd90f90c0bbe8185f001a18354e824",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
+    "path": "results/audit/real_data_materialization_audit.json.bak",
+    "bytes": 12946,
+    "ext": ".bak",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "7fbcba794f89f52767fd4753cd5b2596eec0c1a9a8e8071e7a4896b66f75ea6f",
+    "flags": ""
+  },
+  {
     "path": "results/audit/real_data_materialization_audit.md",
-    "bytes": 1679,
+    "bytes": 1685,
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 28,
-    "sha256": "7896f663330c339163b1a296d9ff980d5b11a998a083c191ff421667e24cdc18",
+    "sha256": "c65aecf79a1ea891b45ef026266af88099bac66bca2769815f9949da2de95a52",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/audit/real_data_materialization_audit.md.bak",
+    "bytes": 1679,
+    "ext": ".bak",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "7896f663330c339163b1a296d9ff980d5b11a998a083c191ff421667e24cdc18",
+    "flags": ""
   },
   {
     "path": "results/audit/real_source_signature_verification.json",

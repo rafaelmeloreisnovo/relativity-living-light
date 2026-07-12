@@ -52,7 +52,7 @@ Base: arquivos rastreados por `git ls-files`; campos voláteis de data/hora e co
 | `.github/workflows/rll-balance-report.yml` | `github_workflow_yml` | 4570 | 130 | `caec8aaa3644a0b6c6be1c5f62cc0147d71dcb3d03e32f586686718e729cd6cd` |
 | `.github/workflows/rll-book-data-pipeline.yml` | `github_workflow_yml` | 6760 | 169 | `fbd074f7fa89a6fd1523eadd31d05616c275a4458bb311af40f314819ed9dfa1` |
 | `.github/workflows/rll-data-pipeline.yml` | `github_workflow_yml` | 4017 | 107 | `04ade63c7de176ccb966f6c31ce923ad5ca9a7e4cca99ed8a2e29a39c9d035a3` |
-| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 15881 | 369 | `6609ea1d14c8ae2c4e8ec91d2d1ef36e3e7d5f0aabd90f9b7a9be0f63f369f77` |
+| `.github/workflows/rll-real-data-orchestrator.yml` | `github_workflow_yml` | 17941 | 418 | `6c92e191aa71931d558b995692634527e24432f880206ec100e7159fb610bca7` |
 | `.github/workflows/rll-validacao-cientifica-completa.yml` | `github_workflow_yml` | 47732 | 1174 | `13814a22c4d1d8c3af0060657f2df136be0f8bee61ea0c68ed05344b131ca75e` |
 | `.github/workflows/six-sigma-real-data-controls.yml` | `github_workflow_yml` | 2596 | 68 | `6fc2f4c601c8e8f6d92f2a82d6e30dce9560334be87e8ea713a5a560e6766f2f` |
 | `.github/workflows/unified-geometry.yml` | `github_workflow_yml` | 892 | 35 | `ccb7034dc8d0b5fa743c69054306e948588b28d7114c700639cdea42027361ff` |
