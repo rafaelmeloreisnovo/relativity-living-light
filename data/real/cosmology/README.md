@@ -20,8 +20,6 @@ Status: metadata_only / fetch-ready via orchestrator
   - `artifacts/rll-real-run/raw/SOURCES.json`
   - `artifacts/rll-real-run/raw/cosmology_curated/CURATED_SOURCES.json`
   - `artifacts/rll-real-run/raw/cosmology_curated/Hz_data_real.csv`
-  - `artifacts/rll-real-run/raw/cosmology_curated/desi_dr2_bao_primary_points.csv`
-  - `artifacts/rll-real-run/raw/cosmology_curated/fsigma8_growth_real.csv`
   - `artifacts/rll-real-run/raw/cosmology_curated/CMB_shift_real.json`
 - The curated import also preserves the remaining inputs from the joint contract:
   `desi_dr2_bao_primary_points.csv`, `desi_dr2_bao_covariance_summary.csv`, and
