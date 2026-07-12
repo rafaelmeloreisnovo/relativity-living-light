@@ -96,8 +96,9 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None) -> dic
     """
 
     normalized = ucase_prompt(prompt)
-    digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:12].upper()
-    token_unit_id = unit_id or f"STU-PROMPT-{digest}"
+    digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+    numeric_id = int(digest[:12], 16) % 10**12
+    token_unit_id = unit_id or f"STU-PROMPT-{numeric_id:012d}"
     if not re.fullmatch(r"STU-[A-Z0-9_]{2,24}-[0-9]{4,12}", token_unit_id):
         raise ValueError("unit_id must match the SemanticTokenUnit contract")
 
