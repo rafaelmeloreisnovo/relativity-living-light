@@ -149,11 +149,51 @@ jobs:
     - if: ${{ inputs.pipeline_scope == 'book' || inputs.pipeline_scope == 'all' || inputs.pipeline_scope == 'rll' }}
       run: python3 scripts/rll_pipeline.py --book-scope "${{ inputs.book_scope }}" --dataset-group "${{ inputs.dataset_group }}" --mode "${{ inputs.mode == 'full' && 'compute' || inputs.mode }}" --output-dir artifacts/rll-real-run
     - if: ${{ inputs.run_iml && (inputs.pipeline_scope == 'iml' || inputs.pipeline_scope == 'all') }}
-      run: 'printf ''{"dados":[1,2,3,4],"coerencia_in":0.7,"coerencia0":0.5,"entropia0":0.5,"estado":"ACTIVE"}\n'' > artifacts/rll-real-run/iml/input.json
+      run: |
+        set -euo pipefail
+        python3 - <<'PY'
+        import csv
+        import hashlib
+        import json
+        from pathlib import Path
 
-        python3 tools/iml/iml_pipeline.py --input artifacts/rll-real-run/iml/input.json --output artifacts/rll-real-run/iml/output.json
+        source = Path("data/real/Hz_data_real.csv")
+        h_scale = 10  # Preserve one decimal place for H(z) integer encoding.
+        z_scale = 1000  # Preserve three decimal places for redshift integer encoding.
+        rows = list(csv.DictReader(source.open(encoding="utf-8", newline="")))
+        if not rows:
+            raise SystemExit(f"real-data source is empty: {source}")
+        values = []
+        redshifts = []
+        for index, row in enumerate(rows, start=2):  # CSV line 1 is the header.
+            try:
+                values.append(round(float(row["H_obs"]) * h_scale))
+                redshifts.append(round(float(row["z"]) * z_scale))
+            except (TypeError, ValueError, KeyError) as exc:
+                raise SystemExit(
+                    f"invalid numeric H(z) row {index} in {source}: {row}"
+                ) from exc
+        source_sha256 = hashlib.sha256(source.read_bytes()).hexdigest()
+        payload = {
+            "dados": values,
+            "redshift_milli": redshifts,
+            "coerencia_in": 0.7,
+            "coerencia0": 0.5,
+            "entropia0": 0.5,
+            "estado": "ACTIVE",
+            "data_source": str(source),
+            "data_source_sha256": source_sha256,
+            "data_encoding": "H_obs*10 rounded; z*1000 rounded",
+            "claim_boundary": "Input provenance only; no scientific endorsement.",
+        }
+        output = Path("artifacts/rll-real-run/iml/input.json")
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        PY
+        python3 tools/iml/iml_pipeline.py \
+          --input artifacts/rll-real-run/iml/input.json \
+          --output artifacts/rll-real-run/iml/output.json
 
-        '
     - if: ${{ inputs.run_formulas && (inputs.pipeline_scope == 'formulas' || inputs.pipeline_scope == 'all') }}
       run: python3 tools/formula_artifact_builder.py --outdir artifacts/rll-real-run/formulas
     - run: 'date -u +"%Y-%m-%dT%H:%M:%SZ" > artifacts/rll-real-run/RUN_UTC.txt

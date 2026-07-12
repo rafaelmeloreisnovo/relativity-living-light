@@ -84,6 +84,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--wait", action="store_true", help="Wait for completion for selected workflows.")
     parser.add_argument("--fail-fast", action="store_true", help="Stop orchestration on first failure.")
     parser.add_argument("--dry-run", action="store_true", help="Only print the selected execution plan.")
+    parser.add_argument(
+        "--overrides",
+        default="{}",
+        help="JSON object mapping workflow ids to input overrides.",
+    )
     parser.add_argument("--output-dir", required=True, help="Directory for JSON/MD orchestration reports.")
     return parser.parse_args()
 
@@ -192,6 +197,31 @@ def select_workflows(catalog: dict[str, Any], profile: str) -> list[WorkflowSele
     return selected
 
 
+def apply_overrides(
+    selected: list[WorkflowSelection], overrides_json: str
+) -> list[WorkflowSelection]:
+    try:
+        overrides = json.loads(overrides_json)
+    except json.JSONDecodeError as exc:
+        raise ValueError("--overrides must be valid JSON") from exc
+    if not isinstance(overrides, dict):
+        raise ValueError("--overrides must be a JSON object")
+
+    by_id = {workflow.workflow_id: workflow for workflow in selected}
+    unknown = sorted(set(overrides) - set(by_id))
+    if unknown:
+        raise ValueError(f"override references unselected workflow(s): {', '.join(unknown)}")
+
+    result = list(selected)
+    result_by_id = {workflow.workflow_id: workflow for workflow in result}
+    for workflow_id, values in overrides.items():
+        if not isinstance(values, dict):
+            raise ValueError(f"overrides.{workflow_id} must be a JSON object")
+        workflow = result_by_id[workflow_id]
+        workflow.inputs = {**workflow.inputs, **values}
+    return result
+
+
 def branch_from_ref(ref: str) -> str:
     if ref.startswith("refs/heads/"):
         return ref.removeprefix("refs/heads/")
@@ -268,7 +298,7 @@ def write_reports(output_dir: Path, payload: dict[str, Any]) -> None:
 def main() -> int:
     args = parse_args()
     catalog = load_and_expand_catalog(Path(args.catalog))
-    selected = select_workflows(catalog, args.profile)
+    selected = apply_overrides(select_workflows(catalog, args.profile), args.overrides)
     branch = branch_from_ref(args.ref)
 
     payload: dict[str, Any] = {
@@ -279,6 +309,7 @@ def main() -> int:
         "wait": args.wait,
         "execution": catalog["execution"],
         "failed": False,
+        "overrides": json.loads(args.overrides),
         "workflows": [],
     }
 
