@@ -147,6 +147,7 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
             isinstance(item, str) for item in workflow_files
         ):
             raise ValueError("workflow_files must be a YAML list of glob patterns")
+        repo_root = path.parent.parent.parent.resolve()
         for pattern in workflow_files:
             matches = sorted(Path(item).resolve() for item in glob.glob(str(path.parent / pattern)))
             if not matches:
@@ -160,7 +161,7 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
                 if dispatch is None:
                     raise ValueError(
                         f"workflow must support workflow_dispatch for orchestration: "
-                        f"{workflow_path.relative_to(path.parent.parent.parent)}"
+                        f"{workflow_path.relative_to(repo_root)}"
                     )
                 input_config = dispatch.get("inputs", {}) if isinstance(dispatch, dict) else {}
                 inputs = {}
