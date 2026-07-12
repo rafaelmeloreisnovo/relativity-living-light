@@ -38,9 +38,10 @@ SEMANTIC_DIRECTIONS = (
 )
 SEMANTIC_UNIT_ID_PATTERN = r"STU-[A-Z0-9_]{2,24}-[0-9]{4,12}"
 PROMPT_TOKEN_PATTERN = r"[^\W_]+(?:['’-][^\W_]+)*"
-# Stable machine-readable labels; presentation layers may title-case them.
+# Stable machine-readable labels; presentation layers may use title case.
 REQUIRED_EVIDENCE_CATEGORIES = ("domain evidence", "operational authorization", "independent proof")
 NUMERIC_ID_DIGITS = 12
+NUMERIC_ID_MODULO = 10**NUMERIC_ID_DIGITS
 
 
 @dataclass(frozen=True)
@@ -104,7 +105,7 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None, langua
     normalized = ucase_prompt(prompt)
     digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
     # Truncate the digest to a decimal-safe, fixed-width identifier.
-    numeric_id = int(digest[:NUMERIC_ID_DIGITS], 16) % 10**NUMERIC_ID_DIGITS
+    numeric_id = int(digest[:NUMERIC_ID_DIGITS], 16) % NUMERIC_ID_MODULO
     token_unit_id = unit_id or f"STU-PROMPT-{numeric_id:0{NUMERIC_ID_DIGITS}d}"
     if not re.fullmatch(SEMANTIC_UNIT_ID_PATTERN, token_unit_id):
         raise ValueError(f"unit_id must match {SEMANTIC_UNIT_ID_PATTERN}")
@@ -152,7 +153,7 @@ def build_semantic_token_unit(prompt: str, *, unit_id: str | None = None, langua
             },
             "d6_epistemic_gap": {
                 "evidence_state": "unobserved",
-                # JSON Schema arrays are mutable so callers can add observed gaps.
+                # Copy the immutable defaults so callers can add observed gaps.
                 "missing_variables": list(REQUIRED_EVIDENCE_CATEGORIES),
                 "token_vazio": True,
                 "uncertainties": ["prompt-only analysis has no attached evidence"],
@@ -190,7 +191,7 @@ def validate_semantic_token_unit(payload: dict[str, Any]) -> None:
     gap = payload["views_7d"]["d6_epistemic_gap"]
     governance = payload["views_7d"]["d7_operational_governance"]
     if gap["token_vazio"] and not gap["missing_variables"]:
-        raise ValueError("TOKEN_VAZIO requires missing variables")
+        raise ValueError("TOKEN_VAZIO flag requires non-empty missing_variables list")
     if gap["token_vazio"] and payload["epistemic_status"] != "gap":
         raise ValueError("TOKEN_VAZIO requires epistemic_status=gap")
     if gap["token_vazio"] and governance["execution_gate"] == "allow":
