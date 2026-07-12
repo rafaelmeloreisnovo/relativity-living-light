@@ -148,6 +148,7 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
         ):
             raise ValueError("workflow_files must be a YAML list of glob patterns")
         repo_root = path.parent.parent.parent.resolve()
+        existing_files = {str(item.get("file")) for item in workflow_items if isinstance(item, dict)}
         for pattern in workflow_files:
             matches = sorted(Path(item).resolve() for item in glob.glob(str(path.parent / pattern)))
             if not matches:
@@ -155,14 +156,16 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
             for workflow_path in matches:
                 if workflow_path.name == "unified-workflow-session-orchestrator.yml":
                     continue
+                if workflow_path.name in existing_files:
+                    continue
                 workflow_data = yaml.safe_load(workflow_path.read_text(encoding="utf-8")) or {}
                 workflow_on = workflow_data.get("on", workflow_data.get(True, {})) or {}
-                dispatch = workflow_on.get("workflow_dispatch")
-                if dispatch is None:
+                if "workflow_dispatch" not in workflow_on:
                     raise ValueError(
                         f"workflow must support workflow_dispatch for orchestration: "
                         f"{workflow_path.relative_to(repo_root)}"
                     )
+                dispatch = workflow_on["workflow_dispatch"]
                 input_config = dispatch.get("inputs", {}) if isinstance(dispatch, dict) else {}
                 inputs = {}
                 if isinstance(input_config, dict):
@@ -175,11 +178,24 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
                     tags.append("real_data")
                 if any(token in workflow_id for token in ("validate", "test", "ci", "syntax", "check")):
                     tags.append("validation")
+                stage = 70
+                if "syntax" in workflow_id:
+                    stage = 10
+                elif workflow_id == "start_manual_here":
+                    stage = 20
+                elif workflow_id == "real_data_complete_execution":
+                    stage = 30
+                elif workflow_id == "rll_real_data_orchestrator":
+                    stage = 40
+                elif "formula" in workflow_id:
+                    stage = 50
+                elif "iml" in workflow_id:
+                    stage = 60
                 workflow_items.append(
                     {
                         "id": workflow_id,
                         "file": workflow_path.name,
-                        "stage": 100,
+                        "stage": stage,
                         "enabled": True,
                         "tags": tags,
                         "wait_for_completion": True,

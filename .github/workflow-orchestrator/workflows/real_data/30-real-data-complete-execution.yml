@@ -3,7 +3,7 @@ description: "Execute canonical real-data workflow in controlled audit mode."
 file: real-data-complete-execution.yml
 stage: 30
 enabled: true
-tags: [real_data, validation]
+tags: [all, real_data, validation]
 wait_for_completion: true
 timeout_minutes: 60
 inputs:

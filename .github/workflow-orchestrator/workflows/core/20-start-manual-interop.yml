@@ -3,7 +3,7 @@ description: "Run manual interoperability orchestrator checks and probes."
 file: START_MANUAL_HERE.yml
 stage: 20
 enabled: true
-tags: [core, validation]
+tags: [all, core, validation]
 wait_for_completion: true
 timeout_minutes: 45
 inputs:

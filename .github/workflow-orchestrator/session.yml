@@ -21,3 +21,8 @@ execution:
 # itself is intentionally excluded by the loader to prevent recursive dispatch.
 workflow_files:
   - ../workflows/*.yml
+
+workflow_catalog_dirs:
+  - workflows/core
+  - workflows/real_data
+  - workflows/science
