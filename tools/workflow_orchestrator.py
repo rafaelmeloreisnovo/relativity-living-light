@@ -144,7 +144,10 @@ def load_and_expand_catalog(path: Path) -> dict[str, Any]:
         raise ValueError("execution.mode must be 'sequential'")
     if execution.get("stage_barrier", True) is not True:
         raise ValueError("execution.stage_barrier must be true")
-    if int(execution.get("max_in_flight", 1)) != 1:
+    max_in_flight = execution.get("max_in_flight", 1)
+    if isinstance(max_in_flight, bool) or not isinstance(max_in_flight, int):
+        raise ValueError("execution.max_in_flight must be an integer")
+    if max_in_flight != 1:
         raise ValueError("execution.max_in_flight must be 1")
     data["execution"] = {
         "mode": "sequential",
