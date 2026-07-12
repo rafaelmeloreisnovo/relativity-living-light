@@ -194,10 +194,11 @@ def apply_overrides(
         raise ValueError(f"override references unselected workflow(s): {', '.join(unknown)}")
 
     result = list(selected)
+    result_by_id = {workflow.workflow_id: workflow for workflow in result}
     for workflow_id, values in overrides.items():
         if not isinstance(values, dict):
             raise ValueError(f"overrides.{workflow_id} must be a JSON object")
-        workflow = next(item for item in result if item.workflow_id == workflow_id)
+        workflow = result_by_id[workflow_id]
         workflow.inputs = {**workflow.inputs, **values}
     return result
 

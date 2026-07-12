@@ -158,6 +158,8 @@ jobs:
         from pathlib import Path
 
         source = Path("data/real/Hz_data_real.csv")
+        h_scale = 10
+        z_scale = 1000
         rows = list(csv.DictReader(source.open(encoding="utf-8", newline="")))
         if not rows:
             raise SystemExit(f"real-data source is empty: {source}")
@@ -165,8 +167,8 @@ jobs:
         redshifts = []
         for index, row in enumerate(rows, start=2):
             try:
-                values.append(round(float(row["H_obs"]) * 10))
-                redshifts.append(round(float(row["z"]) * 1000))
+                values.append(round(float(row["H_obs"]) * h_scale))
+                redshifts.append(round(float(row["z"]) * z_scale))
             except (TypeError, ValueError, KeyError) as exc:
                 raise SystemExit(
                     f"invalid numeric H(z) row {index} in {source}: {row}"
