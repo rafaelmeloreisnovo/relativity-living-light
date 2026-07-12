@@ -34,6 +34,7 @@ on:
         default: "14"
         options: ["7", "14", "30", "90"]
   schedule:
+    # Daily UTC run keeps the operational artifact cadence independent of runner locale.
     - cron: "15 2 * * *"
 
 permissions:
@@ -155,6 +156,8 @@ jobs:
         if: ${{ inputs.mode == 'fetch' || inputs.mode == 'full' || github.event_name == 'schedule' }}
         run: |
           set -euo pipefail
+          # Network fetches stay opt-in here; committed, hashed real inputs are the
+          # scheduled default until a source-specific fetch is explicitly enabled.
           python scripts/fetch_real_sources.py \
             --dataset-group "${{ inputs.dataset_group || 'all' }}" \
             --mode "${{ inputs.mode || 'full' }}" \
@@ -188,6 +191,14 @@ jobs:
           diagnostics.mkdir(parents=True, exist_ok=True)
           reports.mkdir(parents=True, exist_ok=True)
 
+          def mean_field(rows, field, source):
+              try:
+                  return statistics.fmean(float(row[field]) for row in rows)
+              except (KeyError, TypeError, ValueError) as exc:
+                  raise SystemExit(
+                      f"invalid numeric field {field!r} in {source}: {exc}"
+                  ) from exc
+
           def write_block(name, payload):
               payload["block"] = name
               payload["status"] = "pass"
@@ -202,7 +213,7 @@ jobs:
           block_hz = write_block("hz", {
               "group": "cosmology",
               "rows": len(hz_rows),
-              "mean_H_obs": statistics.fmean(float(row["H_obs"]) for row in hz_rows),
+              "mean_H_obs": mean_field(hz_rows, "H_obs", hz),
               "sha256": hashlib.sha256(hz.read_bytes()).hexdigest(),
           })
 
@@ -212,7 +223,7 @@ jobs:
           block_bao = write_block("bao", {
               "group": "cosmology",
               "rows": len(bao_rows),
-              "mean_DV_over_rs": statistics.fmean(float(row["DV_over_rs"]) for row in bao_rows),
+              "mean_DV_over_rs": mean_field(bao_rows, "DV_over_rs", bao),
               "sha256": hashlib.sha256(bao.read_bytes()).hexdigest(),
           })
 
@@ -288,10 +299,11 @@ jobs:
           root = Path("artifacts/rll-real-run")
           files = sorted(str(path.relative_to(root)) for path in root.rglob("*") if path.is_file())
           required_dirs = ["raw", "processed", "tables", "plots", "reports", "diagnostics", "book"]
+          commit_sha = (root / "COMMIT_SHA.txt").read_text(encoding="utf-8").strip()
           manifest = {
               "schema": "rll.real_data_orchestrator.v2",
               "run_id": "${{ github.run_id }}",
-              "commit_sha": "${{ github.sha }}",
+              "commit_sha": commit_sha,
               "required_layout": required_dirs,
               "files": files,
               "claim_boundary": "Provenance and reproducibility only; no automatic scientific endorsement or superiority claim.",
@@ -318,6 +330,7 @@ jobs:
         with:
           name: rll-real-run-${{ github.run_id }}
           path: artifacts/rll-real-run/
+          # Scheduled runs use the controlled 14-day default; manual runs select 7/14/30/90.
           retention-days: ${{ fromJSON(inputs.retention_days || '14') }}
 
       - name: Upload policy artifact
