@@ -189,120 +189,210 @@
     "flags": ""
   },
   {
+    "path": ".github/workflow-orchestrator/README.md",
+    "bytes": 1414,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 25,
+    "sha256": "17aa78ac7a83916a934ae8c0c9ff52cdbf941e98e54940e3eeae9d2e4aef67c2",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/catalog.yml",
+    "bytes": 2502,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 96,
+    "sha256": "d4ac5943ef247e38700068eefd20b73c2f10d25db3a7f634a6def55ab8c8a4a0",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/session.yml",
+    "bytes": 914,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 28,
+    "sha256": "bec853196e27b3b61d72659418f1a975b5ce4571fb5d53a509bff7f86f01439f",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/workflows/core/10-yml-syntax-validation.yml",
+    "bytes": 220,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 8,
+    "sha256": "91eb8d57e4bfa739191b0eb67005518ca6796532c0e48a0bcfee299a977ac36a",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/workflows/core/20-start-manual-interop.yml",
+    "bytes": 483,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 19,
+    "sha256": "940f7498a014306b6777c2e1c405a950fdbc3645b12932ab6f0234497de5a7eb",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/workflows/real_data/30-real-data-complete-execution.yml",
+    "bytes": 428,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 15,
+    "sha256": "77280caa21a4ba33f3e67fed8d5d32538cc65fe1078229b474f009eeab8c2c9b",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/workflows/real_data/40-rll-real-data-orchestrator.yml",
+    "bytes": 614,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 26,
+    "sha256": "a7605f363ee71bd4f82b61509cf506d8a9d8bbcea08dd66ab133c9b871a63fa4",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/workflows/science/50-formulas-artifacts.yml",
+    "bytes": 222,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 8,
+    "sha256": "a5f480e8ac48ee8f473dea1f3fc8fe85cc1a42f0dc0744d4438ec2062c4c7d1e",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflow-orchestrator/workflows/science/60-iml-artifact.yml",
+    "bytes": 210,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 8,
+    "sha256": "dbd1757849d15edd0f43f694d787c73bd9db3ee05c16fc0d8bdc83ed4ee14321",
+    "flags": ""
+  },
+  {
     "path": ".github/workflows/RLL-CI.yml",
-    "bytes": 1946,
+    "bytes": 2143,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 75,
-    "sha256": "8d3b9e91ff984c757f2f27f454717b43427f8d9ffe72a4d51c1744948bebcd5f",
+    "linhas": 85,
+    "sha256": "8118f0d10e31912a8215b2ea85824f8010b265173c19521901b91e4d84e89cc1",
     "flags": ""
   },
   {
     "path": ".github/workflows/RLL_SCIENTIFIC.yml",
-    "bytes": 1563,
+    "bytes": 1939,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 58,
-    "sha256": "8ec279a4cd2d659fe6594d9df22f9fe7028b5bae387156b3243359233a8840d8",
+    "linhas": 76,
+    "sha256": "ee9c540d1ad431684b87c6335040cc2fe7574b505c5b8f029359f0871cad26ea",
     "flags": ""
   },
   {
     "path": ".github/workflows/START_MANUAL_HERE.yml",
-    "bytes": 11559,
+    "bytes": 12209,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 270,
-    "sha256": "9e6496c54fef126e19ca258ffc56d668781e088bee7356c0de68604714e6f72d",
-    "flags": "mentions_synthetic"
+    "linhas": 246,
+    "sha256": "02f5938778f19781cf32789fd25a2f5bbe07f8c78879d8cdb40a454535bedc73",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/academic-parameter-governance.yml",
-    "bytes": 4204,
+    "bytes": 5618,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 89,
-    "sha256": "0afd7943f022372e313903f2a01d1b19976dcd53eb6166030212cb72ec61f9a4",
-    "flags": "token_vazio_declared"
+    "linhas": 123,
+    "sha256": "cac48babb25a314ffc50c6045986c6c233d4fa2a9c64467e09ad385b7f19b7c3",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
+  },
+  {
+    "path": ".github/workflows/android-build.yml",
+    "bytes": 4078,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 112,
+    "sha256": "68a219c1eab9fed75131f9483e988bafc72b93f841ac30eff9762464b5548109",
+    "flags": ""
   },
   {
     "path": ".github/workflows/bayes_analysis.yml",
-    "bytes": 1028,
+    "bytes": 1380,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 43,
-    "sha256": "10e6489f4c0dbd2e313164e6bcba29e587e58d384f40de9a6855435a67fbeb1e",
+    "linhas": 60,
+    "sha256": "f2743fe31bb43f2383cb5b7088b11463519eced78e01e23295733adcff8cefee",
     "flags": ""
   },
   {
     "path": ".github/workflows/calc-data.yml",
-    "bytes": 2506,
+    "bytes": 5188,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 75,
-    "sha256": "af20da4045da06d503d540016fabfe75147d6b415a295585a74e8c81cc0f983d",
-    "flags": ""
+    "linhas": 130,
+    "sha256": "d7c5568220070a02ea2c4ff7e6294372ff77e60d3cf5e6a5184dcb246beba805",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/canonical-route-artifacts.yml",
-    "bytes": 4182,
+    "bytes": 6043,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 109,
-    "sha256": "2c1dd21882168cf7d87dbbcce338a317a41a60741a6459a577e74567316d022a",
-    "flags": ""
+    "linhas": 176,
+    "sha256": "afd4e15c24c22c6445e6b258e658a17c75c044a2b336b46c6af08feef3735af3",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/claim-boundary-quality-gates.yml",
-    "bytes": 1721,
+    "bytes": 3135,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 64,
-    "sha256": "607fb2e158f115a4b772c321b26f211b04aac7f89daf194c2ef5afc175dc9509",
-    "flags": ""
+    "linhas": 94,
+    "sha256": "e00481996942af28a101f75f08845a9e5418dc8d005c4986f55ab58936101ca5",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/convention-check.yml",
-    "bytes": 894,
+    "bytes": 915,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 30,
-    "sha256": "e1515c655d1d2f96d7c6fdac38fd49d3cc1d390ec15bfbe6a3170dfa9648efe0",
+    "linhas": 31,
+    "sha256": "2d51c9e940a69821ca7a7d3d8b8573ca0998cfa729fe5d2ea42967fc6f77838a",
     "flags": ""
   },
   {
     "path": ".github/workflows/dense-feature-matrix.yml",
-    "bytes": 2106,
+    "bytes": 3165,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 64,
-    "sha256": "096f239f158944f87ac1c670116541bb74733078745b46dc5cae9de4de21e786",
-    "flags": "token_vazio_declared"
+    "linhas": 84,
+    "sha256": "53cb65d4ccbc8ceb7ea796a6469e43d8031020824298f0b9ae5e254998c9344d",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
   },
   {
     "path": ".github/workflows/desi-dr2-bao-validation.yml",
-    "bytes": 1856,
+    "bytes": 3036,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 65,
-    "sha256": "35b65780c6662b0bb01109fdc4f0d7526ffbff832e9c9f4605244029cc1949c2",
-    "flags": ""
+    "linhas": 83,
+    "sha256": "4fb76675d2d7e1dca96eea174764b8c7beb006ac427250f17c08cfbd27b45d10",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/dha-fisher-ci.yml",
-    "bytes": 2428,
+    "bytes": 2773,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 78,
-    "sha256": "6300b427ffb29e702734c79e047d5d9ef0bfc343d3c2379dc97be61a59b8df95",
+    "linhas": 89,
+    "sha256": "cfb8fe84ecc7c39bd4c1e80f06577476d4c0a104adbc98053c55c9f1214296f2",
     "flags": "mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/formulas-artifacts-validation.yml",
-    "bytes": 1200,
+    "bytes": 1366,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 46,
-    "sha256": "a79f6d1a2ed11ca4d4eb6bfe2f782272cf7757246541bb5d177f42fc89f822e2",
+    "linhas": 53,
+    "sha256": "5ad96b34bf6bf38f0e8fa2f510f58551466f9966bf760e110490d5e0745694e5",
     "flags": ""
   },
   {
@@ -325,38 +415,38 @@
   },
   {
     "path": ".github/workflows/import-data.yml",
-    "bytes": 2469,
+    "bytes": 4615,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 76,
-    "sha256": "dc68542c41ad83520e33bf03dfe958ac1bb8c6abe26c2c001df992474e99e938",
-    "flags": "mentions_synthetic"
+    "linhas": 131,
+    "sha256": "8d72ae15d1488c7855be77f8f309b0d492b5493dd39fb987cc16ace02c510cb2",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/orbital-shape-angular-momentum-validation.yml",
-    "bytes": 2046,
+    "bytes": 3147,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 61,
-    "sha256": "c94befa20a58f0d3cd1f52f0d3f6ff8b73486de81c7f68773a79dacdbfeb5bb6",
-    "flags": ""
+    "linhas": 84,
+    "sha256": "90712a27181a333c454da709743c15ea68c2c5e5ea258f45389f54aa29fa02d5",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/orbital-state-vector-v2.yml",
-    "bytes": 2131,
+    "bytes": 3210,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 64,
-    "sha256": "30746627c50ddfd8760107510de8411879162231bda22ad552957f5fc1bf3f1f",
-    "flags": ""
+    "linhas": 86,
+    "sha256": "f625a8b04fce5fa3366ed6887dabcf99b740d680a8996efe2a585970156ceff1",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/python-tests.yml",
-    "bytes": 693,
+    "bytes": 714,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 35,
-    "sha256": "e2cc2b8d7cfb435f4b86f861a1bcb9c2627e3c015d55037cca06ef9511815f44",
+    "linhas": 36,
+    "sha256": "4650a243ba0df73589fe7ec77503a4ad7599867973020b5a7d138f555ad92767",
     "flags": ""
   },
   {
@@ -370,93 +460,111 @@
   },
   {
     "path": ".github/workflows/real-data-bootstrap-validation.yml",
-    "bytes": 2728,
+    "bytes": 3700,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 93,
-    "sha256": "3d1fb515d1eaee0cfd5a77ee48e450b4752e7b712fec089f7d28ea5bb67fe497",
-    "flags": ""
+    "linhas": 106,
+    "sha256": "08d83f34270f5a8857127dc6b4b67e1d205186c3241b04b8c584fced472682be",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/real-data-complete-execution.yml",
-    "bytes": 12286,
+    "bytes": 13567,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 270,
-    "sha256": "1e41b5d56d17694324024c03ccde459175fd06d999b3884fab208d52ee2550b7",
+    "linhas": 305,
+    "sha256": "c448b8138851f2c9d79325e9b383f75bae0d4d459365246bd497348f31e520f0",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/real-data-contract-ci.yml",
-    "bytes": 4367,
+    "bytes": 6713,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 119,
-    "sha256": "b5dd7563e40566fdb0d9a4c4da2aa65c3fb87ca75e716d8f0b4a031962a69843",
-    "flags": "mentions_synthetic"
+    "linhas": 166,
+    "sha256": "5ca70c98ec7cb1495c4f7429a46679c4caf57beafbde85136158f62cd63e6429",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/real-seed-ingestion-plan.yml",
-    "bytes": 2090,
-    "ext": ".yml",
-    "tipo": "github_workflow_yml",
-    "linhas": 67,
-    "sha256": "19a115f8cbe606b2d5619d2ffc697b88b638ccd0d3d3cf2431186cf601a260b8",
-    "flags": ""
-  },
-  {
-    "path": ".github/workflows/real-seed-validation-v0.yml",
-    "bytes": 2479,
-    "ext": ".yml",
-    "tipo": "github_workflow_yml",
-    "linhas": 73,
-    "sha256": "48361385a0397c3ffa4aff7c75a063eac74a909ed90c532e89a8d1e11b5c4d76",
-    "flags": ""
-  },
-  {
-    "path": ".github/workflows/repo-real-inventory.yml",
-    "bytes": 2767,
-    "ext": ".yml",
-    "tipo": "github_workflow_yml",
-    "linhas": 78,
-    "sha256": "450c9e23c9434ceeccb00f6832ceb570ad229a60eab81afd0e8ceb667b2e28a9",
-    "flags": ""
-  },
-  {
-    "path": ".github/workflows/rll-book-data-pipeline.yml",
-    "bytes": 4025,
-    "ext": ".yml",
-    "tipo": "github_workflow_yml",
-    "linhas": 129,
-    "sha256": "fe411d15b093e92509854c220171b1da9c7abd041f64648804524b750756df3f",
-    "flags": ""
-  },
-  {
-    "path": ".github/workflows/rll-data-pipeline.yml",
-    "bytes": 3331,
+    "bytes": 3161,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
     "linhas": 90,
-    "sha256": "2292932656caabdc96430b20a2c6886294cec2d1cdaed6305c7518261955eae8",
+    "sha256": "8b081f039c0b87a0cb74d4a2f04404b0877a2008b70c5e4cea6fa7835d6fd1bc",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/real-seed-validation-v0.yml",
+    "bytes": 3549,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 104,
+    "sha256": "d49597c28f1685cdfd7c1f1d2bcd71b075ddb06de8c5e2161bee4c24f10a7c1c",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/repo-real-inventory.yml",
+    "bytes": 3136,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 89,
+    "sha256": "5bf12c426f87ec001762495807e15f4cad23b13a1d9ed3e468e23f8a35ed168b",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/rll-balance-report.yml",
+    "bytes": 4570,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 130,
+    "sha256": "caec8aaa3644a0b6c6be1c5f62cc0147d71dcb3d03e32f586686718e729cd6cd",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/rll-book-data-pipeline.yml",
+    "bytes": 6760,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 169,
+    "sha256": "fbd074f7fa89a6fd1523eadd31d05616c275a4458bb311af40f314819ed9dfa1",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/rll-data-pipeline.yml",
+    "bytes": 4017,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 107,
+    "sha256": "04ade63c7de176ccb966f6c31ce923ad5ca9a7e4cca99ed8a2e29a39c9d035a3",
     "flags": ""
   },
   {
     "path": ".github/workflows/rll-real-data-orchestrator.yml",
-    "bytes": 9290,
+    "bytes": 17941,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 140,
-    "sha256": "fb0f07c751c76cbe2b8e073c9763e247a0ebcc99bafafee38b08be6ea1e9bd4d",
-    "flags": "mentions_mock_or_placeholder"
+    "linhas": 418,
+    "sha256": "6c92e191aa71931d558b995692634527e24432f880206ec100e7159fb610bca7",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/rll-validacao-cientifica-completa.yml",
+    "bytes": 47732,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 1174,
+    "sha256": "13814a22c4d1d8c3af0060657f2df136be0f8bee61ea0c68ed05344b131ca75e",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
   },
   {
     "path": ".github/workflows/six-sigma-real-data-controls.yml",
-    "bytes": 1145,
+    "bytes": 2596,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 43,
-    "sha256": "d24eee38ea3cee1d9741e3c03105c1569b40a7bb84a3e4d1535901b9e67e6f76",
-    "flags": ""
+    "linhas": 68,
+    "sha256": "6fc2f4c601c8e8f6d92f2a82d6e30dce9560334be87e8ea713a5a560e6766f2f",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": ".github/workflows/unified-geometry.yml",
@@ -468,30 +576,84 @@
     "flags": ""
   },
   {
-    "path": ".github/workflows/validacao_real.yml",
-    "bytes": 2277,
+    "path": ".github/workflows/unified-workflow-session-orchestrator.yml",
+    "bytes": 4007,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 75,
-    "sha256": "a68d24e188c4b478875cca8fc69eef61279ca5a419cde82776b888ed26af32fd",
+    "linhas": 120,
+    "sha256": "f98999312f85cc5b5c120cdde5b545c5100ba73a4fbaae19ab323de71083e130",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/validacao_real.yml",
+    "bytes": 5897,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 130,
+    "sha256": "5be04d1e6c5dee5b283846532982c7e60c1de02124398d362f761b1f7684b68f",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/validate-academic-correlation-package.yml",
+    "bytes": 2427,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 66,
+    "sha256": "624df37ae262a51f72bbdea98685e0bcf23d2a2576f7085832656a06dd39ec6c",
     "flags": ""
   },
   {
-    "path": ".github/workflows/yml-syntax-validation.yml",
-    "bytes": 1616,
+    "path": ".github/workflows/validate-cross-repo-relationship-registry.yml",
+    "bytes": 1531,
     "ext": ".yml",
     "tipo": "github_workflow_yml",
-    "linhas": 63,
-    "sha256": "6305d6cd174e99a2a02de2869d7a6cdb95165c31a2bbaed259e0deb9add55290",
+    "linhas": 51,
+    "sha256": "37c36a7128fa23caae971e9fb546622063c0171059c8165c5a8776f5dde14355",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/validate-real-dataset-variance-registry.yml",
+    "bytes": 2660,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 64,
+    "sha256": "6cb4c66d4198c9f02ddb67aeac7b33a9b8a45d10ccdd64f808d14aa1ab7b29f5",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/validate-schema-contracts.yml",
+    "bytes": 2909,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 74,
+    "sha256": "d9381849aafc4000812445149c4b7f9c451f1126be171368b23ca17d717eeb67",
+    "flags": ""
+  },
+  {
+    "path": ".github/workflows/validate-sequence-metrics.yml",
+    "bytes": 2484,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 66,
+    "sha256": "492403da591cda39369a652983889bf2e18bfb4e4eeef2baf2f84eef1165886c",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": ".github/workflows/yml-syntax-validation.yml",
+    "bytes": 5114,
+    "ext": ".yml",
+    "tipo": "github_workflow_yml",
+    "linhas": 142,
+    "sha256": "7f0c09614da1c2b82ad77b3136c96f14675a2995efa6ae999e5b73f0e27c0a7d",
     "flags": ""
   },
   {
     "path": ".gitignore",
-    "bytes": 265,
+    "bytes": 490,
     "ext": "NO_EXT",
     "tipo": "other",
     "linhas": 0,
-    "sha256": "5e99948717ab097b0e65cd5326883b5dd11a34b2c2d49209494c254e0ffc94b8",
+    "sha256": "0c7266f0967497151013792540cbbe38eb5c6b308d34a08ca52f19bbfc847ccb",
     "flags": ""
   },
   {
@@ -558,6 +720,24 @@
     "flags": ""
   },
   {
+    "path": "ARCHITECTURE.md",
+    "bytes": 6431,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 239,
+    "sha256": "fa93d30d16f42e9979b89f0310d117024cdd8e9ff9b78a9c0643b238429efd12",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
+  },
+  {
+    "path": "ARCHITECTURE_CLAIM_GATED.md",
+    "bytes": 230,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 9,
+    "sha256": "5491db106e52eb70b6e371ef9815083f73980f5babce6846ab5e1c96a8796403",
+    "flags": ""
+  },
+  {
     "path": "CAMINHOS_VALIDACAO_NOVOS.yml",
     "bytes": 6394,
     "ext": ".yml",
@@ -573,6 +753,132 @@
     "tipo": "documentation_md",
     "linhas": 675,
     "sha256": "cbb32750c5aa6c82b78d591c0c888add411a7c8fa32d3f5a2517ba5fd51944cc",
+    "flags": ""
+  },
+  {
+    "path": "Codex2.md",
+    "bytes": 3080,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 275,
+    "sha256": "d20d52bbfda4a826470da009bd72c4a23babc34f1203ca1d1bc6b28166b07622",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "Códex1.md",
+    "bytes": 5330,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 70,
+    "sha256": "8797929242e2e1bfd26d2014d7ba9fe97791bd974cc861f086431f21faa2b4a0",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "Dados_artefatos/Readme.md",
+    "bytes": 10,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 1,
+    "sha256": "9f893208fd81c82b7c5f4c7b361107f93aca24e72320d32b8ec5293a92d753bd",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/bayes-factor-results.zip",
+    "bytes": 2291,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "04f69a4787b93bdf6b685566f1abf15cb3557374aedde05937af6d6c05f8ebf6",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/contrato-falsificadores.zip",
+    "bytes": 2747,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "6b49b57cf94fe36053f0547f1d2bcd04dc6cadb5e558b87cc0d3f1f5a6e48209",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/desi-bao-results.zip",
+    "bytes": 1230,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "0d5fbc463a629249e236657a1aed12823ee4c5155b4da03e7e2a757cef1d3971",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/h0-grid-results.zip",
+    "bytes": 5475,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "14d3ce9640f23da6e7f6f800408ac128d9d93509855f34ea6dc41f4feb394b5d",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/joint-mcmc-results.zip",
+    "bytes": 3334,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "69127b5c4671c0a7ce7bded44ecb0a364d10fc56d8d764f11642778fc282c43f",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/pantheon-fit-results.zip",
+    "bytes": 1521,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "8717dd9d6b793e2981198182a472baf31e899169858d04f412ed736571066f98",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/relatorio-final.zip",
+    "bytes": 1927,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "6cdf4903bd8cd93446652ce80445e7e1cc4b42d8ee64ea67f0341c4914ebe881",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/setup-checksums.zip",
+    "bytes": 1071,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "181b92fcdf8ce303148fd712e8dc2f36b9c885340d75b6acd990875b9924f85c",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/weff-mapping-results.zip",
+    "bytes": 2113,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "6a0ab927da5ab63001b44b2185bb1bde6ef8eef78eb1f3b160b7e958ae77ed17",
+    "flags": ""
+  },
+  {
+    "path": "Dados_artefatos/zt-falsification-results.zip",
+    "bytes": 5507,
+    "ext": ".zip",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "5abbd670a7fa0e101cd53fa602772d2803746996fc180d4c7b4bde6b79e215a8",
+    "flags": ""
+  },
+  {
+    "path": "EXECUTIVE_SUMMARY.md",
+    "bytes": 1525,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 25,
+    "sha256": "ee12c2a653663275991e2934cee57d44d1d0ae7a8295d56a0ac4993b489c2cd0",
     "flags": ""
   },
   {
@@ -592,6 +898,15 @@
     "linhas": 252,
     "sha256": "2774dfc47e9c40bac2b05c8269bef0534806db0984938b23321449cf846425a9",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "Geologia.md",
+    "bytes": 2794,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 9,
+    "sha256": "5aec77a3472277d18971fe7f505b67c7531b62453c1bfeced3bb462faf569f41",
+    "flags": ""
   },
   {
     "path": "LICENSE.md",
@@ -1188,6 +1503,24 @@
     "flags": "mentions_synthetic"
   },
   {
+    "path": "PapersPub/Teoriatide.md",
+    "bytes": 5684,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 91,
+    "sha256": "eeae5b7fbae95a36cc1d37a9c98fdb204d9a3f4cbb34c5c50c8bb38c34f13968",
+    "flags": ""
+  },
+  {
+    "path": "PapersPub/Teórico rafa22.md",
+    "bytes": 907,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 47,
+    "sha256": "d2a16e5603c45d0a534de5579dd59b572660cbf94751ef0fdd22d69832fc1914",
+    "flags": ""
+  },
+  {
     "path": "Provaw.md",
     "bytes": 7653,
     "ext": ".md",
@@ -1350,13 +1683,58 @@
     "flags": ""
   },
   {
+    "path": "RAF_VERBEYES/DONE/STAGE.yml",
+    "bytes": 832,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 31,
+    "sha256": "f9361bc5ac9f5f970c7a24621d3a27b46ab801052d7b9a143caf0cb7c48d7dbf",
+    "flags": ""
+  },
+  {
+    "path": "RAF_VERBEYES/ESPIRAL/STAGE.yml",
+    "bytes": 1685,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 50,
+    "sha256": "01b7f9e925f5d333d4f3cd46ad259e152c902c50fcfdb44abf11c80c6d7b701d",
+    "flags": ""
+  },
+  {
+    "path": "RAF_VERBEYES/IN/STAGE.yml",
+    "bytes": 824,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 29,
+    "sha256": "9eecb36d682477e26999159780aa5c168062bfc53abb6bb188d6a50e5970ec6e",
+    "flags": ""
+  },
+  {
+    "path": "RAF_VERBEYES/PIPELINE.yml",
+    "bytes": 2439,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 82,
+    "sha256": "93b0360d5b09081bcaa9af35dc78888012e470d6c21b8546c1d9a9f2f0b67ae1",
+    "flags": ""
+  },
+  {
+    "path": "RAF_VERBEYES/PROCESSO/STAGE.yml",
+    "bytes": 886,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 31,
+    "sha256": "33642d4da929b3d08bd70ab77858e40542edeb125bdafbda6bb5b4e408802188",
+    "flags": ""
+  },
+  {
     "path": "README.md",
-    "bytes": 10055,
+    "bytes": 12100,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 149,
-    "sha256": "1d1bb194e2e9b5e8ca6e6a01876602813042153458dbf9d1d9de6f9a1a9c59b4",
-    "flags": "token_vazio_declared"
+    "linhas": 168,
+    "sha256": "9c0cad13760c57568e2e42142c42ca8776eb7b2fadac777c7f78bfd5f691de67",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
   },
   {
     "path": "README_MASTER.md",
@@ -1402,6 +1780,15 @@
     "linhas": 74,
     "sha256": "d78bbdf1afd6af898ded6f15071cdab5438df3ce00fba960dccf2cd1e3738487",
     "flags": ""
+  },
+  {
+    "path": "RLL_JSON_EVOLUTION_WATCHER.yml",
+    "bytes": 5152,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 132,
+    "sha256": "41040fe61c1fb0291163b63cbe39bfee2cc638043f6b92015b94eaf3db15ff32",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "RLL_MATERIALIZACAO_CORE.md",
@@ -1702,12 +2089,12 @@
   },
   {
     "path": "SECURITY_SUMMARY.md",
-    "bytes": 9738,
+    "bytes": 4623,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 261,
-    "sha256": "126a1983986ca2ba5b0c3b5de8a056a04ab2b478f78895d441ec1c2cdb4ce4ab",
-    "flags": ""
+    "linhas": 94,
+    "sha256": "7a835ad9a348571b9676f78db52d562032790ed92e7163792de124cff9b14cd0",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared"
   },
   {
     "path": "TEXTO_DESCRITIVO_ANALITICO_TECNICO.md",
@@ -1719,6 +2106,15 @@
     "flags": ""
   },
   {
+    "path": "Toadd01.md",
+    "bytes": 14093,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 340,
+    "sha256": "f51b67478bf0016e344fad4bd7fa6e62733b64e024dc0a44e9b42586a9b1fb45",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "VALIDATION_STATUS.md",
     "bytes": 4902,
     "ext": ".md",
@@ -1726,6 +2122,69 @@
     "linhas": 67,
     "sha256": "82a9920a40a03e480778dd46cb8394d9ac343531fe174b6ba95d1d60044d189b",
     "flags": "mentions_synthetic"
+  },
+  {
+    "path": "app/build.gradle",
+    "bytes": 3178,
+    "ext": ".gradle",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "945919b91059cf982324b1438e5866402df9d3c381f1d4eaf64f798ba81ab2bc",
+    "flags": ""
+  },
+  {
+    "path": "app/src/main/AndroidManifest.xml",
+    "bytes": 552,
+    "ext": ".xml",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "87b6e6b3cb6cfd35028197767db92d2e0688b97a8af5aea80d42f15196169db2",
+    "flags": ""
+  },
+  {
+    "path": "app/src/main/cpp/CMakeLists.txt",
+    "bytes": 505,
+    "ext": ".txt",
+    "tipo": "other",
+    "linhas": 21,
+    "sha256": "f3325ba631e6624820971c22852932bad497794d11fc0305418d371def2b1548",
+    "flags": ""
+  },
+  {
+    "path": "app/src/main/cpp/rll_jni.c",
+    "bytes": 414,
+    "ext": ".c",
+    "tipo": "source_code",
+    "linhas": 16,
+    "sha256": "0292ef8c4a77ee5bc05d9a1158720b40589acdac57d47a407fa7019bd9129935",
+    "flags": ""
+  },
+  {
+    "path": "app/src/main/java/org/rafaelia/rll/KernelBridge.java",
+    "bytes": 262,
+    "ext": ".java",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "1bd4751b0dde65085ab07df1f89512d960afe9cb1909a4ee15806dcb29d7dee1",
+    "flags": ""
+  },
+  {
+    "path": "app/src/main/java/org/rafaelia/rll/MainActivity.java",
+    "bytes": 544,
+    "ext": ".java",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "7915119a0e8a539013c84f911777a64a0c6315d0a7f59407c292891a512ab39c",
+    "flags": ""
+  },
+  {
+    "path": "artifacts/EVOLUTION_TRAIL.jsonl",
+    "bytes": 2401,
+    "ext": ".jsonl",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "1b67adcd45a32df93db3d78096a02203358ebb840f4532b60deeeb2e7b97f3de",
+    "flags": ""
   },
   {
     "path": "artifacts/formulas/FORMAL_ACADEMIC_REPORT.md",
@@ -1753,6 +2212,24 @@
     "linhas": 1797,
     "sha256": "29de23d64e3e362815965da74c00c2ac9e77e27e01b00bdf628058790b67e9ea",
     "flags": ""
+  },
+  {
+    "path": "artifacts/rafaelia_q16/2026-07-10/dual-artifact-manifest.json",
+    "bytes": 1997,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 64,
+    "sha256": "c60bf2a5b42f3bee855533a1e1f5fd8cfbda6755302b0bf2898a5bbdb5896a5e",
+    "flags": ""
+  },
+  {
+    "path": "artifacts/rafaelia_q16/2026-07-10/manifest.json",
+    "bytes": 3151,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 91,
+    "sha256": "ccb95e6fcb114f8cdebab0c9065eb7f18a0896f80f861a9098a7328082617753",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "artifacts/rll-real-run-impact-vector/COMPUTE_REPORT.md",
@@ -1816,6 +2293,42 @@
     "linhas": 49,
     "sha256": "6684d89f39d2eff1852347709e5af3705e84a7281b0e4c15514113320998a67e",
     "flags": ""
+  },
+  {
+    "path": "artifacts/rll_balance/20260709-132833-utc/input.json",
+    "bytes": 258,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 6,
+    "sha256": "61a1b3ec3edf41a66e67098add8a7efe6ca0ea407d3090d3bc187a0379b624f8",
+    "flags": ""
+  },
+  {
+    "path": "artifacts/rll_balance/20260709-132833-utc/manifest.json",
+    "bytes": 1810,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 43,
+    "sha256": "59e01c6ce98ee1ebb1f1f3f006739e22f92d1c668c46c1397b591776b76f6366",
+    "flags": ""
+  },
+  {
+    "path": "artifacts/rll_balance/20260709-132833-utc/rll_balance_report.json",
+    "bytes": 2619,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 90,
+    "sha256": "e86d5ea2e40f456fdf9db4d239ac3754c6e3db389cf5b55561905f788ae4aa37",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "artifacts/rll_balance/20260709-132833-utc/rll_balance_report.md",
+    "bytes": 2933,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 107,
+    "sha256": "b076260ce414429ff3b2c2c0975fd8d8e2eb053b3bb86957ba6236dd80b3a05c",
+    "flags": "mentions_synthetic,token_vazio_declared"
   },
   {
     "path": "book/01_fundamentos_visao_geral.md",
@@ -2178,12 +2691,21 @@
     "flags": "mentions_mock_or_placeholder"
   },
   {
+    "path": "build.gradle",
+    "bytes": 73,
+    "ext": ".gradle",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "36d655a9067d39892bba80896925f12e70f6b0d7481fe914ec6a61bbbde967cb",
+    "flags": ""
+  },
+  {
     "path": "core/lowlevel_runtime/README.md",
-    "bytes": 2839,
+    "bytes": 3019,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 58,
-    "sha256": "c937b57a9a28e470dbfd82148468b6cc1320143d46b1ab69cf8c4214c7c263ea",
+    "linhas": 59,
+    "sha256": "fcfde6ac5ad9791f159e7778f050c587a202029a47ece6dfca7ba0d7b2791398",
     "flags": ""
   },
   {
@@ -2206,11 +2728,11 @@
   },
   {
     "path": "core/lowlevel_runtime/c/pantheon_freestanding.c",
-    "bytes": 2839,
+    "bytes": 4096,
     "ext": ".c",
     "tipo": "source_code",
-    "linhas": 106,
-    "sha256": "670cc927c7680d279b6c546d3844e580d209b424d14a43dee76d9f48777346ae",
+    "linhas": 149,
+    "sha256": "c6553b280813354757fa80c7dc02c8ab0c763596841c2baae16d0897af5f886b",
     "flags": ""
   },
   {
@@ -2224,11 +2746,11 @@
   },
   {
     "path": "core/lowlevel_runtime/include/pantheon_freestanding.h",
-    "bytes": 1363,
+    "bytes": 1637,
     "ext": ".h",
     "tipo": "source_code",
-    "linhas": 50,
-    "sha256": "6660cefb1ec10d0a46580aeb7feca48f7482fb7ffdc21e213f4c267be2bfaa6f",
+    "linhas": 59,
+    "sha256": "7bb29da84b1d5f0ad824e618d1d5857a30c264d10b641802a8d3b39f1d728719",
     "flags": ""
   },
   {
@@ -2331,12 +2853,57 @@
     "flags": ""
   },
   {
-    "path": "data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json",
-    "bytes": 1424,
+    "path": "data/failsafe/desi_dr2_bao_FROZEN.json",
+    "bytes": 782,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 41,
-    "sha256": "a418ec78f04514eca8e2e1da3db2167bfe8c0973dc2b964c16b251570f0e5b1b",
+    "linhas": 22,
+    "sha256": "e2f296a6176f4737a824d7af59305b7052406fdffdd287ae692d7a019db5be7e",
+    "flags": ""
+  },
+  {
+    "path": "data/failsafe/fsigma8_growth_FROZEN.json",
+    "bytes": 597,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 18,
+    "sha256": "1c8f34cdbae632d5edeae36ef395f0f68b02619833d7e2a47a1fa4498a0ebf29",
+    "flags": ""
+  },
+  {
+    "path": "data/failsafe/hz_cosmic_chronometers_FROZEN.json",
+    "bytes": 601,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 18,
+    "sha256": "e4a157c90ecaa9740f9c6baaca0aca06d0179ca065f5ccf47b3ea5dd5b26f72f",
+    "flags": ""
+  },
+  {
+    "path": "data/failsafe/pantheon_plus_shoes_FROZEN.json",
+    "bytes": 634,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 18,
+    "sha256": "74692d62f476f65ed462f3842ab7f61bf2b9ddf1a041889b254c4480321c8ed4",
+    "flags": ""
+  },
+  {
+    "path": "data/failsafe/planck_2018_cmb_FROZEN.json",
+    "bytes": 654,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 18,
+    "sha256": "23e55ea997f2a3afa7955d0fb47713c076482f1c7c4afc944deea4d235fc4027",
+    "flags": ""
+  },
+  {
+    "path": "data/formulas/FORMULAS_ARTIFACTS_MANIFEST.json",
+    "bytes": 2096,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 53,
+    "sha256": "4d7c5a3979893e3f809d2e1c0c1986a6f88270ba3b0b3b8fc91ce34cf5f5738e",
     "flags": ""
   },
   {
@@ -2347,6 +2914,15 @@
     "linhas": 50,
     "sha256": "57505c6775897028156f879d5e4769608bb28ee4bdd4f6e90b3e5393abf93c31",
     "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/formulas/RAFAELIA_FORMAL_UNIFIED_CORE.md",
+    "bytes": 4205,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 253,
+    "sha256": "28a2dd26158c84d61c23109733cabfa91d360909549920dbdcedd90d1f9e8ddb",
+    "flags": ""
   },
   {
     "path": "data/iml/daise_input.example.json",
@@ -2364,6 +2940,15 @@
     "tipo": "data_or_result",
     "linhas": 17,
     "sha256": "562ffea1cc9cee22db227da7c2275b552a5bec75e71a14e3641837231bc0d533",
+    "flags": ""
+  },
+  {
+    "path": "data/import_registry.csv",
+    "bytes": 167,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 2,
+    "sha256": "d291377689ab46eb96b03f71c88ba7ca596c2009e4950498f2dd0169cd53cfc7",
     "flags": ""
   },
   {
@@ -2395,11 +2980,11 @@
   },
   {
     "path": "data/inputs/cosmology_joint/joint_real_inputs_manifest.json",
-    "bytes": 2244,
+    "bytes": 3014,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 47,
-    "sha256": "2e4760f6f5f366ff56404ee0a15d8837ec5b7b33d732616c6d737cb6f7c9155b",
+    "linhas": 59,
+    "sha256": "3e7945c12086e8b4647393f8f0f9ecb7fd62e7a8de005fe47f13a088f48f59c9",
     "flags": "mentions_synthetic"
   },
   {
@@ -2485,11 +3070,11 @@
   },
   {
     "path": "data/inputs/structure_d/mock_data_contract.json",
-    "bytes": 394,
+    "bytes": 519,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 28,
-    "sha256": "9054a1e6d5ed8f6199b5fc5e6b9db97030bb4964bd28be104cf7e65daf8deb77",
+    "linhas": 30,
+    "sha256": "5ed50926e9d6903e2ee4a2f3644a1c4c6923c2fcc8418816211728d9d4a1b7ca",
     "flags": ""
   },
   {
@@ -2538,6 +3123,24 @@
     "flags": ""
   },
   {
+    "path": "data/outputs/mcmc_rll/.gitignore",
+    "bytes": 114,
+    "ext": "NO_EXT",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "c16c1e427ad3405a42f783198ce4706c6608cd0df7f958acfa540c02e88024aa",
+    "flags": ""
+  },
+  {
+    "path": "data/outputs/mcmc_rll/README.md",
+    "bytes": 499,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 5,
+    "sha256": "39ab8948543cc19b8034c6342ca4022fd80738a80fb3a3791582d086787d3389",
+    "flags": ""
+  },
+  {
     "path": "data/pantheon/README.md",
     "bytes": 1666,
     "ext": ".md",
@@ -2575,11 +3178,11 @@
   },
   {
     "path": "data/pipelines/structure_d/datasets_config.json",
-    "bytes": 5589,
+    "bytes": 6896,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 212,
-    "sha256": "f3ea26dae39a0dc7864abf668c6251618394fc326a2068639d8dbee5eb59d803",
+    "linhas": 236,
+    "sha256": "c5afb20480c16889408b005de10405cf88dccf5cf84869babfe85d6ead4e7322",
     "flags": "mentions_synthetic"
   },
   {
@@ -2620,11 +3223,11 @@
   },
   {
     "path": "data/pipelines/structure_d/joint_real_likelihood.py",
-    "bytes": 23071,
+    "bytes": 31728,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 548,
-    "sha256": "40b0a51952fba62c3922c8bd25e1614e591793f718c064b965af4d71a20d3d18",
+    "linhas": 725,
+    "sha256": "0d92b3010272fa44baadff938cb14355962a7bc652b4edf2f1fd6667cd8b87f7",
     "flags": "mentions_synthetic"
   },
   {
@@ -2638,11 +3241,11 @@
   },
   {
     "path": "data/pipelines/structure_d/make_example_data.py",
-    "bytes": 6738,
+    "bytes": 6242,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 179,
-    "sha256": "954f215396945d86166b7c9dadea3e2e9e1cd1ec6c8684fd69c5fef96671f570",
+    "linhas": 161,
+    "sha256": "85a4e0edc16fcd1cf149b215c46de39978511ec73204e0c0a89c584e4bdb3942",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
@@ -2665,11 +3268,11 @@
   },
   {
     "path": "data/pipelines/structure_d/run_all.py",
-    "bytes": 36228,
+    "bytes": 36231,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 952,
-    "sha256": "ddc235c0541be456c4c21a6f912fe5da714e964287d8deddfd3202b33cf88c48",
+    "sha256": "6f92f9aef003ba357fed0ec680aef9bc826021570131833b37a4b75be1a8baed",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
@@ -2701,11 +3304,11 @@
   },
   {
     "path": "data/pipelines/structure_d/synthetic_real_boundary.py",
-    "bytes": 10060,
+    "bytes": 13148,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 255,
-    "sha256": "0d3f687c5d18bc7bf24d8b96fadb64a9c79a8c3e758022d52d5f1455f0bb8197",
+    "linhas": 335,
+    "sha256": "2b2fe59ee461086048069cc808d18ab8e36ca2300a6bf12a0accf7749665a488",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
@@ -2737,11 +3340,11 @@
   },
   {
     "path": "data/pipelines/structure_d/test_run_all_regression.py",
-    "bytes": 38524,
+    "bytes": 38530,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 895,
-    "sha256": "d2bd37865bc4d7c6f349032d8f26c1ff48cf2f82fc490443c252ebebee765d39",
+    "sha256": "391b88b1572a0794e0ac69b50b691e66432a31cfe2d071f1705dc7864f310b10",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
@@ -2782,11 +3385,11 @@
   },
   {
     "path": "data/real/CMB_shift_real.json",
-    "bytes": 160,
+    "bytes": 2148,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 9,
-    "sha256": "f658dafa16b57a4522bdf59c243d8693e20efe9936e2815720fed7ed6d637cdc",
+    "linhas": 33,
+    "sha256": "e86d996131cf4b3758f4fe0319b6c7da752a38ab2f141abaa81bec66d8e6d979",
     "flags": ""
   },
   {
@@ -2926,12 +3529,12 @@
   },
   {
     "path": "data/real/cosmology/README.md",
-    "bytes": 3386,
+    "bytes": 6130,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 54,
-    "sha256": "d32ede691f8010be41d965847f9eccfc1f8073fdbfd143e3804f3ea38cd6072a",
-    "flags": ""
+    "linhas": 78,
+    "sha256": "2c3c5b0c81fe56ce04467bee54d476f4a2f85365633e7aed3863b5185b09253d",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "data/real/cosmology/RLL_ALL_REAL_DATA_MASTER.csv",
@@ -2958,6 +3561,24 @@
     "tipo": "data_or_result",
     "linhas": 14,
     "sha256": "47b2f67ca54b8d02b0a28b60b6bffcb3822efb81e3c928a3762ed0d411a107a5",
+    "flags": ""
+  },
+  {
+    "path": "data/real/cosmology/VARIANCE_POLICY_NOTE.md",
+    "bytes": 149,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 3,
+    "sha256": "22dd0b7a5bc5cd119bc798b7d5bc24622977529fa49692c897153729ba5fa26d",
+    "flags": ""
+  },
+  {
+    "path": "data/real/cosmology/dataset_routes_minimal.csv",
+    "bytes": 264,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 5,
+    "sha256": "57e6291c0c14258631dd9062db2926cce3fb4b83c1d7511617f5e9bd4fef851e",
     "flags": ""
   },
   {
@@ -3051,12 +3672,21 @@
     "flags": ""
   },
   {
-    "path": "data/real/cosmology/observational_sources_manifest.json",
-    "bytes": 3471,
+    "path": "data/real/cosmology/import_data_public_real_urls_2026_07_09.json",
+    "bytes": 5483,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 76,
-    "sha256": "a90e66da754da2fdecbe8be0168ccb50346122e3f8eafeddea85a7daa9fcf1e4",
+    "linhas": 89,
+    "sha256": "022e43283f36c1f66eebed1557acda17f8541bbb584549be347327bef612ba0c",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared"
+  },
+  {
+    "path": "data/real/cosmology/observational_sources_manifest.json",
+    "bytes": 4692,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 108,
+    "sha256": "64d85bea8903f7b28361df1c2540c838833f09b588e8619aed7147e5881c598d",
     "flags": "token_vazio_declared"
   },
   {
@@ -3178,11 +3808,11 @@
   },
   {
     "path": "data/real/cosmology/real_cosmology_inputs.yml",
-    "bytes": 5077,
+    "bytes": 5961,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 125,
-    "sha256": "6c337f28e81abde36119bca048d738f4060ffcac8e93d3d239106c5060c4037f",
+    "linhas": 138,
+    "sha256": "23e51c2922e8a0f7615b41ac6ac0cbdd24302e9135f5945c44b2457305490e23",
     "flags": "mentions_synthetic"
   },
   {
@@ -3196,11 +3826,20 @@
   },
   {
     "path": "data/real/cosmology/real_source_signatures.json",
-    "bytes": 8528,
+    "bytes": 9968,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 226,
-    "sha256": "99812a5f270c52130d3fd89e41bb4c321d04f7cf672b82dfbc8575a7f2ca7962",
+    "linhas": 263,
+    "sha256": "1dbbdc3ab7284f776d836c07576dba6851fb8c5cf16e6f925074c812f7c783d7",
+    "flags": ""
+  },
+  {
+    "path": "data/real/cosmology/variance_policy_registry_minimal.csv",
+    "bytes": 411,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 5,
+    "sha256": "24d09d5448581df1fbf8fa9ca64f88f3fa0017e98b1e96770bffc3b9022f5058",
     "flags": ""
   },
   {
@@ -3291,6 +3930,15 @@
     "tipo": "documentation_md",
     "linhas": 5,
     "sha256": "aebbe5d60292a548f008173b122073622f1f1c113af65ee988d29c53f51aa677",
+    "flags": ""
+  },
+  {
+    "path": "data/real/evolutionary/README.md",
+    "bytes": 1033,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 30,
+    "sha256": "a8647979c3900f4fbddbc3863e6b909d3c78d2dcc32826eb8957de5316169a5b",
     "flags": ""
   },
   {
@@ -3402,6 +4050,15 @@
     "flags": "token_vazio_declared"
   },
   {
+    "path": "data/real_sources/rll_latent_theses_registry.yml",
+    "bytes": 9587,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 242,
+    "sha256": "26c9ac30a2839f0dd36e9dd1563b45375c0b46889a4a5b90cf19dee792bbffc5",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "data/real_sources/rll_pantheon_real_validation.iml.yml",
     "bytes": 3311,
     "ext": ".yml",
@@ -3417,6 +4074,15 @@
     "tipo": "config_yml",
     "linhas": 110,
     "sha256": "f3fbda51e10c27100f2c3e2fe1464b29410a55ab5df2f301c3798475fba679b8",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "data/real_sources/rll_required_data_gap_registry.yml",
+    "bytes": 6575,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 136,
+    "sha256": "f41d8e042e53bfe1f7049036ac839bb0c2bb0fc7416d4fb16774025928d8a5d0",
     "flags": "token_vazio_declared"
   },
   {
@@ -3609,6 +4275,24 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "data/results/missing_placeholder_stub_scan.csv",
+    "bytes": 42,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 1,
+    "sha256": "9847407ebdeeaab048187a916c332bce8c8271e62c6ad9882d54dffbcda91cfc",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/missing_placeholder_stub_scan.json",
+    "bytes": 326,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 10,
+    "sha256": "4ed2959c9d19682f59301e7274a3a900360f504b3751a2c062cd5c634bc87af5",
+    "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
     "path": "data/results/model_comparison.json",
     "bytes": 3763,
     "ext": ".json",
@@ -3679,6 +4363,15 @@
     "linhas": 50,
     "sha256": "8f3b1d9177e26e40c6a7a2cca628bfdc3816397e9066822e8f0ee4721064ae5d",
     "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "data/results/to_add_migration_validation.json",
+    "bytes": 844,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 19,
+    "sha256": "fa71fe06b34a5e8e52e488d333d8ebaaf2e44c0ccf66a69727c8ac9e0588fad6",
+    "flags": "cosmology_validation_marker"
   },
   {
     "path": "data/rll.json",
@@ -3772,30 +4465,102 @@
   },
   {
     "path": "data/strong_lensing_imf/strong_lensing_imf_registry_2026.json",
-    "bytes": 441,
+    "bytes": 477,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 5,
-    "sha256": "c40d5e18b928236fe88cec22f4106c74c1161e703a44e0f412f2d54685319d19",
+    "linhas": 6,
+    "sha256": "4697376a58581b605a5b378436c11b5e61ba911f9bbd30b80b50addc57f8d268",
     "flags": ""
   },
   {
     "path": "data/synthetic/LEGACY_SYNTHETIC_MANIFEST.json",
-    "bytes": 9072,
+    "bytes": 10262,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 166,
-    "sha256": "c5a0f215514a059a2feeef73367670983fc349d7ed3126af858648ee3dbb5190",
+    "linhas": 187,
+    "sha256": "043303b96ee04860c3191c3ce9e36e8d813f4e1cdc602ef3d42deeb18ea4bc29",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": "data/synthetic/README.md",
-    "bytes": 943,
+    "bytes": 1984,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 17,
-    "sha256": "a06f8c7d196429fee916ead91e9accb70b6c523696befdc4da947fb783e0fd9e",
+    "linhas": 39,
+    "sha256": "f7b1876c6e2a0dd0d75d237f56648e9f6edeb7270b9c107d3d8fa49175cc1db3",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "data/synthetic/examples/bh_flux_presets.json",
+    "bytes": 892,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 27,
+    "sha256": "c2cff4b374c9a9103ff7a3900e279e4936ef9eb81f7fc12c0ab080b5c8ef369c",
+    "flags": ""
+  },
+  {
+    "path": "data/synthetic/iml/daise_input.example.json",
+    "bytes": 149,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 7,
+    "sha256": "4399cd4c9a96acc33569919bd8b8f0e419254846cd2656963d9433cdcd7c962b",
+    "flags": ""
+  },
+  {
+    "path": "data/synthetic/posterior_unified_synth.csv",
+    "bytes": 2479312,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 25001,
+    "sha256": "1ff8978bfb7e6af880193d197800ba4cf0d784f367ff71f63d3dcfa704e5c1f7",
+    "flags": ""
+  },
+  {
+    "path": "data/synthetic/structure_d/Hz_cov.csv",
+    "bytes": 185,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 9,
+    "sha256": "0391f3d7b69d49e086fccf9ec246bca35d14660ae3c67633559cc7517e12021f",
+    "flags": ""
+  },
+  {
+    "path": "data/synthetic/structure_d/Hz_cov_matrix.csv",
+    "bytes": 474,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 8,
+    "sha256": "be09b53a9c1fa66acd5b95355f0f266f0d340d77ee76692ccf0d38e8e5a18f23",
+    "flags": ""
+  },
+  {
+    "path": "data/synthetic/structure_d/fsigma8_cov.csv",
+    "bytes": 167,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 8,
+    "sha256": "434f3aaaf4cfed9b834816acaf624be0b998bf1aa6ff04e1ad6f6927b6554238",
+    "flags": ""
+  },
+  {
+    "path": "data/synthetic/structure_d/fsigma8_cov_matrix.csv",
+    "bytes": 494,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 7,
+    "sha256": "0022fcb104101981fab6fbe865768c9baa4bfc6b7b4caff0cc84133232b3eb46",
+    "flags": ""
+  },
+  {
+    "path": "data/synthetic/structure_d/mock_data_contract.json",
+    "bytes": 519,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 30,
+    "sha256": "5ed50926e9d6903e2ee4a2f3644a1c4c6923c2fcc8418816211728d9d4a1b7ca",
+    "flags": ""
   },
   {
     "path": "data/unified_entropy_margin_10_12.csv",
@@ -3871,11 +4636,11 @@
   },
   {
     "path": "docs/ACADEMIC_TAXONOMY_INDEX.md",
-    "bytes": 13667,
+    "bytes": 14337,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 142,
-    "sha256": "788c65630ae5692448b228308c9a404167e1197d3f4d75a0b36c2dcea2dc681a",
+    "linhas": 144,
+    "sha256": "c773a824f5fe180f1466e78eaef3a347bc932a9ace097edcc09ad76a2a7c1e2e",
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
@@ -3915,6 +4680,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/ARCHITECTURE_OPERATIONAL_SCHEMA.md",
+    "bytes": 5852,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 190,
+    "sha256": "c5bacd8f1e2c2cbf7fca1d7647958a6c9700076e2ad6a33167c5579d45283869",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/ARQUITETURA_DUAS_RADIACOES_IMPLEMENTACAO.md",
     "bytes": 3095,
     "ext": ".md",
@@ -3940,6 +4714,15 @@
     "linhas": 50,
     "sha256": "b2967d6cdbe2cc1fec2a608b001b757e5bd94778b219e0eb374e2bef2b2e006e",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/AVALIACAO_HONESTA_ESTADO_ATUAL.md",
+    "bytes": 4432,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 112,
+    "sha256": "179259fe9305c081a41829aedeff25277bd2e6511ae2afa3f69f9d320f5fca2d",
+    "flags": "cosmology_validation_marker"
   },
   {
     "path": "docs/BILINGUAL_RLL_HYPOTHESIS_SUMMARY.md",
@@ -4258,11 +5041,11 @@
   },
   {
     "path": "docs/INDICE_MESTRE.md",
-    "bytes": 11065,
+    "bytes": 11894,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 150,
-    "sha256": "e90adfb550d36b038c7344ed7c327a1cc2b022d0f5ba8b1e5d52114136aef248",
+    "linhas": 155,
+    "sha256": "1bfc17870476ef3c9575b9c12bdbb512d589d1eb4552e91a8d5b01730b4306b1",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -4320,6 +5103,15 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/MASTER_UNIFIED_DOCUMENTATION_2026.md",
+    "bytes": 38705,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 959,
+    "sha256": "af6190cffd62102a643add22e3682c0ea6006b5850bab3f660ac91d3bdbed20a",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/MINI_PREPRINT_RLL_FOTOPERIODISMO.md",
     "bytes": 5891,
     "ext": ".md",
@@ -4327,6 +5119,15 @@
     "linhas": 136,
     "sha256": "48cb5573351d5556b6a40da865446407a9dabaab14670e88cfbdd75a27777d42",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/MISSING_PLACEHOLDER_STUB_SCAN.md",
+    "bytes": 388,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 18,
+    "sha256": "589a696535329c1d350935a76949306d2fbaee83975b70612e2f573864bc0224",
+    "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
     "path": "docs/MODELO_COSMOLOGICO_UNIFICADO_MAGNETISMO_RADIACAO_PLASMA.md",
@@ -5068,11 +5869,11 @@
   },
   {
     "path": "docs/RLL_OUTPUT_STEM_CLI_GAP.md",
-    "bytes": 3499,
+    "bytes": 4467,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 158,
-    "sha256": "11daf4c7beed58296763d66865211d9e4f9f8be27fdf4913da3265fe92c718c3",
+    "linhas": 174,
+    "sha256": "1ec128b776fba5fe04df43fda6c7226a111401936511c156bdba211113b5fdf9",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5203,11 +6004,11 @@
   },
   {
     "path": "docs/RLL_ROBUST_FIT_CHECKLIST.md",
-    "bytes": 6055,
+    "bytes": 6393,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 223,
-    "sha256": "4599181ec3ab7071ac2a2c2386c3e5fa83ba952c3c0471c72dbed3c44be68dad",
+    "linhas": 232,
+    "sha256": "0066501bcf4b662066eff2ce3a8bb42f781bf5dc197e1833cf0f3b2b39db8614",
     "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5248,11 +6049,11 @@
   },
   {
     "path": "docs/RLL_TRACEABILITY_MAP.md",
-    "bytes": 6764,
+    "bytes": 7753,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 135,
-    "sha256": "e34a9e9aa1385d95e0305892aaa4aa5a2542e4fe5e291a666eb2cadfc65be2da",
+    "linhas": 148,
+    "sha256": "1b25eaf952b7ec34550ce5b9417f192369640f93a5340eafba990209f87a5c9c",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5373,6 +6174,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/TO_ADD_MIGRATION_STATUS.md",
+    "bytes": 164,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 8,
+    "sha256": "17ee3c65356e039b6da0018bcba2d13e5e80dd526975aad908a9adae857a2350",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/VALIDATION_DATA_MATRIX_RLL_MCRP.md",
     "bytes": 4559,
     "ext": ".md",
@@ -5398,6 +6208,222 @@
     "linhas": 177,
     "sha256": "6b8e25c1bc312fa0eb979e6ac8dd4737b0f1dbb511515eafb8c02e996aad3307",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/android-build.md",
+    "bytes": 3687,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 83,
+    "sha256": "0bcf2c2f9e90af2c5892b3d9dc6fc392de235dfacfb862c25baeff41e348698a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/apendices/01_RECONSTRUCAO_POTENCIAL_RLL.md",
+    "bytes": 1509,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 35,
+    "sha256": "58ad3ddc8aca75d74bde05405a88c31a993b6b3efbc0e9f94ece80f365894da6",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/apendices/02_ESTABILIDADE_PERTURBACOES_RLL.md",
+    "bytes": 1070,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 27,
+    "sha256": "a84773dec23ac44aba3ff22337ea90ec6bbf1c669c311185ef917736a375c2ce",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/apendices/03_RESULTADOS_MCMC_RLL.md",
+    "bytes": 2588,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 51,
+    "sha256": "7ad9ee76ed378db6d6b827acdb1c53920fd127c1a9240fcdb49a84667184bab8",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/architecture/30_SEVEN_DIRECTION_SEMANTIC_MATRIX.md",
+    "bytes": 8890,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 272,
+    "sha256": "df29800616bce41f74957cd25a65e444bf1252d21ae248b93bfe03ee90fe89d9",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/architecture/ARCHITECTURE_ADOPTION_RECORD.md",
+    "bytes": 784,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 35,
+    "sha256": "65ec3243490f654482d68a857ad9a5912aa0871c9f4e2d21cba836f22bc2dd63",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/architecture/ARCHITECTURE_CLAIM_GATED.md",
+    "bytes": 5795,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 232,
+    "sha256": "3eaa9e548c469327cb78a3da40d58b57847038fcd28e9e7d46c6ee0e1284b022",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/architecture/README.md",
+    "bytes": 213,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 9,
+    "sha256": "3d7b74da034913390fd9f0e0213813f6bbd0eb4dd0a0f130baac6a45ae6cf748",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/CALC_DATA_GUARDED_INPUT_AUDIT.md",
+    "bytes": 2918,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 75,
+    "sha256": "57e23bd9da5de8e3300a24831ffce0a5a8ff16f597c0a79e8382a7a2e2481e6d",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/CLAIM_ALLOWED_GATE_IMPLEMENTATION.md",
+    "bytes": 1430,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 62,
+    "sha256": "b0d9de468c18cc754caa5f45f88f38540c292de74445eef9d172e6caaa98e07d",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/COHERENT_UPDATE_TEST.md",
+    "bytes": 2901,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 70,
+    "sha256": "64bf0d9718435d2eb242e2b0c1416d290dd0690005d2aeecc4c72d96ff55479a",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md",
+    "bytes": 5164,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 92,
+    "sha256": "c1cd6bacc4f25f212a20f7d1d1f9ea6a8696be4a088f7124d2a681ac150f13af",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/EVOLUTIONARY_DATA_PIPELINE_NOTE.md",
+    "bytes": 939,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 45,
+    "sha256": "5df966e5b9765c134e6a458555b1a49f8021ca58ca5464e7f02b829154aa9507",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/EVOLUTION_WATCHER_IMPLEMENTATION_NOTE.md",
+    "bytes": 3819,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 79,
+    "sha256": "3f7fb90d62c6364497a338d452d306c77e287fb0710e2d6f8149f1416eb177e1",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md",
+    "bytes": 4052,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 154,
+    "sha256": "967da1570523cac479ec66950dd4cca3f99fe58e51cfc3f0d249a79329609928",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/MODEL_COMPARISON_SCHEMA_BRIDGE.md",
+    "bytes": 1092,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 53,
+    "sha256": "9109346547145c80c6b456867c38f18e070f771cfefb7224a664c09bf813df91",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/RAFAELIA_DRIVE_SEMANTIC_NAVIGATION_LAYER.md",
+    "bytes": 3669,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 149,
+    "sha256": "22cec391b9aba4b8d16b1e145891c73a7e23209ce50aa66610fa78216114b218",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/RAFAELIA_MASTER_LEDGER.csv",
+    "bytes": 4768,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 27,
+    "sha256": "088dc614b3ea3d1d22dedba5e4e5b3ae1466e39bc4a06c63c4c7dd4c1b23b272",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/README.md",
+    "bytes": 1097,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 49,
+    "sha256": "d7147146687ee6d208cf20931ec348f5436573cc873a6bc33d6009d86c042527",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/RLL_CLEAR_STATE_OVERLOOKED_OBVIOUS_2026-07-02.md",
+    "bytes": 10742,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 359,
+    "sha256": "9627950e2b76b82d651004b65b8f783ed52639d3c38fb5d8aee2aba9aff277d7",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/RLL_COHERENT_UPDATE_2026-07-02.md",
+    "bytes": 2877,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 103,
+    "sha256": "20c4b2050fe4e28d8a05b9a12ca1fa38cfa53fc184ebcb38e7ccfc129d317801",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/STRUCTURE_D_ROBUST_FIT_FAILOVER_WATCHDOG.md",
+    "bytes": 1992,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 88,
+    "sha256": "62ff865d6d6ec640a64c5d12c84a426def36c6325354c3095c927e170e6ce361",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/TO_ADD_BROKEN_LINKS_BACKLOG.md",
+    "bytes": 4150,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 112,
+    "sha256": "1ea659d61ee7c9e2e1bc202909038abbe281f0069091527a82b922ce36e5f3e1",
+    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/audits/TO_ADD_HISTORICAL_AUDIT_REPORT.md",
+    "bytes": 3614,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 114,
+    "sha256": "20a68d33978229f4fe8be34130f76b519fc37182f9f7f9e168690ce03cfadae3",
+    "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
     "path": "docs/canonicos/00_COMO_LER.md",
@@ -5553,6 +6579,78 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/canonicos/23_LOBO_DETECCAO_IMPERFEITA_E_ESTADOS_DE_PROVA.md",
+    "bytes": 8267,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 45,
+    "sha256": "4d06e23df938ef92dd161b70c016b49a6d3ac1a0e7bcf0199074228eb0b67b10",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/24_RAFAELIA_MASTER_SPEC.md",
+    "bytes": 5983,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 230,
+    "sha256": "ac3601f9dc8e41aacf33da8f49c9c00af3cf7238b8ba0f4877eeb04362ff1573",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/25_RAFAELIA_VOCABULARIO_CANONICO.md",
+    "bytes": 3977,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 82,
+    "sha256": "10d0c7ce3889ca831d5cefba3fbc573e8b22d087f21e5c69c7f813b5ecba1b9e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/27_PARABOLAS_FABULAS_MITOS_METODOLOGIA.md",
+    "bytes": 8977,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 375,
+    "sha256": "e17ae59bf3c114a7299ed9306b89c7a6fc383fa7ac93c0d24bdb774db55f9b96",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/28_TOKENIZACAO_SEMANTICA_GOVERNANCA_DADOS.md",
+    "bytes": 8964,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 352,
+    "sha256": "4444bec4ea22a6b26e036c2cbc38edd4fd822e6ada5ce51cf96d3ea2fd35892e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/31_PERCEPCAO_MEMORIA_INTEGRACAO_MULTISSENSORIAL.md",
+    "bytes": 16322,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 609,
+    "sha256": "8b5f3858fa557111d8b58055181dd43cdc67c83c3b2a7f025e18708086988381",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/32_OBSERVATORIO_AMBIENTAL_DISTRIBUIDO_TELEFONES.md",
+    "bytes": 11915,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 460,
+    "sha256": "038eb1d097cc8a70be5ef3ef0cc9b402e44e037f4d1f74515495f4b89bd3d03d",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/33_RMRCTI_OMEGA_DELTA_P_STABILITY.md",
+    "bytes": 8084,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 311,
+    "sha256": "83f469ef46a78b608f980f89dc3cd337a79c204f787f14713a412ab745109562",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/canonicos/BIBLIA_CONHECIMENTO_RAFAELIA_RLL.md",
     "bytes": 17931,
     "ext": ".md",
@@ -5578,6 +6676,51 @@
     "linhas": 36,
     "sha256": "bf433be60f40989ed99f63bdbc7ba9b2c0a1f51ab1b102fbcb1fbc811ba36a19",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/INTEGRACAO_3_UNIVERSOS_RAFAELIA.md",
+    "bytes": 18740,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 370,
+    "sha256": "ecc26c7551303ddf5168639302fee1a103045ed4bc0e381e22ac1300a5f404e7",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/JUSTIFICATIVA_PARAMETROS_RLL.md",
+    "bytes": 8953,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 168,
+    "sha256": "07129b90fca4f85c04a9986570d80a1323a8ccfba027394bacc33a950c7cad4c",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/PODE_CONVERGENCIAS_COSMOLOGIA_RLL.md",
+    "bytes": 33207,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 537,
+    "sha256": "73a52161319293ecae710ea72f6691092883418dcf26e9b31900f74ef44aba0c",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/PREDICAO_DATADA_RLL.md",
+    "bytes": 7667,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 152,
+    "sha256": "77eeb242e17ccd32a4639af924ec11cbcae3c73709c0b26917169f226da1c4a8",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/canonicos/WEFF_INCOMPATIBILIDADE_RLL_CPL.md",
+    "bytes": 14345,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 300,
+    "sha256": "005fcbedc06bdec86312912526d0deef61fb7f5b60dfebc743e0fa8a4e9f2102",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/cases/AMAS_SOUTH_ATLANTIC_MAGNETIC_ANOMALY_RLL.md",
@@ -5643,6 +6786,123 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "docs/codex/CODEX_ACADEMIC_CORRELATION_IMPLEMENTATION_PLAN.md",
+    "bytes": 3882,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 193,
+    "sha256": "2acf19b5c44ae9c765d5fb58158574c3e894f2fc5a90c74d4e50cb64b2f9359b",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/complementary_studies/README.md",
+    "bytes": 137,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 3,
+    "sha256": "cf7a14d791502d3322ee0e7997d5efc78aceb957cb886a45c37fb67bfffc310f",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/complementary_studies/transcultural_mechanics_language/EDITORIAL_SAFETY_GATE.md",
+    "bytes": 1930,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 83,
+    "sha256": "9e218829878f19f12c6de41d899fe2024b9381ddf63b91c0010c07e04dd2e48a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/complementary_studies/transcultural_mechanics_language/POST_CREDITS_BRIDGE.md",
+    "bytes": 2257,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 69,
+    "sha256": "534813d16a298ed79df9b5dc3166ee286b40f17f89ef243dda730905a2b3f2b9",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/complementary_studies/transcultural_mechanics_language/PREFACE_FRAGMENT.md",
+    "bytes": 8912,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 240,
+    "sha256": "d6a6f8a19aa457ef495147c424e56f90032334cbc91964e9bfb1de681077f7f0",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/complementary_studies/transcultural_mechanics_language/README.md",
+    "bytes": 1340,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 29,
+    "sha256": "f758006e1574463b7b972ffd62eee82eefed1fb2e9cf1f5d675c775d8ad50c2f",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/contracts/context_bundle.schema.json",
+    "bytes": 722,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 22,
+    "sha256": "db9e34441477de4cbfaefc12e5dba14fd3b7d2d6ddb9fd76889fbef86112c953",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/contracts/conversation_chunk.schema.json",
+    "bytes": 783,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 17,
+    "sha256": "21fbd1fca6c8a35c958c22e8ba3c8d658e52d8c1d8464017f7e566dd8b522bb0",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/contracts/execution_plan.schema.json",
+    "bytes": 1172,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 31,
+    "sha256": "7b1cf10fd10a8abc5998c5110d6a9fae56d129a78bc49675befa44b4b86253ab",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/contracts/execution_result.schema.json",
+    "bytes": 2083,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 57,
+    "sha256": "4a74ea3247f613f1129ae22bb1f4db501c59c0a0b7b7eaa40420b4f703a03f48",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/contracts/intent_ir.schema.json",
+    "bytes": 1096,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 31,
+    "sha256": "c2d487701596e2020271fa858d9bedb9333b2aed26865fd8e0ad034cb649dc09",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/contracts/tool_request.schema.json",
+    "bytes": 845,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 23,
+    "sha256": "97c6ea9a6cee6cc2f69a19e532911fd958a45d2c387a2956c1578f6267b9643c",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/contratos/CONTRATO_FALSIFICABILIDADE_BAGUA_T7.md",
+    "bytes": 7504,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 224,
+    "sha256": "95eb3ca704f1c5ec48acf5d3780f46d2552ce4729553c12ffcb0a660a520c9ef",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/crescimento_estrutural.py",
     "bytes": 7345,
     "ext": ".py",
@@ -5650,6 +6910,141 @@
     "linhas": 208,
     "sha256": "af1e3ff7ec3a99c85d3647505083802a9022935b95c4c9d12a8e4e724e4cb16f",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/01_AUDITORIA_EXECUTIVA_RLL.md",
+    "bytes": 7607,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 188,
+    "sha256": "0f4a5d94b8d98c8d4c7447f1ed37ccffc3505b4d1b88a00161d7e4eff915c00c",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/02_CRONOLOGIA_DETALHADA.md",
+    "bytes": 7902,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 246,
+    "sha256": "6a8b537cd56f70f231ade3508c4ae2f84774dc4bb07dcee366e4d69837d0d779",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/03_AUDITORIA_TECNICA_PRIMEIRA_ORDEM.md",
+    "bytes": 9130,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 305,
+    "sha256": "13ceb494978822fd475a6e97e62016b230ccc2e5ec889e004f33b8907b312714",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/04_REPRODUTIBILIDADE_NOTEBOOKS.md",
+    "bytes": 10322,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 292,
+    "sha256": "24860100eef6318657aa42d34d900404ad4290468597b5ba4109e71052bcdeba",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/05_BALIZAMENTO_EPISTEMOLOGICO.md",
+    "bytes": 4359,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 141,
+    "sha256": "9016997f0935b9e695655c70b0c7fae56f98568425b0fefea33bcb112097b3d2",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/06_TOKEN_VAZIO_PRIORITY_LEDGER.md",
+    "bytes": 13946,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 366,
+    "sha256": "081b8fff54f57959f1756d597c06fbf40ade02e33ec8f8be79ad43a53514361a",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/07_CORRECAO_CRONOLOGIA_DESI.md",
+    "bytes": 4847,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 129,
+    "sha256": "73b80fc9be5a418068aefe90e646ea5f8209fb57d3f4d55609c70074bd4714b6",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/08_ARVORE_CONCEITUAL_RLL.md",
+    "bytes": 14759,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 317,
+    "sha256": "0deeb3cae28191856b6e5490d12320ff6deb964c4f2f2f7e8f867507eed1f4c0",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/09_PANTHEON_RESULTADO_REAL.md",
+    "bytes": 5609,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 144,
+    "sha256": "ff1c0ad6d57a52b8218c24902d5bc5621339cfe1a30390802447a933282193ef",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/10_PIPELINE_VALIDACAO_CIENTIFICA.md",
+    "bytes": 8061,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 204,
+    "sha256": "f3291e036ebb731ce55c16ce0d78b6d4f975dc75224ff036c460b63dcfe1b895",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/11_AUDIT_FINAL_STATUS.md",
+    "bytes": 11128,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 192,
+    "sha256": "f3ade832f4a8b34d71ed3eff155eff5c30c52ea9a57228e98be843fdce0df8bc",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/12_RAFAELIA_OMEGA_MASTER_ARCHITECTURE.md",
+    "bytes": 8821,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 402,
+    "sha256": "f23c26540a05c881fd40dc6a109d5a29a4a82d415793013248254db9b9937040",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/13_OMEGA_SCHEMAS_REFERENCE.md",
+    "bytes": 6503,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 185,
+    "sha256": "a3d31eccaf0bbb13126adb05b34cee28c41353efa90c0e888bc24e97f97c7c51",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/cronologia-auditoria/CONTRATO_FALSIFICADORES_RLL.md",
+    "bytes": 2323,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 49,
+    "sha256": "a77ec0e97a480184276af545d24ab46ece2f5b523065fa7eb99f0a85a43781b5",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/dados_externos/PROVENIENCIA.md",
+    "bytes": 2548,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 37,
+    "sha256": "65e2b8e57bb38091928ae7dcd4688fe68df22706af9ad922aeb1da166b3c4a4e",
+    "flags": "cosmology_validation_marker"
   },
   {
     "path": "docs/data/PANTHEON_DESI_MASTER_CATALOG.tsv",
@@ -5667,6 +7062,87 @@
     "tipo": "documentation_md",
     "linhas": 164,
     "sha256": "bf118c06c5f981c4bea63bf5dcd97ff41f77fa66fec381a30bb048c5da3bd198",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/discussions/01_REVIEW_BOUNDARY.md",
+    "bytes": 744,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 27,
+    "sha256": "6693c4570b605d4ebc1044f6680444166965fcb12adf4ce478c4857c71770002",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/discussions/02_DATA_BOUNDARY.md",
+    "bytes": 626,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 26,
+    "sha256": "4a743965ba2a31e8fef99975f06e9d158917e5790d2a913f9773ed1cd4993466",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/discussions/03_NEXT_TEST.md",
+    "bytes": 365,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 21,
+    "sha256": "b568cd1db761b4b40957814780c23277b1f70bf1bdd46982a7c9c66a87bf775d",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/discussions/04_METADATA_STATE.md",
+    "bytes": 567,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 25,
+    "sha256": "8744101c806fbac33cc7fc5c42a1bd3be6f2ab3726e52a781caff7d3cd9d4887",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/discussions/05_EXTERNAL_REVIEW_TASK.md",
+    "bytes": 611,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 26,
+    "sha256": "9fb346313e5a8e21e8315fae17dd22080ef8e0d2e9c7a90ed4547a481ac209e7",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/discussions/README.md",
+    "bytes": 936,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 37,
+    "sha256": "0902f59a34f0f6871aeb04c2de9fb63250483fa341da0625fe420f47ad79fe7b",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/epistemic_analogies/BARRABAS_BEIJO_GALO.md",
+    "bytes": 7344,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 130,
+    "sha256": "aa346c8b2b8d563083a7c9ed07351abe6f5fdc7a897ca590b2e66936dea767a9",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/epistemic_analogies/LOBO_SILENCIO_QUATRO_ESTADOS.md",
+    "bytes": 7623,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 152,
+    "sha256": "165606987463dd5536e1052ceebe2f66b7726803d6301cbe8ff5b955aae7d397",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/epistemic_analogies/README.md",
+    "bytes": 2299,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 71,
+    "sha256": "bfb97d430a94fb36cc27b7fd8e04d6813a4f0487e4d3e6ae5333392f872ba745",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5688,6 +7164,96 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/formulas/RAFAELIA_SYMBOL_TABLE.md",
+    "bytes": 5794,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 120,
+    "sha256": "eb25804ffce26e349dc6d1ffeea5be2e656992f638c73721eac44a90dcfb17f2",
+    "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/28_OBSERVADOR_RECURSIVO_TREINAMENTO_GOVERNANCA_PRIVACIDADE.md",
+    "bytes": 8908,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 292,
+    "sha256": "735b0d95f66eaa3be327bfc0bc0d590f7533074c577d1f005ff4a13ebf0fe440",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/29_MATRIZ_TRATAMENTO_FORMAL_ARTEFATOS_DADOS_MODELOS.md",
+    "bytes": 7056,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 214,
+    "sha256": "e3c4952e8d45c34980dced23d7e247e47ff4dd9957c3480fe6cf8846b385d18f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/CADEIA_CUSTODIA_VIVA_OITO_DIRECOES.md",
+    "bytes": 18780,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 565,
+    "sha256": "cbc4b67e58b7e42950adf576fa9c24a08f2ee12b552cdfb35969a6138505967f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/OPERATIONAL_EXCELLENCE_EXECUTION_FRAMEWORK.md",
+    "bytes": 7353,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 198,
+    "sha256": "0ee32a93464fbf7e2dc7ab7cbdb9332f2351da82724e847ab24c3839915f36e1",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/OPERATIONAL_EXCELLENCE_INTEGRITY_CHARTER.md",
+    "bytes": 11043,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 303,
+    "sha256": "af1e0bc573cd2fce6be8a9a4b0a12ef54ab91d573dd2299e65f66411d6fa17f5",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/OPERATIONAL_EXCELLENCE_MINIMAL.md",
+    "bytes": 3106,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 113,
+    "sha256": "f51e575d0f7e13416775594ce4b08036ac0c5c4023bc411dff5b5d3566aa1cb8",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/PROFESSIONALIZATION_CHARTER_LINK.md",
+    "bytes": 2879,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 105,
+    "sha256": "eab6c71841a2a17b568b78d7d5017878bd088134505c669654c4e920a758e645",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/RAPPORT_SEMANTICS_STRUCTURAL_DYNAMICS.md",
+    "bytes": 11940,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 301,
+    "sha256": "a6c89acffb4d7cb2af1a3d7632898ef904477950d5c141bea0efc7a1e9418173",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/governance/RLL_VECTRAS_SQRT3_2_GOVERNANCE_MATRIX.md",
+    "bytes": 7377,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 162,
+    "sha256": "8db555ee4e329aeb87dad9b1d1228c95c49284f6cdf06fea3201c144a78fd750",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/governance/ROOT_ARTIFACT_CLASSIFICATION.md",
     "bytes": 2874,
     "ext": ".md",
@@ -5706,6 +7272,24 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "docs/hipoteses/HIPOTESES_GEOFISICAS_RAFAELIA.md",
+    "bytes": 30661,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 505,
+    "sha256": "7d36173710d3a93bb9383062fb9c695517576b9179ffa698c6a55ea47b4c517d",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/hipoteses/RETROALIMENTACAO_R3_GEOFISICA.md",
+    "bytes": 8971,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 171,
+    "sha256": "501f9a1b192d311edb50544bea5136e0fc524f4cd3c2c3fca33b52eb48e5f110",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/invariants/README.md",
     "bytes": 2145,
     "ext": ".md",
@@ -5716,11 +7300,11 @@
   },
   {
     "path": "docs/invariants/sqrt3_2_kernel.md",
-    "bytes": 8361,
+    "bytes": 8587,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 229,
-    "sha256": "8c0fcbd2fb106d47052382eb6c2faf8debad970784d9c04b4d3f3a6cc227cede",
+    "linhas": 231,
+    "sha256": "5e21751c69d4990299bb6652ed91535848ab924bf748b330d39245d13920632a",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -5731,6 +7315,42 @@
     "linhas": 0,
     "sha256": "1a4a502956968581a56e492665d756a5f4839bcd33cd67b63a0429205ce2148d",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/livro_vivo_bridge/CONTRATO_DA_BALANCA_RLL.md",
+    "bytes": 6444,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 283,
+    "sha256": "41b2f3413cc9cbb576313d891f64b5dce7ae0e1184fea8fee5328496a4863be9",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/livro_vivo_bridge/RLL_BALANCE_REPORT_TEMPLATE.md",
+    "bytes": 4309,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 214,
+    "sha256": "f3ba4344a09d386bc07ff6a06ba414269a24fda3febe38eef02ab876bd3f93e8",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/livro_vivo_bridge/RLL_BALANCE_SCRIPT_USAGE.md",
+    "bytes": 4029,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 197,
+    "sha256": "50ee78d3d8489ce2559f07e59289ccb6f80d65860f6e98ad07c358cc39bbafa2",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/livro_vivo_bridge/RLL_LIVRO_VIVO_PONTE.md",
+    "bytes": 2247,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 68,
+    "sha256": "b8336df1187837701729e7f22d9efba8e41ceca531b0a390cec8cede30f8d38f",
+    "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
     "path": "docs/methods/RAFAELIA_PREDICTABILITY_INDEX.md",
@@ -5887,12 +7507,12 @@
   },
   {
     "path": "docs/operations/REAL_DATA_OPERATIONAL_EXCELLENCE.md",
-    "bytes": 3296,
+    "bytes": 5812,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 91,
-    "sha256": "0cb709218edd37cf0e00063ebb4969aa3566e809d66be9bf10a6425bc584f07d",
-    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+    "linhas": 131,
+    "sha256": "871dce4c2498c27f30fe7d0b81d0fe5d87a6069b72fb283292f0f4798efa9391",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/operations/RLL_COSMOLOGY_NEXT_STEPS_2026-06-27.md",
@@ -6030,6 +7650,69 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/professionalization/EXTERNAL_REVIEW_PACKET.md",
+    "bytes": 6183,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 168,
+    "sha256": "c8a539552848b248bb08771896a6707f780651fd48cc95b36278aa79a68ab817",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/professionalization/INSTITUTIONAL_READINESS_DOSSIER.md",
+    "bytes": 5386,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 170,
+    "sha256": "4185eb1b5ca27fac1dcc16f9ffcf450d4455f434eb7302620a84ae77824e7ab3",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/professionalization/NARROW_EXTERNAL_REVIEW_TASK.md",
+    "bytes": 4217,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 174,
+    "sha256": "44f8fb1786c53a7c3bda54cc35aa02fca744e68ced06d642cbffdd84819d5c52",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/professionalization/PROFESSIONAL_DOCUMENTS_REGISTRY.yml",
+    "bytes": 5402,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 143,
+    "sha256": "d54ffdea923309c2c58f40f699ed09e464ab88603cb345ff749d18c742920e04",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/professionalization/PROFESSIONAL_DOCUMENT_QUALITY_STANDARD.md",
+    "bytes": 4360,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 167,
+    "sha256": "14333d32a5798be03e7302f4dbb991f44ee38841e03edd3fd359d7ef8862d304",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/professionalization/README.md",
+    "bytes": 2976,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 94,
+    "sha256": "288ebf3eb0eb141c5985716668229d972af408a4ac4181f1070b70a1baff5d8e",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/protocols/RAFAELIA_TAIL_PROTOCOL.md",
+    "bytes": 7918,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 273,
+    "sha256": "fc5cfbb452ed6f516221aeeb2005e1ac22ecbfcc2161757e3e883857942e6bd4",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/real_data/PUBLIC_ASTRONOMY_CATALOG_FETCHER.md",
     "bytes": 3701,
     "ext": ".md",
@@ -6049,12 +7732,21 @@
   },
   {
     "path": "docs/real_data/REAL_DATA_REQUIRED_INPUTS.md",
-    "bytes": 5387,
+    "bytes": 6949,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 134,
-    "sha256": "66a6f7254ca28f65e3593ee8f3d6aadebebd776a98bbb4787ec70f8e20cc9024",
+    "linhas": 158,
+    "sha256": "ad019344cf9e6a4b74de4ab52efaef3f185d7df467b54a4e07588dcdd0110e49",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/real_data/REAL_DATA_VARIANCE_REGISTRY.md",
+    "bytes": 1233,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 45,
+    "sha256": "951885ad46e6648bbe78d8084ef11a1e1c2fc3b74abfd50cc71f1bc61d7cf8f6",
+    "flags": "cosmology_validation_marker"
   },
   {
     "path": "docs/real_data/REAL_DATA_WORKFLOW_EXECUTION.md",
@@ -6100,6 +7792,15 @@
     "linhas": 18,
     "sha256": "7c6225d12cbc4267b7b0dc5de458c2a2bf3b9ec071d20537e97c829381ec6568",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/research/ACADEMIC_CORRELATION_CANDIDATE_MAP.md",
+    "bytes": 7384,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 236,
+    "sha256": "a83a558322bb517b8d9b2c105dc16da0bd8eb9d2b2844b8e4ad763867ffb2b4c",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/rll_audit_gap_report.py",
@@ -6624,6 +8325,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/science/RLL_LATENT_THESES_AND_RECENT_DATA_CROSSWALK.md",
+    "bytes": 8917,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 209,
+    "sha256": "77d4e721663fa041e56dbef77327ae3ecd047dfad8f2983b5b24e00344f7b08e",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "docs/science/RLL_OBSERVATIONAL_DATA_IMPLEMENTATION_REVIEW.md",
     "bytes": 5900,
     "ext": ".md",
@@ -6639,6 +8349,15 @@
     "tipo": "documentation_md",
     "linhas": 71,
     "sha256": "30d8a6ad4a1ac7c21ca4385335319e2e6281536e01ce26e7fdd60f4c19134958",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "docs/science/RLL_REQUIRED_DATA_GAPS_IMPLEMENTATION.md",
+    "bytes": 3144,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 106,
+    "sha256": "131e52c1e4980554efc5f1dca227ff3fb89daa73adb40a7d73bd88421506a5a1",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -6679,11 +8398,11 @@
   },
   {
     "path": "docs/science/VALIDATION_DASHBOARD.md",
-    "bytes": 2493,
+    "bytes": 3970,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 86,
-    "sha256": "98a5c80126fc4d029e5382d1035e5434495cc7b56710acf0fda5302ff4bebd1f",
+    "linhas": 120,
+    "sha256": "264480830783f6a0a970ac356aaca798f49bb9fd049a8dc09d7104353889d333",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6804,12 +8523,21 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "docs/yml/PROOF_OBLIGATION_REGISTRY.yml",
+    "bytes": 4483,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 121,
+    "sha256": "9b8214587b6eafd2ddc793e857f600948cc2594c2116515cdafde730c93ff2a6",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "docs/yml/REAL_SYNTHETIC_BOUNDARY_AUDIT.md",
-    "bytes": 46004,
+    "bytes": 76737,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 337,
-    "sha256": "f52ea7f5c9a35d9c05c76270d79d6e9d017f25c7377afa75db30a367fdf79d3e",
+    "linhas": 496,
+    "sha256": "27f2eeaab29d4a394c4ff0697d841a9ac09eff3270821deffc1c9f853286af42",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6828,6 +8556,15 @@
     "tipo": "documentation_md",
     "linhas": 91,
     "sha256": "2e801da7430d44527e4b8eca70a0a33787762bd40cd260f3d0722dcf5b189fde",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/TO_ADD_LOOSE_FILES_PLACEMENT_REGISTRY.yml",
+    "bytes": 7024,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 172,
+    "sha256": "f0663d56f8a42ca920ebbb08dc416b19073f45e3f231b8ea3fe37e0afea57db5",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6850,20 +8587,20 @@
   },
   {
     "path": "docs/yml/WORKFLOW_EXECUTION_MAP.md",
-    "bytes": 56608,
+    "bytes": 87339,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 535,
-    "sha256": "395a2c569d996f1d084c00bbe982311ac6ac796fa4629628eac8ec49a252043d",
-    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+    "linhas": 798,
+    "sha256": "5152a1a8fdb352f7314bfff196453cf7e6b733158cd2787a924ae3d0a3625acb",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/WORKFLOW_REFACTOR_AUDIT.md",
-    "bytes": 12442,
+    "bytes": 14463,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 100,
-    "sha256": "02fb27b54cf609207fab58161f19a2bf8e1ed23326a7373d88b36facfe07ba5d",
+    "linhas": 88,
+    "sha256": "09d80f96ee328344d119261d90528651b3f2397030c5b4d2ff08ffdd3f1db73b",
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6872,25 +8609,34 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 16,
-    "sha256": "61a201454c7b6fd4b8c6930420a93df78b973bb73d325a46ed4e8c300366cc77",
+    "sha256": "2a5dd407156bda4123f4a47cc6ebc8f061a6818e2a4749427f010c71ceaa9f3a",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_FILE_LEDGER.tsv",
-    "bytes": 41793,
+    "bytes": 67088,
     "ext": ".tsv",
     "tipo": "data_or_result",
-    "linhas": 68,
-    "sha256": "62d11090d90d184a0328f623c68924e67a169f6d931cc9c1374833afbe7d9ded",
-    "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+    "linhas": 111,
+    "sha256": "a7a2113d9a82df7837d04cd9d6aaf0b3431e3c9a21491ba28ecf0eeb85bfbd86",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "docs/yml/YML_HARDENING_EXECUTION_2026_07_09.md",
+    "bytes": 2281,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 67,
+    "sha256": "2c0d83aa5585c3f2445900cc5b9e54bc59918c4465f4b8344888134cc9982d6d",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_MASTER_LEDGER.yml",
-    "bytes": 8745,
+    "bytes": 10208,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 228,
-    "sha256": "af14e2dc859ad8ec336a9f2f718010674bbf524d7ec199915de0929cdc96d7ee",
+    "linhas": 266,
+    "sha256": "74f31a8783df36cc2062eea0408c6481212797e67582f78a5b68467f48c616c6",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6899,16 +8645,16 @@
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 17,
-    "sha256": "6aab7204a6ea80998bbba38b63d4d8c1bf66985a9ee7eab8bbc2c30dffe53141",
+    "sha256": "1e112961ce8f76e738cbdc50f0428d5ceca0b6cb5b3fda0e2c35735769f9ebf4",
     "flags": "cosmology_validation_marker"
   },
   {
     "path": "docs/yml/YML_ONTO_EPISTEMIC_REGISTRY.md",
-    "bytes": 5283,
+    "bytes": 6482,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 192,
-    "sha256": "158408fc0750da36c43eb7c5c002b79a4d54308b3bae474bdf3eac03f7bfba58",
+    "linhas": 231,
+    "sha256": "c85c07c396a3e84615bb93b1e007713a63ab9faaac37e07fdb2a5d02c7c7d8e1",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6922,11 +8668,11 @@
   },
   {
     "path": "docs/yml/YML_PIPELINE_EXECUTION_READINESS.md",
-    "bytes": 35370,
+    "bytes": 62596,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 163,
-    "sha256": "3db50286f1b395253f52bec33f3a69f3d7e807445d306598b789093ea6849084",
+    "linhas": 270,
+    "sha256": "edac8cd5381a7f1f19b6ec5a9b8b38e4dc2b1b20b830dab121812c31e442c5f9",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6940,11 +8686,11 @@
   },
   {
     "path": "docs/yml/YML_REFACTOR_PLAN.md",
-    "bytes": 1724,
+    "bytes": 1725,
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 17,
-    "sha256": "597a46aaac2acd6ec7ba292fc104e03ee91ff042a553143af3be61939e99d8fb",
+    "sha256": "2c60bcb836b1fd78af8ea35f69074322e09994317dcb49b994f086e4ef5e9160",
     "flags": "mentions_mock_or_placeholder,token_vazio_declared,cosmology_validation_marker"
   },
   {
@@ -6954,6 +8700,15 @@
     "tipo": "documentation_md",
     "linhas": 49,
     "sha256": "0dee08af51ce4623f8ee1de9fedf791a8fbcb4867ea581a3c0453bc6d8336f92",
+    "flags": ""
+  },
+  {
+    "path": "examples/rafaelia_tail_protocol_example.html",
+    "bytes": 3924,
+    "ext": ".html",
+    "tipo": "other",
+    "linhas": 126,
+    "sha256": "e2c541b84350b23f2454f69c469e023f1b725a8fc3ca18690d0cbe2e66e5e263",
     "flags": ""
   },
   {
@@ -7605,6 +9360,87 @@
     "flags": ""
   },
   {
+    "path": "fixtures/ambient_field_observation.example.json",
+    "bytes": 7087,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 251,
+    "sha256": "ab0cd5e697f762160ca05c9cfd5c5f5f7ae6dfff4046e2df8f7add87df81db69",
+    "flags": "mentions_synthetic,token_vazio_declared"
+  },
+  {
+    "path": "fixtures/rmrcti_delta_p_observation.example.json",
+    "bytes": 2827,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 102,
+    "sha256": "cc2db18d94a6ef07eb17f033cf93dc513e4746d51c6e0490f8206f57ba9bdfbe",
+    "flags": "mentions_synthetic,token_vazio_declared"
+  },
+  {
+    "path": "gradle.properties",
+    "bytes": 171,
+    "ext": ".properties",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "9708138976d7c40d09854f26fbe5aa9b1af186cd42b66fe15854b3f2912ab644",
+    "flags": ""
+  },
+  {
+    "path": "gradle/wrapper/gradle-wrapper.properties",
+    "bytes": 253,
+    "ext": ".properties",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "23b7b98fa7f086c7310fb49d39084bdb472003a03f3b8508b43098f381d53114",
+    "flags": ""
+  },
+  {
+    "path": "gradlew",
+    "bytes": 8733,
+    "ext": "NO_EXT",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "b187b4c52e749f5760afdd6fadc31b2a98ad35fb249bf0dff03b72650f320409",
+    "flags": ""
+  },
+  {
+    "path": "gradlew.bat",
+    "bytes": 2937,
+    "ext": ".bat",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "1d297e00bd21de3ace22b4d7f2de1f9dfa858883d66bbf7c1ccbecccec8f4f3b",
+    "flags": ""
+  },
+  {
+    "path": "internal/governance/capabilities.json",
+    "bytes": 589,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 21,
+    "sha256": "779ff3b009bd4b9bbc066ca723255933996dcc078d49422fc0bfac4fa3a0b92c",
+    "flags": ""
+  },
+  {
+    "path": "internal/governance/policy.json",
+    "bytes": 454,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 19,
+    "sha256": "9f79f82998905e16d4a6ffbab33d55de440078970efb58b8f7aade6ba299f79e",
+    "flags": ""
+  },
+  {
+    "path": "internal/orchestrator/vertical_slice.md",
+    "bytes": 807,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 16,
+    "sha256": "4fd2d68abd7755e26a2f0a74b2e1f7659ba0acada5cddcb8fc0ea7ef4111a214",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "knowledge_ecosystem/README.md",
     "bytes": 3231,
     "ext": ".md",
@@ -7747,6 +9583,60 @@
     "linhas": 0,
     "sha256": "ffe20fa185101b47d20abc57c6b0a5e91f53d1b3c2bc608797af0f56be8416ef",
     "flags": ""
+  },
+  {
+    "path": "native/raf_verbeyes/.gitignore",
+    "bytes": 112,
+    "ext": "NO_EXT",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "600d650400c5bfbf268ec9d7dc4b66d7108586fa00cb14d9a3a64b116c1a2828",
+    "flags": ""
+  },
+  {
+    "path": "native/raf_verbeyes/build_raf_verbeyes.sh",
+    "bytes": 13961,
+    "ext": ".sh",
+    "tipo": "source_code",
+    "linhas": 430,
+    "sha256": "4cbeb9c7e7cad812735fa4e3f07e4200ab11beab79ea89691d3088f42d36ae65",
+    "flags": ""
+  },
+  {
+    "path": "native/raf_verbeyes/main.c",
+    "bytes": 4076,
+    "ext": ".c",
+    "tipo": "source_code",
+    "linhas": 137,
+    "sha256": "60809d1f4434cd5494f7cf347e13e3f4f9b130946d43e52632b3821cbc0eff79",
+    "flags": ""
+  },
+  {
+    "path": "native/raf_verbeyes/raf_scanner.c",
+    "bytes": 2734,
+    "ext": ".c",
+    "tipo": "source_code",
+    "linhas": 87,
+    "sha256": "25520d3a9a807742d5fb77b6143fac82cd9a5fc69c78bd968d038ec787367b91",
+    "flags": ""
+  },
+  {
+    "path": "native/raf_verbeyes/raf_verbeyes.h",
+    "bytes": 1194,
+    "ext": ".h",
+    "tipo": "source_code",
+    "linhas": 41,
+    "sha256": "9ebb2cacc0eb1519a2cbcb570284319bc2ab7ea7edb3f42be89688e114322132",
+    "flags": ""
+  },
+  {
+    "path": "native/rafaelia_q16/build_rafaelia_q16.sh",
+    "bytes": 10578,
+    "ext": ".sh",
+    "tipo": "source_code",
+    "linhas": 125,
+    "sha256": "3c22c801058e8154cb3dcc01188cc002c09796f4766853fd65f5670140fc5fc2",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "newadd/00_INDEX.md",
@@ -7983,6 +9873,15 @@
     "flags": ""
   },
   {
+    "path": "newadd/calculos/baremetal/torus_path_sweep.c",
+    "bytes": 9652,
+    "ext": ".c",
+    "tipo": "source_code",
+    "linhas": 251,
+    "sha256": "8e204c4a39a79540b15eb4db7340b192a4c247796eb88da38fd2896bf6eff0cd",
+    "flags": ""
+  },
+  {
     "path": "newadd/calculos/m_inferencia_template.csv",
     "bytes": 388,
     "ext": ".csv",
@@ -8200,11 +10099,11 @@
   },
   {
     "path": "results/OUTPUTS_TEXTUAIS_INDEX.md",
-    "bytes": 2738,
+    "bytes": 4476,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 13,
-    "sha256": "23a51e54ff44e23a4edad6e2d2343d3ce2d25aa94f6e3f2364d0468d1c72d1f3",
+    "linhas": 17,
+    "sha256": "0d1e5191a4a708b67420df6c44922ec9f5e4e46f81db849a828bbf7485aa57df",
     "flags": ""
   },
   {
@@ -8227,47 +10126,74 @@
   },
   {
     "path": "results/audit/real_data_materialization_audit.csv",
-    "bytes": 4632,
+    "bytes": 9110,
     "ext": ".csv",
     "tipo": "data_or_result",
-    "linhas": 13,
-    "sha256": "405639584c4338e34f9523bf412655cd1806a0b93b08178304b69f7ca54d411d",
+    "linhas": 26,
+    "sha256": "9a8967f879bea188eb6b157737565162374387bc234a5142ce980c1ee8a20c30",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/audit/real_data_materialization_audit.csv.bak",
+    "bytes": 7506,
+    "ext": ".bak",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "f56ef0de8385cc7bd29d4173c3e89ce153855beaabc5ad1fc3a26da0127a9c46",
+    "flags": ""
   },
   {
     "path": "results/audit/real_data_materialization_audit.json",
-    "bytes": 7872,
+    "bytes": 15925,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 161,
-    "sha256": "b2b90bb89bed516230019ca609c8a0f866ad424b84fa95aa6dddf3aaa8189768",
+    "linhas": 330,
+    "sha256": "c7aac933b2d15c52ba052917ec28774097bd90f90c0bbe8185f001a18354e824",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/audit/real_data_materialization_audit.json.bak",
+    "bytes": 12946,
+    "ext": ".bak",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "7fbcba794f89f52767fd4753cd5b2596eec0c1a9a8e8071e7a4896b66f75ea6f",
+    "flags": ""
   },
   {
     "path": "results/audit/real_data_materialization_audit.md",
-    "bytes": 1678,
+    "bytes": 1685,
     "ext": ".md",
     "tipo": "documentation_md",
     "linhas": 28,
-    "sha256": "ffae1dc7596229888d55066791fc5fa9779e6c255673d9f419fe472aa438ed02",
+    "sha256": "c65aecf79a1ea891b45ef026266af88099bac66bca2769815f9949da2de95a52",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
+    "path": "results/audit/real_data_materialization_audit.md.bak",
+    "bytes": 1679,
+    "ext": ".bak",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "7896f663330c339163b1a296d9ff980d5b11a998a083c191ff421667e24cdc18",
+    "flags": ""
+  },
+  {
     "path": "results/audit/real_source_signature_verification.json",
-    "bytes": 8528,
+    "bytes": 9968,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 226,
-    "sha256": "99812a5f270c52130d3fd89e41bb4c321d04f7cf672b82dfbc8575a7f2ca7962",
+    "linhas": 263,
+    "sha256": "1dbbdc3ab7284f776d836c07576dba6851fb8c5cf16e6f925074c812f7c783d7",
     "flags": ""
   },
   {
     "path": "results/audit/real_source_signature_verification.md",
-    "bytes": 1202,
+    "bytes": 1323,
     "ext": ".md",
     "tipo": "documentation_md",
-    "linhas": 18,
-    "sha256": "7007584f93ede89681a3ce670bb46ac647af87ad9063514766504e1d3dda5438",
+    "linhas": 19,
+    "sha256": "4a77ed68ea6af23b846a520141534652c464451e6a348a19d91780edb6bea0a3",
     "flags": ""
   },
   {
@@ -8286,6 +10212,285 @@
     "tipo": "documentation_md",
     "linhas": 23,
     "sha256": "fba2312e6dc478659a5dd99249ba22b941806499c27a0fff5a75515f76ff2eac",
+    "flags": ""
+  },
+  {
+    "path": "results/audit/rll_model_evidence_scan.json",
+    "bytes": 4061,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 143,
+    "sha256": "d342c3cd7b751ca3e78ca73fecf797399695b75a9cd78b37e6406b9d2b298f87",
+    "flags": ""
+  },
+  {
+    "path": "results/audit/rll_model_evidence_scan.md",
+    "bytes": 1945,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 46,
+    "sha256": "5d89c594de16b8e3ae427fc7613a4c63fbd4fe9de1b43075e8360f1e0dae3d2b",
+    "flags": ""
+  },
+  {
+    "path": "results/cal_maya_arithmetic_check.json",
+    "bytes": 3019,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 78,
+    "sha256": "b9bc0104db198e72f1d5701538818d43c8ac734fe81e260a7e94d1c44c651b53",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260707/RELATORIO_FINAL.md",
+    "bytes": 1070,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 41,
+    "sha256": "2a9ed828ee7548a48823f15fecdaa51c26b21adbc305535648632f57448afb9b",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260707/bayes_factor_result.json",
+    "bytes": 557,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 17,
+    "sha256": "3b6c3cea6ffc73be8cfe0f88e57c9c7e2420135470698a6776d163ed4f60a083",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260707/desi_bao_result.json",
+    "bytes": 821,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 28,
+    "sha256": "2c70a6a58925cb14c5dfec3d85ed47fae551a158346114570675ad6e83282fd2",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260707/full_summary.json",
+    "bytes": 355,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 14,
+    "sha256": "c0553c12b72780b38c7b10760c9218b5ff91b656de92272f3d7ac1876f37f5e3",
+    "flags": ""
+  },
+  {
+    "path": "results/ci/20260707/joint_mcmc_summary.json",
+    "bytes": 525,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 19,
+    "sha256": "7f25fd416ac36b683137681e5a640550314c6b0392ad0878081720eff844fe12",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260707/pantheon_fit_result.json",
+    "bytes": 583,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 21,
+    "sha256": "7bcf80b80d88bb958ba339797913f7a2f546e8a5a09ff5d6e4d7fa862d0407a2",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260708/RELATORIO_FINAL.md",
+    "bytes": 1070,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 41,
+    "sha256": "a29411b7130e3938e2d0b9ee0e9ae7fae45eded5e3c06beee0de254e7f003f23",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260708/bayes_factor_result.json",
+    "bytes": 557,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 17,
+    "sha256": "0ebbaa2ca8ba13821a621340e72f2fc172ff0a893bb0394a0fbdba0f3f951b73",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260708/desi_bao_result.json",
+    "bytes": 821,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 28,
+    "sha256": "a460d743a7f537ae9d1c7509b91005690862bbbe5a423db2e1c2d0df3db34d92",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260708/full_summary.json",
+    "bytes": 355,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 14,
+    "sha256": "e864db56b23029190ee6d97fe38c36add9b91ec6a05b8ca6ff51671fff5e3382",
+    "flags": ""
+  },
+  {
+    "path": "results/ci/20260708/joint_mcmc_summary.json",
+    "bytes": 525,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 19,
+    "sha256": "2fd87a85c2741ac02c9fa7cfedc1a2b7bcd78fb07d64a53656a46b02ccbf4e5c",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260708/pantheon_fit_result.json",
+    "bytes": 583,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 21,
+    "sha256": "3c55a05916dc1170362d0ae50462bc2f2000a20b4ff28a5c509429e765857792",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260709/RELATORIO_FINAL.md",
+    "bytes": 1070,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 41,
+    "sha256": "18c35ad1d6d91f507d81277e298253bda8f6f73a7d31db79fc0565389b6935d7",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260709/bayes_factor_result.json",
+    "bytes": 557,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 17,
+    "sha256": "89c307b47874cc476209001a54a2afcc62a6e1ac0db8f64c9bfddb834ee8dd2c",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260709/desi_bao_result.json",
+    "bytes": 821,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 28,
+    "sha256": "dc0e2c0c79266d21d69c9fce617b8f97ef10ecce84d19deef4e4adc97596d0bc",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260709/full_summary.json",
+    "bytes": 355,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 14,
+    "sha256": "35ae45e889e437275b04b079f79d31fcfe9a07de935c4fbaf5f597d20fd2a72f",
+    "flags": ""
+  },
+  {
+    "path": "results/ci/20260709/joint_mcmc_summary.json",
+    "bytes": 525,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 19,
+    "sha256": "3a066d3ebfcd61412534be5fec28b87ea9512475173b54b3f715ecd437448e3e",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/ci/20260709/pantheon_fit_result.json",
+    "bytes": 583,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 21,
+    "sha256": "b7886b03f28a7c728d1149f6ef8b6b13f2a088ebcb2271caae1e67badb705c92",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/README.md",
+    "bytes": 3406,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 76,
+    "sha256": "073941b8768c6d31b93a184315ab04aa23229b5fb9cc4ac148e5d0f452bb5172",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/audit_manifest.json",
+    "bytes": 2713,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 70,
+    "sha256": "faaf8517070664d2cbaa67c1a617278efdd00cecd9f4b83841f2cea49ab95d90",
+    "flags": ""
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/derived/rll_uploaded_results_audit.md",
+    "bytes": 2737,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 76,
+    "sha256": "2ac405775f89fc89d1898d0bbc93a2eee2f7f72fb7162e4aced7ccd2f6d8dd1f",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/derived/rll_uploaded_results_delta_audit.csv",
+    "bytes": 2680,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 34,
+    "sha256": "999287506cfbfa819a7bb84b3c9f06089a78bf6b82f70ec1c9b91c26b2b415d4",
+    "flags": ""
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/source/bayes_result.json",
+    "bytes": 538,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 19,
+    "sha256": "efe09b7722b7742371c2a5f84ca963b347cfb0d998a9c60c669f75f0bcef5a69",
+    "flags": ""
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/source/comparison.json",
+    "bytes": 212,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 6,
+    "sha256": "b2e2456aea196b1f2c0b39a612dbb899620ba3b098f403772fc7cea0f677e0aa",
+    "flags": ""
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/source/lcdm.json",
+    "bytes": 667,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 1,
+    "sha256": "fe574b07c6cfa07c04134a584d65c5c9bcb2b45f458dee623f07de065c6251de",
+    "flags": ""
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/source/plot_results_report.md",
+    "bytes": 237,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 9,
+    "sha256": "b909d56076110bffad57e26939773f5ccaa792c802d190237ca70f078cb0411b",
+    "flags": "mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/coerente/2026-07-09_uploaded_validation_bayes/source/rll.json",
+    "bytes": 666,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 1,
+    "sha256": "a9fb3420551f0cd7a11e67d6fbe1a8f30fa42d717b1189b4edce4d58f6d68a26",
+    "flags": ""
+  },
+  {
+    "path": "results/desi_dr2_bao_covariance_chi2.json",
+    "bytes": 307,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 17,
+    "sha256": "42dff1acd1afb0b9e93f882b0b2219c79f6a3cabaefec63276f48a469ebda92d",
     "flags": ""
   },
   {
@@ -8334,6 +10539,24 @@
     "flags": ""
   },
   {
+    "path": "results/evolution_watcher_manifest.json",
+    "bytes": 1314,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 36,
+    "sha256": "3654122b69fdad7209d8fd881b72c549c3288941d3955868b54abb71a9464a99",
+    "flags": ""
+  },
+  {
+    "path": "results/fibonacci_ratio_verification.json",
+    "bytes": 6021,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 285,
+    "sha256": "345508d6ab76e28acc15601791269f50021dae36c76511ab445dccd411c5dded",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "results/growth_comparison_rll_vs_lcdm.csv",
     "bytes": 4214,
     "ext": ".csv",
@@ -8371,11 +10594,11 @@
   },
   {
     "path": "results/manifest.json",
-    "bytes": 4655,
+    "bytes": 9176,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 134,
-    "sha256": "fae076da41c44aca4dc2db6549c9497e31826b7cdc5b5dbf00d04e53c7354d8b",
+    "linhas": 239,
+    "sha256": "0a309517cb8d01c48209253eb390d551964134de2c97a94423c257211a636c24",
     "flags": ""
   },
   {
@@ -8386,6 +10609,33 @@
     "linhas": 9,
     "sha256": "068c75a5fb3a7e79147a26219e83fdd05dbe4d114489ccb8c7c8453f8796fed7",
     "flags": ""
+  },
+  {
+    "path": "results/model_comparison.csv",
+    "bytes": 532,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 3,
+    "sha256": "69bdf8c8335522ef935bf4affee45f3e62c39c184602ec29d4116f6753c40328",
+    "flags": ""
+  },
+  {
+    "path": "results/optimize_weff_opcao_b.json",
+    "bytes": 6548,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 320,
+    "sha256": "48edf5b1a7e270e46d2ea0f4588b7803b4cb9f1c147064d9113d9cd7850c7bc5",
+    "flags": ""
+  },
+  {
+    "path": "results/pantheon_plus_resultado_real.txt",
+    "bytes": 833,
+    "ext": ".txt",
+    "tipo": "data_or_result",
+    "linhas": 11,
+    "sha256": "8221446735a87d0f56bd708bd2bf91024153f581b418928911809b40d31cb80a",
+    "flags": "mentions_synthetic"
   },
   {
     "path": "results/perturbation_lcdm_equiv.csv",
@@ -10575,6 +12825,60 @@
     "flags": ""
   },
   {
+    "path": "results/relational_validation/README.md",
+    "bytes": 2556,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 97,
+    "sha256": "30c00ec6ff4eee65b8a434f89eeb457d180953008a24403424d7540081546608",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "results/relational_validation/RELATIONAL_VALIDATION_LEDGER.yml",
+    "bytes": 4155,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 106,
+    "sha256": "b7ea1dcf48cb4dfade45e7124bfde856f699d677d2f4bf7fbe15667ac938deb4",
+    "flags": "mentions_synthetic,token_vazio_declared"
+  },
+  {
+    "path": "results/relational_validation/artifacts/README.md",
+    "bytes": 1141,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 62,
+    "sha256": "319a1033186c0e91295185ddaed6ffdaca3db0d0eddd048edd8eaedbbd905172",
+    "flags": ""
+  },
+  {
+    "path": "results/relational_validation/logs/README.md",
+    "bytes": 956,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 56,
+    "sha256": "bb4c9d14092116768c9f69f5ed49b0deb4f5618ce27f58d4c66059e5e47c8605",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/relational_validation/packages/ACADEMIC_CORR_001/package.yml",
+    "bytes": 3272,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 86,
+    "sha256": "2590cbd4880ca0c937e5e4cc5ee3d60a1b1ef58f44c176c90a653116c645156a",
+    "flags": "mentions_synthetic,token_vazio_declared"
+  },
+  {
+    "path": "results/relational_validation/packages/ACADEMIC_CORR_001/relation_graph.json",
+    "bytes": 1739,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 31,
+    "sha256": "0fd3737794ccdaa74d75529c9d29fa2e2630c3c90b094a560e118b81eca727f0",
+    "flags": ""
+  },
+  {
     "path": "results/reproducivel_RLL_relatorio_simulacao.txt",
     "bytes": 3175,
     "ext": ".txt",
@@ -10620,21 +12924,12 @@
     "flags": ""
   },
   {
-    "path": "results/structure_d/bayes_factor_interpretation.csv",
-    "bytes": 656,
-    "ext": ".csv",
-    "tipo": "data_or_result",
-    "linhas": 8,
-    "sha256": "98051544ac811d0a72a973f9d2195007d23880b59b6501549968692c6a568ac5",
-    "flags": ""
-  },
-  {
     "path": "results/structure_d/covariance_usage.csv",
-    "bytes": 131,
+    "bytes": 203,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 3,
-    "sha256": "7abe7d81becb1b47b2ac040fb50048a76a41ce95ab1ffec120285346549f97c2",
+    "sha256": "2fabbfa8ddad6364d4579062242627836d78b274fd9e1fd7bced8f26b64b1e65",
     "flags": ""
   },
   {
@@ -10652,7 +12947,7 @@
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 10,
-    "sha256": "052f8c3965c91d96c8b765470b44b70f1dade44793de26189837c1c670c31406",
+    "sha256": "399d6ac4034b82b23e46543b77acc0d3ae0521a455da2a6ebac793f2ee7ec7be",
     "flags": ""
   },
   {
@@ -10661,70 +12956,187 @@
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 10,
-    "sha256": "5c2d9a51a2c98b8468bf268d2e25ac64875776f52356b5e5164214d657a21b1c",
+    "sha256": "e15390a63e178153b5a07e9e7a312a0b701397bbfb358bdd2543d1c18ee23867",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/degeneracy_corr_bin_03.csv",
+    "bytes": 604,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 10,
+    "sha256": "faca6a3ff17481d72c2f0cbf7b468def5b10434350cccd35b1fbf9fc71926614",
     "flags": ""
   },
   {
     "path": "results/structure_d/degeneracy_corr_bin_04.csv",
-    "bytes": 964,
+    "bytes": 634,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 10,
-    "sha256": "ef318c23a6d00bf9e8fd4169a03b53c59772d9d5ed64f9a1840df21273ae85e8",
+    "sha256": "99b971d6e9e5cdd07655632974f2b225a82f5307ffe5c4341a504613b438ad0a",
     "flags": ""
   },
   {
     "path": "results/structure_d/degeneracy_corr_bin_05.csv",
-    "bytes": 642,
+    "bytes": 612,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 10,
-    "sha256": "81309e7c80a575c85e1b61d763ff0e0e605df717890d2001224c53c5f0e933e1",
+    "sha256": "46c2142d50915dd9672264c6a4b357b2ac89ea75c514fd454fd96d83781f098f",
     "flags": ""
   },
   {
     "path": "results/structure_d/dominance_by_z.csv",
-    "bytes": 863,
+    "bytes": 864,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 11,
-    "sha256": "d0557cf9e898211519a84fd08975ff3d686084c6d7425306b9518cbed1e7431f",
+    "sha256": "e52e5b2ef1454eb638d90b672471c849c63c1a8f7879e5c0f3f596cf66cd2e30",
     "flags": ""
   },
   {
     "path": "results/structure_d/error_mode_usage.csv",
-    "bytes": 61,
+    "bytes": 78,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 3,
-    "sha256": "40fc3d110dc1494d00162d4d0402695a7cdf43071ad45a4b08626e61210c5ca8",
+    "sha256": "470d87b139a4e286ea0572f730c61862abf92f30f18c2f8e153305cbd4eb5cbf",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/execution_timing.csv",
+    "bytes": 140,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 5,
+    "sha256": "b5f388aaea29a127216dfc8ac9a3002d0524467381fcc8fd8438c6c14aae4c73",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/execution_timing.json",
+    "bytes": 310,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 18,
+    "sha256": "65e4d9d782535dc3b72fd0ffc7921ce18041a3f71df7a6d1ac55f538900f2879",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/execution_timing_real.csv",
+    "bytes": 106,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 4,
+    "sha256": "d8bec14889dde26e1e721df1493b4b6be611c0df94ba12b188a9c80b2a5fdde5",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/execution_timing_real.json",
+    "bytes": 228,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 14,
+    "sha256": "772d406e4bf9ff70f7d06bcb13cd1edc610e29f97c462d0a16ccc93c1ca54e42",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/degeneracy_heatmap_bin_00.png",
+    "bytes": 62726,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "08cbca06998b02fd9386c7742008c7c6a6ef280cbcf8f175a8b61412dde9a272",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/degeneracy_heatmap_bin_01.png",
+    "bytes": 62494,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "30918faec9dbd9c6e1120670c1b32321925233938a4819e28552e751cc475047",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/degeneracy_heatmap_bin_02.png",
+    "bytes": 62955,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "47176285d499c67603e9ce5c499f26d0c586b0cf23d4a0fedc3efdd7c4c6c9db",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/degeneracy_heatmap_bin_03.png",
+    "bytes": 62754,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "0e09b37d2ee2cc8034e93f481333516300ec80bfd94a567c7057396a72a9781b",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/degeneracy_heatmap_bin_04.png",
+    "bytes": 62565,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "e1f05737e2ab7e713f50b0230bb2c0d60d0a8320dfdaa09dbff9b3fa9bb7142b",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/degeneracy_heatmap_bin_05.png",
+    "bytes": 62710,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "29871d2566a176122328fc16ad1fcfc5e482ff7d25fef84effab652273ce4561",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/dominance_regime_curve.png",
+    "bytes": 44773,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "4bbb66d470d355d09903d86852457414d0c9806e26a5075d48c05ddcdb083b6f",
+    "flags": ""
+  },
+  {
+    "path": "results/structure_d/figs/sensitivity_curves.png",
+    "bytes": 148587,
+    "ext": ".png",
+    "tipo": "data_or_result",
+    "linhas": 0,
+    "sha256": "3385703d3142173759d850ff120af491f8889ad683a2b9acf6cb746f31f3f504",
     "flags": ""
   },
   {
     "path": "results/structure_d/joint_real_likelihood.csv",
-    "bytes": 1266,
+    "bytes": 1370,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 5,
-    "sha256": "c9540e16ef0000d8b206a4a5ea4037eff34bb83bee819d74c58fd9280fc60c2d",
+    "sha256": "a45c1db0ac7142862607bb7aa0669ddc6b94757a28e16dce9e645c54cf21a41f",
     "flags": ""
   },
   {
     "path": "results/structure_d/joint_real_likelihood.json",
-    "bytes": 6538,
+    "bytes": 8434,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 202,
-    "sha256": "4e98a4afdd11f29e08dec72ff60387ff192fbf842e5c796fe97d4af0d484b8a5",
+    "linhas": 225,
+    "sha256": "9ebb44cc5f9f7f6be6b9d149b03e3cdb2f7a44cac60c57881b9c5e657b4107ec",
     "flags": ""
   },
   {
     "path": "results/structure_d/joint_real_likelihood_covariance_manifest.json",
-    "bytes": 1776,
+    "bytes": 2348,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 40,
-    "sha256": "57438f0b2306f0321277dbd18974818d0defe005805000e830a281baef3219dc",
+    "linhas": 50,
+    "sha256": "f6c565e34129ba2a33f14055a9d63216bab384d7965a2718e78fd1c01110d1d0",
     "flags": ""
   },
   {
@@ -10738,11 +13150,11 @@
   },
   {
     "path": "results/structure_d/model_comparison.csv",
-    "bytes": 345,
+    "bytes": 532,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 3,
-    "sha256": "5e2d149f3d32b8ce5ea92618a1849cc33a055603e3ec0156caea0f9c806c2ed6",
+    "sha256": "69bdf8c8335522ef935bf4affee45f3e62c39c184602ec29d4116f6753c40328",
     "flags": ""
   },
   {
@@ -10756,12 +13168,12 @@
   },
   {
     "path": "results/structure_d/reproduction_contract.json",
-    "bytes": 2746,
+    "bytes": 1712,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 86,
-    "sha256": "f3430a083e79d4a11a491493a5707800f1ca9fd047877d217b70d1cade7f4d90",
-    "flags": ""
+    "linhas": 60,
+    "sha256": "bcf43bba2f1939896ee5d439c4736e1b9f412605ed95b4b06a73b9e0d6049f53",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": "results/structure_d/rll_regime_metadata.csv",
@@ -10778,7 +13190,7 @@
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 6,
-    "sha256": "708c808d6164ac851331f4c5c48eea0daaf4ae764d30c0a8874d3046c0ae0817",
+    "sha256": "faff03733394f73d942ac552cec11904f72105d0d6a59af55e3f83a89d296fa8",
     "flags": ""
   },
   {
@@ -10792,11 +13204,11 @@
   },
   {
     "path": "results/structure_d/sensitivity_long.csv",
-    "bytes": 7192,
+    "bytes": 7188,
     "ext": ".csv",
     "tipo": "data_or_result",
     "linhas": 181,
-    "sha256": "01a14c2ee939de1e98bbfb195830eb110d4ab227869d2910c5594ed4f6943e59",
+    "sha256": "770ee5facb365524b41d6d8406c75d2632df28164d6535368e9bc745e3bfa020",
     "flags": ""
   },
   {
@@ -10807,6 +13219,15 @@
     "linhas": 12,
     "sha256": "62457eebc8913d430c2720bbe5bb4a5187047feaf2f296a5b1301ccd9043e97c",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "results/synthetic/dha/mock_catalog.csv",
+    "bytes": 27535,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 501,
+    "sha256": "2e1a4e01c7fe2d1cb618bdfdabac35692ce2f48ed33b45dede84ea94a647e66d",
+    "flags": ""
   },
   {
     "path": "results/two_radiation_model_preview.csv",
@@ -10833,6 +13254,33 @@
     "tipo": "data_or_result",
     "linhas": 39,
     "sha256": "d55bb18ba1b7e8f72a6f0e822721451ae880d822ee2928b02c9d7a102dfdcf26",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/weff_opcao_a_comparison.json",
+    "bytes": 4357,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 147,
+    "sha256": "a30582c98073f384146e3c86824f1138e08a07273a1df90643eb45fabee96e55",
+    "flags": ""
+  },
+  {
+    "path": "results/weff_opcao_b_scan.json",
+    "bytes": 8438,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 441,
+    "sha256": "6dabb97196424e4560a546881edfa5e46fb9e683812ffd5f73ce35d77b955bac",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "results/weff_opcao_c_scan.json",
+    "bytes": 10230,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 500,
+    "sha256": "52f3642c9657b404db05654f8c2d11c699a176c9ababcf921c13863ff6c8e0c8",
     "flags": "token_vazio_declared"
   },
   {
@@ -10971,22 +13419,337 @@
     "flags": "token_vazio_declared"
   },
   {
-    "path": "schemas/rll_latentes_observations.schema.json",
-    "bytes": 4564,
+    "path": "runtime-lock.json",
+    "bytes": 1788,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 208,
-    "sha256": "1171ea660c35f0890af386ad51eb8e6bdd49c443318dda26db4e77eec75ec040",
+    "linhas": 66,
+    "sha256": "d83af6947dcf0d676500cd464bea9c1707c74b0db0eae2b10af5d105a06ca100",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/EVOLUTION_ROADMAP.md",
+    "bytes": 10985,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 264,
+    "sha256": "f060f1103a691f3f574144c2d18d7c34654ac9019b8329378347f74e0aff25ca",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/README.md",
+    "bytes": 3655,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 92,
+    "sha256": "7a8344eda1a0ba22da889b8552f753d9ff2c11e1a85172f2c25c915bf5eaed2c",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/ambient_field_observation.schema.json",
+    "bytes": 10910,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 323,
+    "sha256": "3ee632ce4fb2ac330f038579dc0a74ffff02339707a3ebfadaadc232b96802e3",
+    "flags": "mentions_synthetic,token_vazio_declared"
+  },
+  {
+    "path": "schemas/evolution_event.schema.json",
+    "bytes": 4819,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 153,
+    "sha256": "9440693bbee24c402778b52a20a09ed3e7a4704160077c953b92289ed1855fd5",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/formal_treatment_record.token_vazio.example.json",
+    "bytes": 1393,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 34,
+    "sha256": "44375007e6798d0cb96f380d0613f11a640af235f6ac64623d5a07e73d46ef7b",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/information_evolution_trace.example.json",
+    "bytes": 5055,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 120,
+    "sha256": "b17c028fea95f414ae9cda6e3a73b045dff95d1f03c5697955fa9ca1f1cb126b",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/omega_artifact.decision.example.json",
+    "bytes": 1081,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 33,
+    "sha256": "accfbf9352346b1a2cc9a0c05081029376e673fb196fc24abddc432586ed6085",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/omega_artifact.evidence.example.json",
+    "bytes": 1050,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 31,
+    "sha256": "9dd1175312bfbda6ab6fc964a1e52074e356e8002c1a71ec41528013a6626c69",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/omega_artifact.fact.example.json",
+    "bytes": 1052,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 33,
+    "sha256": "ed64ba4d19b187fc6358df3f43cc61c8dbfc0d1a5c56bbccc804bea76516d12b",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/omega_artifact.hypothesis.example.json",
+    "bytes": 1012,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 28,
+    "sha256": "f51e69251b7b2d34ae573d0c76206161425cc38712a9d1482e52f0b21b5db73f",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/omega_artifact.metaphor.example.json",
+    "bytes": 881,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 24,
+    "sha256": "68640a4f7a859326dff5fe071c5c894c5c8329e66b6be1379895deba2d2e3e52",
+    "flags": ""
+  },
+  {
+    "path": "schemas/examples/omega_artifact.token_vazio.example.json",
+    "bytes": 925,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 24,
+    "sha256": "2e24ad8999f063e0f7ac55b50cce9b7fbd6468999f0d17f02ed12c092ba237ca",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/omega_node.example.json",
+    "bytes": 403,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 16,
+    "sha256": "1f810e8bea26cfb328ce5a6a972efb3486dad3feae4a5538e0a0475477ec132d",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/omega_relation.example.json",
+    "bytes": 354,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 13,
+    "sha256": "410c4e8b897dc24592de1f4c563d2d579630fb6a27ef3aa55461fae8e47d9e4b",
+    "flags": ""
+  },
+  {
+    "path": "schemas/examples/omega_system.example.json",
+    "bytes": 1092,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 45,
+    "sha256": "d747bc4696b7262107930d9a2fc3b5166f53fbe16bdf169962bcc3183a27bdef",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/examples/semantic_token_unit.pulley_ramp.example.json",
+    "bytes": 3928,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 69,
+    "sha256": "1116100dd8e365c591e98191082f908cefb415288b648269475255a108bd5c37",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/fingerprints/desi_dr2_bao.sha256",
+    "bytes": 65,
+    "ext": ".sha256",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "a64941bf6686564174d3b1828c10e2fc28c874b3d87a53d3147df9b25ef0fe29",
+    "flags": ""
+  },
+  {
+    "path": "schemas/fingerprints/fsigma8_growth.sha256",
+    "bytes": 65,
+    "ext": ".sha256",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "cca300b9bd2dc2a682812d175b6fb6c7f9221ca168a52ffa3cd9511bbb00774d",
+    "flags": ""
+  },
+  {
+    "path": "schemas/fingerprints/hz_cosmic_chronometers.sha256",
+    "bytes": 65,
+    "ext": ".sha256",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "038b073f1833e34a763257fe8cbc263d4e0b68113aa73bd43f4c09dd48d2d5a5",
+    "flags": ""
+  },
+  {
+    "path": "schemas/fingerprints/pantheon_plus_shoes.sha256",
+    "bytes": 65,
+    "ext": ".sha256",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "88971cf77951414d1276f43a0aa7c1af9037d551480bf3b899646a8cf73cda61",
+    "flags": ""
+  },
+  {
+    "path": "schemas/fingerprints/planck_2018_cmb.sha256",
+    "bytes": 65,
+    "ext": ".sha256",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "280bf916440fd051dd546b65625fe2358db8ec5e0b42c439ab74e0f1c689968f",
+    "flags": ""
+  },
+  {
+    "path": "schemas/formal_treatment_record.schema.json",
+    "bytes": 4003,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 72,
+    "sha256": "d3a1a980ce23848a2840d618c49838c6fb88c1cd8dc6187422a28be5a4384a76",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/information_evolution_trace.schema.json",
+    "bytes": 9193,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 399,
+    "sha256": "6ffc297da52bbb0cba2085493e4883310ebc99d00436db0ddf5cdbba21f2a7d7",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/omega_artifact.schema.json",
+    "bytes": 2523,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 87,
+    "sha256": "baa53a9b57f7f3956b8e7151a589ee9d416517acaee24d0cb81420810c2f2de2",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/omega_node.schema.json",
+    "bytes": 1227,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 34,
+    "sha256": "501af7da94cb05ddc13e6799bd1f6a17280b144e6b8fa2b67b622763743c6300",
+    "flags": ""
+  },
+  {
+    "path": "schemas/omega_relation.schema.json",
+    "bytes": 1467,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 37,
+    "sha256": "786cb59fe132cb6a33683793812ce3aade9ee7cb20dd9f83c025fb8b4631689f",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/omega_schema.json",
+    "bytes": 1269,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 32,
+    "sha256": "5d99299869b78df00f63d25b69ffa8e9e88ec6b3c2d0be0c8972d92fa1b1fddd",
+    "flags": ""
+  },
+  {
+    "path": "schemas/promote_orphan.py",
+    "bytes": 9021,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 266,
+    "sha256": "4b352dc42790df42dd9363fc7ea562f142d12daf4f7d1fcb8ac4b956d0eb3588",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "schemas/rafaelia_tail_trailer.schema.json",
+    "bytes": 3191,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 45,
+    "sha256": "b8ebc9d6b08bd7f3fed2e69a791becf49254f60d51dcf843846417c672fe02b4",
+    "flags": ""
+  },
+  {
+    "path": "schemas/relation_graph.schema.json",
+    "bytes": 1879,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 65,
+    "sha256": "fecaaeb15e4050650e24efa07ec9b47de97cdd37bcb782995dfed29ca9d45cac",
+    "flags": ""
+  },
+  {
+    "path": "schemas/relational_validation_package.schema.json",
+    "bytes": 2454,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 64,
+    "sha256": "ef9cacd10559f31a2f52c182c2d4e0593377d05babdc569596914f0b1f34321e",
+    "flags": ""
+  },
+  {
+    "path": "schemas/requirements.txt",
+    "bytes": 2179,
+    "ext": ".txt",
+    "tipo": "other",
+    "linhas": 40,
+    "sha256": "d2f20fc3ae0fdf3f2d275b41dd49e252c6e3e1df93f9c00758188ea2fa9220a6",
+    "flags": ""
+  },
+  {
+    "path": "schemas/rll_latentes_observations.schema.json",
+    "bytes": 4847,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 210,
+    "sha256": "30c480c397dbe2fe379b9bc93101527c43f90050fe1506e91ff3a0c9a2f721ef",
     "flags": ""
   },
   {
     "path": "schemas/rll_watch.schema.json",
-    "bytes": 1750,
+    "bytes": 1998,
     "ext": ".json",
     "tipo": "data_or_result",
-    "linhas": 53,
-    "sha256": "614e3afb145ccbc03692316155607f218bf0504070f8278f5a9ba8d9b44df4c9",
+    "linhas": 55,
+    "sha256": "2c5c93544d6055c4f4ac40720bb34f436ed37a7a517a302b3fb7914e94154c37",
     "flags": ""
+  },
+  {
+    "path": "schemas/rmrcti_delta_p_observation.schema.json",
+    "bytes": 7330,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 209,
+    "sha256": "90fa0c4abcf9a572a8bbee526a9f243ef828c95ae025ed174c16a7b0fc5d8877",
+    "flags": "mentions_synthetic,token_vazio_declared"
+  },
+  {
+    "path": "schemas/semantic_token_unit.schema.json",
+    "bytes": 7097,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 135,
+    "sha256": "40906914d413ac12b494905b099cb1655813d021d8c93cbd016efaac2627c236",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "scripts/analysis/structure_d_effective_dynamics.py",
@@ -11016,21 +13779,39 @@
     "flags": "mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
-    "path": "scripts/build_real_validation_report.py",
-    "bytes": 4434,
-    "ext": ".py",
+    "path": "scripts/bootstrap-gradle-wrapper.sh",
+    "bytes": 709,
+    "ext": ".sh",
     "tipo": "source_code",
-    "linhas": 131,
-    "sha256": "4e8c97d8122be8eabfab0dc7e2b230920af2a1e0dbf2fd339fb93f992cf1285f",
+    "linhas": 24,
+    "sha256": "2cc8f527626c93ea9e88099386380d5dbe014a67daeed5639873f9bffa24671b",
     "flags": "cosmology_validation_marker"
   },
   {
-    "path": "scripts/calc_data.py",
-    "bytes": 1926,
+    "path": "scripts/build_real_validation_report.py",
+    "bytes": 7843,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 62,
-    "sha256": "51bea4266bb8cacbb5af8c0c8f11ffed6f7a4b23c265fdade556c6841947d49f",
+    "linhas": 212,
+    "sha256": "0f105d0db0dcb2a322be1b121aefc33b1fefbc21363f0e5504438572abc8d561",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/calc_data.py",
+    "bytes": 3833,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 124,
+    "sha256": "334f1ba6d60d611079df85f063801b08a25cdddec62f1bc36f45de604f931a9a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/calculate_sequence_metrics.py",
+    "bytes": 5837,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 152,
+    "sha256": "8d6e1ea64308163a2b81fe299f3f572290f18073de392a9ad73d6673e0bc2209",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -11098,11 +13879,11 @@
   },
   {
     "path": "scripts/compute_rll_real_pipeline.py",
-    "bytes": 12540,
+    "bytes": 16812,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 330,
-    "sha256": "dd16ed6eddfc8fdd864eab20a909c9438f23b645efeb5a64c06c4cfadbd6b0ee",
+    "linhas": 421,
+    "sha256": "35bb1dec24e1446656452ace08e2bcd04df5b8e70509c4df942d7946edddaf59",
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
@@ -11206,11 +13987,11 @@
   },
   {
     "path": "scripts/fetch_real_sources.py",
-    "bytes": 12841,
+    "bytes": 13338,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 310,
-    "sha256": "2c6e606ac530ffef24efc4c5753d3a2bcc3cddf8d63e49fbe8bfa591256e4b2a",
+    "linhas": 322,
+    "sha256": "3d7e9927f30287a2185185829c2f698ea9263564347e7a0db9a7c0a79ef1fdf8",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -11224,12 +14005,21 @@
   },
   {
     "path": "scripts/import_data.py",
-    "bytes": 2238,
+    "bytes": 6690,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 76,
-    "sha256": "858cfbfd41367c2d6cf688117329d3df490cc441ec37aa7a824deb31dae9ade3",
+    "linhas": 201,
+    "sha256": "603248e2fd8dd7c0b781c1d240b16ac4a5ec4918684833b6c6e8d59910a7ee4e",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/import_raw_json_dataset.py",
+    "bytes": 4835,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 136,
+    "sha256": "7b34c045c5944137c442bf3a6f1c32fd345053dcb951e534459c748d834d62c8",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "scripts/ingest_real_cosmology_sources.py",
@@ -11266,6 +14056,51 @@
     "linhas": 126,
     "sha256": "9cc19fa4c9fcb3ff81d5cc5bbdcb4664d4e14896278b8734ee24bc59fb509f74",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/optimize_weff_opcao_b.py",
+    "bytes": 9899,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 282,
+    "sha256": "1404be2bea69bc21246f47c993d002d02da462281bf3dfd2b57898721ec3c4a9",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/pantheon/load_pantheon.py",
+    "bytes": 1502,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 34,
+    "sha256": "7fab70788e55b7996bf791632df7bc5ac9799b36c3aa1f7104b330f9af2e2a87",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/pantheon/models_pantheon.py",
+    "bytes": 4175,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 100,
+    "sha256": "e1aac6faf029bc30eec82ac535dedb3858eec289ba6f7e8ee936b64a275fef8f",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/pantheon/run_rll_vs_pantheon.py",
+    "bytes": 3919,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 75,
+    "sha256": "65016c63fdcbecd495a843d2a216cbaf8803cf037a7cff1b49326ec2007e5c6a",
+    "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/rll_balance_report.py",
+    "bytes": 15038,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 459,
+    "sha256": "5687388f509f1048c6e5d2e3a7c46d067b489861656f81ef90419bb8195723ca",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "scripts/rll_dark_lensing_node.py",
@@ -11358,6 +14193,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/run_structure_d_robust_fit_matrix.py",
+    "bytes": 10482,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 257,
+    "sha256": "f2a886c74e5f073a46c4f1166bdca908017d0ed163579211d14d49c381d7b019",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "scripts/slingshot_zt_falsification.py",
     "bytes": 6490,
     "ext": ".py",
@@ -11385,6 +14229,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "scripts/validate_ambient_field_observation.py",
+    "bytes": 6777,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 188,
+    "sha256": "ac41f3809e682b96fd67740872777751c5e089e35d457673b5df9c1730b60565",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "scripts/validate_book_links.py",
     "bytes": 4115,
     "ext": ".py",
@@ -11404,12 +14257,30 @@
   },
   {
     "path": "scripts/validate_formulas_manifest.py",
-    "bytes": 714,
+    "bytes": 1152,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 19,
-    "sha256": "6fc40508e3dfb6ab1df2ca8925a6801f8563fbe9997bee1b42fc481ef17c392a",
+    "linhas": 33,
+    "sha256": "f179806e3f03eaa87831dd3e8deaffa6485c5e64121158283c756ca8cf035f7d",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validate_information_evolution_trace.py",
+    "bytes": 9035,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 250,
+    "sha256": "410eeeeb2ce9b7380f99d52c3f01b20af6701bb5b07d2380e01a7bfbe848c3ce",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validate_omega_schemas.py",
+    "bytes": 8257,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 229,
+    "sha256": "15c31fc0215098a1648e2dac3933ca9ee20b3fd08b6715988344e71a73b090d6",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "scripts/validate_rll_latentes_catalog.py",
@@ -11419,6 +14290,24 @@
     "linhas": 39,
     "sha256": "fbfef13d86f0993e694f5d573e733b77b8cc16442bf41368ae4c5e85ca3c3298",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validate_rmrcti_delta_p_observation.py",
+    "bytes": 6912,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 180,
+    "sha256": "3c7b7639facc345fb44d3d92b723b261624718ab60a014079b843374cbb1d7fc",
+    "flags": "mentions_synthetic,token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/validate_semantic_governance_schemas.py",
+    "bytes": 5983,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 130,
+    "sha256": "b318d1f65c2af34b474506f2da4016dc6513e40d9059f5ca069144821432f731",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "scripts/validate_watch_config.py",
@@ -11547,6 +14436,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "scripts/verify_cal_maya_arithmetic.py",
+    "bytes": 8818,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 202,
+    "sha256": "2e367a16a53c9550a232b1236e788f6a7a6ed76ebfac1ad46fea2c3cb2b92257",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "scripts/verify_pantheon_inputs.py",
     "bytes": 3109,
     "ext": ".py",
@@ -11554,6 +14452,60 @@
     "linhas": 101,
     "sha256": "73b4b0701caf3100a252ca0fef530f83166a6e5d444cf410e3a6cb3842e4e036",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/verify_rll_fibonacci_ratio.py",
+    "bytes": 4937,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 140,
+    "sha256": "21dd5a370d656f3b08740766e7524d6367c6292f071b03b29ece641360dcefab",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/verify_weff_opcao_a.py",
+    "bytes": 7156,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 200,
+    "sha256": "7946d2ebe5413e910219a97cc9dd7ddb0b7957c61f815f08517cea9b282f79d5",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/verify_weff_opcao_b.py",
+    "bytes": 7903,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 215,
+    "sha256": "e166aed52471d1b8cf9f268812060461595793b297b2a58d11bb1382a285af17",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/verify_weff_opcao_c.py",
+    "bytes": 8465,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 238,
+    "sha256": "6da0b60de3a25f5e3454c0c7b1fc74c55ffc6c64c3283271c6483503ab474615",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "scripts/vertical_slice/run_readonly_flow.sh",
+    "bytes": 6844,
+    "ext": ".sh",
+    "tipo": "source_code",
+    "linhas": 176,
+    "sha256": "6d04ba7da30013e8e4ba902e0d69b832e625afab8c91965b1b421aff9237edff",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "settings.gradle",
+    "bytes": 342,
+    "ext": ".gradle",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "bc730d0f5d7390385dc289b8134afa290a4c2f12768c2fa1e09edcf25dbba8a3",
+    "flags": ""
   },
   {
     "path": "src/rll/__init__.py",
@@ -11584,20 +14536,20 @@
   },
   {
     "path": "src/rll/cli.py",
-    "bytes": 9285,
+    "bytes": 11551,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 285,
-    "sha256": "1330a731b92baf72706a221eb18db3716a1d5f90a4ac2bcd342cc3c0ebca6245",
+    "linhas": 356,
+    "sha256": "636400cfa6aa5f61283b0ca63704140c89269b23db33887ae60d60f50a64d79d",
     "flags": "mentions_synthetic,token_vazio_declared"
   },
   {
     "path": "src/rll/cosmology_fairness.py",
-    "bytes": 14713,
+    "bytes": 15414,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 436,
-    "sha256": "2ef3c416fbadaa70df02e9cff6ce8666f18df153b34e98a3b0d5abedfb175682",
+    "linhas": 451,
+    "sha256": "e6d6b82fde688d2ecc890bf8c8a2c14d328f92094213bb470beddc4234ef294e",
     "flags": ""
   },
   {
@@ -11619,13 +14571,22 @@
     "flags": ""
   },
   {
-    "path": "src/rll/latentes.py",
-    "bytes": 15393,
+    "path": "src/rll/eft_exhaustion.py",
+    "bytes": 20456,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 386,
-    "sha256": "3b2ae19b765c292b9c978749d909df280d0b5265ca7b0046cdba2fa82b6c9692",
-    "flags": ""
+    "linhas": 567,
+    "sha256": "91bacc782cd13b09106ce692153f9a5cf6e672a4041831f53c45893ca6bfd582",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "src/rll/latentes.py",
+    "bytes": 21851,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 542,
+    "sha256": "62757ebedfba60eb32b9e5454f6821ddfaa70544801655186a02dc98a766ef2b",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "src/rll/ln1pz_extractor.py",
@@ -11682,6 +14643,33 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
+    "path": "tests/fixtures/rll_latentes/invalid_missing_falsifier.yml",
+    "bytes": 2815,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 60,
+    "sha256": "6d7c10c5bc1cb3f56f35e8fa020f1742b10d7c7ecc7127b74d59e7abf1186969",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/fixtures/rll_latentes/valid_minimal.yml",
+    "bytes": 2880,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 61,
+    "sha256": "ae69360861c986dbb3d113047e6b6d8eed8a4d7c7d235a869b39fa5205f512f9",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_academic_correlation_package_validator.py",
+    "bytes": 545,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 22,
+    "sha256": "9900756d2ff4395f0044b21ee9ab0ccf043d6bfb21f2a33f867e02675e743e84",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_bh_flux_calc.py",
     "bytes": 2379,
     "ext": ".py",
@@ -11691,12 +14679,48 @@
     "flags": "cosmology_validation_marker"
   },
   {
-    "path": "tests/test_build_real_validation_report.py",
-    "bytes": 2020,
+    "path": "tests/test_bootstrap_failsafe.py",
+    "bytes": 5150,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 61,
-    "sha256": "9c2d0b73d435318581c5b6d44c5cfa29b08767e950efef79959f4341fc291817",
+    "linhas": 139,
+    "sha256": "bab77ca9d6e0d51f452660dd79dc47db3daff2e920ac2fd62c78ce135dc10c2a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_build_real_validation_report.py",
+    "bytes": 5187,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 155,
+    "sha256": "7a9c3a203fbd591a3f2c8f3ab630237cd1a6efccbb0be3d640605abf464a7f1f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_calculate_sequence_metrics.py",
+    "bytes": 2138,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 59,
+    "sha256": "a43a69da5fd8d12bc21da3790cf53ced46392f913762c0da31c063fe940e974a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_check_rll_report_claim_language.py",
+    "bytes": 6259,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 190,
+    "sha256": "9e0143cafecdd52100b26ce156b1f36ccfb863a277c9c099143613037cfa74dc",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_claim_allowed_gate.py",
+    "bytes": 1136,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 40,
+    "sha256": "75f255e58dd38b32a28562507f7b43b3b07e98bf4b47db3624ab0adb5c6e1500",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -11728,11 +14752,11 @@
   },
   {
     "path": "tests/test_compute_rll_real_pipeline_contract.py",
-    "bytes": 4868,
+    "bytes": 6191,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 106,
-    "sha256": "7e8566a08f2e9375d895a942f0c35de933a23f68547660d523aae6168915ae22",
+    "linhas": 136,
+    "sha256": "651bc731bf343a4a3e73811c738622fe75e23e73764b54f3217c7b50413921d8",
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
@@ -11742,6 +14766,15 @@
     "tipo": "source_code",
     "linhas": 111,
     "sha256": "fe6f8fb93d5572b4df2d3ade760c0fe62d64ba550e21306b724f34b669600164",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_cross_repo_relationship_registry.py",
+    "bytes": 1332,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 41,
+    "sha256": "416908cf8837b9f45af63caf0d72eadd1b7205d7ca6f4dbda62f59298b4d6fd7",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -11781,6 +14814,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_eft_exhaustion.py",
+    "bytes": 2402,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 69,
+    "sha256": "01fdc0123724183970029873ccf94f1f5209f42b8165c0e2177b0b5d0b507c08",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_energy_momentum_bridge.py",
     "bytes": 5737,
     "ext": ".py",
@@ -11790,13 +14832,76 @@
     "flags": "mentions_synthetic,cosmology_validation_marker"
   },
   {
-    "path": "tests/test_joint_real_likelihood.py",
-    "bytes": 3513,
+    "path": "tests/test_evolution_watcher_config.py",
+    "bytes": 2241,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 78,
-    "sha256": "4ac3c4c910e4dab687acd33e453f80432eb868fcadbd8635b827e368d9862b79",
+    "linhas": 59,
+    "sha256": "ae4d2dbd57555c9642222182dce9a44aed63fc135739f95630eb3a2250e1bae6",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_import_raw_json_dataset_array.py",
+    "bytes": 763,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 18,
+    "sha256": "a643f44052d15a4783ee7be0f0876e494ae730b13ff4366687936df485395814",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_import_raw_json_dataset_basic.py",
+    "bytes": 1139,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 27,
+    "sha256": "a9c44efc102a006965d17baa7867695e9b5b25bc9330090c7e31436d6d1e305e",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_import_raw_json_dataset_invalid.py",
+    "bytes": 804,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 24,
+    "sha256": "29cb7c3218c98a05001d353fcf82bddb8ac8edc975a13a15551a811aa9c630c4",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_import_raw_json_dataset_rollback.py",
+    "bytes": 974,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 23,
+    "sha256": "d0e3fcfbec2940f8072beaf3703687515b781d2ad43d38673f91cba2c31f47b5",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_information_evolution_trace.py",
+    "bytes": 2346,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 75,
+    "sha256": "6ffaeee550534af83ab12cf20130eb4e52b3467add50ea9d6c4f41d66f261969",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_joint_real_likelihood.py",
+    "bytes": 6898,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 166,
+    "sha256": "7857f26ba2dd31994afecae376e53c92206c8e1f80afb02b2b088a054e7bd1cb",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_latent_theses_registry.py",
+    "bytes": 1908,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 54,
+    "sha256": "01f72aefa56adf4004c96400662c67d0e0b96716c5194d99c523e6a88cf2e3af",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "tests/test_lcdmpp_extensions.py",
@@ -11826,6 +14931,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_make_h0_rd_ablation_matrix.py",
+    "bytes": 8523,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 225,
+    "sha256": "854deb2f1d2056b2d8424d7b55f303b63397de4cda43cd924285f1a72283e49a",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_model_comparison_artifact.py",
     "bytes": 1362,
     "ext": ".py",
@@ -11833,6 +14947,24 @@
     "linhas": 25,
     "sha256": "29fbad3f571118a48bb17419feed1ae0b0f0f951792cb7f4e52b6eb893759180",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_normalize_model_comparison_csv.py",
+    "bytes": 2116,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 51,
+    "sha256": "ea151941b4a8fb2fde693d5c9ad87035730dc4905eb391f98258a4a1e9505bfa",
+    "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_numeric_representation_semantics.py",
+    "bytes": 966,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 31,
+    "sha256": "06b30a25c34e1af61db80a47b6c3eae28d2889003379f328bd87e54f7442f4fa",
+    "flags": "cosmology_validation_marker"
   },
   {
     "path": "tests/test_orbital_outputs.py",
@@ -11880,6 +15012,15 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_real_curated_imports.py",
+    "bytes": 673,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 19,
+    "sha256": "97a1d9b9357c9f3da2ddfa6d502337c5b34e1356931a6d350f3f52921784e19b",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_real_data_materialization_audit.py",
     "bytes": 1896,
     "ext": ".py",
@@ -11908,12 +15049,21 @@
   },
   {
     "path": "tests/test_real_source_signatures.py",
-    "bytes": 2650,
+    "bytes": 4189,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 66,
-    "sha256": "b384cb8703199cfb2ca3d0fb5518a9495c1629c0bbcaa02987a2ee0c7d8e7b4e",
+    "linhas": 92,
+    "sha256": "767700bd1e624cbbaee823c63fe1af84415d5abb4b8606d1276db808e8c00003",
     "flags": "mentions_synthetic,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_required_data_gap_registry.py",
+    "bytes": 1835,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 57,
+    "sha256": "5ee2198016c7014f102929a58445587560d3da3ec4f902148d4b440e6db6d90d",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "tests/test_rll_background.py",
@@ -11934,13 +15084,22 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
-    "path": "tests/test_rll_latentes.py",
-    "bytes": 6037,
+    "path": "tests/test_rll_json_watcher.py",
+    "bytes": 5959,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 161,
-    "sha256": "51f1043643369301549d83d27639767ed13df5a8a04609ffc6e47d0757fd21a4",
-    "flags": "cosmology_validation_marker"
+    "linhas": 165,
+    "sha256": "80d9da503a8fce706013a8d9f0a7e0d2b2b4a314b76bd284778e9955c93b47af",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_rll_latentes.py",
+    "bytes": 6794,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 177,
+    "sha256": "74ea26ff21af1fc8f658ff4e4e8b1377bc8ba0559568aecdab6b63d12f1d346f",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "tests/test_rll_model_selection.py",
@@ -11970,6 +15129,15 @@
     "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
+    "path": "tests/test_rll_vectras_sqrt3_2_governance.py",
+    "bytes": 2415,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 75,
+    "sha256": "08445d7b48cf46942813161bfed689678739d57da60c0b13f6e2ad5fd458505b",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_rll_vs_lcdm_bao.py",
     "bytes": 1702,
     "ext": ".py",
@@ -11988,6 +15156,33 @@
     "flags": "cosmology_validation_marker"
   },
   {
+    "path": "tests/test_scan_rll_model_evidence.py",
+    "bytes": 11347,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 330,
+    "sha256": "c880fa782df9ff926aca4f355377e6359987c7c92c04d0cbbe3a37784c92fb64",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_schemas_claim_boundary.py",
+    "bytes": 865,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 27,
+    "sha256": "a3fc9a9a92dd495ad26835abdb5fa80dcb8dd03001207853f741a7b1044f73d1",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_scientific_workflow_path_filters.py",
+    "bytes": 3362,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 93,
+    "sha256": "cf6c15be58f1757edde2c8a5ea7480b0cfc9959c329e9547c46a068ac4e588f7",
+    "flags": "cosmology_validation_marker"
+  },
+  {
     "path": "tests/test_seed_readiness_validators.py",
     "bytes": 1069,
     "ext": ".py",
@@ -11995,6 +15190,15 @@
     "linhas": 30,
     "sha256": "df01a328d1088bd6353e707d6a8b91df765b6a683d0e04de5b38fd4a90eada5a",
     "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_semantic_governance_schemas.py",
+    "bytes": 1842,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 50,
+    "sha256": "7e107a24c0cb62ce6b6d1d27972b37255d2d32a237c9d98bfa7148b1f1fcd84a",
+    "flags": "token_vazio_declared,cosmology_validation_marker"
   },
   {
     "path": "tests/test_slingshot_zt_falsification.py",
@@ -12007,11 +15211,11 @@
   },
   {
     "path": "tests/test_sqrt3_2_freestanding_kernel.py",
-    "bytes": 2653,
+    "bytes": 3826,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 88,
-    "sha256": "9e4a7280a4fd02715caa3752f5dbd8fa8b86466d7c792cf7de96fb0b7382ed00",
+    "linhas": 119,
+    "sha256": "e2ff800e282f371615d18d9e68958395bdfd9e70b58b249b1cc1bc7d77c3a6b2",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -12069,21 +15273,39 @@
     "flags": "cosmology_validation_marker"
   },
   {
-    "path": "tests/test_synthetic_real_boundary.py",
-    "bytes": 6498,
+    "path": "tests/test_structure_d_robust_fit_matrix.py",
+    "bytes": 5396,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 147,
-    "sha256": "0598ba602dad92b25dca7a61e2b71f040c8b92b4332514871ab05ddd76508a08",
+    "linhas": 137,
+    "sha256": "0b66b25e54e0cdbce7f1a64be492668668405f3b6cd38a5cf70f5049f83fda1c",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_synthetic_real_boundary.py",
+    "bytes": 8192,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 192,
+    "sha256": "2759347091371705ebfb3f039f5105f0128412caabfc73b75c512930350780e8",
     "flags": "mentions_synthetic,mentions_mock_or_placeholder,cosmology_validation_marker"
   },
   {
-    "path": "tests/test_write_workflow_guards.py",
-    "bytes": 1663,
+    "path": "tests/test_workflow_orchestrator.py",
+    "bytes": 1689,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 42,
-    "sha256": "23c20b7d67b4500807f12de97977e7f86e4e4b5526b706eee0706c0f37014532",
+    "linhas": 50,
+    "sha256": "3b61c4100058222aae8f389b21d964c58d33b1828048e7ba9dd51e9cdbe86a20",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/test_write_workflow_guards.py",
+    "bytes": 2176,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 52,
+    "sha256": "41a38f0e166fb7e0346f6f32a643a895f30eff601ad6d210eed130fcc796e305",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -12093,6 +15315,33 @@
     "tipo": "source_code",
     "linhas": 50,
     "sha256": "5b1b34f6673a335f49f797c2935a974f42218df254452d2dda4bcd5352854e78",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/vertical_slice/test_execution_result_schema.py",
+    "bytes": 2355,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 56,
+    "sha256": "152c5c7d0ed537708d1cd1bc53efc9be2ebf3e157529b245f5da1932d0a933e1",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/vertical_slice/test_gate_readonly.py",
+    "bytes": 1309,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 35,
+    "sha256": "3b5ce1a865f0522a9904344368b5f4c589c4a8be81c542bb5fabbe94be8931eb",
+    "flags": "cosmology_validation_marker"
+  },
+  {
+    "path": "tests/vertical_slice/test_intent_ir_validation.py",
+    "bytes": 1246,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 40,
+    "sha256": "53673f3868bbc5bac3afe567249c6e6f3f7d0694e6e063c3c91eee280181411a",
     "flags": "cosmology_validation_marker"
   },
   {
@@ -12330,6 +15579,51 @@
     "flags": ""
   },
   {
+    "path": "to_Add/bootstrap_failsafe.py",
+    "bytes": 11927,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 336,
+    "sha256": "3e128659e3e50368e195a98d1ee67ac8c6d64288515776f330698d294739129b",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "to_Add/data_evolution_watch.yml",
+    "bytes": 11525,
+    "ext": ".yml",
+    "tipo": "config_yml",
+    "linhas": 342,
+    "sha256": "ae8cad06f87a8f2b836640aaef6315a1fddb5cf7ed02fc48c0a05fc84ecedd53",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "to_Add/generate_yml_audit_docs.py",
+    "bytes": 12755,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 371,
+    "sha256": "544e70d5c617627736ca2e873a98fa30a375a72c1d6479bdb3e7ad6dae0f627e",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "to_Add/rll_json_watcher.py",
+    "bytes": 17647,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 481,
+    "sha256": "15824ab1f33f4b3351de51569053c48b922f9e9d8d93340b6a2d7de79de331ec",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "to_Add/test_optimizer_scaling.py",
+    "bytes": 13542,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 364,
+    "sha256": "6f68a170ec8c2f5ea94ded8e6a300309c56c406f5fcd42131f7a66d741e9657f",
+    "flags": "mentions_synthetic,token_vazio_declared"
+  },
+  {
     "path": "tools/apply_rll_outcome_protocol.py",
     "bytes": 15569,
     "ext": ".py",
@@ -12340,12 +15634,21 @@
   },
   {
     "path": "tools/audit_github_workflows.py",
-    "bytes": 4849,
+    "bytes": 7462,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 133,
-    "sha256": "926fd3360f0357ea8412e8d7318ad5b19b0802bad0911f211699ddf027c17b14",
-    "flags": ""
+    "linhas": 182,
+    "sha256": "bce18d161278410b9491c26328da42c2db62ab192ac8df641f4023036eeaa716",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
+  },
+  {
+    "path": "tools/bootstrap_failsafe.py",
+    "bytes": 7283,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 186,
+    "sha256": "301c4fa90b75618023c5db48295c88931083143476387d5b16f5ca0f578a13f8",
+    "flags": "token_vazio_declared"
   },
   {
     "path": "tools/check_rll_report_claim_language.py",
@@ -12355,6 +15658,15 @@
     "linhas": 92,
     "sha256": "82d9978738350b653f59e2f89cb7d568cbc7387988a3d95c34f1d235c564a3de",
     "flags": ""
+  },
+  {
+    "path": "tools/ci/real_data_workflow_policy.sh",
+    "bytes": 1380,
+    "ext": ".sh",
+    "tipo": "source_code",
+    "linhas": 32,
+    "sha256": "25ab729d133049fbdf53aec81b1394a3ecaa61d909909b1b0e65d623f2beac82",
+    "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
     "path": "tools/docs_inventory.py",
@@ -12420,6 +15732,15 @@
     "flags": "token_vazio_declared"
   },
   {
+    "path": "tools/normalize_model_comparison_csv.py",
+    "bytes": 3219,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 104,
+    "sha256": "19ff02b4fbae3186db0a8ee94fe1b2e3cb6dcb496f8f78b379e4dbaad7ae84ea",
+    "flags": ""
+  },
+  {
     "path": "tools/real_data_materialization_audit.py",
     "bytes": 9306,
     "ext": ".py",
@@ -12429,12 +15750,21 @@
     "flags": "mentions_synthetic,mentions_mock_or_placeholder"
   },
   {
-    "path": "tools/run_rll_academic_claim_governance.py",
-    "bytes": 6468,
+    "path": "tools/rll_json_watcher.py",
+    "bytes": 9717,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 170,
-    "sha256": "b4ba4037d81d903974cfc2b3038e521fc8a41ddab9ec3ec7437785c3909031fd",
+    "linhas": 235,
+    "sha256": "f4ddf70891d71766f5cdf86c51f092c29647b66ea003cc302c96f390145862ed",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "tools/run_rll_academic_claim_governance.py",
+    "bytes": 7711,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 193,
+    "sha256": "02b0650568aef553c7b15696b0b76d9b44865e3514e18f87c178863406a74d1d",
     "flags": "token_vazio_declared"
   },
   {
@@ -12448,11 +15778,20 @@
   },
   {
     "path": "tools/scan_rll_model_evidence.py",
-    "bytes": 15998,
+    "bytes": 16358,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 432,
-    "sha256": "eb1581008d79aa89dae2f1c0b7e52d716c4c609ff91b1037c834fd21a486c870",
+    "linhas": 441,
+    "sha256": "d6dab74b8ea8f3a8cd00fda4d7674aca6e947f0ee6b23114e9850bdf940be556",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "tools/validate_academic_correlation_package.py",
+    "bytes": 7565,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 235,
+    "sha256": "d0f485700bf72cafe9669da7af641142b6d1a58d19a540bcdd4c0655602c3e71",
     "flags": "token_vazio_declared"
   },
   {
@@ -12465,6 +15804,42 @@
     "flags": ""
   },
   {
+    "path": "tools/validate_claim_allowed_gate.py",
+    "bytes": 4703,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 174,
+    "sha256": "7ea4a90fc06fbfe34da4b7918748517bdba78e87f2233e7e20969f30a12eca50",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "tools/validate_cross_repo_relationship_registry.py",
+    "bytes": 4225,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 111,
+    "sha256": "60a14a772df88cbb3b58d522ea66a75bac4650b670de4925516c3466c201a64b",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "tools/validate_import_registry.py",
+    "bytes": 1346,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 44,
+    "sha256": "5a28e9f643cc6ada56838329d81d3c14ee7d19b58737d800c04485f1124ec219",
+    "flags": ""
+  },
+  {
+    "path": "tools/validate_latent_theses_registry.py",
+    "bytes": 4380,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 104,
+    "sha256": "fb825ed3c2596056cf0b5cfdcac458edf451b33aa4cc20626b9d94bf3e685d4e",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "tools/validate_public_astronomy_catalog_fetcher.py",
     "bytes": 2323,
     "ext": ".py",
@@ -12475,11 +15850,11 @@
   },
   {
     "path": "tools/validate_real_cosmology_inputs_yml.py",
-    "bytes": 5242,
+    "bytes": 6832,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 137,
-    "sha256": "959d08b35ccd0d5741cc0b2ba3810aeef612595eaa1b9d5737ea0e5ab05fdfe8",
+    "linhas": 201,
+    "sha256": "d16d59390dba1068db97db1b6cd317762a94971a1bb0850a91cc17e586f83245",
     "flags": "mentions_synthetic"
   },
   {
@@ -12492,12 +15867,48 @@
     "flags": ""
   },
   {
+    "path": "tools/validate_real_data_boundaries.py",
+    "bytes": 3925,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 86,
+    "sha256": "eaf1be5aec299b4f8503778f89d409f7ef51b62c10f72368f39e5a16d614c627",
+    "flags": "mentions_synthetic"
+  },
+  {
     "path": "tools/validate_real_data_source_manifest.py",
     "bytes": 2757,
     "ext": ".py",
     "tipo": "source_code",
     "linhas": 105,
     "sha256": "92d43027bfec4d96ad54297b60eec22b9a8e27375ced179bd82bdfe19a566b99",
+    "flags": ""
+  },
+  {
+    "path": "tools/validate_real_dataset_variance_registry.py",
+    "bytes": 2437,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 68,
+    "sha256": "b14c1f21ea94d82f38701d1edde5d1f81fe0f9985da4275fdfa2948be908d71b",
+    "flags": ""
+  },
+  {
+    "path": "tools/validate_required_data_gap_registry.py",
+    "bytes": 4055,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 120,
+    "sha256": "81d0dc6e647a0393f650c5a862a959970b102f06a2eb36013faa57eb9d629d5b",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "tools/validate_schemas_claim_boundary.py",
+    "bytes": 3005,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 95,
+    "sha256": "fa0da2f8671a0aa1adb0c124e8af76dae3dbf71d2763879abc2a0cd668599f01",
     "flags": ""
   },
   {
@@ -12520,11 +15931,20 @@
   },
   {
     "path": "tools/verify_real_source_signatures.py",
-    "bytes": 9581,
+    "bytes": 9954,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 238,
-    "sha256": "725719b5cb87832a6798d185704da5b931cbd789db7d597c1315b693f4754171",
+    "linhas": 245,
+    "sha256": "b99542ae13ff07580b4546ce878af8272c5d65f419f277d28b3dbf5a142d2f05",
+    "flags": ""
+  },
+  {
+    "path": "tools/workflow_orchestrator.py",
+    "bytes": 19468,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 470,
+    "sha256": "005313ec2ec299604f945694269a222845c81215c92d08cd1108bda3b5fc0b59",
     "flags": ""
   },
   {
@@ -12546,6 +15966,15 @@
     "flags": ""
   },
   {
+    "path": "validacao_real/data/RESULTADO_REAL.txt",
+    "bytes": 833,
+    "ext": ".txt",
+    "tipo": "other",
+    "linhas": 11,
+    "sha256": "8221446735a87d0f56bd708bd2bf91024153f581b418928911809b40d31cb80a",
+    "flags": "mentions_synthetic"
+  },
+  {
     "path": "validacao_real/data/desi_dr2_bao.yml",
     "bytes": 2692,
     "ext": ".yml",
@@ -12564,12 +15993,48 @@
     "flags": ""
   },
   {
-    "path": "validacao_real/fetch_real_data.py",
-    "bytes": 2687,
+    "path": "validacao_real/data/load_pantheon.py",
+    "bytes": 1502,
     "ext": ".py",
     "tipo": "source_code",
-    "linhas": 83,
-    "sha256": "54b0ab69d4fdbdfe28fbdc617688c30d3ace2ad6328788204c8781a0664ec28b",
+    "linhas": 34,
+    "sha256": "7fab70788e55b7996bf791632df7bc5ac9799b36c3aa1f7104b330f9af2e2a87",
+    "flags": ""
+  },
+  {
+    "path": "validacao_real/data/models.py",
+    "bytes": 4175,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 100,
+    "sha256": "e1aac6faf029bc30eec82ac535dedb3858eec289ba6f7e8ee936b64a275fef8f",
+    "flags": ""
+  },
+  {
+    "path": "validacao_real/data/pantheon_data.dat",
+    "bytes": 579283,
+    "ext": ".dat",
+    "tipo": "other",
+    "linhas": 0,
+    "sha256": "1cb0fc379ef066afdc2ffd1857681cc478024570d8a3eba284fb645775198cf8",
+    "flags": ""
+  },
+  {
+    "path": "validacao_real/data/run_rll_vs_pantheon.py",
+    "bytes": 3919,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 75,
+    "sha256": "65016c63fdcbecd495a843d2a216cbaf8803cf037a7cff1b49326ec2007e5c6a",
+    "flags": "mentions_synthetic"
+  },
+  {
+    "path": "validacao_real/fetch_real_data.py",
+    "bytes": 3760,
+    "ext": ".py",
+    "tipo": "source_code",
+    "linhas": 108,
+    "sha256": "7f8b45032839cb98f03cc9c9d21c7344f7448f6fae3f724a9cfd0b4b03def587",
     "flags": ""
   },
   {
@@ -12681,6 +16146,42 @@
     "flags": ""
   },
   {
+    "path": "validacao_real/results/eft_exhaustion/eft_exhaustion_report.json",
+    "bytes": 2620,
+    "ext": ".json",
+    "tipo": "data_or_result",
+    "linhas": 89,
+    "sha256": "b33c3324b9d479a350bedffb731207197725bc284f7ee8b83cccfc7d2f15af6f",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "validacao_real/results/eft_exhaustion/eft_exhaustion_report.md",
+    "bytes": 1098,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 34,
+    "sha256": "79fb7a6c011dbaf265f3673ac7c906356fcde93942ad8538ae7520b9b8ed0411",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "validacao_real/results/eft_exhaustion/eft_reconstruction.csv",
+    "bytes": 10647,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 129,
+    "sha256": "612aea8f0a94f5b450afa46efb140ea4831ac7bdee707e4e7a624ca2c23dc0a8",
+    "flags": ""
+  },
+  {
+    "path": "validacao_real/results/eft_exhaustion/parameter_scan.csv",
+    "bytes": 4237,
+    "ext": ".csv",
+    "tipo": "data_or_result",
+    "linhas": 65,
+    "sha256": "779fc4bcddb6c10afd452febe72987cbe8b90c0ea296b795658770ad1ebb8505",
+    "flags": "token_vazio_declared"
+  },
+  {
     "path": "validacao_real/results/figures/bao_distances.png",
     "bytes": 80646,
     "ext": ".png",
@@ -12745,11 +16246,11 @@
   },
   {
     "path": "validacao_real/sources.yml",
-    "bytes": 1479,
+    "bytes": 2195,
     "ext": ".yml",
     "tipo": "config_yml",
-    "linhas": 36,
-    "sha256": "ea086780f0472ee0a22a9dc71311fff48ff5292558e7d7998743658f201a82e5",
+    "linhas": 45,
+    "sha256": "fadc9d47fdd5a30e20cc9778b3a3feefc035e74e99822aa93d44dc5ab063f6fc",
     "flags": ""
   },
   {
@@ -12841,5 +16342,41 @@
     "linhas": 27,
     "sha256": "a03389171a5d9fa2f4d3b7d72520dd2495ba19ae837a8b70a43111211446a2af",
     "flags": ""
+  },
+  {
+    "path": "workflows/REPO_SESSION_ARTIFACT_MAP_RAFAELIA.md",
+    "bytes": 5562,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 187,
+    "sha256": "693e88b2d7364194c52fa2fa50677620a14984cb68350fa8a3ae805d47e8f28f",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "workflows/SESSION_CARD_TEMPLATE_RAFAELIA.md",
+    "bytes": 1452,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 159,
+    "sha256": "2a95007a8337f4a83cb238239158541a4bf1773c1d237fa1aaea39108e1d5194",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "workflows/TOKEN_VAZIO_LEDGER_RAFAELIA.md",
+    "bytes": 6101,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 115,
+    "sha256": "43eedb27ff13c553efb15e4981cb81966ae99d3a97610766eb1f85415c580780",
+    "flags": "token_vazio_declared"
+  },
+  {
+    "path": "workflows/WORKFLOW_MASTER_INDEX_RAFAELIA.md",
+    "bytes": 11367,
+    "ext": ".md",
+    "tipo": "documentation_md",
+    "linhas": 481,
+    "sha256": "4140806bb3ec4f9700d9de212159a2b54194a918d872fb50b3444e108504d523",
+    "flags": "token_vazio_declared"
   }
 ]

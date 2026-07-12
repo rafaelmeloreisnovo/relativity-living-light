@@ -3,6 +3,6 @@ description: "Validate syntax for YAML workflow definitions."
 file: yml-syntax-validation.yml
 stage: 10
 enabled: true
-tags: [core, validation]
+tags: [all, core, validation]
 wait_for_completion: true
 timeout_minutes: 20

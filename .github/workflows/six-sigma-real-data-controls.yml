@@ -15,6 +15,7 @@ on:
     - docs/governance/**
     - tools/validate_six_sigma_real_data_controls.py
     - .github/workflows/six-sigma-real-data-controls.yml
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

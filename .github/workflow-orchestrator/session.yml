@@ -2,7 +2,7 @@ schema: rll.workflow_orchestrator.catalog.v2
 profiles:
   full_session:
     description: "Run the full cross-workflow session orchestration."
-    include_tags: [core, validation, real_data, science, artifacts]
+    include_tags: [all]
   quick_session:
     description: "Run a compact interoperability session."
     include_tags: [core, validation]
@@ -16,6 +16,11 @@ execution:
   mode: sequential
   stage_barrier: true
   max_in_flight: 1
+
+# The orchestrator discovers every executable workflow. The session workflow
+# itself is intentionally excluded by the loader to prevent recursive dispatch.
+workflow_files:
+  - ../workflows/*.yml
 
 workflow_catalog_dirs:
   - workflows/core

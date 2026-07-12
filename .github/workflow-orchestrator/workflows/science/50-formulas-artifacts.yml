@@ -3,6 +3,6 @@ description: "Materialize formulas artifacts for scientific audit."
 file: formulas-artifacts.yml
 stage: 50
 enabled: true
-tags: [science, artifacts]
+tags: [all, science, artifacts]
 wait_for_completion: true
 timeout_minutes: 30

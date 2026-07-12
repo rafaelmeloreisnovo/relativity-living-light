@@ -3,7 +3,7 @@ description: "Run artifact-focused RLL real-data orchestration."
 file: rll-real-data-orchestrator.yml
 stage: 40
 enabled: true
-tags: [real_data, science]
+tags: [all, real_data, science]
 wait_for_completion: true
 timeout_minutes: 60
 inputs:
