@@ -57,7 +57,8 @@ E²(a) = Ωr·a⁻⁴ + Ωm·a⁻³ + ΩΛ + Ωs0·[f(a) + (1−f(a))·a⁻³]
 | Pantheon+ SH0ES (SNe Ia) | 1701 | 710.613 | 710.808 | +3.805 | [E] ✅ F-COS-01/02 PASS |
 | DESI DR2 BAO (params nominais) | 13 | 93.81 | 28.97 | — | [E] χ²_nom<150 → F-COS-05 PASS |
 | DESI w_eff — setor padrão | 6 | 1162.3 | — | — | [E] ✗ incompatível estruturalmente |
-| DESI w_eff — Opção B (melhor) | 6 | **14.8** | — | — | [E] ⚠️ χ²>10, mas melhoria 79× |
+| DESI w_eff — Opção B (scan) | 6 | **14.8** | — | — | [E] ⚠️ χ²>10, mas melhoria 79× |
+| DESI w_eff — **Opção B (ótimo)** | 6 | **0.079** | — | — | [E] ✅ **compatível** — P-RLL-05 CONFIRMADA (FASE 13) |
 | DESI w_eff — Opção C (melhor) | 6 | 104.0 | — | — | [E] ✗ inferior a Opção B |
 | Joint MCMC (Pantheon+ + DESI) | 64+ | TOKEN_VAZIO | TOKEN_VAZIO | — | ⚠️ [VAZIO P0] Gap G1 |
 | Bayes Factor ln(B₁₀) | — | — | — | — | ⚠️ [VAZIO P0] Gap G2 |
@@ -270,10 +271,15 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 - χ²_DESI_nominal = 93.81 (parâmetros não otimizados para BAO)
 - Anterioridade documentada: commits + DOI Zenodo
 
+**PODE afirmar adicionalmente [E] (FASE 13)**:
+- Opção B ótima (Nelder-Mead): χ²=0.079 — numericamente compatível com CPL DESI [E]
+- P-RLL-05 CONFIRMADA: Opção B com w2=−0.282, z_t=1.752, w_t=1.500 passa χ²<10
+- Interpretação arquitetural [E]: compatibilidade exige w_t→grande → Opção B converge para dois fluidos DE (Λ + fluido w2=−0.28); assinatura logística localizada suavizada além da resolução BAO
+
 **NÃO PODE afirmar [VAZIO]**:
 - Superioridade sobre ΛCDM (claim_allowed = false até MCMC conjunto e Bayes Factor)
 - Justificativa teórica de z_t, w_t, Ωs0 a partir de primeiros princípios (documentado em JUSTIFICATIVA_PARAMETROS_RLL.md)
-- Compatibilidade *plena* com w_eff CPL DESI: setor padrão χ²=1162, Opção B χ²=14.8 (ainda >10)
+- Assinatura logística localizada compatível com CPL DESI: apenas dois-fluidos DE compatível, não fase de transição distinguível
 
 ### Universo II — O que pode ser afirmado hoje
 
@@ -312,7 +318,7 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 
 | Ato | Como | Domínio |
 |-----|------|---------|
-| Otimização contínua Opção B (P-RLL-05) | `scripts/optimize_weff_opcao_b.py` + scipy.minimize → χ²<10? | Universo I |
+| ✅ Otimização contínua Opção B (P-RLL-05) | **CONCLUÍDO FASE 13** — χ²=0.079 (w2=−0.282, z_t=1.752, w_t=1.500) | Universo I |
 | Derivação ou justificativa de z_t, w_t, Ωs0 | MCMC joint (G1) restringirá observacionalmente; ver JUSTIFICATIVA_PARAMETROS_RLL.md | Universo I |
 | Dados de campo H-GEO-01 | Coleta amostral em Itabirito + análise Os/Ir | Universo II |
 
@@ -323,7 +329,8 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 | Efemérides H-CAL-01 | Dataset de atividade solar histórica + conjunções J-S | Universo II |
 | Simulação FEM H-ARQ-01 | Software ANSYS/OpenSees + modelo de blocos poligonais | Universo II |
 | Modelo quantitativo H-ELEC-01 | Cálculo do diferencial elétrico por camada atmosférica | Universo II |
-| χ² Moresco H(z) separado | Executar `scripts/compute_rll_real_pipeline.py` com dataset Moresco | Universo I |
+| ✅ χ² Moresco H(z) separado | **CONCLUÍDO FASE 15** — χ²_RLL=27.47, χ²_ΛCDM=22.76 (parâmetros nominais) | Universo I |
+| Modelo quantitativo H-ELEC-01 | **CONCLUÍDO FASE 15** — `scripts/verify_h_elec_01_layer_model.py` | Universo II |
 
 ### P3 — Polish
 
@@ -368,3 +375,35 @@ P-RLL-05 (Opção B cruzará χ²<10) é testável imediatamente por scipy.minim
 Resultado analítico [E]: equipartição interna do setor ocorre em z=0 (independente de z_t), não em z=z_t.
 
 *Fases 1–12 concluídas. Estado: aguardando primeiro run do pipeline CI para fechar P0 G1+G2.*
+
+---
+
+## Adendo FASE 13–15 (2026-07-08 a 2026-07-10)
+
+### FASE 13 — P-RLL-05 CONFIRMADA [E]
+
+`scripts/optimize_weff_opcao_b.py` (Nelder-Mead, 10 pontos de partida) encontrou:
+
+| Parâmetro | Valor ótimo |
+|-----------|------------|
+| w2 | −0.2817 |
+| z_t | 1.7523 |
+| w_t | 1.500 (fronteira) |
+| **χ²** | **0.0792** |
+
+χ²=0.079 < 10 → **P-RLL-05 CONFIRMADA [E]**
+
+**Interpretação arquitetural [E]**: w_t=1.500 no limite superior indica que a compatibilidade
+emerge quando a transição logística é muito larga — Opção B converge para mistura de dois fluidos DE
+(Λ + fluido com w2=−0.28) que mimetiza CPL. A assinatura logística localizada em z_t é suavizada
+além da resolução BAO no regime compatível.
+
+### FASE 15 — Resultados adicionais
+
+- **F-COS-03 FAIL [E]**: scan z_t (FASE 8) documentado em `14_ZT_SCAN_RESULTADO_REAL.md`. z_t_BAO_ótimo = 0.3, fora de [0.5, 1.5]. Monotone scan sem mínimo local no intervalo.
+- **F-COS-04 FAIL [C proxy]**: BIC proxy ln(B₁₀) = −6.24 (< −5 threshold). Resultado definitivo aguarda G2.
+- **Moresco H(z) [E]**: χ²_RLL=27.47, χ²_ΛCDM=22.76 com parâmetros nominais. ΔAIC=+10.70.
+- **H-ELEC-01 [E+H]**: modelo quantitativo por camada executado. J=3.90×10⁻¹² A/m² constante; enhancement salino ×10¹⁴ sobre ar seco. Ver `results/h_elec_01_layer_model.json`.
+- **CONTRATO_FALSIFICADORES corrigido**: status real — 2/5 PASS · 2/5 FAIL · 1/5 TOKEN_VAZIO P0.
+
+*Fases 1–15 concluídas. Único P0 restante: trigger manual do pipeline CI (G1+G2).*

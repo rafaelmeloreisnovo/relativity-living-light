@@ -157,7 +157,7 @@ Script: `scripts/check_desi_dr2_bao_covariance.py` (covariância 13×13 completa
 | Dataset | Referência | N pontos | χ² RLL | Status |
 |---------|-----------|---------|--------|--------|
 | DESI DR2 BAO | arXiv:2503.14738 | 13 | 93.81 (nominal) | [E] resultado; [H] otimização |
-| Moresco H(z) 2023 | arXiv:2201.07241 | 33 | [VAZIO] | aguarda execução |
+| Moresco H(z) 2023 | arXiv:2201.07241 | 33 | χ²_RLL=27.47, χ²_ΛCDM=22.76 (nominais) | [E] FASE 15 — `results/moresco_hz_chi2.json` |
 | Planck 2018 CMB | arXiv:1807.06209 | priors | [VAZIO] | aguarda execução |
 | Pantheon+ SN Ia | arXiv:2202.04077 | 1624 (cosmo) | χ²=710.613 (ΛCDM=710.808) | [E] — `09_PANTHEON_RESULTADO_REAL.md` |
 | fσ₈ growth | Vários | presente | parcial | `scripts/check_rll_growth.py` |
@@ -169,7 +169,7 @@ Script: `scripts/check_desi_dr2_bao_covariance.py` (covariância 13×13 completa
 | Pipeline CI | `.github/workflows/rll-validacao-cientifica-completa.yml` | 11 jobs P0/P1 | ⏳ run pendente | [C] estrutura validada |
 | Joint MCMC | `data/pipelines/structure_d/run_all.py` | Pantheon+ + DESI | ⚠️ TOKEN_VAZIO P0 | [C] script pronto |
 | Bayes Factor | `scripts/slingshot_zt_falsification.py --bayes-factor` | RLL vs ΛCDM | ⚠️ TOKEN_VAZIO P0 | [C] script pronto |
-| Contrato Falsificadores | `docs/cronologia-auditoria/CONTRATO_FALSIFICADORES_RLL.md` | F-COS-01..05 | 3/5 PASS (baseline) | [E]+[VAZIO] misto |
+| Contrato Falsificadores | `docs/cronologia-auditoria/CONTRATO_FALSIFICADORES_RLL.md` | F-COS-01..05 | 2/5 PASS · 2/5 FAIL · 1/5 TOKEN_VAZIO | [E]+[C]+[VAZIO] — ver `14_ZT_SCAN_RESULTADO_REAL.md` |
 
 **Próximo ato necessário**: Disparar pipeline via GitHub Actions → modo=completo → fecha G1 (MCMC) e G2 (Bayes Factor) do TOKEN_VAZIO Ledger.
 
@@ -229,10 +229,10 @@ O RLL perde suporte se:
 | Reprodutibilidade notebooks | P0 | numpy/nbconvert ausentes | ⚠️ código verificado; exec pendente |
 | Ωs0, zt, wt sem paper | P1 | parâmetros sem derivação teórica | [VAZIO] ativo |
 | Autoridade das equações | P1 | original vs. inspiração f(R)/Finsler | [VAZIO] — sem comparação publicada |
-| w_eff incompatibilidade CPL | P0 | estrutural: RLL vai matéria, CPL vai phantom | ⚠️ identificado; requer Opção A |
+| w_eff incompatibilidade CPL | — | Opção B ótimo χ²=0.079 (FASE 13) — compatível numericamente como dois-fluidos DE | ✅ FECHADO [E] — `results/optimize_weff_opcao_b.json` |
 | Sistemáticos (S na tupla) | P0 | ausência de análise de sistemáticos | [VAZIO] — bloqueia claim_allowed |
 | χ² conjunto completo | P0 | RLL colapsou para ΛCDM (Ωs0→0) | [E] resultado negativo registrado |
-| Moresco H(z) separado | P2 | χ² apenas com H(z) não calculado | [VAZIO] |
+| Moresco H(z) separado | — | χ²_RLL=27.47, χ²_ΛCDM=22.76 (params nominais) | ✅ FECHADO [E] FASE 15 — `results/moresco_hz_chi2.json` |
 | Pantheon+ separado | P2 | ✅ FECHADO — χ²=710.613 (1624 SNe, Nelder-Mead) | [E] `09_PANTHEON_RESULTADO_REAL.md` |
 | Performance ARM32 | P3 | Termux não testado | [VAZIO] |
 

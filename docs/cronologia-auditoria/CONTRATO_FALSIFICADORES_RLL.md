@@ -8,24 +8,28 @@
 
 | PASS | FAIL | TOKEN_VAZIO |
 |------|------|-------------|
-| 1/5 | 0 | 4 |
+| 2/5 | 2/5 | 1/5 |
+
+> **Nota (FASE 15, 2026-07-10)**: versão anterior gerada pelo CI (2026-07-09) continha TOKEN_VAZIO
+> incorreto em F-COS-01, F-COS-02, F-COS-03. Valores corrigidos abaixo com fontes de dados.
+> F-COS-03 FAIL (resultado honesto) — ver `14_ZT_SCAN_RESULTADO_REAL.md` para detalhes.
 
 ## Falsificadores Ativos
 
-| ID | Descrição | Threshold | Resultado CI | Status |
-|----|-----------|-----------|-------------|--------|
-| F-COS-01 | ΔAIC(RLL−ΛCDM) < +10 — Pantheon+SH0ES | `ΔAIC < 10` | TOKEN_VAZIO | ⚠️ TOKEN_VAZIO |
-| F-COS-02 | χ²_Pantheon/dof < 1.05 — RLL original | `χ²_red < 1.05` | TOKEN_VAZIO | ⚠️ TOKEN_VAZIO |
-| F-COS-03 | z_t ∈ [0.5, 1.5] — scan C01 slingshot | `0.5 ≤ z_t ≤ 1.5` | TOKEN_VAZIO | ⚠️ TOKEN_VAZIO |
-| F-COS-04 | ln(B₁₀) RLL/ΛCDM > −5 — escala Jeffreys | `ln(B₁₀) > −5` | TOKEN_VAZIO P0 | ⚠️ TOKEN_VAZIO |
-| F-COS-05 | χ²_DESI DR2 BAO < 150 (parâmetros nominais) | `χ²_nominal < 150` | 93.81 | ✅ PASS |
+| ID | Descrição | Threshold | Resultado | Status | Fonte |
+|----|-----------|-----------|---------|--------|-------|
+| F-COS-01 | ΔAIC(RLL−ΛCDM) < +10 — Pantheon+SH0ES | `ΔAIC < 10` | **3.805** | ✅ PASS [E] | `results/pantheon_plus_resultado_real.txt` |
+| F-COS-02 | χ²_Pantheon/dof < 1.05 — RLL original | `χ²_red < 1.05` | **0.4387** | ✅ PASS [E] | `results/pantheon_plus_resultado_real.txt` |
+| F-COS-03 | z_t ∈ [0.5, 1.5] — scan slingshot | `0.5 ≤ z_t ≤ 1.5` | **z_t_BAO=0.3** | ✗ FAIL [E] | `results/zt_scan/summary.json` |
+| F-COS-04 | ln(B₁₀) RLL/ΛCDM > −5 — escala Jeffreys | `ln(B₁₀) > −5` | **−6.24 (proxy BIC)** | ✗ FAIL [C proxy] | `results/bayes_factor_bic_proxy.json` |
+| F-COS-05 | χ²_DESI DR2 BAO < 150 (parâmetros nominais) | `χ²_nominal < 150` | **93.81** | ✅ PASS [E] | `results/desi_dr2_bao_covariance_chi2.json` |
 
 ## P0 Desbloqueadores
 
 | Gap | Status | Método |
 |-----|--------|--------|
-| Joint MCMC Pantheon+ + DESI BAO | ✅ FECHADO | Structure-D inference (emcee 32×1000) |
-| Fator de Bayes RLL/ΛCDM | ⚠️ TOKEN_VAZIO | BIC proxy (ln B ≈ −ΔBIC/2) |
+| Joint MCMC Pantheon+ + DESI BAO | ⚠️ TOKEN_VAZIO P0 | Disparar `rll-validacao-cientifica-completa` modo=completo |
+| Fator de Bayes RLL/ΛCDM (definitivo) | ⚠️ TOKEN_VAZIO P0 | Pipeline → job `bayes_factor_p0` (dynesty/nested sampling) |
 
 ## Rastreabilidade de Artefatos
 
