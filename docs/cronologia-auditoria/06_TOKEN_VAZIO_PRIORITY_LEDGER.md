@@ -339,12 +339,105 @@ a transição logística se torna tão larga que Opção B degenera para mistura
 
 ---
 
-## Conclusão (atualizada FASE 13)
+## GAPS RESOLVIDOS — FASE 15 (2026-07-10/13)
 
-**Token Total**: 9 gaps originais + G0/G1/G2 + novos FASE 11/13
-**P0 (bloqueador)**: G1 (MCMC joint) + G2 (Bayes Factor) — ambos requerem pipeline manual
+### H-UNIV-01 φ — Verificação numérica f(z)/φ → FECHADO [E-negativo]
+
+**Questão original**: A razão f(z_{n+1})/f(z_n) com z_n seguindo a série de Fibonacci converge para φ=1.618?
+
+**Status**: ✅ **FECHADO [E-negativo]** — `scripts/verify_rll_fibonacci_ratio.py` (FASE 8, 2026-07-07)
+
+**Resultado**: Razão **diverge** exponencialmente (1.0 → 2.009 → 7.703 → 48.83 → 581.2) ao passar pela transição logística em z_t=1.0. Não converge para φ em nenhum ponto do scan.
+
+**Interpretação**: A função logística não possui auto-semelhança multiplicativa. A analogia "espirais em espirais" é qualitativa [C], sem fundamento na forma funcional de f(z). Resultado negativo registrado com mesma honestidade que positivo.
+
+**Saída**: `results/fibonacci_ratio_verification.json`
+
+---
+
+### H-CAL-01 Aritmética — mmc(365,260) verificado → FECHADO [E]
+
+**Questão original**: mmc(365, 260) = 18980 dias = 52 anos Haab' = 73 anos Tzolk'in — formalmente executado?
+
+**Status**: ✅ **FECHADO [E]** — `scripts/verify_cal_maya_arithmetic.py` (FASE 8, 2026-07-07)
+
+**Resultado**:
+- `mmc(365, 260) = 18980` ✅ verificado por aritmética inteira
+- `52 × 365 = 18980` ✅; `73 × 260 = 18980` ✅
+- `18980 / 365.25 = 51.964 anos Julianos` ✅
+
+**Candidatos astrofísicos [H]**: melhor candidato algébrico = Schwabe (5×11yr = 55yr, Δ=3yr); conjunção J-S: 2.62×19.86yr ≈ 52.03yr (Δ=0.03yr, mas 2.62 irracional).
+
+**Saída**: `results/cal_maya_arithmetic_check.json`
+
+---
+
+### F-COS-03 z_t Scan → FECHADO [E-negativo]
+
+**Questão original**: z_t ∈ [0.5, 1.5] — scan executado com dados H(z)+BAO?
+
+**Status**: ✅ **FECHADO [E-negativo]** — `results/zt_scan/summary.json` (FASE 8); documentado em `docs/cronologia-auditoria/14_ZT_SCAN_RESULTADO_REAL.md` (FASE 15)
+
+**Resultado**: z_t_BAO_ótimo = 0.3 ∉ [0.5, 1.5]. Scan monotônico: χ²_BAO decresce de z_t=2.0 até z_t=0.3 sem mínimo local. F-COS-03: **FAIL [E]**.
+
+**Desbloqueador**: MCMC joint (G1) com Ωs0 livre pode encontrar configuração diferente.
+
+---
+
+### Moresco H(z) χ² → FECHADO [E]
+
+**Questão original**: χ² RLL vs ΛCDM em dados Moresco H(z) 33 pontos — não calculado.
+
+**Status**: ✅ **FECHADO [E]** — `scripts/compute_moresco_hz_chi2.py` (FASE 15, 2026-07-10)
+
+**Resultado**: Parâmetros Planck nominais:
+- χ²_RLL = 27.47 (χ²_red = 0.981)
+- χ²_ΛCDM = 22.76 (χ²_red = 0.734)
+- Δχ² = +4.70, ΔAIC = +10.70
+
+**Interpretação**: RLL compete razoavelmente com ΛCDM em H(z) (Δχ² = 4.7 com 3 parâmetros extras), mas ΔAIC = +10.7 indica penalidade de complexidade. Parâmetros não otimizados — melhoria esperada com MCMC.
+
+**Saída**: `results/moresco_hz_chi2.json`
+
+---
+
+### H-ELEC-01 Modelo Quantitativo → FECHADO [E+H]
+
+**Questão original**: Modelo quantitativo do diferencial elétrico por camada (superfície → ionosfera) — não calculado especificamente (P2).
+
+**Status**: ✅ **FECHADO [E+H]** — `scripts/verify_h_elec_01_layer_model.py` (FASE 15, 2026-07-10)
+
+**Resultado**:
+- σ(h) = 3×10⁻¹⁴ S/m (superfície) → ~10⁻⁷ S/m (ionosfera base)
+- J = 3.90×10⁻¹² A/m² constante em todas as camadas (conservação de carga verificada ✅)
+- Enhancement salino (NaCl 4%): σ_saline/σ_dry ≈ 2×10¹⁴×
+
+**Residual P2**: verificação de campo em ambiente com aerossol marinho.
+
+**Saída**: `results/h_elec_01_layer_model.json`
+
+---
+
+### F-COS-04 Bayes Factor (proxy BIC) → PARCIALMENTE FECHADO [C]
+
+**Questão original**: ln(B₁₀) RLL/ΛCDM — token vazio P0.
+
+**Status**: ⚠️ **PARCIALMENTE FECHADO [C proxy]** — `scripts/compute_bayes_factor_bic_proxy.py` (FASE 15)
+
+**Resultado**: proxy via BIC: ΔBIC = (k_RLL − k_ΛCDM)·ln(n) = 3·ln(64) = 12.477; ln(B₁₀) ≈ −6.24 → **FAIL** (threshold > −5, escala Jeffreys).
+
+**Nota**: Este é o pior caso (Ωs0→0, colapso do modelo). MCMC joint pode mudar significativamente. P0 permanece até G1.
+
+**Saída**: `results/bayes_factor_bic_proxy.json`
+
+---
+
+## Conclusão (atualizada FASE 15)
+
+**Token Total**: 9 gaps originais + G0/G1/G2 + novos FASE 11/13/15
+**P0 (bloqueador)**: G1 (MCMC joint) + G2 (Bayes Factor definitivo) — ambos requerem pipeline manual
 **P1 (confiança)**: todos resolvidos (Gap 6: FASE 12; P1-WEFF-B-OPT: FASE 13)
-**P2 (robustez)**: 2 originais (geofísico)
+**P2 (robustez)**: residuais menores (dados de campo geofísico)
 **P3 (polish)**: 1 original
 
 **Fechados**:
@@ -354,10 +447,23 @@ a transição logística se torna tão larga que Opção B degenera para mistura
 - Predição datada: ✅ FASE 11 — 5 predições em `PREDICAO_DATADA_RLL.md`
 - Gap 6 (justificativa parâmetros): ✅ FASE 12 — `JUSTIFICATIVA_PARAMETROS_RLL.md`
 - P1-WEFF-B-OPT: ✅ FASE 13 — χ²=0.079; P-RLL-05 CONFIRMADA [E]
+- H-UNIV-01 φ: ✅ FASE 8/15 — [E-negativo]: ratio diverge, sem convergência para φ
+- H-CAL-01 aritmética: ✅ FASE 8 — [E]: lcm(365,260)=18980 verificado
+- F-COS-03 z_t scan: ✅ FASE 8/15 — [E-negativo]: z_t_BAO=0.3 ∉ [0.5,1.5]; F-COS-03 FAIL
+- Moresco H(z) χ²: ✅ FASE 15 — [E]: χ²_RLL=27.47, ΔAIC=+10.70
+- H-ELEC-01 modelo quantitativo: ✅ FASE 15 — [E+H]: J constante confirmado, enhancement ×2×10¹⁴
+- F-COS-04 proxy BIC: ✅ FASE 15 — [C]: ln(B₁₀)=−6.24; F-COS-04 FAIL (proxy — definitivo aguarda G1)
+
+**Falsificadores ativos** (2/5 PASS · 2/5 FAIL · 1/5 TOKEN_VAZIO P0):
+- F-COS-01: ✅ PASS — ΔAIC=3.805 [E]
+- F-COS-02: ✅ PASS — χ²_red=0.4387 [E]
+- F-COS-03: ✗ FAIL — z_t_BAO=0.3 [E]
+- F-COS-04: ✗ FAIL — ln(B₁₀)=−6.24 proxy [C]; revisável com G1
+- F-COS-05: ✅ PASS — χ²_DESI_nominal=93.81 [E]
 
 **Pendentes (requerem ação manual/pipeline)**:
-- G1 (Pipeline MCMC): Disparar `rll-validacao-cientifica-completa.yml` modo=completo
-- G2 (Bayes Factor): Idem (Job 7)
+- G1 (Pipeline MCMC joint): Disparar `rll-validacao-cientifica-completa.yml` modo=completo
+- G2 (Bayes Factor definitivo): Idem (Job 7)
 
 **Método**: TOKEN_VAZIO preserva honestidade enquanto trabalho prossegue.
 

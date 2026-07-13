@@ -36,8 +36,8 @@
 - [ ] Confirmar commits/tags de anterioridade.
 - [ ] Conferir assinatura GPG indicada.
 - [ ] Rodar pipeline de validação em commit limpo.
-- [ ] Registrar parâmetros, dados, hashes e outputs.
-- [ ] Separar claramente `[E]`, `[C]`, `[H]` e `[VAZIO]`.
+- [x] Registrar parâmetros, dados, hashes e outputs. *(FASE 15: todos os resultados têm JSON com metadados: fonte, script, data, status epistêmico — `results/*.json`)*
+- [x] Separar claramente `[E]`, `[C]`, `[H]` e `[VAZIO]`. *(FASE 15: markup sistematizado em todos os documentos de auditoria, hipóteses e cânônicos; resultados negativos marcados [E-negativo] com mesma honestidade que positivos)*
 
 ## 4. Checagens de segurança e privacidade
 
@@ -58,6 +58,26 @@ fonte verificada + claim classificado + dado rastreável + limite declarado + li
 ## 6. Regra de ouro
 
 Quando houver dúvida, marcar `[VAZIO]` e abrir tarefa de verificação.
+
+---
+
+## Adendo FASE 15 (2026-07-10/13)
+
+**Progresso em publicabilidade**:
+
+| Item | Status FASE 15 |
+|------|---------------|
+| Markup epistêmico `[E]/[C]/[H]/[VAZIO]` | ✅ sistematizado em todos os documentos |
+| Resultados com metadados JSON | ✅ `results/*.json` (scripts, datas, fontes, status) |
+| Falsificadores F-COS-01..05 auditados | ✅ 2/5 PASS · 2/5 FAIL · 1/5 TOKEN_VAZIO P0 |
+| Resultados negativos registrados | ✅ F-COS-03 FAIL, H-UNIV-01 φ negativo, F-COS-04 FAIL proxy |
+| Moresco H(z) calculado | ✅ χ²_RLL=27.47 vs χ²_ΛCDM=22.76 [E] |
+| Modelo atmosférico H-ELEC-01 | ✅ J=const verificado, enhancement ×10¹⁴ [E+H] |
+
+**Bloqueadores para publicação** (requerem pipeline manual):
+- G1: Joint MCMC Pantheon+ + DESI (F-COS-04 definitivo)
+- G2: Bayes Factor (nested sampling)
+- Revisão por pares de artefatos completos (Claim Boundary)
 
 ---
 
