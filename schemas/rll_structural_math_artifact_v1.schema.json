@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/rafaelmeloreisnovo/relativity-living-light/schemas/rll_structural_math_artifact_v1.schema.json",
   "title": "RLL structural mathematics artifact",
+  "description": "Structural contract for deterministic RLL mathematics artifacts; schema success does not authorize scientific claims.",
   "type": "object",
   "additionalProperties": false,
   "required": [
