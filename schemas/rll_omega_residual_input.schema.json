@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/rafaelmeloreisnovo/relativity-living-light/schemas/rll_omega_residual_input.schema.json",
   "title": "RLL Omega residual audit input",
+  "description": "Structural contract for RLL Omega residual audit inputs; parsing this contract does not authorize a scientific or physical claim.",
   "type": "object",
   "additionalProperties": false,
   "required": [
