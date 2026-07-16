@@ -23,6 +23,12 @@ def test_current_public_mirror_is_valid() -> None:
     assert len(report["formula_bridge_sha256"]) == 64
 
 
+def test_wrapped_markdown_marker_is_normalized() -> None:
+    wrapped = "Shared mathematical forms\ndo not imply shared physical ontology."
+    expected = "Shared mathematical forms do not imply shared physical ontology."
+    assert validator.normalize_text(wrapped) == expected
+
+
 def test_private_content_copy_is_rejected() -> None:
     data, bridge = current_mirror()
     broken = copy.deepcopy(data)
@@ -34,7 +40,9 @@ def test_private_content_copy_is_rejected() -> None:
 def test_duplicate_commit_is_rejected() -> None:
     data, bridge = current_mirror()
     broken = copy.deepcopy(data)
-    broken["private_commit_sequence"][1]["commit"] = broken["private_commit_sequence"][0]["commit"]
+    broken["private_commit_sequence"][1]["commit"] = (
+        broken["private_commit_sequence"][0]["commit"]
+    )
     with pytest.raises(ValueError, match="duplicate commit"):
         validator.validate_mirror(broken, validator.MIRROR, bridge)
 
