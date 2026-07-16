@@ -19,6 +19,7 @@
     "g4_resolution": "Viés E&H quantificado; erro sistemático de 0.7214 Mpc no ponto posterior. Lacuna desconhecida fechada, sistemático não eliminado.",
     "precision_next_gate": "Recalcular r_d com CAMB/RECFAST em cada passo do MCMC e repetir a evidência Bayesiana."
   },
+  "current_state_overlay": "current_state_overlay.json",
   "branch": "claude/rll-cronologia-auditoria-qyvn83",
   "prs_merged": [
     "#551 (FASE 18)",
@@ -39,6 +40,7 @@
   "generator": "scripts/build_session_grafo_fase17_20.py",
   "artifacts": [
     "session_manifest.json",
+    "current_state_overlay.json",
     "claims.jsonl",
     "sources.bib",
     "entities.jsonl",
