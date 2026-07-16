@@ -1,6 +1,6 @@
 {
   "schema": "rll.session_packet_public_mirror.v1",
-  "operation_id": "LIVRO-VIVO-20260716",
+  "operation_id": "LIVRO-VIVO-20260716+SESSION-REALITY-CORRECTION-20260716",
   "claim_allowed": false,
   "public_repository": "instituto-Rafael/relativity-living-light",
   "public_pull_request": 555,
@@ -10,7 +10,7 @@
     "pull_request": 5,
     "branch": "feat/livro-vivo-packet-chain-20260716",
     "base_commit": "e7bbe7d8807fa3ad37a94eb079493dcd2df156dd",
-    "head_commit": "89a73c34f9de3d96ec86358c684a6811371a6b01",
+    "head_commit": "e85fd267428ed623223f59c2518dfdb042bd6319",
     "content_mode": "pointer_commit_and_digest_only",
     "private_content_copied": false
   },
@@ -85,7 +85,55 @@
       "order": 12,
       "commit": "89a73c34f9de3d96ec86358c684a6811371a6b01",
       "path": "docs/livro_vivo/LIVRO_VIVO_SESSION_PACKET_INDEX_20260716.md",
-      "role": "final_private_documentation_index"
+      "role": "first_operation_final_private_documentation_index"
+    },
+    {
+      "order": 13,
+      "commit": "240198a25493c33393b5ba476bb1289b41003099",
+      "path": "knowledge_packets/2026-07-16-session-reality/00_interaction_by_interaction_ledger.md",
+      "role": "interaction_by_interaction_reality_audit"
+    },
+    {
+      "order": 14,
+      "commit": "b4d28f4c5281e63fca12085d49ddf5f605706c68",
+      "path": "knowledge_packets/2026-07-16-session-reality/01_atoms_chemistry_biology_quantum_packet.md",
+      "role": "atoms_water_ions_biology_quantum_normalization"
+    },
+    {
+      "order": 15,
+      "commit": "e9acd311a77af5ce73ddf40f87ea9ab473669c2e",
+      "path": "knowledge_packets/2026-07-16-session-reality/02_cross_cultural_parables.md",
+      "role": "claim_bounded_cross_cultural_parables"
+    },
+    {
+      "order": 16,
+      "commit": "e5432013f26e63b4054031101f2e265cad6e3a30",
+      "path": "knowledge_packets/2026-07-16-session-reality/03_session_reality_claims.yml",
+      "role": "machine_readable_claim_and_application_matrix"
+    },
+    {
+      "order": 17,
+      "commit": "5ec2310452fb95741d85c1db18d26dabe9127990",
+      "path": "tools/validate_session_reality_correction.py",
+      "role": "reality_correction_validator"
+    },
+    {
+      "order": 18,
+      "commit": "a4f76f5c6bfe72bef53bfbfd7ae696ab38f6a4c5",
+      "path": "tests/test_session_reality_correction.py",
+      "role": "reality_correction_boundary_tests"
+    },
+    {
+      "order": 19,
+      "commit": "0590d399683c6508262625834a6d1527369197a2",
+      "path": ".github/workflows/ci.yml",
+      "role": "ci_integration_for_both_private_operations"
+    },
+    {
+      "order": 20,
+      "commit": "e85fd267428ed623223f59c2518dfdb042bd6319",
+      "path": "docs/livro_vivo/LIVRO_VIVO_SESSION_REALITY_CORRECTION_INDEX_20260716.md",
+      "role": "second_operation_final_private_documentation_index"
     }
   ],
   "integrity_contract": {
@@ -98,21 +146,30 @@
   },
   "private_ci": {
     "workflow": "CI",
-    "run_id": 29469531541,
+    "run_id": 29471257808,
     "conclusion": "failure",
     "jobs_created": 3,
     "job_steps_returned": 0,
     "classification": "STARTUP_FAILURE_OR_INFRASTRUCTURE_FAILURE",
     "validator_execution_proven": false,
-    "note": "No job steps or actionable logs were returned. The public mirror must not claim that private packet validators passed."
+    "note": "The latest private run again returned three failed jobs with no steps. Neither success nor a code-level failure may be claimed from this run."
   },
   "public_formula_bridge": "docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md",
+  "public_science_correction": "docs/formulas/ATOM_WATER_IONIC_QUANTUM_BRIDGE_20260716.md",
+  "public_reality_audit": "docs/audits/SESSION_REALITY_SCIENCE_AUDIT_20260716.md",
+  "public_claim_ledger": "data/formulas/session_reality_science_claims_20260716.json",
   "public_safe_content": [
-    "RLL public cosmological equations",
+    "RLL public cosmological equations and current negative evidence boundary",
     "base and time identities",
     "standard attention and network formulas",
     "standard signal-processing formulas",
     "standard field, levitation, plasma and jet anchors",
+    "atoms, fundamental interactions and electronic-structure boundaries",
+    "ionic bonding, water autoprotolysis and excess-proton motifs",
+    "proton pressure as a limited EMT/QCD result",
+    "hypercube as a mathematical state representation only",
+    "biological electrochemical gradients and application gates",
+    "original parables listed only as analogy pointers",
     "integrity formulas and public provenance pointers"
   ],
   "blocked_public_content": [
@@ -120,7 +177,12 @@
     "raw private session text",
     "passphrases or private keys",
     "unsafe operational protocols",
+    "medical diagnosis from ordinary photographs",
+    "autonomous hidden AI execution claims",
+    "unsupported grandiose token or asset counts",
+    "water-memory or consciousness claims presented as science",
+    "literal physical hypercube claims",
     "scientific promotion based only on hashes or commit order"
   ],
-  "next_gate": "Resolve the private CI startup failure or run the validators in an authorized clone, then attach the generated SHA-256 and Merkle artifact without exposing private packet bodies."
+  "next_gate": "Resolve the private CI startup failure or run both private validators in an authorized clone, then attach SHA-256 and Merkle artifacts without exposing private packet bodies."
 }
