@@ -33,6 +33,11 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def normalize_text(value: str) -> str:
+    """Collapse Markdown wrapping without changing the marker vocabulary."""
+    return " ".join(value.split())
+
+
 def load_mirror(path: Path = MIRROR) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(data, dict):
@@ -117,7 +122,7 @@ def validate_mirror(
     bridge_path = ROOT / data.get("public_formula_bridge", "")
     if bridge_path != formula_bridge or not bridge_path.is_file():
         raise ValueError("public formula bridge is missing or mismatched")
-    bridge_text = bridge_path.read_text(encoding="utf-8")
+    bridge_text = normalize_text(bridge_path.read_text(encoding="utf-8"))
     required_markers = [
         "PUBLIC_SAFE / CLAIM_GATED / PRIVATE_POINTERS_PRESERVED",
         "Shared mathematical forms do not imply shared physical ontology.",
@@ -126,7 +131,7 @@ def validate_mirror(
         "SHA256",
     ]
     for marker in required_markers:
-        if marker not in bridge_text:
+        if normalize_text(marker) not in bridge_text:
             raise ValueError(f"formula bridge missing marker: {marker}")
 
     walk_sensitive_keys(data)
