@@ -31,6 +31,10 @@ STATUS_MARKERS = [
     "beta_relationship_registry / evidence_gated / no_claim_promotion",
     "v2_measured_entrelace / evidence_gated / no_claim_promotion / fail_closed",
 ]
+WARNING_MARKERS = [
+    "Do not treat this registry as proof of working integration.",
+    "Do not treat the registry as proof of working integration.",
+]
 CHAIN_MARKERS = [
     "relationship -> evidence state -> verification -> small fix -> test -> artifact -> claim gate",
     "exact source + exact target + blob identity",
@@ -99,8 +103,8 @@ def validate_rows(rows: list[dict[str, str]]) -> None:
 def validate_text(text: str) -> None:
     if not any(marker in text for marker in STATUS_MARKERS):
         raise ValueError(f"missing registry status marker; expected one of: {STATUS_MARKERS}")
-    if "Do not treat the registry as proof of working integration." not in text:
-        raise ValueError("missing required no-promotion warning")
+    if not any(marker in text for marker in WARNING_MARKERS):
+        raise ValueError(f"missing no-promotion warning; expected one of: {WARNING_MARKERS}")
     if not any(marker in text for marker in CHAIN_MARKERS):
         raise ValueError(f"missing traceability-chain marker; expected one of: {CHAIN_MARKERS}")
     validate_rows(extract_relationship_rows(text))
