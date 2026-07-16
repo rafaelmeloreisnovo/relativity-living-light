@@ -8,13 +8,25 @@
 
 This registry preserves the useful part of the unified ecosystem map: it records possible relationships among repositories without treating them as validated integration.
 
+The machine-readable articulation contract is `knowledge_ecosystem/session_operating_system.yml`. It organizes the complete-session groups, public/private boundaries, microcommit plan and traceability chain. It does not replace direct verification in the owning repositories.
+
 Repositories in scope:
 
 ```text
 instituto-Rafael/relativity-living-light
+rafaelmeloreisnovo/papers
 rafaelmeloreisnovo/ChipQuantum
 rafaelmeloreisnovo/termux-app-rafacodephi
+rafaelmeloreisnovo/Cosmos
+rafaelmeloreisnovo/TeoremasTesesTeorias
+rafaelmeloreisnovo/GAIA_phi
+rafaelmeloreisnovo/RafPolimata
+rafaelmeloreisnovo/Rafaelia_Private
+rafaelmeloreisnovo/RafCoder
+rafaelmeloreisnovo/Vectras-VM-Android
 ```
+
+Names beyond files read directly in this audit remain `DECLARED_BY_AUTHOR` or `TOKEN_VAZIO` until the owning repository and path are verified.
 
 ## State vocabulary
 
@@ -42,6 +54,13 @@ CLAIM_BLOCKED        cannot be promoted without evidence/test/artifact
 | RLL-VEC-002 | Cosmology pivot (a_h, z_h) belongs to RLL; Vectras references the numeric constants only | HYPOTHESIS | Candidate responsibility boundary | Pivot is validated cosmological discovery | Define cross-reference link in Vectras pointing to docs/invariants/sqrt3_2_kernel.md |
 | RLL-VEC-003 | PR Vectras #1032 removes cosmological/pivot material; equivalent coverage must stay in RLL | CLAIM_BLOCKED | Migration path candidate; no regressions | Tests removed without replacement are acceptable | Check that all removed tests have equivalent contracts in RLL before approving Vectras #1032 |
 | RLL-VEC-004 | RLL PR #426 Real Data Contract CI failure blocks promotion of sqrt3_2 pivot as real-data result | CLAIM_BLOCKED | CI failure is a blocker, not a finding | Real Data Contract CI failure does not block the kernel | Check CI failure per docs/HOTFIX_REAL_VALIDATION_DATA_CONTRACT_2026-05-22.md before promoting any pivot result |
+| SES-RLL-001 | Cosmology opens the session and RLL provides the first scientific body, while the complete session crosses additional domains | DECLARED_BY_AUTHOR / CLAIM_BLOCKED | Reading order and scope declared by Rafael | All session domains are already scientifically unified by RLL | Verify every cross-domain relation against its owning source, units, material and falsifier |
+| RLL-PAP-001 | Public RLL may point to the private `papers` research engine without copying its private formulas or sessions | VERIFIED_LIMITED | Public pointer and private-content boundary are structurally represented | Public RLL contains the full private research corpus | Verify private paths and commits inside `papers`; keep public content pointer-only |
+| PAP-ML-001 | `papers` contains Exacordex/Raefaelos, T7, ARM32/NEON and mathematical research documents | VERIFIED_LIMITED | Repository README and selected private paths were read through authorized access | Every listed engine is tested, correct or scientifically validated | Verify builds, tests, binaries, ABI and formula-to-code links in the owning repository |
+| RLL-PHO-001 | Photonic, magnetic, acoustic, plasma and jet mechanisms may be organized through field, gradient and energy-momentum transfer relations | HYPOTHESIS / CLAIM_BLOCKED | Cross-scale mathematical and operational comparison candidate | These mechanisms are one physical phenomenon or validate RLL | Define carrier, medium, scale, units, dataset, safety boundary and falsifier for each mechanism |
+| SES-GPT-001 | GPT session groups may be indexed as one evolving interaction with corrections, sources and evidence states | HYPOTHESIS / CLAIM_BLOCKED | Candidate contextual organization method | Hidden GPT weights, tokens or private metadata were read or reconstructed | Verify only user-provided/exported session pointers; keep inaccessible metadata TOKEN_VAZIO |
+| RLL-KOS-001 | `session_operating_system.yml` links session groups to sources, concepts, operations, artifacts, states and destinations | VERIFIED_LIMITED | Machine-readable organizational contract with schema, validator, tests and rollback plan | The contract proves cross-repo integration or scientific truth | Check generated audit artifact and select one narrow relationship for owning-repo verification |
+| PRIV-001 | Private repositories must be represented in public RLL through pointers and evidence states only | VERIFIED_LIMITED | Enforced structural disclosure boundary | Public registry may copy private formulas, raw prompts or unsafe protocols | Keep validator fail-closed and Verify private content only inside the authorized owning repository |
 
 ## Implantation policy
 
@@ -72,9 +91,11 @@ claim boundary
 ```text
 Do not treat this registry as proof of working integration.
 Do not use it to claim production readiness.
-Do not use RLL documentation alone to change ChipQuantum or Termux behavior.
+Do not use RLL documentation alone to change another repository's behavior.
 Do not satisfy real-data gates with synthetic fixtures.
 Do not convert hypotheses into bugs without verification.
+Do not copy private session text or formulas into the public registry.
+Do not create a second orchestration workflow when the existing validator can be extended.
 ```
 
 ## Good implantation summary
@@ -87,6 +108,12 @@ The good part is the method:
 relationship -> evidence state -> verification -> small fix -> test -> artifact -> claim gate
 ```
 
+The complete-session articulation adds:
+
+```text
+session group -> source -> concept -> formula/model -> operation -> material -> artifact -> test/log -> state -> boundary -> destination -> next action
+```
+
 ## Final boundary
 
-This registry improves auditability and beta-test coordination. It does not validate RLL, ChipQuantum, Termux integration, hardware execution, or cosmological claims.
+This registry improves auditability and beta-test coordination. It does not validate RLL, private papers, ChipQuantum, Termux, Vectras, hardware execution, GPT internals, photonic/plasma mechanisms or cosmological claims.
