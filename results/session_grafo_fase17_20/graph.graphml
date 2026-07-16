@@ -62,14 +62,17 @@
     <node id="rll_fase18e_json">
       <data key="node_type">RESULT</data>
       <data key="node_label">results/rll_fase18e_calibrado.json</data>
+      <data key="epistemic_status">SUPERSEDED</data>
     </node>
     <node id="rll_fase19_json">
       <data key="node_type">RESULT</data>
       <data key="node_label">results/rll_fase19_rd_calibrado.json</data>
+      <data key="epistemic_status">VERIFICADO_NA_FONTE</data>
     </node>
     <node id="rll_fase20_json">
       <data key="node_type">RESULT</data>
       <data key="node_label">results/rll_fase20_mcmc_bayes.json</data>
+      <data key="epistemic_status">VERIFICADO_NA_FONTE</data>
     </node>
     <node id="rs_star_calib">
       <data key="node_type">CONCEPT</data>
@@ -90,6 +93,10 @@
     <node id="jeffreys_scale">
       <data key="node_type">CONCEPT</data>
       <data key="node_label">Escala de Jeffreys</data>
+    </node>
+    <node id="rll_superiority_claim">
+      <data key="node_type">CONCEPT</data>
+      <data key="node_label">Afirmação de superioridade do RLL sobre ΛCDM</data>
     </node>
     <node id="G1">
       <data key="node_type">GAP</data>
@@ -269,102 +276,110 @@
       <data key="edge_type">SUPPORTS</data>
       <data key="edge_note">Ωs0→0 após correção confirma diagnóstico de artefato</data>
     </edge>
-    <edge id="e15" source="rll_fase19_json" target="C-F19-01">
+    <edge id="e15" source="planck_2018_vi" target="C-F18-02">
+      <data key="edge_type">SUPPORTS</data>
+      <data key="edge_note">rd=147.09 Mpc (Planck) é o padrão de referência para o bias Δrd</data>
+    </edge>
+    <edge id="e16" source="eisenstein_hu_1998" target="C-F18-02">
+      <data key="edge_type">SUPPORTS</data>
+      <data key="edge_note">Fórmula E&amp;H 1998 z_drag produz rd_EH=150.704 Mpc — valor medido do bias</data>
+    </edge>
+    <edge id="e17" source="rll_fase19_json" target="C-F19-01">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e16" source="rll_fase19_json" target="C-F19-02">
+    <edge id="e18" source="rll_fase19_json" target="C-F19-02">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e17" source="rll_fase19_json" target="C-F19-03">
+    <edge id="e19" source="rll_fase19_json" target="C-F19-03">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e18" source="rll_fase20_json" target="C-F20-01">
+    <edge id="e20" source="rll_fase20_json" target="C-F20-01">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e19" source="rll_fase20_json" target="C-F20-02">
+    <edge id="e21" source="rll_fase20_json" target="C-F20-02">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e20" source="rll_fase20_json" target="C-F20-03">
+    <edge id="e22" source="rll_fase20_json" target="C-F20-03">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e21" source="rll_fase18e_json" target="rll_fase19_json">
-      <data key="edge_type">SUPERSEDED_BY</data>
-      <data key="edge_note">Ωs0=0.012 → Ωs0≈0; rd viés removido</data>
+    <edge id="e23" source="rll_fase19_json" target="rll_fase18e_json">
+      <data key="edge_type">SUPERSEDES</data>
+      <data key="edge_note">Ωs0=0.012 → Ωs0≈0; rd viés removido na FASE 19</data>
     </edge>
-    <edge id="e22" source="rll_fase19_py" target="G2">
+    <edge id="e24" source="rll_fase19_py" target="G2">
       <data key="edge_type">CLOSES</data>
     </edge>
-    <edge id="e23" source="rll_fase20_py" target="G1">
+    <edge id="e25" source="rll_fase20_py" target="G1">
       <data key="edge_type">CLOSES</data>
     </edge>
-    <edge id="e24" source="rll_fase20_py" target="G3">
+    <edge id="e26" source="rll_fase20_py" target="G3">
       <data key="edge_type">CLOSES</data>
     </edge>
-    <edge id="e25" source="foreman_mackey_2013" target="rll_fase20_py">
+    <edge id="e27" source="foreman_mackey_2013" target="rll_fase20_py">
       <data key="edge_type">USED_IN</data>
       <data key="edge_note">emcee EnsembleSampler 32×1500</data>
     </edge>
-    <edge id="e26" source="speagle_2020" target="rll_fase20_py">
+    <edge id="e28" source="speagle_2020" target="rll_fase20_py">
       <data key="edge_type">USED_IN</data>
       <data key="edge_note">dynesty NestedSampler nlive=150</data>
     </edge>
-    <edge id="e27" source="desi_dr2_2025" target="rll_fase20_py">
+    <edge id="e29" source="desi_dr2_2025" target="rll_fase20_py">
       <data key="edge_type">TESTS</data>
       <data key="edge_note">13 pontos BAO; contribuição chi²_DESI=28.48</data>
     </edge>
-    <edge id="e28" source="moresco_2022" target="rll_fase20_py">
+    <edge id="e30" source="moresco_2022" target="rll_fase20_py">
       <data key="edge_type">TESTS</data>
       <data key="edge_note">33 pontos H(z); contribuição chi²_Hz=23.31</data>
     </edge>
-    <edge id="e29" source="pantheon_shoes_2022" target="rll_fase20_py">
+    <edge id="e31" source="pantheon_shoes_2022" target="rll_fase20_py">
       <data key="edge_type">TESTS</data>
       <data key="edge_note">1624 SNe Ia; contribuição chi²_SN=713.81</data>
     </edge>
-    <edge id="e30" source="jeffreys_1961" target="C-F20-03">
+    <edge id="e32" source="jeffreys_1961" target="C-F20-03">
       <data key="edge_type">SUPPORTS</data>
       <data key="edge_note">Escala: |ln(B₁₀)|&gt;5 = muito forte</data>
     </edge>
-    <edge id="e31" source="C-F17-01" target="G4">
+    <edge id="e33" source="C-F17-01" target="G4">
       <data key="edge_type">DERIVED_FROM</data>
       <data key="edge_note">G4 identificado como limitação residual da calibração aditiva</data>
     </edge>
-    <edge id="e32" source="C-F17-01" target="rll_fase18e_json">
+    <edge id="e34" source="C-F17-01" target="rll_superiority_claim">
       <data key="edge_type">NOT_EVIDENCE_FOR</data>
-      <data key="edge_note">Diagnóstico de artefato ≠ validação do modelo RLL; artefato não sustenta sinal físico</data>
+      <data key="edge_note">Diagnóstico de artefato ≠ validação do modelo RLL; identificar viés não sustenta superioridade de RLL sobre ΛCDM</data>
     </edge>
-    <edge id="e33" source="C-F19-01" target="C-F19-02">
+    <edge id="e35" source="C-F19-01" target="C-F19-02">
       <data key="edge_type">SUPPORTS</data>
       <data key="edge_note">Correção rd → colapso Ωs0</data>
     </edge>
-    <edge id="e34" source="C-F19-02" target="C-F19-03">
+    <edge id="e36" source="C-F19-02" target="C-F19-03">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e35" source="C-F19-01" target="C-F20-01">
+    <edge id="e37" source="C-F19-01" target="C-F20-01">
       <data key="edge_type">SUPPORTS</data>
       <data key="edge_note">Calibração rd herdada em FASE 20</data>
     </edge>
-    <edge id="e36" source="C-F20-02" target="C-F20-03">
+    <edge id="e38" source="C-F20-02" target="C-F20-03">
       <data key="edge_type">SUPPORTS</data>
     </edge>
-    <edge id="e37" source="rll_fase18e_py" target="PR_551">
+    <edge id="e39" source="rll_fase18e_py" target="PR_551">
       <data key="edge_type">MERGED_IN</data>
     </edge>
-    <edge id="e38" source="rll_fase19_py" target="PR_553">
+    <edge id="e40" source="rll_fase19_py" target="PR_553">
       <data key="edge_type">MERGED_IN</data>
     </edge>
-    <edge id="e39" source="rll_fase20_py" target="PR_554">
+    <edge id="e41" source="rll_fase20_py" target="PR_554">
       <data key="edge_type">MERGED_IN</data>
     </edge>
-    <edge id="e40" source="rll_fase19_py" target="doc18">
+    <edge id="e42" source="rll_fase19_py" target="doc18">
       <data key="edge_type">DOCUMENTED_IN</data>
     </edge>
-    <edge id="e41" source="rll_fase20_py" target="doc19">
+    <edge id="e43" source="rll_fase20_py" target="doc19">
       <data key="edge_type">DOCUMENTED_IN</data>
     </edge>
-    <edge id="e42" source="rll_fase18e_json" target="CONTRADICTION-01">
+    <edge id="e44" source="rll_fase18e_json" target="CONTRADICTION-01">
       <data key="edge_type">PART_OF</data>
     </edge>
-    <edge id="e43" source="rll_fase19_json" target="CONTRADICTION-01">
+    <edge id="e45" source="rll_fase19_json" target="CONTRADICTION-01">
       <data key="edge_type">RESOLVES</data>
     </edge>
   </graph>

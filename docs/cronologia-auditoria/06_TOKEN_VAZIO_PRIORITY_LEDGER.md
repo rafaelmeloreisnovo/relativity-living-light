@@ -486,6 +486,7 @@ a transição logística se torna tão larga que Opção B degenera para mistura
   - descrição: calibração rd aditiva assume que Δrd=rd_EH−rd_Planck é constante; verificar variação em grid de parâmetros
   - impacto estimado: ~1–2 ln(B₁₀); não bloqueia resultados existentes
   - próximo passo: grade rd_EH(Ωm·h², Ωb·h²) em 10×10 pts; comparar com valor calibrado
+  - **→ FECHADO na FASE 22 abaixo**
 
 **Atualização falsificadores** (2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO):
 - F-COS-01: ✅ PASS — ΔAIC=3.805 [E]
@@ -495,6 +496,20 @@ a transição logística se torna tão larga que Opção B degenera para mistura
 - F-COS-05: ✅ PASS — χ²_DESI_nominal=93.81 [E]
 
 **Nota epistêmica**: G1 e G3 fechados confirmam F-COS-04 como FAIL com evidência direta [E], substituindo o proxy BIC [C] da FASE 15. TOKEN_VAZIO P0 original esgotado.
+
+---
+
+### FASE 22 — G4 Mapeamento bias E&H (2026-07-16)
+
+**Gap fechado**:
+- G4 ✅ FECHADO — bias E&H quantificado em grade 10×10 (Ωm·h²∈[0.12,0.16], Ωb·h²∈[0.020,0.025])
+  - Δrd varia −2.95 a +12.81 Mpc na grade ampla
+  - **No ponto MCMC posterior (Ωm·h²=0.14075)**: erro sistemático = 0.72 Mpc
+  - Δχ²_G4 ≈ (0.72/σ_rd)² << impacto de G3; conclusão ln(B₁₀)=−6.190 não afetada
+  - artefato: `results/rll_fase22_g4_eh_bias_grid.json`
+  - doc: `docs/cronologia-auditoria/21_FASE22_G4_EH_BIAS_GRID.md`
+
+**Todos os gaps fechados (G1, G2, G3, G4). TOKEN_VAZIO estrutural = 0.**
 
 ---
 

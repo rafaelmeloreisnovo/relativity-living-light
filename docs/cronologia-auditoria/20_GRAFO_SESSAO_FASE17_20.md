@@ -18,21 +18,22 @@ O esquema ψ→χ→Δ→Σ propõe que cada sessão seja representada como um *
 
 ## 2. Schema de Afirmações Atômicas C_i
 
-Cada afirmação tem 10 campos obrigatórios:
+Cada afirmação no `claims.jsonl` tem 12 campos (conforme gerado por `build_session_grafo_fase17_20.py`):
 
 | Campo | Tipo | Descrição |
 |-------|------|-----------|
-| `id` | string | Identificador único (ex: C-F19-01) |
+| `claim_id` | string | Identificador único (ex: C-F19-01) |
 | `text` | string | Texto proposicional completo |
-| `type` | enum | EMPIRICAL / METHODOLOGICAL / INTERPRETIVE / TOKEN_VAZIO |
-| `origin` | string | Sessão ou fase de origem |
+| `type` | string | EMPIRICAL / METHODOLOGICAL / INTERPRETIVE / TOKEN_VAZIO |
+| `origin` | string | Sessão ou fase de origem (ex: "results/rll_fase19_rd_calibrado.json §rd") |
 | `time` | ISO 8601 | Data aproximada da afirmação |
-| `scope` | enum | LOCAL / GLOBAL / METHODOLOGICAL |
-| `evidence` | array | IDs de entidades que evidenciam |
-| `status` | enum | VERIFICADO_NA_FONTE / HIPÓTESE / TOKEN_VAZIO / REFUTADO |
+| `scope` | string | Descrição do escopo e limitações da afirmação |
+| `evidence` | string | Tipo de evidência (ex: "numerical_integration", "bayesian_mcmc") |
+| `status` | string | VERIFICADO_NA_FONTE / HIPÓTESE / TOKEN_VAZIO / REFUTADO |
 | `confidence` | float | [0,1] — 0.95 = epistêmico firme |
-| `dependencies` | array | IDs de claims que esta pressupõe |
+| `dependencies` | array | IDs de claims ou papers que esta pressupõe |
 | `falsifier` | string | Condição que refutaria esta afirmação |
+| `claim_allowed` | bool | Sempre false — fronteira epistêmica RLL |
 
 ---
 

@@ -26,8 +26,8 @@ formulas:
       z_t: "redshift de transição; prior [0.1, 20.0]"
       w_t: "largura da transição; prior [0.05, 2.0]"
     properties:
-      - "f(z) -> 1 para z >> z_t (fase de alta densidade)"
-      - "f(z) -> 0 para z << z_t (fase de baixa densidade)"
+      - "f(z) -> 0 para z >> z_t (dominância de matéria no passado distante)"
+      - "f(z) -> 1 para z << z_t (fase presente de baixo redshift)"
       - "Mecanismo de fase física localizável; distingue RLL do CPL"
     status: "OPERACIONAL"
 

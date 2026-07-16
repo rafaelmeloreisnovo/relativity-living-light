@@ -17,8 +17,9 @@
 {"id": "rs_star_calib", "kind": "CONCEPT", "label": "Calibração rs_star (+0.1988 Mpc)", "description": "Offset aditivo aplicado a r_s(z_*) numérico para chi²_CMB(Planck)≈0"}
 {"id": "rd_calibration", "kind": "CONCEPT", "label": "Calibração rd (−3.614 Mpc)", "description": "Offset aditivo aplicado a r_d numérico E&H para rd(Planck)=147.09 Mpc"}
 {"id": "eh_bias", "kind": "CONCEPT", "label": "Viés E&H 1998 em z_drag", "description": "z_drag_EH≈1021 vs z_drag_Planck≈1059; causa excesso de +3.61 Mpc em rd"}
-{"id": "mcmc_convergence", "kind": "CONCEPT", "label": "Convergência MCMC", "description": "N/τ≈30 (abaixo do ideal de 50); fração de aceitação=0.377 (dentro de 0.2–0.5)"}
+{"id": "mcmc_convergence", "kind": "CONCEPT", "label": "Convergência MCMC", "description": "N/τ≈11 (abaixo do ideal de 50); fração de aceitação=0.377 (dentro de 0.2–0.5)"}
 {"id": "jeffreys_scale", "kind": "CONCEPT", "label": "Escala de Jeffreys", "description": "|ln(B₁₀)|>5 = muito forte; 2.5–5 = forte; 1–2.5 = positiva; <1 = não vale menção"}
+{"id": "rll_superiority_claim", "kind": "CONCEPT", "label": "Afirmação de superioridade do RLL sobre ΛCDM", "description": "Hipótese de que RLL explica dados observacionais melhor que ΛCDM; requer Bayes Factor ln(B₁₀)>+5; NÃO sustentada pelos dados atuais"}
 {"id": "G1", "kind": "GAP", "label": "G1: MCMC joint posterior de Ωs0", "status": "FECHADO", "fechado_por": "rll_fase20_py", "resultado": "Ωs0 UL95=0.00178"}
 {"id": "G2", "kind": "GAP", "label": "G2: rd numérico (remove bias E&H)", "status": "FECHADO", "fechado_por": "rll_fase19_py", "resultado": "calibração −3.614 Mpc"}
 {"id": "G3", "kind": "GAP", "label": "G3: Bayes Factor formal ln(B₁₀)", "status": "FECHADO", "fechado_por": "rll_fase20_py", "resultado": "ln(B₁₀)=−6.190±0.691"}

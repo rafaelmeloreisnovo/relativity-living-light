@@ -160,7 +160,7 @@ CLAIMS = [
         "type": "posterior_result",
         "origin": "results/rll_fase20_mcmc_bayes.json §mcmc_g1",
         "time": "2026-07-15",
-        "scope": "Token G1 fechado; N/τ ≈ 30 (ligeiramente abaixo do ideal de 50); conclusão qualitativa robusta",
+        "scope": "Token G1 fechado; N/τ ≈ 11 (abaixo do ideal de 50); conclusão qualitativa robusta",
         "evidence": "bayesian_mcmc",
         "status": "VERIFICADO_NA_FONTE",
         "confidence": 0.93,
@@ -227,7 +227,7 @@ with open(f"{OUT}/claims.jsonl", "w") as f:
 # 3. sources.bib
 # ---------------------------------------------------------------------------
 
-BIB = r"""@article{planck2018_vi,
+BIB = r"""@article{planck_2018_vi,
   author  = {{Planck Collaboration}},
   title   = {{Planck 2018 results. VI. Cosmological parameters}},
   journal = {Astronomy \& Astrophysics},
@@ -379,8 +379,9 @@ ENTITIES = [
     {"id": "rs_star_calib", "kind": "CONCEPT", "label": "Calibração rs_star (+0.1988 Mpc)", "description": "Offset aditivo aplicado a r_s(z_*) numérico para chi²_CMB(Planck)≈0"},
     {"id": "rd_calibration", "kind": "CONCEPT", "label": "Calibração rd (−3.614 Mpc)", "description": "Offset aditivo aplicado a r_d numérico E&H para rd(Planck)=147.09 Mpc"},
     {"id": "eh_bias", "kind": "CONCEPT", "label": "Viés E&H 1998 em z_drag", "description": "z_drag_EH≈1021 vs z_drag_Planck≈1059; causa excesso de +3.61 Mpc em rd"},
-    {"id": "mcmc_convergence", "kind": "CONCEPT", "label": "Convergência MCMC", "description": "N/τ≈30 (abaixo do ideal de 50); fração de aceitação=0.377 (dentro de 0.2–0.5)"},
+    {"id": "mcmc_convergence", "kind": "CONCEPT", "label": "Convergência MCMC", "description": "N/τ≈11 (abaixo do ideal de 50); fração de aceitação=0.377 (dentro de 0.2–0.5)"},
     {"id": "jeffreys_scale", "kind": "CONCEPT", "label": "Escala de Jeffreys", "description": "|ln(B₁₀)|>5 = muito forte; 2.5–5 = forte; 1–2.5 = positiva; <1 = não vale menção"},
+    {"id": "rll_superiority_claim", "kind": "CONCEPT", "label": "Afirmação de superioridade do RLL sobre ΛCDM", "description": "Hipótese de que RLL explica dados observacionais melhor que ΛCDM; requer Bayes Factor ln(B₁₀)>+5; NÃO sustentada pelos dados atuais"},
     # Gaps
     {"id": "G1", "kind": "GAP", "label": "G1: MCMC joint posterior de Ωs0", "status": "FECHADO", "fechado_por": "rll_fase20_py", "resultado": "Ωs0 UL95=0.00178"},
     {"id": "G2", "kind": "GAP", "label": "G2: rd numérico (remove bias E&H)", "status": "FECHADO", "fechado_por": "rll_fase19_py", "resultado": "calibração −3.614 Mpc"},
@@ -441,6 +442,8 @@ RELATIONS = [
     # Result → Claim
     {"from": "rll_fase18e_json", "to": "C-F17-01", "edge_type": "SUPPORTS", "note": "Ωs0=0.012 observado em FASE 18-E — ponto de partida do diagnóstico"},
     {"from": "rll_fase19_json", "to": "C-F17-01", "edge_type": "SUPPORTS", "note": "Ωs0→0 após correção confirma diagnóstico de artefato"},
+    {"from": "planck_2018_vi", "to": "C-F18-02", "edge_type": "SUPPORTS", "note": "rd=147.09 Mpc (Planck) é o padrão de referência para o bias Δrd"},
+    {"from": "eisenstein_hu_1998", "to": "C-F18-02", "edge_type": "SUPPORTS", "note": "Fórmula E&H 1998 z_drag produz rd_EH=150.704 Mpc — valor medido do bias"},
     {"from": "rll_fase19_json", "to": "C-F19-01", "edge_type": "SUPPORTS"},
     {"from": "rll_fase19_json", "to": "C-F19-02", "edge_type": "SUPPORTS"},
     {"from": "rll_fase19_json", "to": "C-F19-03", "edge_type": "SUPPORTS"},
@@ -448,7 +451,7 @@ RELATIONS = [
     {"from": "rll_fase20_json", "to": "C-F20-02", "edge_type": "SUPPORTS"},
     {"from": "rll_fase20_json", "to": "C-F20-03", "edge_type": "SUPPORTS"},
     # Result supersession
-    {"from": "rll_fase18e_json", "to": "rll_fase19_json", "edge_type": "SUPERSEDED_BY", "note": "Ωs0=0.012 → Ωs0≈0; rd viés removido"},
+    {"from": "rll_fase19_json", "to": "rll_fase18e_json", "edge_type": "SUPERSEDES", "note": "Ωs0=0.012 → Ωs0≈0; rd viés removido na FASE 19"},
     # Code → Gap closure
     {"from": "rll_fase19_py", "to": "G2", "edge_type": "CLOSES"},
     {"from": "rll_fase20_py", "to": "G1", "edge_type": "CLOSES"},
@@ -464,8 +467,8 @@ RELATIONS = [
     {"from": "jeffreys_1961", "to": "C-F20-03", "edge_type": "SUPPORTS", "note": "Escala: |ln(B₁₀)|>5 = muito forte"},
     # NOT_EVIDENCE_FOR (relação crítica — separa diagnóstico de validação)
     {"from": "C-F17-01", "to": "G4", "edge_type": "DERIVED_FROM", "note": "G4 identificado como limitação residual da calibração aditiva"},
-    {"from": "C-F17-01", "to": "rll_fase18e_json", "edge_type": "NOT_EVIDENCE_FOR",
-     "note": "Diagnóstico de artefato ≠ validação do modelo RLL; artefato não sustenta sinal físico"},
+    {"from": "C-F17-01", "to": "rll_superiority_claim", "edge_type": "NOT_EVIDENCE_FOR",
+     "note": "Diagnóstico de artefato ≠ validação do modelo RLL; identificar viés não sustenta superioridade de RLL sobre ΛCDM"},
     # Claim dependencies
     {"from": "C-F19-01", "to": "C-F19-02", "edge_type": "SUPPORTS", "note": "Correção rd → colapso Ωs0"},
     {"from": "C-F19-02", "to": "C-F19-03", "edge_type": "SUPPORTS"},
@@ -621,8 +624,8 @@ formulas:
       z_t: "redshift de transição; prior [0.1, 20.0]"
       w_t: "largura da transição; prior [0.05, 2.0]"
     properties:
-      - "f(z) -> 1 para z >> z_t (fase de alta densidade)"
-      - "f(z) -> 0 para z << z_t (fase de baixa densidade)"
+      - "f(z) -> 0 para z >> z_t (dominância de matéria no passado distante)"
+      - "f(z) -> 1 para z << z_t (fase presente de baixo redshift)"
       - "Mecanismo de fase física localizável; distingue RLL do CPL"
     status: "OPERACIONAL"
 
@@ -807,8 +810,9 @@ def make_graphml(entities, relations):
         node.set("id", e["id"])
         data(node, "node_type", e.get("kind", "UNKNOWN"))
         data(node, "node_label", e.get("label", e["id"]))
-        if "status" in e:
-            data(node, "epistemic_status", e["status"])
+        status_val = e.get("status") or e.get("epistemic_status")
+        if status_val:
+            data(node, "epistemic_status", status_val)
         if "confidence" in e:
             data(node, "confidence", e["confidence"])
 
