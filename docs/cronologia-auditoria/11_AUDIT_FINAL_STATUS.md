@@ -190,3 +190,73 @@ NÃO PODE AFIRMAR [VAZIO]:
 
 *Documento criado em FASE 12 (2026-07-07). Atualizado em FASE 13 (2026-07-09): FASE 12 row marcada ✅, FASE 13 adicionada, P1-WEFF-B-OPT fechado [E], claim hierarchy e conclusões atualizadas.*  
 *Referências: todos os docs em `docs/cronologia-auditoria/` e `docs/canonicos/`.*
+
+---
+
+## Adendo FASES 14–22 (2026-07-10 a 2026-07-16)
+
+### 1. Fases Concluídas (continuação)
+
+| Fase | Conteúdo Principal | Artefatos | Status |
+|------|-------------------|-----------|--------|
+| 14 | Scan z_t (falsificador F-COS-03) | `results/zt_scan/summary.json` | ✅ merged PR #511 — F-COS-03 FAIL [E] |
+| 15 | Parametrização coerente + análise completa + H-ELEC-01 | `15_PARAMETRIZACAO_COERENTE_RLL.md` | ✅ merged PR #512 |
+| 16 | (interna — diagnóstico de bias E&H) | — | ✅ |
+| 17 | FASE 18 rs_star calibrado (chi²_CMB→0.021) | `results/rll_fase18e_calibrado.json` | ✅ merged PR #551 |
+| 18 (=19) | rd calibrado (−3.614 Mpc), Ωs0→0, ΔBIC=+22.27 | `results/rll_fase19_rd_calibrado.json` | ✅ merged PR #553 |
+| 19 (=20) | MCMC G1 + Bayes Factor G3 (dynesty) | `results/rll_fase20_mcmc_bayes.json` | ✅ merged PR #554 |
+| 20 (=21) | Grafo epistêmico sessão FASE 17–20 (12 artefatos) | `results/session_grafo_fase17_20/` | ✅ merged PR #556 |
+| 21 (=22) | G4: mapeamento bias E&H em grade 10×10 | `results/rll_fase22_g4_eh_bias_grid.json` | ✅ merged PR #556 |
+
+### 2. Gaps — Estado Final
+
+| Gap ID | Prioridade | Descrição | Status Final |
+|--------|-----------|-----------|-------------|
+| G1 | P0 | Joint MCMC Ωs0 posterior | ✅ FECHADO [E] — Ωs0 UL95=0.00178 (emcee 32×1500) |
+| G2 (rd) | P0 | rd calibrado (viés E&H) | ✅ FECHADO [E] — calibração −3.614 Mpc |
+| G3 (B₁₀) | P0 | Bayes Factor formal | ✅ FECHADO [E] — ln(B₁₀)=−6.190±0.691 (dynesty) |
+| G4 | P3/H | Bias E&H em param space | ✅ FECHADO [E] — sist.=0.72 Mpc (grade 10×10) |
+
+**TOKEN_VAZIO estrutural = 0.**
+
+### 3. Predições — Estado Final
+
+| ID | Predição | Status Final |
+|----|---------|-------------|
+| P-RLL-01 | w_eff > 0 em z~0.7–1.3 (setor padrão) | ✗ disfavorecida por DESI DR2 CPL |
+| P-RLL-02 | Inflexão E(z) em z~1.0 | ⚠️ MCMC joint: ponto mediana H₀=66.91, Ωm=0.314; inflexão não caracterizada |
+| P-RLL-03 | Ωs0 < 0.05 (sub-dominante) | ✅ **CONFIRMADA [E]** — Ωs0 UL95=0.00178 << 0.05 |
+| P-RLL-04 | Degeneração padrão/Opção A | ✅ [E] FASE 4 |
+| P-RLL-05 | Opção B cruzará χ²<10 | ✅ **CONFIRMADA [E]** — χ²=0.079 (FASE 13) |
+
+### 4. Claim Hierarchy — Estado Final
+
+```
+claim_allowed = false  ← F-COS-03 FAIL [E] e F-COS-04 FAIL [E]
+                          (não mais TOKEN_VAZIO — resultado empírico formal)
+
+PODE AFIRMAR [N4 — empiricamente testado]:
+  ✅ Ωs0 < 0.00178 (95% UL, MCMC 32×1500) — Ωs0=0.012 era artefato E&H
+  ✅ ln(B₁₀) = −6.190 ± 0.691 (dynesty) — evidência muito forte para ΛCDM
+  ✅ Calibração dupla Planck 2018: rs_star +0.1988 Mpc + rd −3.614 Mpc
+  ✅ Erro sist. calibração E&H = 0.72 Mpc no ponto MCMC (G4)
+  ✅ Todos os resultados anteriores de FASES 1–13 mantidos
+
+NÃO PODE AFIRMAR:
+  ✗ Superioridade sobre ΛCDM: F-COS-04 FAIL [E] — ln(B₁₀) = −6.19 < −5
+  ✗ z_t, w_t, Ωs0 a partir de primeiros princípios (MCMC restringe mas não deriva)
+```
+
+### 5. Falsificadores — Estado Final
+
+| ID | Falsificador | Status |
+|----|-------------|--------|
+| F-COS-01 | ΔAIC(RLL−ΛCDM) < +10 | ✅ PASS [E] — 3.805 |
+| F-COS-02 | χ²_Pantheon/dof < 1.05 | ✅ PASS [E] — 0.4387 |
+| F-COS-03 | z_t ∈ [0.5, 1.5] | ✗ FAIL [E] — z_t_BAO=0.30 |
+| F-COS-04 | ln(B₁₀) > −5 (Jeffreys) | ✗ FAIL [E] — −6.190 ± 0.691 |
+| F-COS-05 | χ²_DESI nominal < 150 | ✅ PASS [E] — 93.81 |
+
+**2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO.**
+
+*Adendo adicionado em 2026-07-16. FASES 1–22 concluídas. TOKEN_VAZIO estrutural = 0.*
