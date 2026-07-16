@@ -6,6 +6,7 @@ on:
     paths:
       - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
       - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
+      - docs/audits/LIVRO_VIVO_PACKET_CHAIN_FINAL_TRACEABILITY_20260716.md
       - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
       - docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md
       - data/formulas/session_packet_public_mirror_20260716.json
@@ -23,6 +24,7 @@ on:
     paths:
       - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
       - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
+      - docs/audits/LIVRO_VIVO_PACKET_CHAIN_FINAL_TRACEABILITY_20260716.md
       - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
       - docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md
       - data/formulas/session_packet_public_mirror_20260716.json
