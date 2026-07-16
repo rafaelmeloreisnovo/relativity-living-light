@@ -7,17 +7,23 @@ on:
       - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
       - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
       - docs/audits/LIVRO_VIVO_PACKET_CHAIN_FINAL_TRACEABILITY_20260716.md
+      - docs/audits/SESSION_REALITY_SCIENCE_AUDIT_20260716.md
+      - docs/audits/SESSION_REALITY_SCIENCE_FINAL_TRACEABILITY_20260716.md
       - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
       - docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md
+      - docs/formulas/ATOM_WATER_IONIC_QUANTUM_BRIDGE_20260716.md
       - data/formulas/session_packet_public_mirror_20260716.json
+      - data/formulas/session_reality_science_claims_20260716.json
       - knowledge_ecosystem/session_operating_system.yml
       - schemas/session_operating_system.schema.json
       - tools/validate_cross_repo_relationship_registry.py
       - tools/validate_session_operating_system.py
       - tools/validate_session_packet_public_mirror.py
+      - tools/validate_session_reality_science_claims.py
       - tests/test_cross_repo_relationship_registry.py
       - tests/test_session_operating_system.py
       - tests/test_session_packet_public_mirror.py
+      - tests/test_session_reality_science_claims.py
       - .github/workflows/validate-cross-repo-relationship-registry.yml
   push:
     branches: [main]
@@ -25,17 +31,23 @@ on:
       - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
       - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
       - docs/audits/LIVRO_VIVO_PACKET_CHAIN_FINAL_TRACEABILITY_20260716.md
+      - docs/audits/SESSION_REALITY_SCIENCE_AUDIT_20260716.md
+      - docs/audits/SESSION_REALITY_SCIENCE_FINAL_TRACEABILITY_20260716.md
       - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
       - docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md
+      - docs/formulas/ATOM_WATER_IONIC_QUANTUM_BRIDGE_20260716.md
       - data/formulas/session_packet_public_mirror_20260716.json
+      - data/formulas/session_reality_science_claims_20260716.json
       - knowledge_ecosystem/session_operating_system.yml
       - schemas/session_operating_system.schema.json
       - tools/validate_cross_repo_relationship_registry.py
       - tools/validate_session_operating_system.py
       - tools/validate_session_packet_public_mirror.py
+      - tools/validate_session_reality_science_claims.py
       - tests/test_cross_repo_relationship_registry.py
       - tests/test_session_operating_system.py
       - tests/test_session_packet_public_mirror.py
+      - tests/test_session_reality_science_claims.py
       - .github/workflows/validate-cross-repo-relationship-registry.yml
   workflow_dispatch:
 
@@ -100,12 +112,31 @@ jobs:
             'PRIVATE_CONTENT_COPIED=false' \
             >> artifacts/session-knowledge-os/CLAIM_BOUNDARY.txt
 
+      - name: Validate session reality and science correction ledger
+        run: |
+          python tools/validate_session_reality_science_claims.py \
+            --report artifacts/session-knowledge-os/session_reality_science_report.json
+          sha256sum \
+            docs/audits/SESSION_REALITY_SCIENCE_AUDIT_20260716.md \
+            docs/formulas/ATOM_WATER_IONIC_QUANTUM_BRIDGE_20260716.md \
+            data/formulas/session_reality_science_claims_20260716.json \
+            tools/validate_session_reality_science_claims.py \
+            tests/test_session_reality_science_claims.py \
+            > artifacts/session-knowledge-os/SESSION_REALITY_SCIENCE.sha256
+          printf '%s\n' \
+            'SESSION_COMPLETE_EXPORT=false' \
+            'METAPHOR_VALIDATES_PHYSICS=false' \
+            'UNSUPPORTED_LARGE_COUNTS=false' \
+            'NEGATIVE_RESULTS_PRESERVED=true' \
+            >> artifacts/session-knowledge-os/CLAIM_BOUNDARY.txt
+
       - name: Run focused traceability tests
         run: |
           python -m pytest -q \
             tests/test_cross_repo_relationship_registry.py \
             tests/test_session_operating_system.py \
-            tests/test_session_packet_public_mirror.py
+            tests/test_session_packet_public_mirror.py \
+            tests/test_session_reality_science_claims.py
 
       - name: Upload traceability artifact
         uses: actions/upload-artifact@v4
