@@ -39,6 +39,10 @@ CHAIN_MARKERS = [
     "relationship -> evidence state -> verification -> small fix -> test -> artifact -> claim gate",
     "exact source + exact target + blob identity",
 ]
+NEXT_ACTION_VERBS = (
+    "Verify", "Define", "Check", "Keep", "Compare", "Resolve", "Use",
+    "Validate", "Produce", "Locate", "Generate", "Import", "Recompute", "Emit",
+)
 
 
 def _split_row(line: str) -> list[str]:
@@ -96,8 +100,12 @@ def validate_rows(rows: list[dict[str, str]]) -> None:
                 raise ValueError(f"{row_id}: forbidden promotion phrase: {phrase}")
         if row["State"] != "VERIFIED" and not row["Blocked claim"].strip():
             raise ValueError(f"{row_id}: non-verified relationship must keep a blocked claim")
-        if "Verify" not in row["Next verification"] and "Define" not in row["Next verification"] and "Check" not in row["Next verification"] and "Keep" not in row["Next verification"]:
-            raise ValueError(f"{row_id}: next verification must name a verification action")
+        action = row["Next verification"]
+        if not any(verb in action for verb in NEXT_ACTION_VERBS):
+            raise ValueError(
+                f"{row_id}: next verification must name an explicit audit action; "
+                f"expected one of {NEXT_ACTION_VERBS}"
+            )
 
 
 def validate_text(text: str) -> None:
