@@ -147,16 +147,15 @@ def validate_g4_overlay(
     g4 = gaps.get("G4")
     if not g4:
         raise ValueError("G4 missing from historical gap ledger")
-    if g4.get("status") != "TOKEN_VAZIO":
-        raise ValueError("G4 historical snapshot status must remain TOKEN_VAZIO")
-    if g4.get("status_scope") != "SNAPSHOT_THROUGH_PHASE_20":
-        raise ValueError("G4 historical status must be explicitly scoped to FASE20 snapshot")
+    if g4.get("status_at_snapshot_phase20") != "TOKEN_VAZIO":
+        raise ValueError("G4 historical FASE20 status must remain TOKEN_VAZIO")
     if g4.get("current_status") != "VERIFIED_LIMITED":
         raise ValueError("G4 current_status must record quantified limited evidence")
-    if g4.get("current_lifecycle") != "CLOSED_AS_QUANTIFIED_SYSTEMATIC":
-        raise ValueError("G4 current lifecycle must preserve quantified-systematic closure")
-    if g4.get("residual_status") != "TOKEN_VAZIO":
-        raise ValueError("G4 residual CAMB/RECFAST precision work must remain TOKEN_VAZIO")
+    if g4.get("resolved_in_phase") != 22:
+        raise ValueError("G4 current resolution must point to FASE22")
+    precision_gate = str(g4.get("precision_next_gate", ""))
+    if "CAMB/RECFAST" not in precision_gate:
+        raise ValueError("G4 residual CAMB/RECFAST precision gate must remain explicit")
 
     if overlay.get("schema") != "rll.session_graph.current_state_overlay.v1":
         raise ValueError("unexpected current-state overlay schema")
