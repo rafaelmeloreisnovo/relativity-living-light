@@ -469,4 +469,62 @@ a transição logística se torna tão larga que Opção B degenera para mistura
 
 ---
 
+### FASE 20 — MCMC joint + Bayes Factor formal (2026-07-15) [PR #554 merged]
+
+**Gaps fechados**:
+- G1 ✅ FECHADO — Ωs0 < 0.00178 (95% UL, emcee 32 walkers × 1500 steps, burn=400, n=1677)
+  - aceitação=0.377; autocorr τ_max≈99.5; N/τ≈11 (marginal mas convergente)
+  - posteriors: H₀=66.91±0.72, Ωm=0.3144±0.0011, Ωb=0.0498±0.0011
+  - artefato: `results/rll_fase20_mcmc_bayes.json`
+- G3 ✅ FECHADO — ln(B₁₀)=−6.190±0.691 (dynesty NestedSampler nlive=150)
+  - logZ_RLL=−404.340±0.530; logZ_ΛCDM=−398.150±0.443
+  - Jeffreys: |ln(B₁₀)|=6.19 > 5 → evidência muito forte para ΛCDM
+  - artefato: `results/rll_fase20_mcmc_bayes.json`
+
+**Gap novo (baixa prioridade)**:
+- G4 ⬜ TOKEN_VAZIO [H] P3 — mapeamento do bias E&H em função de (Ωm·h², Ωb·h²)
+  - descrição: calibração rd aditiva assume que Δrd=rd_EH−rd_Planck é constante; verificar variação em grid de parâmetros
+  - impacto estimado: ~1–2 ln(B₁₀); não bloqueia resultados existentes
+  - próximo passo: grade rd_EH(Ωm·h², Ωb·h²) em 10×10 pts; comparar com valor calibrado
+  - **→ FECHADO na FASE 22 abaixo**
+
+**Atualização falsificadores** (2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO):
+- F-COS-01: ✅ PASS — ΔAIC=3.805 [E]
+- F-COS-02: ✅ PASS — χ²_red=0.4387 [E]
+- F-COS-03: ✗ FAIL — z_t_BAO=0.3 [E]
+- F-COS-04: ✗ FAIL — ln(B₁₀)=−6.190±0.691 [E] (formal, dynesty — antes proxy BIC)
+- F-COS-05: ✅ PASS — χ²_DESI_nominal=93.81 [E]
+
+**Nota epistêmica**: G1 e G3 fechados confirmam F-COS-04 como FAIL com evidência direta [E], substituindo o proxy BIC [C] da FASE 15. TOKEN_VAZIO P0 original esgotado.
+
+---
+
+### FASE 22 — G4 Mapeamento bias E&H (2026-07-16)
+
+**Gap fechado**:
+- G4 ✅ FECHADO — bias E&H quantificado em grade 10×10 (Ωm·h²∈[0.12,0.16], Ωb·h²∈[0.020,0.025])
+  - Δrd varia −2.95 a +12.81 Mpc na grade ampla
+  - **No ponto MCMC posterior (Ωm·h²=0.14075)**: erro sistemático = 0.72 Mpc
+  - Δχ²_G4 ≈ (0.72/σ_rd)² << impacto de G3; conclusão ln(B₁₀)=−6.190 não afetada
+  - artefato: `results/rll_fase22_g4_eh_bias_grid.json`
+  - doc: `docs/cronologia-auditoria/21_FASE22_G4_EH_BIAS_GRID.md`
+
+**Todos os gaps fechados (G1, G2, G3, G4). TOKEN_VAZIO estrutural = 0.**
+
+---
+
+### FASE 21 — Grafo Epistêmico de Sessão FASE 17–20 (2026-07-16)
+
+**Artefatos gerados**:
+- `results/session_grafo_fase17_20/` — 12 artefatos (claims, entities, relations, graph.graphml...)
+- `docs/cronologia-auditoria/20_GRAFO_SESSAO_FASE17_20.md` — documento de auditoria
+
+**Schema**: 10 afirmações C_i com 10 campos; 44 entidades (18 tipos); 44 arestas (14 tipos)
+**Contradição documentada**: CONTRADICTION-01 — Ωs0=0.012 (FASE18-E) vs Ωs0≈0 (FASE19-20); mecanismo=bias E&H; status=RESOLVIDA
+**claim_allowed**: false em todos os artefatos
+
+**Método**: TOKEN_VAZIO preserva honestidade enquanto trabalho prossegue.
+
+---
+
 *"Lacuna marcada vira ciência. Lacuna ocultada vira propaganda." — RAFAELIA*

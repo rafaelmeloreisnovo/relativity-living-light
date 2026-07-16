@@ -1,0 +1,41 @@
+{
+  "schema": "rll.session_grafo.v1",
+  "session_id": "SESSION_FASE17_20_2026-07-14_15",
+  "description": "Grafo epistêmico da sessão FASE 17-20: calibração dupla Planck 2018, MCMC joint e Bayes Factor formal.",
+  "periodo": {
+    "inicio": "2026-07-14",
+    "fim": "2026-07-15"
+  },
+  "branch": "claude/rll-cronologia-auditoria-qyvn83",
+  "prs_merged": [
+    "#551 (FASE 18)",
+    "#553 (FASE 19)",
+    "#554 (FASE 20)"
+  ],
+  "gaps_fechados": [
+    "G1 (MCMC joint)",
+    "G2 (rd calibrado)",
+    "G3 (Bayes Factor formal)"
+  ],
+  "gaps_abertos": [
+    "G4 (mapeamento bias E&H em espaço de parâmetros)"
+  ],
+  "claim_allowed": false,
+  "boundary": "Grafo registra relações candidatas entre afirmações, fontes, código e artefatos. Não constitui prova de superioridade do modelo RLL. claim_allowed=false até revisão por pares.",
+  "generated_utc": "2026-07-16T00:00:00Z",
+  "generator": "scripts/build_session_grafo_fase17_20.py",
+  "artifacts": [
+    "session_manifest.json",
+    "claims.jsonl",
+    "sources.bib",
+    "entities.jsonl",
+    "relations.jsonl",
+    "contradictions.jsonl",
+    "gaps.jsonl",
+    "actions.jsonl",
+    "formulas.yaml",
+    "experiments.yaml",
+    "graph.graphml",
+    "report.md"
+  ]
+}
