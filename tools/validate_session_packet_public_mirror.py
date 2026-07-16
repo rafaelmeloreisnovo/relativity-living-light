@@ -86,7 +86,8 @@ def validate_mirror(
         raise ValueError("private commit sequence order is not contiguous")
 
     commits: set[str] = set()
-    paths: set[str] = set()
+    commit_path_pairs: set[tuple[str, str]] = set()
+    path_occurrences: dict[str, int] = {}
     for entry in sequence:
         commit = str(entry.get("commit", ""))
         path = str(entry.get("path", ""))
@@ -98,9 +99,11 @@ def validate_mirror(
         commits.add(commit)
         if not path or path.startswith("/") or ".." in Path(path).parts:
             raise ValueError(f"unsafe or empty private path: {path}")
-        if path in paths:
-            raise ValueError(f"duplicate private path: {path}")
-        paths.add(path)
+        pair = (commit, path)
+        if pair in commit_path_pairs:
+            raise ValueError(f"duplicate commit/path pair: {commit} {path}")
+        commit_path_pairs.add(pair)
+        path_occurrences[path] = path_occurrences.get(path, 0) + 1
         if not role.strip():
             raise ValueError(f"empty role for {commit}")
 
@@ -142,6 +145,8 @@ def validate_mirror(
         "claim_allowed": False,
         "private_content_copied": False,
         "private_commit_count": len(sequence),
+        "private_unique_path_count": len(path_occurrences),
+        "private_updated_path_count": sum(count > 1 for count in path_occurrences.values()),
         "private_head_commit": source["head_commit"],
         "private_validator_execution_proven": False,
         "mirror_sha256": sha256_file(mirror_path),
