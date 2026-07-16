@@ -38,10 +38,12 @@ WARNING_MARKERS = [
 CHAIN_MARKERS = [
     "relationship -> evidence state -> verification -> small fix -> test -> artifact -> claim gate",
     "exact source + exact target + blob identity",
+    "exact ref/path/blob SHA",
 ]
 NEXT_ACTION_VERBS = (
     "Verify", "Define", "Check", "Keep", "Compare", "Resolve", "Use",
     "Validate", "Produce", "Locate", "Generate", "Import", "Recompute", "Emit",
+    "Require", "Link",
 )
 
 
