@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://instituto-rafael.invalid/schemas/session_operating_system.schema.json",
   "title": "RLL Session Knowledge Operating System",
+  "description": "Structural contract for organizing session groups, source pointers, concepts, formulas, operations, evidence states, destinations and reversible microcommits without promoting scientific claims or exposing private content.",
   "type": "object",
   "required": [
     "schema", "operation_id", "title", "status", "claim_allowed", "claim_boundary",
