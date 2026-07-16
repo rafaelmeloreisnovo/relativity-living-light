@@ -6,16 +6,26 @@ on:
     paths:
       - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
       - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
+      - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
+      - knowledge_ecosystem/session_operating_system.yml
+      - schemas/session_operating_system.schema.json
       - tools/validate_cross_repo_relationship_registry.py
+      - tools/validate_session_operating_system.py
       - tests/test_cross_repo_relationship_registry.py
+      - tests/test_session_operating_system.py
       - .github/workflows/validate-cross-repo-relationship-registry.yml
   push:
     branches: [main]
     paths:
       - docs/audits/CROSS_REPO_RELATIONSHIP_REGISTRY.md
       - docs/audits/MASTER_UNIFIED_DOCUMENTATION_COHERENCE_REVIEW.md
+      - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
+      - knowledge_ecosystem/session_operating_system.yml
+      - schemas/session_operating_system.schema.json
       - tools/validate_cross_repo_relationship_registry.py
+      - tools/validate_session_operating_system.py
       - tests/test_cross_repo_relationship_registry.py
+      - tests/test_session_operating_system.py
       - .github/workflows/validate-cross-repo-relationship-registry.yml
   workflow_dispatch:
 
@@ -41,11 +51,38 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install test dependencies
-        run: pip install pytest
+      - name: Install validation dependencies
+        run: pip install pytest PyYAML jsonschema
 
-      - name: Validate registry
+      - name: Validate Markdown relationship registry
         run: python tools/validate_cross_repo_relationship_registry.py
 
-      - name: Run registry tests
-        run: python -m pytest -q tests/test_cross_repo_relationship_registry.py
+      - name: Validate Session Knowledge Operating System
+        run: |
+          mkdir -p artifacts/session-knowledge-os
+          python tools/validate_session_operating_system.py \
+            --report artifacts/session-knowledge-os/report.json
+          sha256sum \
+            knowledge_ecosystem/session_operating_system.yml \
+            schemas/session_operating_system.schema.json \
+            artifacts/session-knowledge-os/report.json \
+            > artifacts/session-knowledge-os/CHECKSUMS.sha256
+          printf '%s\n' \
+            'CLAIM_ALLOWED=false' \
+            'CROSS_REPO_WRITE=false' \
+            'DESTRUCTIVE_ACTIONS=false' \
+            'PRIVATE_CONTENT=POINTER_ONLY' \
+            > artifacts/session-knowledge-os/CLAIM_BOUNDARY.txt
+
+      - name: Run focused registry and operating-system tests
+        run: |
+          python -m pytest -q \
+            tests/test_cross_repo_relationship_registry.py \
+            tests/test_session_operating_system.py
+
+      - name: Upload traceability artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: session-knowledge-os-audit
+          path: artifacts/session-knowledge-os/
+          retention-days: 30
