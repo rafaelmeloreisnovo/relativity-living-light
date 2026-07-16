@@ -10,20 +10,26 @@ on:
       - docs/audits/SESSION_REALITY_SCIENCE_AUDIT_20260716.md
       - docs/audits/SESSION_REALITY_SCIENCE_FINAL_TRACEABILITY_20260716.md
       - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
+      - docs/architecture/SESSION_UNIFIED_INTERACTION_20260716.md
       - docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md
       - docs/formulas/ATOM_WATER_IONIC_QUANTUM_BRIDGE_20260716.md
       - data/formulas/session_packet_public_mirror_20260716.json
       - data/formulas/session_reality_science_claims_20260716.json
+      - data/knowledge/session_unified_interaction_20260716.json
       - knowledge_ecosystem/session_operating_system.yml
+      - results/session_grafo_fase17_20/session_manifest.json
+      - results/session_grafo_fase17_20/gaps.jsonl
       - schemas/session_operating_system.schema.json
       - tools/validate_cross_repo_relationship_registry.py
       - tools/validate_session_operating_system.py
       - tools/validate_session_packet_public_mirror.py
       - tools/validate_session_reality_science_claims.py
+      - tools/validate_session_unified_interaction.py
       - tests/test_cross_repo_relationship_registry.py
       - tests/test_session_operating_system.py
       - tests/test_session_packet_public_mirror.py
       - tests/test_session_reality_science_claims.py
+      - tests/test_session_unified_interaction.py
       - .github/workflows/validate-cross-repo-relationship-registry.yml
   push:
     branches: [main]
@@ -34,20 +40,26 @@ on:
       - docs/audits/SESSION_REALITY_SCIENCE_AUDIT_20260716.md
       - docs/audits/SESSION_REALITY_SCIENCE_FINAL_TRACEABILITY_20260716.md
       - docs/architecture/SESSION_KNOWLEDGE_OPERATING_SYSTEM.md
+      - docs/architecture/SESSION_UNIFIED_INTERACTION_20260716.md
       - docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md
       - docs/formulas/ATOM_WATER_IONIC_QUANTUM_BRIDGE_20260716.md
       - data/formulas/session_packet_public_mirror_20260716.json
       - data/formulas/session_reality_science_claims_20260716.json
+      - data/knowledge/session_unified_interaction_20260716.json
       - knowledge_ecosystem/session_operating_system.yml
+      - results/session_grafo_fase17_20/session_manifest.json
+      - results/session_grafo_fase17_20/gaps.jsonl
       - schemas/session_operating_system.schema.json
       - tools/validate_cross_repo_relationship_registry.py
       - tools/validate_session_operating_system.py
       - tools/validate_session_packet_public_mirror.py
       - tools/validate_session_reality_science_claims.py
+      - tools/validate_session_unified_interaction.py
       - tests/test_cross_repo_relationship_registry.py
       - tests/test_session_operating_system.py
       - tests/test_session_packet_public_mirror.py
       - tests/test_session_reality_science_claims.py
+      - tests/test_session_unified_interaction.py
       - .github/workflows/validate-cross-repo-relationship-registry.yml
   workflow_dispatch:
 
@@ -130,13 +142,33 @@ jobs:
             'NEGATIVE_RESULTS_PRESERVED=true' \
             >> artifacts/session-knowledge-os/CLAIM_BOUNDARY.txt
 
+      - name: Validate unified session repository contract
+        run: |
+          python tools/validate_session_unified_interaction.py \
+            --report artifacts/session-knowledge-os/session_unified_interaction_report.json
+          sha256sum \
+            docs/architecture/SESSION_UNIFIED_INTERACTION_20260716.md \
+            data/knowledge/session_unified_interaction_20260716.json \
+            results/session_grafo_fase17_20/session_manifest.json \
+            results/session_grafo_fase17_20/gaps.jsonl \
+            tools/validate_session_unified_interaction.py \
+            tests/test_session_unified_interaction.py \
+            > artifacts/session-knowledge-os/SESSION_UNIFIED_INTERACTION.sha256
+          printf '%s\n' \
+            'SESSION_UNIT=ONE_MULTI_LENS_INTERACTION' \
+            'SESSION_TARGET=REPOSITORIES' \
+            'WORKFLOW_ARTIFACT=EVIDENCE_ONLY' \
+            'G4_TEMPORAL_STATE_SPLIT=true' \
+            >> artifacts/session-knowledge-os/CLAIM_BOUNDARY.txt
+
       - name: Run focused traceability tests
         run: |
           python -m pytest -q \
             tests/test_cross_repo_relationship_registry.py \
             tests/test_session_operating_system.py \
             tests/test_session_packet_public_mirror.py \
-            tests/test_session_reality_science_claims.py
+            tests/test_session_reality_science_claims.py \
+            tests/test_session_unified_interaction.py
 
       - name: Upload traceability artifact
         uses: actions/upload-artifact@v4
