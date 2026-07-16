@@ -1,0 +1,126 @@
+{
+  "schema": "rll.session_packet_public_mirror.v1",
+  "operation_id": "LIVRO-VIVO-20260716",
+  "claim_allowed": false,
+  "public_repository": "instituto-Rafael/relativity-living-light",
+  "public_pull_request": 555,
+  "private_source": {
+    "repository": "rafaelmeloreisnovo/papers",
+    "visibility": "private",
+    "pull_request": 5,
+    "branch": "feat/livro-vivo-packet-chain-20260716",
+    "base_commit": "e7bbe7d8807fa3ad37a94eb079493dcd2df156dd",
+    "head_commit": "89a73c34f9de3d96ec86358c684a6811371a6b01",
+    "content_mode": "pointer_commit_and_digest_only",
+    "private_content_copied": false
+  },
+  "private_commit_sequence": [
+    {
+      "order": 1,
+      "commit": "120f0917a782474ed5375402ab05d784896908de",
+      "path": "knowledge_packets/2026-07-16/00_raw_relational_formula_dump.md",
+      "role": "raw_unsorted_capture"
+    },
+    {
+      "order": 2,
+      "commit": "5f0a045702a60d031d4d6c63d587711d8f143a7f",
+      "path": "knowledge_packets/2026-07-16/01_cosmology_plasma_photonics_packet.md",
+      "role": "physical_multiscale_normalization"
+    },
+    {
+      "order": 3,
+      "commit": "467976427be6ba952896597673d0408310c0ad19",
+      "path": "knowledge_packets/2026-07-16/02a_bases_time_phase_packet.md",
+      "role": "arithmetic_time_phase_fragment"
+    },
+    {
+      "order": 4,
+      "commit": "0031b637724d8df88ce2a887765be63fd5fc5419",
+      "path": "knowledge_packets/2026-07-16/02b_torus_attention_graph_packet.md",
+      "role": "torus_attention_graph_fragment"
+    },
+    {
+      "order": 5,
+      "commit": "5392b205cf3738e3af1f4d1f6cdcbe6449ec370c",
+      "path": "knowledge_packets/2026-07-16/02c_runtime_integrity_packet.md",
+      "role": "runtime_integrity_fragment"
+    },
+    {
+      "order": 6,
+      "commit": "86cd88ade82f12165f2545510203830f626f2525",
+      "path": "knowledge_packets/2026-07-16/03_relation_edges.yml",
+      "role": "relation_graph"
+    },
+    {
+      "order": 7,
+      "commit": "c76e2dc3d4f76e538282af6359ae5c475717c7cc",
+      "path": "tools/seal_session_packets.py",
+      "role": "sha256_chain_merkle_and_optional_aes_gcm"
+    },
+    {
+      "order": 8,
+      "commit": "2ef45aa87dffc085eb4565e45c93bfea261c75ee",
+      "path": "tools/validate_session_packet_edges.py",
+      "role": "relation_validator"
+    },
+    {
+      "order": 9,
+      "commit": "8c7912985d0fca74acdffd241d7800131567dd27",
+      "path": "tests/test_session_packet_chain.py",
+      "role": "integrity_and_sealing_tests"
+    },
+    {
+      "order": 10,
+      "commit": "8215917eb43a5a0a6a9979c2d649b288b19a3c7e",
+      "path": ".github/workflows/ci.yml",
+      "role": "existing_ci_packet_execution"
+    },
+    {
+      "order": 11,
+      "commit": "437baf79aadeb2a95ccecdf1de021bdd56126681",
+      "path": "knowledge_packets/2026-07-16/04_commit_packet_ledger.yml",
+      "role": "ordered_commit_ledger"
+    },
+    {
+      "order": 12,
+      "commit": "89a73c34f9de3d96ec86358c684a6811371a6b01",
+      "path": "docs/livro_vivo/LIVRO_VIVO_SESSION_PACKET_INDEX_20260716.md",
+      "role": "final_private_documentation_index"
+    }
+  ],
+  "integrity_contract": {
+    "content_digest": "SHA-256",
+    "ordered_chain": "SHA-256(previous_root || path || content_digest || commit_sha)",
+    "set_digest": "binary Merkle tree",
+    "optional_confidentiality": "AES-256-GCM with runtime-only passphrase",
+    "passphrase_committed": false,
+    "signature_key": "TOKEN_VAZIO"
+  },
+  "private_ci": {
+    "workflow": "CI",
+    "run_id": 29469531541,
+    "conclusion": "failure",
+    "jobs_created": 3,
+    "job_steps_returned": 0,
+    "classification": "STARTUP_FAILURE_OR_INFRASTRUCTURE_FAILURE",
+    "validator_execution_proven": false,
+    "note": "No job steps or actionable logs were returned. The public mirror must not claim that private packet validators passed."
+  },
+  "public_formula_bridge": "docs/formulas/SESSION_CROSS_DOMAIN_FORMULA_BRIDGE_20260716.md",
+  "public_safe_content": [
+    "RLL public cosmological equations",
+    "base and time identities",
+    "standard attention and network formulas",
+    "standard signal-processing formulas",
+    "standard field, levitation, plasma and jet anchors",
+    "integrity formulas and public provenance pointers"
+  ],
+  "blocked_public_content": [
+    "unreleased private derivations",
+    "raw private session text",
+    "passphrases or private keys",
+    "unsafe operational protocols",
+    "scientific promotion based only on hashes or commit order"
+  ],
+  "next_gate": "Resolve the private CI startup failure or run the validators in an authorized clone, then attach the generated SHA-256 and Merkle artifact without exposing private packet bodies."
+}
