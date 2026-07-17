@@ -49,22 +49,24 @@ Two distinct products were created:
 | 7 | `8de98ed05b87cca63b9289363e61053ed549fd59` | scientific protocol documentation |
 | 8 | `b6509bec626de1412e7dfb39d58f97972765e893` | corrected cosmology gap audit |
 | 9 | `091f94912ae60c3ce1d9b089d451950eaa7a240d` | canonical roadmap synchronization |
+| 10 | `f3aa227ebeab0d001e35a6eff35637a8e051674a` | initial traceability index |
+| 11 | `41a4cd84a225151e2f4d412a74d2a5d6e7441b55` | dependency-light CI correction |
 
-This index is intentionally the final documentation commit in the sequence.
+This update is intentionally the final documentation commit in the sequence. Its own commit SHA is the commit that contains this final index revision.
 
 ## 4. Verification performed before repository write
 
 Local isolated verification of the new layer:
 
 ```text
-python -m pytest -q tests/test_scientific_infinity.py tests/test_scientific_infinity_cycle_schema.py
+PYTHONPATH=src python -m pytest -q tests/test_scientific_infinity.py
 12 passed
 
 python scripts/validate_scientific_infinity_cycle.py
 OK: scientific infinity cycle is finite, structurally valid and claim-bounded
 ```
 
-The committed test file consolidates the code and schema cases into `tests/test_scientific_infinity.py`. GitHub Actions is configured to run the validator and test on relevant path changes.
+GitHub Actions is configured to run the validator and tests on relevant path changes without installing the full scientific dependency stack.
 
 ## 5. Corrected state of the submitted gap list
 
