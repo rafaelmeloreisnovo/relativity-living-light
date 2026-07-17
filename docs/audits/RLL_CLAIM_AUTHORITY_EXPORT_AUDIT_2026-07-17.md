@@ -2,7 +2,7 @@
 
 Data: `2026-07-17`  
 Branch: `docs/rll-claim-authority-export-20260717`  
-Estado: `IMPLEMENTED_NOT_MERGED / claim_allowed=false`
+Estado: `IMPLEMENTED_NOT_MERGED / CI_PASS / claim_allowed=false`
 
 ## O que foi gravado
 
@@ -29,6 +29,17 @@ RLL é estatisticamente superior em geral.
 Uma execução substitui replicação, revisão e novos dados.
 ```
 
+## Estado observado da CI
+
+```text
+workflow = RLL Claim Authority Export
+run_id = 29557372658
+status = completed
+conclusion = success
+```
+
+No mesmo commit também concluíram com sucesso os workflows de consistência de convenções, fórmulas/artefatos, validação YAML, Fisher, pipeline científico RLL, análise bayesiana e testes Python. O sucesso valida contratos, sintaxe e execução do pacote; não promove verdade física.
+
 ## Limitações preservadas
 
 - `source_ref=main` ainda não é pin imutável de commit;
@@ -40,7 +51,7 @@ Uma execução substitui replicação, revisão e novos dados.
 ## Critério de promoção
 
 ```text
-CI PASS
+CI PASS: atendido para o pacote desta branch
 pin por commit/tag
 checksum do export
 sincronização no consumidor
@@ -50,4 +61,4 @@ claim_allowed permanece false para verdade física
 
 ## Resultado
 
-O RLL passa a oferecer uma primeira interface explícita de produtor de claims. Ela permite consumo rastreável sem transformar um README interpretativo em autoridade científica paralela.
+O RLL passa a oferecer uma primeira interface explícita de produtor de claims. Ela permite consumo rastreável sem transformar um README interpretativo em autoridade científica paralela. O pacote passou na CI, mas continua draft e `claim_allowed=false` até revisão e merge.
