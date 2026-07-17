@@ -89,6 +89,32 @@
       "observables": ["EB", "TB", "RM", "V-mode", "frequency dependence"],
       "required_artifacts": ["polarization_data", "instrument_angle_model", "Faraday_null", "field_coupling_model"],
       "claim_boundary": "Birefringence or polarization rotation must be separated from calibration, Faraday rotation and known field couplings."
+    },
+    {
+      "branch_id": "B08_strong_gravity_magnetokinetic",
+      "name": "strong-gravity magnetokinetic conversion",
+      "status": "partial",
+      "equations": [
+        "r_g=GM/c^2",
+        "Q_T=c_s*kappa/(pi G Sigma)",
+        "Q_comp=-p Theta",
+        "R_GT=(P_th+P_B+P_rad)/(rho|Phi_eff|)",
+        "G_ME=P_electric/(P_compressive+epsilon)"
+      ],
+      "observables": ["disk mass ratio", "Toomre Q", "orbital period", "QPO/oscillation", "polarization", "X/gamma luminosity", "outflow power"],
+      "required_artifacts": ["source_manifest", "disk_profile", "field_topology", "radiation_model", "GRMHD_or_GRPIC_baseline"],
+      "claim_boundary": "Reference operators and scale sweeps do not establish a new coupling or replace self-gravitating GRMHD/GRPIC."
+    },
+    {
+      "branch_id": "B09_gravitational_electrodissociative_recurrence",
+      "name": "gravitational-electrodissociative recurrent calibration",
+      "status": "hypothesis",
+      "equations": ["X=(rho,x_e,J,u)", "X_(t+1)=F(X_t;rates,dt)", "E_gamma=h nu", "Delta_a_tidal=2GM L/r^3"],
+      "observables": ["ionization fraction", "current density", "internal energy", "radiation spectrum", "phase state", "time lags"],
+      "required_artifacts": ["composition", "cross_sections", "ionization_rates", "observational_target", "covariance", "registered_loss"],
+      "claim_boundary": "The recurrence is a transparent calibration operator, not a trained RNN or observational fit until data, targets and loss are declared."
     }
-  ]
+  ],
+  "calibration_home": "src/rll/strong_gravity_calibration.py",
+  "calibration_registry": "data/registries/rll_strong_gravity_calibration_registry.json"
 }
