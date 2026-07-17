@@ -154,3 +154,20 @@ P1 — Dados H(z) em z > 2: reduzir TOKEN_VAZIO em região onde f(z) ≠ ΛCDM
 ---
 
 *Documento criado em FASE 16 (2026-07-13). Referências: `results/rll_joint_parametrizacao.json`, `08_ARVORE_CONCEITUAL_RLL.md §Síntese`.*
+
+---
+
+## Adendo FASES 20–22 (2026-07-15/16)
+
+A seção 8 ("Próximos Atos Científicos") acima está **superada**. O gap P0 ali listado foi fechado:
+
+| Gap | Status anterior (FASE 16) | Status final (FASE 20) |
+|-----|--------------------------|----------------------|
+| G1: MCMC joint com prior Ωs0 > 0 | TOKEN_VAZIO P0 | ✅ FECHADO [E] — Ωs0 UL95=0.00178 (emcee 32 walkers × 1500 steps, burn=400) |
+| G3: Bayes Factor formal | TOKEN_VAZIO P0 | ✅ FECHADO [E] — ln(B₁₀)=−6.190±0.691 (dynesty nlive=150) |
+
+**Resultado chave**: O MCMC com prior Ωs0 > 0 (32×1500 emcee, N=1677 pts) confirmou que o setor RLL é sub-dominante ao nível de 95% UL. A coluna à direita não falsifica a FASE 16: Ωs0 → 0 em otimização MAP e Ωs0 < 0.00178 em MCMC são consistentes. A diferença é que o MCMC provê limites formais de credibilidade.
+
+O ΔAIC (F-COS-04 proxy) da seção 7 deste documento se tornou resultado empírico formal: ln(B₁₀) = −6.190 ± 0.691, |ln B₁₀| > 5 → escala Jeffreys "muito forte" para ΛCDM.
+
+`claim_allowed = false` por resultado empírico. `TOKEN_VAZIO estrutural = 0`.

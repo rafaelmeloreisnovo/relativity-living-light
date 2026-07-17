@@ -164,6 +164,8 @@ Script: `scripts/check_desi_dr2_bao_covariance.py` (covariância 13×13 completa
 
 ### Infraestrutura de Validação CI
 
+> **[ATUALIZADO — ver Adendo FASES 16–22 ao final]**
+
 | Componente | Arquivo | Cobertura | Status | Marcação |
 |-----------|---------|-----------|--------|---------|
 | Pipeline CI | `.github/workflows/rll-validacao-cientifica-completa.yml` | 11 jobs P0/P1 | ⏳ run pendente | [C] estrutura validada |

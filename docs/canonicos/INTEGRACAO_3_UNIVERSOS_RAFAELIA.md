@@ -187,6 +187,8 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 
 **Estado consolidado (pós-FASE 8)**:
 
+> **[ATUALIZADO — ver Adendo FASES 16–22 ao final]**
+
 | Gap | P | Status |
 |-----|---|--------|
 | Joint MCMC (G1) | P0 | ⚠️ pipeline existe, run pendente |
@@ -198,6 +200,8 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 | G0 (Pantheon+) | — | ✅ FECHADO FASE 4 |
 
 ### Falsificadores Ativos (CONTRATO v0.1.0)
+
+> **[ATUALIZADO — ver Adendo FASES 16–22 ao final]**
 
 | ID | Falsificador | Threshold | Status |
 |----|-------------|-----------|--------|
@@ -219,6 +223,8 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 | N4 | Medida empírica | dados com incerteza e reprodutibilidade | `EVIDENCE_LINKED → CLAIM_ALLOWED` |
 
 **Status RLL atual**: N3 (modelo formal definido) + N4 parcial (dados carregados, MCMC pendente).
+
+> **[ATUALIZADO — ver Adendo FASES 16–22 ao final]**
 
 ---
 
@@ -251,6 +257,8 @@ TOKEN_VAZIO não é ausência de conhecimento — é **marcação explícita de 
 | H-ARQ-01 | FEM: caminho de teste definido | Simulação: P2 |
 
 ### Universo I ↔ Universo III
+
+> **[ATUALIZADO — ver Adendo FASES 16–22 ao final]**
 
 | Componente RLL | Protocolo aplicado | Status |
 |---------------|-------------------|--------|

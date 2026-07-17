@@ -81,4 +81,24 @@ Quando houver dúvida, marcar `[VAZIO]` e abrir tarefa de verificação.
 
 ---
 
+## Adendo FASE 20–22 (2026-07-15/16)
+
+**Contrato final**: `2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO`
+
+| Item | Status FASE 20–22 |
+|------|------------------|
+| G1: MCMC joint Pantheon+ + DESI | ✅ FECHADO [E] — Ωs0 UL95 = 0.00178 (emcee 32×1500) |
+| G3: Bayes Factor RLL/ΛCDM | ✅ FECHADO [E] — ln(B₁₀) = −6.190 ± 0.691 (dynesty) |
+| F-COS-03: z_t ∈ [0.5, 1.5] | ✗ FAIL [E] — z_t_BAO = 0.30 (fora do intervalo) |
+| F-COS-04: ln(B₁₀) > −5 | ✗ FAIL [E] — ln(B₁₀) = −6.190 (evidência muito forte para ΛCDM) |
+| G4: bias E&H no espaço de parâmetros | ✅ FECHADO [E] — syst. = 0.72 Mpc (grade 10×10, FASE 22) |
+| TOKEN_VAZIO P0 estrutural | ✅ ZERO — nenhum gap P0 remanescente |
+
+**`claim_allowed = false` permanece** — por resultado empírico (F-COS-03 FAIL [E], F-COS-04 FAIL [E]), não por lacuna. Esta é a situação mais honesta: os dados estão completos e apontam para ΛCDM.
+
+**Bloqueadores remanescentes para publicação**:
+- Revisão por pares externos (nenhum T_VAZIO bloqueia mais — só peer review)
+
+---
+
 *Publicar é iluminar com responsabilidade.*
