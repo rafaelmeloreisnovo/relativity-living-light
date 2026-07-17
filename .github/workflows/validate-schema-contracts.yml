@@ -59,7 +59,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install test dependencies
-        run: pip install -e . pytest 'jsonschema[format]'
+        run: pip install pytest 'jsonschema[format]'
       - name: Validate root schema claim boundaries
         run: python tools/validate_schemas_claim_boundary.py
       - name: Validate RAFAELIA Omega schema layer
@@ -75,6 +75,8 @@ jobs:
       - name: Validate RMRCTI Delta-P observation contract
         run: python scripts/validate_rmrcti_delta_p_observation.py
       - name: Run schema validator tests
+        env:
+          PYTHONPATH: src
         run: >-
           python -m pytest -q
           tests/test_schemas_claim_boundary.py
