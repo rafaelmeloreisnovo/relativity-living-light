@@ -75,7 +75,7 @@
 | DESI w_eff — Opção B (scan) | 6 | 14.8 | 0.0 | — | [E] melhoria 79× sobre padrão |
 | DESI w_eff — **Opção B (ótimo)** | 6 | **0.079** | 0.0 | — | ✅ **compatível** — P-RLL-05 CONFIRMADA [E] |
 | DESI w_eff — Opção C (melhor) | 6 | 104.0 | 0.0 | — | ✗ incompatível [E] |
-| Joint MCMC Pantheon+ + DESI | 64+ | TOKEN_VAZIO | TOKEN_VAZIO | — | ⚠️ G1 pendente |
+| Joint MCMC Pantheon+ + DESI | 1677 | Ωs0 UL95=0.00178 | — | — | ✅ G1 FECHADO [E] (FASE 20) |
 
 ### 3.2 Análise w_eff (FASE 10–11)
 
@@ -99,11 +99,11 @@ A assinatura física do setor padrão (w_eff > 0 em z~0.7–1.3) é incompatíve
 |----|-----------|-----------|---------|--------|
 | F-COS-01 | ΔAIC(RLL−ΛCDM) < +10 — Pantheon+ | ΔAIC < 10 | 3.805 | ✅ PASS [E] |
 | F-COS-02 | χ²_Pantheon/dof < 1.05 — RLL | χ²_red < 1.05 | 0.4386 | ✅ PASS [E] |
-| F-COS-03 | z_t ∈ [0.5, 1.5] — scan slingshot | 0.5 ≤ z_t ≤ 1.5 | TOKEN_VAZIO | ⚠️ P0 aguarda G1 |
-| F-COS-04 | ln(B₁₀) RLL/ΛCDM > −5 — Jeffreys | ln(B₁₀) > −5 | TOKEN_VAZIO | ⚠️ P0 aguarda G2 |
+| F-COS-03 | z_t ∈ [0.5, 1.5] — scan slingshot | 0.5 ≤ z_t ≤ 1.5 | z_t_BAO=0.30 | ✗ FAIL [E] |
+| F-COS-04 | ln(B₁₀) RLL/ΛCDM > −5 — Jeffreys | ln(B₁₀) > −5 | −6.190±0.691 | ✗ FAIL [E] |
 | F-COS-05 | χ²_DESI DR2 BAO < 150 (nominal) | χ²_nominal < 150 | 93.81 | ✅ PASS [E] |
 
-**Resumo**: 3/5 PASS · 0/5 FAIL · 2/5 TOKEN_VAZIO P0
+**Resumo**: 2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO
 
 ---
 
@@ -114,8 +114,8 @@ Antes de DESI DR3 e Euclid DR1:
 | ID | Predição | Status vs dados atuais |
 |----|---------|----------------------|
 | P-RLL-01 | w_eff > 0 em z~0.7–1.3 (setor padrão) | ⚠️ disfavorecida por DESI DR2 CPL |
-| P-RLL-02 | Inflexão E(z) em z~1.0 | ⏳ aguarda MCMC joint (G1) |
-| P-RLL-03 | Ωs0 < 0.05 (sub-dominante) | ⏳ aguarda MCMC joint (G1) |
+| P-RLL-02 | Inflexão E(z) em z~1.0 | ⚠️ não detectada em MCMC (Ωs0→0) [E] |
+| P-RLL-03 | Ωs0 < 0.05 (sub-dominante) | ✅ CONFIRMADA [E] — Ωs0 UL95 = 0.00178 << 0.05 |
 | P-RLL-04 | Degeneração padrão/Opção A [verificada retroativamente] | ✅ [E] FASE 4 |
 | P-RLL-05 | Opção B cruzará χ²<10 com otimização contínua | ✅ **CONFIRMADA [E]** — χ²=0.079 (FASE 13) |
 
@@ -141,7 +141,7 @@ Antes de DESI DR3 e Euclid DR1:
 ## 7. Claim Hierarchy — Estado Atual
 
 ```
-claim_allowed = false  ← F-COS-03 (z_t) e F-COS-04 (Bayes) ainda TOKEN_VAZIO
+claim_allowed = false  ← F-COS-03 FAIL [E] (z_t_BAO=0.30) e F-COS-04 FAIL [E] (ln B₁₀=−6.190)
 
 PODE AFIRMAR [N3-N4]:
   ✅ Modelo formal definido desde 2025-09-19 (tag v1.0.0)
@@ -150,12 +150,12 @@ PODE AFIRMAR [N3-N4]:
   ✅ Incompatibilidade w_eff estrutural documentada [E] — resultado honesto
   ✅ Opção B (otimizada): χ²=0.079 — **compatível com CPL DESI** [E] (FASE 13)
   ✅ P-RLL-05 CONFIRMADA: Opção B com w2=−0.282, z_t=1.752, w_t=1.500
-  ✅ 3/5 falsificadores PASS com valores reais
+  ✅ 2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO (falsificadores com valores reais)
   ✅ Predições datadas registradas antes de DESI DR3 e Euclid DR1
 
 NÃO PODE AFIRMAR [VAZIO]:
   ✗ Superioridade sobre ΛCDM (claim_allowed = false)
-  ✗ Bayes Factor favorável (ln B₁₀ > −5)
+  ✗ Bayes Factor favorável (medido: ln B₁₀ = −6.190 ± 0.691 [E] — FAIL)
   ✗ Parâmetros z_t, w_t, Ωs0 a partir de primeiros princípios
   ✗ Assinatura logística localizada compatível com CPL DESI [nota: Opção B ótimo (χ²=0.079) é
     compatível numericamente, mas a compatibilidade exige w_t=1.500 → transição não localizada →
@@ -168,9 +168,9 @@ NÃO PODE AFIRMAR [VAZIO]:
 
 ### P0 — Bloqueadores da afirmação central
 
-1. **Disparar pipeline CI**: `Actions → rll-validacao-cientifica-completa → modo=completo`
-   - Fecha G1 (MCMC joint): constrainge (H₀, Ωm, Ωs0, z_t, w_t) com dados combinados
-   - Fecha G2 (Bayes Factor): ln(B₁₀) via Savage-Dickey ou nested sampling
+1. ✅ **Pipeline executado (FASE 20 — 2026-07-15)**: G1 e G3 FECHADOS [E]
+   - G1 ✅: Ωs0 UL95 = 0.00178 (emcee 32 walkers × 1500 steps, burn=400) — `results/rll_fase20_mcmc_bayes.json`
+   - G3 ✅: ln(B₁₀) = −6.190 ± 0.691 (dynesty nlive=150) — evidência muito forte para ΛCDM (escala Jeffreys)
 
 ### P1 — Alta prioridade (CONCLUÍDO)
 
