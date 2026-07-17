@@ -1,16 +1,17 @@
-# Auxiliary real-data workflow. Canonical policy: .github/workflows/real-data-complete-execution.yml
 name: "Importar dados reais — guarded audit"
+# Auxiliary real-data workflow. Canonical policy: .github/workflows/real-data-complete-execution.yml
 
 on:
   workflow_dispatch:
     inputs:
       real_data_url:
-        description: "URL HTTPS pública explícita para auditoria de importação; obrigatório"
+        description: "URL HTTPS pública CSV/JSON de dado observacional materializado; padrão usa H(z) real do RLL"
         required: true
+        default: "https://raw.githubusercontent.com/instituto-Rafael/relativity-living-light/main/data/real/Hz_data_real.csv"
       output_name:
-        description: Nome do artifact gerado
+        description: "Nome do artifact gerado"
         required: false
-        default: raw-data-audit-sample
+        default: rll-hz-real-audit
 
 permissions:
   contents: read

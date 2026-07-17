@@ -1,6 +1,6 @@
 # CONTRATO DE FALSIFICADORES — RLL v0.1.0
 
-**Data**: 20260709 | **Pipeline**: rll-validacao-cientifica-completa | **Run**: 28995165927 | **Commit**: f1e5354d
+**Data**: 20260709 (atualizado 20260716) | **Pipeline**: rll-validacao-cientifica-completa | **Run**: 28995165927 | **Commit**: f1e5354d
 
 > *"Um modelo científico que não pode ser falsificado não é ciência — é dogma."* — RAFAELIA
 
@@ -8,24 +8,31 @@
 
 | PASS | FAIL | TOKEN_VAZIO |
 |------|------|-------------|
-| 1/5 | 0 | 4 |
+| 2/5 | 2/5 | 0/5 |
+
+> **Nota (FASE 15, 2026-07-10)**: versão anterior gerada pelo CI (2026-07-09) continha TOKEN_VAZIO
+> incorreto em F-COS-01, F-COS-02, F-COS-03. Valores corrigidos abaixo com fontes de dados.
+> F-COS-03 FAIL (resultado honesto) — ver `14_ZT_SCAN_RESULTADO_REAL.md` para detalhes.
+>
+> **Nota (FASE 20, 2026-07-15)**: F-COS-04 atualizado de proxy BIC [C] para resultado formal dynesty [E].
+> P0 desbloqueadores G1 e G3 fechados — ver `results/rll_fase20_mcmc_bayes.json` e `19_FASE20_MCMC_BAYES_FACTOR.md`.
 
 ## Falsificadores Ativos
 
-| ID | Descrição | Threshold | Resultado CI | Status |
-|----|-----------|-----------|-------------|--------|
-| F-COS-01 | ΔAIC(RLL−ΛCDM) < +10 — Pantheon+SH0ES | `ΔAIC < 10` | TOKEN_VAZIO | ⚠️ TOKEN_VAZIO |
-| F-COS-02 | χ²_Pantheon/dof < 1.05 — RLL original | `χ²_red < 1.05` | TOKEN_VAZIO | ⚠️ TOKEN_VAZIO |
-| F-COS-03 | z_t ∈ [0.5, 1.5] — scan C01 slingshot | `0.5 ≤ z_t ≤ 1.5` | TOKEN_VAZIO | ⚠️ TOKEN_VAZIO |
-| F-COS-04 | ln(B₁₀) RLL/ΛCDM > −5 — escala Jeffreys | `ln(B₁₀) > −5` | TOKEN_VAZIO P0 | ⚠️ TOKEN_VAZIO |
-| F-COS-05 | χ²_DESI DR2 BAO < 150 (parâmetros nominais) | `χ²_nominal < 150` | 93.81 | ✅ PASS |
+| ID | Descrição | Threshold | Resultado | Status | Fonte |
+|----|-----------|-----------|---------|--------|-------|
+| F-COS-01 | ΔAIC(RLL−ΛCDM) < +10 — Pantheon+SH0ES | `ΔAIC < 10` | **3.805** | ✅ PASS [E] | `results/pantheon_plus_resultado_real.txt` |
+| F-COS-02 | χ²_Pantheon/dof < 1.05 — RLL original | `χ²_red < 1.05` | **0.4387** | ✅ PASS [E] | `results/pantheon_plus_resultado_real.txt` |
+| F-COS-03 | z_t ∈ [0.5, 1.5] — scan slingshot | `0.5 ≤ z_t ≤ 1.5` | **z_t_BAO=0.3** | ✗ FAIL [E] | `results/zt_scan/summary.json` |
+| F-COS-04 | ln(B₁₀) RLL/ΛCDM > −5 — escala Jeffreys | `ln(B₁₀) > −5` | **−6.190 ± 0.691 (dynesty, FASE 20)** | ✗ FAIL [E] | `results/rll_fase20_mcmc_bayes.json` |
+| F-COS-05 | χ²_DESI DR2 BAO < 150 (parâmetros nominais) | `χ²_nominal < 150` | **93.81** | ✅ PASS [E] | `results/desi_dr2_bao_covariance_chi2.json` |
 
 ## P0 Desbloqueadores
 
-| Gap | Status | Método |
-|-----|--------|--------|
-| Joint MCMC Pantheon+ + DESI BAO | ✅ FECHADO | Structure-D inference (emcee 32×1000) |
-| Fator de Bayes RLL/ΛCDM | ⚠️ TOKEN_VAZIO | BIC proxy (ln B ≈ −ΔBIC/2) |
+| Gap | Status | Resultado |
+|-----|--------|-----------|
+| G1: Joint MCMC Pantheon+ + DESI BAO | ✅ FECHADO (FASE 20, 2026-07-15) | Ωs0 UL95=0.00178; emcee 32×1500; PR #554 |
+| G3: Fator de Bayes RLL/ΛCDM (formal) | ✅ FECHADO (FASE 20, 2026-07-15) | ln(B₁₀)=−6.190±0.691; dynesty nlive=150; PR #554 |
 
 ## Rastreabilidade de Artefatos
 

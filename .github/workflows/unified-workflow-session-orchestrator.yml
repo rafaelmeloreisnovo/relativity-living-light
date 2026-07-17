@@ -1,0 +1,120 @@
+name: Unified Workflow Session Orchestrator
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: "Execution profile from .github/workflow-orchestrator/session.yml"
+        required: true
+        default: full_session
+        type: choice
+        options:
+          - full_session
+          - quick_session
+          - real_data_session
+      ref:
+        description: "Branch or ref for dispatch"
+        required: true
+        default: main
+        type: string
+      wait_for_completion:
+        description: "Wait for each selected workflow and fail on non-success conclusions"
+        required: true
+        default: true
+        type: boolean
+      fail_fast:
+        description: "Stop orchestration on first dispatch/run failure"
+        required: true
+        default: true
+        type: boolean
+      dry_run:
+        description: "Only plan selected workflows without dispatching"
+        required: true
+        default: false
+        type: boolean
+      overrides:
+        description: "JSON workflow input overrides, keyed by catalog workflow id"
+        required: false
+        default: "{}"
+        type: string
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: unified-workflow-session-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  orchestrate-workflow-session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml
+
+      - name: Run unified workflow orchestration
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          mkdir -p artifacts/unified-workflow-session
+          args=(
+            --catalog .github/workflow-orchestrator/session.yml
+            --profile "${{ inputs.profile }}"
+            --ref "${{ inputs.ref }}"
+            --overrides '${{ inputs.overrides }}'
+            --output-dir artifacts/unified-workflow-session
+          )
+          if [ "${{ inputs.wait_for_completion }}" = "true" ]; then
+            args+=(--wait)
+          fi
+          if [ "${{ inputs.fail_fast }}" = "true" ]; then
+            args+=(--fail-fast)
+          fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            args+=(--dry-run)
+          fi
+          python3 tools/workflow_orchestrator.py "${args[@]}"
+
+      - name: Publish orchestration summary
+        if: always()
+        run: |
+          if [ -f artifacts/unified-workflow-session/ORCHESTRATION_REPORT.md ]; then
+            cat artifacts/unified-workflow-session/ORCHESTRATION_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload orchestration artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unified-workflow-session-${{ github.run_id }}
+          path: artifacts/unified-workflow-session/
+          retention-days: 14
+
+      - name: Finalize canonical real-data policy checksums
+        if: always()
+        run: |
+          set -euo pipefail
+          ARTIFACT_DIR="artifacts/workflow-policy/unified-workflow-session-orchestrator/${{ github.job }}"
+          mkdir -p "$ARTIFACT_DIR"
+          . tools/ci/real_data_workflow_policy.sh
+          rll_real_data_write_claim_boundary "$ARTIFACT_DIR"
+          rll_real_data_assert_boundary_file "$ARTIFACT_DIR/CLAIM_BOUNDARY.md"
+          rll_real_data_write_checksums "$ARTIFACT_DIR"
+        env:
+          CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+          CLAIM_BOUNDARY: Auxiliary real-data workflow only; no RLL/cosmology/superiority claim and no synthetic, mock, fixture, demo, example, or placeholder promotion beyond explicit run checks.

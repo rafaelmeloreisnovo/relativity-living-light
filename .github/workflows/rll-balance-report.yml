@@ -1,3 +1,5 @@
+# CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+# CLAIM_BOUNDARY: This workflow generates structural comparison artifacts only. A synthetic/demo fallback validates plumbing and never counts as real observational evidence.
 name: RLL Balance Report
 
 on:
