@@ -33,6 +33,13 @@ on:
       - "tools/audit_github_workflows.py"
       - "tools/validate_claim_allowed_gate.py"
       - "tools/validate_schemas_claim_boundary.py"
+      - "tests/test_rll_pipeline_deterministic.py"
+      - "tests/test_scientific_workflow_path_filters.py"
+      - "src/**"
+      - "data/**"
+      - "validation/**"
+      - "requirements*.txt"
+      - "pyproject.toml"
 
 permissions:
   contents: read
