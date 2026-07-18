@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path, PurePosixPath
+from fnmatch import fnmatchcase
+from pathlib import Path
 
 import pytest
 import yaml
@@ -86,7 +87,8 @@ def _pull_request_paths(path: str) -> list[str]:
 
 
 def _matches_any(changed_path: str, patterns: list[str]) -> bool:
-    return any(PurePosixPath(changed_path).match(pattern) for pattern in patterns)
+    """Approximate GitHub path-filter glob semantics, including recursive `**`."""
+    return any(fnmatchcase(changed_path, pattern) for pattern in patterns)
 
 
 @pytest.mark.parametrize("workflow_path", PATH_FILTERED_WORKFLOW_REQUIREMENTS)
