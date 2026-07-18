@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+import sys
 import unittest
 
 MODULE_PATH = (
@@ -9,6 +10,7 @@ MODULE_PATH = (
 spec = importlib.util.spec_from_file_location("compression_radiation", MODULE_PATH)
 m = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
+sys.modules[spec.name] = m
 spec.loader.exec_module(m)
 
 
