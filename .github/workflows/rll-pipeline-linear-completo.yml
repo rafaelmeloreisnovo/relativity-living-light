@@ -29,10 +29,10 @@ on:
       - ".github/workflows/RLL_SCIENTIFIC.yml"
       - ".github/workflows/bayes_analysis.yml"
       - "tools/rll_pipeline_deterministic.py"
+      - "tools/validate_schema_contracts.py"
       - "tools/audit_github_workflows.py"
       - "tools/validate_claim_allowed_gate.py"
-      - "tools/validate_schema_contracts.py"
-      - "scripts/validate_schema_contracts.py"
+      - "tools/validate_schemas_claim_boundary.py"
 
 permissions:
   contents: read
@@ -68,7 +68,7 @@ jobs:
       - name: "Bootstrap mínimo do gate"
         run: |
           python -m pip install --upgrade pip
-          python -m pip install PyYAML
+          python -m pip install PyYAML jsonschema
 
       - name: "02–43 · Executar orquestrador determinístico"
         id: gate
