@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-19",
+  "claim_allowed": false,
+  "producer_repo": "rafaelmeloreisnovo/Fisica",
+  "producer_commit": "97f0b96ade391f746125144ce4cc936d76dd2ff7",
+  "producer_paths": {
+    "implementation": "src/geophysical_transduction.py",
+    "source_registry": "data/literature/geophysical_transduction_sources.json",
+    "experiment_manifest": "configs/geophysical_transduction_experiment.example.json",
+    "tests": "tests/test_geophysical_transduction.py"
+  },
+  "consumer_module": "src/rll/geophysical_transduction_adapter.py",
+  "allowed_use": [
+    "environmental context",
+    "instrumental null model",
+    "preregistered residual comparator"
+  ],
+  "blocked_use": [
+    "background cosmology evidence",
+    "new physics confirmation",
+    "earthquake prediction"
+  ],
+  "local_geophysics_is_cosmological_evidence": false,
+  "default_classification": "CONTEXT_ONLY"
+}
