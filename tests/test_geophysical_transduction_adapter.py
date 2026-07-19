@@ -1,9 +1,14 @@
+import json
+from pathlib import Path
+
 from rll.geophysical_transduction_adapter import (
     classify_rll_use,
     validate_external_result,
 )
 
-PIN = "97f0b96ade391f746125144ce4cc936d76dd2ff7"
+ROOT = Path(__file__).resolve().parents[1]
+PIN = "a765486980e0616204ae46979ef9ac3399199c12"
+PREVIOUS_PIN = "97f0b96ade391f746125144ce4cc936d76dd2ff7"
 
 
 def token_vazio_payload():
@@ -17,10 +22,45 @@ def token_vazio_payload():
     }
 
 
+def test_registry_pins_current_producer_and_preserves_lineage():
+    registry = json.loads(
+        (ROOT / "data/registries/rll_b10_geophysical_transduction_consumer.json")
+        .read_text(encoding="utf-8")
+    )
+    lineage = [entry["commit"] for entry in registry["producer_lineage"]]
+    assert registry["producer_commit"] == PIN
+    assert PREVIOUS_PIN in lineage
+    assert PIN in lineage
+    assert registry["producer_validation"]["conclusion"] == "success"
+    assert registry["claim_allowed"] is False
+    assert registry["local_geophysics_is_cosmological_evidence"] is False
+
+
+def test_registry_blocks_invalid_scale_promotions():
+    registry = json.loads(
+        (ROOT / "data/registries/rll_b10_geophysical_transduction_consumer.json")
+        .read_text(encoding="utf-8")
+    )
+    blocked = " ".join(registry["blocked_use"])
+    assert "X-ray" in blocked
+    assert "bulk source of hydrogen or water" in blocked
+    assert "linear amplification" in blocked
+    assert "universal salinity" in blocked
+
+
 def test_token_vazio_artifact_is_valid_context_only():
     payload = token_vazio_payload()
     assert validate_external_result(payload, expected_commit=PIN) == []
     assert classify_rll_use(payload) == "CONTEXT_ONLY"
+
+
+def test_old_pin_is_rejected_as_current_payload():
+    payload = token_vazio_payload()
+    payload["producer_commit"] = PREVIOUS_PIN
+    assert any(
+        "pinned contract" in error
+        for error in validate_external_result(payload, expected_commit=PIN)
+    )
 
 
 def test_wrong_producer_is_blocked():
