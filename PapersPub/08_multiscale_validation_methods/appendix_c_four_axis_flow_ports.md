@@ -201,7 +201,7 @@ python3 PapersPub/08_multiscale_validation_methods/scripts/validate_four_axis_fl
 Expected:
 
 ```text
-20/20 checks PASS
+21/21 checks PASS
 axis_count = 4
 port_count = 8
 exact_geometry_state = PASS
