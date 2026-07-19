@@ -1,0 +1,25 @@
+{
+  "axis_count": 4,
+  "checks": {
+    "diameter_is_2r": true,
+    "diagonal_normalization": true,
+    "eight_matrix_directions": true,
+    "eight_ports": true,
+    "four_axes": true,
+    "opposed_midpoint_is_center": true,
+    "physical_claims_blocked": true,
+    "ports_on_circle": true,
+    "tangent_line_distance_is_r": true,
+    "tangent_perpendicular": true,
+    "torus_sweep_preserves_meridian_radius": true,
+    "two_ports_per_axis": true
+  },
+  "checks_failed": 0,
+  "checks_passed": 12,
+  "checks_total": 12,
+  "claim_allowed": false,
+  "exact_geometry_state": "PASS",
+  "physical_claims_state": "TOKEN_VAZIO",
+  "port_count": 8,
+  "schema": "paper.validation.four_axis_flow_ports.v1"
+}
