@@ -7,9 +7,14 @@ on:
       - "data/epistemic_void/**"
       - "data/omega_operational/**"
       - "data/knowledge_forest/**"
+      - "data/contracts/fase29_integrity_lenses.v1.json"
+      - "data/contracts/rll_falsifier_bundle.json"
+      - "data/contracts/dataset_rights_manifest.json"
+      - "results/state_transition_ledger.jsonl"
       - "docs/science/CAMPO_ENTROPICO_TOKEN_VAZIO.md"
       - "docs/architecture/31_OMEGA7_OPERATIONAL_INVARIANT.md"
       - "docs/architecture/32_RLL_OMEGA_ROUTE_FOREST.md"
+      - "docs/architecture/33_FASE29_LEDGER_DIREITOS_FALSIFICADORES.md"
       - "fixtures/ambient_field_observation.example.json"
       - "fixtures/rmrcti_delta_p_observation.example.json"
       - "fixtures/rll_run_manifest.partial.example.json"
@@ -24,6 +29,7 @@ on:
       - "tools/validate_epistemic_void.py"
       - "tools/validate_omega7_operational.py"
       - "tools/build_rll_route_forest.py"
+      - "tools/validate_fase29_integrity.py"
       - "tests/test_schemas_claim_boundary.py"
       - "tests/test_semantic_governance_schemas.py"
       - "tests/test_information_evolution_trace.py"
@@ -32,6 +38,7 @@ on:
       - "tests/test_epistemic_void.py"
       - "tests/test_omega7_operational.py"
       - "tests/test_rll_route_forest.py"
+      - "tests/test_fase29_integrity.py"
       - ".github/workflows/validate-schema-contracts.yml"
   push:
     branches: [main]
@@ -40,9 +47,14 @@ on:
       - "data/epistemic_void/**"
       - "data/omega_operational/**"
       - "data/knowledge_forest/**"
+      - "data/contracts/fase29_integrity_lenses.v1.json"
+      - "data/contracts/rll_falsifier_bundle.json"
+      - "data/contracts/dataset_rights_manifest.json"
+      - "results/state_transition_ledger.jsonl"
       - "docs/science/CAMPO_ENTROPICO_TOKEN_VAZIO.md"
       - "docs/architecture/31_OMEGA7_OPERATIONAL_INVARIANT.md"
       - "docs/architecture/32_RLL_OMEGA_ROUTE_FOREST.md"
+      - "docs/architecture/33_FASE29_LEDGER_DIREITOS_FALSIFICADORES.md"
       - "fixtures/ambient_field_observation.example.json"
       - "fixtures/rmrcti_delta_p_observation.example.json"
       - "fixtures/rll_run_manifest.partial.example.json"
@@ -57,6 +69,7 @@ on:
       - "tools/validate_epistemic_void.py"
       - "tools/validate_omega7_operational.py"
       - "tools/build_rll_route_forest.py"
+      - "tools/validate_fase29_integrity.py"
       - "tests/test_schemas_claim_boundary.py"
       - "tests/test_semantic_governance_schemas.py"
       - "tests/test_information_evolution_trace.py"
@@ -65,6 +78,7 @@ on:
       - "tests/test_epistemic_void.py"
       - "tests/test_omega7_operational.py"
       - "tests/test_rll_route_forest.py"
+      - "tests/test_fase29_integrity.py"
       - ".github/workflows/validate-schema-contracts.yml"
   workflow_dispatch:
 
@@ -78,7 +92,7 @@ concurrency:
 jobs:
   validate-schema-contracts:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 7
     steps:
       - uses: actions/checkout@v4
         with:
@@ -96,6 +110,8 @@ jobs:
         run: python tools/validate_omega7_operational.py --strict --write-report
       - name: Validate Omega route forest
         run: python tools/build_rll_route_forest.py --strict --write-report
+      - name: Validate FASE 29 thirty-lens integrity
+        run: python tools/validate_fase29_integrity.py --strict --write-report
       - name: Validate RAFAELIA Omega schema layer
         run: python scripts/validate_omega_schemas.py
       - name: Validate information evolution custody trace
@@ -121,6 +137,7 @@ jobs:
           tests/test_epistemic_void.py
           tests/test_omega7_operational.py
           tests/test_rll_route_forest.py
+          tests/test_fase29_integrity.py
       - name: Upload epistemic void validation receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -143,5 +160,13 @@ jobs:
         with:
           name: route-forest-${{ github.run_id }}
           path: artifacts/route-forest/
+          retention-days: 30
+          if-no-files-found: error
+      - name: Upload FASE 29 integrity receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fase29-integrity-${{ github.run_id }}
+          path: artifacts/fase29-integrity/
           retention-days: 30
           if-no-files-found: error
