@@ -1,0 +1,173 @@
+{
+  "schema": "rll.falsifier_bundle.v1",
+  "bundle_id": "RLL-FALSIFIER-BUNDLE-20260720",
+  "generated_at": "2026-07-20T00:00:00Z",
+  "claim_allowed": false,
+  "model": "RLL v0.1.0",
+  "model_equation": "E²(z) = Ωm(1+z)³ + Ωr(1+z)⁴ + Ωs0·[f(z)+(1-f(z))·(1+z)³] + ΩΛ",
+  "transition_function": "f(z) = 1/(1+exp((z-z_t)/w_t))",
+  "contrato_status": "2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO",
+  "boundary": "claim_allowed=false por resultado empírico (F-COS-03 e F-COS-04 FAIL [E]), não por lacuna.",
+
+  "falsifiers": [
+    {
+      "id": "F-COS-01",
+      "name": "ΔAIC(RLL−ΛCDM) < +10",
+      "description": "Critério de informação de Akaike — RLL deve ser competitivo com ΛCDM nos dados de distância de luminosidade",
+      "threshold": "ΔAIC < 10",
+      "threshold_value": 10.0,
+      "operator": "lt",
+      "direction": "D7",
+      "dataset": "Pantheon+SH0ES (1701 SNe Ia)",
+      "dataset_id": "DS-PANTHEON-PLUS",
+      "method": "Nelder-Mead fit; χ²_RLL e χ²_ΛCDM; ΔAIC = ΔBIC + 2(k_RLL - k_ΛCDM)",
+      "result": 3.805,
+      "result_unit": "nats",
+      "status": "PASS",
+      "epistemic_status": "VERIFIED_AT_SOURCE",
+      "source": "results/pantheon_plus_resultado_real.txt",
+      "source_phase": "FASE 4",
+      "source_pr": 501,
+      "chi2_rll": 710.613,
+      "chi2_lcdm": 710.808,
+      "note": "Parameters not marginalized (Nelder-Mead). MCMC would give formal uncertainty on ΔAIC.",
+      "holdout_status": "not_defined"
+    },
+    {
+      "id": "F-COS-02",
+      "name": "χ²_Pantheon/dof < 1.05",
+      "description": "Qui-quadrado reduzido de Pantheon+ — RLL deve ter goodness-of-fit aceitável",
+      "threshold": "χ²_red < 1.05",
+      "threshold_value": 1.05,
+      "operator": "lt",
+      "direction": "D7",
+      "dataset": "Pantheon+SH0ES (1701 SNe Ia; 1620 dof)",
+      "dataset_id": "DS-PANTHEON-PLUS",
+      "method": "χ²_red = χ²_RLL / dof",
+      "result": 0.4387,
+      "result_unit": "dimensionless",
+      "status": "PASS",
+      "epistemic_status": "VERIFIED_AT_SOURCE",
+      "source": "results/pantheon_plus_resultado_real.txt",
+      "source_phase": "FASE 4",
+      "source_pr": 501,
+      "chi2_rll": 710.613,
+      "dof": 1620,
+      "note": "χ²_red=0.44 é muito baixo, indicando possível superajuste ou incertezas conservadoras — não invalida o PASS.",
+      "holdout_status": "not_defined"
+    },
+    {
+      "id": "F-COS-03",
+      "name": "z_t ∈ [0.5, 1.5]",
+      "description": "Parâmetro de transição z_t deve estar em intervalo fisicamente motivado (transição matéria-energia escura entre z=0.5 e z=1.5)",
+      "threshold": "0.5 ≤ z_t ≤ 1.5",
+      "threshold_value": [0.5, 1.5],
+      "operator": "in_interval",
+      "direction": "D7",
+      "dataset": "DESI DR2 BAO + Pantheon+SH0ES (joint MCMC)",
+      "dataset_id": "DS-DESI-DR2-BAO",
+      "method": "emcee 32 walkers × 1500 steps; burn=400; 6D posterior {H₀, Ωm, Ωs0, z_t, w_t, ΩΛ}",
+      "result": 0.30,
+      "result_unit": "dimensionless (redshift)",
+      "status": "FAIL",
+      "epistemic_status": "VERIFIED_AT_SOURCE",
+      "source": "results/ci/20260709/joint_mcmc_summary.json",
+      "source_phase": "FASE 20",
+      "source_pr": 554,
+      "note": "z_t=0.30 < 0.5 → ΛCDM puro mais adequado; RLL transição ocorre antes do observado.",
+      "falsification_strength": "STRONG",
+      "holdout_status": "not_defined"
+    },
+    {
+      "id": "F-COS-04",
+      "name": "ln(B₁₀) > −5 (Jeffreys)",
+      "description": "Bayes Factor RLL/ΛCDM via evidence ratio — deve ser > −5 (escala Jeffreys) para não indicar evidência muito forte contra RLL",
+      "threshold": "ln(B₁₀) > −5",
+      "threshold_value": -5.0,
+      "operator": "gt",
+      "direction": "D7",
+      "dataset": "DESI DR2 BAO + Pantheon+SH0ES + Moresco H(z) + CMB priors (joint)",
+      "dataset_id": "DS-DESI-DR2-BAO",
+      "method": "dynesty nested sampling; nlive=150; dlogz=0.5; RLL (6D) + ΛCDM (3D)",
+      "result": -6.190,
+      "result_uncertainty": 0.691,
+      "result_unit": "nats (log Bayes factor)",
+      "status": "FAIL",
+      "epistemic_status": "VERIFIED_AT_SOURCE",
+      "source": "results/ci/20260709/bayes_factor_result.json",
+      "source_phase": "FASE 20",
+      "source_pr": 554,
+      "jeffreys_label": "Very strong evidence for ΛCDM",
+      "note": "|ln(B₁₀)|=6.19 > 5.0 → evidência muito forte para ΛCDM na escala de Jeffreys (1961). RLL extra complexity not justified by data.",
+      "falsification_strength": "DECISIVE",
+      "holdout_status": "not_defined"
+    },
+    {
+      "id": "F-COS-05",
+      "name": "χ²_DESI_nominal < 150",
+      "description": "Qui-quadrado nominal RLL nos dados DESI DR2 BAO (parâmetros nominais, não otimizados)",
+      "threshold": "χ²_nominal < 150",
+      "threshold_value": 150.0,
+      "operator": "lt",
+      "direction": "D7",
+      "dataset": "DESI DR2 BAO (13 pontos)",
+      "dataset_id": "DS-DESI-DR2-BAO",
+      "method": "χ² com parâmetros nominais (não otimizados); covariância 13×13",
+      "result": 93.806,
+      "result_unit": "dimensionless",
+      "status": "PASS",
+      "epistemic_status": "VERIFIED_AT_SOURCE",
+      "source": "results/desi_dr2_bao_covariance_chi2.json",
+      "source_phase": "FASE 13",
+      "source_pr": 510,
+      "note": "Parâmetros nominais. χ²_ΛCDM=28.97, χ²_RLL=93.81 — RLL é penalizado mas abaixo do threshold de falsificação.",
+      "holdout_status": "not_defined"
+    }
+  ],
+
+  "summary": {
+    "total": 5,
+    "pass": 2,
+    "fail": 2,
+    "token_vazio": 0,
+    "pass_ids": ["F-COS-01", "F-COS-02", "F-COS-05"],
+    "fail_ids": ["F-COS-03", "F-COS-04"],
+    "contrato": "2/5 PASS · 2/5 FAIL · 0/5 TOKEN_VAZIO",
+    "claim_allowed": false,
+    "claim_reason": "F-COS-03 FAIL [E]: z_t=0.30 fora de [0.5,1.5]. F-COS-04 FAIL [E]: ln(B₁₀)=−6.19 < −5 (evidência muito forte para ΛCDM). Não é TOKEN_VAZIO — é resultado empírico negativo."
+  },
+
+  "holdout_gaps": [
+    {
+      "gap_id": "G-HOLDOUT-01",
+      "description": "Nenhum holdout split definido. Os mesmos dados foram usados para fit e avaliação dos falsificadores. Não invalida os resultados atuais (falsificadores são critérios de comparação, não predição out-of-sample), mas necessário antes de qualquer uso ML.",
+      "priority": "P1",
+      "resolution": "Criar data/contracts/holdout_split_manifest.json com splits temporais (z<0.8 treino, z≥0.8 teste) ou geográficos (survey splits)."
+    }
+  ],
+
+  "baseline_comparison": {
+    "model_lcdm": {
+      "dof": 3,
+      "parameters": ["H0", "Omega_m", "Omega_Lambda"],
+      "chi2_pantheon": 710.808,
+      "ln_evidence": "reference (0 by definition in B10)"
+    },
+    "model_rll": {
+      "dof": 6,
+      "parameters": ["H0", "Omega_m", "Omega_s0", "z_t", "w_t", "Omega_Lambda"],
+      "chi2_pantheon": 710.613,
+      "ln_evidence_relative": -6.190,
+      "ln_evidence_uncertainty": 0.691
+    }
+  },
+
+  "references": [
+    "Jeffreys H. (1961). Theory of Probability (3rd ed.). Oxford University Press.",
+    "Foreman-Mackey D. et al. (2013). emcee: The MCMC Hammer. arXiv:1202.3665",
+    "Speagle J.S. (2020). dynesty: a dynamic nested sampling package. arXiv:1904.02180",
+    "Brout D. et al. (2022). Pantheon+SH0ES. arXiv:2202.04077",
+    "DESI Collaboration (2025). DESI DR2 BAO. arXiv:2503.14738",
+    "Planck Collaboration (2020). Planck 2018 VI. arXiv:1807.06209"
+  ]
+}

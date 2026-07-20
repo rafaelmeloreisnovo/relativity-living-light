@@ -1,0 +1,128 @@
+{
+  "schema": "rll.dataset_rights_manifest.v1",
+  "manifest_id": "RLL-RIGHTS-MANIFEST-20260720",
+  "generated_at": "2026-07-20T00:00:00Z",
+  "claim_allowed": false,
+  "training_allowed": false,
+  "purpose": "D6 gap closure — explicit rights, license, privacy and authorship declaration for all datasets in the RLL knowledge forest.",
+  "boundary": "This manifest documents what IS known about rights. Gaps (fields = null) must be resolved before any dataset enters ML training.",
+  "datasets": [
+    {
+      "dataset_id": "DS-PANTHEON-PLUS",
+      "name": "Pantheon+SH0ES",
+      "description": "1701 SNe Ia distance moduli and covariance matrix",
+      "path": "data/real/cosmology/pantheon_plus/",
+      "source_url": "https://github.com/PantheonPlusSH0ES/DataRelease",
+      "citation": "Brout+2022 (arXiv:2202.04077); Scolnic+2022 (arXiv:2202.04076)",
+      "license": "Public domain (published with data release)",
+      "license_verified": true,
+      "privacy": "public",
+      "authorship": "D.Brout, D.Scolnic et al. (Pantheon+ Collaboration)",
+      "purpose_allowed": ["research", "validation", "reproduction"],
+      "training_allowed": false,
+      "training_gate": "Requires explicit model-card and holdout split before any ML use.",
+      "retention": "indefinite",
+      "rights_complete": true
+    },
+    {
+      "dataset_id": "DS-DESI-DR2-BAO",
+      "name": "DESI DR2 BAO Primary Points",
+      "description": "13 BAO measurements (DM/rd, DH/rd) with covariance",
+      "path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
+      "source_url": "https://data.desi.lbl.gov/doc/releases/dr2/",
+      "citation": "DESI Collaboration 2025 (arXiv:2503.14738)",
+      "license": "CC-BY 4.0 (DESI public data release)",
+      "license_verified": true,
+      "privacy": "public",
+      "authorship": "DESI Collaboration",
+      "purpose_allowed": ["research", "validation", "reproduction"],
+      "training_allowed": false,
+      "training_gate": "Requires holdout split and model-card before ML use.",
+      "retention": "indefinite",
+      "rights_complete": true
+    },
+    {
+      "dataset_id": "DS-MORESCO-HZ",
+      "name": "Moresco H(z) Cosmic Chronometers",
+      "description": "33 H(z) measurements from passive evolving galaxies",
+      "path": "results/Hz_data_real.csv",
+      "source_url": null,
+      "citation": "Moresco+2022 (arXiv:2201.07241)",
+      "license": "Public academic data (journal publication)",
+      "license_verified": false,
+      "privacy": "public",
+      "authorship": "M.Moresco et al.",
+      "purpose_allowed": ["research", "validation"],
+      "training_allowed": false,
+      "training_gate": "License must be verified with journal/author before ML use.",
+      "retention": "indefinite",
+      "rights_complete": false,
+      "rights_gap": "License URL not retrieved; needs formal verification."
+    },
+    {
+      "dataset_id": "DS-PLANCK-2018",
+      "name": "Planck 2018 Cosmological Parameters",
+      "description": "CMB-derived cosmological parameters (H0, Ωm, Ωb, etc.)",
+      "path": "data/real/ (used as priors, not raw data)",
+      "source_url": "https://pla.esac.esa.int/",
+      "citation": "Planck Collaboration 2020 (arXiv:1807.06209)",
+      "license": "Public domain (ESA public release)",
+      "license_verified": true,
+      "privacy": "public",
+      "authorship": "Planck Collaboration",
+      "purpose_allowed": ["research", "validation", "calibration"],
+      "training_allowed": false,
+      "training_gate": "Parameters used as priors; full likelihood maps require dedicated license review.",
+      "retention": "indefinite",
+      "rights_complete": true
+    },
+    {
+      "dataset_id": "DS-DENSE-FEATURES",
+      "name": "Dense Behavior Feature Matrix (RLL bootstrap)",
+      "description": "Internal feature matrix from bootstrap scan of RLL codebase",
+      "path": "data/results/bootstrap/dense_behavior_features.json",
+      "source_url": null,
+      "citation": "Generated internally by scripts/data_scan/build_dense_behavior_features.py",
+      "license": "Internal — same license as this repository",
+      "license_verified": true,
+      "privacy": "internal",
+      "authorship": "instituto-rafael/relativity-living-light contributors",
+      "purpose_allowed": ["research", "validation", "internal_analysis"],
+      "training_allowed": false,
+      "training_gate": "Holdout split, leakage analysis and model-card required before ML training.",
+      "retention": "indefinite",
+      "rights_complete": true
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "G-RIGHTS-01",
+      "dataset_id": "DS-MORESCO-HZ",
+      "description": "Moresco H(z) license URL not verified — needs formal confirmation before ML use.",
+      "priority": "P2",
+      "resolution": "Contact Moresco+2022 data repository or journal for explicit license."
+    },
+    {
+      "gap_id": "G-RIGHTS-02",
+      "dataset_id": "*",
+      "description": "No holdout split defined for any dataset. Required before any ML baseline.",
+      "priority": "P1",
+      "resolution": "Define train/val/test split schema in data/contracts/holdout_split_manifest.json"
+    },
+    {
+      "gap_id": "G-RIGHTS-03",
+      "dataset_id": "*",
+      "description": "No model-card template exists for any potential ML model trained on these datasets.",
+      "priority": "P2",
+      "resolution": "Create docs/ml/MODEL_CARD_TEMPLATE.md before any ML training."
+    }
+  ],
+  "summary": {
+    "total_datasets": 5,
+    "rights_complete": 4,
+    "rights_incomplete": 1,
+    "training_allowed_any": false,
+    "d6_status": "PARTIAL",
+    "d6_note": "Rights documented for 4/5 datasets. All training blocked until holdout and model-card gaps closed."
+  }
+}
