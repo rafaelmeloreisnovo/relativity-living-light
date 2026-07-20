@@ -29,6 +29,17 @@ docs/strong_gravity/MAGNETOROTATIONAL_JET_BRIDGE.md
 docs/strong_gravity/SESSION_MAGNETIC_GRAVITY_COSMOLOGY_SYNTHESIS_20260720.md
 ```
 
+### Toroidal/sine-reference research adapter — 2026-07-20
+
+```text
+data/pipelines/strong_gravity/toroidal_sine_reference.py
+data/contracts/toroidal_research_cycle_adapter.v1.json
+data/results/strong_gravity/toroidal_sine_reference_baseline.json
+data/results/strong_gravity/toroidal_sine_reference_validation_receipt.json
+tests/strong_gravity/test_toroidal_sine_reference.py
+docs/strong_gravity/TOROIDAL_SINE_REFERENCE_ADAPTER.md
+```
+
 ### Shared formula inventory
 
 ```text
@@ -55,6 +66,15 @@ relativistic magnetization    = B^2/(mu0 rho h c^2)
 Kerr horizon rotation         = a_* c^3/[2GM(1+sqrt(1-a_*^2))]
 light-cylinder radius         = c/Omega_F
 BZ dimensional proxy          = kappa Phi_B^2 Omega_H^2/(mu0 c)
+
+toroidal coordinates          = ((R+r cos theta) cos phi,
+                                 (R+r cos theta) sin phi,
+                                  r sin theta)
+sine reference                = A sin(2 pi f t + phi0)
+wrapped phase residual        = atan2(sin Delta_phi, cos Delta_phi)
+phase-lock score convention   = (1 + cos Delta_phi)/2
+normalized tracking error     = RMS(s_obs-s_ref)/A
+geometric path metric         = sum((||x_i-x_(i-1)||/R)^2)
 ```
 
 ## Semantic corrections
@@ -73,6 +93,10 @@ BZ dimensional proxy          = kappa Phi_B^2 Omega_H^2/(mu0 c)
 - an electroaerodynamic lifter and a black-hole jet share a force-density pattern but not the same medium or complete dynamics;
 - `A_B >= 1` is a MAD candidate diagnostic, not proof of a magnetically arrested disk;
 - `sigma >= 1` is a Poynting-dominated candidate, not proof of a measured relativistic jet;
+- toroidal coordinates are a geometry, not proof that the investigated source is a physical torus;
+- a pure sine is a reference waveform, not a universal stabilizer;
+- a dimensionless path metric is not thermodynamic energy, jet power or stress-energy;
+- a tokamak stabilization result cannot be transferred directly to black-hole accretion;
 - local source physics does not modify the RLL cosmological background without an explicit covariant, population or propagation bridge.
 
 ## Integration order
@@ -90,6 +114,10 @@ relativistic_compression_radiation_bridge.py
 magnetorotational_jet_bridge.py
   -> angular memory, EAD/plasma force density, Poynting transport,
      MAD/sigma diagnostics, Kerr rotation, light cylinder and BZ scaling
+
+toroidal_sine_reference.py
+  -> double-period geometry, bounded sine reference, phase error,
+     closure residual and dimensionless path diagnostics
 ```
 
 ## Validation boundary
@@ -97,6 +125,7 @@ magnetorotational_jet_bridge.py
 ```text
 compression/radiation focused tests = 15 PASS (recorded pre-commit execution)
 magnetorotational focused tests      = 21 PASS (recorded local execution)
+toroidal/sine focused tests          = 15 PASS (recorded local execution)
 
 GRMHD solution                       = false
 force-free global solution           = false
@@ -107,6 +136,7 @@ Einstein backreaction                = false
 nuclear network                      = false
 laboratory validation                = false
 astrophysical source fit             = false
+universal sine stabilization         = false
 RLL cosmology validation             = false
 claim_allowed                        = false
 ```
