@@ -7,8 +7,8 @@ from rll.geophysical_transduction_adapter import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-PIN = "a765486980e0616204ae46979ef9ac3399199c12"
-PREVIOUS_PIN = "97f0b96ade391f746125144ce4cc936d76dd2ff7"
+PIN = "829d8511e33a14eed70f357e7fbdd39846ef8467"
+PREVIOUS_PIN = "a765486980e0616204ae46979ef9ac3399199c12"
 
 
 def token_vazio_payload():
@@ -34,6 +34,7 @@ def test_registry_pins_current_producer_and_preserves_lineage():
     assert registry["producer_validation"]["conclusion"] == "success"
     assert registry["claim_allowed"] is False
     assert registry["local_geophysics_is_cosmological_evidence"] is False
+    assert registry["receipt_consumer_module"] == "src/rll/geophysical_run_receipt_adapter.py"
 
 
 def test_registry_blocks_invalid_scale_promotions():
@@ -46,6 +47,8 @@ def test_registry_blocks_invalid_scale_promotions():
     assert "bulk source of hydrogen or water" in blocked
     assert "linear amplification" in blocked
     assert "universal salinity" in blocked
+    assert "synthetic fixture" in blocked
+    assert "READY_FOR_ANALYSIS" in blocked
 
 
 def test_token_vazio_artifact_is_valid_context_only():
