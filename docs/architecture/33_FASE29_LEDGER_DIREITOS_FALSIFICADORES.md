@@ -1,140 +1,243 @@
-# FASE 29 — Ledger Temporal (D5), Direitos de Dataset (D6) e Bundle de Falsificadores (D7)
+# FASE 29 — Integridade Temporal, Direitos e Falsificadores
 
-> **Estado:** gaps D5/D6/D7 da FASE 28 materializados  
+> **Estado:** `IMPLEMENTED_SECURITY_AND_SCIENCE_GATED`  
 > **Claim boundary:** `claim_allowed=false`  
 > **Data:** 2026-07-20
 
----
+## 1. Correção conservadora
 
-## 1. Contexto
+A primeira versão materializou D5, D6 e D7, mas a auditoria encontrou quatro classes de erro:
 
-A FASE 28 construiu o mapa de rotas vetoriais Ω e a floresta de conhecimento, identificando três gaps TOKEN_VAZIO prioritários no blueprint:
+1. o sumário dizia `2 PASS`, embora `pass_ids` contivesse três elementos;
+2. o texto de Delta AIC misturava AIC e BIC e o baseline colava ajustes com contagens de parâmetros diferentes;
+3. F-COS-03 e F-COS-04 apontavam para artefatos que não continham os valores declarados;
+4. acessibilidade pública foi tratada como domínio público ou CC-BY sem prova jurídica específica.
 
-| Gap | Direção | Nó | Status antes |
-|-----|---------|----|-------------|
-| N-TEMPORAL-MEMORY-GAP | D5 | Ledger append-only de estados | TOKEN_VAZIO |
-| N-DATA-RIGHTS-GAP | D6 | Manifesto de direitos de datasets | TOKEN_VAZIO |
-| N-HOLDOUT-GAP + N-FALSIFIER-GAP | D7 | Bundle de falsificadores + holdout | TOKEN_VAZIO |
+A versão v2 corrige essas fronteiras e acrescenta um gate não compensatório de trinta lentes.
 
-O `next_gate` declarado no blueprint:
-
-```text
-Materialize historical route events, close rights and holdout gates,
-then evaluate baseline ML readiness without enabling training.
-```
-
-Esta fase materializa os três artefatos. Não fecha o holdout (requer decisão de splits — P1 pendente), mas documenta o gap explicitamente.
-
----
-
-## 2. D5 — Ledger de Transições de Estado
-
-**Arquivo:** `results/state_transition_ledger.jsonl`
-
-Ledger append-only com 17 eventos cobrindo todas as transições epistêmicas de FASE 1 a FASE 29:
-
-| Evento | Transição | Nó | Fase |
-|--------|-----------|-----|------|
-| EVT-001 | ABSENT → AUTHORED | RLL v1.0.0 | — (2025-09-19) |
-| EVT-002 | ABSENT → INGESTED | DESI DR2 BAO | — (2026-07-02) |
-| EVT-003 | TOKEN_VAZIO → PIPELINE_READY | Pipeline CI P0 | FASE 7 |
-| EVT-004 | TOKEN_VAZIO → VERIFIED_AT_SOURCE | F-COS-01 PASS | FASE 4 |
-| EVT-005 | TOKEN_VAZIO → VERIFIED_AT_SOURCE | F-COS-02 PASS | FASE 4 |
-| EVT-006 | TOKEN_VAZIO → CLOSED_FAIL | F-COS-03 FAIL [E] | FASE 20 |
-| EVT-007 | TOKEN_VAZIO → CLOSED_FAIL | F-COS-04 FAIL [E] | FASE 20 |
-| EVT-008 | TOKEN_VAZIO → VERIFIED_AT_SOURCE | F-COS-05 PASS | FASE 13 |
-| EVT-009 | TOKEN_VAZIO → CLOSED_RESOLVED | G1 MCMC joint | FASE 20 |
-| EVT-010 | TOKEN_VAZIO → CLOSED_RESOLVED | G2 rd calibrado | FASE 19 |
-| EVT-011 | TOKEN_VAZIO → CLOSED_RESOLVED | G3 Bayes Factor | FASE 20 |
-| EVT-012 | TOKEN_VAZIO → CLOSED_RESOLVED | G4 bias E&H | FASE 22 |
-| EVT-013 | PARTIAL → READY_FOR_TEST | Pipeline Linear FASE 24 | FASE 24 |
-| EVT-014 | ABSENT → STRUCTURED | Campo Entrópico TOKEN_VAZIO | FASE 26 |
-| EVT-015 | ABSENT → OPERATIONAL | Ω7 Operational | FASE 27 |
-| EVT-016 | ABSENT → BLUEPRINT | Route Forest FASE 28 | FASE 28 |
-| EVT-017 | TOKEN_VAZIO → OPENED | N-TEMPORAL-MEMORY-GAP | FASE 29 |
-
-**Invariante do ledger:** cada evento tem `timestamp`, `transition`, `region`, `direction`, `refs` e `claim_allowed`. Nenhum evento pode ser apagado — apenas novos eventos são adicionados.
-
-**Formato:** JSONL (uma linha por evento) — compatível com `artifacts/EVOLUTION_TRAIL.jsonl` e com o schema `schemas/information_evolution_trace.schema.json`.
-
----
-
-## 3. D6 — Manifesto de Direitos de Datasets
-
-**Arquivo:** `data/contracts/dataset_rights_manifest.json`
-
-Documenta 5 datasets com licença, privacidade, autoria e gates ML explícitos:
-
-| Dataset | Licença verificada | training_allowed | rights_complete |
-|---------|-------------------|--------------------|-----------------|
-| Pantheon+SH0ES | ✅ Public domain | ❌ | ✅ |
-| DESI DR2 BAO | ✅ CC-BY 4.0 | ❌ | ✅ |
-| Moresco H(z) | ⚠️ Não verificado | ❌ | ❌ |
-| Planck 2018 | ✅ ESA public | ❌ | ✅ |
-| Dense Features | ✅ Interno | ❌ | ✅ |
-
-**training_allowed = false para todos** — bloqueado até 3 gaps fechados:
-
-- G-RIGHTS-01: licença Moresco H(z) não verificada [P2]
-- G-RIGHTS-02: holdout split não definido [P1]
-- G-RIGHTS-03: model-card template inexistente [P2]
-
----
-
-## 4. D7 — Bundle de Falsificadores
-
-**Arquivo:** `data/contracts/rll_falsifier_bundle.json`
-
-Integra todos os F-COS-01..05 em formato estruturado com resultado, threshold, método, fonte e status:
-
-| Falsificador | Threshold | Resultado | Status |
-|-------------|-----------|-----------|--------|
-| F-COS-01: ΔAIC | < 10 | 3.805 | ✅ PASS [E] |
-| F-COS-02: χ²_red | < 1.05 | 0.4387 | ✅ PASS [E] |
-| F-COS-03: z_t ∈ [0.5,1.5] | intervalo | 0.30 | ❌ FAIL [E] |
-| F-COS-04: ln(B₁₀) > −5 | > −5 | −6.190±0.691 | ❌ FAIL [E] |
-| F-COS-05: χ²_nom < 150 | < 150 | 93.806 | ✅ PASS [E] |
-
-**Comparação baseline:**
-
-```
-ΛCDM:  χ²_Pantheon=710.808; dof=3; ln_evidence=0 (referência)
-RLL:   χ²_Pantheon=710.613; dof=6; ln_B₁₀=−6.190±0.691
-```
-
-**Conclusão:** `claim_allowed=false`. F-COS-03 e F-COS-04 FAIL [E]. Resultado empírico negativo — ΛCDM fortemente preferido pelos dados disponíveis. Não é TOKEN_VAZIO.
-
----
-
-## 5. Atualização do Blueprint da Floresta
-
-O nó `N-TEMPORAL-MEMORY-GAP` foi aberto formalmente (EVT-017). O nó `N-FALSIFIER-GAP` tem agora o bundle em `data/contracts/rll_falsifier_bundle.json`. O nó `N-DATA-RIGHTS-GAP` tem agora o manifesto em `data/contracts/dataset_rights_manifest.json`.
-
-Nenhum dos três nodes muda para `VERIFIED` nesta fase — eles passam de `TOKEN_VAZIO` para `PARTIAL` (documentação existe, holdout e model-card ainda abertos).
-
----
-
-## 6. Correção de Dependência
-
-`jsonschema>=4.0` adicionado a `requirements.txt` — ausência causava falha em todos os testes de FASES 26-28 no ambiente de desenvolvimento.
-
----
-
-## 7. Gaps Remanescentes (não fechados nesta fase)
-
-| Gap | Prioridade | Resolução |
-|-----|-----------|-----------|
-| G-RIGHTS-02: holdout split | P1 | Criar `data/contracts/holdout_split_manifest.json` |
-| G-RIGHTS-03: model-card | P2 | Criar `docs/ml/MODEL_CARD_TEMPLATE.md` |
-| G-RIGHTS-01: licença Moresco | P2 | Verificar com repositório/journal |
-| N-DIMENSIONAL-GAP (D3) | P2 | Registro completo de invariantes dimensionais |
-
----
-
-## 8. Retroalimentação R3
+## 2. Trinta lentes
 
 ```text
-F_ok   = D5 (ledger 17 eventos), D6 (manifesto 5 datasets), D7 (bundle F-COS-01..05) materializados
-F_gap  = holdout split e model-card ausentes; licença Moresco não verificada; D3 dimensional ainda incompleto
-F_next = criar holdout_split_manifest.json; fechar D3; consolidar D5+D6+D7 no blueprint atualizado da floresta
+aritmética · licença · relógio · genealogia · assimetria
+silêncio · redundância · reversibilidade · granularidade · fronteira
+entropia · custódia · causalidade · ambiguidade · cobertura
+desvio · identidade · proveniência · saturação · refutação
+latência · diversidade · monotonicidade · fragilidade · observabilidade
+proporcionalidade · independência · conservação · reparabilidade · legado
+```
+
+Contrato:
+
+```text
+data/contracts/fase29_integrity_lenses.v1.json
+```
+
+Regra:
+
+\[
+Q_{global}=PASS
+\iff
+\forall l\in L_{30},\;l=PASS
+\]
+
+Uma média não pode compensar uma lente falha.
+
+## 3. D5 — Ledger temporal v2
+
+Arquivo:
+
+```text
+results/state_transition_ledger.jsonl
+```
+
+Cada um dos 17 eventos possui:
+
+- `effective_at`: quando o fato ocorreu;
+- `recorded_at`: quando foi registrado no ledger;
+- `backfill`: indica reconstrução histórica;
+- `previous_event_sha256`;
+- `event_sha256`;
+- `supersedes`: somente evento anterior existente ou `null`;
+- `claim_allowed=false`.
+
+A cadeia começa em `GENESIS` e termina em:
+
+```text
+d7dc5da7736575f74bbb881d5f21ba4bdb36f0e3a7f16d216ca018b77e84c327
+```
+
+O hash torna mutação, remoção e reordenação observáveis. Ele não prova que a descrição histórica seja verdadeira; prova a integridade do ledger apresentado.
+
+## 4. D6 — Direitos de datasets v2
+
+Arquivo:
+
+```text
+data/contracts/dataset_rights_manifest.json
+```
+
+Estado conservador:
+
+| Dataset | Acesso | licença verificada | treinamento | redistribuição |
+|---|---|---:|---:|---:|
+| Pantheon+SH0ES | público | não | bloqueado | bloqueada |
+| DESI DR2 BAO | público | não | bloqueado | bloqueada |
+| Moresco H(z) | cópia local | não | bloqueado | bloqueada |
+| Planck 2018 priors | público | não | bloqueado | bloqueada |
+| Dense Features | interno | não | bloqueado | bloqueada |
+
+Princípio:
+
+```text
+publicly accessible != public domain != redistribution license != ML permission
+```
+
+Até que os termos exatos sejam arquivados e revisados:
+
+```text
+license_status       = TOKEN_VAZIO
+training_allowed     = false
+redistribution_allowed = false
+rights_complete      = false
+```
+
+## 5. D7 — Falsificadores v2
+
+### F-COS-01 — Delta AIC
+
+A fonte Pantheon registra:
+
+```text
+N usado        = 1624
+k_LCDM         = 2
+k_RLL          = 4
+chi2_LCDM      = 710.808
+chi2_RLL       = 710.613
+AIC_LCDM       = 714.808
+AIC_RLL        = 718.613
+DeltaAIC       = 3.805
+```
+
+\[
+\Delta AIC=(\chi^2_{RLL}+2k_{RLL})-(\chi^2_{LCDM}+2k_{LCDM})=3.805
+\]
+
+### F-COS-02 — χ² reduzido
+
+\[
+\chi^2_{red}=710.613/(1624-4)=0.43865
+\]
+
+O threshold passa, mas o valor muito baixo abre auditoria de covariância, duplicação, nuisance parameters e distribuição de resíduos.
+
+### F-COS-03 — \(z_t\)
+
+A fonte correta é:
+
+```text
+results/rll_fase20_mcmc_bayes.json
+```
+
+Resultado:
+
+```text
+p16 = 4.66286
+p50 = 11.54312
+p84 = 17.31198
+```
+
+O critério convencional `[0.5, 1.5]` falha. Isso não prova sozinho ΛCDM.
+
+### F-COS-04 — Bayes factor
+
+Da fonte dynesty real:
+
+\[
+\ln B_{10}=\log Z_{RLL}-\log Z_{LCDM}
+=-404.3402865-(-398.1500757)
+=-6.1902108
+\]
+
+com incerteza combinada:
+
+\[
+\sigma_{\ln B}=0.6906527
+\]
+
+A comparação favorece fortemente ΛCDM **neste conjunto de dados, priors e implementação**.
+
+### F-COS-05 — DESI nominal
+
+```text
+chi2_RLL  = 93.80609
+chi2_LCDM = 28.96592
+Delta     = 64.84017
+```
+
+O RLL passa o teto convencional `<150`, mas permanece muito pior que ΛCDM. Portanto:
+
+```text
+status           = PASS
+promotion_effect = NONE
+```
+
+### Sumário derivado
+
+```text
+PASS         = 3
+FAIL         = 2
+TOKEN_VAZIO  = 0
+claim_allowed = false
+```
+
+Contar votos não substitui interpretação científica.
+
+## 6. Gate executável
+
+```bash
+python tools/validate_fase29_integrity.py --strict --write-report
+python -m pytest -q tests/test_fase29_integrity.py
+```
+
+O gate verifica:
+
+- trinta lentes exatas e únicas;
+- fórmulas e contagens derivadas;
+- correspondência threshold/status;
+- existência dos artefatos-fonte;
+- separação entre contextos Pantheon, joint Bayes e DESI nominal;
+- direitos fail-closed;
+- holdout bloqueado;
+- owners, ações e critérios de saída;
+- dupla temporalidade;
+- monotonicidade de gravação;
+- genealogia e SHA-256 de cada evento;
+- fronteira `claim_allowed=false`.
+
+Recibo:
+
+```text
+artifacts/fase29-integrity/validation.json
+```
+
+## 7. Estado de evidência
+
+```text
+source corrections        = IMPLEMENTED
+thirty-lens validator      = IMPLEMENTED
+adversarial tests          = IMPLEMENTED
+workflow execution         = TOKEN_VAZIO até run observável
+independent legal review   = TOKEN_VAZIO
+independent reproduction   = TOKEN_VAZIO
+training_allowed           = false
+redistribution_allowed     = false
+claim_allowed              = false
+```
+
+## 8. R3
+
+```text
+F_ok   = contexto estatístico separado, fontes corrigidas, direitos rebaixados e ledger encadeado
+F_gap  = execução remota, termos jurídicos exatos, holdout, diagnóstico do χ² baixo e reprodução independente
+F_next = executar o gate, corrigir falhas observáveis e só então decidir promoção da PR
 ```
