@@ -1,35 +1,36 @@
-# Appendix C — Four opposed flow axes and axial/diagonal matrix ports
+# Appendix C — Four opposed axes and axial/diagonal matrix ports
 
-**Status:** `mathematical appendix | exact_geometry=PASS | physical_claims=TOKEN_VAZIO`  
+**Status:** `exact geometry + exact mathematical operators = PASS`  
+**Empirical fluid/material interpretation:** `NOT_APPLICABLE`  
 **Author:** Rafael Melo Reis (∆RafaelVerboΩ)  
 **Canonical context:** *From the Observed Void to Recurrence*
 
 ## C.1 Scope
 
-This appendix formalizes a refinement of the torus-meridian construction. Instead of treating the upper and lower points as the only distinguished positions, the model introduces **four opposed axes through one common center**:
+The model contains four opposed axes through one center:
 
 1. vertical;
 2. horizontal;
 3. rising diagonal;
 4. falling diagonal.
 
-Each axis has two opposite mouths. The construction therefore contains eight ports:
+Each axis has two mouths:
 
 \[
-4\text{ axes}\times 2\text{ mouths}=8\text{ ports}.
+4\text{ axes}\times2\text{ mouths}=8\text{ ports}.
 \]
 
-The term *port* denotes a geometric/computational gate. It does not by itself denote a physical nozzle, jet or vortex core.
+The term *port* denotes a geometric/computational gate.
 
-## C.2 Meridian center and port positions
+## C.2 Meridian positions
 
-Let the meridian circle of the ring torus have center
+For center
 
 \[
 C=(R,0)
 \]
 
-and minor radius `r>0`. For an angle `theta`, define
+and minor radius `r>0`, define
 
 \[
 P(\theta)=C+r(\cos\theta,\sin\theta).
@@ -46,75 +47,57 @@ P(\theta)=C+r(\cos\theta,\sin\theta).
 | upper-left | falling diagonal | `135°` |
 | lower-right | falling diagonal | `315°` |
 
-The four axes are diameters, not isolated rays.
-
 ## C.3 Opposed-pair invariants
 
-For every axis with opposed ports `P+` and `P-`,
+For every axis:
 
 \[
-\frac{P_++P_-}{2}=C
-\]
-
-and
-
-\[
+\frac{P_++P_-}{2}=C,
+\qquad
 \|P_+-P_-\|=2r.
 \]
 
-Thus all four channels share the same center and the same diameter.
+All four channels therefore share the same center and diameter.
 
-## C.4 Axial and diagonal matrix projection
-
-The corresponding matrix directions are
+## C.4 Matrix projection
 
 \[
 \mathcal N_8=\{(0,1),(0,-1),(1,0),(-1,0),(1,1),(-1,-1),(-1,1),(1,-1)\}.
 \]
 
-The axial directions already have unit Euclidean length. The diagonal steps require normalization:
+Diagonal steps use
 
 \[
 \widehat d_{\mathrm{diag}}=\frac1{\sqrt2}(\pm1,\pm1).
 \]
 
-Therefore the diagonal projection has the same unit radial length as the upper, lower and lateral projections.
-
-This is a declared computational convention linking an eight-neighbor matrix stencil to the meridian geometry.
+Thus axial and diagonal directions have equal unit Euclidean length.
 
 ## C.5 Radial and tangential bases
 
-At `P(theta)`, define the outward radial unit vector
+At `P(theta)`:
 
 \[
-\widehat n(\theta)=(\cos\theta,\sin\theta)
+\widehat n=(\cos\theta,\sin\theta),
+\qquad
+\widehat t=(-\sin\theta,\cos\theta),
 \]
 
-and the counterclockwise tangent
-
-\[
-\widehat t(\theta)=(-\sin\theta,\cos\theta).
-\]
-
-Then
+with
 
 \[
 \widehat n\cdot\widehat t=0.
 \]
 
-The tangent aperture line is
+The tangent aperture is
 
 \[
-\widehat n(\theta)\cdot X=\widehat n(\theta)\cdot P(\theta).
+\widehat n\cdot X=\widehat n\cdot P.
 \]
 
-Its perpendicular distance from `C` is exactly `r`, so it is tangent to the meridian circle at one point.
+## C.6 Relation to the quadratic layer
 
-This vector form is preferred to slope-only formulas because the left and right mouths have vertical tangent lines, for which a finite slope is undefined.
-
-## C.6 Relation to the quadratic/Bhaskara layer
-
-For nonvertical tangent candidates written as
+For nonvertical candidate lines
 
 \[
 z=m\rho+b,
@@ -132,78 +115,84 @@ produces a quadratic equation. Tangency is identified by
 \Delta=0.
 \]
 
-The vector aperture equation generalizes this construction to all eight ports, including vertical tangents. The earlier `30°` tangent family and the present `45°` diagonal family are different constraints:
+The earlier `30°` family and the present `45°` diagonal family are distinct:
 
-- `30°` belongs to the triangle/tangent construction;
-- `45°` belongs to the square-diagonal/matrix projection.
-
-Their coexistence does not imply identity.
+- `30°`: triangular/tangent construction;
+- `45°`: square-diagonal/matrix construction.
 
 ## C.7 Toroidal sweep
 
-Interpreting a port as meridian coordinates
-
-\[
-P=(\rho_P,z_P),
-\]
-
-its sweep around the toroidal angle `u` is
+For meridian coordinates `P=(rho_P,z_P)`:
 
 \[
 X_P(u)=(\rho_P\cos u,\rho_P\sin u,z_P).
 \]
 
-Each meridian port therefore generates one ring. The four axes generate eight projected rings.
-
-For each swept point,
+Each port generates one projected ring. The sweep preserves
 
 \[
-\sqrt{\left(\sqrt{x^2+y^2}-R\right)^2+z^2}=r.
+\sqrt{(\sqrt{x^2+y^2}-R)^2+z^2}=r.
 \]
 
-Thus the sweep preserves the meridian-circle radius exactly.
+## C.8 Venturi and vortex as mathematical operators
 
-## C.8 Computational interpretation
+In this paper the terms do not denote fluid phenomena.
 
-The construction supports:
+### Base Venturi
 
-- an axial/diagonal eight-neighbor stencil;
-- paired inlet/outlet labels;
-- radial and tangential feature vectors;
-- symmetric routing through a common center;
-- four opposed channel identifiers;
-- eight toroidal ring projections;
-- deterministic masks and relation kernels.
+\[
+\boxed{\mathcal V_b(n)=(q,r),\quad n=bq+r}.
+\]
 
-The construction does not choose a direction of actual transport. Inward and outward vectors are both recorded so a later model may define source, sink, pulse or alternating phase without rewriting the geometry.
+It folds a linear address into a finite base aperture while retaining carry.
 
-## C.9 Physical boundary
+### Cyclic vortex
 
-The exact geometry does not establish a physical Venturi or vortex mechanism. Such a model requires at least:
+\[
+\boxed{\mathcal W_b(n,\delta)=E_b(n+\delta)},\qquad\delta\ge0.
+\]
 
-- aperture area and shape;
-- pressure field;
-- density;
-- viscosity;
-- flow rate;
-- circulation or vorticity;
-- governing equations;
-- initial and boundary conditions;
-- dimensional units;
-- numerical or experimental data;
-- uncertainty and falsifiers.
+It advances through a cyclic phase by addition while retaining cycle and winding.
 
-Therefore:
+The complete formalism is given in [`appendix_d_cyclic_base_curvature.md`](./appendix_d_cyclic_base_curvature.md).
 
-```text
-exact_geometry_state = PASS
-physical_claims_state = TOKEN_VAZIO
-claim_allowed = false
-```
+## C.9 Base-seven seam
 
-## C.10 Reproduction
+Ordinary positional notation gives
 
-Run:
+\[
+7_{10}=10_7.
+\]
+
+Euclidean division gives
+
+\[
+7=1\cdot7+0
+\Rightarrow
+E_7(7)=(1,0).
+\]
+
+One-based cyclic phase gives
+
+\[
+p_7(7)=1+((7-1)\bmod7)=7.
+\]
+
+Therefore `7 mod 7 = 0` is only the remainder projection; it does not erase the complete state.
+
+## C.10 Zero and additive transitions
+
+Zero may be a valid value, placeholder, seam, remainder or all-off word. It is not equivalent to missing information.
+
+In fixed-width unsigned arithmetic:
+
+\[
+a-b\equiv a+(\sim b+1)\pmod{2^w}.
+\]
+
+The RAFAELIA operator restricts state transitions to non-negative addition, carry and wrap.
+
+## C.11 Reproduction
 
 ```bash
 python3 PapersPub/08_multiscale_validation_methods/scripts/validate_four_axis_flow_ports.py
@@ -212,21 +201,24 @@ python3 PapersPub/08_multiscale_validation_methods/scripts/validate_four_axis_fl
 Expected:
 
 ```text
-12/12 checks PASS
-4 axes
-8 ports
+21/21 checks PASS
+axis_count = 4
+port_count = 8
 exact_geometry_state = PASS
-physical_claims_state = TOKEN_VAZIO
+operator_state = PASS
+claim_allowed = true
+empirical_fluid_interpretation = NOT_APPLICABLE
 ```
 
-## C.11 Canonical invariant
+## C.12 Canonical invariant
 
 \[
 \boxed{
-\text{one center}+\text{vertical}+\text{horizontal}+\text{two diagonals}
-=\text{four opposed axes}
-=\text{eight projected ports}
-}
+\text{one center}
++\text{four opposed axes}
++\text{eight ports}
++\text{base carry}
++\text{cyclic phase}
+=\text{non-extinguished projected state}
+}.
 \]
-
-The result extends the matrix projection page without converting geometric symmetry into an unsupported physical claim.
