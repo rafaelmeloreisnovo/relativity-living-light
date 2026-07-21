@@ -10,8 +10,11 @@ on:
       - "data/contracts/fase29_integrity_lenses.v1.json"
       - "data/contracts/rll_falsifier_bundle.json"
       - "data/contracts/dataset_rights_manifest.json"
+      - "data/contracts/cross_domain_equation_intake.v1.json"
       - "results/state_transition_ledger.jsonl"
       - "docs/science/CAMPO_ENTROPICO_TOKEN_VAZIO.md"
+      - "docs/science/RLL_CROSS_DOMAIN_EQUATION_RISK_ASSESSMENT.md"
+      - "docs/science/RLL_CROSS_DOMAIN_EQUATION_INTAKE.md"
       - "docs/architecture/31_OMEGA7_OPERATIONAL_INVARIANT.md"
       - "docs/architecture/32_RLL_OMEGA_ROUTE_FOREST.md"
       - "docs/architecture/33_FASE29_LEDGER_DIREITOS_FALSIFICADORES.md"
@@ -27,6 +30,7 @@ on:
       - "scripts/validate_rmrcti_delta_p_observation.py"
       - "tools/validate_schemas_claim_boundary.py"
       - "tools/validate_epistemic_void.py"
+      - "tools/validate_cross_domain_equation_intake.py"
       - "tools/validate_omega7_operational.py"
       - "tools/build_rll_route_forest.py"
       - "tools/validate_fase29_integrity.py"
@@ -36,6 +40,7 @@ on:
       - "tests/test_scientific_infinity.py"
       - "tests/test_rll_run_manifest_schema.py"
       - "tests/test_epistemic_void.py"
+      - "tests/test_cross_domain_equation_intake.py"
       - "tests/test_omega7_operational.py"
       - "tests/test_rll_route_forest.py"
       - "tests/test_fase29_integrity.py"
@@ -50,8 +55,11 @@ on:
       - "data/contracts/fase29_integrity_lenses.v1.json"
       - "data/contracts/rll_falsifier_bundle.json"
       - "data/contracts/dataset_rights_manifest.json"
+      - "data/contracts/cross_domain_equation_intake.v1.json"
       - "results/state_transition_ledger.jsonl"
       - "docs/science/CAMPO_ENTROPICO_TOKEN_VAZIO.md"
+      - "docs/science/RLL_CROSS_DOMAIN_EQUATION_RISK_ASSESSMENT.md"
+      - "docs/science/RLL_CROSS_DOMAIN_EQUATION_INTAKE.md"
       - "docs/architecture/31_OMEGA7_OPERATIONAL_INVARIANT.md"
       - "docs/architecture/32_RLL_OMEGA_ROUTE_FOREST.md"
       - "docs/architecture/33_FASE29_LEDGER_DIREITOS_FALSIFICADORES.md"
@@ -67,6 +75,7 @@ on:
       - "scripts/validate_rmrcti_delta_p_observation.py"
       - "tools/validate_schemas_claim_boundary.py"
       - "tools/validate_epistemic_void.py"
+      - "tools/validate_cross_domain_equation_intake.py"
       - "tools/validate_omega7_operational.py"
       - "tools/build_rll_route_forest.py"
       - "tools/validate_fase29_integrity.py"
@@ -76,6 +85,7 @@ on:
       - "tests/test_scientific_infinity.py"
       - "tests/test_rll_run_manifest_schema.py"
       - "tests/test_epistemic_void.py"
+      - "tests/test_cross_domain_equation_intake.py"
       - "tests/test_omega7_operational.py"
       - "tests/test_rll_route_forest.py"
       - "tests/test_fase29_integrity.py"
@@ -106,6 +116,8 @@ jobs:
         run: python tools/validate_schemas_claim_boundary.py
       - name: Validate epistemic void ledger
         run: python tools/validate_epistemic_void.py --strict --write-report
+      - name: Validate cross-domain equation intake quarantine
+        run: python tools/validate_cross_domain_equation_intake.py --strict --write-report
       - name: Validate Omega7 operational invariant
         run: python tools/validate_omega7_operational.py --strict --write-report
       - name: Validate Omega route forest
@@ -135,6 +147,7 @@ jobs:
           tests/test_scientific_infinity.py
           tests/test_rll_run_manifest_schema.py
           tests/test_epistemic_void.py
+          tests/test_cross_domain_equation_intake.py
           tests/test_omega7_operational.py
           tests/test_rll_route_forest.py
           tests/test_fase29_integrity.py
@@ -146,6 +159,14 @@ jobs:
           path: artifacts/epistemic-void/
           retention-days: 30
           if-no-files-found: warn
+      - name: Upload cross-domain equation intake receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cross-domain-equation-intake-${{ github.run_id }}
+          path: artifacts/cross-domain-equation-intake/
+          retention-days: 30
+          if-no-files-found: error
       - name: Upload Omega7 operational validation receipt
         if: always()
         uses: actions/upload-artifact@v4
