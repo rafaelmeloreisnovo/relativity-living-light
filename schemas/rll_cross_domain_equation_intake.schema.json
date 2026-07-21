@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/instituto-Rafael/relativity-living-light/schemas/rll_cross_domain_equation_intake.schema.json",
   "title": "RLL Cross-Domain Equation Intake",
-  "description": "Fail-closed quarantine contract for equations originating outside the validated RLL cosmology pipeline.",
+  "description": "Fail-closed structural contract and quarantine for equations originating outside the validated RLL cosmology pipeline.",
   "type": "object",
   "additionalProperties": false,
   "required": [
