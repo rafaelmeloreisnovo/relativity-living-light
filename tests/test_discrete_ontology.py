@@ -1,4 +1,9 @@
+import json
+import os
+import subprocess
+import sys
 from fractions import Fraction
+from pathlib import Path
 
 import pytest
 
@@ -101,3 +106,23 @@ def test_wrong_scaled_presentation_is_a_contradiction() -> None:
     assert report.recovered_common_scale == 2
     assert report.mathematical_state is ClaimState.CONTRADICTION
     assert report.claim_allowed is False
+
+
+def test_validator_cli_runs_without_pythonpath() -> None:
+    root = Path(__file__).resolve().parents[1]
+    env = os.environ.copy()
+    env.pop("PYTHONPATH", None)
+    completed = subprocess.run(
+        [sys.executable, "tools/validate_discrete_ontology_claim.py"],
+        cwd=root,
+        check=True,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+    report = json.loads(completed.stdout)
+
+    assert report["status"] == "PASS"
+    assert report["checks_total"] == 15
+    assert report["claim_allowed"] is False
+    assert report["state"] == "TOKEN_VAZIO"
