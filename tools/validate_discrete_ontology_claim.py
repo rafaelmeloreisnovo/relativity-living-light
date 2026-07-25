@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Validate the discrete-ontology factor-11 claim ledger.
 
-The validator uses the standard library only. It checks the invariants that matter
-for claim safety even when the optional jsonschema package is unavailable.
+The validator is executable directly from the repository root. It validates the
+JSON Schema contract, semantic invariants, and the runtime factor-11 claim gate.
 """
 
 from __future__ import annotations
@@ -10,13 +10,20 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
-from rll.discrete_ontology import ClaimState, evaluate_factor11_gate
-
+from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+from rll.discrete_ontology import ClaimState, evaluate_factor11_gate  # noqa: E402
+
+
 DEFAULT_LEDGER = ROOT / "data/epistemic_void/factor11_discrete_ontology.json"
 DEFAULT_SCHEMA = ROOT / "schemas/discrete_ontology_claim.schema.json"
 DEFAULT_REPORT = ROOT / "artifacts/discrete-ontology/discrete_ontology_report.json"
@@ -37,8 +44,22 @@ def _load_json(path: Path) -> dict[str, Any]:
     return payload
 
 
-def validate_payload(payload: dict[str, Any]) -> list[str]:
+def _validate_schema(payload: dict[str, Any], schema: dict[str, Any]) -> None:
+    validator = Draft202012Validator(schema)
+    errors = sorted(validator.iter_errors(payload), key=lambda error: list(error.absolute_path))
+    if errors:
+        details = "; ".join(
+            f"/{'/'.join(str(part) for part in error.absolute_path)}: {error.message}"
+            for error in errors
+        )
+        raise ValidationError(f"JSON Schema validation failed: {details}")
+
+
+def validate_payload(payload: dict[str, Any], schema: dict[str, Any]) -> list[str]:
     checks: list[str] = []
+
+    _validate_schema(payload, schema)
+    checks.append("json_schema_draft_2020_12")
 
     _require(payload.get("schema_version") == "1.0", "schema_version must be 1.0")
     checks.append("schema_version")
@@ -94,9 +115,8 @@ def main() -> int:
     _require(args.schema.is_file(), f"schema not found: {args.schema}")
     payload = _load_json(args.ledger)
     schema = _load_json(args.schema)
-    _require(schema.get("title"), "schema title missing")
 
-    checks = validate_payload(payload)
+    checks = validate_payload(payload, schema)
     ledger_bytes = args.ledger.read_bytes()
     report = {
         "status": "PASS",
