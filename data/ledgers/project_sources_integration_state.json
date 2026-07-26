@@ -13,9 +13,19 @@
     "event_chain": "IMPLEMENTED",
     "local_tests": "PASS_5_OF_5"
   },
-  "external_execution": {
-    "real_source_ingestion": "TOKEN_VAZIO_OPERATOR_LOCAL_PATH",
-    "independent_scientific_validation": "TOKEN_VAZIO_PER_CLAIM"
+  "observed_local_execution": {
+    "state": "PASS_LOCAL_HASHED_SOURCE_SET",
+    "verified_local_hash_count": 12,
+    "metadata_only_count": 1,
+    "private_pointer_only_count": 1,
+    "chunk_count": 198,
+    "missing_count": 0,
+    "hash_mismatch_count": 0,
+    "receipt": "data/receipts/project_sources_local_receipt_20260726.json"
   },
-  "next_gate": "Run verified local ingestion against the uploaded source directory and archive only the receipt, never private bodies."
+  "external_execution": {
+    "independent_scientific_validation": "TOKEN_VAZIO_PER_CLAIM",
+    "persistent_production_index": "TOKEN_VAZIO_OPERATOR_DECISION"
+  },
+  "next_gate": "Review retrieved chunks by authority route, connect accepted RLL-direct items to claim and experiment ledgers, and keep all scientific promotions blocked until their own evidence gates pass."
 }
