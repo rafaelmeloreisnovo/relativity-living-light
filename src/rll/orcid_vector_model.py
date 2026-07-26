@@ -18,6 +18,7 @@ VECTOR_DIMENSIONS = 32
 DEFAULT_DB = Path("artifacts/orcid_rll/orcid_rll.sqlite3")
 ORCID_API = "https://pub.orcid.org/v3.0"
 CROSSREF_API = "https://api.crossref.org/works"
+DATACITE_API = "https://api.datacite.org/dois"
 OPENALEX_API = "https://api.openalex.org/works"
 ORCID_RE = re.compile(r"^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$")
 TOKENS = re.compile(r"[a-z0-9]+", re.I)
@@ -194,6 +195,43 @@ def parse_crossref(payload: Mapping[str, Any]) -> dict[str, Any]:
         "journal": containers[0] if isinstance(containers, list) and containers else None,
         "url": message.get("URL"),
         "authors": authors,
+        "is_retracted": False,
+    }
+
+
+def parse_datacite(payload: Mapping[str, Any]) -> dict[str, Any]:
+    data = payload.get("data") if isinstance(payload.get("data"), Mapping) else {}
+    attributes = data.get("attributes") if isinstance(data.get("attributes"), Mapping) else data
+    titles = attributes.get("titles") or []
+    title = titles[0].get("title") if titles and isinstance(titles[0], Mapping) else None
+    descriptions = attributes.get("descriptions") or []
+    abstract = next((item.get("description") for item in descriptions if isinstance(item, Mapping) and item.get("descriptionType") == "Abstract"), None)
+    creators = []
+    for creator in attributes.get("creators") or []:
+        if not isinstance(creator, Mapping):
+            continue
+        oid = None
+        for identifier in creator.get("nameIdentifiers") or []:
+            if not isinstance(identifier, Mapping):
+                continue
+            if str(identifier.get("nameIdentifierScheme") or "").casefold() == "orcid":
+                raw = identifier.get("nameIdentifier")
+                try:
+                    oid = canonicalize_orcid(raw) if isinstance(raw, str) else None
+                except ValueError:
+                    oid = None
+        creators.append({"name": creator.get("name"), "orcid": oid})
+    types = attributes.get("types") or {}
+    return {
+        "provider_record_id": str(data.get("id") or attributes.get("doi") or sha(canonical_json(payload))),
+        "title": title,
+        "abstract": abstract,
+        "doi": normalize_doi(attributes.get("doi")),
+        "publication_year": attributes.get("publicationYear"),
+        "work_type": types.get("resourceTypeGeneral") if isinstance(types, Mapping) else None,
+        "journal": attributes.get("publisher"),
+        "url": attributes.get("url"),
+        "authors": creators,
         "is_retracted": False,
     }
 
