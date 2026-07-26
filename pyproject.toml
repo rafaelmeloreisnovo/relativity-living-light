@@ -28,6 +28,7 @@ dependencies = [
 [project.scripts]
 rll = "rll.cli:main"
 rll-latentes = "rll.latentes:main"
+rll-orcid = "rll.orcid_vector:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
