@@ -11,13 +11,14 @@
   },
   "implementation": {
     "public_orcid_read_sync": "IMPLEMENTED",
+    "datacite_enrichment": "IMPLEMENTED",
     "crossref_enrichment": "IMPLEMENTED",
     "openalex_enrichment": "IMPLEMENTED",
     "ncbi_biomedical_adapter": "ROADMAP",
     "sqlite_append_only_vector_store": "IMPLEMENTED",
     "vector_dimensions": 32,
     "event_hash_chain": "IMPLEMENTED",
-    "offline_tests": "PASS_10_OF_10"
+    "offline_tests": "PASS_11_OF_11"
   },
   "external_execution": {
     "live_orcid_sync": "TOKEN_VAZIO_REAL_ID_AND_PUBLIC_API_CREDENTIALS",
