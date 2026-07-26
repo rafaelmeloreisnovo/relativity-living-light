@@ -1,0 +1,21 @@
+{
+  "schema": "rll.project_sources_integration_state.v1",
+  "recorded_at": "2026-07-26T00:00:00Z",
+  "source_count": 14,
+  "raw_bodies_committed": false,
+  "claim_allowed": false,
+  "implementation": {
+    "manifest": "IMPLEMENTED",
+    "hash_verification": "IMPLEMENTED",
+    "chunking": "IMPLEMENTED",
+    "vector_search": "IMPLEMENTED",
+    "private_pointer_only": "IMPLEMENTED",
+    "event_chain": "IMPLEMENTED",
+    "local_tests": "PASS_5_OF_5"
+  },
+  "external_execution": {
+    "real_source_ingestion": "TOKEN_VAZIO_OPERATOR_LOCAL_PATH",
+    "independent_scientific_validation": "TOKEN_VAZIO_PER_CLAIM"
+  },
+  "next_gate": "Run verified local ingestion against the uploaded source directory and archive only the receipt, never private bodies."
+}
