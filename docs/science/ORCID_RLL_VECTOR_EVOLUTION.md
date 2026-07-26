@@ -10,7 +10,7 @@
 Este núcleo integra o registro público ORCID ao RLL para:
 
 1. importar trabalhos e identificadores públicos;
-2. confrontar metadados por DOI em Crossref e OpenAlex;
+2. confrontar metadados por DOI em DataCite, Crossref e OpenAlex;
 3. classificar artefatos em matemática, física, física clássica, física quântica, química, biologia e fisiologia;
 4. gerar vetores determinísticos de 32 dimensões para recuperação temática local;
 5. preservar cada mudança como nova revisão, sem sobrescrever a anterior;
@@ -34,13 +34,14 @@ O comando de sincronização exige um ORCID que passe no checksum ISO 7064 MOD 1
 
 ```text
 ORCID Public API ─┐
-                  ├─ ingestão normalizada ─ revisions append-only ─┐
-Crossref DOI API ─┤                                                ├─ SQLite
-OpenAlex API ─────┘                                                │  ├─ artifacts
-                                                                   │  ├─ sources
-texto título+resumo ─ hash embedding 32D ──────────────────────────┤  ├─ vectors
-                                                                   │  └─ events SHA-256
-consulta temática + filtros disciplinares ────────────────────────┘
+DataCite DOI API ─┤
+Crossref DOI API ─┼─ ingestão normalizada ─ revisões append-only ─┐
+OpenAlex API ─────┘                                                ├─ SQLite
+                                                                    │  ├─ artifacts
+                                                                    │  ├─ sources
+texto título+resumo ─ hash embedding 32D ───────────────────────────┤  ├─ vectors
+                                                                    │  └─ events SHA-256
+consulta temática + filtros disciplinares ─────────────────────────┘
 ```
 
 ### 3.1 Camadas de evidência
@@ -48,7 +49,8 @@ consulta temática + filtros disciplinares ────────────�
 | Camada | O que valida | O que não valida |
 |---|---|---|
 | ORCID | associação pública declarada de pessoa ↔ trabalho | conteúdo científico |
-| Crossref | metadados registrados para DOI | correção do paper |
+| DataCite | metadados de DOI para Zenodo e outros objetos de pesquisa | correção científica do artefato |
+| Crossref | metadados registrados para publicações | correção do paper |
 | OpenAlex | grafo bibliográfico e conceitos | autoria jurídica definitiva ou prova física |
 | NCBI/PubMed, futuro adaptador | referência biomédica e identificadores | eficácia clínica ou diagnóstico |
 | RLL claim gates | obrigações, falsificadores e recibos | nada sem execução e evidência suficientes |
