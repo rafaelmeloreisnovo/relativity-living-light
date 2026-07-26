@@ -15,6 +15,7 @@ from rll.orcid_vector import (
     hash_embedding,
     load_json,
     parse_crossref,
+    parse_datacite,
     parse_openalex,
     validate_metadata,
 )
@@ -22,6 +23,7 @@ from rll.orcid_vector import (
 ROOT = Path(__file__).resolve().parents[1]
 ORCID_FIXTURE = ROOT / "data" / "examples" / "orcid_record_synthetic.json"
 CROSSREF_FIXTURE = ROOT / "data" / "examples" / "crossref_rll_synthetic.json"
+DATACITE_FIXTURE = ROOT / "data" / "examples" / "datacite_rll_synthetic.json"
 OPENALEX_FIXTURE = ROOT / "data" / "examples" / "openalex_rll_synthetic.json"
 FIXTURE_ORCID = "0000-0000-0000-001X"
 
@@ -140,6 +142,19 @@ def test_openalex_parser_and_metadata_validator() -> None:
     validation = validate_metadata(base, parsed, FIXTURE_ORCID)
     assert validation.state == "VERIFIED_METADATA"
     assert validation.details["owner_orcid_match"] is True
+
+
+def test_datacite_parser_matches_zenodo_doi_and_orcid() -> None:
+    parsed = parse_datacite(load_json(DATACITE_FIXTURE))
+    assert parsed["doi"] == "10.5281/zenodo.17188137"
+    assert parsed["journal"] == "Zenodo"
+    assert parsed["authors"][0]["orcid"] == FIXTURE_ORCID
+    validation = validate_metadata(
+        {"title": parsed["title"], "doi": parsed["doi"], "publication_year": 2025},
+        parsed,
+        FIXTURE_ORCID,
+    )
+    assert validation.state == "VERIFIED_METADATA"
 
 
 def test_crossref_parser_detects_author_orcid() -> None:
