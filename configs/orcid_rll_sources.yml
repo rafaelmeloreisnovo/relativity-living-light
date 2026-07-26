@@ -13,14 +13,20 @@ sources:
     access: oauth_read_public
     credential_env: ORCID_ACCESS_TOKEN
     writes: false
-    validation_weight: 0.40
+    validation_weight: 0.30
+  - id: datacite
+    role: doi_metadata_for_zenodo_and_research_objects
+    endpoint: https://api.datacite.org/dois
+    access: public
+    writes: false
+    validation_weight: 0.25
   - id: crossref
     role: doi_metadata
     endpoint: https://api.crossref.org/works
     access: public_polite_pool
     contact_env: RLL_CROSSREF_MAILTO
     writes: false
-    validation_weight: 0.30
+    validation_weight: 0.15
   - id: openalex
     role: scholarly_graph
     endpoint: https://api.openalex.org
