@@ -45,3 +45,9 @@ local.properties
 
 # Generated at execution by scripts/bootstrap-gradle-wrapper.sh
 gradle/wrapper/gradle-wrapper.jar
+
+# ORCID ↔ RLL runtime artifacts; credentials are never persisted
+artifacts/orcid_rll/*.sqlite3
+artifacts/orcid_rll/*.sqlite3-wal
+artifacts/orcid_rll/*.sqlite3-shm
+artifacts/orcid_rll/orcid_work_candidates.json
