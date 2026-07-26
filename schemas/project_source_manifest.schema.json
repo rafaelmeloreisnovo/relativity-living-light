@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.invalid/rll/project_source_manifest.schema.json",
   "title": "RLL Project Source Manifest",
+  "description": "Structural contract for project-source metadata, local hash-gated ingestion, privacy routing, and claim-bounded vector indexing. Schema conformance does not validate scientific claims.",
   "type": "object",
   "required": ["schema", "claim_allowed", "raw_bodies_committed", "source_count", "sources"],
   "properties": {
