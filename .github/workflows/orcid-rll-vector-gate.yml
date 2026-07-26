@@ -1,0 +1,57 @@
+name: ORCID RLL Vector Gate
+
+on:
+  pull_request:
+    paths:
+      - "src/rll/orcid_vector*.py"
+      - "tests/test_orcid_vector.py"
+      - "schemas/orcid_vector_artifact.schema.json"
+      - "configs/orcid_rll_sources.yml"
+      - "data/examples/*synthetic.json"
+      - "data/ledgers/orcid_rll_integration_state.json"
+      - "pyproject.toml"
+      - ".github/workflows/orcid-rll-vector-gate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/rll/orcid_vector*.py"
+      - "tests/test_orcid_vector.py"
+      - "schemas/orcid_vector_artifact.schema.json"
+      - "configs/orcid_rll_sources.yml"
+      - "data/examples/*synthetic.json"
+      - "data/ledgers/orcid_rll_integration_state.json"
+      - "pyproject.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  offline-deterministic-gate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest jsonschema
+      - name: Compile implementation
+        run: python -m py_compile src/rll/orcid_vector*.py
+      - name: Run ORCID vector tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/test_orcid_vector.py
+      - name: Validate JSON Schema syntax
+        run: python -c 'import json; from jsonschema import Draft202012Validator; Draft202012Validator.check_schema(json.load(open("schemas/orcid_vector_artifact.schema.json")))'
+      - name: Run offline CLI receipt
+        env:
+          PYTHONPATH: src
+        run: |
+          DB="${RUNNER_TEMP}/orcid-rll.sqlite3"
+          python -m rll.orcid_vector --db "$DB" init
+          python -m rll.orcid_vector --db "$DB" ingest-file data/examples/orcid_record_synthetic.json --orcid 0000-0000-0000-001X
+          python -m rll.orcid_vector --db "$DB" verify-chain
+          python -m rll.orcid_vector --db "$DB" search "quantum tensor physiology" --discipline physics.quantum
