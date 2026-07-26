@@ -29,13 +29,19 @@ def sync_remote(store: VectorStore, owner: str, token: str, enrich: bool, mailto
     headers = {"Authorization": f"Bearer {token}"}
     record = http.get(f"{ORCID_API}/{urllib.parse.quote(owner)}/record", headers)
     result = store.ingest_orcid_record(record, owner)
-    counters = {"crossref_ok": 0, "openalex_ok": 0, "errors": 0}
+    counters = {"datacite_ok": 0, "crossref_ok": 0, "openalex_ok": 0, "errors": 0}
     if enrich:
         rows = store.connection.execute("SELECT logical_id,doi FROM artifacts a WHERE revision=(SELECT MAX(x.revision) FROM artifacts x WHERE x.logical_id=a.logical_id) AND owner_orcid=?", (owner,)).fetchall()
         for row in rows:
             if not row["doi"]:
                 continue
             doi = urllib.parse.quote(row["doi"], safe="")
+            try:
+                store.enrich_artifact(row["logical_id"], http.get(f"{DATACITE_API}/{doi}"), provider="datacite")
+                counters["datacite_ok"] += 1
+            except Exception as exc:
+                counters["errors"] += 1
+                store.append_event("EXTERNAL_SOURCE_ERROR", row["logical_id"], {"provider": "datacite", "error": str(exc), "claim_allowed": False})
             try:
                 params = f"?mailto={urllib.parse.quote(mailto)}" if mailto else ""
                 store.enrich_artifact(row["logical_id"], http.get(f"{CROSSREF_API}/{doi}{params}"), provider="crossref")
@@ -74,7 +80,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("init")
     ingest = sub.add_parser("ingest-file"); ingest.add_argument("input", type=Path); ingest.add_argument("--orcid", required=True)
     sync = sub.add_parser("sync"); sync.add_argument("--orcid", required=True); sync.add_argument("--token-env", default="ORCID_ACCESS_TOKEN"); sync.add_argument("--enrich", action="store_true"); sync.add_argument("--mailto"); sync.add_argument("--openalex-key-env", default="OPENALEX_API_KEY")
-    enrich = sub.add_parser("enrich-file"); enrich.add_argument("input", type=Path); enrich.add_argument("--provider", choices=["crossref", "openalex"], required=True); enrich.add_argument("--logical-id", required=True)
+    enrich = sub.add_parser("enrich-file"); enrich.add_argument("input", type=Path); enrich.add_argument("--provider", choices=["crossref", "datacite", "openalex"], required=True); enrich.add_argument("--logical-id", required=True)
     search = sub.add_parser("search"); search.add_argument("query"); search.add_argument("--discipline", action="append", default=[]); search.add_argument("--limit", type=int, default=10); search.add_argument("--orcid")
     sub.add_parser("status"); sub.add_parser("verify-chain")
     report = sub.add_parser("report"); report.add_argument("--output", type=Path, default=Path("artifacts/orcid_rll/ORCID_RLL_VECTOR_REPORT.md")); report.add_argument("--orcid")
