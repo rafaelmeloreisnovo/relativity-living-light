@@ -9,7 +9,8 @@ from rll.orcid_vector_model import (
     SCHEMA_VERSION, TOKEN_VAZIO, VECTOR_DIMENSIONS, VECTOR_MODEL,
     ValidationResult, canonical_json, canonicalize_orcid, classify_disciplines,
     cosine, hash_embedding, iter_orcid_works, now, normalize, normalize_doi,
-    parse_crossref, parse_openalex, parse_orcid_summary, sha, validate_metadata,
+    parse_crossref, parse_datacite, parse_openalex, parse_orcid_summary, sha,
+    validate_metadata,
 )
 
 
@@ -96,7 +97,7 @@ class VectorStore:
         latest = self.latest_artifact(logical_id)
         if latest is None:
             raise KeyError(f"Artefato não encontrado: {logical_id}")
-        parsed = parse_crossref(payload) if provider == "crossref" else parse_openalex(payload) if provider == "openalex" else (_ for _ in ()).throw(ValueError(f"Provider não suportado: {provider}"))
+        parsed = parse_crossref(payload) if provider == "crossref" else parse_datacite(payload) if provider == "datacite" else parse_openalex(payload) if provider == "openalex" else (_ for _ in ()).throw(ValueError(f"Provider não suportado: {provider}"))
         source_id = self.store_source(provider, str(parsed["provider_record_id"]), payload)
         validation = validate_metadata(dict(latest), parsed, str(latest["owner_orcid"]))
         merged = {k: latest[k] for k in ("logical_id", "owner_orcid", "title", "abstract", "doi", "publication_year", "work_type", "journal", "url")}
