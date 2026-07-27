@@ -11,7 +11,9 @@ name: Polymathic Concept Matrix — Cross-domain Knowledge Orchestration
 #   - Uploads JSON artifacts (matrix, manifest, schema validation report)
 #
 # Policy: read-only permissions; no push/auto-commit; outputs via upload-artifact.
-# Claim boundary: metaphors illustrate, do not validate. Real data required for claims.
+# Claim Boundary: metaphors illustrate domain analogies only; they do not validate
+#   scientific claims. No synthetic, mock, fixture, or placeholder data is used —
+#   rll_equation_registry.yml is the canonical real-data source for all nodes.
 
 on:
   push:
@@ -41,7 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      CANONICAL_REAL_DATA_WORKFLOW: ".github/workflows/real-data-complete-execution.yml"
+      CANONICAL_REAL_DATA_WORKFLOW: .github/workflows/real-data-complete-execution.yml
+      CLAIM_BOUNDARY: "Metaphors illustrate domain analogies only; do not validate scientific claims."
       OUTPUT_DIR: "results/concept_matrix"
 
     steps:
@@ -135,17 +138,17 @@ jobs:
         if: ${{ inputs.dry_run != true }}
         run: |
           set -euo pipefail
-          echo "## Concept Matrix Checksums" > results/concept_matrix/checksums.txt
-          echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> results/concept_matrix/checksums.txt
-          echo "" >> results/concept_matrix/checksums.txt
+          echo "## Concept Matrix Checksums" > results/concept_matrix/CHECKSUMS.sha256
+          echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> results/concept_matrix/CHECKSUMS.sha256
+          echo "" >> results/concept_matrix/CHECKSUMS.sha256
           sha256sum results/concept_matrix/*_concept_matrix.json \
                     results/concept_matrix/*_manifest.json \
-            >> results/concept_matrix/checksums.txt || true
+            >> results/concept_matrix/CHECKSUMS.sha256 || true
           b3sum results/concept_matrix/*_concept_matrix.json \
                 results/concept_matrix/*_manifest.json \
-            >> results/concept_matrix/checksums.txt 2>/dev/null \
-            || echo "b3sum not available (TOKEN_VAZIO)" >> results/concept_matrix/checksums.txt
-          cat results/concept_matrix/checksums.txt
+            >> results/concept_matrix/CHECKSUMS.sha256 2>/dev/null \
+            || echo "b3sum not available (TOKEN_VAZIO)" >> results/concept_matrix/CHECKSUMS.sha256
+          cat results/concept_matrix/CHECKSUMS.sha256
 
       - name: Print mining queue summary
         if: ${{ inputs.dry_run != true }}
