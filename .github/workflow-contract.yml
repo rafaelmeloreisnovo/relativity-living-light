@@ -1,8 +1,8 @@
 schema: rll.workflow_contract.v1
-updated_at: "2026-07-26"
+updated_at: "2026-07-27"
 
 inventory:
-  active_workflows: 45
+  active_workflows: 46
   inclusion: ".github/workflows/*.{yml,yaml}"
   exclusion:
     - ".github/To_add/**"
@@ -47,6 +47,9 @@ documented_checks:
     - context: check-conventions
       workflow: .github/workflows/convention-check.yml
       job_id: check-conventions
+    - context: Build polymathic concept matrix + validate schema
+      workflow: .github/workflows/polymathic-concept-matrix.yml
+      job_id: concept-matrix
     - context: build-formulas-artifacts
       workflow: .github/workflows/formulas-artifacts.yml
       job_id: build-formulas-artifacts
