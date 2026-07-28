@@ -1,6 +1,7 @@
 """Tests for the additive RLL Universal Taxonomy 416 registry and overlay."""
 from __future__ import annotations
 
+import importlib.util
 import json
 import subprocess
 import sys
@@ -13,24 +14,30 @@ VALIDATOR = ROOT / "scripts/validate_rll_universal_taxonomy_416.py"
 
 
 def load_registry():
-    return json.loads(REGISTRY.read_text(encoding="utf-8"))
+    spec = importlib.util.spec_from_file_location("ut416_validator", VALIDATOR)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.load_registry(REGISTRY)
 
 
 def test_strict_validator_passes():
     result = subprocess.run(
-        [sys.executable, str(VALIDATOR), str(REGISTRY)], capture_output=True, text=True
+        [sys.executable, str(VALIDATOR), str(REGISTRY)],
+        capture_output=True,
+        text=True,
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert "modules=386" in result.stdout
 
 
 def test_count_identity_and_cluster_reconciliation():
-    data = load_registry()
+    data, modules = load_registry()
     assert data["source_provenance"]["baseline_macrothemes"] == 30
-    assert len(data["modules"]) == 386
-    assert 30 + len(data["modules"]) == 416
+    assert len(modules) == 386
+    assert 30 + len(modules) == 416
     computed = {}
-    for module in data["modules"]:
+    for module in modules:
         computed[module["cluster_id"]] = computed.get(module["cluster_id"], 0) + 1
     assert computed == {
         "I": 48,
@@ -45,29 +52,33 @@ def test_count_identity_and_cluster_reconciliation():
 
 
 def test_source_order_and_unique_ids():
-    modules = load_registry()["modules"]
+    _, modules = load_registry()
     assert [module["source_index"] for module in modules] == list(range(1, 387))
     assert len({module["module_id"] for module in modules}) == 386
 
 
 def test_claim_boundary_and_token_vazio():
-    for module in load_registry()["modules"]:
+    _, modules = load_registry()
+    for module in modules:
         assert module["claim_allowed"] is False
         assert module["completion_state"].startswith("TOKEN_VAZIO")
 
 
 def test_profiles_are_resolvable_and_nonempty():
-    data = load_registry()
+    data, modules = load_registry()
     profiles = data["completion_profiles"]
-    for module in data["modules"]:
+    for module in modules:
         profile = profiles[module["completion_profile"]]
         assert profile["required_fields"]
         assert profile["description"]
 
 
 def test_declared_count_mismatches_are_preserved_not_hidden():
-    audit = load_registry()["count_audit"]
-    by_cluster = {entry["cluster_id"]: entry for entry in audit["discrepancies"]}
+    data, _ = load_registry()
+    audit = data["count_audit"]
+    by_cluster = {
+        entry["cluster_id"]: entry for entry in audit["discrepancies"]
+    }
     assert by_cluster["VII"]["declared"] == 48
     assert by_cluster["VII"]["computed"] == 47
     assert by_cluster["VIII"]["declared"] == 50
@@ -76,8 +87,9 @@ def test_declared_count_mismatches_are_preserved_not_hidden():
 
 
 def test_known_duplicate_is_linked():
-    modules = {module["module_id"]: module for module in load_registry()["modules"]}
-    assert modules["UTM-239"]["relations"] == [
+    _, modules = load_registry()
+    indexed = {module["module_id"]: module for module in modules}
+    assert indexed["UTM-239"]["relations"] == [
         {"type": "DUPLICATE_OF", "target": "UTM-194"}
     ]
 
@@ -130,5 +142,5 @@ def test_open_problem_and_explicit_gap_stay_void_in_overlay(tmp_path):
 
 
 def test_taxonomy_count_is_not_main_matrix_count():
-    data = load_registry()
+    data, _ = load_registry()
     assert data["invariants"]["taxonomy_count_is_not_knowledge_matrix_count"] is True
