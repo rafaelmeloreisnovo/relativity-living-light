@@ -30,6 +30,7 @@ A schema can verify that an object has the required fields and claim gates. It c
 | `relation_graph.schema.json` | Structural contract for claim-bounded relation graphs. | `claim_allowed=false` |
 | `information_evolution_trace.schema.json` | Structural contract for internal custody traces across information states, transformations, tests and epistemic gates. | `claim_allowed=false`; unknown origin remains `TOKEN_VAZIO` |
 | `rll_run_manifest.schema.json` | Structural contract for field-level provenance of one scientific execution. | `claim_allowed=false`; partial absence cannot silently supersede prior evidence |
+| `rll_environmental_signal_manifest.schema.json` | Ordered contract for atmosphere, aerosols, spray electrification, electric-shower heating, acoustic context, detector backgrounds and noise decisions. | `claim_allowed=false`; no discard/correction/promotion before meaning + reproduction + mechanism |
 | `rll_epistemic_void.schema.json` | Structural contract for unknowns, contradictions, creative alternatives, falsifiers and objective exit conditions. | `claim_allowed=false`; creativity generates candidates, not evidence |
 | `omega_operational_invariant.schema.json` | Structural contract for seven operational directions, hard invariants, geometric routing metrics and urgent exit gates. | `claim_allowed=false`; Ω metrics are architectural conventions, not physical evidence |
 | `rll_route_forest_blueprint.schema.json` | Structural contract for declarative Ω regions, nodes, routes, trees and twelve ML-readiness gates. | `claim_allowed=false`; blueprint is not a trained model |
@@ -51,6 +52,15 @@ Validate the information-evolution contract and its contiguous example chain wit
 ```bash
 python scripts/validate_information_evolution_trace.py
 ```
+
+Validate the environmental signal manifest and its fixed module order with:
+
+```bash
+python3 scripts/validate_rll_environmental_signal_manifest.py --strict --write-report
+python3 -m unittest tests/test_rll_environmental_signal_manifest.py
+```
+
+This gate preserves diesel mixed-phase aerosol semantics, separates Joule heating from spray electrification, blocks an ionization-to-singing causal claim and keeps IceCube backgrounds distinct from optical-telescope refraction. It does not validate an atmospheric or RLL physical claim.
 
 Validate the Omega schemas and examples with:
 
