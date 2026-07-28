@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "rll_knowledge_matrix.schema.json",
   "title": "RLL Knowledge Matrix Item",
-  "description": "Schema for a single item in the RLL Knowledge Matrix — FASE 30. claim_allowed=false globally.",
+  "description": "Structural contract for a single item in the RLL Knowledge Matrix — FASE 30. Structural validation does not authorize scientific claims; claim_allowed=false globally.",
   "type": "object",
   "required": [
     "item_id",
@@ -107,7 +107,7 @@
     },
     "claim_allowed": {
       "type": "boolean",
-      "enum": [false],
+      "const": false,
       "description": "Must always be false — boundary enforced structurally"
     },
     "label": {
