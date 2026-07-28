@@ -175,21 +175,24 @@ POLYMATHIC_BRIDGES = [
     {
         "id": "METAPHOR_TIDE_MULTISCALE",
         "type": "METAPHOR",
-        "name": "Marés barométricas — oscilações de múltiplas frequências (S1, S2, K1…)",
+        "name": "Marés barométricas — oscilações de múltiplas frequências (S4~6h, MT3~9h, S2~12h, ~16h, S1~24h)",
         "bio_mechanism": (
-            "Barometric tidal components: S2~6h (semidiurnal atmospheric), "
-            "S1~12h (diurnal), K1~24h (luni-solar); biological clocks sync to these rhythms."
+            "Barometric tidal spectrum: S4~6h (quarter-diurnal), MT3~9h (terdiurnal), "
+            "S2~12h (semidiurnal), ~16h (ultradian stress cycle), S1~24h (diurnal solar); "
+            "biological clocks synchronize to all these harmonics across kingdoms: "
+            "cortisol ultradian (~9h), growth hormone (~16h), full circadian (~24h)."
         ),
         "physics_analogue": (
             "Modal response h(t) = Σ Ak exp(-γk t) cos(ωk t + φk): "
-            "each tide component is one mode; multi-scale oscillation drives "
-            "tidal triggering ΔCFS = Δτ + μ′Δσn."
+            "each tide component is one mode with distinct ωk; multi-scale oscillation drives "
+            "tidal triggering ΔCFS = Δτ + μ′Δσn. Fisher information I_total aggregates "
+            "constraints from all frequency bands simultaneously."
         ),
-        "rll_equation_ids": ["modal_response", "tidal_triggering", "impulse_response"],
-        "domains": ["geophysics", "oceanography", "atmospheric_science", "biology"],
+        "rll_equation_ids": ["modal_response", "tidal_triggering", "impulse_response", "fisher_information_total"],
+        "domains": ["geophysics", "oceanography", "atmospheric_science", "biology", "chronobiology"],
         "cross_domain_pattern": "multi_frequency_oscillation",
-        "claim_boundary": "Metaphor only; atmospheric tides not yet in RLL equation set.",
-        "doi_seeds": [],
+        "claim_boundary": "Metaphor only; 9h/16h biological analogues to atmospheric tides not quantified in RLL.",
+        "doi_seeds": ["10.1029/2018GL080421"],
     },
     {
         "id": "METAPHOR_CHERNOBYL_RECURSION",
@@ -308,7 +311,124 @@ POLYMATHIC_BRIDGES = [
         "domains": ["entomology", "topology", "quantum_physics", "RLL"],
         "cross_domain_pattern": "structure_preserving_phase_transition",
         "claim_boundary": "Metaphor only; topological invariant not computed for RLL attractors.",
-        "doi_seeds": [],
+        "doi_seeds": ["10.1242/jeb.174300"],
+    },
+    # ── NEW BRIDGES (2026-07-28) ──────────────────────────────────────────────
+    # Covers: viruses/recursion/inversion, homeostasis/buffering,
+    # kingdoms/mycorrhiza, neuroplasticity/cognitive, Lotka-Volterra/scarcity
+    # Also links previously orphaned equations: aic, bic, v_info_vector,
+    # fisher_information_total
+    {
+        "id": "METAPHOR_VIRUS_LATERAL_RECURSION",
+        "type": "METAPHOR",
+        "name": "Vírus — recursão lateral, hijack de replicação, inversão de informação",
+        "bio_mechanism": (
+            "Retroviruses (HIV, SARS-CoV-2): insert reverse-transcribed genome into host "
+            "DNA → hijack replication machinery → produce viral copies; "
+            "RNA→DNA inversion (reverse transcriptase) is biological recursion-inversion; "
+            "horizontal transfer across kingdoms (phage transduction in bacteria→eukaryotes)."
+        ),
+        "physics_analogue": (
+            "Cross-domain parameter injection: V_info vector encodes multi-dimensional "
+            "state that can be 'inserted' into a new domain (like a retrovirus); "
+            "T^7 toroidal attractor as host state space where injected information "
+            "creates new fixed points; claim_state_entropy drops after successful integration."
+        ),
+        "rll_equation_ids": ["claim_state_entropy", "v_info_vector", "toroidal_state_space"],
+        "domains": ["virology", "evolutionary_biology", "information_theory", "dynamical_systems", "RLL"],
+        "cross_domain_pattern": "hijack_recursion_lateral_transfer",
+        "claim_boundary": "Metaphor only; retroviral insertion ≠ literal parameter injection in RLL models.",
+        "doi_seeds": ["10.1038/s41559-019-0948-2"],
+    },
+    {
+        "id": "METAPHOR_HOMEOSTASIS_BUFFERING",
+        "type": "METAPHOR",
+        "name": "Homeostase — tamponamento nasal/pH, equilíbrio dos reinos por retroalimentação negativa",
+        "bio_mechanism": (
+            "Nasal/blood pH buffering: CO2 + H2O ⇌ H2CO3 ⇌ HCO3⁻ + H⁺ — bicarbonate "
+            "buffer maintains pH 7.35–7.45 despite metabolic flux; "
+            "negative feedback loop (Henderson-Hasselbalch equation) minimizes variance; "
+            "kingdoms balance: predator/prey, producer/consumer ratios stay bounded."
+        ),
+        "physics_analogue": (
+            "Lyapunov stable fixed point with λ < 0: perturbations decay exponentially; "
+            "Fisher information I_total measures how precisely system can be tracked "
+            "near equilibrium (Cramér-Rao bound); χ² residuals as measure of homeostatic "
+            "deviation from expected model."
+        ),
+        "rll_equation_ids": ["lyapunov_growth", "fisher_information_total", "chi2"],
+        "domains": ["physiology", "control_theory", "statistics", "dynamical_systems", "ecological_equilibrium"],
+        "cross_domain_pattern": "homeostatic_feedback_equilibrium",
+        "claim_boundary": "Metaphor only; Henderson-Hasselbalch not directly mapped to RLL Lyapunov spectrum.",
+        "doi_seeds": ["10.1152/physrev.00023.2016"],
+    },
+    {
+        "id": "METAPHOR_KINGDOMS_MYCORRHIZA",
+        "type": "METAPHOR",
+        "name": "Reinos + Micorriza (Wood Wide Web) — rede multi-reino de troca de recursos",
+        "bio_mechanism": (
+            "Mycorrhizal fungal networks connect plant roots across species: sugar↔phosphorus "
+            "exchange, chemical warning signals, resource redistribution to shade-suppressed "
+            "seedlings; 5 kingdoms (Animalia/Plantae/Fungi/Protista/Monera) in dynamic "
+            "equilibrium via trophic cascades and mutualistic cycling."
+        ),
+        "physics_analogue": (
+            "Cosmic web graph G_z = (V_z, E_z, W_z) as multi-kingdom network: nodes = "
+            "halos/organisms, edges = filaments/hyphal links, weights = matter flux/nutrient flow; "
+            "V_info multi-dimensional vector captures 14 observational dimensions like kingdoms "
+            "capture multi-modal ecological axes; rafaelia_coherence φ measures network cohesion."
+        ),
+        "rll_equation_ids": ["cosmic_web_graph", "rafaelia_coherence", "v_info_vector"],
+        "domains": ["mycology", "botany", "ecology", "network_science", "RafaelIA"],
+        "cross_domain_pattern": "multi_kingdom_network_equilibrium",
+        "claim_boundary": "Metaphor only; mycorrhizal topology not formally mapped to cosmic web metrics.",
+        "doi_seeds": ["10.1038/nature02097"],
+    },
+    {
+        "id": "METAPHOR_NEURAL_PLASTICITY",
+        "type": "METAPHOR",
+        "name": "Neuroplasticidade — poda sináptica, aprendizado de Hebb, consolidação HDC cognitiva",
+        "bio_mechanism": (
+            "Synaptic pruning: adolescent brain eliminates ~50% of synapses (AIC-like: "
+            "minimum connections that explain behavior); Hebbian learning ('neurons that fire "
+            "together wire together') = local evidence-driven weight update; "
+            "memory consolidation during sleep: hippocampus→neocortex transfer = information "
+            "compression from high-dimensional experience to compact engram."
+        ),
+        "physics_analogue": (
+            "Model selection: AIC = χ² + 2k selects minimum-parameter model "
+            "(penalizes complexity like pruning penalizes unused synapses); "
+            "BIC = χ² + k ln(n) is stricter pruning criterion for large n; "
+            "claim_state_entropy decreases as evidence accumulates (H_claim → 0); "
+            "tag14_entropy H_Tag14 as proxy for cognitive information density per token."
+        ),
+        "rll_equation_ids": ["claim_state_entropy", "tag14_entropy", "aic", "bic"],
+        "domains": ["neuroscience", "cognitive_science", "information_theory", "machine_learning", "RafaelIA"],
+        "cross_domain_pattern": "adaptive_pruning_hypervector_consolidation",
+        "claim_boundary": "Metaphor only; AIC/BIC model selection not formally equivalent to synaptic pruning.",
+        "doi_seeds": ["10.1523/JNEUROSCI.3927-11.2012"],
+    },
+    {
+        "id": "METAPHOR_LOTKA_VOLTERRA_SCARCITY",
+        "type": "METAPHOR",
+        "name": "Lotka-Volterra — dinâmica predador/presa, colapso por escassez alimentar",
+        "bio_mechanism": (
+            "Predator-prey oscillation: dN/dt = αN - βNP; dP/dt = δNP - γP; "
+            "when food (N) is scarce, predator (P) collapses → prey recovers → "
+            "oscillatory limit cycle or extinction; "
+            "stability depends critically on initial conditions and reaction coefficients."
+        ),
+        "physics_analogue": (
+            "Lyapunov exponent λ near separatrix: small perturbation → divergent trajectory; "
+            "tidal triggering ΔCFS as threshold: stress accumulates until failure cascade; "
+            "modal response captures oscillatory recovery after collapse; "
+            "system near criticality = maximum sensitivity to initial conditions."
+        ),
+        "rll_equation_ids": ["lyapunov_growth", "tidal_triggering", "modal_response"],
+        "domains": ["population_dynamics", "ecology", "dynamical_systems", "catastrophe_theory", "geophysics"],
+        "cross_domain_pattern": "predator_prey_oscillation_collapse",
+        "claim_boundary": "Metaphor only; Lotka-Volterra coefficients not fitted to RLL datasets.",
+        "doi_seeds": ["10.1007/s12080-013-0201-7"],
     },
 ]
 
