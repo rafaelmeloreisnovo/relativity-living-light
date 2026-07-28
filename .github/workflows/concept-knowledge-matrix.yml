@@ -1,0 +1,52 @@
+name: RLL Knowledge Matrix — Orquestração de Fórmulas e Conceitos
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CLAIM_BOUNDARY: "claim_allowed=false; training_allowed=false"
+
+jobs:
+  build-knowledge-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build Knowledge Matrix
+        run: |
+          python tools/build_knowledge_matrix.py \
+            --root . \
+            --outdir artifacts/knowledge-matrix
+
+      - name: Run Knowledge Matrix tests
+        run: python -m pytest -q tests/test_knowledge_matrix.py
+
+      - name: Upload Knowledge Matrix artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-matrix-${{ github.run_id }}
+          path: artifacts/knowledge-matrix/
+          if-no-files-found: error
