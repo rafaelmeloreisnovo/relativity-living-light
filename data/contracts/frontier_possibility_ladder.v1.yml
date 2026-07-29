@@ -3,6 +3,7 @@ status: EXPERIMENTAL_SHADOW
 claim_allowed: false
 publication_effect: NONE
 documentation: docs/science/RLL_GRADED_POSSIBILITY_LADDER_20260729.md
+calibration_contract: data/contracts/theory_practice_calibration.v1.yml
 purpose: >-
   Rank research possibilities by current theory-practice proximity and
   tractability. The tier is not a probability of truth, a publication claim,
@@ -11,6 +12,7 @@ purpose: >-
 separation_of_orders:
   promotion_order: evidence_dependency
   exploration_order: theory_practice_proximity_descending
+  calibration_order: theory_execution_residual_decision_receipt
   invariant: a possibility may be explored before replication, but its claim language must remain proportional to its evidence
 
 method:
@@ -61,6 +63,7 @@ tiers:
 
 rules:
   - promotion_state and exploration_tier are independent
+  - calibration_state is independently validated by the linked calibration contract
   - a lower tier is not a refutation and a higher tier is not confirmation
   - missing mandatory information lowers the tier or yields P0; it is never averaged away
   - every tier must name the next bridge capable of moving it one level closer to practice
@@ -69,26 +72,31 @@ rules:
 portfolio:
   - fragment_id: FRAG-RLL-BACKGROUND-001
     exploration_tier: P5_NEAR_OPERATIONAL
+    calibration_profile: CAL-RLL-BACKGROUND-001
     current_promotion_state: TESTED_SYNTHETIC
     bottleneck: TOKEN_VAZIO_ROBUST_MULTI_SEED_RECEIPT
     next_bridge: execute preregistered multi-seed background comparison and preserve residuals and stability receipts
   - fragment_id: FRAG-IDE-001
     exploration_tier: P4_FORMALIZABLE_NEAR
+    calibration_profile: CAL-IDE-001
     current_promotion_state: TOKEN_VAZIO_COUPLED_BACKGROUND_PERTURBATIONS
     bottleneck: TOKEN_VAZIO_PERTURBATION_IMPLEMENTATION
     next_bridge: select one covariant interaction term and implement background plus perturbations under frozen priors
   - fragment_id: FRAG-NONPARAM-001
     exploration_tier: P4_FORMALIZABLE_NEAR
+    calibration_profile: CAL-NONPARAM-001
     current_promotion_state: TOKEN_VAZIO_REGULARIZATION_AND_COVERAGE
     bottleneck: TOKEN_VAZIO_KERNEL_OR_BASIS_FREEZE
     next_bridge: freeze basis, hyperparameter policy, and mock-coverage protocol before observing rankings
   - fragment_id: FRAG-STRONG-GRAVITY-001
     exploration_tier: P2_BRIDGE_CANDIDATE
+    calibration_profile: CAL-STRONG-GRAVITY-BRIDGE-001
     current_promotion_state: ROUTED_SEPARATE_AUTHORITY
     bottleneck: TOKEN_VAZIO_STRESS_ENERGY_BRIDGE_TO_COSMOLOGY
     next_bridge: derive an explicit stress-energy or propagation operator and one source-independent discriminating observable
   - fragment_id: FRAG-EINSTEIN-EXT-001
     exploration_tier: P1_SPECULATIVE_SEED
+    calibration_profile: CAL-EINSTEIN-EXT-001
     current_promotion_state: TOKEN_VAZIO_PERTURBATION_AND_STABILITY_BACKEND
     bottleneck: TOKEN_VAZIO_ACTION_OR_FIELD_EQUATIONS_SELECTED
     next_bridge: choose one specific modified-gravity family instead of treating all Einstein-equation extensions as one model
