@@ -39,6 +39,15 @@ A good fit of `H(z)` does not establish a fundamental theory. A background model
 
 DESI DR2 motivates wider comparison because its official cosmology analysis reports increased evidence for evolving dark energy in combinations of BAO, CMB and supernova data, while extended analyses test both parametric and nonparametric descriptions. The pipeline uses that situation as a reason for stronger adversarial comparison, not as permission to declare a preferred ontology.
 
+Primary anchors used by the queue:
+
+- DESI DR2 Results II, `arXiv:2503.14738`;
+- DESI extended dark-energy analysis, `arXiv:2503.14743`;
+- interacting dark sectors with background and perturbations, `arXiv:2503.21652`;
+- model-independent reconstruction after DESI DR2, `arXiv:2506.22953`.
+
+These references establish active research routes. They do not validate RLL and do not authorize copying their conclusions into another model.
+
 ## 3. Ten gates
 
 | Gate | Question | Missing state |
