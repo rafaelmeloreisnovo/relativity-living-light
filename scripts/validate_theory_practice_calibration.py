@@ -13,6 +13,7 @@ import yaml
 CALIBRATION_SCHEMA = "rll.theory_practice_calibration.v1"
 LADDER_SCHEMA = "rll.frontier_possibility_ladder.v1"
 QUEUE_SCHEMA = "rll.frontier_research_queue.v1"
+EXPECTED_CALIBRATION_PATH = "data/contracts/theory_practice_calibration.v1.yml"
 EXPECTED_STATES = [
     ("C5_INDEPENDENTLY_REPRODUCED", 5),
     ("C4_ROBUST_REPEATED", 4),
@@ -169,6 +170,17 @@ def validate_cross_links(
     errors: list[str] = []
     require(ladder.get("schema") == LADDER_SCHEMA, "unexpected ladder schema", errors)
     require(queue.get("schema") == QUEUE_SCHEMA, "unexpected queue schema", errors)
+    require(
+        ladder.get("calibration_contract") == EXPECTED_CALIBRATION_PATH,
+        "ladder must point to the canonical calibration contract",
+        errors,
+    )
+    require(
+        ladder.get("separation_of_orders", {}).get("calibration_order")
+        == "theory_execution_residual_decision_receipt",
+        "ladder calibration order changed",
+        errors,
+    )
     ladder_by_id = {
         str(item.get("fragment_id")): item
         for item in ladder.get("portfolio", [])
@@ -195,6 +207,7 @@ def validate_cross_links(
         require(queued is not None, f"{fragment_id}: absent from queue", errors)
         if ranked is not None:
             require(profile.get("exploration_tier") == ranked.get("exploration_tier"), f"{fragment_id}: exploration tier drift", errors)
+            require(profile.get("calibration_id") == ranked.get("calibration_profile"), f"{fragment_id}: calibration profile drift", errors)
         if queued is not None:
             require(profile.get("promotion_state") == queued.get("state"), f"{fragment_id}: promotion state drift", errors)
     return errors
