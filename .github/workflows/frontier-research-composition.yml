@@ -1,0 +1,158 @@
+name: Frontier research composition
+
+"on":
+  push:
+    branches: [main]
+    paths:
+      - "data/contracts/frontier_research_composition.v1.yml"
+      - "data/inputs/cosmology_joint/frontier_research_queue.v1.yml"
+      - "scripts/validate_frontier_research_composition.py"
+      - "scripts/run_frontier_research_orchestrator.py"
+      - "tests/test_frontier_research_composition.py"
+      - "data/contracts/cosmology_model_family_shadow.v1.json"
+      - "data/pipelines/structure_d/model_family_shadow.py"
+      - "tests/test_model_family_shadow.py"
+      - ".github/workflows/frontier-research-composition.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "data/contracts/frontier_research_composition.v1.yml"
+      - "data/inputs/cosmology_joint/frontier_research_queue.v1.yml"
+      - "scripts/validate_frontier_research_composition.py"
+      - "scripts/run_frontier_research_orchestrator.py"
+      - "tests/test_frontier_research_composition.py"
+      - "data/contracts/cosmology_model_family_shadow.v1.json"
+      - "data/pipelines/structure_d/model_family_shadow.py"
+      - "tests/test_model_family_shadow.py"
+      - ".github/workflows/frontier-research-composition.yml"
+  workflow_dispatch:
+    inputs:
+      run_shadow_smoke:
+        description: "Run a low-iteration, non-publishing core-model smoke benchmark"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontier-research-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  epistemic-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deterministic validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml pytest numpy pandas scipy
+
+      - name: Validate composition contract and queue
+        run: |
+          mkdir -p artifacts/frontier-research
+          python scripts/validate_frontier_research_composition.py \
+            --contract data/contracts/frontier_research_composition.v1.yml \
+            --queue data/inputs/cosmology_joint/frontier_research_queue.v1.yml \
+            --report artifacts/frontier-research/validation.json
+
+      - name: Iterate prompt gates to epistemic fixed point
+        run: |
+          python scripts/run_frontier_research_orchestrator.py \
+            --contract data/contracts/frontier_research_composition.v1.yml \
+            --queue data/inputs/cosmology_joint/frontier_research_queue.v1.yml \
+            --json-out artifacts/frontier-research/prompt-evolution.json \
+            --md-out artifacts/frontier-research/prompt-evolution.md
+
+      - name: Run focused adversarial tests
+        run: |
+          set -o pipefail
+          pytest -q \
+            tests/test_frontier_research_composition.py \
+            tests/test_model_family_shadow.py \
+            --junitxml=artifacts/frontier-research/junit.xml \
+            2>&1 | tee artifacts/frontier-research/pytest.log
+
+      - name: Dry-load the model registry without numerical fitting
+        run: |
+          python - <<'PY' | tee artifacts/frontier-research/model-registry-dry-load.txt
+          from data.pipelines.structure_d.model_family_shadow import load_contract, load_model_specs
+          contract = load_contract()
+          specs = load_model_specs(contract)
+          print(f"models={len(specs)}")
+          print("claim_allowed=false")
+          print("publication_effect=NONE")
+          print("model_ids=" + ",".join(specs))
+          PY
+
+      - name: Upload auditable receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontier-research-${{ github.run_id }}
+          path: artifacts/frontier-research/
+          retention-days: 30
+          if-no-files-found: error
+
+  shadow-smoke:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_shadow_smoke == true
+    needs: epistemic-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RLL_MODEL_FAMILY_MODE: core
+      RLL_MODEL_FAMILY_SEED: "11"
+      RLL_MODEL_FAMILY_MAXITER: "2"
+      RLL_MODEL_FAMILY_TOL: "0.001"
+    steps:
+      - name: Checkout without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install numerical dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy pandas scipy
+
+      - name: Run non-publishing shadow smoke benchmark
+        run: |
+          mkdir -p artifacts/frontier-shadow-smoke
+          python -m data.pipelines.structure_d.model_family_shadow \
+            2>&1 | tee artifacts/frontier-shadow-smoke/run.log
+          cp results/structure_d/model_family_shadow.json artifacts/frontier-shadow-smoke/
+          cp results/structure_d/model_family_shadow.csv artifacts/frontier-shadow-smoke/
+          printf '%s\n' \
+            'claim_allowed=false' \
+            'publication_effect=NONE' \
+            'mode=core' \
+            'maxiter=2' \
+            > artifacts/frontier-shadow-smoke/BOUNDARY.txt
+
+      - name: Upload smoke receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontier-shadow-smoke-${{ github.run_id }}
+          path: artifacts/frontier-shadow-smoke/
+          retention-days: 30
+          if-no-files-found: error
