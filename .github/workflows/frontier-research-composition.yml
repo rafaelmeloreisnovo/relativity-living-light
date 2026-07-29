@@ -5,10 +5,13 @@ name: Frontier research composition
     branches: [main]
     paths:
       - "data/contracts/frontier_research_composition.v1.yml"
+      - "data/contracts/frontier_possibility_ladder.v1.yml"
       - "data/inputs/cosmology_joint/frontier_research_queue.v1.yml"
       - "scripts/validate_frontier_research_composition.py"
+      - "scripts/validate_frontier_possibility_ladder.py"
       - "scripts/run_frontier_research_orchestrator.py"
       - "tests/test_frontier_research_composition.py"
+      - "tests/test_frontier_possibility_ladder.py"
       - "data/contracts/cosmology_model_family_shadow.v1.json"
       - "data/pipelines/structure_d/model_family_shadow.py"
       - "tests/test_model_family_shadow.py"
@@ -17,10 +20,13 @@ name: Frontier research composition
     branches: [main]
     paths:
       - "data/contracts/frontier_research_composition.v1.yml"
+      - "data/contracts/frontier_possibility_ladder.v1.yml"
       - "data/inputs/cosmology_joint/frontier_research_queue.v1.yml"
       - "scripts/validate_frontier_research_composition.py"
+      - "scripts/validate_frontier_possibility_ladder.py"
       - "scripts/run_frontier_research_orchestrator.py"
       - "tests/test_frontier_research_composition.py"
+      - "tests/test_frontier_possibility_ladder.py"
       - "data/contracts/cosmology_model_family_shadow.v1.json"
       - "data/pipelines/structure_d/model_family_shadow.py"
       - "tests/test_model_family_shadow.py"
@@ -61,13 +67,17 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pyyaml pytest numpy pandas scipy
 
-      - name: Validate composition contract and queue
+      - name: Validate composition contract, queue, and possibility ladder
         run: |
           mkdir -p artifacts/frontier-research
           python scripts/validate_frontier_research_composition.py \
             --contract data/contracts/frontier_research_composition.v1.yml \
             --queue data/inputs/cosmology_joint/frontier_research_queue.v1.yml \
             --report artifacts/frontier-research/validation.json
+          python scripts/validate_frontier_possibility_ladder.py \
+            --ladder data/contracts/frontier_possibility_ladder.v1.yml \
+            --queue data/inputs/cosmology_joint/frontier_research_queue.v1.yml \
+            --report artifacts/frontier-research/possibility-ladder-validation.json
 
       - name: Iterate prompt gates to epistemic fixed point
         run: |
@@ -82,6 +92,7 @@ jobs:
           set -o pipefail
           pytest -q \
             tests/test_frontier_research_composition.py \
+            tests/test_frontier_possibility_ladder.py \
             tests/test_model_family_shadow.py \
             --junitxml=artifacts/frontier-research/junit.xml \
             2>&1 | tee artifacts/frontier-research/pytest.log
