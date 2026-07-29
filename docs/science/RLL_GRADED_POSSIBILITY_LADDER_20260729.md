@@ -65,3 +65,32 @@ O objetivo é permitir que pares identifiquem rapidamente:
 - quais precisam de uma única ponte;
 - quais ainda são sementes;
 - qual artefato move cada item para o nível seguinte.
+
+## Calibração associada
+
+A escada P0–P5 agora é interligada ao contrato:
+
+```text
+data/contracts/theory_practice_calibration.v1.yml
+```
+
+A integração acrescenta uma terceira ordem independente:
+
+```text
+S0–S9  → promoção por dependência de evidência
+P0–P5  → prioridade por proximidade teoria–prática
+C0–C5  → maturidade da ligação teoria–execução–residual–recibo
+```
+
+Cada item do portfólio precisa possuir exatamente um perfil de calibração com seis deltas:
+
+```text
+escopo teórico → modelo específico
+equação/algoritmo → código
+observável → medição
+parâmetro → configuração
+previsão → recibo
+falsificador → decisão
+```
+
+O validador cruzado bloqueia divergência entre o estado da fila, o nível de exploração e o perfil de calibração. Assim, uma alteração textual não consegue promover a hipótese, esconder um `TOKEN_VAZIO` ou declarar aproximação limitada sem recibo e decisão adversarial.
