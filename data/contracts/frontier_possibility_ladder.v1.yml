@@ -2,6 +2,7 @@ schema: rll.frontier_possibility_ladder.v1
 status: EXPERIMENTAL_SHADOW
 claim_allowed: false
 publication_effect: NONE
+documentation: docs/science/RLL_GRADED_POSSIBILITY_LADDER_20260729.md
 purpose: >-
   Rank research possibilities by current theory-practice proximity and
   tractability. The tier is not a probability of truth, a publication claim,
