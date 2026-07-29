@@ -59,6 +59,7 @@ def test_every_ranked_fragment_has_one_calibration_profile():
     calibrated = {item["fragment_id"] for item in calibration["profiles"]}
     ranked = {item["fragment_id"] for item in ladder["portfolio"]}
     assert calibrated == ranked
+    assert ladder["calibration_contract"] == module.EXPECTED_CALIBRATION_PATH
 
 
 def test_rejects_missing_mandatory_delta_axis():
@@ -105,6 +106,24 @@ def test_rejects_exploration_tier_drift():
     calibration["profiles"][0]["exploration_tier"] = "P0_UNRANKABLE_TOKEN_VAZIO"
     errors = module.validate_cross_links(calibration, ladder, queue)
     assert any("exploration tier drift" in error for error in errors)
+
+
+def test_rejects_calibration_profile_drift():
+    calibration = load(CALIBRATION_PATH)
+    ladder = load(LADDER_PATH)
+    queue = load(QUEUE_PATH)
+    ladder["portfolio"][0]["calibration_profile"] = "CAL-WRONG"
+    errors = module.validate_cross_links(calibration, ladder, queue)
+    assert any("calibration profile drift" in error for error in errors)
+
+
+def test_rejects_ladder_without_canonical_calibration_contract():
+    calibration = load(CALIBRATION_PATH)
+    ladder = load(LADDER_PATH)
+    queue = load(QUEUE_PATH)
+    ladder["calibration_contract"] = "TOKEN_VAZIO"
+    errors = module.validate_cross_links(calibration, ladder, queue)
+    assert "ladder must point to the canonical calibration contract" in errors
 
 
 def test_rejects_promotion_state_drift():
