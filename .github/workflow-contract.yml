@@ -1,8 +1,8 @@
 schema: rll.workflow_contract.v1
-updated_at: "2026-07-27"
+updated_at: "2026-07-29"
 
 inventory:
-  active_workflows: 47
+  active_workflows: 48
   inclusion: ".github/workflows/*.{yml,yaml}"
   exclusion:
     - ".github/To_add/**"
@@ -56,6 +56,9 @@ documented_checks:
     - context: formulas-manifest
       workflow: .github/workflows/formulas-artifacts-validation.yml
       job_id: formulas-manifest
+    - context: epistemic-contract
+      workflow: .github/workflows/frontier-research-composition.yml
+      job_id: epistemic-contract
 
 documentation:
   authority_order:
