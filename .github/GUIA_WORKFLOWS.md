@@ -1,6 +1,6 @@
 # Guia de Workflows — RLL
 
-> Navegação rápida. Contrato verificável: [`workflow-contract.yml`](workflow-contract.yml). Arquitetura Ω: [`docs/workflows/RLL_WORKFLOW_ARCHITECTURE_OMEGA_V1.md`](../docs/workflows/RLL_WORKFLOW_ARCHITECTURE_OMEGA_V1.md). Documentação ampliada: [`docs/workflows/`](../docs/workflows/).
+> Navegação rápida. Contrato verificável: [`workflow-contract.yml`](workflow-contract.yml). Arquitetura Ω: [`docs/workflows/RLL_WORKFLOW_ARCHITECTURE_OMEGA_V1.md`](../docs/workflows/RLL_WORKFLOW_ARCHITECTURE_OMEGA_V1.md). Governança operacional: [`docs/governance/RLL_OPERATIONAL_GOVERNANCE.md`](../docs/governance/RLL_OPERATIONAL_GOVERNANCE.md). Documentação ampliada: [`docs/workflows/`](../docs/workflows/).
 
 ## Pipeline Canônico
 
@@ -25,6 +25,7 @@ Input reutilizável/manual: `modo` (`completo`, `apenas_ciencia`, `apenas_govern
 | `build-formulas-artifacts` | `formulas-artifacts.yml` |
 | `formulas-manifest` | `formulas-artifacts-validation.yml` |
 | `epistemic-contract` | `frontier-research-composition.yml` |
+| `governance-quality-gate` | `rll-governance-quality-gate.yml` |
 
 Esta tabela comprova que os jobs existem no código, mas **não comprova a configuração de branch protection** no GitHub. A proteção externa deve ser verificada separadamente; no contrato local, `branch_protection_verified=false`.
 
@@ -53,6 +54,12 @@ O gate `validate-workflow-architecture` verifica todos os YAMLs e trata como err
 
 Referências externas de Actions ainda não pinadas por SHA completo permanecem como aviso de migração, não como falsa declaração de conformidade.
 
+## Governança operacional
+
+O job `governance-quality-gate` valida contratos de engenharia, qualidade, dados, segurança, ciência, biomedicina, biologia, bioquímica, fauna, flora, ecossistemas e engenharia. Ele gera receipt e relatório com `F_ok`, `F_gap` e `F_next`, mantendo `certification_claim=false`, `conformity_claim=false` e `claim_allowed=false` por padrão.
+
+O workflow novo usa `contents: read`, não recebe segredos, fixa a action de checkout por SHA completo e trata referências legadas mutáveis como dívida progressiva observável, não como aprovação silenciosa.
+
 ## Decisão Rápida
 
 | Objetivo | Workflow |
@@ -65,6 +72,7 @@ Referências externas de Actions ainda não pinadas por SHA completo permanecem 
 | Análise Bayesiana standalone | `bayes_analysis.yml` |
 | DESI BAO covariance | `desi-dr2-bao-validation.yml` |
 | Fronteira S/P/C e recibos shadow | `frontier-research-composition.yml` |
+| Governança, risco, dados, segurança e ética | `rll-governance-quality-gate.yml` |
 | IML artifact | `iml_artifact.yml` |
 | Inventário do repositório | `repo-real-inventory.yml` |
 
@@ -81,7 +89,9 @@ python3 tools/workflow_architecture.py \
   --output-dir artifacts/yml-syntax-validation \
   --strict
 python3 tools/validate_workflow_docs.py --strict --write-report
+python3 scripts/rll_governance_audit.py --strict --write-report
 pytest -q tests/test_workflow_architecture.py tests/test_validate_workflow_docs.py
+python3 -m unittest -v tests/test_rll_governance_audit.py
 ```
 
 Recibos produzidos:
@@ -90,12 +100,16 @@ Recibos produzidos:
 - `artifacts/yml-syntax-validation/WORKFLOW_ARCHITECTURE_REPORT.md`;
 - `artifacts/yml-syntax-validation/yaml_parse_report.tsv`;
 - `artifacts/workflow-docs/workflow_registry.json`;
-- `artifacts/workflow-docs/WORKFLOW_DOCS_REPORT.md`.
+- `artifacts/workflow-docs/WORKFLOW_DOCS_REPORT.md`;
+- `artifacts/governance/rll_governance_receipt.json`;
+- `artifacts/governance/RLL_GOVERNANCE_REPORT.md`.
 
 ## Articulação interna
 
 - Contrato: [`.github/workflow-contract.yml`](workflow-contract.yml)
 - Contrato da arquitetura: [`.github/workflow-architecture/invariants.v1.yml`](workflow-architecture/invariants.v1.yml)
+- Perfil de governança: [`governance/rll-governance-profile.v1.json`](../governance/rll-governance-profile.v1.json)
+- Governança operacional: [`docs/governance/RLL_OPERATIONAL_GOVERNANCE.md`](../docs/governance/RLL_OPERATIONAL_GOVERNANCE.md)
 - FASE 25.1: [`docs/workflows/FASE_25_1_CONTRATO_EXECUTAVEL.md`](../docs/workflows/FASE_25_1_CONTRATO_EXECUTAVEL.md)
 - Catálogo alternativo: [`.github/workflow-orchestrator/`](workflow-orchestrator/)
 - Workflows ainda não ativos: [`.github/To_add/`](To_add/)
