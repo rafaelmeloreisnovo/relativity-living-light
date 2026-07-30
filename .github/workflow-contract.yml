@@ -1,5 +1,5 @@
 schema: rll.workflow_contract.v1
-updated_at: "2026-07-29"
+updated_at: "2026-07-30"
 
 inventory:
   active_workflows: 48
@@ -41,9 +41,9 @@ documented_checks:
     - context: test
       workflow: .github/workflows/python-tests.yml
       job_id: test
-    - context: validate-yaml
+    - context: validate-workflow-architecture
       workflow: .github/workflows/yml-syntax-validation.yml
-      job_id: validate-yaml
+      job_id: validate-workflow-architecture
     - context: check-conventions
       workflow: .github/workflows/convention-check.yml
       job_id: check-conventions
@@ -63,7 +63,9 @@ documented_checks:
 documentation:
   authority_order:
     - .github/workflow-contract.yml
+    - .github/workflow-architecture/invariants.v1.yml
     - tools/validate_workflow_docs.py
+    - tools/workflow_architecture.py
     - artifacts/workflow-docs/workflow_registry.json
     - docs/workflows/INDICE_CANONICO.md
   required_markers:
@@ -72,6 +74,7 @@ documentation:
       - "8 fases"
       - "6 steps físicos"
       - "não comprova a configuração de branch protection"
+      - "validate-workflow-architecture"
     docs/workflows/README.md:
       - "contrato executável"
       - "44 etapas lógicas"
