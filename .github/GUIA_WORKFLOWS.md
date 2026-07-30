@@ -21,6 +21,7 @@ Input reutilizável/manual: `modo` (`completo`, `apenas_ciencia`, `apenas_govern
 | `deterministic-gate` | `rll-pipeline-linear-completo.yml` |
 | `test` | `python-tests.yml` |
 | `validate-workflow-architecture` | `yml-syntax-validation.yml` |
+| `yaml-deep-audit` | `yaml-deep-audit.yml` |
 | `check-conventions` | `convention-check.yml` |
 | `build-formulas-artifacts` | `formulas-artifacts.yml` |
 | `formulas-manifest` | `formulas-artifacts-validation.yml` |
@@ -54,6 +55,12 @@ O gate `validate-workflow-architecture` verifica todos os YAMLs e trata como err
 
 Referências externas de Actions ainda não pinadas por SHA completo permanecem como aviso de migração, não como falsa declaração de conformidade.
 
+## Auditoria YAML profunda
+
+O job `yaml-deep-audit` percorre cada `.yml` e `.yaml`, rejeita chaves duplicadas, classifica todos os arquivos, cruza caminhos locais, detecta inventário desatualizado e amplia a revisão de workflows para permissões, Actions mutáveis, falhas engolidas, dependências sem lock, interpolação de entradas em shell e métricas científicas embutidas no YAML.
+
+A decisão `REVIEW_REQUIRED` é um receipt de dívida observada; não é falha sintática nem promoção científica. A matriz `yaml_file_matrix.tsv` preserva uma linha auditável para cada arquivo.
+
 ## Governança operacional
 
 O job `governance-quality-gate` valida contratos de engenharia, qualidade, dados, segurança, ciência, biomedicina, biologia, bioquímica, fauna, flora, ecossistemas e engenharia. Ele gera receipt e relatório com `F_ok`, `F_gap` e `F_next`, mantendo `certification_claim=false`, `conformity_claim=false` e `claim_allowed=false` por padrão.
@@ -67,6 +74,7 @@ O workflow novo usa `contents: read`, não recebe segredos, fixa a action de che
 | Gate completo | `rll-pipeline-linear-completo.yml` com `modo=completo` |
 | Ciência pelo alias canônico | `RLL-CI.yml` |
 | Alias científico histórico compatível | `RLL_SCIENTIFIC.yml` |
+| Auditoria integral de YAML/YML | `yaml-deep-audit.yml` |
 | Validação científica P0/MCMC/Bayes | `rll-validacao-cientifica-completa.yml` |
 | Dados reais | `real-data-complete-execution.yml` |
 | Análise Bayesiana standalone | `bayes_analysis.yml` |
@@ -88,10 +96,13 @@ python3 tools/workflow_architecture.py \
   --contract .github/workflow-architecture/invariants.v1.yml \
   --output-dir artifacts/yml-syntax-validation \
   --strict
+python3 tools/deep_yaml_audit.py \
+  --output-dir artifacts/yaml-deep-audit \
+  --fail-on none
 python3 tools/validate_workflow_docs.py --strict --write-report
 python3 scripts/rll_governance_audit.py --strict --write-report
 pytest -q tests/test_workflow_architecture.py tests/test_validate_workflow_docs.py
-python3 -m unittest -v tests/test_rll_governance_audit.py
+python3 -m unittest -v tests/test_deep_yaml_audit.py tests/test_rll_governance_audit.py
 ```
 
 Recibos produzidos:
@@ -99,6 +110,10 @@ Recibos produzidos:
 - `artifacts/yml-syntax-validation/workflow_architecture_report.json`;
 - `artifacts/yml-syntax-validation/WORKFLOW_ARCHITECTURE_REPORT.md`;
 - `artifacts/yml-syntax-validation/yaml_parse_report.tsv`;
+- `artifacts/yaml-deep-audit/deep_yaml_audit.json`;
+- `artifacts/yaml-deep-audit/DEEP_YAML_AUDIT.md`;
+- `artifacts/yaml-deep-audit/yaml_file_matrix.tsv`;
+- `artifacts/yaml-deep-audit/findings.tsv`;
 - `artifacts/workflow-docs/workflow_registry.json`;
 - `artifacts/workflow-docs/WORKFLOW_DOCS_REPORT.md`;
 - `artifacts/governance/rll_governance_receipt.json`;
