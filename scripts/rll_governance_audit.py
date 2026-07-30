@@ -231,11 +231,25 @@ def iter_evidence_files() -> Iterable[Path]:
 
 def build_report(audit: Audit, workflow_inventory: dict[str, Any], modules: list[dict[str, Any]]) -> tuple[dict[str, Any], str]:
     hashes = {str(path.relative_to(ROOT)): sha256_path(path) for path in iter_evidence_files()}
+    evaluated_revision = os.environ.get("GITHUB_SHA", "TOKEN_VAZIO_LOCAL_REVISION")
+    decision = "FAIL" if audit.violations else "PASS"
+    inputs_sha256 = hashlib.sha256(canonical_json(hashes)).hexdigest()
     receipt = {
         "schema": "rll.governance_receipt.v1",
-        "evaluated_revision": os.environ.get("GITHUB_SHA", "TOKEN_VAZIO_LOCAL_REVISION"),
+        "commit_sha": evaluated_revision,
+        "workflow": os.environ.get("GITHUB_WORKFLOW", "rll-governance-quality-gate"),
+        "job": os.environ.get("GITHUB_JOB", "governance-quality-gate"),
+        "publication_effect": "NONE",
+        "inputs_sha256": inputs_sha256,
+        "decision": decision,
+        "residuals": {
+            "violations": [item.code for item in audit.violations],
+            "warnings": [item.code for item in audit.warnings],
+            "unobserved_external_settings": True,
+        },
+        "evaluated_revision": evaluated_revision,
         "evaluated_at": os.environ.get("RLL_EVALUATED_AT", "TOKEN_VAZIO_DETERMINISTIC_TIME"),
-        "status": "FAIL" if audit.violations else "PASS",
+        "status": decision,
         "claim_allowed": False,
         "certification_claim": False,
         "conformity_claim": False,
