@@ -11,6 +11,7 @@ on:
       - "docs/governance/**"
       - ".github/PULL_REQUEST_TEMPLATE.md"
       - ".github/workflows/rll-governance-quality-gate.yml"
+      - ".github/workflow-architecture/invariants.v1.yml"
       - ".github/workflow-contract.yml"
       - ".github/GUIA_WORKFLOWS.md"
 
@@ -54,3 +55,12 @@ jobs:
           else
             printf '%s\n' '# RLL Governance Audit' '' 'Report was not generated; inspect previous step logs.' >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: "Upload governance receipt even after failure"
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rll-governance-receipt-${{ github.run_id }}
+          path: artifacts/governance/
+          if-no-files-found: warn
+          retention-days: 30
