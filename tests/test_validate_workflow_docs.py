@@ -9,8 +9,10 @@ def test_workflow_documentation_contract_matches_repository() -> None:
     errors = [item for item in findings if item.severity == "error"]
     assert not errors, "\n".join(f"{item.code}: {item.path}: {item.message}" for item in errors)
     assert payload["passed"] is True
-    assert payload["active_workflows"] == 48
+    assert payload["active_workflows"] == 49
     assert payload["canonical_pipeline"] == ".github/workflows/rll-pipeline-linear-completo.yml"
+    paths = {row["path"] for row in payload["registry"]}
+    assert ".github/workflows/rll-governance-quality-gate.yml" in paths
 
 
 def test_workflow_documentation_report_is_consultable(tmp_path: Path) -> None:
@@ -23,4 +25,6 @@ def test_workflow_documentation_report_is_consultable(tmp_path: Path) -> None:
     assert registry.is_file()
     assert report.is_file()
     assert "Workflow Documentation Consistency" in report.read_text(encoding="utf-8")
-    assert "branch-protection" in registry.read_text(encoding="utf-8")
+    registry_text = registry.read_text(encoding="utf-8")
+    assert "branch-protection" in registry_text
+    assert "rll-governance-quality-gate.yml" in registry_text
