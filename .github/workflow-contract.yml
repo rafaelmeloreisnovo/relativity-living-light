@@ -2,7 +2,7 @@ schema: rll.workflow_contract.v1
 updated_at: "2026-07-30"
 
 inventory:
-  active_workflows: 48
+  active_workflows: 49
   inclusion: ".github/workflows/*.{yml,yaml}"
   exclusion:
     - ".github/To_add/**"
@@ -59,11 +59,18 @@ documented_checks:
     - context: epistemic-contract
       workflow: .github/workflows/frontier-research-composition.yml
       job_id: epistemic-contract
+    - context: governance-quality-gate
+      workflow: .github/workflows/rll-governance-quality-gate.yml
+      job_id: governance-quality-gate
+      permissions: contents_read
+      certification_claim: false
+      conformity_claim: false
 
 documentation:
   authority_order:
     - .github/workflow-contract.yml
     - .github/workflow-architecture/invariants.v1.yml
+    - governance/rll-governance-profile.v1.json
     - tools/validate_workflow_docs.py
     - tools/workflow_architecture.py
     - artifacts/workflow-docs/workflow_registry.json
@@ -75,6 +82,7 @@ documentation:
       - "6 steps físicos"
       - "não comprova a configuração de branch protection"
       - "validate-workflow-architecture"
+      - "governance-quality-gate"
     docs/workflows/README.md:
       - "contrato executável"
       - "44 etapas lógicas"
@@ -82,3 +90,7 @@ documentation:
     docs/workflows/FASE_25_1_CONTRATO_EXECUTAVEL.md:
       - "fonte de verdade executável"
       - "TOKEN_VAZIO não apaga evidência histórica"
+    docs/governance/RLL_OPERATIONAL_GOVERNANCE.md:
+      - "sem certificação"
+      - "auditoria absoluta"
+      - "claim_allowed=true"
