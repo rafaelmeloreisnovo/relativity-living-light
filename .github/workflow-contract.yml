@@ -2,7 +2,7 @@ schema: rll.workflow_contract.v1
 updated_at: "2026-07-30"
 
 inventory:
-  active_workflows: 49
+  active_workflows: 50
   inclusion: ".github/workflows/*.{yml,yaml}"
   exclusion:
     - ".github/To_add/**"
@@ -44,6 +44,9 @@ documented_checks:
     - context: validate-workflow-architecture
       workflow: .github/workflows/yml-syntax-validation.yml
       job_id: validate-workflow-architecture
+    - context: yaml-deep-audit
+      workflow: .github/workflows/yaml-deep-audit.yml
+      job_id: yaml-deep-audit
     - context: check-conventions
       workflow: .github/workflows/convention-check.yml
       job_id: check-conventions
@@ -73,6 +76,7 @@ documentation:
     - governance/rll-governance-profile.v1.json
     - tools/validate_workflow_docs.py
     - tools/workflow_architecture.py
+    - tools/deep_yaml_audit.py
     - artifacts/workflow-docs/workflow_registry.json
     - docs/workflows/INDICE_CANONICO.md
   required_markers:
@@ -82,6 +86,7 @@ documentation:
       - "6 steps físicos"
       - "não comprova a configuração de branch protection"
       - "validate-workflow-architecture"
+      - "yaml-deep-audit"
       - "governance-quality-gate"
     docs/workflows/README.md:
       - "contrato executável"

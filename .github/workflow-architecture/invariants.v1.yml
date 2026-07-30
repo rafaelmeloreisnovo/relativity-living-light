@@ -86,6 +86,15 @@ managed_workflows:
       - checkout_without_persistent_credentials
       - always_upload_receipt
       - externalized_algorithm
+  .github/workflows/yaml-deep-audit.yml:
+    class: structural
+    require:
+      - permissions
+      - concurrency
+      - job_timeout
+      - checkout_without_persistent_credentials
+      - always_upload_receipt
+      - externalized_algorithm
   .github/workflows/rll-governance-quality-gate.yml:
     class: structural
     require:
