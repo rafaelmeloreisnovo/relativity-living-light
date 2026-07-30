@@ -115,7 +115,7 @@ jobs:
       - name: Emit deterministic model-registry receipt
         run: |
           set -euo pipefail
-          python tools/frontier_registry_receipt.py \
+          python -m tools.frontier_registry_receipt \
             --contract data/contracts/cosmology_model_family_shadow.v1.json \
             --json-out "$FRONTIER_RECEIPT_DIR/model-registry.json" \
             --text-out "$FRONTIER_RECEIPT_DIR/model-registry.txt"
