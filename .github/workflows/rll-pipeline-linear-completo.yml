@@ -1,5 +1,5 @@
 name: "RLL FASE 24.1 — Gate Determinístico"
-# one-shot full validation after Pantheon/Bayes/F-COS-04 remediation
+# one-shot full validation after official Pantheon covariance materialization
 
 on:
   workflow_dispatch:
