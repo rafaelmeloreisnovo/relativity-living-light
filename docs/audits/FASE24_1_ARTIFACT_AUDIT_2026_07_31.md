@@ -92,7 +92,7 @@ Arquivos tratados:
 - `tests/test_rll_pipeline_fase24_1_runtime.py` — SHA-256 `f3b637e4173ba82b16667d48f1afcdadbee400e99a5f9922a7fdc234b7676b33`
 - `tools/validate_six_sigma_real_data_controls.py` — SHA-256 `05023151d6bfda0eab57e46e3543112f6a8a68c94645f3e0b2e021e109b976b1`
 - `tests/test_validate_six_sigma_real_data_controls.py` — SHA-256 `720d1c0b6a386261832f33fa5e62349865091eaf7de35fd89cb0be5c04222271`
-- `.github/workflows/rll-pipeline-linear-completo.yml` — SHA-256 `35bbef86f0395ed3d6d9b7624216660a1ae38adc2f63257c532fbd377d82b5a4`
+- `.github/workflows/rll-pipeline-linear-completo.yml` — SHA-256 `36d3e067bdf7339dd5dc232a63f7509f5f295eb7d9781c378fe464146acb6aa0`
 
 Validações focais executadas localmente sobre a camada alterada:
 
