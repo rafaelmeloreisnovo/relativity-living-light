@@ -127,9 +127,12 @@ def test_pantheon_step_uses_canonical_full_covariance_runner() -> None:
     runtime = load_runtime()
     spec = step(runtime, 13).commands[0]
     joined = " ".join(spec.argv)
+    assert "scripts/fetch_pantheon_covariance.py" in joined
     assert "rll_evidence.pantheon_fit_ascii" in joined
     assert "Pantheon+SH0ES_STAT+SYS.cov" in joined
     assert "scripts/pantheon/models.py" not in spec.requires
+    assert not any(path.endswith("Pantheon+SH0ES_STAT+SYS.cov") for path in spec.requires)
+    assert "pantheon_covariance_materialization.json" in joined
     assert "pantheon_fit_result.json" in joined
 
 

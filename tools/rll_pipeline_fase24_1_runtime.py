@@ -82,16 +82,18 @@ def align_step_contracts() -> None:
     _replace_step(13, commands=(command(
         "bash", "-lc",
         f"mkdir -p artifacts/linear/current_run && "
+        f"{py} scripts/fetch_pantheon_covariance.py "
+        "--output-dir data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR "
+        "--receipt artifacts/linear/current_run/pantheon_covariance_materialization.json && "
         f"PYTHONPATH=products/rll-evidence-runner/src {py} -m rll_evidence.pantheon_fit_ascii "
         "--catalog data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat "
         "--covariance data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov "
         "--output artifacts/linear/current_run/pantheon_fit_result.json "
         "--seeds 11,23,37,53,71 --maxiter 250 --integration-points 4096 --z-min 0.01",
         requires=(
+            "scripts/fetch_pantheon_covariance.py",
             "products/rll-evidence-runner/src/rll_evidence/pantheon_fit_ascii.py",
             "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat",
-            "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov",
-            "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov.sha256",
         ),
     ),), candidates=())
     _replace_step(15, commands=(command(
