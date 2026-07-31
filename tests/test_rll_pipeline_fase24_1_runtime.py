@@ -134,6 +134,8 @@ def test_pantheon_step_uses_canonical_full_covariance_runner() -> None:
     assert not any(path.endswith("Pantheon+SH0ES_STAT+SYS.cov") for path in spec.requires)
     assert "pantheon_covariance_materialization.json" in joined
     assert "pantheon_fit_result.json" in joined
+    assert "trap cleanup_pantheon_covariance EXIT" in joined
+    assert 'rm -f "$COV_FILE" "$COV_SHA"' in joined
 
 
 def test_pantheon_metrics_are_read_from_current_full_covariance_result(tmp_path, monkeypatch) -> None:

@@ -81,6 +81,11 @@ def align_step_contracts() -> None:
                                        requires=("scripts/data_scan/build_real_seed_ingestion_plan.py",)),), candidates=())
     _replace_step(13, commands=(command(
         "bash", "-lc",
+        "COV_DIR=data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR; "
+        "COV_FILE=\"$COV_DIR/Pantheon+SH0ES_STAT+SYS.cov\"; "
+        "COV_SHA=\"$COV_FILE.sha256\"; "
+        "cleanup_pantheon_covariance() { rm -f \"$COV_FILE\" \"$COV_SHA\"; }; "
+        "trap cleanup_pantheon_covariance EXIT; "
         f"mkdir -p artifacts/linear/current_run && "
         f"{py} scripts/fetch_pantheon_covariance.py "
         "--output-dir data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR "
