@@ -50,7 +50,7 @@ permissions:
 
 concurrency:
   group: rll-fase24-1-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   PYTHON_VERSION: "3.11"
@@ -91,11 +91,7 @@ jobs:
           set -o pipefail
           MODE="$DISPATCH_MODE"
           if [ "$EVENT_NAME" = "pull_request" ]; then
-            if [ "${GITHUB_HEAD_REF:-}" = "fix/fase24-1-orchestrator-artifacts-20260731" ]; then
-              MODE="completo"
-            else
-              MODE="dry_run"
-            fi
+            MODE="dry_run"
           fi
           test -n "$MODE" || MODE="dry_run"
           echo "mode=$MODE" >> "$GITHUB_OUTPUT"
