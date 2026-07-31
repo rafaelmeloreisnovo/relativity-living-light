@@ -1,5 +1,4 @@
 name: "RLL FASE 24.1 — Gate Determinístico"
-# one-shot full validation after official Pantheon covariance materialization
 
 on:
   workflow_dispatch:
@@ -130,9 +129,10 @@ jobs:
           test -s artifacts/linear/VERIFY_ARTIFACT.py
           python artifacts/linear/VERIFY_ARTIFACT.py
           python - <<'PY'
-          import hashlib
           import json
           from pathlib import Path
+
+          import hashlib
 
           provenance = json.loads(Path("artifacts/linear/PROVENANCE.json").read_text(encoding="utf-8"))
           manifest = json.loads(Path("artifacts/linear/MANIFEST.json").read_text(encoding="utf-8"))
