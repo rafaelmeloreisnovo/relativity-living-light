@@ -94,13 +94,14 @@ Arquivos tratados:
 - `tests/test_rll_pipeline_fase24_1_runtime.py` — SHA-256 `03839cf4d76519743f7d59c4d3560f199ea2c7ffb8244ebb2a79990f7f49be03`
 - `tools/validate_six_sigma_real_data_controls.py` — SHA-256 `05023151d6bfda0eab57e46e3543112f6a8a68c94645f3e0b2e021e109b976b1`
 - `tests/test_validate_six_sigma_real_data_controls.py` — SHA-256 `720d1c0b6a386261832f33fa5e62349865091eaf7de35fd89cb0be5c04222271`
-- `.github/workflows/rll-pipeline-linear-completo.yml` — SHA-256 `36d3e067bdf7339dd5dc232a63f7509f5f295eb7d9781c378fe464146acb6aa0`
+- `.github/workflows/rll-pipeline-linear-completo.yml` — SHA-256 `ba646d3fd4e37bc52abe336177ef7389079740b71941b5a695295666f4b629ca`
 
 Validações focais executadas localmente sobre a camada alterada:
 
 - `24 passed` em testes do núcleo determinístico, alinhamento FASE 24.1, Bayes auditável e Six Sigma;
 - `py_compile`: PASS;
 - parse YAML do workflow: PASS;
+- contrato arquitetural preservado: 6 steps físicos;
 - execução direta `python tools/rll_pipeline_fase24_1_runtime.py --help`: PASS.
 
 Esses testes comprovam a coerência da correção focal. A execução científica completa deve continuar bloqueada sempre que um falsificador reprovar ou uma evidência atual estiver ausente.
