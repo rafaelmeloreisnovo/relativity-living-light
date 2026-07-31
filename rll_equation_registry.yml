@@ -1,67 +1,119 @@
 equations:
+  - id: rll_friedmann_e2
+    equation: "E^2(a) = Omega_r a^-4 + Omega_m a^-3 + Omega_Lambda + Omega_s0[f(a) + (1-f(a))a^-3] + Omega_B0 a^-4 + Omega_P0 a^-4"
+    domain: ["cosmology", "background_expansion", "RLL"]
+    status: "author_model"
+    source_doc: "docs/canonicos/METODOLOGIA_COERENTE_RLL.md"
+    source_code: "src/rll/structural_integration.py"
+    claim_boundary: "Central RLL background equation; registration is not empirical validation and all extra components remain hypothesis-bound."
+    real_data_validators: ["real_hz", "real_bao_legacy", "real_desi_dr2_bao", "real_cmb_shift", "real_pantheon_plus_shoes"]
+    methodology_phase: "likelihood"
+
+  - id: logistic_transition
+    equation: "f(z) = 1 / (1 + exp((z-z_t)/w_t))"
+    domain: ["cosmology", "transition_models", "RLL"]
+    status: "implemented"
+    source_code: "src/rll/structural_integration.py::logistic_transition_z"
+    claim_boundary: "Overflow-safe implementation exists; physical interpretation and parameters require dataset-specific inference."
+    real_data_validators: ["real_hz", "real_bao_legacy", "real_desi_dr2_bao", "real_cmb_shift", "real_pantheon_plus_shoes"]
+    methodology_phase: "likelihood"
+
+  - id: null_limit_lcdm
+    equation: "Omega_s0 = Omega_B0 = Omega_P0 = 0 implies E^2(a) = Omega_r a^-4 + Omega_m a^-3 + Omega_Lambda"
+    domain: ["cosmology", "nested_models", "RLL", "LCDM"]
+    status: "required_invariant"
+    source_doc: "docs/canonicos/METODOLOGIA_COERENTE_RLL.md"
+    claim_boundary: "The exact nested null limit is a mandatory falsification and regression gate, not evidence that the extended model is preferred."
+    real_data_validators: ["real_hz", "real_bao_legacy", "real_desi_dr2_bao", "real_fsigma8", "real_cmb_shift", "real_pantheon_plus_shoes"]
+    methodology_phase: "claim_gate"
+
   - id: impulse_response
     equation: "y(t) = (I * h)(t) + eta(t)"
     domain: ["physics", "signal_processing", "RLL"]
     status: "core_modeling_principle"
     claim_boundary: "modeling analogy; requires dataset-specific validation"
+    real_data_validators: []
+    methodology_phase: "claim_gate"
 
   - id: modal_response
     equation: "h(t) = sum_k A_k exp(-gamma_k t) cos(omega_k t + phi_k)"
     domain: ["waves", "seismology", "resonance"]
     status: "known_physics"
+    real_data_validators: []
+    methodology_phase: "likelihood"
 
   - id: tidal_triggering
     equation: "Delta CFS = Delta tau + mu_prime Delta sigma_n"
     domain: ["geophysics", "critical_systems"]
     status: "known_physics"
     claim_boundary: "statistical trigger, not deterministic earthquake prediction"
+    real_data_validators: []
+    methodology_phase: "claim_gate"
 
   - id: lyapunov_growth
     equation: "||delta x(t)|| ~= ||delta x0|| exp(lambda t)"
     domain: ["chaos", "galactic_dynamics"]
     status: "known_dynamics"
+    real_data_validators: []
+    methodology_phase: "model_selection"
 
   - id: cosmic_web_graph
     equation: "G_z = (V_z, E_z, W_z)"
     domain: ["cosmology", "graph_theory", "RLL"]
     status: "modeling_representation"
+    real_data_validators: []
+    methodology_phase: "ingest"
 
   - id: density_contrast
     equation: "delta(x,z) = (rho(x,z)-rho_bar(z))/rho_bar(z)"
     domain: ["cosmology"]
     status: "known_physics"
+    real_data_validators: ["real_fsigma8"]
+    methodology_phase: "likelihood"
 
   - id: rafaelia_coherence
     equation: "phi = (1-H)C"
     domain: ["RafaelIA", "information_metrics"]
     status: "author_model"
+    real_data_validators: []
+    methodology_phase: "claim_gate"
 
   - id: chi2
     equation: "chi2 = (d-m)^T C^-1 (d-m)"
     domain: ["statistics", "model_validation"]
     status: "known_statistics"
+    real_data_validators: ["real_hz", "real_bao_legacy", "real_desi_dr2_bao", "real_fsigma8", "real_cmb_shift", "real_pantheon_plus_shoes"]
+    methodology_phase: "likelihood"
 
   - id: aic
     equation: "AIC = chi2 + 2k"
     domain: ["statistics", "model_selection"]
     status: "known_statistics"
+    real_data_validators: ["real_hz", "real_bao_legacy", "real_desi_dr2_bao", "real_fsigma8", "real_cmb_shift", "real_pantheon_plus_shoes"]
+    methodology_phase: "model_selection"
 
   - id: bic
     equation: "BIC = chi2 + k ln(n)"
     domain: ["statistics", "model_selection"]
     status: "known_statistics"
+    real_data_validators: ["real_hz", "real_bao_legacy", "real_desi_dr2_bao", "real_fsigma8", "real_cmb_shift", "real_pantheon_plus_shoes"]
+    methodology_phase: "model_selection"
 
   - id: tag14_entropy
     equation: "H_Tag14 = f(tokens, transitions, symbolic_classes, compression)"
     domain: ["RafaelIA", "information_metrics", "implementation"]
     status: "implementation_defined"
     claim_boundary: "placeholder metric; formula depends on code implementation"
+    real_data_validators: []
+    methodology_phase: "claim_gate"
 
   - id: toroidal_state_space
     equation: "s in [0,1)^7 ; T^7 = (R/Z)^7"
     domain: ["RafaelIA", "state_space", "topology"]
     status: "author_model"
     claim_boundary: "conceptual state representation; requires task-specific validation"
+    real_data_validators: []
+    methodology_phase: "claim_gate"
 
   - id: observation_equation
     equation: "s_obs(nu,t0) = T_{te->t0}[F_med o F_prop][s_src(nu,te)] + n_inst(nu,t0) + eps_interp(nu,t0)"
@@ -69,6 +121,8 @@ equations:
     status: "author_model"
     source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
     claim_boundary: "formal decomposition of observed signal; F_prop uses d_L(z) from RLL eq; not yet validated against specific sources"
+    real_data_validators: ["real_hz", "real_bao_legacy", "real_desi_dr2_bao", "real_cmb_shift", "real_pantheon_plus_shoes"]
+    methodology_phase: "likelihood"
 
   - id: v_info_vector
     equation: "V_info in R+ x R+ x R+ x (R+ x [0,pi)) x R+ x R+ x R+ x S2 x L2(R+) x PD x PD x R_ep x C_s"
@@ -76,6 +130,8 @@ equations:
     status: "author_model"
     source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
     claim_boundary: "typed 13-component tuple; claim_state component maps to info_prime.schema.json enum"
+    real_data_validators: []
+    methodology_phase: "ingest"
 
   - id: fisher_information_total
     equation: "I_total(theta) = sum_{k=1}^{5} I^(k)(theta) >= I^(k') for all k'"
@@ -83,6 +139,8 @@ equations:
     status: "known_statistics"
     source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
     claim_boundary: "holds under conditional independence between sensory layers; relaxed when mutual information I(L_k;L_k') > 0"
+    real_data_validators: []
+    methodology_phase: "model_selection"
 
   - id: claim_state_entropy
     equation: "H_claim = -sum_{s in C_s} P(s|evidence) log2 P(s|evidence) ; H_max = log2(14) ~ 3.81 bits"
@@ -90,9 +148,21 @@ equations:
     status: "author_model"
     source_doc: "docs/canonicos/21_MODELO_VETORIAL_INFORMACIONAL.md"
     claim_boundary: "TOKEN_VAZIO corresponds to H_max; CLAIM_ALLOWED to H=0; monotonic decrease as evidence accumulates"
+    real_data_validators: []
+    methodology_phase: "claim_gate"
+
+methodology_phases:
+  - ingest
+  - likelihood
+  - model_selection
+  - claim_gate
+
+real_data_manifest: "data/manifests/dados_reais_fundamentais_v1.json"
+claim_allowed: false
 
 # Operational documentation consumers for metadata-only YAML.
 consumed_by:
   - tools/generate_yml_audit_docs.py
   - tools/docs_inventory.py
+  - tools/validate_fundamental_real_data_topology.py
   - docs/yml/YML_PIPELINE_EXECUTION_READINESS.md

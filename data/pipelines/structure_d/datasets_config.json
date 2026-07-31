@@ -1,12 +1,32 @@
 {
-  "default_profile": "structure_d_default",
+  "default_profile": "structure_d_fundamentals",
   "profiles": {
+    "structure_d_fundamentals": {
+      "run_name": "structure_d_fundamentals",
+      "description": "Canonical profile for all verified fundamental real datasets; partial Pantheon+ remains catalogued but is not promoted into the likelihood.",
+      "active_datasets": [
+        "real_hz",
+        "real_bao",
+        "real_cmb_shift",
+        "real_fsigma8",
+        "real_desi_dr2_bao"
+      ],
+      "partial_datasets": [
+        "real_pantheon_plus_shoes"
+      ],
+      "real_data_profile": true,
+      "synthetic_allowed": false,
+      "claim_allowed": false,
+      "methodology": "docs/canonicos/METODOLOGIA_COERENTE_RLL.md",
+      "manifest": "data/manifests/dados_reais_fundamentais_v1.json"
+    },
     "structure_d_default": {
       "run_name": "structure_d_default",
       "active_datasets": [
         "hz",
         "fsigma8"
-      ]
+      ],
+      "synthetic_fixture_profile": true
     },
     "structure_d_real_validation": {
       "run_name": "structure_d_real_validation",
@@ -15,21 +35,24 @@
         "real_bao",
         "real_cmb_shift",
         "real_fsigma8"
-      ]
+      ],
+      "real_data_profile": true
     },
     "structure_d_partial_real": {
       "run_name": "structure_d_partial_real",
       "active_datasets": [
         "real_hz",
         "real_bao"
-      ]
+      ],
+      "real_data_profile": true
     },
     "structure_d_synthetic_advanced": {
       "run_name": "structure_d_synthetic_advanced",
       "active_datasets": [
         "hz_cov_synth",
         "fsigma8_cov_synth"
-      ]
+      ],
+      "synthetic_fixture_profile": true
     },
     "structure_d_real_growth_validation": {
       "run_name": "structure_d_real_growth_validation",
@@ -39,7 +62,8 @@
         "real_cmb_shift",
         "real_fsigma8",
         "real_desi_dr2_bao"
-      ]
+      ],
+      "real_data_profile": true
     }
   },
   "datasets": {
@@ -58,7 +82,8 @@
         "redshift_range": "[0.0, 3.0]",
         "reference": "local_input"
       },
-      "duplicate_z_policy": "erro"
+      "duplicate_z_policy": "erro",
+      "dataset_type": "synthetic_or_local_fixture"
     },
     "fsigma8": {
       "format": "csv",
@@ -75,7 +100,8 @@
         "redshift_range": "[0.0, 3.0]",
         "reference": "local_input"
       },
-      "duplicate_z_policy": "erro"
+      "duplicate_z_policy": "erro",
+      "dataset_type": "synthetic_or_local_fixture"
     },
     "real_hz": {
       "format": "csv",
@@ -220,7 +246,8 @@
         "redshift_range": "[0.295, 2.330]",
         "reference": "DESI_DR2_Results_II_Table_IV",
         "real_data_status": "materialized_real",
-        "covariance_summary": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv"
+        "covariance_summary": "data/real/cosmology/desi_dr2_bao_covariance_summary.csv",
+        "covariance_state": "verified_summary_not_full_matrix"
       },
       "duplicate_z_policy": "primeira_ocorrencia",
       "z_order_policy": "sort",
@@ -228,9 +255,29 @@
       "sha256": "5ab328705937c69cedb662bbb35888df20c6cabf3810ec3c5e7376d69ccb0a69",
       "local_path": "data/real/cosmology/desi_dr2_bao_primary_points.csv",
       "dataset_type": "real_observational"
+    },
+    "real_pantheon_plus_shoes": {
+      "format": "manifest",
+      "path": "data/real/cosmology/pantheon_plus/MANIFEST.json",
+      "observable": "distance_modulus",
+      "error_model": "full_covariance_required_before_likelihood",
+      "metadata": {
+        "survey": "PantheonPlusSH0ES",
+        "reference": "PantheonPlusSH0ES_DataRelease",
+        "real_data_status": "partial_manifest_materialized",
+        "integration_state": "TOKEN_VAZIO"
+      },
+      "source_id": "real_pantheon_plus_shoes",
+      "sha256": "d08203e9c7bee89c81e557867f5b8e968a277845b135e4554ef67739f5f25a4b",
+      "local_path": "data/real/cosmology/pantheon_plus/MANIFEST.json",
+      "dataset_type": "real_observational_partial",
+      "enabled_in_likelihood": false,
+      "claim_allowed": false
     }
   },
   "validation": {
-    "min_points_with_z": 3
+    "min_points_with_z": 3,
+    "fundamentals_profile_must_exclude_synthetic": true,
+    "fundamentals_profile_claim_allowed": false
   }
 }
