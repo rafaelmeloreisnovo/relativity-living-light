@@ -1,4 +1,5 @@
 import json
+import shutil
 from pathlib import Path
 
 import pytest
@@ -44,16 +45,24 @@ def test_real_seed_bootstraps_searchable_database(tmp_path: Path) -> None:
         ).fetchone()[0] == 0
 
 
-def test_bundle_mutation_is_rejected(tmp_path: Path) -> None:
+def copy_bundle(tmp_path: Path) -> tuple[dict, Path]:
     manifest = load_seed_manifest(MANIFEST)
-    source_bundle = REPO_ROOT / manifest["bundle_path"]
     fake_root = tmp_path / "repo"
-    fake_bundle = fake_root / manifest["bundle_path"]
-    fake_bundle.parent.mkdir(parents=True)
-    fake_bundle.write_bytes(source_bundle.read_bytes() + b"A")
+    bundle_root = fake_root / manifest["bundle_root"]
+    bundle_root.mkdir(parents=True)
+    source_root = REPO_ROOT / manifest["bundle_root"]
+    for part in [*manifest["base64_prefix_parts"], *manifest["binary_tail_parts"]]:
+        shutil.copyfile(source_root / part["name"], bundle_root / part["name"])
+    return manifest, fake_root
+
+
+def test_binary_tail_mutation_is_rejected(tmp_path: Path) -> None:
+    manifest, fake_root = copy_bundle(tmp_path)
+    tail = fake_root / manifest["bundle_root"] / manifest["binary_tail_parts"][0]["name"]
+    tail.write_bytes(tail.read_bytes() + b"A")
     fake_manifest = tmp_path / "manifest.json"
     fake_manifest.write_text(json.dumps(manifest), encoding="utf-8")
-    with pytest.raises(ValueError, match="bundle_transport_sha256"):
+    with pytest.raises(ValueError, match="binary tail divergente"):
         verify_seed(fake_manifest, fake_root)
 
 
