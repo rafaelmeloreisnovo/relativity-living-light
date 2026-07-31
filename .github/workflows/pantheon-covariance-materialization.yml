@@ -47,11 +47,13 @@ jobs:
         env:
           OUTPUT_DIR: ${{ runner.temp }}/pantheon-covariance
           RECEIPT: ${{ runner.temp }}/pantheon-covariance-receipt.json
+          CATALOG: data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat
         run: |
           set -euo pipefail
           python scripts/fetch_pantheon_covariance.py \
             --output-dir "$OUTPUT_DIR" \
             --receipt "$RECEIPT"
+          cp "$CATALOG" "$OUTPUT_DIR/Pantheon+SH0ES.dat"
           python scripts/verify_pantheon_inputs.py \
             --data-dir "$OUTPUT_DIR" \
             --json \
