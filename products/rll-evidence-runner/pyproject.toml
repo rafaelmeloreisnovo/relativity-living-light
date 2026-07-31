@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rll-evidence-runner"
-version = "0.2.0"
+version = "0.2.1"
 description = "Claim-bounded experiment runner and evidence receipt verifier for RLL"
 requires-python = ">=3.10"
 dependencies = [
@@ -16,7 +16,7 @@ dependencies = [
 
 [project.scripts]
 rll-evidence = "rll_evidence.cli:main"
-rll-pantheon-fit = "rll_evidence.pantheon_fit:main"
+rll-pantheon-fit = "rll_evidence.pantheon_fit_ascii:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
