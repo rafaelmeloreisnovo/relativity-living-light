@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -11,11 +12,27 @@ INCLUDE = ROOT / "core/lowlevel_runtime/include"
 COUPLING = ROOT / "core/lowlevel_runtime/c/rll_canonical_coupling.c"
 REAL_INPUTS = ROOT / "core/lowlevel_runtime/c/rll_canonical_real_inputs.c"
 REAL_MODELS = ROOT / "core/lowlevel_runtime/c/rll_canonical_real_models.c"
+REAL_KERNEL = ROOT / "core/lowlevel_runtime/c/rll_canonical_real.c"
+REAL_DATA = ROOT / "core/lowlevel_runtime/c/rll_canonical_real_data.c"
 HZ_MODEL = ROOT / "core/lowlevel_runtime/c/rll_hz_freestanding.c"
 HZ_DATA = ROOT / "core/lowlevel_runtime/c/rll_hz_moresco_2022_q16.c"
 RUNNER = ROOT / "tests/c/rll_canonical_real_inputs_runner.c"
 
-PRODUCTION_SOURCES = [COUPLING, REAL_INPUTS, REAL_MODELS, HZ_MODEL, HZ_DATA]
+EXPECTED_JOINT_CHI2_Q16 = {
+    "L": 4_641_555,
+    "R": 4_261_420,
+}
+EXPECTED_JOINT_DELTA_Q16 = -380_135
+
+PRODUCTION_SOURCES = [
+    COUPLING,
+    REAL_INPUTS,
+    REAL_MODELS,
+    REAL_KERNEL,
+    REAL_DATA,
+    HZ_MODEL,
+    HZ_DATA,
+]
 DATA_PATHS = [
     ROOT / "data/real/Hz_data_real.csv",
     ROOT / "data/real/cosmology/desi_dr2_bao_primary_points.csv",
@@ -48,6 +65,12 @@ def compile_host_runner(output: Path) -> None:
 
 def execute(executable: Path, mode: str) -> subprocess.CompletedProcess[str]:
     return run(str(executable), *(str(path) for path in DATA_PATHS), mode)
+
+
+def chi2_from_output(output: str) -> int:
+    match = re.search(r"chi2_q16=(-?\d+)", output)
+    assert match is not None, output
+    return int(match.group(1))
 
 
 def test_combined_kernel_is_freestanding_and_self_contained(tmp_path: Path) -> None:
@@ -85,7 +108,7 @@ def test_real_input_adapter_and_bridge_cross_compile(target: str, tmp_path: Path
     clang = shutil.which("clang")
     if clang is None:
         pytest.skip("clang is not installed")
-    for source in (REAL_INPUTS, REAL_MODELS):
+    for source in (REAL_INPUTS, REAL_MODELS, REAL_KERNEL):
         output = tmp_path / f"{source.stem}-{target}.o"
         result = run(
             clang,
@@ -158,6 +181,37 @@ def test_rll_kernel_binds_real_hz_and_preserves_other_gaps(tmp_path: Path) -> No
     assert "covariance=0" in result.stdout
     assert "chi2_q16=1800068" in result.stdout
     assert "claim_allowed=0" in result.stdout
+
+
+@pytest.mark.parametrize("mode", ["L", "R"])
+def test_joint_fase18e_profiles_bind_all_real_observations(mode: str, tmp_path: Path) -> None:
+    executable = tmp_path / "rll-real-inputs"
+    compile_host_runner(executable)
+    first = execute(executable, mode)
+    second = execute(executable, mode)
+
+    assert first.returncode == 0, first.stderr or first.stdout
+    assert second.returncode == 0, second.stderr or second.stdout
+    assert first.stdout == second.stdout
+    assert "verified=15 rows=65 bound=65 token_vazio=0" in first.stdout
+    assert "hz=33 bao=13 fs8=16 cmb=3 covariance=1" in first.stdout
+    assert "total=65 evidence=65 blocked=0" in first.stdout
+    assert chi2_from_output(first.stdout) == EXPECTED_JOINT_CHI2_Q16[mode]
+    assert "claim_allowed=0" in first.stdout
+
+
+def test_joint_profiles_have_pinned_delta(tmp_path: Path) -> None:
+    executable = tmp_path / "rll-real-inputs"
+    compile_host_runner(executable)
+    lcdm = execute(executable, "L")
+    rll = execute(executable, "R")
+    assert lcdm.returncode == 0, lcdm.stderr or lcdm.stdout
+    assert rll.returncode == 0, rll.stderr or rll.stdout
+    lcdm_chi2 = chi2_from_output(lcdm.stdout)
+    rll_chi2 = chi2_from_output(rll.stdout)
+    assert lcdm_chi2 == EXPECTED_JOINT_CHI2_Q16["L"]
+    assert rll_chi2 == EXPECTED_JOINT_CHI2_Q16["R"]
+    assert rll_chi2 - lcdm_chi2 == EXPECTED_JOINT_DELTA_Q16
 
 
 def test_single_byte_tamper_is_rejected_before_parsing(tmp_path: Path) -> None:
