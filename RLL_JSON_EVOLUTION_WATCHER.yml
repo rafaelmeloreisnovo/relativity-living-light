@@ -1,7 +1,7 @@
 schema: rll.evolution_watcher_config.v1
 meta:
   version: 1
-  updated_utc: "2026-07-03T00:00:00Z"
+  updated_utc: "2026-07-31T14:43:00Z"
   purpose: >-
     Central plug-n-play registry of committed real-data sources tracked by the
     RLL JSON Evolution Watcher: local fingerprint check, epistemic-state trail
@@ -44,6 +44,19 @@ sources:
     on_fail: FAILSAFE
     max_snapshot_age_days: 365
     rll_paths_affected: [C05_hubble_tension_evolving_de]
+
+  - id: bao_legacy
+    label: "BAO legacy BOSS DR12 plus DESI route"
+    domain: cosmology_bao
+    local_paths:
+      - data/real/BAO_data_real.csv
+    primary_source:
+      title: "BOSS DR12 and DESI legacy BAO compilation route"
+      url: https://arxiv.org/abs/1607.03155
+    epistemic_initial: VERIFIED
+    on_fail: FAILSAFE
+    max_snapshot_age_days: 365
+    rll_paths_affected: [C01_w0wa_mapping]
 
   - id: desi_dr2_bao
     label: "DESI DR2 BAO primary points and covariance summary"
