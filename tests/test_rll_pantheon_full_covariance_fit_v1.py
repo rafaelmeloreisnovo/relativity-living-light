@@ -12,7 +12,16 @@ ROOT = Path(__file__).resolve().parents[1]
 PRODUCT = ROOT / "products/rll-evidence-runner"
 sys.path.insert(0, str(PRODUCT / "src"))
 
-from rll_evidence.pantheon_fit import LCDM, RLL, build_result, distance_modulus, e2, fit_model, prepare_data, profiled_likelihood
+from rll_evidence.pantheon_fit_ascii import (
+    LCDM,
+    RLL,
+    build_result,
+    distance_modulus,
+    e2,
+    fit_model,
+    prepare_data,
+    profiled_likelihood,
+)
 
 
 class PantheonFullCovarianceFitV1Tests(unittest.TestCase):
@@ -43,6 +52,42 @@ class PantheonFullCovarianceFitV1Tests(unittest.TestCase):
         self.assertAlmostEqual(first["best"]["chi2"], second["best"]["chi2"], places=10)
         self.assertAlmostEqual(first["best"]["H0"], 70.0, places=2)
         self.assertAlmostEqual(first["best"]["Omega_m"], 0.3, places=2)
+
+    def test_ascii_roundoff_is_bounded_recorded_and_symmetrized(self) -> None:
+        z = np.array([0.02, 0.03, 0.04])
+        covariance = np.eye(3)
+        covariance[0, 1] = 0.1
+        covariance[1, 0] = 0.10000003
+        data = prepare_data(
+            z,
+            z,
+            np.zeros(3),
+            np.full(3, -9.0),
+            np.zeros(3, dtype=bool),
+            covariance,
+            integration_points=128,
+        )
+        diagnostics = data.covariance_diagnostics["selected_matrix"]
+        self.assertTrue(diagnostics["within_tolerance"])
+        self.assertTrue(diagnostics["symmetrized"])
+        self.assertAlmostEqual(diagnostics["max_asymmetry_raw"], 3.0e-8, places=14)
+        np.testing.assert_array_equal(data.covariance, data.covariance.T)
+
+    def test_asymmetry_above_canonical_tolerance_is_rejected(self) -> None:
+        z = np.array([0.02, 0.03, 0.04])
+        covariance = np.eye(3)
+        covariance[0, 1] = 0.1
+        covariance[1, 0] = 0.1000002
+        with self.assertRaisesRegex(ValueError, "canonical tolerance"):
+            prepare_data(
+                z,
+                z,
+                np.zeros(3),
+                np.full(3, -9.0),
+                np.zeros(3, dtype=bool),
+                covariance,
+                integration_points=128,
+            )
 
     def test_non_positive_definite_covariance_is_rejected_without_jitter(self) -> None:
         z_hd = np.array([0.02, 0.03, 0.04])
@@ -81,6 +126,7 @@ class PantheonFullCovarianceFitV1Tests(unittest.TestCase):
             payload = build_result(catalog, covariance, output, seeds=[11, 23], maxiter=60, integration_points=512)
             self.assertFalse(payload["claim_allowed"])
             self.assertEqual(len(payload["rows"]), 2)
+            self.assertIn("diagnostics", payload["inputs"]["covariance"])
             disk = json.loads(output.read_text())
             self.assertEqual(disk["schema"], "rll_pantheon_full_covariance_fit_v1")
             self.assertIn("candidate_minus_baseline", disk["comparison"])
