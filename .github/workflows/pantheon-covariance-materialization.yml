@@ -5,7 +5,9 @@ on:
   pull_request:
     paths:
       - "scripts/fetch_pantheon_covariance.py"
+      - "scripts/verify_pantheon_inputs.py"
       - "tests/test_fetch_pantheon_covariance.py"
+      - "tests/test_verify_pantheon_inputs_v2.py"
       - ".github/workflows/pantheon-covariance-materialization.yml"
       - ".gitignore"
 
@@ -36,18 +38,27 @@ jobs:
         run: python -m pip install --disable-pip-version-check pytest
 
       - name: Run focal policy tests
-        run: python -m pytest -q tests/test_fetch_pantheon_covariance.py
+        run: |
+          python -m pytest -q \
+            tests/test_fetch_pantheon_covariance.py \
+            tests/test_verify_pantheon_inputs_v2.py
 
       - name: Materialize pinned official STAT+SYS covariance
         env:
           OUTPUT_DIR: ${{ runner.temp }}/pantheon-covariance
           RECEIPT: ${{ runner.temp }}/pantheon-covariance-receipt.json
+          CATALOG: data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat
         run: |
           set -euo pipefail
           python scripts/fetch_pantheon_covariance.py \
             --output-dir "$OUTPUT_DIR" \
-            --receipt "$RECEIPT" \
-            --allow-calibration
+            --receipt "$RECEIPT"
+          cp "$CATALOG" "$OUTPUT_DIR/Pantheon+SH0ES.dat"
+          python scripts/verify_pantheon_inputs.py \
+            --data-dir "$OUTPUT_DIR" \
+            --json \
+            --require-full-covariance \
+            > "${{ runner.temp }}/pantheon-readiness.json"
           cp "$OUTPUT_DIR/Pantheon+SH0ES_STAT+SYS.cov.sha256" \
              "${{ runner.temp }}/Pantheon+SH0ES_STAT+SYS.cov.sha256"
           test ! -e "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov"
@@ -58,6 +69,7 @@ jobs:
           name: pantheon-covariance-receipt-${{ github.run_id }}
           path: |
             ${{ runner.temp }}/pantheon-covariance-receipt.json
+            ${{ runner.temp }}/pantheon-readiness.json
             ${{ runner.temp }}/Pantheon+SH0ES_STAT+SYS.cov.sha256
           if-no-files-found: error
           retention-days: 30
