@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import yaml
+
 from tools.validate_workflow_docs import DEFAULT_CONTRACT, REPO, validate_contract, write_reports
 
 

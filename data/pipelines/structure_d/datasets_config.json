@@ -15,14 +15,16 @@
         "real_bao",
         "real_cmb_shift",
         "real_fsigma8"
-      ]
+      ],
+      "real_data_profile": true
     },
     "structure_d_partial_real": {
       "run_name": "structure_d_partial_real",
       "active_datasets": [
         "real_hz",
         "real_bao"
-      ]
+      ],
+      "real_data_profile": true
     },
     "structure_d_synthetic_advanced": {
       "run_name": "structure_d_synthetic_advanced",
@@ -39,7 +41,8 @@
         "real_cmb_shift",
         "real_fsigma8",
         "real_desi_dr2_bao"
-      ]
+      ],
+      "real_data_profile": true
     }
   },
   "datasets": {

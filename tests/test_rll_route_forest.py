@@ -16,24 +16,51 @@ def load_inputs() -> tuple[dict, list[dict]]:
     return route_forest.read_json(route_forest.BLUEPRINT), route_forest.read_events(route_forest.EVENTS)
 
 
+def event_for(route_id: str, event_id: str = "EVT-9999") -> dict:
+    blueprint, _ = load_inputs()
+    return {
+        "event_id": event_id,
+        "window_id": blueprint["frequency_semantics"]["window_id"],
+        "route_id": route_id,
+        "event_kind": "route_linked",
+        "observed_at": "2026-07-31T15:15:00Z",
+        "source_ref": "tools/validate_workflow_docs.py",
+        "weight": 1,
+    }
+
+
 def test_current_route_forest_compiles_with_expected_metrics() -> None:
     blueprint, events = load_inputs()
     assert route_forest.semantic_findings(blueprint, events) == []
     forest = route_forest.compile_forest(blueprint, events)
     assert forest["state"] == "STRUCTURAL_MAP_READY_ML_BLOCKED"
     assert forest["claim_allowed"] is False
-    assert forest["metrics"] == {
-        "region_count": 7,
-        "tree_count": 4,
-        "node_count": 17,
-        "route_count": 13,
-        "event_count": 21,
-        "weighted_flow": 21,
-        "orphan_count": 0,
-        "cycle_count": 0,
-        "max_depth": 3,
-        "mean_vector_norm": 1.495802823499,
-    }
+    assert forest["metrics"]["region_count"] == 7
+    assert forest["metrics"]["tree_count"] == 6
+    assert forest["metrics"]["node_count"] == 31
+    assert forest["metrics"]["route_count"] == 20
+    assert forest["metrics"]["event_count"] == 28
+    assert forest["metrics"]["weighted_flow"] == 28
+    assert forest["metrics"]["orphan_count"] == 0
+    assert forest["metrics"]["cycle_count"] == 0
+    assert forest["metrics"]["max_depth"] == 6
+    assert forest["metrics"]["mean_vector_norm"] > 0
+
+
+def test_cross_tree_routes_require_explicit_audited_status() -> None:
+    blueprint, events = load_inputs()
+    mutated = copy.deepcopy(blueprint)
+    mutated["routes"]["RT-RD-SCIENCE"].pop("status")
+    findings = route_forest.semantic_findings(mutated, events)
+    assert any("cross-tree route requires audited status" in finding for finding in findings)
+
+
+def test_cross_tree_routes_restrict_relations() -> None:
+    blueprint, events = load_inputs()
+    mutated = copy.deepcopy(blueprint)
+    mutated["routes"]["RT-RD-SCIENCE"]["relation"] = "governs"
+    findings = route_forest.semantic_findings(mutated, events)
+    assert any("relation is not permitted for cross-tree routing" in finding for finding in findings)
 
 
 def test_cycle_is_rejected() -> None:
@@ -46,15 +73,7 @@ def test_cycle_is_rejected() -> None:
         "relation": "routes",
         "refs": ["tools/validate_workflow_docs.py"],
     }
-    events.append({
-        "event_id": "EVT-9991",
-        "window_id": "SNAPSHOT-20260720",
-        "route_id": "RT-CYCLE",
-        "event_kind": "route_linked",
-        "observed_at": "2026-07-20T09:20:00Z",
-        "source_ref": "tools/validate_workflow_docs.py",
-        "weight": 1,
-    })
+    events.append(event_for("RT-CYCLE", "EVT-9991"))
     findings = route_forest.semantic_findings(mutated, events)
     assert any("cyclic" in finding for finding in findings)
 
@@ -77,17 +96,17 @@ def test_orphan_is_rejected() -> None:
     assert any("non-root orphans" in finding for finding in findings)
 
 
+def test_parent_hierarchy_prevents_false_orphans() -> None:
+    blueprint, events = load_inputs()
+    roots = {tree["root"] for tree in blueprint["trees"].values()}
+    cycles, orphans = route_forest.graph_state(blueprint["nodes"], blueprint["routes"], roots)
+    assert cycles == 0
+    assert orphans == 0
+
+
 def test_unknown_event_route_is_rejected() -> None:
     blueprint, events = load_inputs()
-    events.append({
-        "event_id": "EVT-9992",
-        "window_id": "SNAPSHOT-20260720",
-        "route_id": "RT-UNKNOWN",
-        "event_kind": "route_linked",
-        "observed_at": "2026-07-20T09:20:00Z",
-        "source_ref": "schemas/README.md",
-        "weight": 1,
-    })
+    events.append(event_for("RT-UNKNOWN", "EVT-9992"))
     findings = route_forest.semantic_findings(blueprint, events)
     assert any("unknown route" in finding for finding in findings)
 
@@ -104,7 +123,7 @@ def test_frequency_is_event_count_not_hertz() -> None:
     blueprint, events = load_inputs()
     forest = route_forest.compile_forest(blueprint, events)
     assert forest["frequency_window"]["unit"] == "events_per_snapshot"
-    assert forest["frequency_window"]["event_count"] == 21
+    assert forest["frequency_window"]["event_count"] == 28
     assert "Hertz" in forest["boundaries"]["frequency"]
     assert all(route["frequency_unit"] == "events_per_snapshot" for route in forest["routes"])
 
@@ -120,6 +139,8 @@ def test_vector_delta_and_ml_readiness_are_deterministic() -> None:
         "T-SCIENCE": "NOT_READY",
         "T-LATENTES": "FEATURE_ENGINEERING_ONLY",
         "T-ML-EVOLUTION": "FEATURE_ENGINEERING_ONLY",
+        "T-REAL-DATA": "FEATURE_ENGINEERING_ONLY",
+        "T-METHODOLOGY": "NOT_APPLICABLE",
     }
 
 
