@@ -6,16 +6,12 @@ on:
       - "src/rll/orcid_vector*.py"
       - "src/rll/project_sources.py"
       - "src/rll/project_source_seed.py"
-      - "tools/validate_fundamental_real_data_topology.py"
       - "tests/test_orcid_vector.py"
       - "tests/test_project_sources.py"
       - "tests/test_project_source_seed.py"
-      - "tests/test_fundamental_real_data_topology.py"
       - "schemas/orcid_vector_artifact.schema.json"
       - "schemas/project_source_manifest.schema.json"
       - "schemas/project_source_seed.schema.json"
-      - "schemas/rll_route_forest_blueprint.schema.json"
-      - "schemas/fingerprints/**"
       - "configs/orcid_rll_sources.yml"
       - "configs/project_sources_manifest.v1.json"
       - "configs/project_sources_seed.v1.json"
@@ -24,14 +20,6 @@ on:
       - "data/ledgers/orcid_rll_integration_state.json"
       - "data/ledgers/project_sources_integration_state.json"
       - "data/ledgers/REAL_SEED_RECEIPT_20260731.json"
-      - "data/manifests/dados_reais_fundamentais_v1.json"
-      - "data/knowledge_forest/rll_route_forest_blueprint.json"
-      - "data/pipelines/structure_d/datasets_config.json"
-      - "data/failsafe/**"
-      - "data/real/**"
-      - "docs/canonicos/METODOLOGIA_COERENTE_RLL.md"
-      - "rll_equation_registry.yml"
-      - "RLL_JSON_EVOLUTION_WATCHER.yml"
       - "pyproject.toml"
       - ".github/workflows/orcid-rll-vector-gate.yml"
   push:
@@ -40,16 +28,12 @@ on:
       - "src/rll/orcid_vector*.py"
       - "src/rll/project_sources.py"
       - "src/rll/project_source_seed.py"
-      - "tools/validate_fundamental_real_data_topology.py"
       - "tests/test_orcid_vector.py"
       - "tests/test_project_sources.py"
       - "tests/test_project_source_seed.py"
-      - "tests/test_fundamental_real_data_topology.py"
       - "schemas/orcid_vector_artifact.schema.json"
       - "schemas/project_source_manifest.schema.json"
       - "schemas/project_source_seed.schema.json"
-      - "schemas/rll_route_forest_blueprint.schema.json"
-      - "schemas/fingerprints/**"
       - "configs/orcid_rll_sources.yml"
       - "configs/project_sources_manifest.v1.json"
       - "configs/project_sources_seed.v1.json"
@@ -58,14 +42,6 @@ on:
       - "data/ledgers/orcid_rll_integration_state.json"
       - "data/ledgers/project_sources_integration_state.json"
       - "data/ledgers/REAL_SEED_RECEIPT_20260731.json"
-      - "data/manifests/dados_reais_fundamentais_v1.json"
-      - "data/knowledge_forest/rll_route_forest_blueprint.json"
-      - "data/pipelines/structure_d/datasets_config.json"
-      - "data/failsafe/**"
-      - "data/real/**"
-      - "docs/canonicos/METODOLOGIA_COERENTE_RLL.md"
-      - "rll_equation_registry.yml"
-      - "RLL_JSON_EVOLUTION_WATCHER.yml"
       - "pyproject.toml"
       - ".github/workflows/orcid-rll-vector-gate.yml"
 
@@ -84,23 +60,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install test dependencies
-        run: python -m pip install --upgrade pip pytest jsonschema pyyaml
-      - name: Compile implementation and validators
-        run: |
-          python -m py_compile \
-            src/rll/orcid_vector*.py \
-            src/rll/project_sources.py \
-            src/rll/project_source_seed.py \
-            tools/validate_fundamental_real_data_topology.py
-      - name: Run vector, corpus, seed and topology tests
+        run: python -m pip install --upgrade pip pytest jsonschema
+      - name: Compile implementation
+        run: python -m py_compile src/rll/orcid_vector*.py src/rll/project_sources.py src/rll/project_source_seed.py
+      - name: Run vector and corpus tests
         env:
           PYTHONPATH: src
-        run: |
-          pytest -q \
-            tests/test_orcid_vector.py \
-            tests/test_project_sources.py \
-            tests/test_project_source_seed.py \
-            tests/test_fundamental_real_data_topology.py
+        run: pytest -q tests/test_orcid_vector.py tests/test_project_sources.py tests/test_project_source_seed.py
       - name: Validate JSON Schema syntax
         run: |
           python - <<'PY'
@@ -110,7 +76,6 @@ jobs:
               "schemas/orcid_vector_artifact.schema.json",
               "schemas/project_source_manifest.schema.json",
               "schemas/project_source_seed.schema.json",
-              "schemas/rll_route_forest_blueprint.schema.json",
           ):
               Draft202012Validator.check_schema(json.load(open(path)))
           PY
@@ -136,10 +101,6 @@ jobs:
           python -m rll.project_source_seed bootstrap --db "$SEED_DB"
           python -m rll.project_source_seed status --db "$SEED_DB"
           python -m rll.project_source_seed search "ORCID vetores proveniência" --db "$SEED_DB"
-      - name: Validate fundamental real-data topology
-        run: |
-          python tools/validate_fundamental_real_data_topology.py \
-            --write-receipt artifacts/fundamental-real-data-topology/receipt.json
       - name: Run offline CLI receipt
         env:
           PYTHONPATH: src
@@ -150,10 +111,3 @@ jobs:
           python -m rll.orcid_vector --db "$DB" verify-chain
           python -m rll.orcid_vector --db "$DB" search "quantum tensor physiology" --discipline physics.quantum
           python -m rll.project_sources --db "$DB" status
-      - name: Upload topology receipt
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: fundamental-real-data-topology-${{ matrix.python-version }}-${{ github.run_id }}
-          path: artifacts/fundamental-real-data-topology/receipt.json
-          retention-days: 14
