@@ -36,6 +36,7 @@ ARTIFACTS = core.ARTIFACTS
 CURRENT_RUN = ARTIFACTS / "current_run"
 ORIGINAL_WRITE_REPORT = core.write_report
 ORIGINAL_WRITE_CHECKSUMS = core.write_checksums
+ORIGINAL_RUN_STEP = core.run_step
 
 
 def command(*argv: str, requires: Sequence[str] = ()) -> core.CommandSpec:
@@ -79,8 +80,19 @@ def align_step_contracts() -> None:
     _replace_step(12, commands=(command(py, "scripts/data_scan/build_real_seed_ingestion_plan.py",
                                        requires=("scripts/data_scan/build_real_seed_ingestion_plan.py",)),), candidates=())
     _replace_step(13, commands=(command(
-        "bash", "-lc", f"cd scripts/pantheon && {py} run_rll_vs_pantheon.py",
-        requires=("scripts/pantheon/run_rll_vs_pantheon.py", "scripts/pantheon/load_pantheon.py", "scripts/pantheon/models.py"),
+        "bash", "-lc",
+        f"mkdir -p artifacts/linear/current_run && "
+        f"PYTHONPATH=products/rll-evidence-runner/src {py} -m rll_evidence.pantheon_fit_ascii "
+        "--catalog data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat "
+        "--covariance data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov "
+        "--output artifacts/linear/current_run/pantheon_fit_result.json "
+        "--seeds 11,23,37,53,71 --maxiter 250 --integration-points 4096 --z-min 0.01",
+        requires=(
+            "products/rll-evidence-runner/src/rll_evidence/pantheon_fit_ascii.py",
+            "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat",
+            "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov",
+            "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov.sha256",
+        ),
     ),), candidates=())
     _replace_step(15, commands=(command(
         py, "scripts/compute_rll_real_pipeline.py",
@@ -366,17 +378,48 @@ def find_csv_metric(candidates: Sequence[tuple[str, Sequence[str]]]) -> dict[str
 
 def materialize_pantheon_metrics() -> None:
     log = LOGS / "step13_pantheon_fit.log"
+    result = CURRENT_RUN / "pantheon_fit_result.json"
     output = RESULTS / "pantheon_plus_resultado_real.json"
     payload: dict[str, object] = {
-        "schema_version": "rll.pantheon.current-run.v1",
+        "schema_version": "rll.pantheon.current-run.v2",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "claim_allowed": False,
         "source_log": core.rel(log),
+        "source_result": core.rel(result),
         "delta_aic": None,
         "chi2_red_rll": None,
         "models": {},
     }
     models: dict[str, dict[str, float]] = {}
+    if result.is_file():
+        try:
+            raw = json.loads(result.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            raw = {}
+        rows = raw.get("rows", []) if isinstance(raw, dict) else []
+        if isinstance(rows, list):
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                name = str(row.get("model", "")).strip()
+                if not name:
+                    continue
+                try:
+                    chi2 = float(row["chi2"]); aic = float(row["AIC"])
+                    dof = float(row["dof"]); k = float(row["k"])
+                except (KeyError, TypeError, ValueError):
+                    continue
+                models[name] = {"chi2": chi2, "k": k, "dof": dof,
+                    "chi2_red": chi2 / dof if dof > 0 else float("nan"), "aic": aic}
+        baseline = next((v for k, v in models.items() if "lcdm" in k.lower()), None)
+        candidate = next((v for k, v in models.items() if "rll" in k.lower()), None)
+        if baseline is not None and candidate is not None:
+            payload["state"] = "VERIFIED"
+            payload["delta_aic"] = candidate["aic"] - baseline["aic"]
+            payload["chi2_red_rll"] = candidate["chi2_red"]
+            payload["models"] = models
+            output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            return
     if log.is_file():
         pattern = re.compile(r"^(lcdm|cpl|rll_original|rll_optionA)\s+([0-9.eE+-]+)\s+(\d+)\s+([0-9.eE+-]+)\s+([0-9.eE+-]+)\s*$", re.MULTILINE)
         for match in pattern.finditer(log.read_text(encoding="utf-8", errors="replace")):
@@ -440,7 +483,9 @@ def build_contract(mode: str) -> dict[str, object]:
         "F-COS-01": ("ΔAIC(RLL−ΛCDM)", "< 10", find_json_metric((("results/linear/pantheon_plus_resultado_real.json", ("delta_aic",)),))),
         "F-COS-02": ("χ² reduzido Pantheon+ RLL", "< 1.05", find_json_metric((("results/linear/pantheon_plus_resultado_real.json", ("chi2_red_rll",)),))),
         "F-COS-03": ("redshift de transição z_t", "0.5 ≤ z_t ≤ 1.5", find_json_metric((("artifacts/linear/current_run/zt_scan/summary.json", ("assessment.best.zt_bao", "assessment.best.zt_total")),))),
-        "F-COS-04": ("ln(B10)", "> -5", find_csv_metric((("results/structure_d/bayes_factor_interpretation.csv", ("log_bayes_factor", "ln_B10", "log_evidence_ratio")),))),
+        "F-COS-04": ("ln(B10)", "> -5", find_json_metric((
+            ("artifacts/linear/current_run/real_bic_proxy_status.json", ("log_bayes_factor",)),
+        ))),
         "F-COS-05": ("χ² DESI nominal", "< 150", find_json_metric((("results/desi_dr2_bao_covariance_chi2.json", ("results.rll.chi2_bao_desi_dr2",)),))),
     }
     rows: list[dict[str, object]] = []
@@ -468,6 +513,20 @@ def build_contract(mode: str) -> dict[str, object]:
         md.append(f"| {row['id']} | {row['label']} | `{row['threshold']}` | `{row['state']}` | {value_text} | `{row['outcome']}` | `{row['source'] or 'TOKEN_VAZIO'}` |")
     (RESULTS / "CONTRATO_FALSIFICADORES_DETERMINISTICO.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return contract
+
+
+def run_step(step: core.Step, selected_phases: set[int], mode: str) -> core.StepResult:
+    result = ORIGINAL_RUN_STEP(step, selected_phases, mode)
+    if step.number == 21 and result.status == "FAIL" and result.exit_code == 3:
+        status_path = CURRENT_RUN / "real_bayes_inference_status.json"
+        try:
+            payload = json.loads(status_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            payload = {}
+        if payload.get("state") == "TOKEN_VAZIO":
+            return replace(result, status="TOKEN_VAZIO", exit_code=None,
+                detail="inferência Bayes real não materializada; estado auditável TOKEN_VAZIO")
+    return result
 
 
 def gate_decision(mode: str, results: Sequence[core.StepResult], contract: dict[str, object]) -> dict[str, object]:
@@ -587,6 +646,7 @@ def write_checksums() -> None:
 def install() -> None:
     CURRENT_RUN.mkdir(parents=True, exist_ok=True)
     align_step_contracts()
+    core.run_step = run_step
     core.build_contract = build_contract
     core.gate_decision = gate_decision
     core.write_report = write_report

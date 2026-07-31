@@ -121,3 +121,47 @@ def test_real_bic_proxy_is_materialized_from_real_comparison(tmp_path, monkeypat
     assert float(rows[0]["delta_bic_candidate_minus_baseline"]) == 12.0
     assert float(rows[0]["log_bayes_factor"]) == -6.0
     assert rows[0]["claim_allowed"] == "false"
+
+
+def test_pantheon_step_uses_canonical_full_covariance_runner() -> None:
+    runtime = load_runtime()
+    spec = step(runtime, 13).commands[0]
+    joined = " ".join(spec.argv)
+    assert "rll_evidence.pantheon_fit_ascii" in joined
+    assert "Pantheon+SH0ES_STAT+SYS.cov" in joined
+    assert "scripts/pantheon/models.py" not in spec.requires
+    assert "pantheon_fit_result.json" in joined
+
+
+def test_pantheon_metrics_are_read_from_current_full_covariance_result(tmp_path, monkeypatch) -> None:
+    runtime = load_runtime()
+    results = tmp_path / "results" / "linear"; logs = tmp_path / "logs" / "linear"
+    current = tmp_path / "artifacts" / "linear" / "current_run"
+    results.mkdir(parents=True); logs.mkdir(parents=True); current.mkdir(parents=True)
+    (current / "pantheon_fit_result.json").write_text(json.dumps({"rows": [
+        {"model": "LCDM_pantheon_full", "chi2": 100.0, "AIC": 108.0, "k": 4, "dof": 96},
+        {"model": "RLL_pantheon_full", "chi2": 101.0, "AIC": 115.0, "k": 7, "dof": 93}]}), encoding="utf-8")
+    monkeypatch.setattr(runtime, "ROOT", tmp_path); monkeypatch.setattr(runtime, "RESULTS", results)
+    monkeypatch.setattr(runtime, "LOGS", logs); monkeypatch.setattr(runtime, "CURRENT_RUN", current)
+    runtime.materialize_pantheon_metrics()
+    payload = json.loads((results / "pantheon_plus_resultado_real.json").read_text(encoding="utf-8"))
+    assert payload["state"] == "VERIFIED"; assert payload["delta_aic"] == 7.0
+    assert payload["chi2_red_rll"] == 101.0 / 93.0
+
+
+def test_real_bayes_absence_is_classified_as_token_vazio_step(tmp_path, monkeypatch) -> None:
+    runtime = load_runtime(); current = tmp_path / "artifacts" / "linear" / "current_run"; current.mkdir(parents=True)
+    (current / "real_bayes_inference_status.json").write_text(json.dumps({"state": "TOKEN_VAZIO"}), encoding="utf-8")
+    monkeypatch.setattr(runtime, "CURRENT_RUN", current)
+    base = runtime.core.StepResult(21, "joint_mcmc_p0", 3, "test", True, "FAIL", 3, 1.0, "cmd", "exit 3", "log")
+    monkeypatch.setattr(runtime, "ORIGINAL_RUN_STEP", lambda *args, **kwargs: base)
+    result = runtime.run_step(runtime.core.Step(21, "joint_mcmc_p0", 3, "test", True), {3}, "completo")
+    assert result.status == "TOKEN_VAZIO"; assert result.exit_code is None
+
+
+def test_fcos04_reads_materialized_real_bic_status(tmp_path, monkeypatch) -> None:
+    runtime = load_runtime(); status = tmp_path / "artifacts" / "linear" / "current_run" / "real_bic_proxy_status.json"
+    status.parent.mkdir(parents=True); status.write_text(json.dumps({"log_bayes_factor": -5.668269}), encoding="utf-8")
+    monkeypatch.setattr(runtime, "ROOT", tmp_path)
+    metric = runtime.find_json_metric((("artifacts/linear/current_run/real_bic_proxy_status.json", ("log_bayes_factor",)),))
+    assert metric["state"] == "VERIFIED"; assert runtime.evaluate("F-COS-04", metric["value"]) == "FAIL"
