@@ -44,6 +44,25 @@ class PantheonFullCovarianceFitV1Tests(unittest.TestCase):
         self.assertAlmostEqual(first["best"]["H0"], 70.0, places=2)
         self.assertAlmostEqual(first["best"]["Omega_m"], 0.3, places=2)
 
+    def test_non_positive_definite_covariance_is_rejected_without_jitter(self) -> None:
+        z_hd = np.array([0.02, 0.03, 0.04])
+        z_hel = z_hd.copy()
+        covariance = np.array([
+            [1.0, 2.0, 0.0],
+            [2.0, 1.0, 0.0],
+            [0.0, 0.0, 1.0],
+        ])
+        with self.assertRaisesRegex(ValueError, "positive definite; no jitter"):
+            prepare_data(
+                z_hd,
+                z_hel,
+                np.zeros(3),
+                np.full(3, -9.0),
+                np.zeros(3, dtype=bool),
+                covariance,
+                integration_points=128,
+            )
+
     def test_build_result_from_files(self) -> None:
         data = self.synthetic_data()
         with tempfile.TemporaryDirectory() as tmp:
