@@ -4,10 +4,12 @@ This directory contains the **deterministic initial corpus** required to run the
 
 ## Included now
 
-- 13 public-safe source bodies, byte-exact, stored in `corpus.public.v1.jsonl.gz.b64`;
+- 13 public-safe source bodies, byte-exact, encoded as deterministic gzip JSONL;
 - 123,646 source bytes and 4,483 source lines;
 - per-source SHA-256, size, line count, temporal state, authority relation and claim boundary in `configs/project_sources_seed.v1.json`;
 - one personal/psychometric source represented only by its real digest, size and line count.
+
+The transport is split only to satisfy repository/API limits: five Base64 prefix parts decode to the first 30,000 gzip bytes; three binary tails complete the 48,027-byte gzip. The verifier reconstructs the whole stream and checks part hashes, whole gzip SHA-256, logical JSONL SHA-256 and every source body.
 
 The private source body is intentionally absent because this repository is public. `PRIVATE_POINTER_ONLY` is real data about the source and its custody boundary; it is not a placeholder and cannot produce chunks.
 
