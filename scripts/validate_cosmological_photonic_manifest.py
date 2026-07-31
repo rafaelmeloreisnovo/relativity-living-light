@@ -53,8 +53,8 @@ def validate_manifest(data: Any) -> None:
     claim_allowed = require(data, "claim_allowed", "$")
     if not isinstance(claim_allowed, bool):
         raise ContractError("$.claim_allowed: expected boolean")
-    if claim_state in {"HYPOTHESIS", "TOKEN_VAZIO", "CONTRADICTION"} and claim_allowed:
-        raise ContractError("$.claim_allowed: must be false for non-evidence states")
+    if claim_allowed:
+        raise ContractError("$.claim_allowed: public structural contract requires false")
 
     source = require(data, "source_dataset", "$")
     if not isinstance(source, dict):
