@@ -98,17 +98,26 @@ jobs:
           python tools/rll_pipeline_fase24_1_runtime.py --mode "$MODE" \
             2>&1 | tee rll-fase24-1-console.log
 
-      - name: "43 · Selar console e recalcular cadeia SHA-256"
+      - name: "43 · Selar console, manifesto e cadeia SHA-256"
         if: always()
         run: |
           set -euo pipefail
           mkdir -p results/linear artifacts/linear/current_run
           cp rll-fase24-1-console.log artifacts/linear/current_run/rll-fase24-1-console.log
-          find results/linear logs/linear artifacts/linear \
-            -type f ! -name CHECKSUMS.sha256 -print0 2>/dev/null \
-            | sort -z \
-            | xargs -0 -r sha256sum \
-            > results/linear/CHECKSUMS.sha256
+          python - <<'PY'
+          import importlib.util
+          import sys
+          from pathlib import Path
+
+          module_path = Path("tools/rll_pipeline_fase24_1_runtime.py").resolve()
+          spec = importlib.util.spec_from_file_location("rll_fase24_1_final_seal", module_path)
+          assert spec is not None and spec.loader is not None
+          runtime = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = runtime
+          spec.loader.exec_module(runtime)
+          runtime.install()
+          runtime.write_checksums()
+          PY
           test -s results/linear/CHECKSUMS.sha256
 
       - name: "43.1 · Verificar proveniência, manifesto e cadeia"
@@ -121,17 +130,32 @@ jobs:
           test -s artifacts/linear/VERIFY_ARTIFACT.py
           python artifacts/linear/VERIFY_ARTIFACT.py
           python - <<'PY'
+          import hashlib
           import json
           from pathlib import Path
 
           provenance = json.loads(Path("artifacts/linear/PROVENANCE.json").read_text(encoding="utf-8"))
           manifest = json.loads(Path("artifacts/linear/MANIFEST.json").read_text(encoding="utf-8"))
+          checksums = {
+              line.split("  ", 1)[1]: line.split("  ", 1)[0]
+              for line in Path("results/linear/CHECKSUMS.sha256").read_text(encoding="utf-8").splitlines()
+              if line.strip()
+          }
           assert provenance["claim_allowed"] is False
           assert provenance["commit_sha"] == "${{ github.sha }}"
           assert provenance["github"]["GITHUB_RUN_ID"] == "${{ github.run_id }}"
           assert manifest["claim_allowed"] is False
-          assert manifest["file_count"] > 0
-          print("RLL provenance and artifact manifest: PASS")
+          assert manifest["file_count"] == len(manifest["files"]) > 0
+          manifest_paths = set()
+          for item in manifest["files"]:
+              path = Path(item["path"])
+              assert path.is_file(), item["path"]
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert digest == item["sha256"], item["path"]
+              assert checksums.get(item["path"]) == digest, item["path"]
+              manifest_paths.add(item["path"])
+          assert "artifacts/linear/current_run/rll-fase24-1-console.log" in manifest_paths
+          print("RLL provenance, manifest and checksum chain: PASS")
           PY
 
       - name: "44 · Publicar evidências mesmo com gate bloqueado"
