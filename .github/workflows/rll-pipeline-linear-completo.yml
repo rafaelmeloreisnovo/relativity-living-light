@@ -98,7 +98,7 @@ jobs:
           python tools/rll_pipeline_fase24_1_runtime.py --mode "$MODE" \
             2>&1 | tee rll-fase24-1-console.log
 
-      - name: "43 · Selar console, manifesto e cadeia SHA-256"
+      - name: "43 · Selar e verificar console, manifesto e cadeia SHA-256"
         if: always()
         run: |
           set -euo pipefail
@@ -119,11 +119,6 @@ jobs:
           runtime.write_checksums()
           PY
           test -s results/linear/CHECKSUMS.sha256
-
-      - name: "43.1 · Verificar proveniência, manifesto e cadeia"
-        if: always()
-        run: |
-          set -euo pipefail
           test -s artifacts/linear/PROVENANCE.json
           test -s artifacts/linear/MANIFEST.json
           test -s artifacts/linear/PYTHON_ENVIRONMENT.txt
