@@ -15,6 +15,8 @@ inputs:
   - id: pantheon-stat-sys-covariance
     path: data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov
     required: true
+    expected_bytes: 33284960
+    expected_sha256: abf806d966485e64afdb359c87bffc0ecc00d05eff0a31ced66f247385df0fdc
     sha256_sidecar: data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov.sha256
 steps:
   - id: verify-pantheon-full-covariance
@@ -25,7 +27,7 @@ steps:
     argv:
       - python
       - -m
-      - rll_evidence.pantheon_fit
+      - rll_evidence.pantheon_fit_ascii
       - --catalog
       - data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat
       - --covariance
@@ -67,6 +69,7 @@ F_ok:
   - Calibrator rows use CEPH_DIST and Hubble-flow rows use m_b_corr with the same selected covariance.
   - LCDM and RLL share selection, covariance, common parameter bounds, seeds, optimizer and integration grid.
   - M_B is analytically profiled and counted in k.
+  - ASCII covariance asymmetry is accepted only up to 5e-8, recorded and symmetrized deterministically without jitter.
 F_gap:
   - Pantheon Plus SH0ES is one likelihood block and does not validate RLL independently.
   - External cross-implementation reproduction and joint BAO H(z) growth CMB composition remain absent.
