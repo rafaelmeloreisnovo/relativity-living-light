@@ -3,6 +3,7 @@
 
 Frequency means counted route events per versioned structural snapshot.
 Vectors are seven-direction routing coordinates derived from declared scores.
+Cross-tree bridges are allowed only when their status is explicit and audited.
 Machine-learning readiness is a governance classification; this tool never trains,
 validates or deploys a model and never promotes a scientific claim.
 """
@@ -30,11 +31,24 @@ ARTIFACT_DIR = ROOT / "artifacts/route-forest"
 
 DIRECTIONS = ("D1", "D2", "D3", "D4", "D5", "D6", "D7")
 ML_GATES = (
-    "provenance", "rights_license", "immutable_data", "target_definition",
-    "feature_schema", "split_contract", "leakage_check", "baseline_model",
-    "uncertainty", "bias_review", "model_card", "independent_review",
+    "provenance",
+    "rights_license",
+    "immutable_data",
+    "target_definition",
+    "feature_schema",
+    "split_contract",
+    "leakage_check",
+    "baseline_model",
+    "uncertainty",
+    "bias_review",
+    "model_card",
+    "independent_review",
 )
-SAFE_REF = re.compile(r"^(?!/)(?!.*(?:^|/)\.\.(?:/|$))[A-Za-z0-9._@+%=-]+(?:/[A-Za-z0-9._@+%=-]+)*$")
+AUDITED_CROSS_TREE_STATUSES = frozenset({"verified", "partial_resolution"})
+AUDITED_CROSS_TREE_RELATIONS = frozenset({"routes", "constrains", "derives", "evaluates"})
+SAFE_REF = re.compile(
+    r"^(?!/)(?!.*(?:^|/)\.\.(?:/|$))[A-Za-z0-9._@+%=-]+(?:/[A-Za-z0-9._@+%=-]+)*$"
+)
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -69,13 +83,37 @@ def duplicates(values: list[str]) -> list[str]:
     return sorted(value for value, count in counts.items() if count > 1)
 
 
-def graph_state(nodes: set[str], routes: dict[str, dict[str, Any]], roots: set[str]) -> tuple[int, int]:
+def graph_state(
+    nodes: dict[str, dict[str, Any]] | set[str],
+    routes: dict[str, dict[str, Any]],
+    roots: set[str],
+) -> tuple[int, int]:
+    """Return cyclic-node and orphan counts for hierarchy plus declared routes.
+
+    Parent links are structural edges. Route links add flow edges. Treating only
+    routes as graph edges incorrectly classifies every parent-linked child as an
+    orphan when a tree gains nodes before it gains a dedicated flow event.
+    """
+
+    node_map = nodes if isinstance(nodes, dict) else {}
+    node_ids = set(nodes)
     adjacency: dict[str, list[str]] = defaultdict(list)
-    indegree = {node: 0 for node in nodes}
+    indegree = {node_id: 0 for node_id in node_ids}
+
+    for node_id, node in node_map.items():
+        parent = node.get("parent")
+        if parent in indegree:
+            adjacency[parent].append(node_id)
+            indegree[node_id] += 1
+
     for route in routes.values():
-        adjacency[route["source"]].append(route["target"])
-        indegree[route["target"]] += 1
-    queue = deque(sorted(node for node, degree in indegree.items() if degree == 0))
+        source = route.get("source")
+        target = route.get("target")
+        if source in indegree and target in indegree:
+            adjacency[source].append(target)
+            indegree[target] += 1
+
+    queue = deque(sorted(node_id for node_id, degree in indegree.items() if degree == 0))
     reduced = dict(indegree)
     visited = 0
     while queue:
@@ -85,9 +123,43 @@ def graph_state(nodes: set[str], routes: dict[str, dict[str, Any]], roots: set[s
             reduced[target] -= 1
             if reduced[target] == 0:
                 queue.append(target)
-    cycles = 0 if visited == len(nodes) else len(nodes) - visited
-    orphans = sum(1 for node, degree in indegree.items() if node not in roots and degree == 0)
+
+    cycles = 0 if visited == len(node_ids) else len(node_ids) - visited
+    orphans = sum(
+        1 for node_id, degree in indegree.items() if node_id not in roots and degree == 0
+    )
     return cycles, orphans
+
+
+def cross_tree_route_findings(
+    route_id: str,
+    route: dict[str, Any],
+    nodes: dict[str, dict[str, Any]],
+) -> list[str]:
+    """Validate one route without turning cross-tree links into silent aliases."""
+
+    source = route.get("source")
+    target = route.get("target")
+    if source not in nodes or target not in nodes:
+        return []
+
+    source_tree = nodes[source]["tree"]
+    target_tree = nodes[target]["tree"]
+    owner_tree = route.get("tree")
+
+    if source_tree == target_tree:
+        if owner_tree != source_tree:
+            return [f"{route_id}: endpoint tree mismatch"]
+        return []
+
+    findings: list[str] = []
+    if owner_tree not in {source_tree, target_tree}:
+        findings.append(f"{route_id}: cross-tree owner must match one endpoint tree")
+    if route.get("status") not in AUDITED_CROSS_TREE_STATUSES:
+        findings.append(f"{route_id}: cross-tree route requires audited status")
+    if route.get("relation") not in AUDITED_CROSS_TREE_RELATIONS:
+        findings.append(f"{route_id}: relation is not permitted for cross-tree routing")
+    return findings
 
 
 def semantic_findings(blueprint: dict[str, Any], events: list[dict[str, Any]]) -> list[str]:
@@ -156,16 +228,16 @@ def semantic_findings(blueprint: dict[str, Any], events: list[dict[str, Any]]) -
             node_id = route[endpoint]
             if node_id not in nodes:
                 findings.append(f"{route_id}: unknown {endpoint} {node_id}")
-        if route["source"] in nodes and route["target"] in nodes:
-            if nodes[route["source"]]["tree"] != route["tree"] or nodes[route["target"]]["tree"] != route["tree"]:
-                findings.append(f"{route_id}: endpoint tree mismatch")
+        findings.extend(cross_tree_route_findings(route_id, route, nodes))
         for ref in route["refs"]:
             if not SAFE_REF.fullmatch(ref):
                 findings.append(f"{route_id}: unsafe ref {ref}")
 
     event_ids = [event["event_id"] for event in events]
-    if duplicates(event_ids):
-        findings.append(f"duplicate events: {duplicates(event_ids)}")
+    duplicate_ids = duplicates(event_ids)
+    if duplicate_ids:
+        findings.append(f"duplicate events: {duplicate_ids}")
+
     event_routes: set[str] = set()
     window = blueprint["frequency_semantics"]["window_id"]
     for event in events:
@@ -177,11 +249,12 @@ def semantic_findings(blueprint: dict[str, Any], events: list[dict[str, Any]]) -
             findings.append(f"{event['event_id']}: wrong window")
         if not SAFE_REF.fullmatch(event["source_ref"]):
             findings.append(f"{event['event_id']}: unsafe ref")
+
     without_events = sorted(set(routes) - event_routes)
     if without_events:
         findings.append(f"routes without events: {without_events}")
 
-    cycles, orphans = graph_state(set(nodes), routes, roots)
+    cycles, orphans = graph_state(nodes, routes, roots)
     if cycles:
         findings.append(f"graph has {cycles} cyclic nodes")
     if orphans:
@@ -241,18 +314,20 @@ def compile_forest(blueprint: dict[str, Any], events: list[dict[str, Any]]) -> d
     compiled_nodes: list[dict[str, Any]] = []
     for node_id, node in source_nodes.items():
         coordinates = vector(node["scores"])
-        compiled_nodes.append({
-            "node_id": node_id,
-            "tree_id": node["tree"],
-            "region_id": node["region"],
-            "label": node["label"],
-            "kind": node["kind"],
-            "epistemic_status": node["status"],
-            "parent_id": node["parent"],
-            "vector": coordinates,
-            "vector_norm": norm(coordinates),
-            "source_refs": node["refs"],
-        })
+        compiled_nodes.append(
+            {
+                "node_id": node_id,
+                "tree_id": node["tree"],
+                "region_id": node["region"],
+                "label": node["label"],
+                "kind": node["kind"],
+                "epistemic_status": node["status"],
+                "parent_id": node["parent"],
+                "vector": coordinates,
+                "vector_norm": norm(coordinates),
+                "source_refs": node["refs"],
+            }
+        )
     node_map = {node["node_id"]: node for node in compiled_nodes}
 
     grouped_events: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -265,20 +340,24 @@ def compile_forest(blueprint: dict[str, Any], events: list[dict[str, Any]]) -> d
         source = node_map[route["source"]]["vector"]
         target = node_map[route["target"]]["vector"]
         delta = [round(right - left, 12) for left, right in zip(source, target)]
-        compiled_routes.append({
-            "route_id": route_id,
-            "tree_id": route["tree"],
-            "source_node_id": route["source"],
-            "target_node_id": route["target"],
-            "relation_type": route["relation"],
-            "source_refs": route["refs"],
-            "claim_allowed": False,
-            "flow_frequency": sum(event["weight"] for event in route_events),
-            "frequency_unit": "events_per_snapshot",
-            "event_kinds": dict(sorted(Counter(event["event_kind"] for event in route_events).items())),
-            "vector_delta": delta,
-            "delta_norm": norm(delta),
-        })
+        compiled_routes.append(
+            {
+                "route_id": route_id,
+                "tree_id": route["tree"],
+                "source_node_id": route["source"],
+                "target_node_id": route["target"],
+                "relation_type": route["relation"],
+                "source_refs": route["refs"],
+                "claim_allowed": False,
+                "flow_frequency": sum(event["weight"] for event in route_events),
+                "frequency_unit": "events_per_snapshot",
+                "event_kinds": dict(
+                    sorted(Counter(event["event_kind"] for event in route_events).items())
+                ),
+                "vector_delta": delta,
+                "delta_norm": norm(delta),
+            }
+        )
 
     compiled_regions: list[dict[str, Any]] = []
     for region_id, region in blueprint["regions"].items():
@@ -298,39 +377,44 @@ def compile_forest(blueprint: dict[str, Any], events: list[dict[str, Any]]) -> d
             if target_region == region_id:
                 inbound += route["flow_frequency"]
                 route_ids.add(route["route_id"])
-        compiled_regions.append({
-            "region_id": region_id,
-            "direction_id": region["direction"],
-            "name": region["name"],
-            "description": region["description"],
-            "node_ids": [node["node_id"] for node in members],
-            "route_ids": sorted(route_ids),
-            "centroid_vector": centroid,
-            "inbound_flow": inbound,
-            "outbound_flow": outbound,
-            "total_flow": inbound + outbound,
-        })
+        compiled_regions.append(
+            {
+                "region_id": region_id,
+                "direction_id": region["direction"],
+                "name": region["name"],
+                "description": region["description"],
+                "node_ids": [node["node_id"] for node in members],
+                "route_ids": sorted(route_ids),
+                "centroid_vector": centroid,
+                "inbound_flow": inbound,
+                "outbound_flow": outbound,
+                "total_flow": inbound + outbound,
+            }
+        )
 
     compiled_trees: list[dict[str, Any]] = []
     for tree_id, tree in blueprint["trees"].items():
         tree_routes = [route for route in compiled_routes if route["tree_id"] == tree_id]
-        compiled_trees.append({
-            "tree_id": tree_id,
-            "domain": tree["domain"],
-            "root_node_id": tree["root"],
-            "purpose": tree["purpose"],
-            "node_ids": tree["nodes"],
-            "route_ids": [route["route_id"] for route in tree_routes],
-            "node_count": len(tree["nodes"]),
-            "route_count": len(tree_routes),
-            "depth": max(depth(node_id, source_nodes) for node_id in tree["nodes"]),
-            "ml_readiness": ml_readiness(tree),
-        })
+        compiled_trees.append(
+            {
+                "tree_id": tree_id,
+                "domain": tree["domain"],
+                "root_node_id": tree["root"],
+                "purpose": tree["purpose"],
+                "node_ids": tree["nodes"],
+                "route_ids": [route["route_id"] for route in tree_routes],
+                "node_count": len(tree["nodes"]),
+                "route_count": len(tree_routes),
+                "depth": max(depth(node_id, source_nodes) for node_id in tree["nodes"]),
+                "ml_readiness": ml_readiness(tree),
+            }
+        )
 
     roots = {tree["root"] for tree in blueprint["trees"].values()}
-    cycles, orphans = graph_state(set(source_nodes), blueprint["routes"], roots)
+    cycles, orphans = graph_state(source_nodes, blueprint["routes"], roots)
     ml_states = [
-        tree["ml_readiness"]["state"] for tree in compiled_trees
+        tree["ml_readiness"]["state"]
+        for tree in compiled_trees
         if tree["ml_readiness"]["state"] != "NOT_APPLICABLE"
     ]
     state = (
@@ -360,7 +444,10 @@ def compile_forest(blueprint: dict[str, Any], events: list[dict[str, Any]]) -> d
         "vector_basis": {
             "class": "[C]",
             "directions": list(DIRECTIONS),
-            "score_scale": {str(index): name for index, name in enumerate(blueprint["vector_semantics"]["score_scale"])},
+            "score_scale": {
+                str(index): name
+                for index, name in enumerate(blueprint["vector_semantics"]["score_scale"])
+            },
             "normalization": blueprint["vector_semantics"]["normalization"],
             "boundary": blueprint["vector_semantics"]["boundary"],
         },
@@ -378,7 +465,9 @@ def compile_forest(blueprint: dict[str, Any], events: list[dict[str, Any]]) -> d
             "orphan_count": orphans,
             "cycle_count": cycles,
             "max_depth": max(tree["depth"] for tree in compiled_trees),
-            "mean_vector_norm": round(sum(node["vector_norm"] for node in compiled_nodes) / len(compiled_nodes), 12),
+            "mean_vector_norm": round(
+                sum(node["vector_norm"] for node in compiled_nodes) / len(compiled_nodes), 12
+            ),
         },
         "state": state,
         "next_gate": blueprint["next_gate"],
@@ -399,7 +488,9 @@ def graphml(forest: dict[str, Any]) -> str:
         '  <graph id="RLLRouteForest" edgedefault="directed">',
     ]
     for node in forest["nodes"]:
-        label = node["label"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        label = (
+            node["label"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        )
         lines += [
             f'    <node id="{node["node_id"]}">',
             f'      <data key="label">{label}</data>',
@@ -423,28 +514,39 @@ def write_artifacts(forest: dict[str, Any], directory: Path) -> list[Path]:
     report_json.write_text(canonical(forest), encoding="utf-8")
     graph_file.write_text(graphml(forest), encoding="utf-8")
     table = [
-        "# RLL Omega Route Forest Report", "",
+        "# RLL Omega Route Forest Report",
+        "",
         f"- state: `{forest['state']}`",
         f"- regions: `{forest['metrics']['region_count']}`",
         f"- trees: `{forest['metrics']['tree_count']}`",
         f"- nodes: `{forest['metrics']['node_count']}`",
         f"- routes: `{forest['metrics']['route_count']}`",
-        f"- events: `{forest['metrics']['event_count']}`", "",
-        "## ML readiness", "",
-        "| Tree | Role | State | Gates |", "|---|---|---|---:|",
+        f"- events: `{forest['metrics']['event_count']}`",
+        "",
+        "## ML readiness",
+        "",
+        "| Tree | Role | State | Gates |",
+        "|---|---|---|---:|",
     ]
     for tree in forest["trees"]:
         ready = tree["ml_readiness"]
-        table.append(f"| `{tree['tree_id']}` | `{ready['role']}` | `{ready['state']}` | {ready['passed_gates']}/12 |")
+        table.append(
+            f"| `{tree['tree_id']}` | `{ready['role']}` | `{ready['state']}` | {ready['passed_gates']}/12 |"
+        )
     table += [
-        "", "Frequency is an event count per snapshot, vectors are routing coordinates,",
-        "and this compiler performs no model training or scientific claim promotion.", "",
+        "",
+        "Frequency is an event count per snapshot, vectors are routing coordinates,",
+        "and this compiler performs no model training or scientific claim promotion.",
+        "",
     ]
     report_md.write_text("\n".join(table), encoding="utf-8")
     material = [report_json, report_md, graph_file]
     checksums = directory / "CHECKSUMS.sha256"
     checksums.write_text(
-        "".join(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n" for path in sorted(material)),
+        "".join(
+            f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n"
+            for path in sorted(material)
+        ),
         encoding="utf-8",
     )
     return material + [checksums]
