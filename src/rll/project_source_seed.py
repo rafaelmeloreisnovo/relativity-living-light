@@ -33,13 +33,18 @@ def load_seed_manifest(path: Path) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     if data.get("schema") != SCHEMA:
         raise ValueError("schema de seed inválido")
-    required_false = ("claim_allowed", "private_bodies_committed")
-    if any(data.get(key) is not False for key in required_false):
+    if data.get("claim_allowed") is not False or data.get("private_bodies_committed") is not False:
         raise ValueError("seed viola fronteira de claim/privacidade")
     if data.get("execution_ready") is not True:
         raise ValueError("seed ainda não está marcado como execution_ready")
     if data.get("public_body_scope") != "PUBLIC_SAFE_ONLY":
         raise ValueError("escopo público inválido")
+    parts = data.get("bundle_parts")
+    if not isinstance(parts, list) or not parts:
+        raise ValueError("bundle_parts ausente")
+    names = [part.get("name") for part in parts]
+    if len(names) != len(set(names)):
+        raise ValueError("bundle part duplicado")
     sources = data.get("sources")
     if not isinstance(sources, list) or data.get("source_count") != len(sources):
         raise ValueError("source_count inconsistente")
@@ -72,7 +77,14 @@ def load_seed_manifest(path: Path) -> dict[str, Any]:
 
 
 def load_bundle(path: Path, manifest: Mapping[str, Any]) -> tuple[dict[str, dict[str, Any]], str]:
-    transport = path.read_bytes()
+    chunks: list[bytes] = []
+    for part in manifest["bundle_parts"]:
+        part_path = path.parent / part["name"]
+        raw_part = part_path.read_bytes()
+        if len(raw_part) != part["size_bytes"] or sha256_bytes(raw_part) != part["sha256"]:
+            raise ValueError(f"bundle part divergente: {part['name']}")
+        chunks.append(raw_part)
+    transport = b"".join(chunks)
     if sha256_bytes(transport) != manifest["bundle_transport_sha256"]:
         raise ValueError("bundle_transport_sha256 divergente")
     try:
@@ -109,10 +121,7 @@ def verify_seed(manifest_path: Path, repo_root: Path) -> dict[str, Any]:
         raise ValueError("bundle_sha256 divergente")
     if len(records) != manifest["bundle_record_count"]:
         raise ValueError("bundle_record_count inconsistente")
-
-    verified = 0
-    public_bytes = 0
-    public_lines = 0
+    verified = public_bytes = public_lines = 0
     detail: list[dict[str, Any]] = []
     for item in manifest["sources"]:
         source_id = item["source_id"]
@@ -136,14 +145,10 @@ def verify_seed(manifest_path: Path, repo_root: Path) -> dict[str, Any]:
         public_bytes += len(raw)
         public_lines += line_count(body)
         detail.append({"source_id": source_id, "state": "VERIFIED_COMMITTED_SEED", **checks})
-
     if verified != manifest["committed_body_count"]:
         raise ValueError("quantidade verificada divergente")
-    if public_bytes != manifest["total_public_bytes"]:
-        raise ValueError("total_public_bytes divergente")
-    if public_lines != manifest["total_public_lines"]:
-        raise ValueError("total_public_lines divergente")
-
+    if public_bytes != manifest["total_public_bytes"] or public_lines != manifest["total_public_lines"]:
+        raise ValueError("totais públicos divergentes")
     return {
         "schema": SCHEMA,
         "state": "PASS",
@@ -158,22 +163,13 @@ def verify_seed(manifest_path: Path, repo_root: Path) -> dict[str, Any]:
     }
 
 
-def compatibility_manifest(manifest: Mapping[str, Any], records: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
+def compatibility_manifest(manifest: Mapping[str, Any]) -> dict[str, Any]:
     sources = []
     for item in manifest["sources"]:
         copy = dict(item)
-        if copy["ingestion_policy"] == "ingest":
-            copy["local_filename"] = safe_filename(copy["source_id"])
-        else:
-            copy["local_filename"] = None
+        copy["local_filename"] = safe_filename(copy["source_id"]) if copy["ingestion_policy"] == "ingest" else None
         sources.append(copy)
-    return {
-        "schema": "rll.project_sources_manifest.v1",
-        "claim_allowed": False,
-        "raw_bodies_committed": False,
-        "source_count": len(sources),
-        "sources": sources,
-    }
+    return {"schema": "rll.project_sources_manifest.v1", "claim_allowed": False, "raw_bodies_committed": False, "source_count": len(sources), "sources": sources}
 
 
 def bootstrap(manifest_path: Path, repo_root: Path, db: Path) -> dict[str, Any]:
@@ -183,12 +179,10 @@ def bootstrap(manifest_path: Path, repo_root: Path, db: Path) -> dict[str, Any]:
     with tempfile.TemporaryDirectory(prefix="rll-project-seed-") as temporary:
         root = Path(temporary)
         for item in manifest["sources"]:
-            if item["ingestion_policy"] != "ingest":
-                continue
-            body = records[item["bundle_record_id"]]["body"]
-            (root / safe_filename(item["source_id"])).write_text(body, encoding="utf-8")
+            if item["ingestion_policy"] == "ingest":
+                (root / safe_filename(item["source_id"])).write_text(records[item["bundle_record_id"]]["body"], encoding="utf-8")
         with ProjectCorpus(db) as corpus:
-            ingest_receipt = corpus.ingest(compatibility_manifest(manifest, records), root)
+            ingest_receipt = corpus.ingest(compatibility_manifest(manifest), root)
             status = corpus.status()
     return {"verification": verification, "ingest": ingest_receipt, "status": status}
 
