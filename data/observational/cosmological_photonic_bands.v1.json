@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "registry_id": "RLL-COSMO-PHOTONIC-BANDS-V1",
+  "version": "1.0.0",
+  "date": "2026-07-30",
+  "status": "PUBLIC_SAFE_REFERENCE_REGISTRY",
+  "bounds_are_approximate": true,
+  "physical_hypothesis_claim_allowed": false,
+  "spectral_coordinate_options": [
+    "wavelength",
+    "frequency",
+    "energy",
+    "channel"
+  ],
+  "bands": [
+    {
+      "id": "radio",
+      "nominal_wavelength_m": {"min_exclusive": 0.1},
+      "nominal_frequency_hz": {"max_exclusive": 3000000000.0},
+      "measurement_examples": ["continuum", "spectral_lines", "polarimetry", "faraday_rotation", "timing", "interferometry"],
+      "astrophysical_processes": ["synchrotron", "cold_gas", "electron_motion_in_magnetic_fields", "pulsars", "fast_radio_bursts"],
+      "cosmological_uses": ["HI_21cm", "large_scale_structure", "magnetism", "gas_content", "transients"]
+    },
+    {
+      "id": "microwave_submillimeter",
+      "nominal_wavelength_m": {"min_inclusive": 0.001, "max_inclusive": 0.1},
+      "nominal_frequency_hz": {"min_inclusive": 3000000000.0, "max_inclusive": 300000000000.0},
+      "measurement_examples": ["blackbody_spectrum", "anisotropy", "polarization", "molecular_lines", "sunyaev_zeldovich"],
+      "astrophysical_processes": ["cosmic_microwave_background", "cold_dust", "molecular_gas", "cluster_scattering"],
+      "cosmological_uses": ["early_universe", "geometry", "cluster_pressure", "baryon_distribution"]
+    },
+    {
+      "id": "infrared",
+      "nominal_wavelength_m": {"min_inclusive": 7e-7, "max_inclusive": 0.001},
+      "nominal_frequency_hz": {"min_inclusive": 300000000000.0, "max_inclusive": 400000000000000.0},
+      "measurement_examples": ["spectral_energy_distribution", "atomic_lines", "molecular_lines", "thermal_continuum", "imaging_spectroscopy"],
+      "astrophysical_processes": ["warm_and_cold_dust", "cool_stars", "redshifted_emission", "molecular_absorption"],
+      "cosmological_uses": ["high_redshift_galaxies", "star_formation", "stellar_mass", "reionization_targets"]
+    },
+    {
+      "id": "visible",
+      "nominal_wavelength_m": {"min_inclusive": 4e-7, "max_inclusive": 7e-7},
+      "nominal_frequency_hz": {"min_inclusive": 400000000000000.0, "max_inclusive": 750000000000000.0},
+      "measurement_examples": ["absorption_lines", "emission_lines", "redshift", "kinematics", "polarimetry", "photometry"],
+      "astrophysical_processes": ["stellar_photospheres", "ionized_gas", "supernovae", "galaxies"],
+      "cosmological_uses": ["distance_ladders", "type_Ia_supernovae", "galaxy_surveys", "weak_lensing", "metallicity"]
+    },
+    {
+      "id": "ultraviolet",
+      "nominal_wavelength_m": {"min_inclusive": 1e-8, "max_inclusive": 4e-7},
+      "nominal_frequency_hz": {"min_inclusive": 750000000000000.0, "max_inclusive": 30000000000000000.0},
+      "measurement_examples": ["high_ionization_lines", "continuum", "intergalactic_absorption", "time_series"],
+      "astrophysical_processes": ["hot_stars", "ionized_gas", "supernova_remnants", "accretion"],
+      "cosmological_uses": ["Lyman_alpha", "intergalactic_medium", "reionization", "star_formation"]
+    },
+    {
+      "id": "xray",
+      "nominal_wavelength_m": {"min_inclusive": 1e-11, "max_inclusive": 1e-8},
+      "nominal_frequency_hz": {"min_inclusive": 30000000000000000.0, "max_inclusive": 30000000000000000000.0},
+      "measurement_examples": ["thermal_continuum", "nonthermal_continuum", "emission_lines", "absorption_lines", "timing", "polarimetry"],
+      "astrophysical_processes": ["hot_plasma", "active_galactic_nuclei", "accretion_disks", "neutron_stars", "clusters"],
+      "cosmological_uses": ["cluster_mass_proxies", "intracluster_medium", "metal_abundance", "structure_growth"]
+    },
+    {
+      "id": "gamma_ray",
+      "nominal_wavelength_m": {"max_exclusive": 1e-11},
+      "nominal_frequency_hz": {"min_exclusive": 30000000000000000000.0},
+      "measurement_examples": ["nonthermal_spectrum", "line_search", "event_timing", "polarimetry"],
+      "astrophysical_processes": ["gamma_ray_bursts", "jets", "particle_decay", "annihilation", "cosmic_ray_interactions"],
+      "cosmological_uses": ["extreme_universe", "transients", "backgrounds", "indirect_constraints_on_fundamental_physics"]
+    }
+  ],
+  "non_photonic_complements": [
+    "gravitational_waves",
+    "neutrinos",
+    "cosmic_rays"
+  ],
+  "references": [
+    "https://imagine.gsfc.nasa.gov/science/toolbox/spectrum_chart.html",
+    "https://science.nasa.gov/asset/webb/spectroscopic-observations-of-different-wavelengths-of-light-in-astronomy/",
+    "https://www.ivoa.net/documents/SpectrumDM/"
+  ]
+}
