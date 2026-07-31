@@ -129,8 +129,20 @@ def align_step_contracts() -> None:
         "--profile", "structure_d_real_validation", "--bayes", "--bayes-mode", "bic_proxy", "--bayes-seed", "42",
         requires=("data/pipelines/structure_d/run_all.py",),
     )
-    _replace_step(21, commands=(), candidates=(inference,))
-    _replace_step(22, commands=(), candidates=(bic_proxy,))
+    _replace_step(21, commands=(
+        command(py, "tools/rll_pipeline_fase24_1_runtime.py", "--prepare-real-bayes",
+                requires=("tools/rll_pipeline_fase24_1_runtime.py",)),
+        inference,
+        command(py, "tools/rll_pipeline_fase24_1_runtime.py", "--validate-real-bayes-inference",
+                requires=("tools/rll_pipeline_fase24_1_runtime.py",)),
+    ), candidates=())
+    _replace_step(22, commands=(
+        command(py, "tools/rll_pipeline_fase24_1_runtime.py", "--prepare-real-bayes",
+                requires=("tools/rll_pipeline_fase24_1_runtime.py",)),
+        bic_proxy,
+        command(py, "tools/rll_pipeline_fase24_1_runtime.py", "--materialize-real-bic-proxy",
+                requires=("tools/rll_pipeline_fase24_1_runtime.py", "results/structure_d/model_comparison.csv")),
+    ), candidates=())
     _replace_step(25, commands=(command(
         py, "scripts/compute_rll_real_pipeline.py",
         "--output-dir", "artifacts/linear/current_run/rll-real-pipeline",
@@ -162,6 +174,122 @@ def align_step_contracts() -> None:
                 requires=("scripts/run_desi_dha_pipeline.py",)),
         command(py, "scripts/export_dha_forecast.py", requires=("scripts/export_dha_forecast.py",)),
     ), candidates=())
+
+
+def _structure_d_results() -> Path:
+    return ROOT / "results" / "structure_d"
+
+
+def prepare_real_bayes() -> int:
+    out = _structure_d_results()
+    out.mkdir(parents=True, exist_ok=True)
+    for name in (
+        "bayes_evidence_inference.csv",
+        "bayes_evidence_bic_proxy.csv",
+        "bayes_factor_interpretation.csv",
+    ):
+        (out / name).unlink(missing_ok=True)
+    return 0
+
+
+def validate_real_bayes_inference() -> int:
+    out = _structure_d_results()
+    contract_path = out / "reproduction_contract.json"
+    evidence_path = out / "bayes_evidence_inference.csv"
+    contract: dict[str, object] = {}
+    if contract_path.is_file():
+        try:
+            contract = json.loads(contract_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            contract = {}
+    profile = contract.get("profile")
+    bayes_enabled = contract.get("bayes_enabled") is True
+    mode = contract.get("bayes_mode")
+    verified = (
+        profile == "structure_d_real_validation"
+        and bayes_enabled
+        and mode == "inference"
+        and evidence_path.is_file()
+        and evidence_path.stat().st_size > 0
+    )
+    payload = {
+        "schema_version": "rll.structure_d.real_bayes_inference_status.v1",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "state": "VERIFIED" if verified else "TOKEN_VAZIO",
+        "claim_allowed": False,
+        "profile": profile,
+        "bayes_enabled": bayes_enabled,
+        "bayes_mode": mode,
+        "evidence_path": core.rel(evidence_path),
+        "reason": None if verified else (
+            "Structure-D real profile currently returns before optional Bayesian inference; "
+            "a completed real-data MCMC/nested-sampling artifact was not materialized."
+        ),
+    }
+    CURRENT_RUN.mkdir(parents=True, exist_ok=True)
+    status_path = CURRENT_RUN / "real_bayes_inference_status.json"
+    status_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(payload, ensure_ascii=False, indent=2))
+    return 0 if verified else 3
+
+
+def materialize_real_bic_proxy() -> int:
+    out = _structure_d_results()
+    source = out / "model_comparison.csv"
+    if not source.is_file():
+        print(f"TOKEN_VAZIO: missing {source}")
+        return 3
+    rows = list(csv.DictReader(source.read_text(encoding="utf-8").splitlines()))
+    baseline = next((row for row in rows if str(row.get("model", "")).strip().lower() == "lcdm"), None)
+    candidate = next((row for row in rows if str(row.get("model", "")).strip().lower().startswith("rll")), None)
+    if baseline is None or candidate is None:
+        print("TOKEN_VAZIO: LCDM/RLL rows absent from real model comparison")
+        return 3
+    try:
+        bic_baseline = float(baseline["BIC"])
+        bic_candidate = float(candidate["BIC"])
+    except (KeyError, TypeError, ValueError):
+        print("TOKEN_VAZIO: BIC columns are not numeric")
+        return 3
+    delta_bic = bic_candidate - bic_baseline
+    log_bayes_factor = -0.5 * delta_bic
+    evidence_path = out / "bayes_evidence_bic_proxy.csv"
+    interpretation_path = out / "bayes_factor_interpretation.csv"
+    with evidence_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=(
+            "baseline_model", "candidate_model", "bic_baseline", "bic_candidate",
+            "delta_bic_candidate_minus_baseline", "log_bayes_factor", "method", "claim_allowed",
+        ))
+        writer.writeheader()
+        writer.writerow({
+            "baseline_model": baseline["model"],
+            "candidate_model": candidate["model"],
+            "bic_baseline": bic_baseline,
+            "bic_candidate": bic_candidate,
+            "delta_bic_candidate_minus_baseline": delta_bic,
+            "log_bayes_factor": log_bayes_factor,
+            "method": "BIC proxy: ln(B10) ≈ -ΔBIC/2",
+            "claim_allowed": "false",
+        })
+    shutil.copy2(evidence_path, interpretation_path)
+    payload = {
+        "schema_version": "rll.structure_d.real_bic_proxy_status.v1",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "state": "VERIFIED",
+        "claim_allowed": False,
+        "baseline_model": baseline["model"],
+        "candidate_model": candidate["model"],
+        "delta_bic_candidate_minus_baseline": delta_bic,
+        "log_bayes_factor": log_bayes_factor,
+        "method": "BIC proxy only; not MCMC or nested sampling",
+        "source": core.rel(source),
+    }
+    CURRENT_RUN.mkdir(parents=True, exist_ok=True)
+    (CURRENT_RUN / "real_bic_proxy_status.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(json.dumps(payload, ensure_ascii=False, indent=2))
+    return 0
 
 
 def materialize_balance_input() -> int:
@@ -466,6 +594,12 @@ def install() -> None:
 
 
 def main() -> int:
+    if "--prepare-real-bayes" in sys.argv:
+        return prepare_real_bayes()
+    if "--validate-real-bayes-inference" in sys.argv:
+        return validate_real_bayes_inference()
+    if "--materialize-real-bic-proxy" in sys.argv:
+        return materialize_real_bic_proxy()
     if "--materialize-balance-input" in sys.argv:
         CURRENT_RUN.mkdir(parents=True, exist_ok=True)
         return materialize_balance_input()
