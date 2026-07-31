@@ -51,3 +51,9 @@ artifacts/orcid_rll/*.sqlite3
 artifacts/orcid_rll/*.sqlite3-wal
 artifacts/orcid_rll/*.sqlite3-shm
 artifacts/orcid_rll/orcid_work_candidates.json
+
+# Pantheon+ official covariance matrices are materialized locally from a pinned
+# upstream Git object. Git stores only fetch policy, sidecar hash and receipt.
+**/Pantheon+SH0ES_STAT+SYS.cov
+**/Pantheon+SH0ES_STATONLY.cov
+**/Pantheon+SH0ES_*.cov.*.part
