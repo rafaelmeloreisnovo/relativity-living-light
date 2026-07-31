@@ -1,7 +1,7 @@
 {
   "$id": "https://example.invalid/rll/project_source_seed.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Executable committed seed contract. Public-safe source bodies are hash-gated; personal/private bodies remain pointer-only. Schema conformance does not validate scientific claims.",
+  "description": "Structural contract for an executable committed seed. Public-safe source bodies are hash-gated; personal/private bodies remain pointer-only. Schema conformance does not validate scientific claims.",
   "properties": {
     "base64_prefix_decoded_bytes": {"const": 30000, "type": "integer"},
     "base64_prefix_parts": {"items": {"$ref": "#/$defs/textPart"}, "minItems": 5, "maxItems": 5, "type": "array"},
