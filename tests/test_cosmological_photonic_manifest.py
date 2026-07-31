@@ -35,6 +35,13 @@ class PhotonicManifestContractTests(unittest.TestCase):
         with self.assertRaises(ContractError):
             validate_manifest(candidate)
 
+    def test_evidence_state_cannot_enable_public_claim(self) -> None:
+        candidate = copy.deepcopy(self.example)
+        candidate["claim_state"] = "EVIDENCE"
+        candidate["claim_allowed"] = True
+        with self.assertRaises(ContractError):
+            validate_manifest(candidate)
+
     def test_authorial_dark_hypothesis_requires_definition(self) -> None:
         candidate = copy.deepcopy(self.example)
         candidate["dark_sector_interpretation"] = {
