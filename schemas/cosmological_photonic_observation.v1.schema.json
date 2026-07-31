@@ -1,1 +1,140 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://raw.githubusercontent.com/rafaelmeloreisnovo/relativity-living-light/main/schemas/cosmological_photonic_observation.v1.schema.json","title":"RLL Cosmological Photonic Observation Manifest V1","type":"object","additionalProperties":false,"required":["manifest_version","observation_id","claim_state","claim_allowed","source_dataset","spectral_axis","flux_axis","instrument","calibration","uncertainty","quality","visualization","provenance"],"properties":{"manifest_version":{"const":"1.0.0"},"observation_id":{"type":"string","minLength":3},"claim_state":{"enum":["EVIDENCE","COMPUTED","HYPOTHESIS","TOKEN_VAZIO","CONTRADICTION"]},"claim_allowed":{"type":"boolean"},"source_dataset":{"type":"object","additionalProperties":false,"required":["title","publisher","dataset_id","license","access_url"],"properties":{"title":{"type":"string","minLength":1},"publisher":{"type":"string","minLength":1},"dataset_id":{"type":"string","minLength":1},"license":{"type":"string","minLength":1},"access_url":{"type":"string","minLength":1},"sha256":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"}}},"spectral_axis":{"type":"object","additionalProperties":false,"required":["coordinate","unit","coverage"],"properties":{"coordinate":{"enum":["wavelength","frequency","energy","channel"]},"unit":{"type":"string","minLength":1},"coverage":{"type":"object","additionalProperties":false,"required":["min","max"],"properties":{"min":{"type":"number"},"max":{"type":"number"},"resolution":{"type":["number","null"],"exclusiveMinimum":0}}}}},"flux_axis":{"type":"object","additionalProperties":false,"required":["quantity","unit","calibration_state"],"properties":{"quantity":{"type":"string","minLength":1},"unit":{"type":"string","minLength":1},"calibration_state":{"enum":["raw","calibrated","normalized","derived"]}}},"spatial":{"type":["object","null"]},"temporal":{"type":["object","null"]},"redshift":{"type":["object","null"]},"stokes":{"type":["array","null"],"items":{"enum":["I","Q","U","V"]},"uniqueItems":true},"instrument":{"type":"object","additionalProperties":false,"required":["facility","instrument","detector","response_reference"],"properties":{"facility":{"type":"string","minLength":1},"instrument":{"type":"string","minLength":1},"detector":{"type":"string","minLength":1},"response_reference":{"type":"string","minLength":1}}},"calibration":{"type":"object","additionalProperties":false,"required":["pipeline","version","background_subtraction"],"properties":{"pipeline":{"type":"string","minLength":1},"version":{"type":"string","minLength":1},"background_subtraction":{"type":"string","minLength":1},"reprojection":{"type":["string","null"]},"psf_matching":{"type":["string","null"]},"lsf":{"type":["string","null"]}}},"uncertainty":{"type":"object","additionalProperties":false,"required":["statistical","systematic","covariance"],"properties":{"statistical":{"type":"string","minLength":1},"systematic":{"type":"string","minLength":1},"covariance":{"type":"string","minLength":1}}},"quality":{"type":"object","additionalProperties":false,"required":["mask","upper_limits","saturation"],"properties":{"mask":{"type":"string","minLength":1},"upper_limits":{"type":"string","minLength":1},"saturation":{"type":"string","minLength":1}}},"visualization":{"type":"object","additionalProperties":false,"required":["product_state","normalization","transfer_function","channel_mapping","color_space"],"properties":{"product_state":{"enum":["not_rendered","calibrated_data","derived_product","rendered_image"]},"normalization":{"type":"string","minLength":1},"transfer_function":{"type":"string","minLength":1},"channel_mapping":{"type":"object","additionalProperties":{"type":"string"}},"color_space":{"type":"string","minLength":1},"clipping":{"type":["string","null"]},"smoothing":{"type":["string","null"]}}},"dark_sector_interpretation":{"type":["object","null"],"additionalProperties":false,"required":["state","operational_definition","claim_allowed"],"properties":{"state":{"enum":["NOT_APPLICABLE","AUTHORIAL_HYPOTHESIS","OBSERVATIONALLY_CONSTRAINED","TOKEN_VAZIO","CONTRADICTED"]},"operational_definition":{"type":["string","null"]},"claim_allowed":{"type":"boolean"}}},"provenance":{"type":"object","additionalProperties":false,"required":["created_at","software_commit","transformations","manifest_sha256"],"properties":{"created_at":{"type":"string","minLength":1},"software_commit":{"type":"string","minLength":1},"transformations":{"type":"array","items":{"type":"string"}},"manifest_sha256":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"}}}}}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/rafaelmeloreisnovo/relativity-living-light/main/schemas/cosmological_photonic_observation.v1.schema.json",
+  "title": "RLL Cosmological Photonic Observation Manifest V1",
+  "description": "Structural contract for public-safe cosmological photonic observation manifests; schema conformance is not scientific validation and claim_allowed remains false.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "observation_id", "claim_state", "claim_allowed", "source_dataset", "spectral_axis", "flux_axis", "instrument", "calibration", "uncertainty", "quality", "visualization", "provenance"],
+  "properties": {
+    "manifest_version": {"const": "1.0.0"},
+    "observation_id": {"type": "string", "minLength": 3},
+    "claim_state": {"enum": ["EVIDENCE", "COMPUTED", "HYPOTHESIS", "TOKEN_VAZIO", "CONTRADICTION"]},
+    "claim_allowed": {"const": false},
+    "source_dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "publisher", "dataset_id", "license", "access_url"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "publisher": {"type": "string", "minLength": 1},
+        "dataset_id": {"type": "string", "minLength": 1},
+        "license": {"type": "string", "minLength": 1},
+        "access_url": {"type": "string", "minLength": 1},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "spectral_axis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coordinate", "unit", "coverage"],
+      "properties": {
+        "coordinate": {"enum": ["wavelength", "frequency", "energy", "channel"]},
+        "unit": {"type": "string", "minLength": 1},
+        "coverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min", "max"],
+          "properties": {
+            "min": {"type": "number"},
+            "max": {"type": "number"},
+            "resolution": {"type": ["number", "null"], "exclusiveMinimum": 0}
+          }
+        }
+      }
+    },
+    "flux_axis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quantity", "unit", "calibration_state"],
+      "properties": {
+        "quantity": {"type": "string", "minLength": 1},
+        "unit": {"type": "string", "minLength": 1},
+        "calibration_state": {"enum": ["raw", "calibrated", "normalized", "derived"]}
+      }
+    },
+    "spatial": {"type": ["object", "null"]},
+    "temporal": {"type": ["object", "null"]},
+    "redshift": {"type": ["object", "null"]},
+    "stokes": {"type": ["array", "null"], "items": {"enum": ["I", "Q", "U", "V"]}, "uniqueItems": true},
+    "instrument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["facility", "instrument", "detector", "response_reference"],
+      "properties": {
+        "facility": {"type": "string", "minLength": 1},
+        "instrument": {"type": "string", "minLength": 1},
+        "detector": {"type": "string", "minLength": 1},
+        "response_reference": {"type": "string", "minLength": 1}
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pipeline", "version", "background_subtraction"],
+      "properties": {
+        "pipeline": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "background_subtraction": {"type": "string", "minLength": 1},
+        "reprojection": {"type": ["string", "null"]},
+        "psf_matching": {"type": ["string", "null"]},
+        "lsf": {"type": ["string", "null"]}
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statistical", "systematic", "covariance"],
+      "properties": {
+        "statistical": {"type": "string", "minLength": 1},
+        "systematic": {"type": "string", "minLength": 1},
+        "covariance": {"type": "string", "minLength": 1}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mask", "upper_limits", "saturation"],
+      "properties": {
+        "mask": {"type": "string", "minLength": 1},
+        "upper_limits": {"type": "string", "minLength": 1},
+        "saturation": {"type": "string", "minLength": 1}
+      }
+    },
+    "visualization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product_state", "normalization", "transfer_function", "channel_mapping", "color_space"],
+      "properties": {
+        "product_state": {"enum": ["not_rendered", "calibrated_data", "derived_product", "rendered_image"]},
+        "normalization": {"type": "string", "minLength": 1},
+        "transfer_function": {"type": "string", "minLength": 1},
+        "channel_mapping": {"type": "object", "additionalProperties": {"type": "string"}},
+        "color_space": {"type": "string", "minLength": 1},
+        "clipping": {"type": ["string", "null"]},
+        "smoothing": {"type": ["string", "null"]}
+      }
+    },
+    "dark_sector_interpretation": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["state", "operational_definition", "claim_allowed"],
+      "properties": {
+        "state": {"enum": ["NOT_APPLICABLE", "AUTHORIAL_HYPOTHESIS", "OBSERVATIONALLY_CONSTRAINED", "TOKEN_VAZIO", "CONTRADICTED"]},
+        "operational_definition": {"type": ["string", "null"]},
+        "claim_allowed": {"type": "boolean"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "software_commit", "transformations", "manifest_sha256"],
+      "properties": {
+        "created_at": {"type": "string", "minLength": 1},
+        "software_commit": {"type": "string", "minLength": 1},
+        "transformations": {"type": "array", "items": {"type": "string"}},
+        "manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  }
+}
