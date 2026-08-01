@@ -1,0 +1,36 @@
+name: Rare Events Evidence Gate
+
+on:
+  pull_request:
+    paths:
+      - "data/knowledge_forest/rare_events_claim_registry_v1.yml"
+      - "scripts/validate_rare_events_registry.py"
+      - "tests/test_rare_events_registry.py"
+      - ".github/workflows/rare-events-evidence-gate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/knowledge_forest/rare_events_claim_registry_v1.yml"
+      - "scripts/validate_rare_events_registry.py"
+      - "tests/test_rare_events_registry.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rare-events-evidence-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evidence-governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate registry invariants
+        run: python scripts/validate_rare_events_registry.py
+      - name: Run positive and negative tests
+        run: python -m unittest tests/test_rare_events_registry.py -v
