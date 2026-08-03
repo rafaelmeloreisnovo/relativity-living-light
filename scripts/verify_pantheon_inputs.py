@@ -18,14 +18,11 @@ CATALOG_SIZE_BYTES = 579_283
 CATALOG_ROWS = 1_701
 CATALOG_CALIBRATORS = 77
 CATALOG_COSMO_ROWS = 1_624
+STAT_SYS_SHA256 = "abf806d966485e64afdb359c87bffc0ecc00d05eff0a31ced66f247385df0fdc"
+STAT_SYS_SIZE_BYTES = 33_284_960
 EXPECTED_COVARIANCE_DIMENSION = 1_701
 EXPECTED_COVARIANCE_VALUES = EXPECTED_COVARIANCE_DIMENSION**2
-REQUIRED_HEADER_FIELDS = {
-    "zHD",
-    "MU_SH0ES",
-    "MU_SH0ES_ERR_DIAG",
-    "IS_CALIBRATOR",
-}
+REQUIRED_HEADER_FIELDS = {"zHD", "MU_SH0ES", "MU_SH0ES_ERR_DIAG", "IS_CALIBRATOR"}
 
 
 def _sha256(path: Path) -> str:
@@ -66,7 +63,6 @@ def _inspect_catalog(path: Path) -> dict[str, Any]:
     }
     if not path.exists():
         return entry
-
     entry["size_bytes"] = path.stat().st_size
     entry["sha256"] = _sha256(path)
     if entry["size_bytes"] != CATALOG_SIZE_BYTES:
@@ -75,7 +71,6 @@ def _inspect_catalog(path: Path) -> dict[str, Any]:
     if entry["sha256"] != CATALOG_SHA256:
         entry["status"] = "BLOCKED_CATALOG_SHA256"
         return entry
-
     with path.open(encoding="utf-8") as handle:
         header = handle.readline().split()
         indexes = {name: index for index, name in enumerate(header)}
@@ -104,7 +99,6 @@ def _inspect_catalog(path: Path) -> dict[str, Any]:
             elif is_calibrator != 0:
                 entry["status"] = "BLOCKED_CATALOG_CALIBRATOR_DOMAIN"
                 return entry
-
     entry["rows"] = rows
     entry["calibrator_rows"] = calibrators
     entry["cosmology_rows"] = rows - calibrators
@@ -123,7 +117,7 @@ def _count_covariance_values(path: Path) -> tuple[int | None, int]:
     dimension: int | None = None
     value_count = 0
     with path.open(encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle):
+        for line in handle:
             tokens = line.split()
             if not tokens:
                 continue
@@ -131,6 +125,8 @@ def _count_covariance_values(path: Path) -> tuple[int | None, int]:
                 try:
                     dimension = int(tokens[0])
                 except ValueError:
+                    return None, 0
+                if dimension <= 0:
                     return None, 0
                 tokens = tokens[1:]
             for token in tokens:
@@ -144,35 +140,47 @@ def _count_covariance_values(path: Path) -> tuple[int | None, int]:
 
 def _inspect_covariance(path: Path, description: str) -> dict[str, Any]:
     sidecar = path.with_name(path.name + ".sha256")
+    is_stat_sys = path.name == STAT_SYS_FILENAME
+    canonical_sha256 = STAT_SYS_SHA256 if is_stat_sys else None
+    canonical_bytes = STAT_SYS_SIZE_BYTES if is_stat_sys else None
     entry: dict[str, Any] = {
         "file": path.name,
         "description": description,
         "required_for_diagonal_diagnostic": False,
-        "required_for_full_covariance_likelihood": path.name == STAT_SYS_FILENAME,
-        "status": "TOKEN_VAZIO_FULL_COVARIANCE" if path.name == STAT_SYS_FILENAME else "TOKEN_VAZIO_STAT_ONLY_COVARIANCE",
+        "required_for_full_covariance_likelihood": is_stat_sys,
+        "status": "TOKEN_VAZIO_FULL_COVARIANCE" if is_stat_sys else "TOKEN_VAZIO_STAT_ONLY_COVARIANCE",
         "size_bytes": None,
+        "expected_size_bytes": canonical_bytes,
         "sha256": None,
         "sha256_sidecar": sidecar.name,
-        "expected_sha256": None,
+        "expected_sha256": canonical_sha256,
+        "sidecar_sha256": None,
         "checksum_verified": False,
         "matrix_dimension": None,
         "matrix_values": None,
     }
     if not path.exists():
         return entry
-
     entry["size_bytes"] = path.stat().st_size
+    if canonical_bytes is not None and entry["size_bytes"] != canonical_bytes:
+        entry["status"] = "BLOCKED_COVARIANCE_SIZE"
+        return entry
     entry["sha256"] = _sha256(path)
-    expected_sha256 = _read_sha256_sidecar(sidecar)
-    entry["expected_sha256"] = expected_sha256
-    if expected_sha256 is None:
+    sidecar_sha256 = _read_sha256_sidecar(sidecar)
+    entry["sidecar_sha256"] = sidecar_sha256
+    if sidecar_sha256 is None:
         entry["status"] = "TOKEN_VAZIO_COVARIANCE_SHA256_POLICY"
         return entry
-    if entry["sha256"] != expected_sha256:
+    if canonical_sha256 is not None and sidecar_sha256 != canonical_sha256:
+        entry["status"] = "BLOCKED_COVARIANCE_SIDECAR_POLICY"
+        return entry
+    if canonical_sha256 is not None and entry["sha256"] != canonical_sha256:
+        entry["status"] = "BLOCKED_COVARIANCE_SHA256"
+        return entry
+    if canonical_sha256 is None and entry["sha256"] != sidecar_sha256:
         entry["status"] = "BLOCKED_COVARIANCE_SHA256"
         return entry
     entry["checksum_verified"] = True
-
     dimension, value_count = _count_covariance_values(path)
     entry["matrix_dimension"] = dimension
     entry["matrix_values"] = value_count
@@ -181,7 +189,7 @@ def _inspect_covariance(path: Path, description: str) -> dict[str, Any]:
     elif value_count != EXPECTED_COVARIANCE_VALUES:
         entry["status"] = "BLOCKED_COVARIANCE_VALUE_COUNT"
     else:
-        entry["status"] = "READY_FULL_COVARIANCE" if path.name == STAT_SYS_FILENAME else "READY_STAT_ONLY_COVARIANCE"
+        entry["status"] = "READY_FULL_COVARIANCE" if is_stat_sys else "READY_STAT_ONLY_COVARIANCE"
     return entry
 
 
@@ -196,7 +204,6 @@ def _build_report(data_dir: Path) -> dict[str, Any]:
         "Pantheon+SH0ES statistical-only covariance matrix",
     )
     files = [catalog, stat_sys, stat_only]
-
     diagonal_ready = catalog["status"] == "READY_DIAGONAL_DIAGNOSTIC"
     full_ready = diagonal_ready and stat_sys["status"] == "READY_FULL_COVARIANCE"
     if full_ready:
@@ -205,19 +212,15 @@ def _build_report(data_dir: Path) -> dict[str, Any]:
         route_state = "TOKEN_VAZIO_FULL_COVARIANCE"
     else:
         route_state = "BLOCKED_CATALOG"
-
     missing = [entry["file"] for entry in files if str(entry["status"]).startswith("TOKEN_VAZIO") or entry["status"] == "missing"]
-    all_files_present = all(entry["size_bytes"] is not None for entry in files)
-    all_files_verified = all(str(entry["status"]).startswith("READY_") for entry in files)
-
     return {
         "schema": "rll_pantheon_input_readiness_v2",
         "data_dir": str(data_dir),
         "route_state": route_state,
         "claim_allowed": False,
         "all_required_present": catalog["size_bytes"] is not None,
-        "all_present": all_files_present,
-        "all_verified": all_files_verified,
+        "all_present": all(entry["size_bytes"] is not None for entry in files),
+        "all_verified": all(str(entry["status"]).startswith("READY_") for entry in files),
         "missing_required": [] if catalog["size_bytes"] is not None else [CATALOG_FILENAME],
         "missing": missing,
         "diagonal_diagnostic_ready": diagonal_ready,
@@ -229,7 +232,7 @@ def _build_report(data_dir: Path) -> dict[str, Any]:
         "boundaries": {
             "diagonal_diagnostic_is_full_likelihood": False,
             "catalog_presence_is_covariance_presence": False,
-            "covariance_requires_pinned_sha256": True,
+            "covariance_requires_canonical_bytes_and_sha256": True,
             "full_likelihood_requires_stat_sys_covariance": True,
             "claim_allowed": False,
         },
@@ -237,28 +240,12 @@ def _build_report(data_dir: Path) -> dict[str, Any]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Verify Pantheon+ catalog and full-covariance readiness"
-    )
-    parser.add_argument(
-        "--data-dir",
-        type=Path,
-        default=CANONICAL_DATA_DIR,
-        help="Directory containing the official Pantheon+ distance/covariance files",
-    )
-    parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
-    parser.add_argument(
-        "--require-diagonal-diagnostic",
-        action="store_true",
-        help="Fail unless the official catalog is hash-verified and structurally valid",
-    )
-    parser.add_argument(
-        "--require-full-covariance",
-        action="store_true",
-        help="Fail unless STAT+SYS covariance exists, has a pinned sidecar hash, and has the expected shape",
-    )
+    parser = argparse.ArgumentParser(description="Verify Pantheon+ catalog and full-covariance readiness")
+    parser.add_argument("--data-dir", type=Path, default=CANONICAL_DATA_DIR)
+    parser.add_argument("--json", action="store_true")
+    parser.add_argument("--require-diagonal-diagnostic", action="store_true")
+    parser.add_argument("--require-full-covariance", action="store_true")
     args = parser.parse_args()
-
     report = _build_report(args.data_dir)
     if args.json:
         print(json.dumps(report, indent=2, sort_keys=True))
@@ -270,11 +257,7 @@ def main() -> None:
         print(f"full_covariance_likelihood_ready={str(report['full_covariance_likelihood_ready']).lower()}")
         print(f"claim_allowed={str(report['claim_allowed']).lower()}")
         for entry in report["files"]:
-            print(
-                f" - {entry['status']}: {entry['file']} "
-                f"size={entry['size_bytes']} sha256={entry['sha256']}"
-            )
-
+            print(f" - {entry['status']}: {entry['file']} size={entry['size_bytes']} sha256={entry['sha256']}")
     if not report["all_required_present"]:
         raise SystemExit(2)
     if args.require_full_covariance and not report["full_covariance_likelihood_ready"]:

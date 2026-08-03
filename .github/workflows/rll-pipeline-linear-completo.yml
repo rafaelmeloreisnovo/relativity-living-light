@@ -29,11 +29,15 @@ on:
       - ".github/workflows/RLL_SCIENTIFIC.yml"
       - ".github/workflows/bayes_analysis.yml"
       - "tools/rll_pipeline_deterministic.py"
+      - "tools/rll_pipeline_fase24_1_runtime.py"
+      - "tools/validate_six_sigma_real_data_controls.py"
       - "tools/validate_schema_contracts.py"
       - "tools/audit_github_workflows.py"
       - "tools/validate_claim_allowed_gate.py"
       - "tools/validate_schemas_claim_boundary.py"
       - "tests/test_rll_pipeline_deterministic.py"
+      - "tests/test_rll_pipeline_fase24_1_runtime.py"
+      - "tests/test_validate_six_sigma_real_data_controls.py"
       - "tests/test_scientific_workflow_path_filters.py"
       - "src/**"
       - "data/**"
@@ -78,7 +82,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install PyYAML jsonschema
 
-      - name: "02–43 · Executar orquestrador determinístico"
+      - name: "02–42 · Executar orquestrador determinístico"
         id: gate
         env:
           DISPATCH_MODE: "${{ inputs.modo }}"
@@ -91,19 +95,64 @@ jobs:
           fi
           test -n "$MODE" || MODE="dry_run"
           echo "mode=$MODE" >> "$GITHUB_OUTPUT"
-          python tools/rll_pipeline_deterministic.py --mode "$MODE" \
+          python tools/rll_pipeline_fase24_1_runtime.py --mode "$MODE" \
             2>&1 | tee rll-fase24-1-console.log
 
-      - name: "43 · Recalcular cadeia final SHA-256"
+      - name: "43 · Selar e verificar console, manifesto e cadeia SHA-256"
         if: always()
         run: |
-          mkdir -p results/linear
-          find results/linear logs/linear artifacts/linear \
-            -type f ! -name CHECKSUMS.sha256 -print0 2>/dev/null \
-            | sort -z \
-            | xargs -0 -r sha256sum \
-            > results/linear/CHECKSUMS.sha256
+          set -euo pipefail
+          mkdir -p results/linear artifacts/linear/current_run
+          cp rll-fase24-1-console.log artifacts/linear/current_run/rll-fase24-1-console.log
+          python - <<'PY'
+          import importlib.util
+          import sys
+          from pathlib import Path
+
+          module_path = Path("tools/rll_pipeline_fase24_1_runtime.py").resolve()
+          spec = importlib.util.spec_from_file_location("rll_fase24_1_final_seal", module_path)
+          assert spec is not None and spec.loader is not None
+          runtime = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = runtime
+          spec.loader.exec_module(runtime)
+          runtime.install()
+          runtime.write_checksums()
+          PY
           test -s results/linear/CHECKSUMS.sha256
+          test -s artifacts/linear/PROVENANCE.json
+          test -s artifacts/linear/MANIFEST.json
+          test -s artifacts/linear/PYTHON_ENVIRONMENT.txt
+          test -s artifacts/linear/VERIFY_ARTIFACT.py
+          python artifacts/linear/VERIFY_ARTIFACT.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          import hashlib
+
+          provenance = json.loads(Path("artifacts/linear/PROVENANCE.json").read_text(encoding="utf-8"))
+          manifest = json.loads(Path("artifacts/linear/MANIFEST.json").read_text(encoding="utf-8"))
+          checksums = {
+              line.split("  ", 1)[1]: line.split("  ", 1)[0]
+              for line in Path("results/linear/CHECKSUMS.sha256").read_text(encoding="utf-8").splitlines()
+              if line.strip()
+          }
+          assert provenance["claim_allowed"] is False
+          assert provenance["commit_sha"] == "${{ github.sha }}"
+          assert provenance["github"]["GITHUB_RUN_ID"] == "${{ github.run_id }}"
+          assert manifest["claim_allowed"] is False
+          assert manifest["file_count"] == len(manifest["files"]) > 0
+          manifest_paths = set()
+          for item in manifest["files"]:
+              path = Path(item["path"])
+              assert path.is_file(), item["path"]
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert digest == item["sha256"], item["path"]
+              assert checksums.get(item["path"]) == digest, item["path"]
+              manifest_paths.add(item["path"])
+          assert "artifacts/linear/current_run/rll-fase24-1-console.log" in manifest_paths
+          print("RLL provenance, manifest and checksum chain: PASS")
+          PY
 
       - name: "44 · Publicar evidências mesmo com gate bloqueado"
         if: always()
@@ -114,6 +163,5 @@ jobs:
             results/linear/
             logs/linear/
             artifacts/linear/
-            rll-fase24-1-console.log
           retention-days: 30
           if-no-files-found: error

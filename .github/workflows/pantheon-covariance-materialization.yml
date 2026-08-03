@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "products/rll-evidence-runner/**"
       - "scripts/fetch_pantheon_covariance.py"
+      - "scripts/verify_pantheon_inputs.py"
       - "tests/test_fetch_pantheon_covariance.py"
+      - "tests/test_verify_pantheon_inputs_v2.py"
+      - "tests/test_rll_pantheon_full_covariance_fit_v1.py"
       - ".github/workflows/pantheon-covariance-materialization.yml"
       - ".gitignore"
 
@@ -17,9 +21,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  materialize-and-verify:
+  materialize-verify-and-fit:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 120
     steps:
       - name: Checkout pinned RLL revision
         uses: actions/checkout@v4
@@ -32,32 +36,99 @@ jobs:
           python-version: "3.12"
           cache: "pip"
 
-      - name: Install focal test dependency
-        run: python -m pip install --disable-pip-version-check pytest
+      - name: Install focal and product dependencies
+        run: |
+          python -m pip install --disable-pip-version-check pytest
+          python -m pip install -e products/rll-evidence-runner
 
-      - name: Run focal policy tests
-        run: python -m pytest -q tests/test_fetch_pantheon_covariance.py
+      - name: Run focal policy and likelihood tests
+        run: |
+          python -m pytest -q \
+            tests/test_fetch_pantheon_covariance.py \
+            tests/test_verify_pantheon_inputs_v2.py \
+            tests/test_rll_pantheon_full_covariance_fit_v1.py
 
       - name: Materialize pinned official STAT+SYS covariance
         env:
           OUTPUT_DIR: ${{ runner.temp }}/pantheon-covariance
           RECEIPT: ${{ runner.temp }}/pantheon-covariance-receipt.json
+          CATALOG: data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat
+          CANONICAL_DIR: data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR
         run: |
           set -euo pipefail
           python scripts/fetch_pantheon_covariance.py \
             --output-dir "$OUTPUT_DIR" \
-            --receipt "$RECEIPT" \
-            --allow-calibration
+            --receipt "$RECEIPT"
+          cp "$CATALOG" "$OUTPUT_DIR/Pantheon+SH0ES.dat"
+          python scripts/verify_pantheon_inputs.py \
+            --data-dir "$OUTPUT_DIR" \
+            --json \
+            --require-full-covariance \
+            > "${{ runner.temp }}/pantheon-readiness.json"
+          cp "$OUTPUT_DIR/Pantheon+SH0ES_STAT+SYS.cov" \
+             "$CANONICAL_DIR/Pantheon+SH0ES_STAT+SYS.cov"
+          cp "$OUTPUT_DIR/Pantheon+SH0ES_STAT+SYS.cov.sha256" \
+             "$CANONICAL_DIR/Pantheon+SH0ES_STAT+SYS.cov.sha256"
           cp "$OUTPUT_DIR/Pantheon+SH0ES_STAT+SYS.cov.sha256" \
              "${{ runner.temp }}/Pantheon+SH0ES_STAT+SYS.cov.sha256"
-          test ! -e "data/real/cosmology/pantheon_plus/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES_STAT+SYS.cov"
+          test -z "$(git status --porcelain --untracked-files=all -- "$CANONICAL_DIR/Pantheon+SH0ES_STAT+SYS.cov")"
 
-      - name: Upload compact custody receipt only
+      - name: Execute Evidence Runner full-covariance fit
+        run: |
+          set -euo pipefail
+          rll-evidence run \
+            products/rll-evidence-runner/experiments/pantheon_full_covariance_lcdm_rll_fit_v1.yml
+          rll-evidence verify \
+            artifacts/evidence/RLL-EVIDENCE-PANTHEON-FIT-001/receipt.json
+
+      - name: Validate scientific boundary and summarize metrics
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result_path = Path("artifacts/evidence/RLL-EVIDENCE-PANTHEON-FIT-001/pantheon_fit_result.json")
+          receipt_path = Path("artifacts/evidence/RLL-EVIDENCE-PANTHEON-FIT-001/receipt.json")
+          result = json.loads(result_path.read_text(encoding="utf-8"))
+          receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+          assert result["claim_allowed"] is False
+          assert result["publication_effect"] == "NONE"
+          assert receipt["claim_allowed"] is False
+          assert len(result["rows"]) == 2
+          comparison = result["comparison"]["candidate_minus_baseline"]
+          summary = [
+              "# Pantheon+ full-covariance fit",
+              "",
+              f"- status: `{result['status']}`",
+              f"- selected rows: `{result['inputs']['selected_rows']}`",
+              f"- covariance SHA-256: `{result['inputs']['covariance']['sha256']}`",
+              f"- Δχ² (RLL−ΛCDM): `{comparison['chi2']:.12g}`",
+              f"- ΔAIC: `{comparison['AIC']:.12g}`",
+              f"- ΔAICc: `{comparison['AICc']:.12g}`",
+              f"- ΔBIC: `{comparison['BIC']:.12g}`",
+              f"- interpretation: `{result['interpretation_label']}`",
+              "- claim_allowed: `false`",
+              "",
+              "Numerical model comparison inside one likelihood block is not external validation.",
+          ]
+          Path("artifacts/evidence/RLL-EVIDENCE-PANTHEON-FIT-001/SUMMARY.md").write_text(
+              "\n".join(summary) + "\n", encoding="utf-8"
+          )
+          with Path(__import__("os").environ["GITHUB_STEP_SUMMARY"]).open("a", encoding="utf-8") as handle:
+              handle.write("\n".join(summary) + "\n")
+          PY
+
+      - name: Upload compact custody and fit receipts only
         uses: actions/upload-artifact@v4
         with:
-          name: pantheon-covariance-receipt-${{ github.run_id }}
+          name: pantheon-full-fit-receipt-${{ github.run_id }}
           path: |
             ${{ runner.temp }}/pantheon-covariance-receipt.json
+            ${{ runner.temp }}/pantheon-readiness.json
             ${{ runner.temp }}/Pantheon+SH0ES_STAT+SYS.cov.sha256
+            artifacts/evidence/RLL-EVIDENCE-PANTHEON-FIT-001/pantheon_fit_result.json
+            artifacts/evidence/RLL-EVIDENCE-PANTHEON-FIT-001/receipt.json
+            artifacts/evidence/RLL-EVIDENCE-PANTHEON-FIT-001/SUMMARY.md
           if-no-files-found: error
           retention-days: 30

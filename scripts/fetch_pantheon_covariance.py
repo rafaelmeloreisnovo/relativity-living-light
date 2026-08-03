@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Materialize and verify the official Pantheon+SH0ES covariance outside Git.
 
-The upstream object is pinned by repository, commit, path and Git blob SHA-1.
-The large matrix is streamed to an atomic temporary file, verified, then moved
-into place. Git stores only the fetcher, compact receipt and SHA-256 policy.
+The upstream object is pinned by repository, commit, Git blob SHA-1, byte count,
+SHA-256 and matrix shape. A calibration run may measure an unpinned object, but
+it never publishes a verifier-consumable sidecar. Pinned publication writes the
+matrix, sidecar and PASS receipt in that order; incomplete publication is FAIL.
 """
 from __future__ import annotations
 
@@ -28,9 +29,8 @@ UPSTREAM_GIT_BLOB_SHA1 = "d1a1498154e7ba826df14bdbef35ebcb7f5efba1"
 FILENAME = "Pantheon+SH0ES_STAT+SYS.cov"
 EXPECTED_DIMENSION = 1701
 EXPECTED_VALUES = EXPECTED_DIMENSION * EXPECTED_DIMENSION
-# Replaced after the calibration workflow measures the pinned official blob.
-EXPECTED_SHA256 = "TOKEN_VAZIO_CALIBRATION"
-EXPECTED_BYTES: int | None = None
+EXPECTED_SHA256 = "abf806d966485e64afdb359c87bffc0ecc00d05eff0a31ced66f247385df0fdc"
+EXPECTED_BYTES = 33_284_960
 DEFAULT_OUTPUT_DIR = Path(
     "data/real/cosmology/pantheon_plus/"
     "Pantheon+_Data/4_DISTANCES_AND_COVAR"
@@ -64,6 +64,26 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _atomic_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        "w", encoding="utf-8", prefix=f".{path.name}.", suffix=".part",
+        dir=path.parent, delete=False
+    ) as handle:
+        temporary = Path(handle.name)
+        handle.write(text)
+        handle.flush()
+        os.fsync(handle.fileno())
+    try:
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _write_receipt(path: Path, receipt: dict[str, object]) -> None:
+    _atomic_text(path, json.dumps(receipt, indent=2, sort_keys=True) + "\n")
+
+
 def iter_ascii_tokens(handle: BinaryIO, chunk_size: int = 1024 * 1024) -> Iterator[bytes]:
     carry = b""
     while True:
@@ -92,6 +112,8 @@ def inspect_covariance(path: Path) -> dict[str, object]:
             dimension = int(dimension_token)
         except ValueError as exc:
             raise ValueError("covariance dimension is not an integer") from exc
+        if dimension <= 0:
+            raise ValueError("covariance dimension must be positive")
 
         values = 0
         finite_values = 0
@@ -127,7 +149,7 @@ def download_to(url: str, destination: Path, timeout: float = 180.0) -> dict[str
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "RLL-Pantheon-Covariance-Materializer/1",
+            "User-Agent": "RLL-Pantheon-Covariance-Materializer/2",
             "Accept": "application/octet-stream",
         },
     )
@@ -149,10 +171,44 @@ def download_to(url: str, destination: Path, timeout: float = 180.0) -> dict[str
         raise ValueError(
             f"download length mismatch: declared={declared_length} actual={total}"
         )
+    return {"bytes": total, "sha256": sha256.hexdigest(), "declared_bytes": declared_length}
+
+
+def _receipt(
+    *, status: str, source_url: str, actual_blob_sha1: str | None,
+    actual_sha256: str | None, actual_bytes: int | None,
+    shape: dict[str, object] | None, sha256_pinned: bool,
+    sidecar_written: bool, calibration_only: bool, errors: list[str]
+) -> dict[str, object]:
     return {
-        "bytes": total,
-        "sha256": sha256.hexdigest(),
-        "declared_bytes": declared_length,
+        "schema": "rll_pantheon_covariance_materialization_v2",
+        "status": status,
+        "claim_allowed": False,
+        "source": {
+            "repository": UPSTREAM_REPOSITORY,
+            "commit": UPSTREAM_COMMIT,
+            "path": UPSTREAM_PATH,
+            "git_blob_sha1_expected": UPSTREAM_GIT_BLOB_SHA1,
+            "git_blob_sha1_actual": actual_blob_sha1,
+            "url": source_url,
+        },
+        "artifact": {
+            "filename": FILENAME,
+            "bytes": actual_bytes,
+            "bytes_expected": EXPECTED_BYTES,
+            "sha256": actual_sha256,
+            "sha256_expected": EXPECTED_SHA256,
+            "sha256_pinned": sha256_pinned,
+            **(shape or {}),
+        },
+        "policy": {
+            "matrix_committed_to_git": False,
+            "sidecar_written": sidecar_written,
+            "full_covariance_likelihood_ready": status == "PASS" and sha256_pinned and sidecar_written,
+            "calibration_only": calibration_only,
+            "claim_allowed": False,
+        },
+        "errors": errors,
     }
 
 
@@ -167,20 +223,28 @@ def materialize(
 ) -> dict[str, object]:
     output_dir.mkdir(parents=True, exist_ok=True)
     receipt_path.parent.mkdir(parents=True, exist_ok=True)
+    source = source_url or raw_url()
     final_path = output_dir / FILENAME
+    sidecar = final_path.with_name(final_path.name + ".sha256")
+    sha256_pinned = expected_sha256 != "TOKEN_VAZIO_CALIBRATION"
 
     with tempfile.NamedTemporaryFile(
         prefix=f".{FILENAME}.", suffix=".part", dir=output_dir, delete=False
     ) as temp:
         temporary_path = Path(temp.name)
+
+    actual_blob_sha1: str | None = None
+    actual_sha256: str | None = None
+    actual_bytes: int | None = None
+    shape: dict[str, object] | None = None
+    errors: list[str] = []
     try:
-        transfer = download_to(source_url or raw_url(), temporary_path)
+        transfer = download_to(source, temporary_path)
         actual_blob_sha1 = git_blob_sha1(temporary_path)
         actual_sha256 = str(transfer["sha256"])
         actual_bytes = int(transfer["bytes"])
         shape = inspect_covariance(temporary_path)
 
-        errors: list[str] = []
         if actual_blob_sha1 != UPSTREAM_GIT_BLOB_SHA1:
             errors.append("official Git blob SHA-1 mismatch")
         if shape["dimension"] != EXPECTED_DIMENSION:
@@ -193,56 +257,48 @@ def materialize(
             errors.append("not every diagonal covariance value is positive")
         if expected_bytes is not None and actual_bytes != expected_bytes:
             errors.append("byte-count mismatch")
-
-        sha256_pinned = expected_sha256 != "TOKEN_VAZIO_CALIBRATION"
         if sha256_pinned and actual_sha256 != expected_sha256:
             errors.append("SHA-256 mismatch")
         elif not sha256_pinned and not allow_calibration:
             errors.append("SHA-256 policy is TOKEN_VAZIO; calibration not authorized")
 
-        status = "PASS" if not errors else "FAIL"
-        receipt: dict[str, object] = {
-            "schema": "rll_pantheon_covariance_materialization_v1",
-            "status": status,
-            "claim_allowed": False,
-            "source": {
-                "repository": UPSTREAM_REPOSITORY,
-                "commit": UPSTREAM_COMMIT,
-                "path": UPSTREAM_PATH,
-                "git_blob_sha1_expected": UPSTREAM_GIT_BLOB_SHA1,
-                "git_blob_sha1_actual": actual_blob_sha1,
-                "url": source_url or raw_url(),
-            },
-            "artifact": {
-                "filename": FILENAME,
-                "bytes": actual_bytes,
-                "sha256": actual_sha256,
-                "sha256_expected": expected_sha256,
-                "sha256_pinned": sha256_pinned,
-                **shape,
-            },
-            "policy": {
-                "matrix_committed_to_git": False,
-                "sidecar_written": status == "PASS",
-                "full_covariance_likelihood_ready": status == "PASS" and sha256_pinned,
-                "calibration_only": not sha256_pinned,
-                "claim_allowed": False,
-            },
-            "errors": errors,
-        }
-        receipt_path.write_text(
-            json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-        )
         if errors:
+            receipt = _receipt(
+                status="FAIL", source_url=source, actual_blob_sha1=actual_blob_sha1,
+                actual_sha256=actual_sha256, actual_bytes=actual_bytes, shape=shape,
+                sha256_pinned=sha256_pinned, sidecar_written=False,
+                calibration_only=not sha256_pinned, errors=errors,
+            )
+            _write_receipt(receipt_path, receipt)
             raise ValueError("; ".join(errors))
 
         os.replace(temporary_path, final_path)
-        sidecar = final_path.with_name(final_path.name + ".sha256")
-        sidecar.write_text(f"{actual_sha256}  {final_path.name}\n", encoding="utf-8")
+        if sha256_pinned:
+            _atomic_text(sidecar, f"{actual_sha256}  {final_path.name}\n")
+        else:
+            sidecar.unlink(missing_ok=True)
+
+        receipt = _receipt(
+            status="PASS", source_url=source, actual_blob_sha1=actual_blob_sha1,
+            actual_sha256=actual_sha256, actual_bytes=actual_bytes, shape=shape,
+            sha256_pinned=sha256_pinned, sidecar_written=sha256_pinned,
+            calibration_only=not sha256_pinned, errors=[],
+        )
+        _write_receipt(receipt_path, receipt)
         return receipt
+    except Exception as exc:
+        if not errors:
+            errors.append(f"publication failure: {exc}")
+            receipt = _receipt(
+                status="FAIL", source_url=source, actual_blob_sha1=actual_blob_sha1,
+                actual_sha256=actual_sha256, actual_bytes=actual_bytes, shape=shape,
+                sha256_pinned=sha256_pinned, sidecar_written=sidecar.exists(),
+                calibration_only=not sha256_pinned, errors=errors,
+            )
+            _write_receipt(receipt_path, receipt)
+        raise
     finally:
-        if temporary_path.exists():
-            temporary_path.unlink()
+        temporary_path.unlink(missing_ok=True)
 
 
 def verify_existing(
@@ -268,25 +324,20 @@ def verify_existing(
         errors.append("byte-count mismatch")
     if shape["dimension"] != EXPECTED_DIMENSION or shape["values"] != EXPECTED_VALUES:
         errors.append("covariance shape mismatch")
+    if shape["finite_values"] != EXPECTED_VALUES:
+        errors.append("non-finite covariance values")
     if shape["positive_diagonal"] != EXPECTED_DIMENSION:
         errors.append("diagonal positivity mismatch")
 
-    receipt = {
-        "schema": "rll_pantheon_covariance_materialization_v1",
-        "status": "PASS" if not errors else "FAIL",
-        "claim_allowed": False,
-        "mode": "verify_existing",
-        "artifact": {
-            "path": str(covariance_path),
-            "bytes": covariance_path.stat().st_size,
-            "sha256": actual_sha256,
-            "git_blob_sha1": actual_blob_sha1,
-            **shape,
-        },
-        "errors": errors,
-    }
-    receipt_path.parent.mkdir(parents=True, exist_ok=True)
-    receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    receipt = _receipt(
+        status="PASS" if not errors else "FAIL", source_url=raw_url(),
+        actual_blob_sha1=actual_blob_sha1, actual_sha256=actual_sha256,
+        actual_bytes=covariance_path.stat().st_size, shape=shape,
+        sha256_pinned=expected_sha256 != "TOKEN_VAZIO_CALIBRATION",
+        sidecar_written=covariance_path.with_name(covariance_path.name + ".sha256").exists(),
+        calibration_only=expected_sha256 == "TOKEN_VAZIO_CALIBRATION", errors=errors,
+    )
+    _write_receipt(receipt_path, receipt)
     if errors:
         raise ValueError("; ".join(errors))
     return receipt
@@ -306,28 +357,22 @@ def main() -> int:
             receipt = verify_existing(args.verify_existing, args.receipt)
         else:
             receipt = materialize(
-                args.output_dir,
-                args.receipt,
-                source_url=args.source_url,
+                args.output_dir, args.receipt, source_url=args.source_url,
                 allow_calibration=args.allow_calibration,
             )
     except (OSError, ValueError) as exc:
         print(json.dumps({"status": "FAIL", "error": str(exc), "claim_allowed": False}))
         return 2
 
-    print(
-        json.dumps(
-            {
-                "status": receipt["status"],
-                "sha256": receipt["artifact"]["sha256"],
-                "bytes": receipt["artifact"]["bytes"],
-                "dimension": receipt["artifact"]["dimension"],
-                "values": receipt["artifact"]["values"],
-                "claim_allowed": False,
-            },
-            sort_keys=True,
-        )
-    )
+    print(json.dumps({
+        "status": receipt["status"],
+        "sha256": receipt["artifact"]["sha256"],
+        "bytes": receipt["artifact"]["bytes"],
+        "dimension": receipt["artifact"]["dimension"],
+        "values": receipt["artifact"]["values"],
+        "full_covariance_likelihood_ready": receipt["policy"]["full_covariance_likelihood_ready"],
+        "claim_allowed": False,
+    }, sort_keys=True))
     return 0
 
 
