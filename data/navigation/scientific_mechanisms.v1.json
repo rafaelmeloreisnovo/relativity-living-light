@@ -1,0 +1,190 @@
+{
+  "schema": "rll.scientific_mechanisms.v1",
+  "claim_boundary": "Registry and navigation only. Presence, CI success or packaging does not validate RLL as a physical theory.",
+  "mechanisms": [
+    {
+      "mechanism_id": "real-data-complete",
+      "class": "workflow",
+      "authority": ".github/workflows/real-data-complete-execution.yml",
+      "description": "Canonical real-data materialization, validation and artifact packaging workflow.",
+      "required_paths": [
+        ".github/workflows/real-data-complete-execution.yml",
+        "data/real/rll_real_sources_manifest_2026.yml",
+        "data/pipelines/structure_d/datasets_config.json"
+      ],
+      "evidence_paths": [
+        "results/structure_d/model_comparison_real.csv",
+        "results/structure_d/model_comparison_real_fit_metadata.json"
+      ],
+      "expected_runtime_artifacts": [
+        "MANIFEST.json",
+        "PIPELINE_REPORT.md",
+        "CHECKSUMS.sha256",
+        "inputs/REAL_INPUTS.json"
+      ],
+      "allowed_claims": [
+        "declared real-data contracts were inspected",
+        "listed repository evidence was located and hashed"
+      ],
+      "blocked_claims": [
+        "RLL is physically confirmed",
+        "RLL is superior to LCDM, wCDM or CPL"
+      ],
+      "uncertainties": [
+        {
+          "token_vazio_id": "TV-RLL-REALDATA-COVARIANCE",
+          "type": "MISSING_COVARIANCE",
+          "source_paths": ["results/structure_d/model_comparison_real.csv"],
+          "severity": "high",
+          "blocking_claims": ["full joint likelihood validated"],
+          "affected_artifacts": ["results/structure_d/model_comparison_real.csv"],
+          "required_evidence": [
+            "official covariance matrices where available",
+            "provenance and checksums",
+            "integration tests proving covariance use"
+          ],
+          "F_next": "Integrate one official covariance block and demonstrate its effective use in a reproducible run."
+        }
+      ]
+    },
+    {
+      "mechanism_id": "ci-scientific-skills-tier1",
+      "class": "workflow",
+      "authority": ".github/workflows/ci-scientific-skills.yml",
+      "description": "Claim-bounded numerical diagnostics for anomaly detection, toroidal Fourier checks and a BIC-derived Bayes proxy.",
+      "required_paths": [
+        ".github/workflows/ci-scientific-skills.yml",
+        "tools/ci_scientific_skills.py",
+        "tests/test_ci_scientific_skills.py"
+      ],
+      "evidence_paths": [],
+      "expected_runtime_artifacts": [
+        "report.json",
+        "RECEIPT.json",
+        "CHECKSUMS.sha256",
+        "run.log"
+      ],
+      "allowed_claims": [
+        "Tier 1 numerical diagnostics executed under their declared inputs"
+      ],
+      "blocked_claims": [
+        "a theorem was proved by CI",
+        "the BIC proxy is equivalent to nested sampling",
+        "an anomaly detector establishes new physics"
+      ],
+      "uncertainties": [
+        {
+          "token_vazio_id": "TV-RLL-TIER1-EXTERNAL-REPLICATION",
+          "type": "MISSING_REPLICATION",
+          "source_paths": ["tools/ci_scientific_skills.py"],
+          "severity": "medium",
+          "blocking_claims": ["independent reproducibility established"],
+          "affected_artifacts": [],
+          "required_evidence": [
+            "clean-environment reproduction by an independent reviewer",
+            "receipt with commit, environment and checksums"
+          ],
+          "F_next": "Export the Tier 1 artifact and request an independent clean-room reproduction."
+        }
+      ]
+    },
+    {
+      "mechanism_id": "traceability-map",
+      "class": "static_registry",
+      "authority": "docs/RLL_TRACEABILITY_MAP.md",
+      "description": "Central responsibility map connecting claims, evidence locations and unresolved provenance questions.",
+      "required_paths": [
+        "docs/RLL_TRACEABILITY_MAP.md",
+        "ARCHITECTURE.md",
+        "docs/architecture/ARCHITECTURE_CLAIM_GATED.md"
+      ],
+      "evidence_paths": [],
+      "expected_runtime_artifacts": [],
+      "allowed_claims": [
+        "the repository declares a traceability route for listed claims"
+      ],
+      "blocked_claims": [
+        "the map itself proves every referenced claim"
+      ],
+      "uncertainties": [
+        {
+          "token_vazio_id": "TV-RLL-V1-IMAGE-CSV-PROVENANCE",
+          "type": "MISSING_SOURCE",
+          "source_paths": ["docs/RLL_TRACEABILITY_MAP.md"],
+          "severity": "medium",
+          "blocking_claims": ["complete v1 image and CSV ancestry established"],
+          "affected_artifacts": [],
+          "required_evidence": [
+            "inventory of tag and DOI files",
+            "paths, hashes and timestamps for early images and CSV files"
+          ],
+          "F_next": "Build the reserved RLL_V1_IMAGE_CSV_PROVENANCE audit from immutable tag and DOI snapshots."
+        },
+        {
+          "token_vazio_id": "TV-RLL-MOBILE-TERMUX-RECEIPT",
+          "type": "MISSING_ENVIRONMENT",
+          "source_paths": ["docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md"],
+          "severity": "medium",
+          "blocking_claims": ["mobile Termux execution provenance verified"],
+          "affected_artifacts": [],
+          "required_evidence": [
+            "Termux environment metadata",
+            "command log or script path",
+            "output hash tied to a repository commit"
+          ],
+          "F_next": "Locate one physical mobile execution receipt and bind it to commit, command, environment and output hash."
+        },
+        {
+          "token_vazio_id": "TV-RLL-INDEPENDENT-SCIENTIFIC-REVIEW",
+          "type": "MISSING_REVIEW",
+          "source_paths": ["docs/RLL_TRACEABILITY_MAP.md"],
+          "severity": "high",
+          "blocking_claims": ["independent scientific validation completed"],
+          "affected_artifacts": [],
+          "required_evidence": [
+            "named reviewer or peer-review process",
+            "review scope",
+            "response and revision ledger"
+          ],
+          "F_next": "Prepare a bounded review package containing claims, evidence, contradictions and reproducible commands."
+        }
+      ]
+    },
+    {
+      "mechanism_id": "textual-results-manifest",
+      "class": "static_registry",
+      "authority": "results/manifest.json",
+      "description": "Machine-readable catalog of textual result artifacts, generators and reproduction commands.",
+      "required_paths": [
+        "results/manifest.json",
+        "results/OUTPUTS_TEXTUAIS_INDEX.md"
+      ],
+      "evidence_paths": [
+        "results/coerente/2026-07-09_uploaded_validation_bayes/audit_manifest.json"
+      ],
+      "expected_runtime_artifacts": [],
+      "allowed_claims": [
+        "listed textual artifacts have declared locations and reproduction metadata"
+      ],
+      "blocked_claims": [
+        "catalog inclusion proves scientific correctness"
+      ],
+      "uncertainties": [
+        {
+          "token_vazio_id": "TV-RLL-RESULTS-GENERATOR-COVERAGE",
+          "type": "MISSING_CODE",
+          "source_paths": ["results/manifest.json"],
+          "severity": "low",
+          "blocking_claims": ["all historical results are reproducible from one canonical code path"],
+          "affected_artifacts": ["results/RLL_chi2_results.csv", "results/two_radiation_model_preview.csv"],
+          "required_evidence": [
+            "canonical generator script for each historical artifact",
+            "frozen input and environment",
+            "reproduction receipt"
+          ],
+          "F_next": "Select one historical result without a canonical generator and reconstruct its minimal reproducible path."
+        }
+      ]
+    }
+  ]
+}

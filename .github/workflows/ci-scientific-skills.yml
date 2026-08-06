@@ -40,7 +40,8 @@ jobs:
       RUN_DIR: artifacts/ci-scientific-skills
       CLAIM_BOUNDARY: >-
         Numerical method checks and repository-data diagnostics only;
-        no physical superiority, discovery, or theorem-proof claim.
+        synthetic, mock, fixture, placeholder, demo or example inputs remain diagnostics only
+        and cannot support real-data, physical superiority, discovery or theorem-proof claims.
     steps:
       - name: Checkout without persisted credentials
         uses: actions/checkout@v4
