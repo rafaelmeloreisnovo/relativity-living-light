@@ -32,10 +32,19 @@ def test_build_audit_hashes_only_images_and_csv(tmp_path: Path) -> None:
     repo = _seed_repository(tmp_path)
     output = tmp_path / "artifact"
 
-    receipt = build_audit(repo, "v1.0.0", output)
+    receipt = build_audit(
+        repo,
+        "v1.0.0",
+        output,
+        source_repository="example/RLL",
+        source_tag="v1.0.0",
+    )
 
     assert receipt["claim_allowed"] is False
     assert receipt["doi_snapshot_state"] == "TOKEN_VAZIO"
+    assert receipt["source_repository"] == "example/RLL"
+    assert receipt["source_tag"] == "v1.0.0"
+    assert receipt["resolved_ref"] == "v1.0.0"
     assert receipt["counts"] == {"images": 1, "csv": 1, "selected_total": 2}
 
     with (output / "V1_IMAGE_CSV_INVENTORY.csv").open(
@@ -50,6 +59,7 @@ def test_build_audit_hashes_only_images_and_csv(tmp_path: Path) -> None:
 
     manifest = json.loads((output / "MANIFEST.json").read_text(encoding="utf-8"))
     assert manifest["claim_allowed"] is False
+    assert manifest["source_repository"] == "example/RLL"
     subprocess.check_call(["sha256sum", "-c", "CHECKSUMS.sha256"], cwd=output)
 
 
