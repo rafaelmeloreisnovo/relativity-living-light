@@ -14,6 +14,7 @@
     "claims",
     "uncertainties",
     "artifacts",
+    "expected_runtime_artifacts",
     "claim_allowed",
     "F_ok",
     "F_gap",
@@ -86,6 +87,11 @@
           }
         }
       }
+    },
+    "expected_runtime_artifacts": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
     },
     "claim_allowed": {"const": false},
     "F_ok": {"type": "array", "items": {"type": "string"}},
