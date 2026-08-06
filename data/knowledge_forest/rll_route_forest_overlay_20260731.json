@@ -5,6 +5,10 @@
   "generated_at": "2026-07-31T15:15:00Z",
   "window_id": "SNAPSHOT-20260731",
   "claim_allowed": false,
+  "path_normalizations": {
+    "data/real/cosmology/pantheon_plus/": "data/real/cosmology/pantheon_plus",
+    "data/real/cosmology/desi_bao_dr2_cobaya/": "data/real/cosmology/desi_bao_dr2_cobaya"
+  },
   "route_patches": {
     "RT-RD-TO-SCIENCE": {
       "relation": "routes",
