@@ -84,8 +84,8 @@ def _category(path: str) -> str | None:
     return None
 
 
-def iter_tag_tree(root: Path, tag: str) -> Iterable[dict[str, object]]:
-    raw = _git(root, "ls-tree", "-r", "-z", "--full-tree", tag, text=False)
+def iter_tag_tree(root: Path, ref: str) -> Iterable[dict[str, object]]:
+    raw = _git(root, "ls-tree", "-r", "-z", "--full-tree", ref, text=False)
     assert isinstance(raw, bytes)
     for record in raw.split(b"\0"):
         if not record:
@@ -113,16 +113,24 @@ def iter_tag_tree(root: Path, tag: str) -> Iterable[dict[str, object]]:
         }
 
 
-def build_audit(root: Path, tag: str, output: Path) -> dict[str, object]:
+def build_audit(
+    root: Path,
+    ref: str,
+    output: Path,
+    *,
+    source_repository: str = "local_repository",
+    source_tag: str | None = None,
+) -> dict[str, object]:
     root = root.resolve()
     output.mkdir(parents=True, exist_ok=True)
+    declared_tag = source_tag or ref
 
-    commit_sha = str(_git(root, "rev-parse", f"{tag}^{{commit}}")).strip()
-    tree_sha = str(_git(root, "rev-parse", f"{tag}^{{tree}}")).strip()
+    commit_sha = str(_git(root, "rev-parse", f"{ref}^{{commit}}")).strip()
+    tree_sha = str(_git(root, "rev-parse", f"{ref}^{{tree}}")).strip()
     commit_time = str(
         _git(root, "show", "-s", "--format=%cI", commit_sha)
     ).strip()
-    records = sorted(iter_tag_tree(root, tag), key=lambda item: str(item["path"]))
+    records = sorted(iter_tag_tree(root, ref), key=lambda item: str(item["path"]))
 
     inventory_path = output / "V1_IMAGE_CSV_INVENTORY.csv"
     columns = [
@@ -147,7 +155,9 @@ def build_audit(root: Path, tag: str, output: Path) -> dict[str, object]:
     receipt = {
         "schema": "rll.v1_tag_media_provenance.v1",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "tag": tag,
+        "source_repository": source_repository,
+        "source_tag": declared_tag,
+        "resolved_ref": ref,
         "tag_commit_sha": commit_sha,
         "tag_tree_sha": tree_sha,
         "tag_commit_time": commit_time,
@@ -162,7 +172,9 @@ def build_audit(root: Path, tag: str, output: Path) -> dict[str, object]:
     report = [
         "# RLL v1.0.0 — Image and CSV Provenance",
         "",
-        f"- Tag: `{tag}`",
+        f"- Source repository: `{source_repository}`",
+        f"- Source tag: `{declared_tag}`",
+        f"- Resolved local ref: `{ref}`",
         f"- Commit: `{commit_sha}`",
         f"- Tree: `{tree_sha}`",
         f"- Commit time: `{commit_time}`",
@@ -177,6 +189,7 @@ def build_audit(root: Path, tag: str, output: Path) -> dict[str, object]:
         "",
         "## F_ok",
         "",
+        "- canonical source repository and source tag declared",
         "- immutable tag commit and tree resolved",
         "- selected Git blobs hashed with SHA-256",
         "- image/CSV paths preserved without checkout-time modification",
@@ -199,7 +212,9 @@ def build_audit(root: Path, tag: str, output: Path) -> dict[str, object]:
 
     manifest = {
         "schema": "rll.v1_tag_media_provenance_manifest.v1",
-        "tag": tag,
+        "source_repository": source_repository,
+        "source_tag": declared_tag,
+        "resolved_ref": ref,
         "claim_allowed": False,
         "files": [],
     }
@@ -227,11 +242,19 @@ def build_audit(root: Path, tag: str, output: Path) -> dict[str, object]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".")
-    parser.add_argument("--tag", default="v1.0.0")
+    parser.add_argument("--ref", "--tag", dest="ref", default="v1.0.0")
+    parser.add_argument("--source-repository", default="local_repository")
+    parser.add_argument("--source-tag")
     parser.add_argument("--output", default="artifacts/rll-v1-tag-provenance")
     args = parser.parse_args()
     try:
-        receipt = build_audit(Path(args.root), args.tag, Path(args.output))
+        receipt = build_audit(
+            Path(args.root),
+            args.ref,
+            Path(args.output),
+            source_repository=args.source_repository,
+            source_tag=args.source_tag,
+        )
     except TagAuditError as exc:
         print(f"TAG_AUDIT_ERROR: {exc}")
         return 2
