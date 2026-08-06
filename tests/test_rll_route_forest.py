@@ -4,7 +4,10 @@ import copy
 import importlib.util
 from pathlib import Path
 
-from tools.rll_route_forest_snapshot import load_effective_blueprint
+from tools.rll_route_forest_snapshot import (
+    load_effective_blueprint,
+    load_effective_events,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = ROOT / "tools" / "build_rll_route_forest.py"
@@ -15,7 +18,7 @@ spec.loader.exec_module(route_forest)
 
 
 def load_inputs() -> tuple[dict, list[dict]]:
-    return load_effective_blueprint(), route_forest.read_events(route_forest.EVENTS)
+    return load_effective_blueprint(), load_effective_events()
 
 
 def event_for(route_id: str, event_id: str = "EVT-9999") -> dict:
