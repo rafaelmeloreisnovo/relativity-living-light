@@ -130,7 +130,18 @@
             {"type": "null"},
             {"type": "string", "pattern": "^N-[A-Z0-9-]+$"}
           ]
-        }
+        },
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "n_obs": {"type": "integer", "minimum": 0},
+        "z_range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {"type": "number"}
+        },
+        "arxiv": {"type": "string", "minLength": 4},
+        "token_vazio": {"type": "string", "minLength": 5},
+        "partial_resolution_note": {"type": "string", "minLength": 5}
       }
     },
     "route": {
@@ -162,14 +173,16 @@
           "uniqueItems": true,
           "items": {"type": "string", "pattern": "^N-[A-Z0-9-]+$"}
         },
-        "ml_role": {"enum": ["governance_only", "candidate_dataset", "feature_source", "training_candidate"]},
+        "ml_role": {"enum": ["governance_only", "candidate_dataset", "feature_source", "training_candidate", "evidence_base"]},
         "ml_gates": {
           "type": "array",
           "minItems": 12,
           "maxItems": 12,
           "items": {"type": "boolean"}
         },
-        "training_allowed": {"type": "boolean"}
+        "training_allowed": {"type": "boolean"},
+        "canonical_manifest": {"$ref": "#/$defs/path"},
+        "canonical_document": {"$ref": "#/$defs/path"}
       }
     }
   }
