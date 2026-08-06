@@ -67,6 +67,7 @@ jobs:
       - name: Build immutable tag artifact
         run: |
           set -euo pipefail
+          mkdir -p "$RUN_DIR"
           TAG="v1.0.0"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             TAG="${{ inputs.tag }}"
@@ -75,6 +76,7 @@ jobs:
             --root . \
             --tag "$TAG" \
             --output "$RUN_DIR" | tee "$RUN_DIR/BUILD.log"
+          (cd "$RUN_DIR" && find . -maxdepth 1 -type f ! -name CHECKSUMS.sha256 -print0 | sort -z | xargs -0 sha256sum) > "$RUN_DIR/CHECKSUMS.sha256"
 
       - name: Verify artifact checksums and boundaries
         run: |
