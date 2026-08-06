@@ -1,0 +1,66 @@
+name: "RLL Governance Quality Gate — non-certification"
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    paths:
+      - "governance/**"
+      - "scripts/rll_governance_audit.py"
+      - "tests/test_rll_governance_audit.py"
+      - "docs/governance/**"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
+      - ".github/workflows/rll-governance-quality-gate.yml"
+      - ".github/workflow-architecture/invariants.v1.yml"
+      - ".github/workflow-contract.yml"
+      - ".github/GUIA_WORKFLOWS.md"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rll-governance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+  LC_ALL: "C.UTF-8"
+  LANG: "C.UTF-8"
+
+jobs:
+  governance-quality-gate:
+    name: "Governance, data, security, science and ethics contract"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: "Checkout immutable reviewed action"
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: "Validate contracts and generate receipt"
+        run: python3 scripts/rll_governance_audit.py --strict --write-report
+
+      - name: "Run governance unit tests"
+        run: python3 -m unittest -v tests/test_rll_governance_audit.py
+
+      - name: "Publish non-certification report to job summary"
+        if: always()
+        run: |
+          if [ -f artifacts/governance/RLL_GOVERNANCE_REPORT.md ]; then
+            cat artifacts/governance/RLL_GOVERNANCE_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' '# RLL Governance Audit' '' 'Report was not generated; inspect previous step logs.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: "Upload governance receipt even after failure"
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rll-governance-receipt-${{ github.run_id }}
+          path: artifacts/governance/
+          if-no-files-found: warn
+          retention-days: 30

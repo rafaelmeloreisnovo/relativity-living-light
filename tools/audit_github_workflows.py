@@ -31,9 +31,15 @@ NON_WORKFLOW_EXTENSIONS = {
     ".txt",
 }
 
-
 CANONICAL_REAL_DATA_WORKFLOW = ".github/workflows/real-data-complete-execution.yml"
 SYNTHETIC_BOUNDARY_TERMS = ("synthetic", "mock", "fixture", "placeholder", "demo", "example")
+REAL_DATA_IDENTITY_MARKERS = (
+    "real-data",
+    "real_data",
+    "real data",
+    "validacao_real",
+    "validação real",
+)
 
 
 def workflow_text(path: Path) -> str:
@@ -41,12 +47,20 @@ def workflow_text(path: Path) -> str:
 
 
 def is_real_data_workflow(path: Path, doc: dict, text: str) -> bool:
+    """Classify by workflow identity, never by incidental words in step bodies.
+
+    The previous implementation searched the entire YAML text for broad markers.
+    A structural workflow mentioning a real-data policy in a step description was
+    therefore misclassified as a real-data execution workflow. Authority is now
+    derived from the repository path and workflow name only. ``text`` remains in
+    the signature for compatibility with callers and future explicit contracts.
+    """
+
+    del text
     rel = path.relative_to(REPO).as_posix().lower()
     name = str(doc.get("name", "")).lower()
-    haystack = "\n".join((rel, name, text.lower()))
-
-    markers = ("data/real/", "validacao_real", "real-data", "real data", "real_", "real-")
-    return any(marker in haystack for marker in markers)
+    identity = f"{rel}\n{name}"
+    return any(marker in identity for marker in REAL_DATA_IDENTITY_MARKERS)
 
 
 def audit_real_workflow_policy() -> list[str]:
@@ -67,7 +81,9 @@ def audit_real_workflow_policy() -> list[str]:
             errors.append(f"{rel}: real workflow checkout must set persist-credentials: false")
         if "actions/upload-artifact@v4" not in text:
             errors.append(f"{rel}: real workflow must upload artifacts with actions/upload-artifact@v4")
-        if "rll_real_data_write_checksums" not in text and ("CHECKSUMS.sha256" not in text or "sha256sum" not in text):
+        if "rll_real_data_write_checksums" not in text and (
+            "CHECKSUMS.sha256" not in text or "sha256sum" not in text
+        ):
             errors.append(f"{rel}: real workflow must build a final CHECKSUMS.sha256 with sha256sum")
         if "CLAIM_BOUNDARY" not in text and "claim_boundary" not in text and "Claim Boundary" not in text:
             errors.append(f"{rel}: real workflow must declare an explicit claim boundary")
@@ -75,9 +91,12 @@ def audit_real_workflow_policy() -> list[str]:
         if not any(term in lower for term in SYNTHETIC_BOUNDARY_TERMS):
             errors.append(f"{rel}: real workflow must declare boundary against synthetic/mock/fixture data")
         if rel != CANONICAL_REAL_DATA_WORKFLOW:
-            if f"CANONICAL_REAL_DATA_WORKFLOW: {CANONICAL_REAL_DATA_WORKFLOW}" not in text and f"CANONICAL_REAL_DATA_WORKFLOW={CANONICAL_REAL_DATA_WORKFLOW}" not in text:
+            canonical_env = f"CANONICAL_REAL_DATA_WORKFLOW: {CANONICAL_REAL_DATA_WORKFLOW}"
+            canonical_shell = f"CANONICAL_REAL_DATA_WORKFLOW={CANONICAL_REAL_DATA_WORKFLOW}"
+            if canonical_env not in text and canonical_shell not in text:
                 errors.append(f"{rel}: non-canonical real workflow must point to {CANONICAL_REAL_DATA_WORKFLOW}")
     return errors
+
 
 REQUIRED_VALIDATION_FILES = [
     VALIDATION_BUNDLE / "sources.yml",

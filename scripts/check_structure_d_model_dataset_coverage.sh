@@ -57,7 +57,12 @@ skipped = []
 
 for profile_name, profile_data in profiles.items():
     active = profile_data.get("active_datasets", [])
-    if profile_name == real_profile or profile_name.startswith("structure_d_real_"):
+    is_dedicated_real = (
+        profile_data.get("real_data_profile") is True
+        or profile_name == real_profile
+        or profile_name.startswith("structure_d_real_")
+    )
+    if is_dedicated_real:
         skipped.append(profile_name)
         continue
     for dataset_id in active:
