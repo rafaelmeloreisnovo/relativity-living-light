@@ -96,7 +96,8 @@
       "required_paths": [
         "docs/RLL_TRACEABILITY_MAP.md",
         "ARCHITECTURE.md",
-        "docs/architecture/ARCHITECTURE_CLAIM_GATED.md"
+        "docs/architecture/ARCHITECTURE_CLAIM_GATED.md",
+        "docs/RLL_V1_IMAGE_CSV_PROVENANCE.md"
       ],
       "evidence_paths": [],
       "expected_runtime_artifacts": [],
@@ -110,7 +111,11 @@
         {
           "token_vazio_id": "TV-RLL-V1-IMAGE-CSV-PROVENANCE",
           "type": "MISSING_SOURCE",
-          "source_paths": ["docs/RLL_TRACEABILITY_MAP.md"],
+          "source_paths": [
+            "docs/RLL_TRACEABILITY_MAP.md",
+            "docs/RLL_V1_IMAGE_CSV_PROVENANCE.md"
+          ],
+          "state": "PARTIALLY_RESOLVED",
           "severity": "medium",
           "blocking_claims": ["complete v1 image and CSV ancestry established"],
           "affected_artifacts": [],
@@ -118,7 +123,13 @@
             "inventory of tag and DOI files",
             "paths, hashes and timestamps for early images and CSV files"
           ],
-          "F_next": "Build the reserved RLL_V1_IMAGE_CSV_PROVENANCE audit from immutable tag and DOI snapshots."
+          "resolution_evidence": [
+            ".github/workflows/rll-v1-tag-provenance.yml",
+            "tools/audit_v1_tag_media_provenance.py",
+            "tests/test_v1_tag_media_provenance.py",
+            "runtime artifact rll-v1-tag-provenance-${RUN_ID}"
+          ],
+          "F_next": "Materialize the official DOI/Zenodo snapshot and compare it against the immutable tag inventory by path, hash and role."
         },
         {
           "token_vazio_id": "TV-RLL-MOBILE-TERMUX-RECEIPT",
@@ -151,6 +162,35 @@
       ]
     },
     {
+      "mechanism_id": "v1-tag-media-provenance",
+      "class": "workflow",
+      "authority": ".github/workflows/rll-v1-tag-provenance.yml",
+      "description": "Immutable Git-tag inventory of RLL v1.0.0 images and CSV blobs with object identifiers and SHA-256.",
+      "required_paths": [
+        ".github/workflows/rll-v1-tag-provenance.yml",
+        "tools/audit_v1_tag_media_provenance.py",
+        "tests/test_v1_tag_media_provenance.py",
+        "docs/RLL_V1_IMAGE_CSV_PROVENANCE.md"
+      ],
+      "evidence_paths": [],
+      "expected_runtime_artifacts": [
+        "V1_IMAGE_CSV_INVENTORY.csv",
+        "TAG_RECEIPT.json",
+        "RLL_V1_IMAGE_CSV_PROVENANCE.md",
+        "MANIFEST.json",
+        "CHECKSUMS.sha256",
+        "BUILD.log"
+      ],
+      "allowed_claims": [
+        "the selected Git tag image and CSV blobs were inventoried and hashed"
+      ],
+      "blocked_claims": [
+        "the Git tag inventory proves DOI equivalence",
+        "the inventoried artifacts validate RLL scientifically"
+      ],
+      "uncertainties": []
+    },
+    {
       "mechanism_id": "textual-results-manifest",
       "class": "static_registry",
       "authority": "results/manifest.json",
@@ -176,7 +216,10 @@
           "source_paths": ["results/manifest.json"],
           "severity": "low",
           "blocking_claims": ["all historical results are reproducible from one canonical code path"],
-          "affected_artifacts": ["results/RLL_chi2_results.csv", "results/two_radiation_model_preview.csv"],
+          "affected_artifacts": [
+            "results/RLL_chi2_results.csv",
+            "results/two_radiation_model_preview.csv"
+          ],
           "required_evidence": [
             "canonical generator script for each historical artifact",
             "frozen input and environment",
