@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       strict_repository_sources:
-        description: "Fail when a registered required repository source is absent. Scientific TOKEN_VAZIO records remain preserved."
+        description: "Fail when a registered required repository source is absent. Missing evidence remains typed TOKEN_VAZIO."
         required: true
         default: true
         type: boolean
@@ -13,11 +13,7 @@ on:
         required: true
         default: "30"
         type: choice
-        options:
-          - "7"
-          - "14"
-          - "30"
-          - "90"
+        options: ["7", "14", "30", "90"]
   pull_request:
     paths:
       - "data/navigation/**"
@@ -26,6 +22,7 @@ on:
       - "tools/build_scientific_navigation_bundle.py"
       - "tests/test_scientific_navigation_bundle.py"
       - "docs/scientific_navigation/**"
+      - "auditoria/RLL_NAVIGATION_EXECUTABLE_HOTFIX_V2_2026-08-06.md"
       - ".github/workflows/rll-scientific-navigation.yml"
   push:
     branches: [main]
@@ -36,6 +33,7 @@ on:
       - "tools/build_scientific_navigation_bundle.py"
       - "tests/test_scientific_navigation_bundle.py"
       - "docs/scientific_navigation/**"
+      - "auditoria/RLL_NAVIGATION_EXECUTABLE_HOTFIX_V2_2026-08-06.md"
       - ".github/workflows/rll-scientific-navigation.yml"
 
 permissions:
@@ -71,7 +69,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --upgrade pip
-          python -m pip install "pytest>=8,<9" "jsonschema>=4.21,<5"
+          python -m pip install "pytest>=8,<10" "jsonschema>=4.21,<5"
 
       - name: Validate source syntax and run deterministic tests
         run: |
@@ -83,81 +81,21 @@ jobs:
           python -m pytest -q tests/test_scientific_navigation_bundle.py
 
       - name: Build read-only navigation bundle
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-          STRICT_REPOSITORY_SOURCES: ${{ inputs.strict_repository_sources }}
         run: |
           set -euo pipefail
           STRICT=""
-          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$STRICT_REPOSITORY_SOURCES" = "true" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.strict_repository_sources }}" = "true" ]; then
             STRICT="--strict"
-          elif [ "$EVENT_NAME" != "workflow_dispatch" ]; then
+          elif [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
             STRICT="--strict"
           fi
+          BUILD_LOG="$(mktemp)"
           python tools/build_scientific_navigation_bundle.py \
             --root . \
             --registry data/navigation/scientific_mechanisms.v1.json \
             --output "$RUN_DIR" \
-            $STRICT | tee "$RUN_DIR.build.log"
-          mv "$RUN_DIR.build.log" "$RUN_DIR/BUILD.log"
-
-      - name: Validate generated capsules and TOKEN_VAZIO ledger
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          from jsonschema import Draft202012Validator
-
-          root = Path("artifacts/rll-scientific-navigation")
-          capsule_schema = json.loads(
-              Path("schemas/rll_evidence_capsule.v1.schema.json").read_text(encoding="utf-8")
-          )
-          token_schema = json.loads(
-              Path("schemas/rll_token_vazio.v1.schema.json").read_text(encoding="utf-8")
-          )
-          Draft202012Validator.check_schema(capsule_schema)
-          Draft202012Validator.check_schema(token_schema)
-          capsule_validator = Draft202012Validator(capsule_schema)
-          token_validator = Draft202012Validator(token_schema)
-
-          capsules = sorted(root.glob("capsules/*/CAPSULE.json"))
-          if not capsules:
-              raise SystemExit("no evidence capsules generated")
-          for path in capsules:
-              payload = json.loads(path.read_text(encoding="utf-8"))
-              capsule_validator.validate(payload)
-              if payload.get("claim_allowed") is not False:
-                  raise SystemExit(f"claim boundary violated in {path}")
-
-          token_count = 0
-          for line_number, line in enumerate(
-              (root / "TOKEN_VAZIO_LEDGER.jsonl").read_text(encoding="utf-8").splitlines(),
-              start=1,
-          ):
-              if not line.strip():
-                  continue
-              payload = json.loads(line)
-              token_validator.validate(payload)
-              if payload.get("claim_weight") != 0:
-                  raise SystemExit(f"non-zero TOKEN_VAZIO claim weight at line {line_number}")
-              token_count += 1
-
-          manifest = json.loads((root / "NAVIGATION_MANIFEST.json").read_text(encoding="utf-8"))
-          if manifest.get("claim_allowed") is not False:
-              raise SystemExit("global claim boundary violated")
-          if manifest.get("mechanism_count") != len(capsules):
-              raise SystemExit("manifest/capsule count mismatch")
-          if manifest.get("open_token_vazio_count") > token_count:
-              raise SystemExit("manifest TOKEN_VAZIO count exceeds ledger records")
-          print(f"validated capsules={len(capsules)} token_records={token_count}")
-          PY
-
-      - name: Verify bundle checksums
-        run: |
-          set -euo pipefail
-          (cd "$RUN_DIR" && sha256sum -c CHECKSUMS.sha256)
+            $STRICT | tee "$BUILD_LOG"
+          mv "$BUILD_LOG" "$RUN_DIR/BUILD.log"
 
       - name: Emit workflow boundary receipt
         if: always()
@@ -174,11 +112,12 @@ jobs:
           path.write_text(
               json.dumps(
                   {
-                      "schema": "rll.scientific_navigation_workflow_receipt.v1",
+                      "schema": "rll.scientific_navigation_workflow_receipt.v2",
                       "generated_at_utc": datetime.now(timezone.utc).isoformat(),
                       "commit_sha": os.environ.get("GITHUB_SHA", "TOKEN_VAZIO_COMMIT_SHA"),
                       "run_id": os.environ.get("GITHUB_RUN_ID", "TOKEN_VAZIO_RUN_ID"),
                       "claim_boundary": os.environ["CLAIM_BOUNDARY"],
+                      "checksum_phase": "FINAL_AFTER_BUILD_LOG_AND_WORKFLOW_RECEIPT",
                       "automatic_commit": False,
                       "automatic_merge": False,
                       "claim_allowed": False,
@@ -190,7 +129,91 @@ jobs:
               encoding="utf-8",
           )
           PY
-          (cd "$RUN_DIR" && sha256sum WORKFLOW_RECEIPT.json) >> "$RUN_DIR/CHECKSUMS.sha256"
+
+      - name: Finalize extraction-time checksums
+        if: always()
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          from tools.build_scientific_navigation_bundle import write_checksums
+
+          write_checksums(Path("artifacts/rll-scientific-navigation"))
+          PY
+
+      - name: Validate capsules, ledger, graph and count invariants
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+
+          root = Path("artifacts/rll-scientific-navigation")
+          capsule_schema = json.loads(Path("schemas/rll_evidence_capsule.v1.schema.json").read_text(encoding="utf-8"))
+          token_schema = json.loads(Path("schemas/rll_token_vazio.v1.schema.json").read_text(encoding="utf-8"))
+          Draft202012Validator.check_schema(capsule_schema)
+          Draft202012Validator.check_schema(token_schema)
+          capsule_validator = Draft202012Validator(capsule_schema)
+          token_validator = Draft202012Validator(token_schema)
+
+          capsules = sorted(root.glob("capsules/*/CAPSULE.json"))
+          if not capsules:
+              raise SystemExit("no evidence capsules generated")
+          for path in capsules:
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              capsule_validator.validate(payload)
+              if payload.get("claim_allowed") is not False:
+                  raise SystemExit(f"claim boundary violated in {path}")
+
+          tokens = []
+          for line_number, line in enumerate((root / "TOKEN_VAZIO_LEDGER.jsonl").read_text(encoding="utf-8").splitlines(), start=1):
+              if not line.strip():
+                  continue
+              payload = json.loads(line)
+              token_validator.validate(payload)
+              if payload.get("claim_weight") != 0:
+                  raise SystemExit(f"non-zero TOKEN_VAZIO claim weight at line {line_number}")
+              tokens.append(payload)
+
+          open_tokens = [item for item in tokens if item.get("state") != "RESOLVED"]
+          manifest = json.loads((root / "NAVIGATION_MANIFEST.json").read_text(encoding="utf-8"))
+          if manifest.get("claim_allowed") is not False:
+              raise SystemExit("global claim boundary violated")
+          if manifest.get("mechanism_count") != len(capsules):
+              raise SystemExit("manifest/capsule count mismatch")
+          if manifest.get("open_token_vazio_count") != len(open_tokens):
+              raise SystemExit("manifest/ledger open TOKEN_VAZIO mismatch")
+
+          missing_evidence = {
+              path
+              for paths in manifest.get("missing_evidence_paths", {}).values()
+              for path in paths
+          }
+          token_sources = {path for item in tokens for path in item.get("source_paths", [])}
+          uncovered = sorted(missing_evidence - token_sources)
+          if uncovered:
+              raise SystemExit(f"missing evidence paths without TOKEN_VAZIO: {uncovered}")
+
+          graph = json.loads((root / "DEPENDENCY_GRAPH.json").read_text(encoding="utf-8"))
+          if graph.get("schema") != "rll.scientific_navigation_graph.v2":
+              raise SystemExit("dependency graph is not v2")
+          relations = {edge.get("relation") for edge in graph.get("edges", [])}
+          required_relations = {"has_uncertainty", "requires_evidence", "expects_runtime"}
+          if not required_relations.issubset(relations):
+              raise SystemExit(f"dependency graph relations missing: {sorted(required_relations - relations)}")
+
+          checksums = (root / "CHECKSUMS.sha256").read_text(encoding="utf-8")
+          for late_file in ("BUILD.log", "WORKFLOW_RECEIPT.json"):
+              if late_file not in checksums:
+                  raise SystemExit(f"late workflow file absent from checksum ledger: {late_file}")
+          print(f"validated capsules={len(capsules)} tokens={len(tokens)} open={len(open_tokens)}")
+          PY
+
+      - name: Verify finalized bundle checksums
+        run: |
+          set -euo pipefail
+          (cd "$RUN_DIR" && sha256sum -c CHECKSUMS.sha256)
 
       - name: Upload scientific navigation artifact
         if: always()
