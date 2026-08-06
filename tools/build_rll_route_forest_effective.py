@@ -10,7 +10,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from tools import build_rll_route_forest as compiler
 from tools.rll_route_forest_snapshot import (
@@ -22,7 +27,6 @@ from tools.rll_route_forest_snapshot import (
     load_effective_events,
 )
 
-ROOT = Path(__file__).resolve().parents[1]
 ARTIFACT_DIR = ROOT / "artifacts/route-forest"
 
 
