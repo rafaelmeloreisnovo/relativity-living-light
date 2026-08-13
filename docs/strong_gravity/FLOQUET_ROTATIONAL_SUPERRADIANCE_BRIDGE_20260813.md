@@ -129,11 +129,15 @@ Every transition must preserve:
 
 ## 9. Current state
 
-This commit materializes the bridge scaffolding and deterministic diagnostics. It does **not** reproduce the Nature experiment and does **not** authorize a scientific claim.
+This branch materializes the scientific bridge, contract, and gap ledger. A candidate deterministic diagnostic implementation passed **6/6** tests in an isolated reference environment, but the GitHub connector blocked the code/test write before it reached the repository. Therefore repository execution/CI remains `TOKEN_VAZIO_TOOL_BLOCKED`.
 
-See:
+It does **not** reproduce the Nature experiment and does **not** authorize a scientific claim.
+
+Materialized:
 - `data/contracts/floquet_rotational_superradiance.v1.json`
+- `docs/strong_gravity/FLOQUET_GAPS_UNCERTAINTIES_LEDGER_20260813.md`
+
+Pending/blocked:
 - `data/pipelines/strong_gravity/floquet_superradiance_bridge.py`
 - `tests/strong_gravity/test_floquet_superradiance_bridge.py`
-- `docs/strong_gravity/FLOQUET_GAPS_UNCERTAINTIES_LEDGER_20260813.md`
-- `data/evidence/floquet_rotational_superradiance_20260813.receipt.json`
+- repository CI observation
