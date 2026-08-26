@@ -36,3 +36,14 @@ Reject a specific empirical claim if any condition holds:
 - Exact command(s).
 - Metric table with uncertainty.
 - Pass/fail against falsifiability criteria above.
+
+## 7) QCD primordial specialization
+
+The QCD-era bridge is governed by `docs/RLL_QCD_PRIMORDIAL_GATE.md` and executed by `tools/rll_qcd_primordial_gate.py`.
+
+Additional invariants:
+- Collider `v2`/`v3` measurements are QCD/hydrodynamic context and are **not** direct RLL cosmological likelihood inputs.
+- The thermal background must not double count QCD energy already included in the radiation/plasma equation of state.
+- `PASS` authorizes only local descendant use; it does not authorize a global RLL-over-ΛCDM claim.
+- `FALSIFIED` must trigger `QUARANTINE_FROM_DESCENDANTS` while preserving historical evidence append-only.
+- Missing EoS provenance, checksum, matched baseline, or verified cosmological bound must produce `TOKEN_VAZIO` rather than an inferred conclusion.
