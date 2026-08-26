@@ -136,16 +136,16 @@ Canonical schema:
 schemas/rll-qcd-primordial-input.v1.schema.json
 ```
 
-Minimal shape:
+Minimal **synthetic fixture** shape:
 
 ```json
 {
   "schema": "rll.qcd_primordial_input.v1",
   "evidence": {
-    "source_kind": "real_data",
-    "checksum_verified": true,
-    "baseline_equivalent": true,
-    "eos_provenance_verified": true
+    "source_kind": "synthetic_fixture",
+    "checksum_verified": false,
+    "baseline_equivalent": false,
+    "eos_provenance_verified": false
   },
   "constraint": {
     "max_abs_delta_h": null,
@@ -167,7 +167,7 @@ Minimal shape:
 }
 ```
 
-The numbers above are **shape examples only**, not repository evidence.
+The numbers above are **shape examples only**, not repository evidence; this fixture must resolve to `TOKEN_VAZIO`, never to a real-data verdict.
 
 ## 7. Execution
 
