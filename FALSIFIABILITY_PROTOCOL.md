@@ -47,3 +47,19 @@ Additional invariants:
 - `PASS` authorizes only local descendant use; it does not authorize a global RLL-over-ΛCDM claim.
 - `FALSIFIED` must trigger `QUARANTINE_FROM_DESCENDANTS` while preserving historical evidence append-only.
 - Missing EoS provenance, checksum, matched baseline, or verified cosmological bound must produce `TOKEN_VAZIO` rather than an inferred conclusion.
+
+## 8) Mpemba-horizon / strong-gravity specialization
+
+The bounded strong-gravity gate is governed by `docs/RLL_MPEMBA_HORIZON_ATLAS.md`, implemented by `data/pipelines/strong_gravity/mpemba_horizon_falsifier.py`, and sourced by `data/contracts/mpemba_horizon_falsifier.v1.json`.
+
+Additional invariants:
+- Schwarzschild/Hawking/Bekenstein identities are analytic or semiclassical results; they are not direct astrophysical Hawking-radiation observations.
+- Static Schwarzschild/Tolman quantities must never be silently re-labelled as freely falling local measurements.
+- A relativistic jet model requiring matter or information to propagate from inside an event horizon to infinity is rejected for that route.
+- EHT synchrotron/polarimetric plasma data must not be promoted to Hawking thermometry.
+- Holographic, Unruh or other quantum Mpemba results are theory precedents and must not be promoted to an astrophysical black-hole Mpemba detection.
+- A real-data Mpemba claim requires a predeclared state/observable, equilibrium target, distance functional, far/near ordering, crossing rule, first-passage threshold, uncertainty/covariance treatment and matched competitors.
+- Synthetic crossings prove only that the gate works; they do not constitute natural evidence.
+- Missing real trajectories, checksums, covariance-aware inference or independent reproduction keeps the astrophysical claim at `TOKEN_VAZIO`.
+- Failed claim fragments are quarantined from descendants while their provenance remains append-only.
+- A local strong-gravity anomaly does not imply an RLL cosmological-background modification or an RLL-over-ΛCDM preference.
