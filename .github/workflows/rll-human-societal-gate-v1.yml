@@ -5,12 +5,17 @@ name: RLL Human Societal Science Gate V1
   push:
     branches: [main]
 
+concurrency:
+  group: rll-human-societal-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   human-societal-science-gate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout without persistent credentials
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
