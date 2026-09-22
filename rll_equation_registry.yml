@@ -217,6 +217,80 @@ equations:
     real_data_validators: []
     claim_boundary: "Mutual information measures total correlation and is not, by itself, an entanglement witness. H_MF remains TOKEN_VAZIO until a state, bipartition, dynamics and non-separability witness are specified."
 
+
+  - id: torus_projection_annulus_area
+    equation: "A_crown = pi[(R+r)^2-(R-r)^2] = 4 pi R r"
+    domain: ["geometry", "toroidal_geometry", "projection", "RLL"]
+    status: "derived_geometry"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Exact for the standard ring torus under orthographic xy projection; not a physical vortex claim."
+
+  - id: torus_surface_projection_ratio
+    equation: "A_torus / A_crown = pi"
+    domain: ["geometry", "toroidal_geometry", "projection", "RLL"]
+    status: "derived_geometry"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Metric relation between standard torus surface area and its equatorial projected annulus; does not identify the two objects."
+
+  - id: polygon_rotation_annulus_fraction
+    equation: "A_ann,n / (pi a^2) = sin^2(pi/n)"
+    domain: ["geometry", "regular_polygons", "rotation", "annulus", "RLL"]
+    status: "derived_geometry"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Exact for continuous rotation sweep of a regular polygon boundary."
+
+  - id: polygon_annulus_toroidal_shell_fraction
+    equation: "V_shell,n / V_torus = sin^2(pi/n)"
+    domain: ["geometry", "toroidal_geometry", "pappus", "RLL"]
+    status: "derived_geometry"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Uses Pappus for an external revolution axis and centered annular cross-section; same fraction does not imply same geometric object."
+
+  - id: hexagon_torus_volume_ratio
+    equation: "V_6 / V_torus = 3 sqrt(3) / (2 pi)"
+    domain: ["geometry", "equilateral_triangle", "hexagon", "toroidal_geometry", "RLL"]
+    status: "derived_geometry"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Six equilateral triangles form an inscribed hexagonal cross-section; this is a polygonal approximation of a circular torus."
+
+  - id: six_sector_toroidal_opposite_pair_closure
+    equation: "V(v0,pi/3)+V(v0+pi,pi/3) = V_shell,total / 3"
+    domain: ["geometry", "annulus", "toroidal_geometry", "symmetry", "RLL"]
+    status: "derived_geometry"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Six equal planar sectors generally have unequal toroidal volumes; only opposite-pair sums close equally."
+
+  - id: angular_grid_5678_lcm
+    equation: "lcm(5,6,7,8) = 840 ; delta_theta = 2 pi / 840"
+    domain: ["finite_combinatorics", "angular_geometry", "RLL"]
+    status: "derived_exact"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Common angular refinement order; distinct from the semantics of other period-840 carriers."
+
+  - id: modular_carrier_24_10_42_period
+    equation: "lcm(24,10,42) = 840"
+    domain: ["finite_combinatorics", "modular_phase", "RLL"]
+    status: "derived_exact"
+    source_doc: "docs/invariants/TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md"
+    methodology_phase: "formal_geometry"
+    real_data_validators: []
+    claim_boundary: "Same numeric cyclic order as the 5/6/7/8 angular refinement does not establish semantic identity."
+
+
 # Operational documentation consumers for metadata-only YAML.
 consumed_by:
   - tools/generate_yml_audit_docs.py
