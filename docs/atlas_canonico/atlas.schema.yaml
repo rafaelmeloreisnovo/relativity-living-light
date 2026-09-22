@@ -36,6 +36,7 @@ relations:
   - equivalent_to
   - generalizes
   - specializes
+  - constrains
   - uses
   - tested_by
   - evidenced_by
