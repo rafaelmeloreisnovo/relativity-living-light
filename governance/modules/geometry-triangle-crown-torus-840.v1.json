@@ -1,0 +1,117 @@
+{
+  "module_id": "geometry.triangle-crown-torus-840.v1",
+  "version": "1.0.0",
+  "title": "Triangle Crown Torus 840 Formal Geometry Bridge",
+  "domains": [
+    "geometry",
+    "topology",
+    "toroidal_geometry",
+    "finite_combinatorics",
+    "RLL"
+  ],
+  "state": "ARCHITECTURE_READY",
+  "scope": "Integrates exact equilateral, annular, toroidal, tangent, polygon-sweep and finite 840-cycle relations without promoting a physical vortex or sphere-torus equivalence.",
+  "epistemic_status": "PROVADO",
+  "claim_allowed": false,
+  "certification_claim": false,
+  "evidence": {
+    "receipts": [
+      "results/audit/triangle_crown_torus_840_bridge_v1.json"
+    ],
+    "tests": [
+      "tools/verify_triangle_crown_torus_840_bridge.py"
+    ],
+    "sources": [
+      "docs/invariants/sqrt3_2_kernel.md",
+      "rafaelmeloreisnovo/Matem-tica-:PITAGORAS_BHASKARA_ISOSCELES_POINCARE_CROSSWALK_V1.md",
+      "rafaelmeloreisnovo/Matem-tica-:CROWN_15_30_45_PI12_PI5_GEODESIC_REFLECTION_CROSSWALK_V1.md",
+      "rafaelmeloreisnovo/papers:poincare_torus_mobile_v1/paper.md",
+      "rafaelmeloreisnovo/papers:radial_partition_5_6_7_8_geometry_v1/paper.md"
+    ],
+    "limitations": [
+      "Receipt was executed outside RLL CI and must not be presented as repository CI.",
+      "The two occurrences of period 840 have different semantics until a mapping is declared.",
+      "No physical vortex, cosmological mechanism, or global sphere-torus equivalence is established.",
+      "Planar hexagram and spherical geodesic constructions remain distinct."
+    ]
+  },
+  "data_governance": {
+    "classification": "public_formal_math_no_personal_data",
+    "required_metadata": [
+      "origin",
+      "license",
+      "hash",
+      "version",
+      "time",
+      "unit",
+      "uncertainty",
+      "provenance",
+      "update_policy"
+    ],
+    "retention": "append_only_via_git_history",
+    "update_policy": "changes require source refs, verifier delta, receipt and rollback path",
+    "legal_applicability": "mathematical documentation only; no regulated personal or clinical data"
+  },
+  "security": {
+    "least_privilege": true,
+    "secrets": "none",
+    "integrity": [
+      "git commit SHA",
+      "source blob SHAs",
+      "deterministic verifier output"
+    ],
+    "incident_record": "record failed gates or provenance mismatch as F_gap; never overwrite prior receipts"
+  },
+  "quality": {
+    "metrics": [
+      "gate_pass_count",
+      "gate_fail_count",
+      "numerical_tolerance",
+      "source_provenance_coverage"
+    ],
+    "acceptance_criteria": [
+      "all formal gates PASS",
+      "claim_allowed remains false for physical interpretation",
+      "sphere and torus topology boundary preserved"
+    ],
+    "rejection_criteria": [
+      "any formal gate FAIL",
+      "same numeric 840 promoted as same semantics without mapping",
+      "physical mechanism asserted without data"
+    ],
+    "change_control": "append-only successor or reviewed branch; rollback through Git history"
+  },
+  "risks": [
+    "conflating planar annulus with torus surface",
+    "conflating common numeric period 840 with semantic identity",
+    "conflating geometric torus with physical vortex",
+    "conflating sphere and torus topology"
+  ],
+  "rollback": {
+    "trigger": "failed verifier, provenance mismatch, or boundary violation",
+    "procedure": "revert integration commits or abandon feature branch",
+    "verification": "main branch returns to pre-integration SHA and no claim state is promoted"
+  },
+  "f_ok": [
+    "equilateral sqrt3/2 kernel reused",
+    "torus projection annulus and area ratio formalized",
+    "polygon sweep annulus to toroidal shell fraction formalized",
+    "hexagonal torus approximation formalized",
+    "parallel tangent separation formalized",
+    "six-sector opposite-pair volume closure formalized",
+    "24 and both 840 closures separated and testable"
+  ],
+  "f_gap": [
+    "canonical semantic map between angular 840 and modular 840",
+    "RLL CI execution receipt",
+    "hexagram planar-to-spherical geodesic map",
+    "physical vortex model with measured variables"
+  ],
+  "f_next": [
+    "run verifier in RLL CI",
+    "add u-v sweep fixture for six section points",
+    "enumerate tangent/chord intersections",
+    "test 30/45/60/72 degree orbit combinations",
+    "only then consider domain-specific physical models"
+  ]
+}
