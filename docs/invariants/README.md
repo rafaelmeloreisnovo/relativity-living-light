@@ -48,3 +48,13 @@ R(t+1)=R(t)×Φ_ethica×E_Verbo×(√3/2)^(πφ)
 - **F_ok:** imagem versionada e documentada.
 - **F_gap:** PNG gerado externamente não foi incorporado como binário neste commit; o SVG é a versão leve/renderizável no GitHub.
 - **F_next:** se necessário, anexar também o PNG final por fluxo binário/local e registrar hash SHA256.
+
+
+## Ponte geométrica formal — triângulo × coroa × toro × 840
+
+- Documento: [\`TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md\`](./TRIANGLE_CROWN_TORUS_840_BRIDGE_V1.md)
+- Verificador: \`tools/verify_triangle_crown_torus_840_bridge.py\`
+- Receipt: \`results/audit/triangle_crown_torus_840_bridge_v1.json\`
+- Governança: \`governance/modules/geometry-triangle-crown-torus-840.v1.json\`
+- Estado: geometria formal + combinatória finita; \`claim_allowed=false\` para mecanismo físico.
+- Fronteiras: esfera ≠ toro; hexagrama plano ≠ geodésico esférico; 840 angular ≠ 840 modular sem mapa declarado.
