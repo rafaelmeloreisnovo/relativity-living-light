@@ -1,5 +1,5 @@
 schema: rll.workflow_contract.v1
-updated_at: "2026-08-30"
+updated_at: "2026-10-02"
 
 inventory:
   active_workflows: 63
@@ -20,6 +20,28 @@ canonical_pipeline:
   logical_phases: 8
   pull_request_mode: dry_run
   claim_boundary: "A execução estrutural do gate não comprova afirmações científicas."
+
+workflow_session:
+  dispatch_workflow: .github/workflows/unified-workflow-session-orchestrator.yml
+  catalog: .github/workflow-orchestrator/session.yml
+  discovery_mode: explicit_manifests_only
+  root_workflow_glob: false
+  manifest_count: 8
+  execution_mode: sequential
+  stage_barrier: true
+  max_in_flight: 1
+  parent_timeout_minutes: 320
+  profile_budget_minutes:
+    full_session: 260
+    quick_session: 20
+    real_data_session: 165
+    science_session: 75
+    frontier_session: 190
+    literature_session: 15
+    pages_preview_session: 15
+  full_session_includes_frontier: false
+  pages_publication_effect: PREVIEW_ARTIFACT_ONLY
+  claim_allowed: false
 
 aliases:
   - path: .github/workflows/RLL-CI.yml
@@ -77,6 +99,7 @@ documented_checks:
 documentation:
   authority_order:
     - .github/workflow-contract.yml
+    - .github/workflow-orchestrator/session.yml
     - .github/workflow-architecture/invariants.v1.yml
     - governance/rll-governance-profile.v1.json
     - tools/validate_workflow_docs.py

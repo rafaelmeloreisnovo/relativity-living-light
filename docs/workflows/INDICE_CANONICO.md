@@ -1,9 +1,9 @@
 # Índice Canônico de Workflows — RLL
 
-> **Gerado**: 2026-07-20 | **Workflows totais**: 44 | **Branch**: `claude/rll-cronologia-auditoria-qyvn83`
+> **Snapshot histórico**: 2026-07-20 | **Contagem histórica**: 44 workflows | **Branch**: `claude/rll-cronologia-auditoria-qyvn83`
 >
-> Este índice substitui `docs/YML_WORKFLOWS_INDEX.md` como referência humana primária.
-> A tabela de SHA256 bruta é mantida em `YML_WORKFLOWS_INDEX.md` (auto-gerada por `tools/docs_inventory.py`).
+> Este arquivo foi preservado como registro histórico e não descreve o inventário atual.
+> Para o estado atual, use `.github/workflow-contract.yml`, `.github/workflow-orchestrator/session.yml` e `docs/YML_WORKFLOWS_INDEX.md`.
 
 ---
 

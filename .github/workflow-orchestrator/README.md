@@ -1,25 +1,34 @@
 # Workflow Orchestrator Catalog
 
-This directory centralizes the evolvable orchestration structure for GitHub Actions workflows.
+This directory defines the bounded set of workflows that the RLL session dispatcher may launch.
 
-- `session.yml` is the single orchestrator entry file (profiles, directories to load, and the single-flight execution policy).
-- `workflows/` is the modular directory tree with nested manifests that replace direct listing in one monolithic catalog.
-- `tools/workflow_orchestrator.py` reads `session.yml`, expands `workflow_catalog_dirs`, and dispatches workflows as one unified session.
+- `session.yml` is the only session entry point. It declares seven profiles and loads explicit manifest directories.
+- `workflows/` contains the allowlisted manifests. The canonical session does not set `workflow_files` and does not discover every root workflow.
+- `tools/workflow_orchestrator.py` dispatches selected manifests by stage and waits for each run before continuing.
 
-## Schema Evolution
+## Capacity and profile routing
 
-- `rll.workflow_orchestrator.catalog.v1`: monolithic `catalog.yml` with inline `workflows`.
-- `rll.workflow_orchestrator.catalog.v2`: single entry (`session.yml`) + `workflow_catalog_dirs` that load nested manifest files from directories.
+| Profile | Scope | Configured maximum |
+|---|---|---:|
+| `quick_session` | YAML syntax gate | 20 min |
+| `real_data_session` | manual preflight + controlled real-data workflows | 165 min |
+| `science_session` | formula, IML, academic package and research preview | 75 min |
+| `literature_session` | academic package, optional one-paper arXiv intake and Jekyll preview | 15 min |
+| `pages_preview_session` | same source graph rendered as a Jekyll preview artifact | 15 min |
+| `frontier_session` | isolated frontier workflow | 190 min |
+| `full_session` | all allowlisted bounded workflows except frontier | 260 min |
 
-## Where operational learning belongs
+The session remains sequential with a stage barrier and `max_in_flight: 1`. A focused profile avoids waiting for unrelated categories. The parent job timeout is 320 minutes: 60 minutes above the largest configured profile budget and below GitHub Actions' documented 360-minute job limit.
 
-Workflow manifests describe **execution**, not accumulated knowledge. New validated
-knowledge belongs in the relevant domain registry or result artifact, with source,
-checksum, method, metric, and epistemic state. The parent `session.yml` should
-contain only profiles and execution policy; adding another YAML file for each
-learning event is not required.
+## Research and publication boundary
 
-The orchestrator runs the selected manifests in ascending `stage` order and
-waits at the stage barrier even when `--wait` is omitted. A failed workflow is
-recorded in the summary and `--fail-fast` controls whether later stages are
-skipped.
+The academic workflow validates the existing relation package, can fetch one arXiv metadata record when given an ID, preserves the raw Atom response and its SHA-256, and builds a Jekyll preview. Optional relation targets and their note are caller-declared candidate edges. They remain `RELATIONAL_PENDING` and `claim_allowed: false`.
+
+The preview is uploaded as a workflow artifact only. This route does not enable Pages deployment, poll arXiv, infer scientific relations, merge researcher identities by name, or send messages to researchers. The raw API response, generated candidate, build revision, run ID and input-file digests are kept in the receipt artifacts.
+
+## Schema evolution
+
+- `rll.workflow_orchestrator.catalog.v1`: historical monolithic catalog.
+- `rll.workflow_orchestrator.catalog.v2`: `session.yml` plus explicitly loaded manifest directories.
+
+Operational manifests describe execution. Validated knowledge stays in a domain registry or result artifact with source, checksum, method, metric, baseline and epistemic state.

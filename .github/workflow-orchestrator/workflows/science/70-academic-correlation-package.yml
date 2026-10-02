@@ -1,0 +1,14 @@
+id: academic_correlation_package
+description: "Validate academic relation structure, optionally ingest one arXiv record, and build a Jekyll preview."
+file: validate-academic-correlation-package.yml
+stage: 70
+enabled: true
+tags: [all, science, bounded_science, bibliography, pages_preview, validation]
+wait_for_completion: true
+timeout_minutes: 15
+inputs:
+  arxiv_id: ""
+  related_node_ids: ""
+  relation_note: ""
+claim_allowed: false
+publication_effect: PREVIEW_ARTIFACT_ONLY

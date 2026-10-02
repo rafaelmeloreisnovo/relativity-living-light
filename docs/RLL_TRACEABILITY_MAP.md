@@ -35,6 +35,7 @@ RLL v1.0.0 tag / 2025 formula
 
 | Thing / question | Status now | Treated in | What to verify next |
 |---|---|---|---|
+| Academic fragment intake and Jekyll preview | VERIFIED as a structural, source-hashed candidate path; scientific relations remain pending | `docs/workflows/RLL_RESEARCH_FRAGMENT_ROUTE_V1.md`, `data/research_fragments/academic_correlation_sources.yml`, `tools/ingest_arxiv_candidate.py`, `tools/build_research_fragment_site_data.py` | Keep author-declared edges pending; capture source-level reasoning and independent tests before promotion. GitHub Pages deployment configuration remains TOKEN_VAZIO. |
 | Public anteriority of RLL | VERIFIED | `docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md` | compare tag with DOI/Zenodo package |
 | Tag `v1.0.0` formula | VERIFIED | `docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md` | locate all files in tag snapshot |
 | `Ω_s0` / superposition term | VERIFIED in README tag | `docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md` | first commit/file ancestry ledger |

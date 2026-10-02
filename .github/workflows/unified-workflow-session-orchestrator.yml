@@ -12,6 +12,10 @@ on:
           - full_session
           - quick_session
           - real_data_session
+          - science_session
+          - frontier_session
+          - literature_session
+          - pages_preview_session
       ref:
         description: "Branch or ref for dispatch"
         required: true
@@ -49,7 +53,7 @@ concurrency:
 jobs:
   orchestrate-workflow-session:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 320
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -70,22 +74,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          SESSION_PROFILE: ${{ inputs.profile }}
+          SESSION_REF: ${{ inputs.ref }}
+          SESSION_OVERRIDES: ${{ inputs.overrides }}
+          SESSION_WAIT: ${{ inputs.wait_for_completion }}
+          SESSION_FAIL_FAST: ${{ inputs.fail_fast }}
+          SESSION_DRY_RUN: ${{ inputs.dry_run }}
         run: |
           mkdir -p artifacts/unified-workflow-session
           args=(
             --catalog .github/workflow-orchestrator/session.yml
-            --profile "${{ inputs.profile }}"
-            --ref "${{ inputs.ref }}"
-            --overrides '${{ inputs.overrides }}'
+            --profile "$SESSION_PROFILE"
+            --ref "$SESSION_REF"
+            --overrides "$SESSION_OVERRIDES"
             --output-dir artifacts/unified-workflow-session
           )
-          if [ "${{ inputs.wait_for_completion }}" = "true" ]; then
+          if [ "$SESSION_WAIT" = "true" ]; then
             args+=(--wait)
           fi
-          if [ "${{ inputs.fail_fast }}" = "true" ]; then
+          if [ "$SESSION_FAIL_FAST" = "true" ]; then
             args+=(--fail-fast)
           fi
-          if [ "${{ inputs.dry_run }}" = "true" ]; then
+          if [ "$SESSION_DRY_RUN" = "true" ]; then
             args+=(--dry-run)
           fi
           python3 tools/workflow_orchestrator.py "${args[@]}"

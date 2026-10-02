@@ -4,7 +4,7 @@ description: "Validate frontier contracts and optionally execute bounded or full
 file: frontier-research-composition.yml
 stage: 55
 enabled: true
-tags: [all, science, validation, frontier]
+tags: [science, validation, frontier]
 wait_for_completion: true
 timeout_minutes: 190
 inputs:

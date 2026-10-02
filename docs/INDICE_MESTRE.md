@@ -4,6 +4,7 @@
 **Atualizado em:** 2026-06-20
 **Atualizado em:** 2026-06-26
 **Atualizado em:** 2026-08-24
+**Atualizado em:** 2026-10-02
 **Regra:** secao principal lista apenas caminhos canonicos oficiais.
 
 ---
@@ -87,6 +88,7 @@ Encaminhamentos complementares:
 
 - [`docs/DOCUMENTATION_ORGANIZATION_MASTER.md`](DOCUMENTATION_ORGANIZATION_MASTER.md)
 - [`docs/RLL_TRACEABILITY_MAP.md`](RLL_TRACEABILITY_MAP.md) - mapa central: cada claim/artifacto aponta para seu documento, status e proxima prova
+- [`docs/workflows/RLL_RESEARCH_FRAGMENT_ROUTE_V1.md`](workflows/RLL_RESEARCH_FRAGMENT_ROUTE_V1.md) - rota de bibliografia arXiv, grafo de fragmentos, intake com hash e preview Jekyll sem deploy
 - [`docs/RLL_V1_TAG_ANCESTRALITY_AUDIT.md`](RLL_V1_TAG_ANCESTRALITY_AUDIT.md) - auditoria da tag `v1.0.0`, anterioridade da formula e observaveis
 - [`docs/RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md`](RLL_MOBILE_TERMUX_PROVENANCE_LEDGER.md) - ledger de proveniencia celular/Termux e estados VERIFIED/DECLARED/TOKEN_VAZIO
 - [`docs/RLL_NEXT_WORK_DOCUMENTATION_PLAN.md`](RLL_NEXT_WORK_DOCUMENTATION_PLAN.md) - plano operacional para inventario da tag, imagens, CSVs, estacoes de dados e non-post-hoc
